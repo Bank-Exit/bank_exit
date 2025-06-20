@@ -13,7 +13,7 @@
       title: 15-minute "Living without a bank" tutorial - CakeWallet and Monero
       created_at: "2024-05-12"
 
-- title: Complete Bank Exit formation
+- title: Complete Bank-Exit formation
   identifier: crash-course
   level: 0
   time: 90
@@ -23,7 +23,7 @@
   figure:
     video:
       url: https://www.youtube.com/embed/hESmJ9Amq7w
-      title: Bitcoin Monero training workshop - Bank Exit Collectif
+      title: Bitcoin Monero training workshop - Bank-Exit Collectif
       created_at: "2024-01-30"
 
 - title: Private Session messaging

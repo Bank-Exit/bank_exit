@@ -1,15 +1,15 @@
 it:
   backup_mailer:
     send_geojson:
-      subject: "[Bank Exit] Backup settimanale dei commercianti (geojson)"
+      subject: "[Bank-Exit] Backup settimanale dei commercianti (geojson)"
 
   merchant_mailer:
     send_new_merchant:
-      subject: "[Bank Exit] Suggerimento per aggiungere un nuovo commerciante alla mappa"
+      subject: "[Bank-Exit] Suggerimento per aggiungere un nuovo commerciante alla mappa"
 
     send_report_merchant:
-      subject: "[Bank Exit] Segnalazione di un problema sul profilo di un commerciante"
+      subject: "[Bank-Exit] Segnalazione di un problema sul profilo di un commerciante"
 
   comment_mailer:
     send_report_comment:
-      subject: "[Bank Exit] Segnalazione di un commento su un profilo commerciante"
+      subject: "[Bank-Exit] Segnalazione di un commento su un profilo commerciante"

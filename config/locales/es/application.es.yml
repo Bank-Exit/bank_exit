@@ -5,8 +5,8 @@ es:
       headline_html: "Compruebe siempre que el sitio que aparece en su navegador corresponde a %{url}"
 
     nav:
-      collectif: Salida
-      bank_exit: De Banco
+      collectif: Colectivo
+      bank_exit: Bank-Exit
 
       menu:
         home: Inicio
@@ -40,5 +40,5 @@ es:
       title: Redes y contactos
 
     footer:
-      copyright_html: Copyright &copy; Salida del Banco 2022 - %{year} &bullet; Todos derechos reservados
+      copyright_html: Copyright &copy; Bank-Exit 2022 - %{year} &bullet; Todos derechos reservados
       developed_by_html: Desarrollado con %{heart} por Collectif Sortie de Banque

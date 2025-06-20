@@ -1,11 +1,11 @@
 ---
-- title: El folleto Salida del Banco
+- title: El folleto Bank-Exit
   identifier: flyer
   created_at: "2025-04-10"
   content:
     - render:
         pdf: /pdfs/Flyers_SDB_2025_V4_7_ESP1.pdf
-        caption: Versión completa Bitcoin y Monero por <strong>Salida del Banco</strong> on <strong>Github</strong>
+        caption: Versión completa Bitcoin y Monero por <strong>Bank-Exit</strong> on <strong>Github</strong>
       url: https://github.com/Unbanked0/Sortie_De_Banque/blob/main/flyers/Flyers_SDB_2025_V4_7_ESP1.pdf
 
     - figure:

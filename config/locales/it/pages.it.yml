@@ -261,8 +261,8 @@ it:
       view_on_osm: Visualizza su OpenStreetMap
 
       share_by_email:
-        subject: "[Bank Exit] Commerciante %{name}"
-        body: "Scopri questo commerciante sulla pagina del Collettivo Bank Exit: %{link}"
+        subject: "[Bank-Exit] Commerciante %{name}"
+        body: "Scopri questo commerciante sulla pagina del Collettivo Bank-Exit: %{link}"
 
       comments:
         title: Pubblica un commento

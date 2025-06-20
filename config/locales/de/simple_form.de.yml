@@ -14,9 +14,9 @@ de:
         latitude: Breitengrad
         longitude: Längengrad
         zoom: Zoom
-        gestureHandling: Gestensteuerung
-        fitBounds: Bereich anpassen
-        attribution: Quellenangabe
+        gestureHandling: Gestensteuerung  (gestureHandling)
+        fitBounds: Bereich anpassen (fitBounds)
+        attribution: Quellenangabe (attribution)
 
         query: Suche
         category: Kategorie

@@ -1,6 +1,6 @@
 module SEOHelper
   def seo_meta_tags(pagy)
-    display_meta_tags site: 'Collectif Sortie de Banque',
+    display_meta_tags site: I18n.t('seo.default.title'),
                       title: title_for_page,
                       description: description_for_page,
                       reverse: true,
@@ -48,7 +48,8 @@ module SEOHelper
       },
       foundingDate: Date.new(2002, 1, 1),
       sameAs: [
-        'https://twitter.com/SortieDeBanque',
+        'https://x.com/SortieDeBanque',
+        'https://x.com/Bank_Exit',
         'https://www.youtube.com/@sortiedebanque',
         'http://t.me/SortieDeBanque',
         'https://odysee.com/@SortieDeBanque:c',

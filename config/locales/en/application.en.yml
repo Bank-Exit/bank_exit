@@ -5,7 +5,7 @@ en:
       headline_html: "Always check that the site displayed in your browser corresponds to %{url}"
 
     nav:
-      collectif: Bank Exit
+      collectif: Bank-Exit
       bank_exit: Collective
 
       menu:
@@ -40,5 +40,5 @@ en:
       title: Networks and contacts
 
     footer:
-      copyright_html: Copyright &copy; Bank Exit 2022 - %{year} &bullet; All rights reserved
-      developed_by_html: Developed with %{heart} by the Bank Exit Collective
+      copyright_html: Copyright &copy; Bank-Exit 2022 - %{year} &bullet; All rights reserved
+      developed_by_html: Developed with %{heart} by the Bank-Exit Collective

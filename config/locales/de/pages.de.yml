@@ -77,7 +77,7 @@ de:
     index:
       title: Blog
     show:
-      subject: "[Bank Exit] Blog %{title}"
+      subject: "[Bank-Exit] Blog %{title}"
       body: "Entdecke diesen Blogartikel auf der Bank-Exit Kollektiv-Webseite: %{link}"
 
   tutorials:
@@ -89,7 +89,7 @@ de:
       other_tutorials_title: Weitere Tutorials
 
     show:
-      subject: "[Bank Exit] Tutorial %{title}"
+      subject: "[Bank-Exit] Tutorial %{title}"
       body: "Entdecke dieses Tutorial auf der Bank-Exit Kollektiv-Webseite: %{link}"
       pending_redaction: Tutorial in Bearbeitung
       tutorial_might_be_outdated: Dieses Tutorial wurde vor über zwei Jahren verfasst. Da sich die Welt der Technologie schnell entwickelt, könnten einige Informationen nicht mehr mit den neuen Versionen der vorgestellten Software oder Anwendungen übereinstimmen.
@@ -261,7 +261,7 @@ de:
       view_on_osm: Auf OpenStreetMap ansehen
 
       share_by_email:
-        subject: "[Bank Exit] Händler %{name}"
+        subject: "[Bank-Exit] Händler %{name}"
         body: "Entdecke diesen Händler auf der Webseite des Bank-Exit Kollektivs: %{link}"
 
       comments:

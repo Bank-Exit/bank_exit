@@ -50,9 +50,7 @@
 - route: local_groups#index
   image: local_groups.jpg
   title: Local groups
-  description:
-    Find the different Bank Exit groups in France (Paris, Rennes, Lille,
-    Lyon, ...)
+  description: Find the different Bank-Exit groups in France (Paris, Rennes, Lille, Lyon, ...)
   external: false
   identifier: local_groups
 

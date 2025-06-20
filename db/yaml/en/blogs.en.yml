@@ -1,11 +1,11 @@
 ---
-- title: Flyer Bank Exit
+- title: Flyer Bank-Exit
   identifier: flyer
   created_at: "2025-04-10"
   content:
     - render:
         pdf: /pdfs/Flyers_SDB_2025_V4_8_ENG.pdf
-        caption: Full version Bitcoin and Monero by <strong>Bank Exit</strong> on <strong>Github</strong>
+        caption: Full version Bitcoin and Monero by <strong>Bank-Exit</strong> on <strong>Github</strong>
       url: https://github.com/Unbanked0/Sortie_De_Banque/blob/main/flyers/Flyers_EN_English/Flyers_SDB_2025_V4_8_ENG.pdf
 
     - figure:
@@ -17,7 +17,7 @@
     - url: /pdfs/Flyers_SDB_2025_V4_9_accroche_pros.pdf
       description: Hook for merchants and craftsmen in PDF (in french)
 
-- title: Bank Exit Presentation
+- title: Bank-Exit Presentation
   identifier: presentation-bank-exit
   created_at: "2025-01-31"
   content:
