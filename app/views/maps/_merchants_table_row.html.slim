@@ -1,0 +1,48 @@
+tr.odd:hover:bg-base-200.transition-colors
+  th
+    = link_to merchant_path(merchant) do
+      = highlight(merchant.name, params[:search])
+
+  td
+    .flex.items-center.gap-2
+      = merchant_icon_svg(merchant.icon, width: 35, height: 35)
+      .text-xs.wrap-anywhere
+        = t(merchant.category, scope: 'categories')
+
+  td
+    == pretty_country_html(merchant.country, show_flag: true)
+
+  td
+    .flex.items-center.gap-2
+      - merchant.coins.each do |coin|
+        = image_tag icon_by_coin(coin),
+                    title: coin.capitalize,
+                    class: 'w-6 h-6'
+      - if merchant.ask_kyc?
+        = image_tag 'kyc.png', alt: 'KYC', title: 'KYC', class: 'w-6 h-6 rounded-full'
+      - else
+        = image_tag 'kyc_not.png', alt: 'No KYC', title: 'No KYC', class: 'w-6 h-6'
+
+  td
+    .flex.items-center.gap-3
+      - main_group = []
+      - extra_group = []
+
+      - merchant.all_contacts.each.with_index(1) do |contact, index|
+        - if index > 3
+          - extra_group << contact
+        - else
+          - main_group << contact
+
+      - main_group.each do |(contact, value)|
+        = social_contact_icon contact, title: value
+
+      - if extra_group.present?
+        - text = extra_group.map { social_contact_icon(it.first) }.join(' ')
+        = render 'tooltip',
+                position: :left,
+                text: text,
+                mode: 'info',
+                lucide_ikon: 'ellipsis'
+
+  td= link_to t('see'), merchant_path(merchant), class: 'btn btn-primary btn-sm'

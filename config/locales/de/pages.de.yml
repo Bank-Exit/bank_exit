@@ -162,11 +162,12 @@ de:
         <br />
         Freiheit des Bargelds, zum ersten Mal seit 2500 Jahren.   #noCBDC
 
+      free_open_data_html: Die auf der Karte angezeigten Daten sind <strong>frei</strong>, <strong>Open Source</strong> und stammen von <strong>OpenStreetMap</strong>.
+
+    sidebar:
       suggest_merchant: Händler vorschlagen
       show_search: Suchformular anzeigen
       hide_search: Suchformular verbergen
-
-      free_open_data_html: Die auf der Karte angezeigten Daten sind <strong>frei</strong>, <strong>Open Source</strong> und stammen von <strong>OpenStreetMap</strong>.
 
     filters_form:
       clear_search_query: Suchbegriff löschen

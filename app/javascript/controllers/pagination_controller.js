@@ -31,7 +31,9 @@ export default class extends Controller {
     current.searchParams.set("page", number);
     window.history.pushState("id", "", current);
 
-    this.#scrollToTopResults();
+    if (this.hasPagyTopTarget) {
+      this.#scrollToTopResults();
+    }
   }
 
   #prevPageHandler(e) {

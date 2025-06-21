@@ -20,8 +20,9 @@ en:
   spotlight: Spotlight
   reset_search: Reset search
 
-  grid: Grid
-  table: Table
+  presentation_map: Map display
+  presentation_grid: Grid display
+  presentation_table: Table display
 
   download: Download
   video_tutorial: Video tutorial

@@ -6,6 +6,8 @@ export default class extends Controller {
 
     if (this.#shouldHideDirectoryFriends()) {
       this.element.removeAttribute("open");
+    } else {
+      this.element.setAttribute("open", "open");
     }
   }
 

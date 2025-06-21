@@ -4,13 +4,13 @@
   = link_to url_for(params: req_params.merge(presentation: :grid)),
            data: { turbo_stream: true },
            class: "btn #{'btn-secondary' if directories_as_grid?}",
-           title: t('grid') do
+           title: t('presentation_grid') do
     = lucide_icon 'grid-3x3'
 
   = link_to url_for(params: req_params.merge(presentation: :table)),
             data: { turbo_stream: true },
             class: "btn #{'btn-secondary' unless directories_as_grid?}",
-            title: t('table') do
+            title: t('presentation_table') do
     = lucide_icon 'rows-3'
 
 - if directories.any?

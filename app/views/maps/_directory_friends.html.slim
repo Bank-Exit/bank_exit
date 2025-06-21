@@ -18,32 +18,3 @@ details.absolute.bottom-2.left-1/2.-translate-x-1/2.bg-base-100.p-2.lg:px-3.lg:p
 
             h4.lg:font-semibold.text-center.text-xs.lg:text-sm
               = directory_friend.name
-
-/ TODO: Extract this style into a stylesheet
-css:
-    summary#directory-friends {
-        &::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-top: 8px solid var(--color-primary);
-            border-inline: 7px solid transparent;
-            transition: 0.3s;
-        }
-    }
-
-    details > summary#directory-friends {
-        &::before {
-            transform: rotate(-90deg);
-        }
-    }
-
-    details[open] > summary#directory-friends {
-        &::before {
-            transform: rotate(0deg);
-        }
-    }
-
-    summary#directory-friends::-webkit-details-marker {
-        display: none;
-    }

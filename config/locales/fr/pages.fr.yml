@@ -162,11 +162,12 @@ fr:
         <br />
         L'argent liquide libre, pour la première fois en 2500 ans. #noCBDC
 
+      free_open_data_html: Les données affichées sur la carte sont <strong>libres</strong>, <strong>open source</strong> et proviennent d'<strong>OpenStreetMap</strong>.
+
+    sidebar:
       suggest_merchant: Proposer un commerçant
       show_search: Afficher la recherche
       hide_search: Masquer la recherche
-
-      free_open_data_html: Les données affichées sur la carte sont <strong>libres</strong>, <strong>open source</strong> et proviennent d'<strong>OpenStreetMap</strong>.
 
     filters_form:
       clear_search_query: Effacer la recherche
