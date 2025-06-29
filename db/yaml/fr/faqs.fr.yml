@@ -5,6 +5,7 @@
     - answer: Le Collectif sera alors informé de votre demande et ajoutera le commerçant sur OpenStreetMap.
   categories:
     - map
+  identifier: suggest_merchant
 
 - question: Comment convaincre un commerçant ?
   content:
@@ -16,6 +17,7 @@
   categories:
     - map
     - merchant
+  identifier: convince_merchant
 
 - question: Je souhaite être retiré de la carte, comment faire ?
   content:
@@ -24,6 +26,7 @@
       answer: A noter qu'après suppression sur OpenStreetMap, le commerçant peut encore apparaître quelques heures sur la carte du Collectif, en attendant la prochaine synchronisation des données.
   categories:
     - map
+  identifier: remove_from_map
 
 - question: J'ai ajouté un commerçant sur OpenStreetMap mais il n'apparait toujours pas sur la carte du Collectif, pourquoi ?
   content:
@@ -31,6 +34,7 @@
     - answer: A noter que vous pouvez effectuer vous même un rafraîchissement manuel des données depuis la carte en cliquant sur <mark>⋮</mark> > <mark>Rafraîchir les commerçants</mark> (à côté du bouton vert "Proposer un commerçant").
   categories:
     - map
+  identifier: merchant_not_visible
 
 - question: Je souhaite intégrer la carte sur mon site, comment faire ?
   content:
@@ -38,6 +42,7 @@
     - answer: Rendez-vous sur la page {{tutorials#show->documentation-embed-map}} pour accéder à la documentation et générer votre version personnalisée de la carte.
   categories:
     - map
+  identifier: embed_map
 
 - question: Qu'est-ce qu'un KYC ?
   content:
@@ -45,6 +50,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_definition
 
 - question: Quels sont les risques d'un KYC ?
   content:
@@ -59,6 +65,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_risks
 
 - question: Quelle est la différence entre la carte et l'annuaire ?
   content:
@@ -68,3 +75,11 @@
   categories:
     - map
     - directory
+  identifier: map_vs_directory
+
+- question: Comment envoyer un message et un pourboire en utilisant Monero ?
+  content:
+    - answer: Avec <a href="https://xmrchat.com/fr" target="_blank">XMRChat</a>, les spectateurs peuvent envoyer un message et un pourboire en Monero de façon anonyme, sans créer de compte ni fournir d’infos personnelles. Les streamers reçoivent 100% des pourboires, sans frais ni intermédiaires. Le tout est privé, résistant à la censure, et open source.
+  categories:
+    - general
+  identifier: xmrchat

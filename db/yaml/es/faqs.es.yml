@@ -5,6 +5,7 @@
     - answer: El Colectivo recibirá una notificación de su solicitud y añadirá el comercio a OpenStreetMap.
   categories:
     - map
+  identifier: suggest_merchant
 
 - question: ¿Cómo convencer a un comerciante?
   content:
@@ -16,6 +17,7 @@
   categories:
     - map
     - merchant
+  identifier: convince_merchant
 
 - question: Me gustaría que me eliminaran del mapa. ¿Cómo lo hago?
   content:
@@ -24,6 +26,7 @@
       answer: Tenga en cuenta que, tras eliminarlo de OpenStreetMap, el comerciante podría seguir apareciendo en el mapa del Colectivo durante unas horas, a la espera de la siguiente sincronización de datos.
   categories:
     - map
+  identifier: remove_from_map
 
 - question: Agregué un comercio a OpenStreetMap, pero sigue sin aparecer en el mapa del Colectivo. ¿Por qué?
   content:
@@ -31,6 +34,7 @@
     - answer: Puede actualizar los datos usted mismo desde el mapa haciendo clic en <mark>⋮</mark> > <mark>Refrescar a los commerciantes</mark> (junto al botón verde "Sugerir un commerciante").
   categories:
     - map
+  identifier: merchant_not_visible
 
 - question: Quiero incrustar el mapa en mi sitio web. ¿Cómo lo hago?
   content:
@@ -38,6 +42,7 @@
     - answer: Vaya a la página {{tutorials#show->documentation-embed-map}} para acceder a la documentación y generar su versión personalizada del mapa.
   categories:
     - map
+  identifier: embed_map
 
 - question: ¿Qué es el KYC?
   content:
@@ -45,6 +50,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_definition
 
 - question: ¿Cuáles son los riesgos de un KYC?
   content:
@@ -59,6 +65,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_risks
 
 - question: ¿Cuál es la diferencia entre el mapa y el directorio?
   content:
@@ -68,3 +75,4 @@
   categories:
     - map
     - directory
+  identifier: map_vs_directory

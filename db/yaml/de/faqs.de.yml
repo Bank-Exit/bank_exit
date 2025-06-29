@@ -5,6 +5,7 @@
     - answer: Das Kollektiv wird anschließend über deinen Vorschlag informiert und fügt den Händler zu OpenStreetMap hinzu.
   categories:
     - map
+  identifier: suggest_merchant
 
 - question: Wie überzeugt man einen Händler?
   content:
@@ -16,6 +17,7 @@
   categories:
     - map
     - merchant
+  identifier: convince_merchant
 
 - question: Ich möchte von der Karte entfernt werden. Wie geht das?
   content:
@@ -24,6 +26,7 @@
       answer: "Hinweis: Nach der Löschung in OpenStreetMap kann der Händler noch einige Stunden auf der Karte des Kollektivs sichtbar sein – bis zur nächsten Synchronisierung."
   categories:
     - map
+  identifier: remove_from_map
 
 - question: Ich habe einen Händler zu OpenStreetMap hinzugefügt, aber er erscheint nicht auf der Karte. Warum?
   content:
@@ -31,6 +34,7 @@
     - answer: "Du kannst die Daten auch manuell aktualisieren: Auf der Karte klickst du auf <mark>⋮</mark> > <mark>Händlerdaten aktualisieren</mark> (neben dem grünen Button „Händler vorschlagen“)."
   categories:
     - map
+  identifier: merchant_not_visible
 
 - question: Wie kann ich die Karte auf meiner Website einbetten?
   content:
@@ -38,6 +42,7 @@
     - answer: Rufe dazu die Seite {{tutorials#show->documentation-embed-map}} auf, um die Dokumentation einzusehen und deine persönliche Version zu generieren.
   categories:
     - map
+  identifier: embed_map
 
 - question: Was ist ein KYC?
   content:
@@ -45,6 +50,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_definition
 
 - question: Welche Risiken birgt KYC?
   content:
@@ -59,6 +65,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_risks
 
 - question: Was ist der Unterschied zwischen der Karte und dem Verzeichnis?
   content:
@@ -68,3 +75,4 @@
   categories:
     - map
     - directory
+  identifier: map_vs_directory

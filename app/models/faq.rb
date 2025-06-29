@@ -6,6 +6,7 @@ class FAQ
   include Findable
 
   attribute :question, :string
+  attribute :identifier, :string
 
   attr_accessor :content, :categories, :answer
 end

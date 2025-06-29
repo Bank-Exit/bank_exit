@@ -5,6 +5,7 @@
     - answer: The Collective will then be notified of your request and will add the merchant to OpenStreetMap.
   categories:
     - map
+  identifier: suggest_merchant
 
 - question: How to convince a merchant?
   content:
@@ -16,6 +17,7 @@
   categories:
     - map
     - merchant
+  identifier: convince_merchant
 
 - question: I would like to be removed from the map. How do I do this?
   content:
@@ -24,6 +26,7 @@
       answer: Please note that after deletion from OpenStreetMap, the merchant may still appear on the Collective's map for a few hours, pending the next data synchronization.
   categories:
     - map
+  identifier: remove_from_map
 
 - question: I added a merchant on OpenStreetMap, but he still doesn't appear on the Collective's map. Why?
   content:
@@ -31,6 +34,7 @@
     - answer: Note that you can refresh the data yourself from the map by clicking <mark>⋮</mark> > <mark>Refresh merchants data</mark> (next to the green "Suggest a merchant" button).
   categories:
     - map
+  identifier: merchant_not_visible
 
 - question: I want to embed the map on my website. How do I do this?
   content:
@@ -38,6 +42,7 @@
     - answer: Go to the {{tutorials#show->documentation-embed-map}} page to access the documentation and generate your personalized version of the map.
   categories:
     - map
+  identifier: embed_map
 
 - question: What is a KYC ?
   content:
@@ -45,6 +50,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_definition
 
 - question: What are the risks of a KYC?
   content:
@@ -59,6 +65,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_risks
 
 - question: What is the difference between the map and the directory?
   content:
@@ -68,3 +75,11 @@
   categories:
     - map
     - directory
+  identifier: map_vs_directory
+
+- question: How do I send a message and a tip using Monero?
+  content:
+    - answer: With <a href="https://xmrchat.com" target="_blank">XMRChat</a>, viewers can send a message and a Monero tip anonymously, without creating an account or providing personal information. Streamers receive 100% of the tips, with no fees or intermediaries. It’s private, censorship-resistant, and open source.
+  categories:
+    - general
+  identifier: xmrchat

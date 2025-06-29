@@ -5,6 +5,7 @@
     - answer: Il Collectif verrà quindi informato della tua richiesta e aggiungerà il commerciante su OpenStreetMap.
   categories:
     - map
+  identifier: suggest_merchant
 
 - question: Come convincere un commerciante?
   content:
@@ -16,6 +17,7 @@
   categories:
     - map
     - merchant
+  identifier: convince_merchant
 
 - question: Vorrei essere rimosso dalla mappa. Come faccio?
   content:
@@ -24,6 +26,7 @@
       answer: Nota che dopo la cancellazione da OpenStreetMap, il commerciante potrebbe apparire ancora sulla mappa del Collectif per alcune ore, fino alla prossima sincronizzazione dei dati.
   categories:
     - map
+  identifier: remove_from_map
 
 - question: Ho aggiunto un commerciante su OpenStreetMap, ma non appare ancora sulla mappa del Collectif. Perché?
   content:
@@ -31,6 +34,7 @@
     - answer: Puoi anche aggiornare i dati manualmente dalla mappa cliccando <mark>⋮</mark> > <mark>Refresh merchants data</mark> (accanto al pulsante verde "Suggest a merchant").
   categories:
     - map
+  identifier: merchant_not_visible
 
 - question: Voglio incorporare la mappa sul mio sito web. Come si fa?
   content:
@@ -38,6 +42,7 @@
     - answer: Vai alla pagina {{tutorials#show->documentation-embed-map}} per accedere alla documentazione e generare la tua versione personalizzata della mappa.
   categories:
     - map
+  identifier: embed_map
 
 - question: Cos’è un KYC?
   content:
@@ -45,6 +50,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_definition
 
 - question: Quali sono i rischi del KYC?
   content:
@@ -58,6 +64,7 @@
   categories:
     - general
     - kyc
+  identifier: kyc_risks
 
 - question: Qual è la differenza tra la mappa e la directory?
   content:
@@ -67,3 +74,4 @@
   categories:
     - map
     - directory
+  identifier: map_vs_directory
