@@ -63,11 +63,9 @@ module ApplicationHelper
   end
 
   def logo_by_locale
-    if I18n.locale == :en
-      'logo_EN.png'
-    else
-      'logo.png'
-    end
+    return 'logo.png' if I18n.locale == :fr
+
+    'logo_EN.png'
   end
 
   # Find the corresponding flag associated to a

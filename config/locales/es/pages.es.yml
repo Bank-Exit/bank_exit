@@ -17,14 +17,14 @@ es:
 
   seo:
     default:
-      title: Colectivo Salida del Banco
+      title: Colectivo Bank-Exit
       description: Un grupo voluntario y apartidista cuyo objetivo es ofrecer herramientas legales, pacíficas y soberanas al mayor número posible de ciudadanos, con el fin de promover la emancipación bancaria y la resiliencia.
 
   missing_content_for_locale: Este contenido aún no existe en Español. En su lugar se muestra el contenido del idioma predeterminado.
 
   welcome:
     index:
-      title: Colectivo Salida del Banco
+      title: Colectivo Bank-Exit
       headline: Un grupo voluntario y apartidista cuyo objetivo es ofrecer herramientas legales, pacíficas y soberanas al mayor número posible de ciudadanos, con el fin de promover la emancipación bancaria y la resiliencia.
       video_caption: Comentarios de un horticultor que utiliza Monero (francés)
 
@@ -77,8 +77,8 @@ es:
     index:
       title: El blog
     show:
-      subject: "[Salida del Banco] Blog %{title}"
-      body: "Consulte este artículo de blog en el sitio web del colectivo Salida del Banco: %{link}"
+      subject: "[Bank-Exit] Blog %{title}"
+      body: "Consulte este artículo de blog en el sitio web del colectivo Bank-Exit: %{link}"
 
   tutorials:
     index:
@@ -89,8 +89,8 @@ es:
       other_tutorials_title: Otros tutoriales
 
     show:
-      subject: "[Salida del Banco] Tutorial %{title}"
-      body: "Consulte este tutorial en el sitio web del colectivo Salida del Banco: %{link}"
+      subject: "[Bank-Exit] Tutorial %{title}"
+      body: "Consulte este tutorial en el sitio web del colectivo Bank-Exit: %{link}"
       pending_redaction: Tutorial en preparación
       tutorial_might_be_outdated: Este tutorial se escribió hace más de dos años. Dado que el mundo de la tecnología evoluciona rápidamente, es posible que parte de la información ya no sea idéntica a las nuevas versiones del software o las aplicaciones presentadas.
 
@@ -261,7 +261,7 @@ es:
       view_on_osm: Abrir en OpenStreetMap
 
       share_by_email:
-        subject: "[Salida del Banco] Comerciante %{name}"
+        subject: "[Bank-Exit] Comerciante %{name}"
         body: "Ven a descubrir a este comerciante en el sitio web colectivo Sortie de Banque: %{link}"
 
       comments:
@@ -386,7 +386,7 @@ es:
       empty_results: No hay resultados
     filters:
       tooltip_geocoder_ip_html:
-        - <p>Para deducir su geolocalización a partir de su dirección IP, Salida de Banco utiliza el servicio web externo <b>https://ip-api.com</b> transmitiendo su dirección IP <b>en texto plano</b> (no cifrada).</p>
+        - <p>Para deducir su geolocalización a partir de su dirección IP, Bank-Exit utiliza el servicio web externo <b>https://ip-api.com</b> transmitiendo su dirección IP <b>en texto plano</b> (no cifrada).</p>
         - <p>Para reducir el número de solicitudes externas, la respuesta de geolocalización se almacena luego en <b>caché cifrada</b> durante 10 minutos.</p>
         - <p>Se recomienda usar una <b>VPN</b> para una mejor anonimidad, a costa de la precisión del filtrado.</p>
 

@@ -1,9 +1,9 @@
-# Bank Exit
+# Bank-Exit
 
 A voluntary, non-partisan collective whose aim is to offer legal, peaceful and sovereign tools to as many citizens as possible, to enable banking emancipation and resilience.
 
 <p align="center">
-  <img src="app/assets/images/logo_EN.png" width="auto" height="200" alt="Bank Exit logo">
+  <img src="app/assets/images/logo_EN.png" width="auto" height="200" alt="Bank-Exit logo">
   <img src="app/assets/images/logo.png" width="200" height="200" alt="Logo Sortie de Banque">
 </p>
 

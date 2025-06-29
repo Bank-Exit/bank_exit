@@ -1,15 +1,15 @@
 en:
   backup_mailer:
     send_geojson:
-      subject: "[Bank Exit] Weekly backup of merchants (geojson)"
+      subject: "[Bank-Exit] Weekly backup of merchants (geojson)"
 
   merchant_mailer:
     send_new_merchant:
-      subject: "[Bank Exit] Suggestion to add a new merchant to the map"
+      subject: "[Bank-Exit] Suggestion to add a new merchant to the map"
 
     send_report_merchant:
-      subject: "[Bank Exit] Report of an issue on a merchant profile"
+      subject: "[Bank-Exit] Report of an issue on a merchant profile"
 
   comment_mailer:
     send_report_comment:
-      subject: "[Bank Exit] Report of a comment on a merchant profile"
+      subject: "[Bank-Exit] Report of a comment on a merchant profile"

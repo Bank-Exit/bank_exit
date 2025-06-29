@@ -17,14 +17,14 @@ en:
 
   seo:
     default:
-      title: Bank Exit Collective
+      title: Bank-Exit Collective
       description: A voluntary, non-partisan collective whose aim is to offer legal, peaceful and sovereign tools to as many citizens as possible, to enable banking emancipation and resilience against government policy.
 
   missing_content_for_locale: This content has not yet been translated. The default language content is displayed instead.
 
   welcome:
     index:
-      title: Bank Exit Collective
+      title: Bank-Exit Collective
       headline: A voluntary, non-partisan collective whose aim is to offer legal, peaceful and sovereign tools to as many citizens as possible, to enable banking emancipation and resilience.
       video_caption: Feedback from a market gardener using Monero
 
@@ -77,8 +77,8 @@ en:
     index:
       title: Blog
     show:
-      subject: "[Bank Exit] Blog %{title}"
-      body: "Discover this blog article on the Bank Exit collectif webpage: %{link}"
+      subject: "[Bank-Exit] Blog %{title}"
+      body: "Discover this blog article on the Bank-Exit collective webpage: %{link}"
 
   tutorials:
     index:
@@ -89,8 +89,8 @@ en:
       other_tutorials_title: Other tutoriels
 
     show:
-      subject: "[Bank Exit] Tutorial %{title}"
-      body: "Discover this tutorial on the Bank Exit collectif webpage: %{link}"
+      subject: "[Bank-Exit] Tutorial %{title}"
+      body: "Discover this tutorial on the Bank-Exit collective webpage: %{link}"
       pending_redaction: Tutorial pending redaction
       tutorial_might_be_outdated: This tutorial was written over two years ago. As the world of technology evolves rapidly, some information may no longer be identical to new versions of the software or applications presented.
 
@@ -263,8 +263,8 @@ en:
       alert: This merchant is not available and has been marked as pre-deleted.
 
       share_by_email:
-        subject: "[Bank Exit] Merchant %{name}"
-        body: "Discover this merchant on the Bank Exit collectif webpage: %{link}"
+        subject: "[Bank-Exit] Merchant %{name}"
+        body: "Discover this merchant on the Bank-Exit collective webpage: %{link}"
 
       comments:
         title: Publish a comment
