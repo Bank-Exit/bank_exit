@@ -9,6 +9,7 @@
       table.table.table-zebra.lg:table-fixed.w-max.min-w-full.lg:w-auto
         thead
           tr
+            td= Merchant.human_attribute_name(:logo)
             td= Merchant.human_attribute_name(:name)
             td= Merchant.human_attribute_name(:category)
             td= Merchant.human_attribute_name(:country)

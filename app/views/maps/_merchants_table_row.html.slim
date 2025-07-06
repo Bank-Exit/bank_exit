@@ -1,4 +1,7 @@
 tr.odd:hover:bg-base-200.transition-colors
+  td
+    = render 'merchants/logo_or_initials', merchant: merchant
+
   th
     = link_to merchant_path(merchant) do
       = highlight(merchant.name, params[:search])

@@ -1,0 +1,10 @@
+- size = defined?(width) ? "w-#{width} h-#{width}" : 'w-12 h-12'
+
+- if merchant.logo.attached?
+  .avatar
+    .rounded-full class=size
+      = image_tag url_for(merchant.logo)
+- else
+  .avatar.avatar-placeholder
+    .text-white.rounded-full class=size style="background-color: #{merchant.name.to_rgb}"
+      span.text-2xl= merchant.initials

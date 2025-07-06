@@ -12,6 +12,7 @@ section.space-y-3 data-controller="admin--table"
                             class: 'checkbox checked:border-primary checked:bg-primary checked:text-primary-content',
                             data: { action: 'input->admin--table#toggleAll' }
 
+          th scope="col"= Merchant.human_attribute_name(:logo)
           th scope="col"= Merchant.human_attribute_name(:name)
           th scope="col"= Merchant.human_attribute_name(:category)
           th scope="col"= Merchant.human_attribute_name(:coins)

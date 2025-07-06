@@ -1,6 +1,8 @@
 merchant_attributes: &merchant_attributes
   name: Company name
   category: Category
+  logo: Logo
+  banner: Banner
   street: Street name
   postcode: Postcode
   city: City

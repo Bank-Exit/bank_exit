@@ -59,6 +59,10 @@ fr:
         title: Titre
         description: Description
 
+      merchant:
+        remove_logo: Supprimer le logo
+        remove_banner: Supprimer la bannière
+
       merchant_report:
         description: Description
 

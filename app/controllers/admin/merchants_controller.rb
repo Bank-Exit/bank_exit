@@ -1,6 +1,8 @@
 module Admin
   class MerchantsController < ApplicationController
-    before_action :set_merchant, only: %i[show update destroy]
+    before_action :set_merchant, only: %i[
+      show edit update destroy
+    ]
 
     # @route GET /admin/merchants (admin_merchants)
     def index
@@ -46,16 +48,23 @@ module Admin
       set_meta_tags title: @merchant.name
     end
 
+    # @route GET /admin/merchants/:id/edit (edit_admin_merchant)
+    def edit
+      authorize! @merchant
+    end
+
     # @route PATCH /admin/merchants/:id (admin_merchant)
     # @route PUT /admin/merchants/:id (admin_merchant)
     def update
       authorize! @merchant
 
-      @merchant.undelete!
+      if @merchant.update(merchant_update_params)
+        flash[:notice] = 'Le commerçant a bien été modifié'
 
-      flash[:notice] = 'Le commerçant a bien été réactivé'
-
-      redirect_back_or_to admin_merchants_path(show_deleted: true)
+        redirect_to admin_merchants_path(format: :html)
+      else
+        render :edit, status: :unprocessable_entity
+      end
     end
 
     # @route DELETE /admin/merchants/:id (admin_merchant)
@@ -78,8 +87,16 @@ module Admin
       )
     end
 
+    def merchant_update_params
+      params.expect(
+        merchant: %i[
+          logo banner remove_logo remove_banner
+        ]
+      )
+    end
+
     def set_merchant
-      @merchant = Merchant.find_by!(identifier: merchant_id)
+      @merchant = Merchant.find_by!(identifier: merchant_id).decorate
     end
 
     def query

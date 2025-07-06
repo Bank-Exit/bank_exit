@@ -196,6 +196,9 @@ module SEOHelper
     json[:telephone] = merchant.phone if merchant.phone?
     json[:description] = merchant.description if merchant.description?
 
+    json[:logo] = image_url(url_for(merchant.logo)) if merchant.logo.attached?
+    json[:photo] = image_url(url_for(merchant.banner)) if merchant.banner.attached?
+
     json[:sameAs] = merchant.all_links if merchant.all_links.any?
 
     json[:openingHours] = merchant.opening_hours if merchant.opening_hours.present?

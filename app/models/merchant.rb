@@ -1,5 +1,6 @@
 class Merchant < ApplicationRecord
   include Deletable
+  include WithLogoAndBanner
 
   attr_accessor :with_comments
 

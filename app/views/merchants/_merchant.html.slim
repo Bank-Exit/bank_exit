@@ -1,11 +1,10 @@
 article.bg-base-200.p-3.rounded-lg.space-y-4 id="id-#{merchant.id}"
   header.border-b.pb-2.border-gray-400.dark:border-gray-500
     .flex.flex-col.lg:flex-row.items-center.justify-between.gap-2
-      .flex.items-center.gap-2
-        = merchant_icon_svg(merchant.icon, width: 30, height: 30, padding: 'p-0.5')
+      = link_to merchant_path(merchant), class: 'flex items-center gap-2' do
+        = render 'merchants/logo_or_initials', merchant: merchant
 
-        = link_to merchant_path(merchant) do
-          h3.font-bold.truncate.max-w-72= highlight(merchant.name, params[:search])
+        h3.font-bold.truncate.max-w-72= highlight(merchant.name, params[:search])
 
       .flex.items-center.gap-2
         - if merchant.monero?
@@ -24,9 +23,10 @@ article.bg-base-200.p-3.rounded-lg.space-y-4 id="id-#{merchant.id}"
         - else
           = image_tag 'kyc_not.png', alt: 'No KYC', title: 'No KYC', class: 'w-6 h-6'
 
-    - if merchant.category.present?
-      p.text-xs.mt-1
-        = t("categories.#{merchant.category}", default: merchant.category)
+  - if merchant.category.present?
+    p.flex.items-center.text-sm.gap-2
+      = merchant_icon_svg(merchant.icon, width: 30, height: 30, padding: 'p-0.5')
+      = t("categories.#{merchant.category}", default: merchant.category)
 
   - if merchant.address?
     .text-sm
