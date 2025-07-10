@@ -7,7 +7,7 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
     let(:merchant_ids) { %w[123 456 789] }
 
     # Extra merchant only in bank-exit map
-    let!(:merchant) { create :merchant, name: 'John', identifier: '1234ABCD' }
+    let!(:merchant) { create :merchant, name: 'John', identifier: '1234ABCD', country: 'FR' }
 
     let(:removed_merchants_txt_file) do
       'spec/fixtures/files/merchants/removed_merchants_from_open_street_map.txt'
@@ -16,7 +16,19 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
     before do
       stub_request(:patch, /api.github.com/)
         .with(body: {
-          body: "Some merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.\nPlease check the relevance of the information below:\n\n- [ ] **John** (#1234ABCD): [On Bank-Exit](http://example.test/en/merchants/1234ABCD-john?debug=true) / [On OpenStreetMap](https://www.openstreetmap.org/node/1234ABCD)\n\n---\n\n*Note: this issue has been automatically updated from bank-exit website using the Github API.*\n"
+          body: <<~MARKDOWN
+            Some merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
+            Please check the relevance of the information below:
+
+            - [ ] **John** [#1234ABCD] 🇫🇷 France
+              - [On Bank-Exit](http://example.test/en/merchants/1234ABCD-john?debug=true)
+              - [On OpenStreetMap](https://www.openstreetmap.org/node/1234ABCD)
+
+
+            ---
+
+            *Note: this issue has been automatically updated from bank-exit website using the Github API.*
+          MARKDOWN
         }.to_json)
         .to_return_json(status: 200)
 

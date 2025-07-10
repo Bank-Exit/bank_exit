@@ -3,6 +3,7 @@ module Merchants
   # helps to identify if a removal is legit or a dirty one by opening
   # an issue at Github with removed merchant references.
   class CheckAndReportRemovedOnOSM < ApplicationService
+    include ApplicationHelper
     include Rails.application.routes.url_helpers
 
     attr_reader :geojson_merchant_ids
@@ -55,7 +56,11 @@ module Merchants
 
     def merchants_list
       @merchants_list ||= MerchantDecorator.wrap(merchants).map do |merchant|
-        "- [ ] **#{merchant.name}** (##{merchant.identifier}): [On Bank-Exit](#{merchant_url(merchant, debug: 'true')}) / [On OpenStreetMap](#{merchant.osm_link})"
+        <<~MARKDOWN
+          - [ ] **#{merchant.name}** [##{merchant.identifier}] #{pretty_country_html(merchant.country, show_flag: true)}
+            - [On Bank-Exit](#{merchant_url(merchant, debug: 'true')})
+            - [On OpenStreetMap](#{merchant.osm_link})
+        MARKDOWN
       end
     end
 
