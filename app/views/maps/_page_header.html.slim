@@ -1,0 +1,18 @@
+- is_map = presentation == 'map'
+
+header.hero.bg-fixed.bg-banner-projects
+  .hero-overlay
+  .hero-content class=('py-7' unless is_map)
+    .text-center
+      .max-w-5xl.mb-5
+        .space-y-5.text-neutral-content
+          h1.text-3xl.font-bold= t('maps.index.title')
+          .flex.items-center.justify-center.gap-3
+            - %i[monero bitcoin june].each do |coin|
+              = image_tag icon_by_coin(coin), class: 'w-12 h-12 hover:scale-110 transition-transform', title: coin
+          p.text-lg= t('maps.index.headline_html')
+
+      .panel.panel-info.panel-sm.inline-block
+        p
+          = lucide_icon 'info', class: 'inline-flex mr-1 w-4'
+          = t('maps.index.free_open_data_html')

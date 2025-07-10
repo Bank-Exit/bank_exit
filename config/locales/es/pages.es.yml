@@ -162,11 +162,12 @@ es:
         <br />
         Libertad de efectivo, por primera vez en 2.500 años. #noCBDC
 
+      free_open_data_html: Los datos que se muestran en el mapa son <strong>gratuitos</strong>, <strong>de código abierto</strong> y provienen de <strong>OpenStreetMap</strong>.
+
+    sidebar:
       suggest_merchant: Sugerir un comerciante
       show_search: Mostrar búsqueda
       hide_search: Ocultar búsqueda
-
-      free_open_data_html: Los datos que se muestran en el mapa son <strong>gratuitos</strong>, <strong>de código abierto</strong> y provienen de <strong>OpenStreetMap</strong>.
 
     filters_form:
       clear_search_query: Borrar búsqueda

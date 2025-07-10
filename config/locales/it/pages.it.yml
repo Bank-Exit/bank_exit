@@ -162,11 +162,12 @@ it:
         <br />
         Libertà del contante, per la prima volta in 2500 anni.   #noCBDC
 
+      free_open_data_html: I dati mostrati sulla mappa sono <strong>liberi</strong>, <strong>open source</strong> e provengono da <strong>OpenStreetMap</strong>.
+
+    sidebar:
       suggest_merchant: Suggerisci un commerciante
       show_search: Mostra il modulo di ricerca
       hide_search: Nascondi il modulo di ricerca
-
-      free_open_data_html: I dati mostrati sulla mappa sono <strong>liberi</strong>, <strong>open source</strong> e provengono da <strong>OpenStreetMap</strong>.
 
     filters_form:
       clear_search_query: Cancella ricerca

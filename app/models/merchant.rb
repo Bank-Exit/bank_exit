@@ -60,6 +60,10 @@ class Merchant < ApplicationRecord
     directory
   end
 
+  def all_contacts
+    traditional_contacts.merge(social_links)
+  end
+
   private
 
   def traditional_contacts

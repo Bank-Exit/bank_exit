@@ -40,6 +40,33 @@ abbr {
     overflow: clip;
 }
 
+summary#directory-friends {
+    &::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 8px solid var(--color-primary);
+        border-inline: 7px solid transparent;
+        transition: 0.3s;
+    }
+}
+
+details > summary#directory-friends {
+    &::before {
+        transform: rotate(-90deg);
+    }
+}
+
+details[open] > summary#directory-friends {
+    &::before {
+        transform: rotate(0deg);
+    }
+}
+
+summary#directory-friends::-webkit-details-marker {
+    display: none;
+}
+
 /* Browser supports interpolate-size */
 @supports (interpolate-size: allow-keywords) {
     :root {

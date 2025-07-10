@@ -20,8 +20,9 @@ fr:
   spotlight: En vedette
   reset_search: Réinitialiser la recherche
 
-  grid: Grille
-  table: Tableau
+  presentation_map: Affichage carte
+  presentation_grid: Affichage grille
+  presentation_table: Affichage tableau
 
   download: Télécharger
   video_tutorial: Tutoriel vidéo

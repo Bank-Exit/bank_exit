@@ -162,11 +162,12 @@ en:
         <br />
         Freedom of cash, for the first time in 2500 years.   #noCBDC
 
+      free_open_data_html: Data displayed on the map is <strong>free</strong>, <strong>open source</strong> and comes from <strong>OpenStreetMap</strong>.
+
+    sidebar:
       suggest_merchant: Suggest a merchant
       show_search: Show search form
       hide_search: Hide search form
-
-      free_open_data_html: Data displayed on the map is <strong>free</strong>, <strong>open source</strong> and comes from <strong>OpenStreetMap</strong>.
 
     filters_form:
       clear_search_query: Clear search query

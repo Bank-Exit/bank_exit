@@ -13,4 +13,8 @@ module MapsHelper
   def embed_map_attribution_html
     link_to map_attribution_html, root_url, title: I18n.t('welcome.index.title')
   end
+
+  def merchants_as_map?
+    session[:merchants_presentation] == 'map'
+  end
 end

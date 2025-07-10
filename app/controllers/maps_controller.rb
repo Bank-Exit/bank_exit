@@ -7,7 +7,6 @@ class MapsController < ApplicationController
   before_action :redirect_with_coordinates, if: :missing_coordinates?
 
   before_action :set_merchants
-  before_action :set_markers, unless: :from_pagination?
   after_action :set_seo
 
   helper_method :from_pagination?
@@ -39,6 +38,12 @@ class MapsController < ApplicationController
   def index
     session[:map_referer_url] = request.url.gsub('&pagy=true', '')
 
+    if params[:presentation].present? && params[:presentation].in?(%w[map table])
+      session[:merchants_presentation] = params[:presentation]
+    else
+      session[:merchants_presentation] ||= 'map'
+    end
+
     # Merchant markers are handled by backend to keep code
     # DRY with JavaScript.
     # JSON is used by the `map_controller.js` as data value.
@@ -46,6 +51,8 @@ class MapsController < ApplicationController
     # concern that is shared with other controllers.
 
     unless from_pagination?
+      set_markers if session[:merchants_presentation] == 'map'
+
       @coins = Coin.all(decorate: true)
       @last_update = last_update.to_i
 
@@ -59,6 +66,10 @@ class MapsController < ApplicationController
     @pagy, @merchants = pagy_array(
       @merchants.reverse, params: ->(params) { params.merge!(pagy: true) }
     )
+
+    render variants: [
+      session[:merchants_presentation].to_sym, :map
+    ]
   end
 
   private
@@ -68,7 +79,7 @@ class MapsController < ApplicationController
       :search, :category, :country, :continent,
       :delivery, :no_kyc, :with_atms,
       :locale, :pagy, :page, :zoom, :lat, :lon,
-      coins: []
+      :presentation, coins: []
     )
   end
 
