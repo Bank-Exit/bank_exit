@@ -25,6 +25,8 @@ Rails.application.routes.draw do
 
     resources :merchants, only: %i[index show update destroy] do
       scope module: :merchants do
+        resource :reactivate, only: :create
+
         member do
           resource :directory_converters, only: :create
         end
