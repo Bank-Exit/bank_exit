@@ -60,5 +60,11 @@ RSpec.describe ApplicationHelper do
 
       it { is_expected.to eq 'foobar.test' }
     end
+
+    context 'when URL has GET params' do
+      let(:url) { 'https://www.foobar.test/?foo=bar' }
+
+      it { is_expected.to eq 'foobar.test' }
+    end
   end
 end

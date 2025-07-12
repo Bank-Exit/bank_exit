@@ -86,7 +86,8 @@ module ApplicationHelper
   end
 
   def clean_url(value)
-    value.delete_prefix('https://')
+    value.split('?').first
+         .delete_prefix('https://')
          .delete_prefix('http://')
          .delete_prefix('www.')
          .delete_suffix('/')
