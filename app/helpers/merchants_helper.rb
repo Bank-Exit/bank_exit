@@ -44,13 +44,22 @@ module MerchantsHelper
     end
   end
 
-  def merchant_icon_svg(icon, width: 80, height: 80, padding: 'p-2')
+  def merchant_icon_svg(icon, width: 80, height: 80, padding: 'p-2', naked: false)
+    klass = ''
+
+    unless naked
+      klass = [
+        padding,
+        'rounded-full bg-primary text-primary-content'
+      ].join(' ')
+    end
+
     content_tag(
       :svg,
       width: width,
       height: height,
       xmlns: 'http://www.w3.org/2000/svg',
-      class: "rounded-full bg-primary text-primary-content #{padding} print:text-black"
+      class: klass
     ) do
       concat tag.use(href: "/map/spritesheet.svg##{icon}")
     end

@@ -1,76 +1,84 @@
-article.bg-base-200.p-3.rounded-lg.space-y-4 id="id-#{merchant.id}"
-  header.border-b.pb-2.border-gray-400.dark:border-gray-500
-    .flex.flex-col.lg:flex-row.items-center.justify-between.gap-2
-      = link_to merchant_path(merchant), class: 'flex items-center gap-2' do
+= link_to merchant_path(merchant),
+         class: "card bg-base-200 border border-transparent hover:border-primary/50 hover:!text-inherit transition-color #{'image-full' if merchant.banner.attached?}",
+         id: "merchant-#{merchant.identifier}" do
+  - if merchant.banner.attached?
+    figure
+      = image_tag url_for(merchant.banner.variant(:thumb))
+
+  .card-body.space-y-3
+    .flex.items-center.justify-between
+      .flex.items-center.gap-2
         = render 'merchants/logo_or_initials', merchant: merchant
+        h2.card-title
+          span
+            = highlight(merchant.name, params[:search])
 
-        h3.font-bold.truncate.max-w-72= highlight(merchant.name, params[:search])
+      - if allowed_to?(:index?, Comment)
+        .flex.flex-col.items-center.gap-1
+          .text-xs.ml-1 title="#{merchant.comments_count} #{Comment.model_name.human(count: merchant.comments_count)}"
+            = lucide_icon 'message-square', class: 'inline-flex mr-0.5 font-normal w-4'
+            = merchant.comments_count
 
-      .flex.items-center.gap-2
-        - if merchant.monero?
-          = image_tag 'coins/logo-monero.svg', class: 'w-6 h-6', title: 'Monero'
-        - if merchant.bitcoin?
-          = image_tag 'coins/logo-bitcoin.svg', class: 'w-6 h-6', title: 'Bitcoin'
-        - if merchant.june?
-          = image_tag 'coins/logo-june.svg', class: 'w-6 h-6', title: 'June'
-        - if merchant.lightning?
-          = image_tag 'coins/logo-lightning.svg', class: 'w-6 h-6', title: 'Bitcoin Lightning'
-        - if merchant.contact_less?
-          = image_tag 'coins/nfc-highlight.svg', class: 'w-6 h-6 bg-white rounded-full p-1 border', title: 'Lightning NFC'
+          - if merchant.comments.any?
+            .flex.items-center.gap-1
+              .rating.rating-xs
+                .mask.mask-star.bg-primary aria-label="#{merchant.average_rating} star" aria-current="true" title="#{merchant.average_rating}/5"
+              p.text-xs
+                = number_with_precision(merchant.average_rating, strip_insignificant_zeros: true, precision: 2)
+                | /5
 
-        - if merchant.ask_kyc?
-          = image_tag 'kyc.png', alt: 'KYC', title: 'KYC', class: 'w-6 h-6 rounded-full'
-        - else
-          = image_tag 'kyc_not.png', alt: 'No KYC', title: 'No KYC', class: 'w-6 h-6'
+    - if merchant.description.present?
+      div
+        = highlight(merchant.description&.truncate(150), params[:search])
 
-  - if merchant.category.present?
-    p.flex.items-center.text-sm.gap-2
-      = merchant_icon_svg(merchant.icon, width: 30, height: 30, padding: 'p-0.5')
-      = t("categories.#{merchant.category}", default: merchant.category)
+    - if merchant.category.present?
+      .badge.badge-secondary.mx-auto
+        = merchant_icon_svg(merchant.icon, width: 20, height: 20, naked: true)
+        = t("categories.#{merchant.category}", default: merchant.category)
 
-  - if merchant.address?
-    .text-sm
-      h3.mb-1.font-bold.text-primary= t('address')
+    .flex.items-center.justify-center.gap-3
+      - merchant.coins.each do |coin|
+        = image_tag icon_by_coin(coin), title: coin.capitalize, class: 'w-10 h-10'
 
-      .flex.items-center.gap-2
-        .flex-shrink-0= lucide_icon 'home', class: 'w-4'
-        div==< highlight(merchant.full_address_with_country, params[:search])
+      - if merchant.ask_kyc?
+        = image_tag 'kyc.png', alt: 'KYC', title: 'KYC', class: 'w-10 h-10 rounded-full'
+      - else
+        = image_tag 'kyc_not.png', alt: 'No KYC', title: 'No KYC', class: 'w-10 h-10'
 
-  - if merchant.description?
-    .text-sm
-      h3.mb-1.font-bold.text-primary= t('description')
-      == highlight(merchant.description.truncate(50), params[:search])
+    .flex.items-start.panel class=(merchant.banner.attached? ? 'bg-neutral/50' : 'panel-base-100') class=(merchant.delivery.present? ? 'justify-between' : 'justify-center')
+      - if merchant.address?
+        .flex.flex-col.items-center.gap-2.text-center
+          = lucide_icon 'home', class: 'w-5'
+          div==< highlight(merchant.full_address_with_country, params[:search])
 
-  - if merchant.contact?
-    .text-sm
-      h3.mb-1.font-bold.text-primary= t('contact')
-      = render 'merchants/contacts', merchant: merchant
+      - if merchant.delivery.present?
+        .flex.flex-col.items-center.gap-2.text-center
+          = lucide_icon 'truck', class: 'w-5'
+          = t('.home_delivery')
+          - if merchant.delivery_zone
+            =< "(#{merchant.delivery_zone})"
 
-  - if merchant.delivery.present?
-    .text-sm
-      h3.mb-1.font-bold.text-primary= t('other')
+    .flex.items-center.justify-between
+      .flex.items-center.gap-3
+        - main_group = []
+        - extra_group = []
 
-      .flex.items-center.gap-1
-        .flex-shrink-0= lucide_icon 'truck', class: 'w-4'
-        = t('.home_delivery')
-        - if merchant.delivery_zone
-          =< "(#{merchant.delivery_zone})"
+        - merchant.all_contacts.each.with_index(1) do |contact, index|
+          - if index > 5
+            - extra_group << contact
+          - else
+            - main_group << contact
 
-  hr.border-gray-400.dark:border-gray-500
+        - main_group.each do |(contact, value)|
+          = social_contact_icon contact, title: value
 
-  footer.flex.items-center class=(allowed_to?(:index?, Comment) ? 'justify-between' : 'justify-end')
-    - if allowed_to?(:index?, Comment)
-      .flex.items-center.gap-2
-        - if merchant.comments.any?
-          .flex.items-center.gap-1
-            .rating.rating-sm
-              .mask.mask-star.bg-primary aria-label="#{merchant.average_rating} star" aria-current="true" title="#{merchant.average_rating}/5"
-            p.text-xs
-              = number_with_precision(merchant.average_rating, strip_insignificant_zeros: true, precision: 2)
-              | /5
+        - if extra_group.present?
+          - text = extra_group.map { social_contact_icon(it.first) }.join(' ')
+          = render 'tooltip',
+                   position: :right,
+                   text: text,
+                   mode: 'info',
+                   lucide_ikon: 'ellipsis'
 
-        p.text-xs.ml-1 title="#{merchant.comments_count} #{Comment.model_name.human(count: merchant.comments_count)}"
-          = lucide_icon 'message-square', class: 'inline-flex mr-0.5 font-normal w-4'
-          = merchant.comments_count
-
-    = link_to t('details'), merchant_path(merchant), class: 'btn btn-success btn-sm'
+      .card-actions.justify-end
+        .btn.btn-sm.btn-secondary= t('see')
