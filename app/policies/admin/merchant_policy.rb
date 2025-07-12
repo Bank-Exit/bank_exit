@@ -11,5 +11,9 @@ module Admin
     def destroy?
       record.deleted_at.present?
     end
+
+    def reactivate?
+      destroy?
+    end
   end
 end

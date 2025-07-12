@@ -22,13 +22,13 @@
                   turbo_confirm: "Voulez-vous convertir ce commerçant et l'intégrer dans l'annuaire ?<br />(le commerçant de la carte ne sera pas modifié)" \
                 }
 
-  - if allowed_to?(:update?, merchant)
+  - if allowed_to?(:reactivate?, merchant)
     li
       = link_to 'Réactiver',
-                admin_merchant_path(merchant),
+                admin_merchant_reactivate_path(merchant),
                 class: 'block text-center bg-success text-success-content',
                 data: { \
-                  turbo_method: :patch,
+                  turbo_method: :post,
                   turbo_confirm: 'Voulez-vous réactiver ce commerçant pour le référencer à nouveau sur la carte ?' \
                 }
 
