@@ -58,6 +58,10 @@ en:
         title: Title
         description: Description
 
+      merchant:
+        remove_logo: Remove logo
+        remove_banner: Remove banner
+
       merchant_report:
         description: Description
 

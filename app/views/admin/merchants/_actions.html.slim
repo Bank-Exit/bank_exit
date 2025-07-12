@@ -7,10 +7,15 @@
     = link_to merchant_path(merchant, debug: merchant.deleted? ? 'true' : nil), target: :_blank do
       | Commerçant sur Bank-Exit
 
-
   li
     = link_to merchant.osm_link, target: :_blank do
       | Commerçant sur OSM
+
+  - if allowed_to?(:update?, merchant)
+    li
+      = link_to 'Modifier',
+                edit_admin_merchant_path(merchant),
+                class: 'block text-center bg-warning text-warning-content'
 
   - if allowed_to?(:create?, merchant, with: Admin::Merchants::DirectoryConverterPolicy)
     li

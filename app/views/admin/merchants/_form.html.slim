@@ -1,0 +1,32 @@
+= simple_form_for [:admin, merchant],
+                  html: { class: 'space-y-8' } do |f|
+  - if merchant.errors.any?
+    .panel.panel-error
+      ul.list-disc.list-inside
+        - merchant.errors.each do |error|
+          li= error.full_message
+
+  .flex.flex-col.lg:flex-row.gap-3
+    .space-y-2.lg:w-1/2
+      = f.input :logo, as: :file,
+                input_html: { \
+                  accept: Merchant::ACCEPTED_CONTENT_TYPES.join(',') \
+                }
+
+      - if f.object.logo.attached?
+        = f.input :remove_logo, as: :boolean
+        .avatar
+          .w-40.rounded-full
+            = image_tag url_for(f.object.logo)
+
+    .space-y-2.lg:w-1/2
+      = f.input :banner, as: :file,
+                input_html: { \
+                  accept: Merchant::ACCEPTED_CONTENT_TYPES.join(',') \
+                }
+
+      - if f.object.banner.attached?
+        = f.input :remove_banner, as: :boolean
+        p= image_tag url_for(f.object.banner)
+
+  = f.button :submit

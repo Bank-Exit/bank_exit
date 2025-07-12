@@ -29,8 +29,16 @@
         span=< t('.soft_deleted_warning')
 
     article.p-3.space-y-6 data-controller="merchants"
-      header.flex.flex-col.items-center.space-y-3
-        = merchant_icon_svg(@merchant.icon)
+      header.flex.flex-col.items-center.space-y-3.rounded-lg
+        - if @merchant.logo.attached?
+          .relative
+            = image_tag url_for(@merchant.logo), class: 'rounded-full w-24 h-24 object-cover'
+            .absolute.-bottom-3.-right-3
+              = merchant_icon_svg(@merchant.icon, width: 40, height: 40)
+
+        - else
+          = merchant_icon_svg(@merchant.icon)
+
         h1.text-3xl.text-center= @merchant.name
 
         - if @merchant.category.present?
@@ -107,6 +115,9 @@
 
       - if allowed_to?(:index?, Comment)
         = render 'comments', merchant: @merchant, comments: @comments, pagy: @pagy
+
+      - if @merchant.banner.attached?
+        = image_tag url_for(@merchant.banner), class: 'rounded-lg'
 
       - unless Rails.env.production?
         div

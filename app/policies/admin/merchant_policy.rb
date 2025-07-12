@@ -1,11 +1,19 @@
 module Admin
   class MerchantPolicy < ApplicationPolicy
+    def index?
+      true
+    end
+
     def show?
       true
     end
 
+    def edit?
+      update?
+    end
+
     def update?
-      destroy?
+      true
     end
 
     def destroy?

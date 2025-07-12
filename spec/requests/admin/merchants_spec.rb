@@ -47,6 +47,27 @@ RSpec.describe 'Admin::Merchants' do
     it_behaves_like 'an authenticated endpoint'
   end
 
+  describe 'PATCH /admin/merchants/:id' do
+    subject(:action) do
+      patch path, params: params, headers: headers
+    end
+
+    let(:merchant) { create :merchant }
+    let(:method) { :patch }
+    let(:path) { "/admin/merchants/#{merchant.identifier}" }
+
+    let(:params) { { merchant: { remove_logo: '0' } } }
+
+    context 'when credentials are valid' do
+      before { action }
+
+      it { expect(response).to redirect_to admin_merchants_path(format: :html) }
+      it { expect(flash[:notice]).to eq('Le commerçant a bien été modifié') }
+    end
+
+    it_behaves_like 'an authenticated endpoint'
+  end
+
   describe 'DELETE /admin/merchants/:id' do
     subject(:action) { delete path, headers: headers }
 

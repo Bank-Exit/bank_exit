@@ -9,6 +9,9 @@ tr
                         action: 'input->admin--table#toggle' \
                       }
 
+  td
+    = render 'merchants/logo_or_initials', merchant: merchant, width: 16, height: 16
+
   th scope="row"
     .whitespace-nowrap
       .text-base.font-semibold.truncate.max-w-72 title=merchant.name

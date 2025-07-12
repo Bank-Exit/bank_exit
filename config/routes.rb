@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resource :dashboard, only: %i[show]
 
-    resources :merchants, only: %i[index show update destroy] do
+    resources :merchants, only: %i[index show edit update destroy] do
       scope module: :merchants do
         resource :reactivate, only: :create
 
