@@ -1,5 +1,10 @@
 = simple_form_for '',
-                  url: pretty_map_path(zoom: params[:zoom], lat: params[:lat], lon: params[:lon]),
+  url: pretty_map_path( \
+                    zoom: params[:zoom],
+                    lat: params[:lat],
+                    lon: params[:lon],
+                    presentation: session[:merchants_presentation] \
+                  ),
                   id: 'merchants_filter',
                   method: :get,
                   data: { \

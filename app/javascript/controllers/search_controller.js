@@ -124,7 +124,11 @@ export default class extends ApplicationController {
     }
 
     const params = new URLSearchParams(formData);
-    const url = new URL(this.formTarget.action + "?" + params);
+    let url = new URL(this.formTarget.action + "&" + params);
+
+    if (url.href.endsWith("&")) {
+      url = new URL(url.href.slice(0, -1));
+    }
 
     window.history.pushState({ path: url.href }, "", url.href);
 
