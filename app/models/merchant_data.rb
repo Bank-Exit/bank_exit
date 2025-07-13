@@ -108,7 +108,9 @@ class MerchantData
   end
 
   def street
-    properties['addr:street'] || properties['contact:street']
+    properties['addr:street'] ||
+      properties['contact:street'] ||
+      properties['addr:place']
   end
 
   def postcode

@@ -86,6 +86,41 @@ RSpec.describe MerchantData do
     end
   end
 
+  describe '#street' do
+    context 'when [addr:street] is present' do
+      let(:twicked_feature) do
+        feature[:properties]['addr:street'] = 'Liberty Street'
+        feature
+      end
+
+      it { is_expected.to include(street: 'Liberty Street') }
+    end
+
+    context 'when [contact:street] is present' do
+      let(:twicked_feature) do
+        feature[:properties]['contact:street'] = 'Liberty Street'
+        feature
+      end
+
+      it { is_expected.to include(street: 'Liberty Street') }
+    end
+
+    context 'when [addr:place] is present' do
+      let(:twicked_feature) do
+        feature[:properties]['addr:place'] = 'Liberty Street'
+        feature
+      end
+
+      it { is_expected.to include(street: 'Liberty Street') }
+    end
+
+    context 'when [*:street] is not present' do
+      let(:twicked_feature) { feature }
+
+      it { is_expected.to include(street: nil) }
+    end
+  end
+
   describe '[contact:telegram]' do
     context 'when [contact:telegram] is missing' do
       let(:twicked_feature) { feature }
