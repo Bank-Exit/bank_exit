@@ -22,7 +22,7 @@
               h4.lg:font-semibold.text-center.text-xs.lg:text-sm.mt-2
                 = directory_friend.name
 
-  = render 'maps/merchants_table', merchants: @merchants, pagy: @pagy
+  = render 'maps/merchants_table_or_grid', merchants: @merchants, pagy: @pagy
 
 - if @faqs.any?
   = render template: 'faqs/show'

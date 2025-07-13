@@ -38,7 +38,7 @@ class MapsController < ApplicationController
   def index
     session[:map_referer_url] = request.url.gsub('&pagy=true', '')
 
-    if params[:presentation].present? && params[:presentation].in?(%w[map table])
+    if params[:presentation].present? && params[:presentation].in?(%w[map table grid])
       session[:merchants_presentation] = params[:presentation]
     else
       session[:merchants_presentation] ||= 'map'
@@ -68,7 +68,7 @@ class MapsController < ApplicationController
     )
 
     render variants: [
-      session[:merchants_presentation].to_sym, :map
+      session[:merchants_presentation].to_sym
     ]
   end
 

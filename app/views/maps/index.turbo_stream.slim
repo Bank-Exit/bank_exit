@@ -1,5 +1,5 @@
 = turbo_stream.replace :merchants_results do
-  = render 'maps/merchants_table', merchants: @merchants, pagy: @pagy
+  = render 'maps/merchants_table_or_grid', merchants: @merchants, pagy: @pagy
 
 - unless from_pagination?
   = turbo_stream.update :merchants_count do

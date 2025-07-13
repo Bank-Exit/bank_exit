@@ -17,4 +17,12 @@ module MapsHelper
   def merchants_as_map?
     session[:merchants_presentation] == 'map'
   end
+
+  def merchants_as_table?
+    session[:merchants_presentation] == 'table'
+  end
+
+  def merchants_as_grid?
+    session[:merchants_presentation] == 'grid'
+  end
 end

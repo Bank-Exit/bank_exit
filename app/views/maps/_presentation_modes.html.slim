@@ -8,6 +8,11 @@
     = lucide_icon 'map'
 
   = link_to url_for(params: req_params.merge(presentation: :table)),
-            class: "btn btn-square btn-soft #{'btn-secondary' unless merchants_as_map?}",
+            class: "btn btn-square btn-soft #{'btn-secondary' if merchants_as_table?}",
             title: t('presentation_table') do
     = lucide_icon 'rows-3'
+
+  = link_to url_for(params: req_params.merge(presentation: :grid)),
+            class: "btn btn-square btn-soft #{'btn-secondary' if merchants_as_grid?}",
+            title: t('presentation_grid') do
+    = lucide_icon 'grid-3x3'
