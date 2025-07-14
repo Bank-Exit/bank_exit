@@ -46,6 +46,9 @@ GEM
       erubi (~> 1.11)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.6)
+    active_analytics (0.4.1)
+      browser (>= 1.0.0)
+      rails (>= 5.2.0)
     active_storage_validations (3.0.1)
       activejob (>= 6.1.4)
       activemodel (>= 6.1.4)
@@ -99,6 +102,7 @@ GEM
       racc
     breadcrumbs_on_rails (4.1.0)
       railties (>= 5.0)
+    browser (6.2.0)
     builder (3.3.0)
     bullet (8.0.8)
       activesupport (>= 3.0.0)
@@ -119,6 +123,8 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    crawler_detect (1.2.7)
+      qonfig (>= 0.24)
     csv (3.3.5)
     date (3.4.1)
     debug (1.11.0)
@@ -313,6 +319,8 @@ GEM
     public_suffix (6.0.2)
     puma (6.6.0)
       nio4r (~> 2.0)
+    qonfig (0.30.0)
+      base64 (>= 0.2)
     raabro (1.4.0)
     racc (1.8.1)
     rack (3.1.16)
@@ -550,6 +558,7 @@ PLATFORMS
 
 DEPENDENCIES
   action_policy
+  active_analytics
   active_storage_validations
   annotaterb
   bootsnap
@@ -559,6 +568,7 @@ DEPENDENCIES
   chartkick
   chusaku
   country_select
+  crawler_detect
   debug
   dotenv-rails
   factory_bot_rails
