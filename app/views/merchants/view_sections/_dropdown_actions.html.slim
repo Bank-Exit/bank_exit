@@ -1,0 +1,42 @@
+.dropdown.dropdown-end
+  .btn.btn-soft.btn-primary.btn-square class=(defined?(btn_klass) ? btn_klass : 'btn-lg') tabindex="0" role="button"
+    = lucide_icon 'ellipsis-vertical', class: 'w-6'
+
+  ul.dropdown-content.menu.bg-base-200.rounded-box.z-1.w-72.p-2.shadow-sm tabindex="0"
+    li
+      = content_tag(:div,
+          class: 'hover:text-primary transition-colors',
+          data: { \
+            controller: "clipboard",
+            action: "click->clipboard#copy:prevent",
+            clipboard_content_value: merchant_url(merchant),
+            clipboard_success_icon_value: html_escape_once(lucide_icon('check-check', class: 'inline-flex w-5')),
+            clipboard_success_text_value: t('copied'),
+            clipboard_success_class: "text-success" \
+          }) do
+        = lucide_icon('copy', class: 'w-5')
+        = t('copy_url_to_clipboard')
+
+    li
+      = render 'share_by_email',
+                subject: t('merchants.show.share_by_email.subject', name: merchant.name),
+                body: t('merchants.show.share_by_email.body', link: merchant_url(merchant)) do
+        = t('share_by_email')
+
+    li
+      = render 'print_me' do
+        = t('print')
+
+    li
+      = link_to merchant.osm_link, target: :_blank do
+          = lucide_icon 'map-pin'
+          span
+            = t('merchants.show.view_on_osm')
+            = lucide_icon 'square-arrow-out-up-right', class: 'inline-flex w-3 ml-1'
+
+    li
+      = link_to new_merchant_report_path(merchant),
+                title: t('merchants.show.report_a_fault.title'),
+                data: { turbo_stream: true } do
+        = lucide_icon 'bug'
+        = t('merchants.show.report_a_fault.title')

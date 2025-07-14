@@ -1,0 +1,94 @@
+article
+  .hero.bg-fixed style=("background-image: url(#{rails_blob_path(@merchant.banner.variant(:thumb))})" if @merchant.banner.attached?) class=(@merchant.banner.attached? ? 'bg-contain' : 'bg-banner-default')
+    .hero-overlay
+    .hero-content.py-16
+      header.max-w-xl
+        .text-center.space-y-6.text-neutral-content
+          - if @merchant.logo.attached?
+            .avatar
+              .w-28.rounded-full
+                = image_tag url_for(@merchant.logo.variant(:thumb)), class: 'bg-base-100'
+
+          h1.text-3xl.font-bold= @merchant.name
+
+          - if @merchant.category.present?
+            .badge.badge-secondary.mx-auto
+              = merchant_icon_svg(@merchant.icon, width: 20, height: 20, naked: true)
+              = t("categories.#{@merchant.category}", default: @merchant.category)
+
+          .flex.items-center.justify-center.gap-3
+            - @merchant.coins.each do |coin|
+              = image_tag icon_by_coin(coin), title: coin.capitalize, class: 'w-10 h-10 hover:scale-110 transition-transform'
+
+            - if @merchant.ask_kyc?
+              = image_tag 'kyc.png', alt: 'KYC', title: 'KYC', class: 'w-10 h-10 rounded-full'
+            - else
+              = image_tag 'kyc_not.png', alt: 'No KYC', title: 'No KYC', class: 'w-10 h-10'
+
+  .article-body.max-w-5xl class="!space-y-8"
+    .flex.items-center.justify-between.gap-2
+      = render 'breadcrumb'
+      = render 'merchants/view_sections/dropdown_actions', merchant: @merchant
+
+    - if @merchant.deleted?
+      p.panel.panel-error
+        = lucide_icon 'info', class: 'inline-flex w-4 h-4'
+        span=< t('.soft_deleted_warning')
+
+    - if @merchant.description?
+      div
+        h2.text-primary.font-bold.uppercase.mb-2= t('description')
+
+        .space-y-3
+          = simple_format(@merchant.description)
+
+    - if @merchant.full_address.present?
+      div
+        h2.text-primary.font-bold.uppercase.mb-2= t('address')
+
+        .panel.panel-base-300
+          == @merchant.full_address_with_country
+
+    = render 'map', merchant: @merchant,
+                    map_width: 'w-full',
+                    map_height: 'h-[500px]'
+
+    - if @merchant.all_contacts.any?
+      div
+        h2.text-primary.font-bold.uppercase.mb-2= t('contact')
+
+        .panel.panel-base-300.space-y-3.overflow-y-auto
+          - @merchant.all_contacts.each do |contact|
+            - key = contact[0]
+            - value = contact[1]
+
+            .flex.items-center.gap-2
+              = social_contact_icon(key, klass: "!w-6")
+
+              - if key == :email
+                = mail_to value, value
+              - elsif key == :phone
+                = phone_to value, value
+              - elsif key.in? %i[session signal]
+                = value
+              - else
+                = link_to clean_url(value).truncate(50), value, target: :_blank
+
+    = render 'merchants/view_sections/other_informations', merchant: @merchant
+
+    = render 'merchants/view_sections/itinerary', merchant: @merchant
+
+    - if allowed_to?(:index?, Comment)
+      = render 'comments', merchant: @merchant, comments: @comments, pagy: @pagy
+
+    - unless Rails.env.production?
+      = render 'merchants/view_sections/debug', merchant: @merchant
+
+    - if @merchant.last_survey_on
+      p.italic title=@merchant.last_survey_on
+        = t('.last_survey_on', date: l(@merchant.last_survey_on))
+
+  script type="application/ld+json"
+    == schema_dot_org_merchant(@merchant)
+
+#modal

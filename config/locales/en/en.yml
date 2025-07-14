@@ -36,6 +36,7 @@ en:
   updated_on: Updated %{date} ago
 
   copy_to_clipboard: Copy to clipboard
+  copy_url_to_clipboard: Copy URL to clipboard
 
   x_results:
     zero: "%{count} result"

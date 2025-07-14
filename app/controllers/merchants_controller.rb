@@ -1,6 +1,9 @@
 class MerchantsController < ApplicationController
   before_action :set_merchant, only: :show
 
+  add_breadcrumb proc { I18n.t('application.nav.menu.home') }, :root_path
+  add_breadcrumb proc { I18n.t('application.nav.menu.map') }, :map_referer_path
+
   # @route GET /fr/merchants/:id {locale: "fr"} (merchant_fr)
   # @route GET /es/merchants/:id {locale: "es"} (merchant_es)
   # @route GET /de/merchants/:id {locale: "de"} (merchant_de)
@@ -8,12 +11,20 @@ class MerchantsController < ApplicationController
   # @route GET /en/merchants/:id {locale: "en"} (merchant_en)
   # @route GET /merchants/:id
   def show
-    set_meta_tags title: @merchant.name
+    add_breadcrumb @merchant.name
 
-    return unless comments_enabled?
+    set_meta_tags title: @merchant.name,
+                  description: @merchant.description
 
-    comments = CommentDecorator.wrap(@merchant.comments)
-    @pagy, @comments = pagy_array(comments, limit: 5)
+    if comments_enabled?
+      comments = CommentDecorator.wrap(@merchant.comments)
+
+      @pagy, @comments = pagy_array(comments, limit: 5)
+    end
+
+    # Render adapted `show.html+banner` template if
+    # merchant has an attached banner to highlight.
+    request.variant = :banner if @merchant.banner.attached?
   end
 
   # @route POST /fr/merchants/refresh {locale: "fr"} (refresh_merchants_fr)

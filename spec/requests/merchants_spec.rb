@@ -27,6 +27,16 @@ RSpec.describe 'Merchants' do
       it { expect(response).to redirect_to maps_en_path }
     end
 
+    describe 'when logo and banner are attached' do
+      subject! { get "/merchants/#{merchant.identifier}" }
+
+      let(:merchant) do
+        create :merchant, :with_address, :with_opening_hours, :with_geometry_polygon, :with_all_contacts, :with_logo, :with_banner
+      end
+
+      it { expect(response).to have_http_status :ok }
+    end
+
     describe '[pre-deleted]' do
       before do
         merchant.update(deleted_at: 1.hour.ago)
