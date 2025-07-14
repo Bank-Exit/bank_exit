@@ -32,7 +32,7 @@ module MerchantsHelper
         concat(content_tag(:li) do
           return coin.capitalize unless with_logo
 
-          logo = image_tag "coins/logo-#{coin}.svg", class: "#{size} inline-flex"
+          logo = image_tag "coins/logo-#{coin}.svg", class: "#{size} inline-flex", title: coin.capitalize
 
           if with_name
             "#{logo} #{coin.capitalize}".html_safe # rubocop:disable Rails/OutputSafety

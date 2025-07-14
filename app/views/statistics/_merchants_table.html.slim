@@ -11,13 +11,17 @@
         td= t('link')
 
     tbody
-      - merchants.each.with_index(1) do |row, index|
+      - merchants_count = merchants.count
+
+      - merchants.each.with_index do |row, index|
+        - count = merchants_count - index
+
         tr
-          th= "##{index}"
-          td scope="row"= row.name
+          td= "##{count}"
+          th scope="row"= row.name
           td= row.pretty_country(show_flag: true)
           td= t("categories.#{row.category}")
-          td== coins_list(row.coins, with_logo: true, with_name: true, size: 'w-6')
+          td== coins_list(row.coins, with_logo: true, with_name: false, size: 'w-6')
           td
             = I18n.l(row.created_at, format: '%Hh%M')
           td

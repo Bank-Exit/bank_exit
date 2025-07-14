@@ -30,7 +30,7 @@ tr
       .text-xs= t(merchant.category, scope: 'categories')
 
   td
-    == coins_list(merchant.coins, with_logo: true, size: 'w-6')
+    == coins_list(merchant.coins, with_logo: true, with_name: false, size: 'w-6')
 
   td
     strong= merchant.comments_count
