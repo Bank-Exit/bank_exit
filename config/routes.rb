@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount MissionControl::Jobs::Engine, at: '/jobs'
-  mount ActiveAnalytics::Engine, at: '/analytics' if ENV.fetch('FF_ANALYTICS_ENABLED') == 'true'
+  mount ActiveAnalytics::Engine, at: '/analytics' if ENV.fetch('FF_ANALYTICS_ENABLED', false) == 'true'
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

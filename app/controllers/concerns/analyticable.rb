@@ -20,6 +20,6 @@ module Analyticable
   end
 
   def analytics_enabled?
-    ENV.fetch('FF_ANALYTICS_ENABLED') == 'true'
+    ENV.fetch('FF_ANALYTICS_ENABLED', false) == 'true'
   end
 end
