@@ -23,6 +23,14 @@ FactoryBot.define do
       opening_hours { 'Mo-Su 09:00-21:00' }
     end
 
+    trait :with_logo do
+      logo { Rack::Test::UploadedFile.new('spec/fixtures/1x1.png', 'image/png') }
+    end
+
+    trait :with_banner do
+      banner { Rack::Test::UploadedFile.new('spec/fixtures/1x1.png', 'image/png') }
+    end
+
     trait :with_latlon do
       latitude { 1.1 }
       longitude { 2.2 }

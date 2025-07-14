@@ -3,6 +3,7 @@
 - project = Project.find('accounting', decorate: true)
 - business_guide_tutorial = Tutorial.find('cryptopayment-for-business')
 
+- active_map = params[:controller].in?(%w[maps merchants])
 - active_project = (params[:controller] == 'projects' && !params[:id].in?(%w[map grocery local_groups])) || params[:id] == 'flyer'
 - active_article = params[:controller].in?(%w[blogs tutorials]) && params[:id] != 'flyer'  && params[:id] != 'accounting' && params[:id] != 'cryptopayment-for-business'
 - active_other = params[:controller].in?(%w[local_groups colectives media])
@@ -16,7 +17,7 @@ nav.navbar
 
       ul.menu.menu-md.dropdown-content.bg-base-100.rounded-box.z-1.mt-2.w-max.overflow-auto.p-2.shadow.border.border-base-content/20 tabindex="0" class="max-h-[90vh] max-w-[90vw]"
         li
-          = link_to maps_path, class: ('text-primary' if params[:controller] == 'maps') do
+          = link_to maps_path, class: ('text-primary' if active_map) do
             = t('.menu.map')
 
         li
@@ -103,7 +104,7 @@ nav.navbar
   .navbar-center.hidden class="lg:!flex"
     ul.menu.menu-horizontal.px-1
       li
-        = link_to maps_path, class: ('text-primary' if params[:controller] == 'maps') do
+        = link_to maps_path, class: ('text-primary' if active_map) do
           = t('.menu.map')
 
       li

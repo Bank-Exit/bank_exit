@@ -1,27 +1,9 @@
 .flex.flex-col.lg:flex-row
   .lg:w-1/3.overflow-y-auto class="lg:h-[calc(100vh-96px)]"
-    .flex.items-center.justify-between.bg-base-200.px-2.pt-4.pb-3.print:hidden
+    .flex.items-center.justify-between.bg-base-200.px-2.pt-2.pb-1.print:hidden
       = back_link_to t('.back_to_map'), session[:map_referer_url].presence || maps_path
 
-      .flex.items-center.gap-2
-        - if allowed_to?(:new?, Comment)
-          = link_to new_merchant_comment_path(@merchant),
-                    class: 'font-bold',
-                    title: t('.comments.title'),
-                    data: { turbo_stream: true } do
-            span#header_comments_count= @merchant.comments_count
-            = lucide_icon 'message-square', class: 'inline-flex ml-0.5'
-
-        = render 'share_by_email',
-                subject: t('.share_by_email.subject', name: @merchant.name),
-                body: t('.share_by_email.body', link: merchant_url(@merchant))
-
-        = render 'print_me', klass: 'hover:text-black'
-
-        = link_to new_merchant_report_path(@merchant),
-                  title: t('.report_a_fault.title'),
-                  data: { turbo_stream: true } do
-          = lucide_icon 'bug'
+      = render 'merchants/view_sections/dropdown_actions', merchant: @merchant, btn_klass: 'btn-md'
 
     - if @merchant.deleted?
       p.panel.panel-error.panel-sm.mx-3.mt-3
@@ -79,54 +61,15 @@
           .panel.panel-base-300
             = render 'merchants/contacts', merchant: @merchant
 
-      div
-        h3.mb-2.uppercase.font-bold.text-primary= t('other')
-        .panel.panel-base-300.space-y-1
-          - if @merchant.opening_hours.present?
-            - multi_hours = @merchant.opening_hours_sentences.count > 1
-            .flex.items-center class=(multi_hours ? 'gap-6' : 'gap-1')
-              .flex-shrink-0= lucide_icon 'clock', class: 'w-4', title: Merchant.human_attribute_name(:opening_hours)
-              - if @merchant.opening_hours_sentences.count > 1
-                ul.list-disc
-                  - @merchant.opening_hours_sentences.each do |sentence|
-                    li= sentence
-              - else
-                = @merchant.opening_hours_sentences.first
+      = render 'merchants/view_sections/other_informations', merchant: @merchant
 
-          p title=t('.home_delivery')
-            => lucide_icon 'truck', class: 'inline-flex w-4 me-1'
-            span class=('line-through opacity-50' unless @merchant.delivery?)
-              = t('.home_delivery')
-              - if @merchant.delivery && @merchant.delivery_zone
-                =< "(#{@merchant.delivery_zone})"
-
-
-      - if @merchant.latitude
-        .overflow-visible
-          h3.mb-2.uppercase.font-bold.text-primary= t('.itinerary_title')
-
-          .panel.panel-base-300.flex.items-center.justify-between
-            = link_to new_merchant_itinerary_path(@merchant),
-                      data: { merchants_target: :itinerary } do
-              = t('.itinerary.calculate_my_itinerary')
-              = lucide_icon 'car', class: 'inline-flex ml-2'
-
-            = render 'tooltip', text: t('.tooltip_itinerary_html'), position: :left
+      = render 'merchants/view_sections/itinerary', merchant: @merchant
 
       - if allowed_to?(:index?, Comment)
         = render 'comments', merchant: @merchant, comments: @comments, pagy: @pagy
 
-      - if @merchant.banner.attached?
-        = image_tag url_for(@merchant.banner), class: 'rounded-lg'
-
       - unless Rails.env.production?
-        div
-          h3.mb-2.uppercase.font-bold.text-primary Debug
-
-          details.panel.panel-base-300
-            summary.cursor-pointer JSON Feature
-            pre.mt-2.overflow-x-auto
-              == JSON.pretty_generate(@merchant.raw_feature.to_h)
+        = render 'merchants/view_sections/debug', merchant: @merchant
 
       .space-y-1
         p.text-sm.text-right

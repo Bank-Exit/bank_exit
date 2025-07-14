@@ -1,0 +1,13 @@
+- if merchant.latitude
+  .overflow-visible
+    h3.mb-2.uppercase.font-bold.text-primary= t('merchants.show.itinerary_title')
+
+    .panel.panel-base-300.flex.items-center.justify-between
+      = link_to new_merchant_itinerary_path(merchant),
+                data: { merchants_target: :itinerary } do
+        = t('merchants.show.itinerary.calculate_my_itinerary')
+        = lucide_icon 'car', class: 'inline-flex ml-2'
+
+      = render 'tooltip',
+                text: t('merchants.show.tooltip_itinerary_html'),
+                position: :left

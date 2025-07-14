@@ -1,0 +1,22 @@
+div
+  h3.mb-2.uppercase.font-bold.text-primary= t('other')
+  .panel.panel-base-300.space-y-1
+    - if merchant.opening_hours.present?
+      - multi_hours = merchant.opening_hours_sentences.count > 1
+
+      .flex.items-center class=(multi_hours ? 'gap-6' : 'gap-1')
+        .flex-shrink-0= lucide_icon 'clock', class: 'w-4', title: Merchant.human_attribute_name(:opening_hours)
+
+        - if merchant.opening_hours_sentences.count > 1
+          ul.list-disc
+            - merchant.opening_hours_sentences.each do |sentence|
+              li= sentence
+        - else
+          = merchant.opening_hours_sentences.first
+
+    p title=t('merchants.show.home_delivery')
+      => lucide_icon 'truck', class: 'inline-flex w-4 me-1'
+      span class=('line-through opacity-50' unless merchant.delivery?)
+        = t('merchants.show.home_delivery')
+        - if merchant.delivery && merchant.delivery_zone
+          =< "(#{merchant.delivery_zone})"
