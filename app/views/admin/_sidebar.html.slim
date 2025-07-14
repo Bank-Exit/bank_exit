@@ -35,6 +35,10 @@
         = link_to mission_control_jobs_path, class: 'btn btn-ghost', target: :_blank do
           | Mission Control Jobs
 
+      - if analytics_enabled?
+        li
+          = link_to active_analytics_path, class: 'btn btn-ghost', target: :_blank do
+            | Analytics
 
     .space-y-2.mb-8
       label.flex.cursor-pointer.gap-2.justify-center
