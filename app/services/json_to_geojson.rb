@@ -19,28 +19,21 @@ class JSONToGeoJSON < ApplicationService
     }
 
     elements.each do |element|
-      geometry = if element['geometry'].blank?
-                   {
-                     type: 'Point',
-                     coordinates: [element['lon'], element['lat']]
-                   }
-                 else
-                   coordinates = element['geometry'].map do |coord|
-                     [coord['lon'], coord['lat']]
-                   end
+      feature = case element['type']
+                when 'node'
+                  # Empty `node` associated to `way` elements
+                  next if element['tags'].blank?
 
-                   {
-                     type: 'Polygon',
-                     coordinates: [coordinates]
-                   }
-                 end
+                  node_handler(element)
+                when 'way'
+                  # Way elements needs special treatment to get
+                  # back the lat and lon of first associated node.
+                  first_node_id = element['nodes'].first
+                  first_node = elements.find { it['id'] == first_node_id }
+                  way_handler(element, first_node)
+                end
 
-      geojson[:features] << {
-        type: 'Feature',
-        id: "#{element['type']}/#{element['id']}",
-        properties: element['tags'],
-        geometry: geometry
-      }
+      geojson[:features] << feature
     end
 
     geojson.deep_stringify_keys
@@ -50,5 +43,42 @@ class JSONToGeoJSON < ApplicationService
 
   def elements
     json['elements']
+  end
+
+  def node_handler(element)
+    geometry = if element['geometry'].blank?
+                 {
+                   type: 'Point',
+                   coordinates: [element['lon'], element['lat']]
+                 }
+               else
+                 coordinates = element['geometry'].map do |coord|
+                   [coord['lon'], coord['lat']]
+                 end
+
+                 {
+                   type: 'Polygon',
+                   coordinates: [coordinates]
+                 }
+               end
+
+    {
+      type: 'Feature',
+      id: "#{element['type']}/#{element['id']}",
+      properties: element['tags'],
+      geometry: geometry
+    }
+  end
+
+  def way_handler(element, node)
+    {
+      type: 'Feature',
+      id: "#{element['type']}/#{element['id']}",
+      properties: element['tags'],
+      geometry: {
+        type: 'Point',
+        coordinates: [node['lon'], node['lat']]
+      }
+    }
   end
 end

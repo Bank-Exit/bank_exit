@@ -66,83 +66,35 @@
     },
     {
       "type": "way",
-      "id": 74058032,
-      "bounds": {
-        "minlat": 46.3699853,
-        "minlon": -0.6979706,
-        "maxlat": 46.3702577,
-        "maxlon": -0.6974317
-      },
+      "id": 125059083,
       "nodes": [
-        876239829, 876229427, 876234531, 876240252, 876238041, 876233819,
-        876231691, 876239068, 876229839, 876226185, 876239829
-      ],
-      "geometry": [
-        {
-          "lat": 46.3701481,
-          "lon": -0.6979004
-        },
-        {
-          "lat": 46.3701206,
-          "lon": -0.6979706
-        },
-        {
-          "lat": 46.3700864,
-          "lon": -0.6979587
-        },
-        {
-          "lat": 46.3700899,
-          "lon": -0.6978771
-        },
-        {
-          "lat": 46.370044,
-          "lon": -0.6978593
-        },
-        {
-          "lat": 46.3699853,
-          "lon": -0.6978092
-        },
-        {
-          "lat": 46.3700161,
-          "lon": -0.6976761
-        },
-        {
-          "lat": 46.3700795,
-          "lon": -0.697708
-        },
-        {
-          "lat": 46.3701489,
-          "lon": -0.6974317
-        },
-        {
-          "lat": 46.3702577,
-          "lon": -0.6974898
-        },
-        {
-          "lat": 46.3701481,
-          "lon": -0.6979004
-        }
+        1389534661, 1389534719, 1389534798, 1389534712, 1389534643, 1389534661
       ],
       "tags": {
-        "addr:city": "Liez",
-        "addr:housenumber": "1",
-        "addr:postcode": "85420",
-        "addr:street": "Chemin de la Gauvinière",
-        "amenity": "bed and breakfast",
+        "addr:city": "Le Gosier",
+        "addr:housenumber": "30",
+        "addr:postcode": "97190",
+        "addr:street": "rue Nelson Mandela",
         "building": "house",
-        "building:levels": "1",
-        "currency:EUR": "yes",
         "currency:XBT": "yes",
         "currency:XMR": "yes",
-        "email": "lagauviniere@gmail.com",
-        "internet_access": "wlan",
-        "name": "Chambre d'hôtes La Gauvinière",
+        "description": "health coach; life coaching",
+        "name": "Feel SO'light",
+        "office": "company",
+        "opening_hours": "Mo-Fr 08:00-18:00",
         "payment:cryptocurrencies": "yes",
-        "phone": "+33 6 20 45 68 27",
-        "rooms": "2",
-        "tourism": "guest_house",
-        "website": "https://www.lagauviniere.com/"
+        "payment:lightning": "yes",
+        "payment:onchain": "yes",
+        "source": "cadastre-dgi-fr source : Direction Générale des Impôts - Cadastre. Mise à jour : 2010",
+        "survey:date": "2024-08-20",
+        "website": "https://www.feel-so-light.com"
       }
+    },
+    {
+      "type": "node",
+      "id": 1389534661,
+      "lat": 16.1998617,
+      "lon": -61.4716262
     }
   ]
 }
