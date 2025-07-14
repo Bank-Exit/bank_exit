@@ -69,6 +69,10 @@ en:
       comment:
         affidavit: I hereby certify that I have had the indicated experience with this merchant
 
+      session:
+        email: Email address
+        password: Password
+
     placeholders:
       defaults:
         latitude: Default latitude

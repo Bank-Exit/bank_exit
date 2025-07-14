@@ -1,7 +1,7 @@
 module Admin
   class CommentPolicy < ApplicationPolicy
     def index?
-      true
+      admins_or_moderator?
     end
 
     def update?
@@ -9,7 +9,7 @@ module Admin
     end
 
     def destroy?
-      record.flag_reason.present?
+      admins_or_moderator? && record.flag_reason.present?
     end
   end
 end

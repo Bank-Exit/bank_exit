@@ -9,8 +9,6 @@ module Admin
       authorize!
 
       @pagy, @announcements = pagy(Announcement.all)
-
-      set_meta_tags title: 'Les annonces'
     end
 
     # @route GET /admin/announcements/new (new_admin_announcement)
@@ -18,8 +16,6 @@ module Admin
       authorize!
 
       @announcement = Announcement.new
-
-      set_meta_tags title: "Ajouter une entrée à l'annuaire"
     end
 
     # @route POST /admin/announcements (admin_announcements)
@@ -29,7 +25,7 @@ module Admin
       @announcement = Announcement.new(announcement_params)
 
       if @announcement.save
-        flash[:notice] = "L'annonce a bien été créée"
+        flash[:notice] = t('.notice')
 
         redirect_to admin_announcements_path
       else
@@ -53,7 +49,7 @@ module Admin
       authorize! @announcement
 
       if @announcement.update(announcement_params)
-        flash[:notice] = "L'annonce a bien été modifiée"
+        flash[:notice] = t('.notice')
 
         redirect_to admin_announcements_path
       else
@@ -67,7 +63,7 @@ module Admin
 
       @announcement.destroy
 
-      flash[:notice] = "L'annonce a bien été supprimée"
+      flash[:notice] = t('.notice')
 
       redirect_to admin_announcements_path
     end

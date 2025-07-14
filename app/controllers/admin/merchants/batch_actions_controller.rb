@@ -10,7 +10,7 @@ module Admin
 
         @merchants.update_all(deleted_at: nil)
 
-        flash[:notice] = 'Les commerçants ont bien été réactivés'
+        flash[:notice] = t('.notice')
 
         redirect_to admin_merchants_path(show_deleted: true)
       end
@@ -21,7 +21,7 @@ module Admin
 
         @merchants.destroy_all
 
-        flash[:notice] = 'Les commerçants ont bien été supprimés'
+        flash[:notice] = t('.notice')
 
         redirect_to admin_merchants_path(show_deleted: true)
       end

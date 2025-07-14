@@ -15,6 +15,7 @@ module Analyticable
 
   def record_page?
     analytics_enabled? &&
+      !logged_in? &&
       !request.is_crawler? &&
       response.content_type&.start_with?('text/html') &&
       params[:debug].blank? # from Github issue

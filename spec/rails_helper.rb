@@ -35,7 +35,6 @@ end
 
 RSpec.configure do |config|
   config.include ActiveSupport::Testing::TimeHelpers
-  config.include AuthHelper
   config.include GeocoderHelper
   config.include OSRMHelper
 

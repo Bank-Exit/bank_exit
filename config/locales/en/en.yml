@@ -21,6 +21,8 @@ en:
   reset_search: Reset search
   status: Status
   filters: Filters
+  edit: Edit
+  logout: Logout
 
   display_map: Map display
   display_grid: Grid display
@@ -100,6 +102,8 @@ en:
         create: Report this comment
       directory:
         suggest: Suggest this entry
+      session:
+        submit: Sign in
 
   questions:
     individual: An individual

@@ -21,6 +21,8 @@ fr:
   reset_search: Réinitialiser la recherche
   status: Statut
   filters: Filtres
+  edit: Modifier
+  logout: Déconnexion
 
   display_map: Affichage carte
   display_grid: Affichage grille
@@ -98,6 +100,8 @@ fr:
         suggest: Proposer cette entrée
         create: Créer l'entrée dans l'annuaire
         update: Modifier l'entrée dans l'annuaire
+      session:
+        submit: Se connecter
 
   questions:
     individual: Un particulier

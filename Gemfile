@@ -22,7 +22,7 @@ gem 'jbuilder'
 gem 'ostruct' # Fix deprecation warning with json gem dropping this dependency
 
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem 'bcrypt', '~> 3.1.7'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[windows jruby]
@@ -51,6 +51,7 @@ gem 'mission_control-jobs'
 gem 'osrm_text_instructions'
 gem 'pagy'
 gem 'positioning'
+gem 'pretender'
 gem 'rails_autolink'
 gem 'rails-i18n'
 gem 'route_translator'
@@ -58,6 +59,7 @@ gem 'rqrcode'
 gem 'simple_form'
 gem 'sitemap_generator'
 gem 'slim-rails'
+gem 'sorcery'
 gem 'turbo_power'
 
 # Reduces boot times through caching; required in config/boot.rb

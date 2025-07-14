@@ -11,7 +11,7 @@
   - flash_classes = 'alert-error'
   - close_button_classes = 'btn-error'
 
-.alert.max-w-96.place-items-start role="alert" data-controller="removals" data-action="animationend->removals#remove" class=flash_classes class=('appear-then-fade' if disappear)
+.alert.max-w-96.place-items-start.items-center.gap-2 role="alert" data-controller="removals" data-action="animationend->removals#remove" class=flash_classes class=('appear-then-fade' if disappear)
   = lucide_icon 'info', class: 'w-4 h-4'
 
   div

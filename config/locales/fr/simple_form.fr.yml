@@ -73,6 +73,10 @@ fr:
       announcement:
         remove_picture: Supprimer l'image ?
 
+      session:
+        email: Adresse email
+        password: Mot de passe
+
     placeholders:
       defaults:
         latitude: Latitude par défaut

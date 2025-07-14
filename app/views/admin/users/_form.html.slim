@@ -1,0 +1,20 @@
+.card.max-w-lg.mx-auto.bg-base-200.my-10.rounded-box
+  .card-body.space-y-5
+    = simple_form_for [:admin, user],
+                      html: { class: 'space-y-5' } do |f|
+      - if user.errors.any?
+        .panel.panel-error
+          ul.list-disc.list-inside
+            - user.errors.each do |error|
+              li= error.full_message
+
+      = f.input :email
+      = f.input :password
+      = f.input :password_confirmation
+      = f.input :role,
+                collection: user_roles_select_helper,
+                include_blank: false
+
+      = f.input :enabled
+
+      = f.button :submit

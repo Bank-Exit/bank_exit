@@ -1,23 +1,33 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::Merchants::Reactivates' do
-  let(:headers) { basic_auth_headers }
-
   describe 'POST /admin/merchants/:merchant_id/reactivate' do
-    subject(:action) { post path, headers: headers }
+    subject(:action) { post "/admin/merchants/#{merchant.to_param}/reactivate" }
 
     let(:merchant) { create :merchant, :deleted }
-    let(:method) { :post }
-    let(:path) { "/admin/merchants/#{merchant.identifier}/reactivate" }
 
-    context 'when credentials are valid' do
-      before { action }
+    %i[super_admin admin moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted with redirection' do
+          let(:redirection_url) { admin_merchants_path(show_deleted: true) }
+          let(:flash_notice) { 'Le commerçant a bien été réactivé' }
+        end
 
-      it { expect(merchant.reload.deleted_at).to be_nil }
-      it { expect(response).to redirect_to admin_merchants_path(show_deleted: true) }
-      it { expect(flash[:notice]).to eq('Le commerçant a bien été réactivé') }
+        it { expect { action }.to change { merchant.reload.deleted_at }.to nil }
+      end
     end
 
-    it_behaves_like 'an authenticated endpoint'
+    %i[publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 end

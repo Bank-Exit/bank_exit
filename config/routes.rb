@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  mount MissionControl::Jobs::Engine, at: '/jobs'
-  mount ActiveAnalytics::Engine, at: '/analytics' if ENV.fetch('FF_ANALYTICS_ENABLED', false) == 'true'
-  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
-
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -20,37 +16,12 @@ Rails.application.routes.draw do
     resource :referer, only: :update
   end
 
-  get '/admin', to: redirect('/admin/dashboard')
-
-  namespace :admin do
-    resource :dashboard, only: %i[show]
-
-    resources :merchants, only: %i[index show edit update destroy] do
-      scope module: :merchants do
-        resource :reactivate, only: :create
-
-        member do
-          resource :directory_converters, only: :create
-        end
-
-        collection do
-          resource :batch_actions, only: %i[update destroy], as: :merchants_batch_actions
-        end
-      end
-    end
-
-    resources :comments, only: %i[index update destroy]
-    resources :directories, except: :show do
-      member do
-        patch :update_position
-      end
-    end
-
-    resources :announcements
-  end
-
   localized do
     root 'welcome#index'
+
+    resource :session, only: %i[new create destroy]
+    get '/:locale/session', to: redirect('/%{locale}/session/new')
+    get '/session', to: redirect('/session/new')
 
     resource :collective, only: :show
     resources :coins, only: :show
@@ -128,6 +99,44 @@ Rails.application.routes.draw do
     resources :announcements, only: :index
   end
 
+  namespace :admin do
+    root 'dashboards#show'
+    resource :dashboard, only: %i[show]
+
+    mount MissionControl::Jobs::Engine, at: '/jobs'
+    mount ActiveAnalytics::Engine, at: '/analytics' if ENV.fetch('FF_ANALYTICS_ENABLED', false) == 'true'
+
+    resources :users, except: :show do
+      post :impersonate, on: :member
+      post :stop_impersonating, on: :collection
+    end
+
+    resource :profile, only: %i[edit update]
+
+    resources :merchants, only: %i[index show edit update destroy] do
+      scope module: :merchants do
+        resource :reactivate, only: :create
+
+        member do
+          resource :directory_converters, only: :create
+        end
+
+        collection do
+          resource :batch_actions, only: %i[update destroy], as: :merchants_batch_actions
+        end
+      end
+    end
+
+    resources :comments, only: %i[index update destroy]
+    resources :directories, except: :show do
+      member do
+        patch :update_position
+      end
+    end
+
+    resources :announcements
+  end
+
   namespace :addresses do
     resource :search, only: :show
   end
@@ -137,4 +146,6 @@ Rails.application.routes.draw do
   end
 
   resource :license, only: :show
+
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

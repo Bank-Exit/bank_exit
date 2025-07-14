@@ -1,13 +1,14 @@
 tr
-  td
-    label
-      = check_box_tag 'merchant[id]', merchant.id, false,
-                      class: 'checkbox checked:border-primary checked:bg-primary checked:text-primary-content',
-                      disabled: merchant.available?,
-                      data: { \
-                        admin__table_target: 'checkbox', \
-                        action: 'input->admin--table#toggle' \
-                      }
+  - if allowed_to?(:destroy?, with: Admin::Merchants::BatchActionPolicy)
+    td
+      label
+        = check_box_tag 'merchant[id]', merchant.id, false,
+                        class: 'checkbox checked:border-primary checked:bg-primary checked:text-primary-content',
+                        disabled: merchant.available?,
+                        data: { \
+                          admin__table_target: 'checkbox', \
+                          action: 'input->admin--table#toggle' \
+                        }
 
   td
     = render 'logo_or_initials', model: merchant, mode: :large

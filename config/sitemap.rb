@@ -7,7 +7,7 @@ SitemapGenerator::Sitemap.create(**options) do
   I18n.available_locales.each do |locale|
     I18n.with_locale(locale) do
       group(filename: "sitemap.#{locale}") do
-        add root_path, priority: 1, alternates: (I18n.available_locales.map do |locale|
+        add root_url, priority: 1, alternates: (I18n.available_locales.map do |locale|
           {
             href: root_url(locale: locale.to_s, host: options[:default_host]),
             lang: locale.to_s

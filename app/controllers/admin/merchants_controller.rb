@@ -29,13 +29,6 @@ module Admin
       @last_update = last_update.to_i
 
       @pagy, @merchants = pagy_array(merchants)
-
-      respond_to do |format|
-        format.html
-        format.turbo_stream unless show_deleted?
-      end
-
-      set_meta_tags title: 'Les commerçants'
     end
 
     # @route GET /admin/merchants/:id (admin_merchant)
@@ -59,9 +52,9 @@ module Admin
       authorize! @merchant
 
       if @merchant.update(merchant_update_params)
-        flash[:notice] = 'Le commerçant a bien été modifié'
+        flash[:notice] = t('.notice')
 
-        redirect_to admin_merchants_path(format: :html)
+        redirect_to admin_merchants_path
       else
         render :edit, status: :unprocessable_content
       end
@@ -73,7 +66,7 @@ module Admin
 
       @merchant.destroy
 
-      flash[:notice] = 'Le commerçant a bien été supprimé'
+      flash[:notice] = t('.notice')
 
       redirect_back_or_to admin_merchants_path(show_deleted: true)
     end

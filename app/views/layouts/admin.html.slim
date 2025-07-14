@@ -1,11 +1,7 @@
 doctype html
-html data-theme="silk"
+html lang=I18n.locale data-theme="silk"
   head
-    = display_meta_tags site: '[Admin] Collectif Sortie de Banque',
-                        reverse: true,
-                        charset: 'utf-8',
-                        viewport: 'width=device-width,initial-scale=1'
-
+    = seo_meta_tags(@pagy)
     = csrf_meta_tags
     = csp_meta_tag
 

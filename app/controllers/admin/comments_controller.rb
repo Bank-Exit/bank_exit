@@ -13,8 +13,6 @@ module Admin
       comments = CommentDecorator.wrap(comments)
 
       @pagy, @comments = pagy_array(comments)
-
-      set_meta_tags title: 'Les commentaires'
     end
 
     # @route PATCH /admin/comments/:id (admin_comment)
@@ -24,7 +22,7 @@ module Admin
 
       @comment.update(flag_reason: nil)
 
-      flash[:notice] = 'Le commentaire a bien été réactivé'
+      flash[:notice] = t('.notice')
 
       redirect_back_or_to admin_comments_path
     end
@@ -35,7 +33,7 @@ module Admin
 
       @comment.destroy
 
-      flash[:notice] = 'Le commentaire a bien été supprimé'
+      flash[:notice] = t('.notice')
 
       redirect_back_or_to admin_comments_path
     end

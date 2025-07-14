@@ -4,8 +4,12 @@ footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary
     - heart = lucide_icon('heart', class: 'h-5 w-5 stroke-red-600 fill-red-600 inline-flex mx-1 hover:scale-150 transition transition-scale')
     = t('.developed_by_html', heart: heart)
 
-  = link_to 'https://bank-exit-uptime-production.up.railway.app/status/bank-exit', target: :_blank do
-    .inline-grid.mr-1 class="*:[grid-area:1/1]"
-      .status.status-success.animate-ping
-      .status.status-success
-    =< t('status')
+  .flex.items-center.justify-center.gap-3
+    = link_to 'https://bank-exit-uptime-production.up.railway.app/status/bank-exit', target: :_blank do
+      .inline-grid.mr-1 class="*:[grid-area:1/1]"
+        .status.status-success.animate-ping
+        .status.status-success
+      =< t('status')
+
+    - unless logged_in?
+      = link_to '.', new_session_path

@@ -186,3 +186,14 @@ fr:
           success: Succès
           warning: Attention
           error: Alerte !
+
+      user:
+        email: Adresse email
+        password: Mot de passe
+        enabled: Activé ?
+        role: Rôle
+        roles:
+          super_admin: Super administrateur
+          admin: Administrateur
+          publisher: Editeur
+          moderator: Modérateur
