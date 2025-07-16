@@ -19,6 +19,7 @@ en:
   link: Link
   spotlight: Spotlight
   reset_search: Reset search
+  status: Status
 
   presentation_map: Map display
   presentation_grid: Grid display

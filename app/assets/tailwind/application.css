@@ -111,34 +111,25 @@ a:not(.btn, .badge):hover,
     color: var(--color-primary);
 }
 
-p a[target="_blank"]:after,
-.admin a[target="_blank"]:after,
-.panel a[target="_blank"]:after {
-    content: " ";
-    display: inline-block;
-    background-color: var(--color-primary) !important;
-    mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNxdWFyZS1hcnJvdy1vdXQtdXAtcmlnaHQtaWNvbiBsdWNpZGUtc3F1YXJlLWFycm93LW91dC11cC1yaWdodCI+PHBhdGggZD0iTTIxIDEzdjZhMiAyIDAgMCAxLTIgMkg1YTIgMiAwIDAgMS0yLTJWNWEyIDIgMCAwIDEgMi0yaDYiLz48cGF0aCBkPSJtMjEgMy05IDkiLz48cGF0aCBkPSJNMTUgM2g2djYiLz48L3N2Zz4=);
-    background-size: contain;
-    width: 24px;
-    height: 24px;
-    vertical-align: middle;
-    @apply scale-50 transition-colors;
-}
+footer a[target="_blank"],
+p a[target="_blank"],
+.admin a[target="_blank"],
+.panel a[target="_blank"] {
+    &:after {
+        content: " ";
+        display: inline-block;
+        background-color: currentColor;
+        mask-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNxdWFyZS1hcnJvdy1vdXQtdXAtcmlnaHQtaWNvbiBsdWNpZGUtc3F1YXJlLWFycm93LW91dC11cC1yaWdodCI+PHBhdGggZD0iTTIxIDEzdjZhMiAyIDAgMCAxLTIgMkg1YTIgMiAwIDAgMS0yLTJWNWEyIDIgMCAwIDEgMi0yaDYiLz48cGF0aCBkPSJtMjEgMy05IDkiLz48cGF0aCBkPSJNMTUgM2g2djYiLz48L3N2Zz4=);
+        background-size: contain;
+        width: 24px;
+        height: 24px;
+        vertical-align: middle;
+        @apply scale-50 transition-colors;
+    }
 
-p a[target="_blank"]:after,
-.admin a[target="_blank"]:after,
-.panel-base-100 a[target="_blank"]:after,
-.panel-base-200 a[target="_blank"]:after,
-.panel-base-300 a[target="_blank"]:after {
-    background-color: var(--color-base-content);
-}
-
-p a[target="_blank"]:hover:after,
-.admin a[target="_blank"]:hover:after,
-.panel-base-100 a[target="_blank"]:hover:after,
-.panel-base-200 a[target="_blank"]:hover:after,
-.panel-base-300 a[target="_blank"]:hover:after {
-    background-color: var(--color-primary);
+    &:hover:after {
+        background-color: currentColor;
+    }
 }
 
 mark {
