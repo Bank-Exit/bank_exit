@@ -18,7 +18,9 @@ module Merchants
       return if @diff_ids.empty?
 
       # Mark record as soft deleted
-      merchants.update_all(deleted_at: Time.current)
+      merchants
+        .where(deleted_at: nil)
+        .update_all(deleted_at: Time.current)
 
       if Rails.env.test? || Rails.env.production?
         # Report to Github issue merchants removed from OSM
@@ -39,7 +41,7 @@ module Merchants
 
     def body
       <<~MARKDOWN
-        Some merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
+        **#{merchants_list.count}** merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
         Please check the relevance of the information below:
 
         #{merchants_list.join("\n")}
@@ -51,13 +53,14 @@ module Merchants
     end
 
     def merchants
-      @merchants ||= Merchant.where(original_identifier: @diff_ids)
+      @merchants ||= Merchant.where(original_identifier: @diff_ids).order(deleted_at: :desc)
     end
 
     def merchants_list
       @merchants_list ||= MerchantDecorator.wrap(merchants).map do |merchant|
         <<~MARKDOWN
           - [ ] **#{merchant.name}** [##{merchant.identifier}] #{pretty_country_html(merchant.country, show_flag: true)}
+            - Date: #{I18n.l(merchant.deleted_at)}
             - [On Bank-Exit](#{merchant_url(merchant, debug: 'true')})
             - [On OpenStreetMap](#{merchant.osm_link})
         MARKDOWN

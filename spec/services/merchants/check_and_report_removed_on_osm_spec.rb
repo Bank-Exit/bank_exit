@@ -14,13 +14,16 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
     end
 
     before do
+      freeze_time
+
       stub_request(:patch, /api.github.com/)
         .with(body: {
           body: <<~MARKDOWN
-            Some merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
+            **1** merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
             Please check the relevance of the information below:
 
             - [ ] **John** [#1234ABCD] 🇫🇷 France
+              - Date: #{I18n.l(Time.current)}
               - [On Bank-Exit](http://example.test/en/merchants/1234ABCD-john?debug=true)
               - [On OpenStreetMap](https://www.openstreetmap.org/node/1234ABCD)
 
