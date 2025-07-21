@@ -1,38 +1,42 @@
 module SEOHelper
   def seo_meta_tags(pagy)
-    display_meta_tags site: I18n.t('seo.default.title'),
-                      title: title_for_page,
-                      description: description_for_page,
-                      reverse: true,
-                      charset: 'utf-8',
-                      lang: I18n.locale,
-                      prev: pagy ? pagy_prev_url(pagy) : nil,
-                      next: pagy ? pagy_next_url(pagy) : nil,
-                      og: {
-                        title: :title,
-                        site_name: :site,
-                        description: :description,
-                        image: asset_url(logo_by_locale),
-                        url: request.url
-                      },
-                      twitter: {
-                        card: 'summary',
-                        site: '@SortieDeBanque',
-                        title: :title,
-                        description: :description,
-                        image: asset_url(logo_by_locale),
-                        url: request.url
-                      },
-                      icon: [
-                        { href: image_path(logo_by_locale), type: 'image/png' }
-                      ],
-                      viewport: 'width=device-width,initial-scale=1',
-                      'turbo-cache-control': 'no-preview',
-                      'view-transition': 'same-origin',
-                      'turbo-refresh-method': 'morph',
-                      'turbo-refresh-scroll': 'scroll',
-                      'apple-mobile-web-app-capable': 'yes',
-                      'mobile-web-app-capable': 'yes'
+    display_meta_tags(
+      site: I18n.t('seo.default.title'),
+      title: title_for_page,
+      description: description_for_page,
+      reverse: true,
+      charset: 'utf-8',
+      lang: I18n.locale,
+      alternate: alternates,
+      canonical: request.url,
+      prev: pagy ? pagy_prev_url(pagy, absolute: true) : nil,
+      next: pagy ? pagy_next_url(pagy, absolute: true) : nil,
+      og: {
+        title: :title,
+        site_name: :site,
+        description: :description,
+        image: asset_url(logo_by_locale),
+        url: request.url
+      },
+      twitter: {
+        card: 'summary',
+        site: '@SortieDeBanque',
+        title: :title,
+        description: :description,
+        image: asset_url(logo_by_locale),
+        url: request.url
+      },
+      icon: [
+        { href: image_path(logo_by_locale), type: 'image/png' }
+      ],
+      viewport: 'width=device-width,initial-scale=1',
+      'turbo-cache-control': 'no-preview',
+      'view-transition': 'same-origin',
+      'turbo-refresh-method': 'morph',
+      'turbo-refresh-scroll': 'scroll',
+      'apple-mobile-web-app-capable': 'yes',
+      'mobile-web-app-capable': 'yes'
+    )
   end
 
   def schema_dot_org_organization
@@ -327,5 +331,15 @@ module SEOHelper
 
   def default_description
     t('seo.default.description')
+  end
+
+  def alternates
+    hash = {}
+
+    I18n.available_locales.each do |locale|
+      hash[locale] = url_for(locale: locale.to_s, only_path: false)
+    end
+
+    hash
   end
 end

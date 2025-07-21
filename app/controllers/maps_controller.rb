@@ -61,10 +61,16 @@ class MapsController < ApplicationController
       end
 
       @directory_friends = DirectoryFriend.all
+
+      set_meta_tags canonical: pretty_map_url(
+        zoom: Setting::MAP_DEFAULT_ZOOM,
+        lat: Setting::MAP_DEFAULT_LATITUDE,
+        lon: Setting::MAP_DEFAULT_LONGITUDE
+      )
     end
 
     @pagy, @merchants = pagy_array(
-      @merchants.reverse, params: ->(params) { params.merge!(pagy: true) }
+      @merchants.reverse, params: ->(params) { params.compact_blank.merge!(pagy: true) }
     )
 
     render variants: [

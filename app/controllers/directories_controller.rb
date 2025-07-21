@@ -32,6 +32,8 @@ class DirectoriesController < ApplicationController
 
     @pagy, @directories = pagy_array(directories)
 
+    set_meta_tags canonical: directories_url
+
     respond_to do |format|
       format.html
       format.turbo_stream if filter_params.present? || params[:page].present?
