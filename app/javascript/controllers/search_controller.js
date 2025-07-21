@@ -123,11 +123,12 @@ export default class extends ApplicationController {
       this.continentTarget.selectedIndex = 0;
     }
 
-    const params = new URLSearchParams(formData);
-    let url = new URL(this.formTarget.action + "&" + params);
+    // Update browser URL to reflect form input filled
+    let url = new URL(this.formTarget.action);
+    const newParams = new URLSearchParams(formData);
 
-    if (url.href.endsWith("&")) {
-      url = new URL(url.href.slice(0, -1));
+    for (const [key, value] of newParams.entries()) {
+      url.searchParams.set(key, value);
     }
 
     window.history.pushState({ path: url.href }, "", url.href);
