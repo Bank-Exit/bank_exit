@@ -130,6 +130,9 @@ GEM
     debug (1.11.0)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    debugbar (0.4.3)
+      actioncable
+      rails
     diff-lcs (1.6.2)
     docile (1.4.1)
     dotenv (3.1.8)
@@ -569,6 +572,7 @@ DEPENDENCIES
   country_select
   crawler_detect
   debug
+  debugbar
   dotenv-rails
   factory_bot_rails
   faker

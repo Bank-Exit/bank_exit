@@ -25,6 +25,8 @@ html data-theme="light"
     = render 'initial_javascript'
     = javascript_importmap_tags
 
+    = debugbar_head if defined?(Debugbar)
+
   body.admin
     #flashes= render 'flashes'
 
@@ -41,3 +43,5 @@ html data-theme="light"
     #modal
     = render 'turbo_confirm'
     = render 'ribbon' unless Rails.env.production?
+
+    = debugbar_body minimized: true if defined?(Debugbar)
