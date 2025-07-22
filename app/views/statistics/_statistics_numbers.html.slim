@@ -2,30 +2,30 @@
 - on_date_i18n = t('.on_date', date: today_i18n)
 - dated_i18n = t('.dated', date: today_i18n)
 
-.flex.flex-col.items-center.justify-center class="gap-0.5"
-  .stats.stats-vertical.lg:stats-horizontal.shadow.bg-base-100/95.justify-center
-    .stat
+.overflow-x-auto
+  .flex.gap-2.sm:grid.sm:grid-cols-3.lg:grid-cols-4.max-w-xs.sm:max-w-max.sm:mx-auto
+    .stat.bg-base-100.shadow.rounded-lg
       .stat-figure
         = lucide_icon 'store', class: 'w-12 h-12'
       .stat-title= t('.new_merchants_title')
       .stat-value= merchants_statistics[:today].count
       .stat-desc= on_date_i18n
 
-    .stat
+    .stat.bg-base-100.shadow.rounded-lg
       .stat-figure
         = lucide_icon 'store', class: 'w-12 h-12'
       .stat-title= t('.all_merchants_enabled_title')
       .stat-value= merchants_statistics[:enabled]
       .stat-desc= dated_i18n
 
-    .stat
+    .stat.bg-base-100.shadow.rounded-lg
       .stat-figure
         = image_tag icon_by_coin('monero'), class: 'w-12 h-12'
       .stat-title= t('.monero_france_title')
       .stat-value= countries_statistics[:monero_in_france].count
       .stat-desc= dated_i18n
 
-    .stat
+    .stat.bg-base-100.shadow.rounded-lg
       .stat-figure
         = image_tag icon_by_coin('monero'), class: 'w-12 h-12'
 
@@ -33,15 +33,14 @@
       .stat-value= coins_statistics[:monero_world].count
       .stat-desc= dated_i18n
 
-  .stats.stats-vertical.lg:stats-horizontal.shadow.bg-base-100/95.justify-center
-    .stat
+    .stat.bg-base-100.shadow.rounded-lg
       .stat-figure
         = image_tag icon_by_coin('june'), class: 'w-12 h-12 object-cover'
       .stat-title= t('.june_world_title')
       .stat-value= coins_statistics[:june_world].count
       .stat-desc= dated_i18n
 
-    .stat
+    .stat.bg-base-100.shadow.rounded-lg
       .stat-figure
         = lucide_icon 'notebook', class: 'w-12 h-12'
       .stat-title= Directory.model_name.human.capitalize
@@ -51,7 +50,7 @@
     - category = @categories_statistics[:main_category]&.first
 
     - if category
-      .stat
+      .stat.bg-base-100.shadow.rounded-lg
         .stat-figure
           = merchant_icon_svg icon_for_category(category), width: 60, height: 60
         .stat-title= t(category, scope: 'categories')
