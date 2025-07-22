@@ -1,5 +1,5 @@
 module Merchants
-  class ReportsController < ApplicationController
+  class ReportsController < PublicController
     before_action :set_merchant
 
     # @route GET /fr/merchants/:merchant_id/report/new {locale: "fr"} (new_merchant_report_fr)

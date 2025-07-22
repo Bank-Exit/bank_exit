@@ -1,4 +1,4 @@
-class StatisticsController < ApplicationController
+class StatisticsController < PublicController
   include Statisticable
 
   before_action :set_statistics

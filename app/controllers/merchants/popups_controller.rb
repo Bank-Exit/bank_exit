@@ -1,5 +1,5 @@
 module Merchants
-  class PopupsController < ApplicationController
+  class PopupsController < PublicController
     before_action :set_merchant
 
     # @route GET /fr/merchants/:merchant_id/popup {locale: "fr"} (merchant_popup_fr)

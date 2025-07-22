@@ -1,5 +1,5 @@
 module Maps
-  class ReferersController < ApplicationController
+  class ReferersController < PublicController
     skip_after_action :record_page_view
 
     # @route PATCH /maps/referer (maps_referer)

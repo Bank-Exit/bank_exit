@@ -1,4 +1,4 @@
-class MapsController < ApplicationController
+class MapsController < PublicController
   include Merchandable
 
   FAQ_CATEGORY = 'map'.freeze

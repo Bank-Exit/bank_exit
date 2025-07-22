@@ -1,4 +1,4 @@
-class DirectoriesController < ApplicationController
+class DirectoriesController < PublicController
   before_action :set_directory, only: :show
   before_action :set_faqs, only: %i[index new show]
 

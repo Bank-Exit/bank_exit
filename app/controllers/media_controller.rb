@@ -1,4 +1,4 @@
-class MediaController < ApplicationController
+class MediaController < PublicController
   # @route GET /fr/media {locale: "fr"} (media_fr)
   # @route GET /es/media {locale: "es"} (media_es)
   # @route GET /de/media {locale: "de"} (media_de)

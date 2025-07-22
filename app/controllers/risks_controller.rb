@@ -1,4 +1,4 @@
-class RisksController < ApplicationController
+class RisksController < PublicController
   # @route GET /fr/risks {locale: "fr"} (risks_fr)
   # @route GET /es/risks {locale: "es"} (risks_es)
   # @route GET /de/risks {locale: "de"} (risks_de)

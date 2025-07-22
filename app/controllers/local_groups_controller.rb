@@ -1,4 +1,4 @@
-class LocalGroupsController < ApplicationController
+class LocalGroupsController < PublicController
   # @route GET /fr/local_groups {locale: "fr"} (local_groups_fr)
   # @route GET /es/local_groups {locale: "es"} (local_groups_es)
   # @route GET /de/local_groups {locale: "de"} (local_groups_de)

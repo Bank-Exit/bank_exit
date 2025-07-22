@@ -1,4 +1,4 @@
-class DeliveryZonesController < ApplicationController
+class DeliveryZonesController < PublicController
   include DeliveryZonesHelper
 
   # @route GET /fr/delivery_zones/mode_values {locale: "fr"} (mode_values_delivery_zones_fr)

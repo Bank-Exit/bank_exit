@@ -1,4 +1,4 @@
-class CoinsController < ApplicationController
+class CoinsController < PublicController
   before_action :set_coin
 
   # @route GET /fr/coins/:id {locale: "fr"} (coin_fr)

@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+class ProjectsController < PublicController
   before_action :set_project, only: :show
 
   # @route GET /fr/projects/:id {locale: "fr"} (project_fr)

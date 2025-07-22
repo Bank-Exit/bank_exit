@@ -4,6 +4,7 @@ module Maps
       policy.frame_ancestors '*'
     end
 
+    include Analyticable
     include Merchandable
 
     before_action :set_options

@@ -1,5 +1,5 @@
 module Tutorials
-  class ReportsController < ApplicationController
+  class ReportsController < PublicController
     before_action :set_tutorial
 
     # @route GET /fr/tutorials/:tutorial_id/report/new {locale: "fr"} (new_tutorial_report_fr)

@@ -1,4 +1,4 @@
-class BlogsController < ApplicationController
+class BlogsController < PublicController
   before_action :set_blog, only: :show
 
   add_breadcrumb proc { I18n.t('application.nav.menu.home') }, :root_path

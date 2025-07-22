@@ -1,6 +1,6 @@
 module Admin
   module Merchants
-    class DirectoryConvertersController < ApplicationController
+    class DirectoryConvertersController < BaseController
       before_action :set_merchant, only: %i[create]
 
       # @route POST /admin/merchants/:id/directory_converters (admin_directory_converters)

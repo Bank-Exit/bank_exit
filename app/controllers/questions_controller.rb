@@ -1,4 +1,4 @@
-class QuestionsController < ApplicationController
+class QuestionsController < PublicController
   # @route GET /fr/questions/results {locale: "fr"} (results_questions_fr)
   # @route GET /es/questions/results {locale: "es"} (results_questions_es)
   # @route GET /de/questions/results {locale: "de"} (results_questions_de)

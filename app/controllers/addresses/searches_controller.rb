@@ -1,5 +1,5 @@
 module Addresses
-  class SearchesController < ApplicationController
+  class SearchesController < PublicController
     before_action :set_lookup
 
     # @route GET /addresses/search (addresses_search)

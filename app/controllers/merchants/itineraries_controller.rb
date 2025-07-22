@@ -1,5 +1,5 @@
 module Merchants
-  class ItinerariesController < ApplicationController
+  class ItinerariesController < PublicController
     before_action :set_merchant
 
     # @route GET /fr/merchants/:merchant_id/itinerary/new {locale: "fr"} (new_merchant_itinerary_fr)
