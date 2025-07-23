@@ -1,5 +1,5 @@
 module Comments
-  class ReportsController < ApplicationController
+  class ReportsController < PublicController
     before_action :set_comment
 
     # @route GET /fr/comments/:comment_id/report/new {locale: "fr"} (new_comment_report_fr)

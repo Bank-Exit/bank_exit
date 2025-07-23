@@ -1,6 +1,6 @@
 module Admin
   module Merchants
-    class BatchActionsController < ApplicationController
+    class BatchActionsController < BaseController
       before_action :set_merchants, only: %i[update destroy]
 
       # @route PATCH /admin/merchants/batch_actions (admin_merchants_batch_actions)

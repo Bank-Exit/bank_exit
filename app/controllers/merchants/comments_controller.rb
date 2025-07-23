@@ -1,5 +1,5 @@
 module Merchants
-  class CommentsController < ApplicationController
+  class CommentsController < PublicController
     before_action :set_merchant
 
     # @route GET /fr/merchants/:merchant_id/comments/new {locale: "fr"} (new_merchant_comment_fr)

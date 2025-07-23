@@ -1,5 +1,5 @@
 module Admin
-  class DashboardsController < ApplicationController
+  class DashboardsController < BaseController
     # @route GET /admin/dashboard (admin_dashboard)
     def show
       @dashboard_presenter = Admin::DashboardPresenter.new

@@ -1,6 +1,6 @@
 module Admin
   module Merchants
-    class ReactivatesController < ApplicationController
+    class ReactivatesController < BaseController
       before_action :set_merchant, only: %i[create]
 
       # @route POST /admin/merchants/:merchant_id/reactivate (admin_merchant_reactivate)

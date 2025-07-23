@@ -1,4 +1,4 @@
-class TutorialsController < ApplicationController
+class TutorialsController < PublicController
   before_action :set_tutorial, only: :show
   before_action :set_coins, only: :show
 

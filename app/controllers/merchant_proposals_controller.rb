@@ -1,4 +1,4 @@
-class MerchantProposalsController < ApplicationController
+class MerchantProposalsController < PublicController
   before_action :set_faqs, only: :new
 
   add_breadcrumb proc { I18n.t('application.nav.menu.home') }, :root_path

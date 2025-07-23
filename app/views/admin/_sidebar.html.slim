@@ -35,7 +35,7 @@
         = link_to mission_control_jobs_path, class: 'btn btn-ghost', target: :_blank do
           | Mission Control Jobs
 
-      - if analytics_enabled?
+      - if allowed_to?(:analytics?, with: Admin::UserPolicy)
         li
           = link_to active_analytics_path, class: 'btn btn-ghost', target: :_blank do
             | Analytics

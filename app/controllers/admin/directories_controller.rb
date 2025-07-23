@@ -1,5 +1,5 @@
 module Admin
-  class DirectoriesController < ApplicationController
+  class DirectoriesController < BaseController
     before_action :set_directory, only: %i[
       edit update destroy update_position
     ]

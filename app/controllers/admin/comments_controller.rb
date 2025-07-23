@@ -1,5 +1,5 @@
 module Admin
-  class CommentsController < ApplicationController
+  class CommentsController < BaseController
     before_action :set_comment, only: %i[update destroy]
 
     # @route GET /admin/comments (admin_comments)

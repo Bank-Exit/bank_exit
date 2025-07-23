@@ -1,5 +1,5 @@
 module Admin
-  class MerchantsController < ApplicationController
+  class MerchantsController < BaseController
     before_action :set_merchant, only: %i[
       show edit update destroy
     ]

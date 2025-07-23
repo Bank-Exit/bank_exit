@@ -2,15 +2,12 @@ class ApplicationController < ActionController::Base
   prepend ActionPolicy::SimpleDelegator
   include HttpAuthConcern if Rails.env.staging?
   include Pagy::Backend
-  include Analyticable
 
   rate_limit to: 100, within: 1.minute, by: -> { encrypted_ip }
 
   rescue_from ActionPolicy::Unauthorized, with: :unauthorized_access
 
   around_action :switch_locale
-  before_action :set_projects
-  before_action :set_contacts
 
   helper_method :comments_enabled?
 
@@ -28,14 +25,6 @@ class ApplicationController < ActionController::Base
     I18n.with_locale(locale, &action)
   end
 
-  def set_projects
-    @projects = Project.all(decorate: true)
-  end
-
-  def set_contacts
-    @contacts = Contact.all
-  end
-
   def comments_enabled?
     ENV.fetch('FF_COMMENTS_ENABLED', 'true') == 'true'
   end
@@ -45,14 +34,6 @@ class ApplicationController < ActionController::Base
     message = t("#{policy_name}.#{e.rule}", scope: 'pundit', default: :default)
 
     redirect_back_or_to root_path, alert: message
-  end
-
-  # Remove empty GET params from URL
-  def clean_url(url)
-    uri = URI.parse(url)
-    query = Rack::Utils.parse_nested_query(uri.query).compact_blank
-    uri.query = query.to_query.presence
-    uri.to_s
   end
 
   def encrypted_ip

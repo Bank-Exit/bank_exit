@@ -1,4 +1,4 @@
-class ContactsController < ApplicationController
+class ContactsController < PublicController
   ALLOWED_CONTACTS = %w[Session Nostr Email].freeze
 
   # @route GET /fr/contacts/:id {locale: "fr"} (contact_fr)

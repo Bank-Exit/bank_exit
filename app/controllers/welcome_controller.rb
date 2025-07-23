@@ -1,4 +1,4 @@
-class WelcomeController < ApplicationController
+class WelcomeController < PublicController
   include Merchandable
   include Statisticable
 

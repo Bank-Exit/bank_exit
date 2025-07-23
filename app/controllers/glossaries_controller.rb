@@ -1,4 +1,4 @@
-class GlossariesController < ApplicationController
+class GlossariesController < PublicController
   # @route GET /fr/glossaries {locale: "fr"} (glossaries_fr)
   # @route GET /es/glossaries {locale: "es"} (glossaries_es)
   # @route GET /de/glossaries {locale: "de"} (glossaries_de)
