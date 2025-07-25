@@ -36,6 +36,8 @@ it:
 
   copy_to_clipboard: Copia negli appunti
 
+  empty_results: Nessun risultato
+
   x_results:
     zero: "%{count} risultato"
     one: "%{count} risultato"

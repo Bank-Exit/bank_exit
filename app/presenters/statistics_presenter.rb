@@ -17,7 +17,6 @@ class StatisticsPresenter < ApplicationPresenter
     {
       enabled: merchants_enabled,
       today: today_merchants,
-      yesterday: yesterday_merchants,
       two_weeks_range: merchants_two_weeks_range,
       merchants_west_europe_and_days: merchants_west_europe_and_days,
       merchants_north_america_and_days: merchants_north_america_and_days,
@@ -67,11 +66,6 @@ class StatisticsPresenter < ApplicationPresenter
   def today_merchants
     base_merchants
       .where(created_at: today.all_day)
-  end
-
-  def yesterday_merchants
-    base_merchants
-      .where(created_at: yesterday.all_day)
   end
 
   def merchants_two_weeks_range

@@ -1,6 +1,3 @@
-- yesterday_count = @merchants_statistics[:yesterday].count
-- today_count = @merchants_statistics[:today].count
-
 article
   header.hero.bg-fixed.bg-banner-statistics.bg-bottom
     .hero-overlay
@@ -20,21 +17,10 @@ article
               = t('.not_atm_warning_html')
 
   .article-body.max-w-full class="!px-5"
-    - if yesterday_count > 0 || today_count > 0
-      .tabs.tabs-border.max-w-5xl.mx-auto
-        - if yesterday_count > 0
-          input.tab type="radio" name="my_tabs_2" aria-label=t('yesterday') checked=('checked' if today_count.zero?)
-          .tab-content.border-0.bg-base-100.pt-3
-            = render 'merchants_table',
-                    merchants: MerchantDecorator.wrap(@merchants_statistics[:yesterday].reverse),
-                    date: l(@statistics_presenter.yesterday.to_date)
-
-        - if today_count > 0
-          input.tab type="radio" name="my_tabs_2" aria-label=t('today') checked="checked"
-          .tab-content.border-0.bg-base-100.pt-3
-            = render 'merchants_table',
-                    merchants: MerchantDecorator.wrap(@merchants_statistics[:today].reverse),
-                    date: l(@statistics_presenter.today.to_date)
+    .max-w-6xl.mx-auto
+      = turbo_frame_tag :weekly_merchants, src: daily_merchants_statistics_path(date: Date.current) do
+        .text-center
+          span.loading.loading-dots.loading-xl
 
     .space-y-5
       .flex.flex-col.lg:flex-row.items-center.gap-5

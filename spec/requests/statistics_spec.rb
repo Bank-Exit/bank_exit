@@ -20,4 +20,28 @@ RSpec.describe 'Statistics' do
       it { expect(response).to have_http_status :ok }
     end
   end
+
+  describe 'GET /stats/daily_merchants' do
+    subject! { get '/stats/daily_merchants', params: params }
+
+    let(:params) { { query: { date: date } } }
+
+    context 'when date is valid' do
+      let(:date) { Date.current.to_s }
+
+      it { expect(response).to have_http_status :ok }
+    end
+
+    context 'when date is invalid' do
+      let(:date) { 'fake' }
+
+      it { expect(response).to have_http_status :ok }
+    end
+
+    context 'when date is missing' do
+      let(:params) { {} }
+
+      it { expect(response).to have_http_status :ok }
+    end
+  end
 end

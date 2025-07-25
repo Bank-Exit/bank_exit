@@ -36,6 +36,8 @@ es:
 
   copy_to_clipboard: Copiar al portapapeles
 
+  empty_results: No hay resultados
+
   x_results:
     zero: "%{count} resultado"
     one: "%{count} resultado"

@@ -385,8 +385,6 @@ en:
       title: Directory
     directory:
       pending_link: Pending link
-    directories:
-      empty_results: There are no results
     filters:
       tooltip_geocoder_ip_html:
         - <p>To deduce your geolocation from your IP address, Bank-Exit uses the external webservice <b>https://ip-api.com</b> by transmitting your IP address <b>in plain text</b> (not encrypted).</p>
@@ -410,7 +408,7 @@ en:
       merchants_and_coins_title: Merchants and accepted currencies
       merchants_west_european_title: Merchants in Western Europe
 
-    merchants_table:
+    weekly_merchants_table:
       merchants_added_on_title: Merchants added on %{date}
 
     statistics_numbers:

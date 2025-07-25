@@ -36,6 +36,8 @@ de:
 
   copy_to_clipboard: In die Zwischenablage kopieren
 
+  empty_results: Keine Ergebnisse vorhanden
+
   x_results:
     zero: "%{count} Ergebnis"
     one: "%{count} Ergebnis"

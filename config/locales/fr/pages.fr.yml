@@ -385,8 +385,6 @@ fr:
       title: Annuaire
     directory:
       pending_link: Lien à venir
-    directories:
-      empty_results: Il n'y a aucun résultat correspondant
     filters:
       tooltip_geocoder_ip_html:
         - <p>Pour déduire votre géolocalisation à partir de votre adresse IP, Sortie de Banque fait appel au webservice externe <b>https://ip-api.com</b> en transmettant votre adresse IP <b>en clair</b> (non chiffrée).</p>
@@ -411,7 +409,7 @@ fr:
       merchants_and_coins_title: Commerçants et monnaies acceptées
       merchants_west_european_title: Commerçants en Europe de l'Ouest
 
-    merchants_table:
+    weekly_merchants_table:
       merchants_added_on_title: Commerçants ajoutés le %{date}
 
     statistics_numbers:

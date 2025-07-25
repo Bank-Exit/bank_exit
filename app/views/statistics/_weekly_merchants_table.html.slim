@@ -1,0 +1,49 @@
+.space-y-5.mb-5
+  ul.menu.menu-horizontal.menu-sm.gap-2.w-full.justify-center
+    - (1.week.ago.to_date..Date.current).each do |d|
+      li
+        = link_to I18n.l(d), daily_merchants_statistics_path(date: d), class: ('menu-active' if d == date)
+
+  .overflow-x-auto.dark:bg-base-300.rounded-box.border.border-base-content/15
+    table.table.table-zebra.table-pin-rows
+      thead
+        tr
+          td
+          td scope="col"= Merchant.human_attribute_name(:name)
+          td= Merchant.human_attribute_name(:country)
+          td= Merchant.human_attribute_name(:category)
+          td= Merchant.human_attribute_name(:coins)
+          td= Merchant.human_attribute_name(:created_at)
+          td= t('link')
+
+      tbody
+        - merchants_count = merchants.count
+
+        - merchants.each.with_index do |row, index|
+          - count = merchants_count - index
+
+          tr
+            td= "##{count}"
+            th scope="row"= row.name
+            td= row.pretty_country(show_flag: true)
+            td
+              - if row.category
+                = t("categories.#{row.category}")
+            td== coins_list(row.coins, with_logo: true, with_name: false, size: 'w-6')
+            td
+              = I18n.l(row.created_at, format: '%Hh%M')
+            td
+              p.text-center
+                = link_to 'OpenStreetMap', row.osm_link, target: :_blank, class: 'btn btn-link btn-sm', data: { turbo_frame: :_top }
+
+              p.text-center
+                = link_to t('details'), merchant_path(row), class: 'btn btn-primary btn-sm', data: { turbo_frame: :_top }
+
+        - if merchants.empty?
+          td colspan="7"
+            p.text-center= t('empty_results')
+
+  .text-xs.text-center.font-semibold.italic
+    = t('.merchants_added_on_title', date: l(date))
+
+  .divider.divider-primary.w-sm.mx-auto

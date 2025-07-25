@@ -39,6 +39,8 @@ en:
   copy_to_clipboard: Copy to clipboard
   copy_url_to_clipboard: Copy URL to clipboard
 
+  empty_results: There are no results
+
   x_results:
     zero: "%{count} result"
     one: "%{count} result"

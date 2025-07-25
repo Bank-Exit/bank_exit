@@ -383,8 +383,6 @@ it:
       title: Directory
     directory:
       pending_link: Link in attesa
-    directories:
-      empty_results: Nessun risultato
     filters:
       tooltip_geocoder_ip_html:
         - <p>Per dedurre la tua geolocalizzazione dall’indirizzo IP, Bank-Exit utilizza il servizio web esterno <b>https://ip-api.com</b> trasmettendo il tuo indirizzo IP <b>in chiaro</b> (non criptato).</p>
@@ -408,7 +406,7 @@ it:
       merchants_and_coins_title: Commercianti e valute accettate
       merchants_west_european_title: Commercianti in Europa occidentale
 
-    merchants_table:
+    weekly_merchants_table:
       merchants_added_on_title: Commercianti aggiunti il %{date}
 
     statistics_numbers:
