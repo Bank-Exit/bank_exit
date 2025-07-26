@@ -123,5 +123,9 @@ Rails.application.routes.draw do
     resource :search, only: :show
   end
 
+  namespace :statistics do
+    post :toggle_atms
+  end
+
   resource :license, only: :show
 end

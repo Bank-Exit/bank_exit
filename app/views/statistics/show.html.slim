@@ -1,8 +1,8 @@
 article
   header.hero.bg-fixed.bg-banner-statistics.bg-bottom
     .hero-overlay
-    .hero-content.py-16
-      .max-w-5xl
+    .hero-content.py-16.w-full.lg:w-auto
+      .w-full.max-w-5xl
         .text-center.space-y-6.text-neutral-content
           h1.text-3xl.font-bold= t('.title')
 
@@ -10,11 +10,6 @@ article
                    merchants_statistics: @merchants_statistics,
                    countries_statistics: @countries_statistics,
                    coins_statistics: @coins_statistics
-
-          .panel.panel-info.panel-sm.inline-block
-            p
-              = lucide_icon 'info', class: 'inline-flex mr-1 w-4'
-              = t('.not_atm_warning_html')
 
   .article-body.max-w-full class="!px-5"
     .max-w-6xl.mx-auto

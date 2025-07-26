@@ -35,7 +35,7 @@ es:
       map:
         delivery: Con entrega a domicilio
         no_kyc: No pida un <abbr title="Know Your Customer">KYC</abbr>
-        with_atms: Incluir <abbr title="Automated Teller Machine (máquina de cajero automatizado)">ATMs</abbr>
+        with_atms: Incluir <abbr title="Automated Teller Machine (máquina de cajero automatizado)">ATMs</abbr> ?
         category:
           all: Todas las categorías
           craft: Artesanía

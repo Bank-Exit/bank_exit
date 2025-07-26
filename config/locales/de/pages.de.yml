@@ -393,7 +393,6 @@ de:
     show:
       title: Statistiken
       description: "Statistiken zu Händlern, die Monero (XMR), Bitcoin (BTC/LN) und June (G1) akzeptieren: geographische Verteilung und Geschäftsbereiche."
-      not_atm_warning_html: Daten vom Typ <abbr title="Automated Teller Machine (automatischer Geldautomat)">ATM</abbr> werden aufgrund ihrer mangelnden Relevanz aus der statistischen Analyse ausgeschlossen
       new_merchants_west_europe_title: Neue Händler in Westeuropa
       new_merchants_north_america_oceania_title: Neue Händler in Nordamerika und Ozeanien
       new_merchants_south_america_title: Neue Händler in Südamerika

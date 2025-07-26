@@ -35,7 +35,7 @@ de:
       map:
         delivery: Mit Hauszustellung
         no_kyc: Keine <abbr title="Know Your Customer">KYC</abbr> erforderlich
-        with_atms: Inkludiere <abbr title="Automated Teller Machine">Geldautomaten</abbr>
+        with_atms: Inkludiere <abbr title="Automated Teller Machine">Geldautomaten</abbr> ?
         category:
           all: Alle Einzelhandelskategorien
           craft: Handwerk

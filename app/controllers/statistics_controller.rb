@@ -2,6 +2,9 @@ class StatisticsController < PublicController
   include Statisticable
 
   before_action :set_statistics, only: :show
+  skip_after_action :record_page_view, only: %i[
+    daily_merchants toggle_atms
+  ]
 
   # @route GET /fr/stats {locale: "fr"} (statistics_fr)
   # @route GET /es/stats {locale: "es"} (statistics_es)
@@ -26,8 +29,14 @@ class StatisticsController < PublicController
       @date = Date.current
     end
 
-    @merchants = MerchantDecorator.wrap(
-      Merchant.available.where(created_at: @date.all_day)
-    )
+    merchants = Merchant.available.where(created_at: @date.all_day)
+    merchants.not_atms unless session[:include_atms]
+
+    @merchants = MerchantDecorator.wrap(merchants)
+  end
+
+  # @route POST /statistics/toggle_atms (statistics_toggle_atms)
+  def toggle_atms
+    session[:include_atms] = params[:include_atms]
   end
 end

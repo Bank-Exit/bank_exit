@@ -36,7 +36,7 @@ fr:
       map:
         delivery: Avec livraison à domicile
         no_kyc: Ne demande pas de <abbr title="Know Your Customer">KYC</abbr>
-        with_atms: Inclure les <abbr title="Automated Teller Machine (distributeurs automatiques)">ATMs</abbr>
+        with_atms: Inclure les <abbr title="Automated Teller Machine (distributeurs automatiques)">ATMs</abbr> ?
         category:
           all: Toutes catégories de commerces
           craft: Artisanat

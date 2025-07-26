@@ -48,6 +48,6 @@ module Merchandable
   end
 
   def with_atms?
-    false
+    session[:include_atms]
   end
 end

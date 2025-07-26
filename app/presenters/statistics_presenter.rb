@@ -6,11 +6,12 @@ class StatisticsPresenter < ApplicationPresenter
   SOUTH_AMERICA_COUNTRIES = %w[BR AR BO PY UY CL].freeze
   AFRICA_COUNTRIES = %w[ZA KE ZM RE].freeze
 
-  attr_reader :today, :yesterday
+  attr_reader :today, :yesterday, :include_atms
 
-  def initialize
+  def initialize(include_atms: false)
     @today = Time.current
     @yesterday = 1.day.ago
+    @include_atms = include_atms
   end
 
   def merchants_statistics
@@ -193,6 +194,10 @@ class StatisticsPresenter < ApplicationPresenter
   end
 
   def base_merchants
-    @base_merchants ||= Merchant.available.not_atms
+    @base_merchants ||= if include_atms
+                          Merchant.available
+                        else
+                          Merchant.available.not_atms
+                        end
   end
 end

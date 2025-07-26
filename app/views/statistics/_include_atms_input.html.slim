@@ -1,0 +1,3 @@
+label.label.text-base-content.text-sm class=("flex justify-center" if center)
+  input.toggle.toggle-sm.toggle-primary.checked:bg-primary.checked:text-base-100 type="checkbox" checked=('checked' if session[:include_atms]) data-controller="statistics" data-action="click->statistics#switch" data-statistics-toggle-url-value=statistics_toggle_atms_path
+  = t('simple_form.labels.map.with_atms').html_safe

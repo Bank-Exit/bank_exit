@@ -145,14 +145,6 @@
 
   .mb-2
     .fieldset
-      = f.input :with_atms, as: :boolean,
-                boolean_style: :inline,
-                include_hidden: false,
-                wrapper: false,
-                input_html: { checked: params[:with_atms] == '1' },
-                label: t('simple_form.labels.map.with_atms').html_safe
-
-    .fieldset
       = f.input :no_kyc, as: :boolean,
                 boolean_style: :inline,
                 include_hidden: false,

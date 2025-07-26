@@ -8,10 +8,5 @@
              countries_statistics: countries_statistics,
              coins_statistics: coins_statistics
 
-    .flex.justify-center
-      p.panel.panel-info.panel-sm
-        = lucide_icon 'info', class: 'inline-flex mr-1 w-4'
-        = t('statistics.show.not_atm_warning_html')
-
     p.text-center.lg:text-right
       = link_to t('.see_all_statistics'), statistics_path, class: 'btn btn-primary'

@@ -83,7 +83,7 @@ class MapsController < PublicController
   def map_params
     params.permit(
       :search, :category, :country, :continent,
-      :delivery, :no_kyc, :with_atms,
+      :delivery, :no_kyc,
       :locale, :pagy, :page, :zoom, :lat, :lon,
       :presentation, coins: []
     )
@@ -115,10 +115,6 @@ class MapsController < PublicController
 
   def no_kyc?
     map_params[:no_kyc] == '1'
-  end
-
-  def with_atms?
-    map_params[:with_atms] == '1'
   end
 
   def set_zoom

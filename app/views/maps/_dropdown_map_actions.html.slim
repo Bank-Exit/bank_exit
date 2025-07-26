@@ -7,6 +7,9 @@
         = t(".last_updated_at", last_updated_at: l(Time.zone.at(last_update)))
 
 - content_for(:dropdown_menu) do
+  li
+    = render 'statistics/include_atms_input', center: false
+
   - if merchants_as_map?
     li
       = simple_form_for '' do |f|

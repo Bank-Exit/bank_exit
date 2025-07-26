@@ -3,7 +3,7 @@
 - dated_i18n = t('.dated', date: today_i18n)
 
 .overflow-x-auto
-  .flex.gap-2.sm:grid.sm:grid-cols-3.lg:grid-cols-4.max-w-xs.sm:max-w-max.sm:mx-auto
+  .flex.gap-1.lg:gap-2.sm:grid.sm:grid-cols-3.lg:grid-cols-4.max-w-xs.sm:max-w-max.sm:mx-auto
     .stat.bg-base-100.shadow.rounded-lg
       .stat-figure
         = lucide_icon 'store', class: 'w-12 h-12'
@@ -56,3 +56,5 @@
         .stat-title= t(category, scope: 'categories')
         .stat-value= @categories_statistics[:main_category].last
         .stat-desc= dated_i18n
+
+= render 'statistics/include_atms_input', center: true
