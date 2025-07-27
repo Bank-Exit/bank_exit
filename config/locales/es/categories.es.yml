@@ -383,6 +383,7 @@ es:
     food: 🍎 Alimentación y bebidas
     health: ⚕️ Higiene y salud
     clothing: 👕 Ropa
+    computer: 💻 Internet - Ordenador
     electronic: 🔌 Electrónica y energía
     building: 🛠 Construcción/Reparación
     services: 💼 Servicios profesionales
@@ -391,3 +392,7 @@ es:
     media: 📰 Medios y prensa alternativa
     classified_ads: 📢 Anuncios clasificados / Mercado
     association: 🤝 Asociación
+    exchange: 🪙 Cripto - Intercambio
+    marketing: 📈 Dev - Marketing
+    anonymous: 🕶️ Anónimo
+    other: 🧩 Otro

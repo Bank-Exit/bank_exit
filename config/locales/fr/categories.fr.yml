@@ -382,6 +382,7 @@ fr:
     food: 🍎 Alimentation et boissons
     health: ⚕️ Hygiène et santé
     clothing: 👕 Habillement
+    computer: 💻 Internet - Ordinateur
     electronic: 🔌 Électronique et énergie
     building: 🛠 Construction/Réparation
     services: 💼 Services professionnels
@@ -390,3 +391,7 @@ fr:
     media: 📰 Médias et journaux alternatifs
     classified_ads: 📢 Petites annonces / Place de marché
     association: 🤝 Association
+    exchange: 🪙 Crypto - Échange
+    marketing: 📈 Dev - Marketing
+    anonymous: 🕶️ Anonyme
+    other: 🧩 Autre

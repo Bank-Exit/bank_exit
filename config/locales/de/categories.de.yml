@@ -383,6 +383,7 @@ de:
     food: 🍎 Lebensmittel und Getränke
     health: ⚕️ Hygiene und Gesundheit
     clothing: 👕 Kleidung
+    computer: 💻 Internet - Ordenador
     electronic: 🔌 Elektronik und Energie
     building: 🛠 Bauwesen / Reparatur
     services: 💼 Dienstleistungen
@@ -391,3 +392,7 @@ de:
     media: 📰 Medien und alternative Presse
     classified_ads: 📢 Kleinanzeigen / Marktplatz
     association: 🤝 Verein / Gemeinschaft
+    exchange: 🪙 Cripto - Intercambio
+    marketing: 📈 Dev - Marketing
+    anonymous: 🕶️ Anónimo
+    other: 🧩 Otro
