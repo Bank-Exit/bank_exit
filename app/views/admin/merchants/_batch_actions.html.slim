@@ -1,4 +1,4 @@
-.flex.items-center.gap-3
+.flex.items-center.gap-2
   - if allowed_to?(:update?, with: Admin::Merchants::BatchActionPolicy)
     = simple_form_for :batch_actions,
                       url: admin_merchants_batch_actions_path,
@@ -15,7 +15,7 @@
                   value: '', \
                   data: { admin__table_target: 'batchIdsInput' } \
                 }
-      = button_tag class: 'btn btn-success',
+      = button_tag class: 'btn btn-success btn-square',
                   title: 'Réactiver les sélectionnés',
                   data: { admin__table_target: 'batchEnableSubmit' },
                   disabled: true do
@@ -38,7 +38,7 @@
                   data: { admin__table_target: 'batchIdsInput' } \
                 }
 
-      = button_tag class: 'btn btn-error',
+      = button_tag class: 'btn btn-error btn-square',
                   title: 'Supprimer les sélectionnés',
                   data: { admin__table_target: 'batchDestroySubmit' },
                   disabled: true do

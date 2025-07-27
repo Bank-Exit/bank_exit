@@ -166,3 +166,31 @@ abbr[title] {
 [data-theme="dark-bankexit"] .chart canvas {
     @apply bg-white rounded-lg p-3;
 }
+
+@layer utilities {
+    @keyframes rotate-in {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes rotate-out {
+        0% {
+            transform: rotate(360deg);
+        }
+        100% {
+            transform: rotate(0deg);
+        }
+    }
+
+    .animate-rotate-in {
+        animation: rotate-in 0.5s ease-out forwards;
+    }
+
+    .animate-rotate-out {
+        animation: rotate-out 0.5s ease-out forwards;
+    }
+}
