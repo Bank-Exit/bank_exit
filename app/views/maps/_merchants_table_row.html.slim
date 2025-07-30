@@ -21,10 +21,7 @@ tr.odd:hover:bg-base-200.transition-colors
         = image_tag icon_by_coin(coin),
                     title: coin.capitalize,
                     class: 'w-6 h-6'
-      - if merchant.ask_kyc?
-        = image_tag 'kyc.png', alt: 'KYC', title: 'KYC', class: 'w-6 h-6 rounded-full'
-      - else
-        = image_tag 'kyc_not.png', alt: 'No KYC', title: 'No KYC', class: 'w-6 h-6'
+      = merchant_kyc_no_kyc(merchant.ask_kyc?, klass: 'w-6 h-6 text-[10px]')
 
   td
     .flex.items-center.gap-3

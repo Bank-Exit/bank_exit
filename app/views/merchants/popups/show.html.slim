@@ -51,10 +51,7 @@
 
         = image_tag 'coins/nfc-highlight.svg', alt: 'nfc', title: t(@merchant.contact_less? ? '.contact_less_accepted' : '.contact_less_not_accepted'), class: "dark:bg-white rounded-full dark:p-0.5 dark:border #{'opacity-20' unless @merchant.contact_less?}"
 
-        - if @merchant.ask_kyc?
-          = image_tag 'kyc.png', alt: 'KYC', title: 'KYC', class: 'rounded-full'
-        - else
-          = image_tag 'kyc_not.png', alt: 'No KYC', title: 'No KYC'
+        = merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-6 h-6 text-[10px]')
 
     .text-right.text-xs class="!mt-4"
       p

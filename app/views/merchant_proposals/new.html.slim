@@ -92,7 +92,7 @@ article
           input type="checkbox" id="ask_kyc-option" class="hidden peer" name="merchant_proposal[ask_kyc]" checked=(params.dig(:merchant_proposal, :ask_kyc)&.include?('on'))
           label.pretty-checkbox.block.text-center for="ask_kyc-option" tabindex="0"
             p.mb-2
-              = image_tag 'kyc.png', alt: 'KYC', title: 'KYC', class: 'w-16 h-16 rounded-full mx-auto'
+              = merchant_kyc_no_kyc(true, klass: 'w-16 h-16 mx-auto')
             p= MerchantProposal.human_attribute_name(:ask_kyc)
 
           p.label.text-sm.mt-1.text-center
