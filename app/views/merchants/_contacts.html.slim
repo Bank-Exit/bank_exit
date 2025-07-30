@@ -20,9 +20,12 @@
       =< merchant.contact_session
 
   - if merchant.contact_signal?
-    p
+    p.truncate
       = social_contact_icon :signal
-      =< merchant.contact_signal
+      - if merchant.contact_signal.starts_with?('http')
+        =< link_to clean_url(merchant.contact_signal), merchant.contact_signal, target: :_blank
+      - else
+        =< merchant.contact_signal
 
   - if merchant.contact_matrix?
     p
