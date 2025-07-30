@@ -1,6 +1,7 @@
 module Merchants
   class PopupsController < PublicController
     before_action :set_merchant
+    skip_after_action :record_page_view
 
     # @route GET /fr/merchants/:merchant_id/popup {locale: "fr"} (merchant_popup_fr)
     # @route GET /es/merchants/:merchant_id/popup {locale: "es"} (merchant_popup_es)
