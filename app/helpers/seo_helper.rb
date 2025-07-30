@@ -34,6 +34,7 @@ module SEOHelper
       'view-transition': 'same-origin',
       'turbo-refresh-method': 'morph',
       'turbo-refresh-scroll': 'scroll',
+      'turbo-prefetch': 'false',
       'apple-mobile-web-app-capable': 'yes',
       'mobile-web-app-capable': 'yes'
     )
