@@ -65,7 +65,7 @@ fr:
       delivery_zone: zone de livraison
       contact_way: moyen de contact
       coin_wallet: portefeuille crypto
-      weblink: liens web
+      weblink: source
 
     attributes:
       merchant:

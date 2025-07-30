@@ -22,7 +22,8 @@ class ContactWay < ApplicationRecord
          tripadvisor: 18,
          simplex: 19
        },
-       validate: true
+       validate: true,
+       default: :website
 
   belongs_to :contactable, polymorphic: true
 

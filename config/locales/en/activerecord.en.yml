@@ -60,7 +60,7 @@ en:
       delivery_zone: delivery zone
       contact_way: contact way
       coin_wallet: crypto wallet
-      weblink: web link
+      weblink: source
 
     attributes:
       merchant:

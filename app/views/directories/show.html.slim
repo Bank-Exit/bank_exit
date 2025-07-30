@@ -109,7 +109,7 @@ article
 
     - if weblinks.any?
       div
-        h2.text-primary.uppercase.mb-2= t('weblinks')
+        h2.text-primary.uppercase.mb-2= Weblink.model_name.human
 
         .panel.panel-base-200.space-y-3.overflow-y-auto
           - if weblinks.count > 1
