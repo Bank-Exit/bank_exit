@@ -15,7 +15,7 @@ nav.navbar
       .lg:hidden tabindex="0" role="button"
         = lucide_icon 'menu', class: 'w-7 h-7 cursor-pointer'
 
-      ul.menu.menu-md.dropdown-content.bg-base-100.rounded-box.z-1.mt-2.w-max.overflow-auto.p-2.shadow.border.border-base-content/20 tabindex="0" class="max-h-[90vh] max-w-[90vw]"
+      ul.menu.menu-md.dropdown-content.z-1.mt-2.w-max.overflow-auto.p-2 tabindex="0" class="max-h-[90vh] max-w-[90vw]"
         li
           = link_to maps_path, class: ('text-primary' if active_map) do
             = t('.menu.map')

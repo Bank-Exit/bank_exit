@@ -80,6 +80,14 @@
     @apply !gap-0;
 }
 
+@utility dropdown-content {
+    @apply border border-base-content/20 bg-base-200 rounded-box shadow-sm;
+}
+
+@utility table-wrapper {
+    @apply overflow-x-auto rounded-box border border-base-content/20;
+}
+
 @utility card {
     &.image-full {
         > .card-body {
