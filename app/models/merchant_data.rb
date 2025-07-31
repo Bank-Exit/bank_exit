@@ -233,11 +233,33 @@ class MerchantData
   end
 
   def last_survey_on
-    [
+    candidates = [
       properties['check_date'],
+      properties['check_date:currency:XMR'],
+      properties['check_date:currency:XBT'],
+      properties['check_date:currency:XG1'],
+      properties['check_date:currencies'],
+
       properties['survey:date'],
-      properties['survey:date:currency:XMR']
-    ].compact_blank.max
+      properties['survey:date:currency:XMR'],
+      properties['survey:date:currency:XBT'],
+      properties['survey:date:currency:XG1'],
+      properties['survey:date:currencies']
+    ].compact_blank
+
+    return nil if candidates.empty?
+
+    candidates = candidates.map do |candidate|
+      Date.parse(candidate)
+    rescue Date::Error
+      nil
+    end
+
+    candidates = candidates.compact.select { it <= Date.current }
+
+    return nil if candidates.empty?
+
+    candidates.max.to_s
   end
 
   # Misc

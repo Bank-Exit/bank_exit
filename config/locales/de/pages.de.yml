@@ -251,6 +251,9 @@ de:
     merchant:
       home_delivery: Lieferung nach Hause
 
+    last_survey_on:
+      last_survey_on: Letzte Überprüfung am %{date}
+
     show:
       <<: *payment_methods_accepted
 
@@ -258,7 +261,6 @@ de:
       website: Webseite
       home_delivery: Lieferung nach Hause
       itinerary_title: Route
-      last_survey_on: Letzte Überprüfung am %{date}
       view_on_osm: Auf OpenStreetMap ansehen
 
       share_by_email:

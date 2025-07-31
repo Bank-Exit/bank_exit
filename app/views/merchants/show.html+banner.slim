@@ -81,9 +81,7 @@ article
     - unless Rails.env.production?
       = render 'merchants/view_sections/debug', merchant: @merchant
 
-    - if @merchant.last_survey_on
-      p.italic title=@merchant.last_survey_on
-        = t('.last_survey_on', date: l(@merchant.last_survey_on))
+    = render 'last_survey_on', merchant: @merchant
 
   script type="application/ld+json"
     == schema_dot_org_merchant(@merchant)

@@ -1,0 +1,16 @@
+.text-right.text-xs.text-gray-600.italic.dark:text-gray-400
+  p title=l(merchant.created_at)
+    = t('.referenced_on', date: time_ago_in_words(merchant.created_at))
+
+  p
+    - if merchant.last_survey_on.nil?
+      = lucide_icon 'shield-question-mark', class: 'inline-flex w-4 mr-1.5'
+      = t('.last_survey_unknown')
+    - else
+      - if merchant.might_be_outdated?
+        = lucide_icon 'triangle-alert', class: 'text-warning inline-flex w-3 mr-1.5'
+      - else
+        = lucide_icon 'check', class: 'text-success inline-flex w-3 mr-1.5'
+
+      span title=l(merchant.last_survey_on)
+        = t('.last_survey_on', date: time_ago_in_words(merchant.last_survey_on))

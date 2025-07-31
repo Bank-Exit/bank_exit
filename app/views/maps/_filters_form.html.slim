@@ -145,6 +145,13 @@
 
   .mb-2
     .fieldset
+      = f.input :order_by_survey, as: :boolean,
+                boolean_style: :inline,
+                include_hidden: false,
+                wrapper: false,
+                input_html: { checked: params[:order_by_survey] == '1' },
+                label: t('simple_form.labels.map.order_by_survey').html_safe
+
       = f.input :no_kyc, as: :boolean,
                 boolean_style: :inline,
                 include_hidden: false,

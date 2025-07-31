@@ -251,6 +251,11 @@ fr:
     merchant:
       home_delivery: Livraison à domicile
 
+    last_survey_on:
+      referenced_on: Référencé il y a %{date}
+      last_survey_on: Dernière actualisation il y a %{date}
+      last_survey_unknown: Date de vérification inconnue
+
     show:
       <<: *payment_methods_accepted
 
@@ -258,7 +263,7 @@ fr:
       website: Site internet
       home_delivery: Livraison à domicile
       itinerary_title: Itinéraire
-      last_survey_on: Dernière actualisation le %{date}
+      last_survey_warning_html: Ce commerçant n'a pas été vérifié depuis <span title="%{raw_date}">%{date}</span>. Les informations indiquées peuvent ne plus correspondre.
       view_on_osm: Ouvrir sur OpenStreetMap
       soft_deleted_warning: Ce commerçant a été marqué comme pré-supprimé. Il ne ressortira plus dans les résultats de recherche tant qu'il n'aura pas été réactivé ou supprimé définitivement.
       alert: Ce commerçant n'est plus accessible car il a été marqué comme pré-supprimé.
@@ -318,7 +323,7 @@ fr:
           - *payment_methods_not_accepted
         payment_methods: Moyens de paiement
         home_delivery: Livraison à domicile
-        last_survey_on: Dernière actualisation le %{date}
+        last_survey_on: Dernière actualisation il y a %{date}
         view_on_osm: Ouvrir sur OpenStreetMap
 
     reports:

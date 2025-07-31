@@ -58,6 +58,4 @@
         = link_to @merchant.osm_link, target: :_blank do
           = t('.view_on_osm')
 
-      - if @merchant.last_survey_on
-        p.label.italic
-          = t('.last_survey_on', date: l(@merchant.last_survey_on))
+      = render 'merchants/last_survey_on', merchant: @merchant

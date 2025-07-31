@@ -251,6 +251,9 @@ it:
     merchant:
       home_delivery: Consegna a domicilio
 
+    last_survey_on:
+      last_survey_on: Ultimo sondaggio il %{date}
+
     show:
       <<: *payment_methods_accepted
 
@@ -258,7 +261,6 @@ it:
       website: Sito web
       home_delivery: Consegna a domicilio
       itinerary_title: Itinerario
-      last_survey_on: Ultimo sondaggio il %{date}
       view_on_osm: Visualizza su OpenStreetMap
 
       share_by_email:

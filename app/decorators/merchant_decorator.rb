@@ -107,4 +107,10 @@ class MerchantDecorator < ApplicationDecorator
       popup_path: merchant_popup_path(identifier)
     }
   end
+
+  def might_be_outdated?
+    return false unless object.last_survey_on
+
+    last_survey_on.before?(3.years.ago)
+  end
 end

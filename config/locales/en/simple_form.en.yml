@@ -36,6 +36,7 @@ en:
         delivery: With home delivery
         no_kyc: Don't ask for a <abbr title="Know Your Customer">KYC</abbr>
         with_atms: Include <abbr title="Automated Teller Machine">ATMs</abbr> ?
+        order_by_survey: Sort by recently checked
         category:
           all: All retail categories
           craft: Craft

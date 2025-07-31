@@ -251,6 +251,11 @@ en:
     merchant:
       home_delivery: Home delivery
 
+    last_survey_on:
+      referenced_on: Referenced %{date} ago
+      last_survey_on: Last check %{date} ago
+      last_survey_unknown: Last check date not specified
+
     show:
       <<: *payment_methods_accepted
 
@@ -258,7 +263,7 @@ en:
       website: Website
       home_delivery: Home delivery
       itinerary_title: Itinerary
-      last_survey_on: Last survey on %{date}
+      last_survey_warning_html: This merchant has not been verified since <span title="%{raw_date}">%{date}</span>. The information provided may no longer match.
       view_on_osm: View on OpenStreetMap
       soft_deleted_warning: This merchant was marked as a pre-suppressed. It will no longer come out in the search results as long as it has not been reactivated or deleted definitively.
       alert: This merchant is not available and has been marked as pre-deleted.

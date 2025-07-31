@@ -13,7 +13,8 @@ module Merchandable
       coins: coins,
       delivery: delivery?,
       no_kyc: no_kyc?,
-      with_atms: with_atms?
+      with_atms: with_atms?,
+      order_by_survey: order_by_survey?
     )
 
     @merchants = MerchantDecorator.wrap(merchants)
@@ -49,5 +50,9 @@ module Merchandable
 
   def with_atms?
     session[:include_atms]
+  end
+
+  def order_by_survey?
+    false
   end
 end

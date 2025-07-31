@@ -251,6 +251,11 @@ es:
     merchant:
       home_delivery: Entrega a domicilio
 
+    last_survey_on:
+      referenced_on: Añadido hace %{date}
+      last_survey_on: Última actualización hace %{date}
+      last_survey_unknown: Fecha de verificación desconocida
+
     show:
       <<: *payment_methods_accepted
 
@@ -258,7 +263,6 @@ es:
       website: Sitio web
       home_delivery: Entrega a domicilio
       itinerary_title: Itinerario
-      last_survey_on: Última actualización el %{date}
       view_on_osm: Abrir en OpenStreetMap
 
       share_by_email:

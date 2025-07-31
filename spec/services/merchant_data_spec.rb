@@ -415,4 +415,45 @@ RSpec.describe MerchantData do
       it { is_expected.to include(contact_francelibretv: 'https://francelibre.tv/chaine/foobar') }
     end
   end
+
+  describe '#last_survey_on' do
+    context 'when no sources are present' do
+      let(:twicked_feature) do
+        feature[:properties].delete(:'survey:date')
+        feature
+      end
+
+      it { is_expected.to include(last_survey_on: nil) }
+    end
+
+    context 'when multiples sources are present' do
+      let(:twicked_feature) do
+        feature[:properties]['survey:date'] = '2020-01-01'
+        feature[:properties]['survey:date:currency:XMR'] = '2015-11-18'
+        feature[:properties]['check_date:currency:XBT'] = '2025-07-20'
+        feature
+      end
+
+      it { is_expected.to include(last_survey_on: '2025-07-20') }
+    end
+
+    context 'when date is in the future' do
+      let(:twicked_feature) do
+        feature[:properties]['survey:date'] = '2099-01-01'
+        feature
+      end
+
+      it { is_expected.to include(last_survey_on: nil) }
+    end
+
+    context 'when date is not formatted correctly' do
+      let(:twicked_feature) do
+        feature[:properties]['check_date'] = 'fake'
+        feature[:properties]['survey:date'] = '2024-07-23'
+        feature
+      end
+
+      it { is_expected.to include(last_survey_on: '2024-07-23') }
+    end
+  end
 end

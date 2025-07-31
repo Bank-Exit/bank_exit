@@ -10,6 +10,12 @@
         = lucide_icon 'info', class: 'inline-flex w-4 h-4'
         span=< t('.soft_deleted_warning')
 
+    - if @merchant.might_be_outdated?
+      p.panel.panel-warning.panel-sm.mx-3.mt-3
+        = lucide_icon 'triangle-alert', class: 'inline-flex w-4 h-4'
+        span<
+          = t('.last_survey_warning_html', date: time_ago_in_words(@merchant.last_survey_on), raw_date: l(@merchant.last_survey_on))
+
     article.p-3.space-y-6 data-controller="merchants"
       header.flex.flex-col.items-center.space-y-3.rounded-lg
         - if @merchant.logo.attached?
@@ -68,14 +74,7 @@
       - unless Rails.env.production?
         = render 'merchants/view_sections/debug', merchant: @merchant
 
-      .space-y-1
-        p.text-sm.text-right
-          = link_to @merchant.osm_link, target: :_blank do
-            = t('.view_on_osm')
-
-        - if @merchant.last_survey_on
-          p.text-right.text-xs.text-gray-600.italic.dark:text-gray-400
-            = t('.last_survey_on', date: l(@merchant.last_survey_on))
+      = render 'last_survey_on', merchant: @merchant
 
   = render 'map', merchant: @merchant
 

@@ -70,7 +70,7 @@ class MapsController < PublicController
     end
 
     @pagy, @merchants = pagy_array(
-      @merchants.reverse, params: ->(params) { params.compact_blank.merge!(pagy: true) }
+      @merchants, params: ->(params) { params.compact_blank.merge!(pagy: true) }
     )
 
     render variants: [
@@ -83,7 +83,7 @@ class MapsController < PublicController
   def map_params
     params.permit(
       :search, :category, :country, :continent,
-      :delivery, :no_kyc,
+      :delivery, :no_kyc, :order_by_survey,
       :locale, :pagy, :page, :zoom, :lat, :lon,
       :presentation, coins: []
     )
@@ -115,6 +115,10 @@ class MapsController < PublicController
 
   def no_kyc?
     map_params[:no_kyc] == '1'
+  end
+
+  def order_by_survey?
+    map_params[:order_by_survey] == '1'
   end
 
   def set_zoom
