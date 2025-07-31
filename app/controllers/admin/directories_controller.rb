@@ -8,8 +8,9 @@ module Admin
     def index
       authorize!
 
-      @directories = Directory.includes(:address, :coin_wallets, :contact_ways, :logo_attachment).by_position
-      @directories = @directories.by_query(query) if query
+      directories = Directory.includes(:address, :coin_wallets, :contact_ways, :logo_attachment).by_position
+      directories = directories.by_query(query) if query
+      @directories = DirectoryDecorator.wrap(directories)
 
       set_meta_tags title: "L'annuaire"
     end
@@ -80,7 +81,8 @@ module Admin
       authorize! @directory
 
       if @directory.update(directory_params.slice(:position))
-        @directories = Directory.by_position.includes(:logo_attachment, :address, :coin_wallets, :contact_ways)
+        directories = Directory.by_position.includes(:logo_attachment, :address, :coin_wallets, :contact_ways)
+        @directories = DirectoryDecorator.wrap(directories)
       else
         head :unprocessable_entity
       end

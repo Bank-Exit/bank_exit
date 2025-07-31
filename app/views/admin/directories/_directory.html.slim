@@ -62,8 +62,15 @@ tr.hover:bg-primary/5.transition-colors data-update-url=update_position_admin_di
                  mode: 'info',
                  lucide_ikon: 'ellipsis'
 
-  td
-    = l(directory.created_at)
+  td class=('text-center' if directory.updated?)
+    p title=Merchant.human_attribute_name(:created_at)
+      = l(directory.created_at)
+
+    - if directory.updated?
+      = lucide_icon 'move-left', class: 'mx-auto w-5 h-5 -rotate-90 bg-primary text-primary-content rounded-full my-2 p-1'
+
+      p title=Merchant.human_attribute_name(:updated_at)
+        = l(directory.updated_at)
 
   td
     = render 'actions', directory: directory

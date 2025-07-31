@@ -45,6 +45,7 @@ merchant_attributes: &merchant_attributes
   last_survey_on: Date de dernière vérification des données
 
   created_at: Date d'ajout
+  updated_at: Date de modification
 
 fr:
   activemodel:
