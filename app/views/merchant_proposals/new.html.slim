@@ -70,11 +70,7 @@ article
           = f.input :website
           = f.input :opening_hours
 
-        div
-          = f.input :description, as: :text
-
-          / Captcha to trick bots, should remain empty
-          = f.input :nickname, wrapper_html: { class: 'hidden' }
+        = render 'description_with_counter', f: f
 
       section
         p.uppercase.text-primary.mb-3= t('.form.coins')
@@ -147,6 +143,9 @@ article
           .flex.flex-col.lg:flex-row.justify-center.gap-6
             = f.input :last_survey_on, as: :date, html5: true
             = f.input :proposition_from, as: :email
+
+      / Captcha to trick bots, should remain empty
+      = f.input :nickname, wrapper_html: { class: 'hidden' }
 
       .text-center.lg:text-right
         = f.button :submit

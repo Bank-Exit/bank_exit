@@ -13,7 +13,7 @@
               prompt: :translate,
               collection: directories_categories_select_helper
 
-  = f.input :description, required: true
+  = render 'description_with_counter', f: f
 
   .flex.flex-col.lg:flex-row.gap-3
     = f.input :logo, as: :file,

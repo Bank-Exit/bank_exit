@@ -52,6 +52,7 @@ class MerchantProposal
   validates :country, presence: true
   validates :category, presence: true, inclusion: { in: I18n.t('categories').keys.push(:other).map(&:to_s) }, allow_blank: false
   validates :other_category, presence: true, if: :other_category_selected?
+  validates :description, presence: true
   validates :coins, presence: true, inclusion: { in: ALLOWED_COINS.map(&:to_s) }
   validates :proposition_from, allow_blank: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 

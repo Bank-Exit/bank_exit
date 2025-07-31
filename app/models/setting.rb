@@ -13,5 +13,7 @@ class Setting
   MAP_DEFAULT_CLUSTERS = true
   MAP_DEFAULT_SHOW_ATTRIBUTION = true
 
+  MAX_DEFAULT_DESCRIPTION_LENGTH = 255
+
   DARK_THEME_NAME = 'dark-bankexit'.freeze
 end

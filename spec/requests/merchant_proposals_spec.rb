@@ -40,6 +40,7 @@ RSpec.describe 'MerchantProposals' do
             city: 'Foobar',
             country: 'FR',
             category: 'dentist',
+            description: 'Foobar description',
             coins: %w[bitcoin monero],
             contact_odysee: 'https://www.odysee.com/JohnDoe'
           }
@@ -51,7 +52,7 @@ RSpec.describe 'MerchantProposals' do
           stub_request(:post, /api.github.com/)
             .with(body: {
               title: 'Proposal for a new merchant: `Foobar name`',
-              body: "A new proposition for a merchant has been submitted. Please take a look and add it to OpenStreetMap if relevant:\n\n```yaml\n---\nname: Foobar name\ncategory: Dentist\nstreet: Foobar\npostcode: Foobar\ncity: Foobar\ncountry: France\ncoins:\n- bitcoin\n- monero\nask_kyc: false\ncontact_odysee: https://www.odysee.com/JohnDoe\ndelivery: false\n\n```\n\n---\n\n*Note: this issue has been automatically opened from bank-exit website using the Github API.*\n",
+              body: "A new proposition for a merchant has been submitted. Please take a look and add it to OpenStreetMap if relevant:\n\n```yaml\n---\nname: Foobar name\ncategory: Dentist\nstreet: Foobar\npostcode: Foobar\ncity: Foobar\ncountry: France\ndescription: Foobar description\ncoins:\n- bitcoin\n- monero\nask_kyc: false\ncontact_odysee: https://www.odysee.com/JohnDoe\ndelivery: false\n\n```\n\n---\n\n*Note: this issue has been automatically opened from bank-exit website using the Github API.*\n",
               labels: %w[merchant proposal english]
             }.to_json)
         end

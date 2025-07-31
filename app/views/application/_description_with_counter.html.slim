@@ -1,0 +1,15 @@
+- max_counter_value = Setting::MAX_DEFAULT_DESCRIPTION_LENGTH
+- content_length = f.object.description&.length || 0
+
+div data-controller="character-counter" data-character-counter-max-counter-value=max_counter_value data-character-counter-within-class="bg-success" data-character-counter-near-class="bg-warning" data-character-counter-out-class="bg-error"
+  = f.input :description, as: :text,
+            input_html: { \
+              data: { \
+                character_counter_target: 'textarea', \
+                action: 'keyup->character-counter#change' \
+              } \
+            }
+
+  p.text-right.text-sm.mt-2
+    span.rounded-box.px-2 class=(content_length < 50 ? 'bg-warning' : (content_length < max_counter_value ? 'bg-success' : 'bg-error')) data-character-counter-target="counter"= content_length
+    |< / #{max_counter_value}

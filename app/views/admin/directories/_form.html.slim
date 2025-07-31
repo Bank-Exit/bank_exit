@@ -13,7 +13,7 @@
               prompt: 'Sélectionner une catégorie',
               collection: directories_categories_select_helper
 
-  = f.input :description
+  = render 'description_with_counter', f: f
 
   - if params[:debug] == 'true'
     = f.input :position
