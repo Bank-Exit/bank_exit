@@ -69,6 +69,7 @@ class MerchantProposalsController < PublicController
                     :name, :category, :other_category,
                     :description,
                     :street, :postcode, :city, :country,
+                    :latitude, :longitude,
                     :phone, :website, :email,
                     :contact_session, :contact_signal,
                     :contact_matrix, :contact_jabber, :contact_telegram,

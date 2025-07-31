@@ -110,6 +110,9 @@ fr:
         postcode: 75000
         city: Paris
 
+        latitude: "46.232192999999995"
+        longitude: "2.209666999999996"
+
       tutorial_report:
         title: Titre clair et concis de l'anomalie
         description: Décrivez clairement la ou les anomalies que vous avez rencontrées en lisant le tutoriel.
@@ -157,6 +160,9 @@ fr:
       merchant_proposal:
         ask_kyc: Cocher si le commerçant demande une validation d'identité (KYC) pour accepter le paiement
         proposition_from: Indiquez votre email si vous souhaitez être tenu informé du traitement de ce commerçant
+
+        latitude: Indiquez la latitude si vous la connaissez
+        longitude: Indiquez la longitude si vous la connaissez
 
       itinerary:
         my_address: Votre localisation n'est pas logguée sur le serveur

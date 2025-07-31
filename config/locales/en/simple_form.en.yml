@@ -109,6 +109,9 @@ en:
         postcode: W1U 4QF
         city: London
 
+        latitude: "46.232192999999995"
+        longitude: "2.209666999999996"
+
       tutorial_report:
         title: Clear and concise title of the anomaly
         description: Clearly describe the anomaly(ies) you encountered while reading the tutorial.
@@ -156,6 +159,9 @@ en:
       merchant_proposal:
         ask_kyc: Check if the merchant requires identity verification to be payed
         proposition_from: Please provide your email address if you would like to be kept informed of this merchant's processing.
+
+        latitude: Specify the latitude if you know it
+        longitude: Specify the longitude if you know it
 
       itinerary:
         my_address: Your location is not logged on the server

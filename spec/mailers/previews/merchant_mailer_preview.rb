@@ -9,6 +9,8 @@ class MerchantMailerPreview < ActionMailer::Preview
       postcode: '12345',
       city: 'Foobar',
       country: 'CH',
+      latitude: '46.232192999999995',
+      longitude: '2.209666999999996',
       description: 'Eos est harum archit',
       coins: MerchantProposal::ALLOWED_COINS,
       website: 'https://mywebsite.com',

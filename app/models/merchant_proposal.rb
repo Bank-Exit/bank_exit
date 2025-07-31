@@ -15,6 +15,8 @@ class MerchantProposal
   attribute :postcode, :string
   attribute :city, :string
   attribute :country, :string
+  attribute :latitude, :string
+  attribute :longitude, :string
   attribute :phone, :string
   attribute :email, :string
   attribute :website, :string

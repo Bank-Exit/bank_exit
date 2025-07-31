@@ -2,6 +2,7 @@ class MerchantProposalIssue < ApplicationService
   ALLOWED_ATTRIBUTES = %w[
     name category other_category
     street postcode city country
+    latitude longitude
     phone website description coins ask_kyc
     contact_facebook contact_twitter contact_telegram
     contact_signal contact_session contact_tripadvisor

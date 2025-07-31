@@ -27,7 +27,7 @@ article
       section
         p.uppercase.text-primary.mb-3= t('.form.general_info')
 
-        .grid.grid-col-1.lg:grid-cols-2.gap-3.lg:gap-6.mb-3.lg:mb-6
+        .grid.grid-cols-1.lg:grid-cols-2.gap-3.lg:gap-6.mb-3.lg:mb-6
           = f.input :name
 
           = f.input :category,
@@ -51,18 +51,24 @@ article
                       } \
                     }
 
-          = f.input :street
-          = f.input :postcode
+          fieldset.fieldset.bg-base-200.border-base-300.rounded-box.border.p-4.lg:col-span-2
+            legend.fieldset-legend Adresse
 
-          = f.input :city
+            .grid.grid-col-1.lg:grid-cols-2.gap-3.lg:gap-6.mb-3.lg:mb-6
+              = f.input :street
+              = f.input :postcode
 
-          .fieldset.w-full
-            = f.input :country,
-                      prompt: :translate,
-                      format: :with_flag,
-                      wrapper: false,
-                      input_html: { class: 'select w-full' },
-                      label_html: { class: 'fieldset-legend' }
+              = f.input :city
+              .fieldset.w-full
+                = f.input :country,
+                          prompt: :translate,
+                          format: :with_flag,
+                          wrapper: false,
+                          input_html: { class: 'select w-full' },
+                          label_html: { class: 'fieldset-legend' }
+
+              = f.input :latitude, as: :float
+              = f.input :longitude, as: :float
 
           = f.input :phone
           = f.input :email

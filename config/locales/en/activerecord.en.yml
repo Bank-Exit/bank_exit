@@ -51,6 +51,8 @@ en:
         <<: *merchant_attributes
         other_category: Other category
         proposition_from: Follow-up email (optional)
+        latitude: Latitude
+        longitude: Longitude
 
   activerecord:
     models:
