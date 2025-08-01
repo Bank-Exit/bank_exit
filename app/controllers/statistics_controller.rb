@@ -29,7 +29,7 @@ class StatisticsController < PublicController
       @date = Date.current
     end
 
-    merchants = Merchant.available.where(created_at: @date.all_day)
+    merchants = Merchant.available.where(created_at: @date.all_day).order(created_at: :desc)
     merchants.not_atms unless session[:include_atms]
 
     @merchants = MerchantDecorator.wrap(merchants)
