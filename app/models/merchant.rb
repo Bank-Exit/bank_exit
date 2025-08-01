@@ -24,7 +24,7 @@ class Merchant < ApplicationRecord
 
   scope :in_france, -> { where(country: %w[FR France]) }
   scope :no_kyc, -> { where(ask_kyc: false) }
-  scope :not_atms, -> { where.not(category: :atm) }
+  scope :not_atms, -> { where.not(category: :atm).or(where(category: nil)) }
 
   def to_param
     [identifier, slug].join('-')
