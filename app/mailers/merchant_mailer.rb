@@ -3,6 +3,7 @@ class MerchantMailer < ApplicationMailer
 
   def send_new_merchant
     @data = params[:data]
+    @proposition_from = params[:proposition_from]
 
     # Store a TXT copy version of the mail in backup waiting
     # to have a working SMTP configuration.
@@ -11,7 +12,7 @@ class MerchantMailer < ApplicationMailer
       data: @data
     )
 
-    mail reply_to: @data['proposition_from']
+    mail reply_to: @proposition_from
   end
 
   def send_report_merchant

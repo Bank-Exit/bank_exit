@@ -48,7 +48,10 @@ class MerchantProposalsController < PublicController
       end
 
       MerchantMailer
-        .with(data: merchant_proposal_params)
+        .with(
+          data: @merchant_proposal.to_osm,
+          proposition_from: @merchant_proposal.proposition_from
+        )
         .send_new_merchant
         .deliver_later
 

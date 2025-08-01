@@ -5,28 +5,7 @@
 | Un nouveau commerçant vient d'être proposé depuis le site. Voici les informations renseignées:
 = "\n\n"
 
-- @data.each do |data|
-  - next if data.first == 'nickname'
-  - next if data.first == 'category' && @data['other_category'].present?
-
-  = I18n.t(data.first, scope: i18n_scope)
-  |> :
-
-  - case data.last
-  - when '0'
-    = 'Non'
-  - when '1', 'on'
-    = 'Oui'
-  - else
-    - if data.first == 'coins'
-      = data.last.map { |coin| I18n.t(coin, scope: i18n_scope).delete_suffix(' ?') }.join(', ')
-    - elsif data.first == 'category'
-      = I18n.t(data.last, scope: 'categories')
-    - elsif data.first == 'country'
-      = pretty_country_html(data.last)
-    - else
-      = data.last
-  = "\n"
+== JSON.pretty_generate(@data)
 
 = "\n\n"
 | Ce message a été auto-généré par Rails, merci de ne pas y répondre

@@ -4,37 +4,7 @@ p Bonjour,
 
 p Un nouveau commerçant vient d'être proposé depuis le site. Voici les informations renseignées:
 
-ul style="background-color: #EEE; padding: 20px; border-radius: 10px"
-  - @data.each do |data|
-    - next if data.first == 'nickname'
-    - next if data.first == 'category' && @data['other_category'].present?
-
-    li
-      strong
-        = I18n.t(data.first, scope: i18n_scope)
-        |> :
-
-      - if data.first == 'ask_kyc'
-        - if data.last == 'on'
-          span style="color: red" Oui
-        - else
-          span style="color: green" Non
-      - else
-        - case data.last
-        - when '0'
-          span style="color: red"= 'Non'
-        - when '1'
-          span style="color: green"= 'Oui'
-        - else
-          - if data.first == 'coins'
-            span style="color: green"
-              = data.last.map { |coin| I18n.t(coin, scope: i18n_scope).delete_suffix(' ?') }.join(', ')
-          - elsif data.first == 'category'
-            = I18n.t(data.last, scope: 'categories')
-          - elsif data.first == 'country'
-            = pretty_country_html(data.last, show_flag: true)
-          - else
-            = data.last
+pre= JSON.pretty_generate(@data)
 
 p style="font-size: 12px; font-style: italic"
   | Ce message a été auto-généré par Rails, merci de ne pas y répondre

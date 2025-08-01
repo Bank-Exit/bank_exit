@@ -34,15 +34,15 @@ RSpec.describe 'MerchantProposals' do
       let(:params) do
         {
           merchant_proposal: {
-            name: 'Foobar name',
-            street: 'Foobar',
-            postcode: 'Foobar',
-            city: 'Foobar',
+            name: 'Bonhomme de Bois',
+            street: '1 Toys street',
+            postcode: '1234',
+            city: 'Toyzz',
             country: 'FR',
-            category: 'dentist',
-            description: 'Foobar description',
+            category: 'toys',
+            description: "Best toys.\nSolid.\nKids and olders.",
             coins: %w[bitcoin monero],
-            contact_odysee: 'https://www.odysee.com/JohnDoe'
+            contact_odysee: 'https://www.odysee.com/WoodToys'
           }
         }
       end
@@ -51,8 +51,40 @@ RSpec.describe 'MerchantProposals' do
         before do
           stub_request(:post, /api.github.com/)
             .with(body: {
-              title: 'Proposal for a new merchant: `Foobar name`',
-              body: "A new proposition for a merchant has been submitted. Please take a look and add it to OpenStreetMap if relevant:\n\n```yaml\n---\nname: Foobar name\ncategory: Dentist\nstreet: Foobar\npostcode: Foobar\ncity: Foobar\ncountry: France\ndescription: Foobar description\ncoins:\n- bitcoin\n- monero\nask_kyc: false\ncontact_odysee: https://www.odysee.com/JohnDoe\ndelivery: false\n\n```\n\n---\n\n*Note: this issue has been automatically opened from bank-exit website using the Github API.*\n",
+              title: 'Proposal for a new merchant: `Bonhomme de Bois`',
+              body: <<~MARKDOWN,
+                A new proposition for a merchant has been submitted. Please take a look and add it to OpenStreetMap if relevant:
+
+                ```json
+                {
+                  "name": "Bonhomme de Bois",
+                  "category": "Toy",
+                  "description": "Best toys. Solid. Kids and olders.",
+                  "addr:street": "1 Toys street",
+                  "addr:postcode": "1234",
+                  "addr:city": "Toyzz",
+                  "addr:country": "FR",
+                  "currency:XBT": "yes",
+                  "payment:onchain": "yes",
+                  "currency:XMR": "yes",
+                  "contact:odysee": "https://www.odysee.com/WoodToys",
+                  "_extra_keys": {
+                    "country": "🇫🇷 France"
+                  }
+                }
+                ```
+
+                Description:
+                ```
+                Best toys.
+                Solid.
+                Kids and olders.
+                ```
+
+                ---
+
+                *Note: this issue has been automatically opened from bank-exit website using the Github API.*
+              MARKDOWN
               labels: %w[merchant proposal english]
             }.to_json)
         end

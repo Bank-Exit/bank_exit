@@ -10,15 +10,17 @@ RSpec.describe MerchantMailer do
   describe '#send_new_merchant' do
     subject(:mail) do
       described_class
-        .with(data: merchant_data)
+        .with(
+          data: merchant_proposal.to_osm,
+          proposition_from: 'foobar@example.com'
+        )
         .send_new_merchant
     end
 
-    let(:merchant_data) do
-      {
-        name: 'Great merchant XMR',
-        proposition_from: 'foobar@example.com'
-      }.as_json
+    let(:merchant_proposal) do
+      build :merchant_proposal,
+            name: 'Great merchant XMR',
+            proposition_from: 'foobar@example.com'
     end
 
     it 'renders the headers', :aggregate_failures do
