@@ -1,4 +1,13 @@
 ---
+- title: Assemblée Sortie de Banque 2025
+  identifier: bank-exit-assembly-2025
+  banner: banner-assembly
+  created_at: "2025-08-01"
+  short_description: Première assemblée Sortie de Banque 2025 avec des ateliers bénévoles encadrés par des experts.
+  content:
+    - render:
+        iframe: https://monero-map.org/ASDB.html
+
 - title: Prospectus Sortie de Banque
   identifier: flyer
   created_at: "2025-04-10"

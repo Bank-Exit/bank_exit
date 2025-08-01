@@ -1,12 +1,13 @@
 class Article
   class Render
-    attr_reader :partial, :template, :pdf, :caption
+    attr_reader :partial, :template, :pdf, :caption, :iframe
 
-    def initialize(partial: nil, template: nil, pdf: nil, caption: nil)
+    def initialize(partial: nil, template: nil, pdf: nil, caption: nil, iframe: nil)
       @partial = partial
       @template = template
       @pdf = pdf
       @caption = caption
+      @iframe = iframe
     end
 
     def partial?
@@ -23,6 +24,10 @@ class Article
 
     def caption?
       caption.present?
+    end
+
+    def iframe?
+      iframe.present?
     end
   end
 end

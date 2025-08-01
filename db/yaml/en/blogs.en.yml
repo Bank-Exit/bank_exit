@@ -1,4 +1,13 @@
 ---
+- title: Bank-Exit Assembly 2025
+  identifier: bank-exit-assembly-2025
+  banner: banner-assembly
+  created_at: "2025-08-01"
+  short_description: First Bank-Exit 2025 assembly with volunteer workshops led by experts.
+  content:
+    - render:
+        iframe: https://monero-map.org/ASDB.html
+
 - title: Flyer Bank-Exit
   identifier: flyer
   created_at: "2025-04-10"

@@ -1,7 +1,10 @@
 require 'rails_helper'
 
 def blog_ids
-  %w[flyer presentation-bank-exit cbdc-digital-euro]
+  %w[
+    flyer presentation-bank-exit cbdc-digital-euro
+    bank-exit-assembly-2025
+  ]
 end
 
 RSpec.describe 'Blogs' do

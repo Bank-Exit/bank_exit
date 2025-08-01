@@ -29,7 +29,7 @@ class Article
       return unless render?
 
       Article::Render.new(
-        **@render.slice(:partial, :template, :pdf, :caption).symbolize_keys
+        **@render.slice(:partial, :template, :pdf, :caption, :iframe).symbolize_keys
       )
     end
 

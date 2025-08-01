@@ -58,6 +58,9 @@ article
               = render template: content.render.template
             - elsif content.render.pdf?
               = render 'articles/pdf', content: content
+            - if content.render.iframe?
+              .h-screen
+                iframe.w-full.h-full title=article.title src=content.render.iframe
 
           - if content.figure?
             - if content.figure.is_a?(Array)
