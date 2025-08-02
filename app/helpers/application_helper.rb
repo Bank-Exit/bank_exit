@@ -37,7 +37,7 @@ module ApplicationHelper
     enum.keys.map { |k| [klass.human_enum_name(enum_name, k), k] }
   end
 
-  def pretty_country_html(country, show_flag: false)
+  def pretty_country_html(country, show_flag: true)
     c = ISO3166::Country[country]
 
     name = c.translations[I18n.locale.to_s] ||

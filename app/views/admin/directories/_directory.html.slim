@@ -26,7 +26,7 @@ tr.hover:bg-primary/5.transition-colors data-update-url=update_position_admin_di
     - if address&.geocoded?
       - if address.country_code
         span title=address.label
-          = pretty_country_html(address.country_code, show_flag: true)
+          = pretty_country_html(address.country_code)
       - else
         span= address.label
 

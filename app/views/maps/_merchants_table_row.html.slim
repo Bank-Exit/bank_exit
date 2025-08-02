@@ -13,7 +13,7 @@ tr.odd:hover:bg-base-200.transition-colors
         = t(merchant.category, scope: 'categories')
 
   td
-    == pretty_country_html(merchant.country, show_flag: true)
+    == pretty_country_html(merchant.country)
 
   td
     .flex.items-center.gap-2

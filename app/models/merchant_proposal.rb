@@ -86,7 +86,7 @@ class MerchantProposal
 
     if country
       properties['addr:country'] = country
-      extra_keys['country'] = model.pretty_country(show_flag: true)
+      extra_keys['country'] = model.pretty_country
     end
 
     extra_keys['latitude'] = latitude if latitude

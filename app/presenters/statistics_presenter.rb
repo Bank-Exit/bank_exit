@@ -92,13 +92,13 @@ class StatisticsPresenter < ApplicationPresenter
     base_merchants.monero.group(:country).count.map do |k, v|
       next unless v >= 3
 
-      [pretty_country_html(k, show_flag: true), v]
+      [pretty_country_html(k), v]
     end.compact_blank
   end
 
   def merchants_june_by_country
     base_merchants.june.group(:country).count.map do |k, v|
-      [pretty_country_html(k, show_flag: true), v]
+      [pretty_country_html(k), v]
     end
   end
 
@@ -106,7 +106,7 @@ class StatisticsPresenter < ApplicationPresenter
     base_merchants
       .where(country: WEST_EUROPEAN_COUNTRIES)
       .group(:country).count.map do |k, v|
-      [pretty_country_html(k, show_flag: true), v]
+      [pretty_country_html(k), v]
     end
   end
 
@@ -134,7 +134,7 @@ class StatisticsPresenter < ApplicationPresenter
     range = range_start..range_end
 
     area.each_with_object({}) do |country, hash|
-      label = pretty_country_html(country, show_flag: true)
+      label = pretty_country_html(country)
       base_merchants
         .where(country: country)
         .where(created_at: range)

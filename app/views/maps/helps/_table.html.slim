@@ -85,7 +85,7 @@ table.table.table-zebra
           - Merchant.available.pluck(:country).uniq.compact_blank.sort.each do |country|
             div
               span.badge.badge-info.badge-sm= country
-              =< pretty_country_html(country.to_sym, show_flag: true)
+              =< pretty_country_html(country.to_sym)
 
       td
         span.badge.badge-info.badge-sm= Setting::MAP_DEFAULT_COUNTRY

@@ -59,7 +59,7 @@ module Merchants
     def merchants_list
       @merchants_list ||= MerchantDecorator.wrap(merchants).map do |merchant|
         <<~MARKDOWN
-          - [ ] **#{merchant.name}** [##{merchant.identifier}] #{pretty_country_html(merchant.country, show_flag: true)}
+          - [ ] **#{merchant.name}** [##{merchant.identifier}] #{pretty_country_html(merchant.country)}
             - Date: #{I18n.l(merchant.deleted_at)}
             - [On Bank-Exit](#{merchant_url(merchant, debug: 'true')})
             - [On OpenStreetMap](#{merchant.osm_link})

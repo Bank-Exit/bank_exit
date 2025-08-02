@@ -25,7 +25,7 @@
           tr
             td= "##{count}"
             th scope="row"= row.name
-            td= row.pretty_country(show_flag: true)
+            td= row.pretty_country
             td
               - if row.category
                 = t("categories.#{row.category}")

@@ -83,7 +83,7 @@ class MerchantDecorator < ProfesionalDecorator
     ].compact_blank
   end
 
-  def pretty_country(show_flag: false)
+  def pretty_country(show_flag: true)
     pretty_country_html(country, show_flag: show_flag)
   end
 
