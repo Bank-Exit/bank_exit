@@ -157,8 +157,9 @@ en:
         around_me: Results determined from your IP address
 
       merchant_proposal:
+        email: Public email visible to everyone
         ask_kyc: Check if the merchant requires identity verification to be payed
-        proposition_from: Please provide your email address if you would like to be kept informed of this merchant's processing.
+        proposition_from: Please provide a private or anonymous email address if you would like to be notified when this merchant is added. Your email address will not be used for any purpose other than this.
 
         latitude: Specify the latitude if you know it
         longitude: Specify the longitude if you know it
@@ -172,6 +173,7 @@ en:
         banner: Background banner
         address:
           label: Leave blank or provide an approximate address to protect the merchant's anonymity.<br /> This information is used by the "Around Me" feature and influences the relevance of geolocated results based on latitude and longitude.
+        proposition_from: Please provide a private or anonymous email address if you would like to be notified when this directory entry is added. Your email address will not be used for any purpose other than this.
 
       weblinks:
         title: Leave blank to display the URL or specify a human-friendly title

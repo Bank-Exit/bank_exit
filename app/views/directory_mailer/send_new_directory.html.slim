@@ -1,8 +1,10 @@
+- url = edit_admin_directory_url(@directory_id)
+
 p Bonjour,
 
-p Un nouveau commerçant vient d'être proposé depuis le site. Voici les informations renseignées:
+p Une nouvelle entrée d'annuaire vient d'être proposée depuis le site. Vous pouvez la consulter en accédant à l'administration du site ou en cliquant sur ce lien:
 
-pre= JSON.pretty_generate(@data)
+p= link_to url, url
 
 p style="font-size: 12px; font-style: italic"
   - if @proposition_from.present?

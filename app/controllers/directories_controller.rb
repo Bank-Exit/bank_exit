@@ -49,7 +49,7 @@ class DirectoriesController < PublicController
   def new
     add_breadcrumb t('.title')
 
-    @directory = Directory.new(from_proposition: true)
+    @directory = Directory.new(requested_by_user: true)
     @directory.build_address
   end
 
@@ -61,11 +61,25 @@ class DirectoriesController < PublicController
   # @route POST /directories
   def create
     @directory = Directory.new(directory_params) do |directory|
-      directory.from_proposition = true
+      directory.requested_by_user = true
       directory.enabled = false
     end
 
-    if @directory.save
+    if @directory.nickname.present?
+      # Captcha used to trick a spammer making him to think
+      # that email has actually been sent.
+      Rails.logger.warn { "Spam detected nickname: #{@directory.nickname}" }
+
+      redirect_to directories_path, notice: t('.notice')
+    elsif @directory.save
+      DirectoryMailer
+        .with(
+          directory_id: @directory.id,
+          proposition_from: @directory.proposition_from
+        )
+        .send_new_directory
+        .deliver_later
+
       redirect_to directories_path, notice: t('.notice')
     else
       add_breadcrumb t('directories.new.title')
@@ -101,6 +115,7 @@ class DirectoriesController < PublicController
       directory: [
         :name, :description,
         :logo, :banner, :category,
+        :proposition_from, :nickname,
         {
           address_attributes: %i[id label],
           coin_wallets_attributes: [%i[

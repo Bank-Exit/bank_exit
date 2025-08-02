@@ -121,4 +121,10 @@
                   action: "click->nested-form#addAssociation" \
                 }
 
+  div
+    = f.input :proposition_from, as: :email
+
+    / Captcha to trick bots, must remain empty to be valid
+    = f.input :nickname, wrapper_html: { class: 'hidden' }
+
   = f.button :submit, t('helpers.submit.directory.suggest')

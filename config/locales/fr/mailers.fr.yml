@@ -10,6 +10,10 @@ fr:
     send_report_merchant:
       subject: "[Sortie de Banque] Signalement d'une anomalie sur une fiche commerçant"
 
+  directory_mailer:
+    send_new_directory:
+      subject: "[Sortie de Banque] Proposition d'ajout d'une nouvelle entrée d'annuaire sur le site"
+
   comment_mailer:
     send_report_comment:
       subject: "[Sortie de Banque] Signalement d'un commentaire sur une fiche commerçant"

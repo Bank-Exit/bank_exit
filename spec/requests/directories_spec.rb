@@ -72,10 +72,42 @@ RSpec.describe 'Directories' do
       end
 
       it { expect { action }.to_not change { Directory.count } }
+      it { expect { action }.to_not have_enqueued_mail(DirectoryMailer, :send_new_directory) }
 
       it 'does not create a new Directory', :aggregate_failures do
         action
         expect(response).to have_http_status :unprocessable_entity
+      end
+    end
+
+    context 'when captcha is filled' do
+      let(:params) do
+        { directory: attributes_for(:directory).merge(nickname: 'iamabot') }
+      end
+
+      it { expect { action }.to_not change { Directory.count } }
+      it { expect { action }.to_not have_enqueued_mail(DirectoryMailer, :send_new_directory) }
+
+      it 'creates a new Directory', :aggregate_failures do
+        action
+        expect(response).to redirect_to(directories_path)
+        expect(flash[:notice]).to eq(I18n.t('directories.create.notice'))
+      end
+    end
+
+    context 'when user filled an invalid email' do
+      let(:params) do
+        { directory: attributes_for(:directory).merge(proposition_from: 'fake') }
+      end
+
+      it { expect { action }.to_not change { Directory.count } }
+      it { expect { action }.to_not have_enqueued_mail(DirectoryMailer, :send_new_directory) }
+
+      describe '[HTTP Status]' do
+        before { action }
+
+        it { expect(response).to have_http_status :unprocessable_entity }
+        it { expect(flash[:notice]).to be_nil }
       end
     end
 
@@ -92,6 +124,7 @@ RSpec.describe 'Directories' do
       end
 
       it { expect { action }.to change { Directory.count }.by(1) }
+      it { expect { action }.to have_enqueued_mail(DirectoryMailer, :send_new_directory) }
 
       it 'creates a new Directory', :aggregate_failures do
         action

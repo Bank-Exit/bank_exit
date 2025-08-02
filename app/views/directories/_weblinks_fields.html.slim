@@ -5,7 +5,7 @@
   .flex.flex-col.items-center.gap-3
     = f.input :url
     = f.input :title
-    = f.input :enabled, as: :boolean unless f.object.weblinkable.from_proposition?
+    = f.input :enabled, as: :boolean unless f.object.weblinkable.requested_by_user?
 
   .remove-link-wrapper.absolute.top-2.right-2
     = link_to "#",

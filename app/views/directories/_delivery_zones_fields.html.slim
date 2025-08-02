@@ -24,7 +24,7 @@
              mode: f.object.mode,
              data: data
 
-    = f.input :enabled, as: :boolean unless f.object.deliverable.from_proposition?
+    = f.input :enabled, as: :boolean unless f.object.deliverable.requested_by_user?
 
   .remove-link-wrapper.absolute.top-2.right-2
     = link_to "#",

@@ -1,7 +1,11 @@
 class Directory < ApplicationRecord
+  include WithCaptcha
   include WithLogoAndBanner
 
-  attribute :from_proposition, :boolean, default: false
+  attribute :requested_by_user, :boolean, default: false
+  attribute :proposition_from, :string
+
+  captcha :nickname
 
   belongs_to :merchant, optional: true
   has_one :address, as: :addressable, dependent: :destroy
@@ -19,9 +23,11 @@ class Directory < ApplicationRecord
   positioned
 
   validates :name, presence: true
-  validates :category, presence: true, inclusion: { in: :allowed_categories }, if: :from_proposition?
-  validates :category, allow_blank: true, inclusion: { in: :allowed_categories }, unless: :from_proposition?
-  validates :description, presence: true, if: :from_proposition?
+  validates :category, presence: true, inclusion: { in: :allowed_categories }, if: :requested_by_user?
+  validates :category, allow_blank: true, inclusion: { in: :allowed_categories }, unless: :requested_by_user?
+  validates :description, presence: true, if: :requested_by_user?
+  validates :proposition_from, allow_blank: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+
   validates_associated :coin_wallets
   validates_associated :contact_ways
   validates_associated :delivery_zones

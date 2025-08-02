@@ -1,6 +1,4 @@
 class MerchantMailer < ApplicationMailer
-  helper :application
-
   def send_new_merchant
     @data = params[:data]
     @proposition_from = params[:proposition_from]

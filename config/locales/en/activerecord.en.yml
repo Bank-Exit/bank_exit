@@ -137,6 +137,7 @@ en:
         coins: Coins
         contact_ways: Contact method
         weblinks: Web links
+        proposition_from: Follow-up email (optional)
 
       delivery_zone:
         mode: Zone

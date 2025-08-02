@@ -1,11 +1,14 @@
 class MerchantProposal
   include ActiveModel::Model
   include ActiveModel::Attributes
+  include WithCaptcha
 
   ALLOWED_COINS = %i[
     bitcoin monero june lightning
     contact_less gold silver
   ].freeze
+
+  captcha :nickname
 
   attribute :name, :string
   attribute :description
@@ -21,7 +24,6 @@ class MerchantProposal
   attribute :email, :string
   attribute :website, :string
   attribute :opening_hours, :string
-  attribute :nickname, :string
 
   attribute :delivery, :boolean, default: false
   attribute :delivery_zone, :string
@@ -57,9 +59,6 @@ class MerchantProposal
   validates :description, presence: true
   validates :coins, presence: true, inclusion: { in: ALLOWED_COINS.map(&:to_s) }
   validates :proposition_from, allow_blank: true, format: { with: URI::MailTo::EMAIL_REGEXP }
-
-  # Captcha used to trick bots
-  validates :nickname, absence: true
 
   def other_category_selected?
     category == 'other'

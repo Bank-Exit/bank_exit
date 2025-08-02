@@ -10,6 +10,10 @@ en:
     send_report_merchant:
       subject: "[Bank-Exit] Report of an issue on a merchant profile"
 
+  directory_mailer:
+    send_new_directory:
+      subject: "[Bank-Exit] Suggestion to add a new directory entry to the site"
+
   comment_mailer:
     send_report_comment:
       subject: "[Bank-Exit] Report of a comment on a merchant profile"

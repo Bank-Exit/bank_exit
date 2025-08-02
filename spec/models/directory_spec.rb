@@ -15,7 +15,7 @@ RSpec.describe Directory do
   it { is_expected.to validate_size_of(:banner).less_than(1.megabyte) }
 
   context 'when directory is proposed' do
-    subject { build :directory, from_proposition: true }
+    subject { build :directory, requested_by_user: true }
 
     it { is_expected.to_not allow_value(nil).for(:category) }
     it { is_expected.to validate_presence_of(:description) }

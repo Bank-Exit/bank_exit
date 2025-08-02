@@ -158,8 +158,9 @@ fr:
         around_me: Résultats déterminés à partir de votre adresse IP
 
       merchant_proposal:
+        email: Email public visible par tout le monde
         ask_kyc: Cocher si le commerçant demande une validation d'identité (KYC) pour accepter le paiement
-        proposition_from: Indiquez votre email si vous souhaitez être tenu informé du traitement de ce commerçant
+        proposition_from: Indiquez un email privé ou anonyme si vous souhaitez être tenu informé de l'ajout de ce commerçant. Votre email ne sera pas utilisé à d'autres fins que celle-ci.
 
         latitude: Indiquez la latitude si vous la connaissez
         longitude: Indiquez la longitude si vous la connaissez
@@ -174,6 +175,7 @@ fr:
         spotlight: Si coché, cette entrée sera mise en valeur en haut de la page de l'annuaire
         address:
           label: Laisser vide ou renseigner une adresse approximative pour protéger l'anonymat du commerçant.<br /> Cette information est utilisée par la fonctionnalité "Autour de moi" et influe sur la pertinence des résultats géolocalisés qui se basent sur la latitude et longitude.
+        proposition_from: Indiquez un email privé ou anonyme si vous souhaitez être tenu informé de l'ajout de cette entrée d'annuaire. Votre email ne sera pas utilisé à d'autres fins que celle-ci.
 
       weblinks:
         title: Laisser vide pour afficher l'URL ou spécifier un titre adapté aux humains

@@ -143,6 +143,7 @@ fr:
         coins: Monnaies
         contact_ways: Moyen de contact
         weblinks: Liens web
+        proposition_from: Email de suivi (facultatif)
 
       delivery_zone:
         enabled: Activé ?
