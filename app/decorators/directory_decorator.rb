@@ -1,2 +1,2 @@
-class DirectoryDecorator < ApplicationDecorator
+class DirectoryDecorator < ProfesionalDecorator
 end

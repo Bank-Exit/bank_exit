@@ -9,10 +9,7 @@ article
     .hero-content.py-16
       header.max-w-xl
         .text-center.space-y-6.text-neutral-content
-          - if @directory.logo.attached?
-            .avatar
-              .w-28.rounded-full
-                = image_tag url_for(@directory.logo.variant(:thumb)), class: 'bg-base-100'
+          = render 'logo_or_initials', model: @directory, mode: :extra_large
 
           h1.text-3xl.font-bold= @directory.name
 

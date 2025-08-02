@@ -18,14 +18,10 @@
 
     article.p-3.space-y-6 data-controller="merchants"
       header.flex.flex-col.items-center.space-y-3.rounded-lg
-        - if @merchant.logo.attached?
-          .relative
-            = image_tag url_for(@merchant.logo), class: 'rounded-full w-40 h-40 object-cover'
-            .absolute.-bottom-2.-right-2
-              = merchant_icon_svg(@merchant.icon, width: 50, height: 50)
-
-        - else
-          = merchant_icon_svg(@merchant.icon)
+        .relative
+          = render 'logo_or_initials', model: @merchant, mode: :extra_large
+          .absolute.-bottom-2.-right-2
+            = merchant_icon_svg(@merchant.icon, width: 50, height: 50)
 
         h1.text-3xl.text-center= @merchant.name
 

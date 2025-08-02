@@ -8,13 +8,8 @@
 
   .card-body.space-y-2.justify-between
     .space-y-2
-      - if directory.logo.attached?
-        .flex.items-center.gap-2
-          .avatar
-            .w-8.rounded-full
-              = image_tag url_for(directory.logo.variant(:thumb)), class: 'bg-base-content'
-          h2.card-title= directory.name
-      - else
+      .flex.items-center.gap-2
+        = render 'logo_or_initials', model: directory, mode: :small
         h2.card-title= directory.name
 
       div= directory.description&.truncate(150)

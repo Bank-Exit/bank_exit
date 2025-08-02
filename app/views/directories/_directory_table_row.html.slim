@@ -3,8 +3,8 @@
 
 tr.odd:hover:bg-base-200.transition-colors
   td
-    - if directory.logo.attached?
-      = image_tag directory.logo, class: 'rounded-full w-12 h-12 object-cover bg-white'
+    = render 'logo_or_initials', model: directory
+
   th
     = link_to directory_path(directory) do
       = directory.name

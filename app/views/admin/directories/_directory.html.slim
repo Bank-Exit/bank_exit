@@ -10,10 +10,7 @@ tr.hover:bg-primary/5.transition-colors data-update-url=update_position_admin_di
       .absolute.top-0.left-0 title="En vedette"
         = lucide_icon 'star', class: 'fill-yellow-500 stroke-black'
 
-    - if directory.logo.attached?
-      .avatar
-        .w-20.rounded-full
-          = image_tag url_for(directory.logo.variant(:thumb))
+    = render 'logo_or_initials', model: directory
 
   td scope="row"
     p.mb-1

@@ -4,7 +4,7 @@
       = link_to merchant_path(@merchant),
                 class: 'merchant-name',
                 data: { map__popup_target: 'merchantLink' } do
-        = render 'merchants/logo_or_initials', merchant: @merchant, mode: :small
+        = render 'logo_or_initials', model: @merchant, mode: :small
         = @merchant.name
 
     - if @merchant.category.present?

@@ -1,4 +1,4 @@
-class MerchantDecorator < ApplicationDecorator
+class MerchantDecorator < ProfesionalDecorator
   include ApplicationHelper
   include Rails.application.routes.url_helpers
 
@@ -8,16 +8,6 @@ class MerchantDecorator < ApplicationDecorator
     lightning: 'BTC-LN',
     june: 'G1'
   }.freeze
-
-  def initials
-    parts = name.strip.split
-
-    if parts.length == 1
-      parts.first[0, 2].upcase
-    else
-      (parts.first[0] + parts.last[0]).upcase
-    end
-  end
 
   def address?
     full_address.present? || country.present?

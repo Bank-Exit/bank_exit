@@ -8,7 +8,7 @@
   .card-body.space-y-3
     .flex.items-center.justify-between
       .flex.items-center.gap-2
-        = render 'merchants/logo_or_initials', merchant: merchant
+        = render 'logo_or_initials', model: merchant
         h2.card-title
           span
             = highlight(merchant.name, params[:search])
@@ -40,7 +40,7 @@
       - merchant.coins.each do |coin|
         = image_tag icon_by_coin(coin), title: coin.capitalize, class: 'w-10 h-10'
 
-      = merchant_kyc_no_kyc(merchant.ask_kyc?)
+      div= merchant_kyc_no_kyc(merchant.ask_kyc?)
 
     .flex.items-start.panel class=(merchant.banner.attached? ? 'bg-neutral/50' : 'panel-base-100') class=(merchant.delivery.present? ? 'justify-between' : 'justify-center')
       - if merchant.address?

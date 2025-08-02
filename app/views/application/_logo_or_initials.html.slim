@@ -1,0 +1,33 @@
+ruby:
+  mode = :medium unless defined?(mode)
+
+  case mode
+  when :tiny
+    size = 'w-5 h-5'
+    font_size = 'text-xs'
+  when :small
+    size = 'w-8 h-8'
+    font_size = 'text-md'
+  when :medium
+    size = 'w-12 h-12'
+    font_size = 'text-2xl'
+  when :extra_large
+    size = 'w-32 h-32'
+    font_size = 'text-7xl'
+  else # :large (fallback value)
+    size = 'w-16 h-16'
+    font_size = 'text-3xl'
+  end
+
+/ To use this partial, you must send `model` params and it
+/ must respond to `#logo` (active_storage attachment),
+/ `#name` and `#initials`.
+- if model.logo.attached?
+  .avatar
+    .rounded-full.bg-white class=size
+      = image_tag url_for(model.logo)
+- else
+  .avatar.avatar-placeholder
+    .text-white.rounded-full class=size style="background-color: #{model.name.to_rgb}"
+      span class=font_size
+        = model.initials

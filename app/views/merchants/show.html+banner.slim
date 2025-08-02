@@ -4,10 +4,7 @@ article
     .hero-content.py-16
       header.max-w-xl
         .text-center.space-y-6.text-neutral-content
-          - if @merchant.logo.attached?
-            .avatar
-              .w-28.rounded-full
-                = image_tag url_for(@merchant.logo.variant(:thumb)), class: 'bg-base-100'
+          = render 'logo_or_initials', model: @merchant, mode: :extra_large
 
           h1.text-3xl.font-bold= @merchant.name
 
@@ -18,9 +15,9 @@ article
 
           .flex.items-center.justify-center.gap-3
             - @merchant.coins.each do |coin|
-              = image_tag icon_by_coin(coin), title: coin.capitalize, class: 'w-16 h-16 hover:scale-110 transition-transform'
+              = image_tag icon_by_coin(coin), title: coin.capitalize, class: 'w-12 h-12 hover:scale-110 transition-transform'
 
-            = merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-16 h-16 text-xl')
+            = merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-12 h-12 text-xl')
 
   .article-body.max-w-5xl class="!space-y-8"
     .flex.items-center.justify-between.gap-2
