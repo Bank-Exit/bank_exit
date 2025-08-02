@@ -16,10 +16,10 @@
       - if allowed_to?(:index?, Comment)
         .flex.flex-col.items-center.gap-1
           .text-xs.ml-1 title="#{merchant.comments_count} #{Comment.model_name.human(count: merchant.comments_count)}"
-            = lucide_icon 'message-square', class: 'inline-flex mr-0.5 font-normal w-4'
+            = lucide_icon 'message-square', class: 'inline-flex mr-0.5 font-normal w-3.5'
             = merchant.comments_count
 
-          - if merchant.comments.any?
+          - if merchant.comments_count > 0
             .flex.items-center.gap-1
               .rating.rating-xs
                 .mask.mask-star.bg-primary aria-label="#{merchant.average_rating} star" aria-current="true" title="#{merchant.average_rating}/5"

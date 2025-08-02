@@ -1,19 +1,20 @@
-#map_popup.panel.panel-base-100 data-controller="map--popup"
-  header.mb-3
+#map_popup.panel.panel-base-100.space-y-3 data-controller="map--popup"
+  header.space-y-2
     h3
       = link_to merchant_path(@merchant),
                 class: 'merchant-name',
                 data: { map__popup_target: 'merchantLink' } do
+        = render 'merchants/logo_or_initials', merchant: @merchant, mode: :small
         = @merchant.name
 
     - if @merchant.category.present?
-      p.color-base-300 class="!mb-2"
-        svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" class="print:text-black inline-flex"
+      .badge.badge-secondary.badge-sm.flex.mx-auto
+        svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" class="print:text-black"
           use href="/map/spritesheet.svg##{@merchant.icon}"
         =< t("categories.#{@merchant.category}", default: @merchant.category)
 
   - if @merchant.address? || @merchant.opening_hours.present? || @merchant.delivery.present?
-    .panel.panel-base-200.panel-sm.mb-3.space-y-2
+    .panel.panel-base-200.panel-sm.space-y-2
       - if @merchant.address?
         .flex.items-center.gap-2
           .flex-shrink-0= lucide_icon 'home', class: 'w-4'
@@ -37,24 +38,39 @@
           - if @merchant.delivery_zone
             =< "(#{@merchant.delivery_zone})"
 
-  .merchant-footer
-    .payment-methods
-      .label= t('.payment_methods')
-      .method-icons
-        = image_tag('coins/logo-monero.svg', alt: 'monero', title: t(@merchant.monero? ? '.monero_accepted' : '.monero_not_accepted'), class: ('opacity-20' unless @merchant.monero?))
+  div
+    .text-xs.mb-1= t('.payment_methods')
+    .method-icons
+      = image_tag('coins/logo-monero.svg', alt: 'monero', title: t(@merchant.monero? ? '.monero_accepted' : '.monero_not_accepted'), class: ('opacity-20' unless @merchant.monero?))
 
-        = image_tag('coins/logo-bitcoin.svg', alt: 'bitcoin', title: t(@merchant.bitcoin? ? '.bitcoin_accepted' : '.bitcoin_not_accepted'), class: ('opacity-20' unless @merchant.bitcoin?))
+      = image_tag('coins/logo-bitcoin.svg', alt: 'bitcoin', title: t(@merchant.bitcoin? ? '.bitcoin_accepted' : '.bitcoin_not_accepted'), class: ('opacity-20' unless @merchant.bitcoin?))
 
-        = image_tag('coins/logo-june.svg', alt: 'june', title: t(@merchant.june? ? '.june_accepted' : '.june_not_accepted'), class: ('opacity-20' unless @merchant.june?))
+      = image_tag('coins/logo-june.svg', alt: 'june', title: t(@merchant.june? ? '.june_accepted' : '.june_not_accepted'), class: ('opacity-20' unless @merchant.june?))
 
-        = image_tag 'coins/logo-lightning.svg', alt: 'lightning', title: t(@merchant.lightning? ? '.lightning_accepted' : '.lightning_not_accepted'), class: ('opacity-20' unless @merchant.lightning?)
+      = image_tag 'coins/logo-lightning.svg', alt: 'lightning', title: t(@merchant.lightning? ? '.lightning_accepted' : '.lightning_not_accepted'), class: ('opacity-20' unless @merchant.lightning?)
 
-        = image_tag 'coins/nfc-highlight.svg', alt: 'nfc', title: t(@merchant.contact_less? ? '.contact_less_accepted' : '.contact_less_not_accepted'), class: "dark:bg-white rounded-full dark:p-0.5 dark:border #{'opacity-20' unless @merchant.contact_less?}"
+      = image_tag 'coins/nfc-highlight.svg', alt: 'nfc', title: t(@merchant.contact_less? ? '.contact_less_accepted' : '.contact_less_not_accepted'), class: "dark:bg-white rounded-full dark:p-0.5 dark:border #{'opacity-20' unless @merchant.contact_less?}"
 
-        = merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-6 h-6 text-[10px]')
+      = merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-6 h-6 text-[10px]')
 
-    .text-right.text-xs class="!mt-4"
-      p
+  - if @merchant.comments_count > 0
+    div
+      .text-xs.mb-1= t('.notes_and_comments')
+      .flex.items-center.gap-2
+        .flex.items-center.gap-1
+          .rating.rating-xs
+            .mask.mask-star.bg-primary aria-label="#{@merchant.average_rating} star" aria-current="true" title="#{@merchant.average_rating}/5"
+          p.text-xs
+            = number_with_precision(@merchant.average_rating, strip_insignificant_zeros: true, precision: 2)
+            | /5
+
+        .text-xs.ml-1 title="#{@merchant.comments_count} #{Comment.model_name.human(count: @merchant.comments_count)}"
+          = lucide_icon 'message-square', class: 'inline-flex mr-0.5 font-normal w-3.5'
+          = @merchant.comments_count
+
+  footer.border-t.border-base-content/20.text-xs.pt-2
+    .text-right
+      /p
         = link_to @merchant.osm_link, target: :_blank do
           = t('.view_on_osm')
 

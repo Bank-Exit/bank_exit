@@ -71,7 +71,7 @@ module MerchantsHelper
     if kyc
       content_tag(:span, 'KYC', class: "#{shared_classes} bg-red-500", title: 'KYC')
     else
-      content_tag(:span, 'No KYC', class: "#{shared_classes} bg-green-500", title: 'No KYC')
+      content_tag(:p, 'No <br /> KYC'.html_safe, class: "#{shared_classes} bg-green-500 text-white", title: 'No KYC')
     end
   end
 end

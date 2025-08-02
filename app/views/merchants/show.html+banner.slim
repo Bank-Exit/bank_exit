@@ -18,9 +18,9 @@ article
 
           .flex.items-center.justify-center.gap-3
             - @merchant.coins.each do |coin|
-              = image_tag icon_by_coin(coin), title: coin.capitalize, class: 'w-10 h-10 hover:scale-110 transition-transform'
+              = image_tag icon_by_coin(coin), title: coin.capitalize, class: 'w-16 h-16 hover:scale-110 transition-transform'
 
-            = merchant_kyc_no_kyc(@merchant.ask_kyc?)
+            = merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-16 h-16 text-xl')
 
   .article-body.max-w-5xl class="!space-y-8"
     .flex.items-center.justify-between.gap-2
@@ -31,6 +31,12 @@ article
       p.panel.panel-error
         = lucide_icon 'info', class: 'inline-flex w-4 h-4'
         span=< t('.soft_deleted_warning')
+
+    - if @merchant.might_be_outdated?
+      p.panel.panel-warning
+        = lucide_icon 'triangle-alert', class: 'inline-flex w-4 h-4'
+        span<
+          = t('.last_survey_warning_html', date: time_ago_in_words(@merchant.last_survey_on), raw_date: l(@merchant.last_survey_on))
 
     - if @merchant.description?
       div

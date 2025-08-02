@@ -81,6 +81,12 @@
     }
 }
 
+.leaflet-container a.leaflet-popup-close-button {
+    font-size: 1.8rem;
+    top: 5px;
+    right: 5px;
+}
+
 .leaflet-popup-content-wrapper {
     border: 1px solid var(--color-base-300);
 }
@@ -111,15 +117,10 @@
 }
 
 .merchant-name {
-    display: inline-block;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1rem;
     text-decoration: none;
-}
-
-.merchant-footer .label {
-    font-size: 0.8em;
-    color: var(--color-base-content);
+    padding-right: 5px;
 }
 
 .method-icons {

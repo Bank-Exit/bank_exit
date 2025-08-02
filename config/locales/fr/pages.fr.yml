@@ -322,6 +322,7 @@ fr:
           - *payment_methods_accepted
           - *payment_methods_not_accepted
         payment_methods: Moyens de paiement
+        notes_and_comments: Notes et commentaires
         home_delivery: Livraison à domicile
         last_survey_on: Dernière actualisation il y a %{date}
         view_on_osm: Ouvrir sur OpenStreetMap

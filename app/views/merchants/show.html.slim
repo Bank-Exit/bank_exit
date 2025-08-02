@@ -20,9 +20,9 @@
       header.flex.flex-col.items-center.space-y-3.rounded-lg
         - if @merchant.logo.attached?
           .relative
-            = image_tag url_for(@merchant.logo), class: 'rounded-full w-24 h-24 object-cover'
-            .absolute.-bottom-3.-right-3
-              = merchant_icon_svg(@merchant.icon, width: 40, height: 40)
+            = image_tag url_for(@merchant.logo), class: 'rounded-full w-40 h-40 object-cover'
+            .absolute.-bottom-2.-right-2
+              = merchant_icon_svg(@merchant.icon, width: 50, height: 50)
 
         - else
           = merchant_icon_svg(@merchant.icon)
@@ -30,7 +30,7 @@
         h1.text-3xl.text-center= @merchant.name
 
         - if @merchant.category.present?
-          p.badge.badge-info
+          p.badge.badge-secondary
             = t("categories.#{@merchant.category}", default: @merchant.category.capitalize)
 
         - if @merchant.address?

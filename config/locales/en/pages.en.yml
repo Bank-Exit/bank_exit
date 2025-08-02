@@ -322,6 +322,7 @@ en:
           - *payment_methods_accepted
           - *payment_methods_not_accepted
         payment_methods: Methods of payment
+        notes_and_comments: Notes and comments
         home_delivery: Home delivery
         last_survey_on: Last survey on %{date}
         view_on_osm: View on OpenStreetMap

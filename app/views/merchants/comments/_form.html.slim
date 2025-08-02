@@ -1,15 +1,14 @@
 .panel.panel-info.text-sm= t('.introduction')
 
 = simple_form_for [merchant, comment], html: { class: 'space-y-2 px-1' } do |f|
-  = f.input :content, label: false
+  = f.input :content
 
   .flex.flex-col.lg:flex-row.gap-3
     = f.input :rating,
-              collection: (0..5),
-              prompt: :translate,
-              label: false
+              collection: comment_rating_select_input,
+              prompt: false
 
-    = f.input :pseudonym, label: false
+    = f.input :pseudonym
     = f.input :nickname, as: :hidden, wrapper: false
 
   div
