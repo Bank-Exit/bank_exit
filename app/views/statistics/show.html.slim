@@ -3,13 +3,14 @@ article
     .hero-overlay
     .hero-content.py-16.w-full.lg:w-auto
       .w-full.max-w-5xl
-        .text-center.space-y-6.text-neutral-content
+        .text-center.space-y-3.text-neutral-content
           h1.text-3xl.font-bold= t('.title')
 
           = render 'statistics_numbers',
                    merchants_statistics: @merchants_statistics,
                    countries_statistics: @countries_statistics,
-                   coins_statistics: @coins_statistics
+                   coins_statistics: @coins_statistics,
+                   categories_statistics: @categories_statistics
 
   .article-body.max-w-full class="!px-5"
     .max-w-6xl.mx-auto

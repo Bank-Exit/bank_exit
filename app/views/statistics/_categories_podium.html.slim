@@ -1,0 +1,31 @@
+section.flex.justify-center.items-end.gap-3
+  - [2, 0, 1].each do |i|
+    - category, count = podium[i]
+    - next unless category
+
+    - place = case i \
+              when 0 then "🥇" \
+              when 1 then "🥈" \
+              when 2 then "🥉" \
+              end
+
+    - bg_class = case i \
+                 when 0 then "bg-base-100" \
+                 when 1 then "bg-base-100" \
+                 when 2 then "bg-base-100" \
+                 end
+
+    - height_class = case i \
+                     when 0 then "h-48" \
+                     when 1 then "h-40" \
+                     when 2 then "h-32" \
+                     end
+
+    .flex.flex-col.items-center.hover:scale-105.transition-transform
+      .mb-2= merchant_icon_svg icon_for_category(category), width: 60, height: 60
+
+      .text-base-content.rounded-box.w-24.flex.flex-col.items-center.justify-center.border.border-base-content/20.text-center class=bg_class class=height_class
+        p.text-3xl.mb-2= place
+        p.font-semibold.text-xs.mb-1= t(category, scope: 'categories')
+        p.text-primary.font-bold.text-sm
+          = number_with_delimiter(count)

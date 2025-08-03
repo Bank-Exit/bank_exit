@@ -1,12 +1,13 @@
 .px-5.py-10.lg:p-20.bg-base-300
-  .max-w-5xl.space-y-8.mx-auto
+  .max-w-5xl.space-y-3.mx-auto
     header.text-center
       h3.text-3xl.font-bold= t('statistics.show.title')
 
     = render 'statistics/statistics_numbers',
              merchants_statistics: merchants_statistics,
              countries_statistics: countries_statistics,
-             coins_statistics: coins_statistics
+             coins_statistics: coins_statistics,
+             categories_statistics: categories_statistics
 
     p.text-center.lg:text-right
       = link_to t('.see_all_statistics'), statistics_path, class: 'btn btn-primary'

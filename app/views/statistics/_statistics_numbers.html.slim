@@ -2,42 +2,22 @@
 - on_date_i18n = t('.on_date', date: today_i18n)
 - dated_i18n = t('.dated', date: today_i18n)
 
+= render 'statistics/categories_podium', podium: categories_statistics[:podium_categories]
+
 .overflow-x-auto
-  .flex.gap-1.lg:gap-2.sm:grid.sm:grid-cols-3.lg:grid-cols-4.max-w-xs.sm:max-w-max.sm:mx-auto
+  .flex.gap-3.sm:grid.sm:grid-cols-3.lg:grid-cols-3.max-w-xs.sm:max-w-max.sm:mx-auto
     .stat.bg-base-100.shadow.rounded-lg
       .stat-figure
         = lucide_icon 'store', class: 'w-12 h-12'
       .stat-title= t('.new_merchants_title')
-      .stat-value= merchants_statistics[:today].count
+      .stat-value= number_with_delimiter(merchants_statistics[:today].count)
       .stat-desc= on_date_i18n
 
     .stat.bg-base-100.shadow.rounded-lg
       .stat-figure
         = lucide_icon 'store', class: 'w-12 h-12'
       .stat-title= t('.all_merchants_enabled_title')
-      .stat-value= merchants_statistics[:enabled]
-      .stat-desc= dated_i18n
-
-    .stat.bg-base-100.shadow.rounded-lg
-      .stat-figure
-        = image_tag icon_by_coin('monero'), class: 'w-12 h-12'
-      .stat-title= t('.monero_france_title')
-      .stat-value= countries_statistics[:monero_in_france].count
-      .stat-desc= dated_i18n
-
-    .stat.bg-base-100.shadow.rounded-lg
-      .stat-figure
-        = image_tag icon_by_coin('monero'), class: 'w-12 h-12'
-
-      .stat-title= t('.monero_world_title')
-      .stat-value= coins_statistics[:monero_world].count
-      .stat-desc= dated_i18n
-
-    .stat.bg-base-100.shadow.rounded-lg
-      .stat-figure
-        = image_tag icon_by_coin('june'), class: 'w-12 h-12 object-cover'
-      .stat-title= t('.june_world_title')
-      .stat-value= coins_statistics[:june_world].count
+      .stat-value= number_with_delimiter(merchants_statistics[:enabled])
       .stat-desc= dated_i18n
 
     .stat.bg-base-100.shadow.rounded-lg
@@ -47,14 +27,35 @@
       .stat-value= @directories_statistics[:enabled].count
       .stat-desc= dated_i18n
 
-    - category = @categories_statistics[:main_category]&.first
+.overflow-x-auto
+  .flex.gap-3.sm:grid.sm:grid-cols-3.lg:grid-cols-4.max-w-xs.sm:max-w-max.sm:mx-auto
+    .stat.bg-base-100.shadow.rounded-lg
+      .stat-figure
+        = image_tag icon_by_coin('bitcoin'), class: 'w-12 h-12'
+      .stat-title= t('.bitcoin_world_title')
+      .stat-value= number_with_delimiter(coins_statistics[:bitcoin_world].count)
+      .stat-desc= dated_i18n
 
-    - if category
-      .stat.bg-base-100.shadow.rounded-lg
-        .stat-figure
-          = merchant_icon_svg icon_for_category(category), width: 60, height: 60
-        .stat-title= t(category, scope: 'categories')
-        .stat-value= @categories_statistics[:main_category].last
-        .stat-desc= dated_i18n
+    .stat.bg-base-100.shadow.rounded-lg
+      .stat-figure
+        = image_tag icon_by_coin('monero'), class: 'w-12 h-12'
+
+      .stat-title= t('.monero_world_title')
+      .stat-value= number_with_delimiter(coins_statistics[:monero_world].count)
+      .stat-desc= dated_i18n
+
+    .stat.bg-base-100.shadow.rounded-lg
+      .stat-figure
+        = image_tag icon_by_coin('monero'), class: 'w-12 h-12'
+      .stat-title= t('.monero_france_title')
+      .stat-value= number_with_delimiter(countries_statistics[:monero_in_france].count)
+      .stat-desc= dated_i18n
+
+    .stat.bg-base-100.shadow.rounded-lg
+      .stat-figure
+        = image_tag icon_by_coin('june'), class: 'w-12 h-12 object-cover'
+      .stat-title= t('.june_world_title')
+      .stat-value= number_with_delimiter(coins_statistics[:june_world].count)
+      .stat-desc= dated_i18n
 
 = render 'statistics/include_atms_input', center: true

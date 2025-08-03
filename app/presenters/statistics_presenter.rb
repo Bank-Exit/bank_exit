@@ -39,12 +39,13 @@ class StatisticsPresenter < ApplicationPresenter
   def categories_statistics
     {
       by_main_categories: merchants_main_categories,
-      main_category: merchant_main_category
+      podium_categories: merchants_categories_podium
     }
   end
 
   def coins_statistics
     {
+      bitcoin_world: merchants_bitcoin_world,
       monero_world: merchants_monero_world,
       june_world: merchants_june_world,
       by_coins: merchants_coins
@@ -148,20 +149,25 @@ class StatisticsPresenter < ApplicationPresenter
     end
   end
 
-  def merchant_main_category
-    base_merchants
-      .select(:category)
-      .group(:category)
-      .count
-      .max_by { it[1] }
-  end
-
   def merchants_main_categories
     base_merchants
       .where(category: %w[bar cafe restaurant grocery farm])
       .group(:category).count.map do |k, v|
       [I18n.t(k, scope: :categories), v]
     end
+  end
+
+  def merchants_categories_podium
+    base_merchants
+      .group(:category)
+      .order('count_all DESC')
+      .limit(3)
+      .count
+      .to_a
+  end
+
+  def merchants_bitcoin_world
+    base_merchants.bitcoin
   end
 
   def merchants_monero_world
