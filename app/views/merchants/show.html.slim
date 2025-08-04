@@ -55,7 +55,7 @@
       = render 'merchants/view_sections/itinerary', merchant: @merchant
 
       - if allowed_to?(:index?, Comment)
-        = render 'comments', merchant: @merchant, comments: @comments, pagy: @pagy
+        = render 'comments/comments', commentable: @merchant, comments: @comments, pagy: @pagy
 
       - unless Rails.env.production?
         = render 'merchants/view_sections/debug', merchant: @merchant

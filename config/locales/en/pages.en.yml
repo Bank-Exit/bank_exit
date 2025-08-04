@@ -284,20 +284,6 @@ en:
       tooltip_itinerary_html: |
         Use the <kbd class="kbd text-base-content">Ctrl</kbd> + <kbd class="kbd text-base-content">/</kbd> keyboard shortcut to automatically navigate to the itinerary page
 
-    comments:
-      create:
-        notice: Your comment has been published successfully.
-
-      modal:
-        title_html: Comment on <strong>%{name}</strong>
-
-      form:
-        introduction: Only write a review if you have had a real experience with this merchant.
-        submit: Publish the comment
-
-      no_comment_yet: There are no reviews yet, be the first to leave one on this merchant if you have had a real experience with him.
-      tooltip_no_moderation: The Collective does not validate the opinions left by users.
-
     itineraries:
       new:
         title: Calculate my itinerary
@@ -337,6 +323,20 @@ en:
         submit: Report anomalies
 
   comments:
+    create:
+      notice: Your comment has been published successfully.
+
+    modal:
+      title_html: Comment on <strong>%{name}</strong>
+
+    form:
+      introduction: Only write a review if you have had a real experience with this merchant.
+      submit: Publish the comment
+
+    comments:
+      no_comment_yet: There are no reviews yet, be the first to leave one on this merchant if you have had a real experience with him.
+      tooltip_no_moderation: The Collective does not validate the opinions left by users.
+
     flag_tag:
       flagged_comment: Commentaire indicated to the Collectif
 

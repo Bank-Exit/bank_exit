@@ -1,6 +1,19 @@
 - merchant = comment.commentable
 
 tr
+  - unless params[:controller] == 'admin/merchants'
+    td
+      .font-semibold.mb-3
+        = link_to comment.commentable.name, polymorphic_path([:admin, comment.commentable])
+
+      .flex.flex-col.lg:flex-row.items-center.gap-2
+        - if comment.commentable.is_a?(Merchant)
+          = merchant_icon_svg(comment.commentable.icon, width: 30, height: 30)
+
+          .text-xs= t(comment.commentable.category, scope: 'categories')
+        - else
+          .text-xs= t(comment.commentable.category, scope: 'directories_categories')
+
   td class="max-w-[500px]"
     .text-sm.mb-2
       == simple_format(comment.content)
@@ -15,15 +28,6 @@ tr
     span.badge.badge-success.truncate.max-w-72
       = "#{comment.rating}/5"
 
-  - unless params[:controller] == 'admin/merchants'
-    td
-      .font-semibold.mb-3
-        = link_to merchant.name, polymorphic_path([:admin, merchant])
-
-      .flex.flex-col.lg:flex-row.items-center.gap-2
-        = merchant_icon_svg(merchant.icon, width: 50, height: 50)
-        .text-xs= t(merchant.category, scope: 'categories')
-
   td
     - if comment.flag_reason
       .status.status-lg.status-error aria-label="status"
@@ -31,7 +35,7 @@ tr
     - else
       .status.status-lg.status-success aria-label="status"
 
-  td.text-center
+  td.text-center class="min-w-[200px]"
     p title=Comment.human_attribute_name(:created_at)
       = l(comment.created_at)
 

@@ -120,6 +120,9 @@ article
             = link_to weblink.url, target: :_blank do
               = weblink.title.presence || clean_url(weblink.url)
 
+    - if allowed_to?(:index?, Comment)
+      = render 'comments/comments', commentable: @directory, comments: @comments, pagy: @pagy
+
     .italic
       p title=l(@directory.created_at)
         = t('added_on', date: time_ago_in_words(@directory.created_at))

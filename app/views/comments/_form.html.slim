@@ -1,6 +1,6 @@
 .panel.panel-info.text-sm= t('.introduction')
 
-= simple_form_for [merchant, comment], html: { class: 'space-y-2 px-1' } do |f|
+= simple_form_for [commentable, comment], html: { class: 'space-y-2 px-1' } do |f|
   = f.input :content
 
   .flex.flex-col.lg:flex-row.gap-3

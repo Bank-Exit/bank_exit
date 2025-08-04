@@ -284,20 +284,6 @@ fr:
       tooltip_itinerary_html: |
         Utiliser le raccourci clavier <kbd class="kbd text-base-content">Ctrl</kbd> + <kbd class="kbd text-base-content">/</kbd> pour afficher la page de calcul d'itinéraire automatiquement
 
-    comments:
-      create:
-        notice: Votre commentaire a bien été publié
-
-      modal:
-        title_html: Commentaire sur <strong>%{name}</strong>
-
-      form:
-        introduction: N'inscrivez un commentaire que si vous avez eu une réelle expérience avec ce commerçant.
-        submit: Publier le commentaire
-
-      no_comment_yet: Il n'y a pas encore de commentaires, soyez le premier à en déposer un sur ce commerçant si vous avez eu une réelle expérience avec.
-      tooltip_no_moderation: Le Collectif ne valide pas les avis laissés par les utilisateurs
-
     itineraries:
       new:
         title: Calculer mon itinéraire
@@ -337,6 +323,20 @@ fr:
         submit: Signaler l'anomalie
 
   comments:
+    create:
+      notice: Votre commentaire a bien été publié
+
+    modal:
+      title_html: Commentaire sur <strong>%{name}</strong>
+
+    form:
+      introduction: N'inscrivez un commentaire que si vous avez eu une réelle expérience avec ce commerçant.
+      submit: Publier le commentaire
+
+    comments:
+      no_comment_yet: Il n'y a pas encore de commentaires, soyez le premier à en déposer un sur ce commerçant si vous avez eu une réelle expérience avec.
+      tooltip_no_moderation: Le Collectif ne valide pas les avis laissés par les utilisateurs
+
     flag_tag:
       flagged_comment: Commentaire signalé au Collectif
 

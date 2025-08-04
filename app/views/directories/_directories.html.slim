@@ -25,11 +25,12 @@
       table.table.table-zebra.lg:table-fixed
         thead
           tr
-            td= Directory.human_attribute_name(:logo)
-            td= Directory.human_attribute_name(:name)
-            td= Directory.human_attribute_name(:description)
+            td class="w-[300px]"
+              = Directory.human_attribute_name(:name)
             td= CoinWallet.model_name.human.capitalize
             td= DeliveryZone.model_name.human.capitalize
+            td= Comment.model_name.human.capitalize
+            td= ContactWay.model_name.human.capitalize
             td= t('link')
         tbody
           - directories.each do |directory|

@@ -280,20 +280,6 @@ es:
       tooltip_itinerary_html: |
         Utilice el atajo de teclado <kbd class="kbd text-base-content">Ctrl</kbd> + <kbd class="kbd text-base-content">/</kbd> para mostrar la página de cálculo de ruta automáticamente
 
-    comments:
-      create:
-        notice: Su comentario ha sido publicado exitosamente
-
-      modal:
-        title_html: Comentario sobre <strong>%{name}</strong>
-
-      form:
-        introduction: Solo escribe una reseña si has tenido una experiencia real con este comerciante.
-        submit: Publicar el comentario
-
-      no_comment_yet: Aún no hay reseñas, sé el primero en dejar una sobre este comerciante si has tenido una experiencia real con el.
-      tooltip_no_moderation: El Colectivo no valida las opiniones dejadas por los usuarios.
-
     itineraries:
       new:
         title: Calcular mi ruta
@@ -332,6 +318,20 @@ es:
         submit: Reportar la anomalía
 
   comments:
+    create:
+      notice: Su comentario ha sido publicado exitosamente
+
+    modal:
+      title_html: Comentario sobre <strong>%{name}</strong>
+
+    form:
+      introduction: Solo escribe una reseña si has tenido una experiencia real con este comerciante.
+      submit: Publicar el comentario
+
+    comments:
+      no_comment_yet: Aún no hay reseñas, sé el primero en dejar una sobre este comerciante si has tenido una experiencia real con el.
+      tooltip_no_moderation: El Colectivo no valida las opiniones dejadas por los usuarios.
+
     flag_tag:
       flagged_comment: Comentarios señalizados al Colectivo
 

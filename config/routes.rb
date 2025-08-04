@@ -76,24 +76,26 @@ Rails.application.routes.draw do
     resources :projects, only: :show
 
     resources :merchant_proposals, only: %i[index new create]
-    resources :merchants, only: %i[show] do
+
+    concern :commentable do
+      resources :comments, only: %i[new create] do
+        scope module: :comments do
+          resource :report, only: %i[new create]
+        end
+      end
+    end
+
+    resources :merchants, only: %i[show], concerns: :commentable do
       post :refresh, on: :collection
 
       scope module: :merchants do
-        resources :comments, only: %i[new create]
         resource :popup, only: :show
         resource :itinerary, only: %i[new create]
         resource :report, only: %i[new create]
       end
     end
 
-    resources :comments, only: [] do
-      scope module: :comments do
-        resource :report, only: %i[new create]
-      end
-    end
-
-    resources :directories, only: %i[index new create show]
+    resources :directories, only: %i[index new create show], concerns: :commentable
     resources :coin_wallets, only: :show
     resources :delivery_zones, only: [] do
       collection do

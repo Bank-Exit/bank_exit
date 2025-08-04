@@ -7,13 +7,14 @@
   - if allowed_to?(:update?, directory)
     li
       = link_to 'Modifier',
-                edit_admin_directory_path(directory)
+                edit_admin_directory_path(directory),
+                class: 'btn btn-sm btn-warning'
 
   - if allowed_to?(:destroy?, directory)
     li
       = link_to 'Supprimer',
                 admin_directory_path(directory),
-                class: 'block text-center bg-error text-error-content',
+                class: 'btn btn-sm btn-error',
                 data: { \
                   turbo_method: :delete,
                   turbo_confirm: "Voulez-vous supprimer cette entrée de l'annuaire ?" \

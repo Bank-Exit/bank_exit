@@ -1,6 +1,8 @@
 class MerchantsController < PublicController
   before_action :set_merchant, only: :show
 
+  include Commentable if -> { comments_enabled? }
+
   add_breadcrumb proc { I18n.t('application.nav.menu.home') }, :root_path
   add_breadcrumb proc { I18n.t('application.nav.menu.map') }, :map_referer_path
 
@@ -15,12 +17,6 @@ class MerchantsController < PublicController
 
     set_meta_tags title: @merchant.name,
                   description: @merchant.description
-
-    if comments_enabled?
-      comments = CommentDecorator.wrap(@merchant.comments)
-
-      @pagy, @comments = pagy_array(comments, limit: 5)
-    end
 
     # Render adapted `show.html+banner` template if
     # merchant has an attached banner to highlight.
@@ -64,5 +60,9 @@ class MerchantsController < PublicController
 
   def debug_mode?
     params[:debug] == 'true'
+  end
+
+  def commentable
+    @merchant
   end
 end

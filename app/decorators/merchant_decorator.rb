@@ -51,11 +51,6 @@ class MerchantDecorator < ProfesionalDecorator
     "https://www.openstreetmap.org/#{original_identifier}"
   end
 
-  def average_rating
-    ratings = comments.pluck(:rating)
-    ratings.sum / ratings.size
-  end
-
   def ticker_coins
     coins.map do |coin|
       TICKERS[coin.to_sym]

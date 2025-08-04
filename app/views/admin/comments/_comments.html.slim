@@ -5,10 +5,10 @@ section.space-y-3
     table.table.table-zebra
       thead
         tr
+          - unless params[:controller] == 'admin/merchants'
+            th scope="col" Ressource
           th scope="col" Contenu
           th scope="col" Note
-          - unless params[:controller] == 'admin/merchants'
-            th scope="col" Commerçant
           th scope="col" Signalement
           th scope="col" Date
           th scope="col" Actions

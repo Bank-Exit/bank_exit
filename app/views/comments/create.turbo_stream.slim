@@ -1,0 +1,16 @@
+= turbo_stream.update :modal, ''
+
+/ Remove the default placeholder message after first comment
+- if @commentable.comments_count == 1
+  = turbo_stream.append :comments do
+    = render @comment
+  = turbo_stream.remove :empty_comments
+- else
+  = turbo_stream.prepend :comments do
+    = render @comment
+
+= turbo_stream.update :comments_count do
+  = @commentable.comments_count
+  =< Comment.model_name.human(count: @commentable.comments_count)
+
+= render_turbo_stream_flash_messages
