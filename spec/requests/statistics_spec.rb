@@ -15,9 +15,33 @@ RSpec.describe 'Statistics' do
 
   I18n.available_locales.each do |locale|
     describe "GET /#{locale}/stats" do
-      subject! { get '/en/stats' }
+      subject! { get "/#{locale}/stats" }
 
-      it { expect(response).to have_http_status :ok }
+      context 'when created_on is not present' do
+        let(:created_on) { nil }
+
+        it { expect(response).to have_http_status :ok }
+      end
+
+      context 'when created_on is present' do
+        context 'when created_on is valid date in the past' do
+          let(:created_on) { 3.days.ago.to_date }
+
+          it { expect(response).to have_http_status :ok }
+        end
+
+        context 'when created_on is valid date in the future' do
+          let(:created_on) { 3.days.from_now.to_date }
+
+          it { expect(response).to have_http_status :ok }
+        end
+
+        context 'when created_on is invalid date' do
+          let(:created_on) { 'fake' }
+
+          it { expect(response).to have_http_status :ok }
+        end
+      end
     end
   end
 

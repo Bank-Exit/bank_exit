@@ -13,6 +13,9 @@ class StatisticsController < PublicController
   # @route GET /en/stats {locale: "en"} (statistics_en)
   # @route GET /stats (stats)
   def show
+    @created_on = Date.parse(params[:created_on])
+  rescue TypeError, Date::Error
+    @created_on = Date.current
   end
 
   # @route GET /fr/stats/daily_merchants {locale: "fr"} (daily_merchants_statistics_fr)
@@ -24,7 +27,7 @@ class StatisticsController < PublicController
   def daily_merchants
     begin
       @date = Date.parse(params[:date])
-      @date = Date.current unless @date.between?(1.week.ago.to_date, Date.current)
+      @date = Date.current if @date.future?
     rescue TypeError, Date::Error
       @date = Date.current
     end

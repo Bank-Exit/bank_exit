@@ -14,7 +14,7 @@ article
 
   .article-body.max-w-full class="!px-5"
     .max-w-6xl.mx-auto
-      = turbo_frame_tag :weekly_merchants, src: daily_merchants_statistics_path(date: Date.current) do
+      = turbo_frame_tag :weekly_merchants, src: daily_merchants_statistics_path(date: @created_on) do
         .text-center
           span.loading.loading-dots.loading-xl
 
