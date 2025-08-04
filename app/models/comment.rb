@@ -1,10 +1,12 @@
 class Comment < ApplicationRecord
+  include WithCaptcha
+
   enum :flag_reason, spam: 0, violent: 1, sexual: 2,
                      hate: 3, harassment: 4, terrorism: 5,
                      child_abuse: 6, illegal: 7, other: 8
 
   attribute :affidavit, :boolean
-  attr_accessor :nickname # captacha to trick bot
+  captcha :nickname
 
   belongs_to :commentable, polymorphic: true, counter_cache: true
 
@@ -17,7 +19,6 @@ class Comment < ApplicationRecord
   validates :content, presence: true
   validates :rating, presence: true, inclusion: { in: (0..5) }
   validates :language, presence: true
-  validates :nickname, absence: true
   validates :affidavit, presence: true, acceptance: true, on: :create
 end
 
