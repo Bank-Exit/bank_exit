@@ -50,5 +50,7 @@ class ProfesionalDecorator < ApplicationDecorator
     else
       (parts.first[0] + parts.last[0]).upcase
     end
+  rescue StandardError
+    name.strip.first(2)
   end
 end
