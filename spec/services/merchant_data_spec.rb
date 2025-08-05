@@ -456,4 +456,100 @@ RSpec.describe MerchantData do
       it { is_expected.to include(last_survey_on: '2024-07-23') }
     end
   end
+
+  describe '#coins' do
+    context 'when [currency:XBT] is yes' do
+      let(:feature) do
+        {
+          type: 'Feature',
+          id: 'node/123456789',
+          properties: {
+            name: 'Foobar',
+            'currency:XBT': 'yes'
+          },
+          geometry: {}
+        }
+      end
+
+      context 'when no [payment:*] is specified' do
+        let(:twicked_feature) { feature }
+
+        it { is_expected.to include(coins: %w[bitcoin]) }
+      end
+
+      context 'when [payment:onchain] is yes' do
+        let(:twicked_feature) do
+          feature[:properties]['payment:onchain'] = 'yes'
+          feature
+        end
+
+        it { is_expected.to include(coins: %w[bitcoin]) }
+        it { is_expected.to include(bitcoin: true) }
+      end
+
+      context 'when [payment:lightning] is yes' do
+        let(:twicked_feature) do
+          feature[:properties]['payment:lightning'] = 'yes'
+          feature
+        end
+
+        it { is_expected.to include(coins: %w[bitcoin lightning]) }
+        it { is_expected.to include(bitcoin: true, lightning: true) }
+      end
+
+      context 'when [payment:lightning_contactless] is yes' do
+        let(:twicked_feature) do
+          feature[:properties]['payment:lightning_contactless'] = 'yes'
+          feature
+        end
+
+        it { is_expected.to include(coins: %w[bitcoin lightning_contactless]) }
+        it { is_expected.to include(bitcoin: true, contact_less: true) }
+      end
+    end
+
+    context 'when [currency:XBT] is no' do
+      let(:feature) do
+        {
+          type: 'Feature',
+          id: 'node/123456789',
+          properties: {
+            name: 'Foobar',
+            'currency:XBT': 'no'
+          },
+          geometry: {}
+        }
+      end
+
+      context 'when [payment:onchain] is yes' do
+        let(:twicked_feature) do
+          feature[:properties]['payment:onchain'] = 'yes'
+          feature
+        end
+
+        it { is_expected.to include(coins: %w[bitcoin]) }
+        it { is_expected.to include(bitcoin: true) }
+      end
+
+      context 'when [payment:lightning] is yes' do
+        let(:twicked_feature) do
+          feature[:properties]['payment:lightning'] = 'yes'
+          feature
+        end
+
+        it { is_expected.to include(coins: %w[lightning]) }
+        it { is_expected.to include(lightning: true) }
+      end
+
+      context 'when [payment:lightning_contactless] is yes' do
+        let(:twicked_feature) do
+          feature[:properties]['payment:lightning_contactless'] = 'yes'
+          feature
+        end
+
+        it { is_expected.to include(coins: %w[lightning_contactless]) }
+        it { is_expected.to include(contact_less: true) }
+      end
+    end
+  end
 end

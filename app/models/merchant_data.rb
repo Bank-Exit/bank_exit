@@ -178,15 +178,18 @@ class MerchantData
 
   def coins
     [].tap do |array|
+      # Bitcoin related
       array << 'bitcoin' if bitcoin?
       array << 'lightning' if lightning?
+      array << 'lightning_contactless' if contact_less?
+
       array << 'monero' if monero?
       array << 'june' if june?
     end
   end
 
   def bitcoin?
-    properties['currency:XBT'] == 'yes'
+    properties['currency:XBT'] == 'yes' || properties['payment:onchain'] == 'yes'
   end
 
   def lightning?

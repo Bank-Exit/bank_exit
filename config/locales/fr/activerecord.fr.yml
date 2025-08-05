@@ -18,6 +18,7 @@ merchant_attributes: &merchant_attributes
   lightning: Lightning Network
   june: June
   contact_less: LN sans contact
+  lightning_contactless: LN sans contact
   gold: Or
   silver: Argent
   coins: Monnaies

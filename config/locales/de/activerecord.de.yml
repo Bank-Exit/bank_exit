@@ -16,6 +16,7 @@ merchant_attributes: &merchant_attributes
   lightning: Lightning-Netzwerk
   june: June
   contact_less: LN kontaktlos
+  lightning_contactless: LN kontaktlos
   gold: Gold
   silver: Silber
   coins: Münzen

@@ -29,7 +29,9 @@
             td
               - if row.category
                 = t("categories.#{row.category}")
-            td== coins_list(row.coins, with_logo: true, with_name: false, size: 'w-6')
+            td
+              == coins_list(row.coins, with_logo: true, with_name: false, size: 'w-6')
+
             td
               = I18n.l(row.created_at, format: '%Hh%M')
             td
