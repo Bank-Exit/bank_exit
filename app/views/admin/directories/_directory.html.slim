@@ -31,7 +31,7 @@ tr.hover:bg-primary/5.transition-colors data-update-url=update_position_admin_di
         span= address.label
 
   td
-    .flex.items-center.gap-3
+    .flex.flex-col.items-center.gap-3
       - directory.coin_wallets.each do |coin_wallet|
         = image_tag icon_by_coin(coin_wallet.coin), class: "w-5 #{'opacity-10' unless coin_wallet.enabled?}", title: "#{coin_wallet.coin.capitalize} - #{coin_wallet.public_address}"
 

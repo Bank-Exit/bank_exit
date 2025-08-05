@@ -34,17 +34,7 @@
             == @merchant.full_address_with_country
 
       .flex.items-center.justify-center.gap-3
-        - if @merchant.monero?
-          = image_tag 'coins/logo-monero.svg', class: 'w-10 hover:scale-110 transition-transform', title: t('.monero_accepted')
-        - if @merchant.bitcoin?
-          = image_tag 'coins/logo-bitcoin.svg', class: 'w-10 hover:scale-110 transition-transform', title: t('.bitcoin_accepted')
-        - if @merchant.june?
-          = image_tag 'coins/logo-june.svg', class: 'w-10 hover:scale-110 transition-transform', title: t('.june_accepted')
-        - if @merchant.lightning?
-          = image_tag 'coins/logo-lightning.svg', class: 'w-10 hover:scale-110 transition-transform', title: t('.lightning_accepted')
-        - if @merchant.contact_less?
-          = image_tag 'coins/nfc-highlight.svg', class: 'w-10 hover:scale-110 transition-transform dark:bg-white dark:rounded-full dark:p-0.5 dark:border', title: t('.contact_less_accepted')
-
+        == coins_list(@merchant.coins, with_logo: true, with_name: false, size: 'w-10 hover:scale-110 transition-transform', inline: true)
         = merchant_kyc_no_kyc(@merchant.ask_kyc?)
 
       - if @merchant.description?

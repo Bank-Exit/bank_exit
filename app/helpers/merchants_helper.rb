@@ -26,13 +26,17 @@ module MerchantsHelper
     I18n.t('continents').invert
   end
 
-  def coins_list(coins, with_logo: false, with_name: true, size: 'w-5')
-    content_tag(:ul, class: 'space-y-2') do
+  def coins_list(coins, with_logo: false, with_name: true, size: 'w-5', inline: false)
+    content_tag(:div, class: "flex items-center gap-2 #{inline ? 'flex-row' : 'flex-col'}") do
       coins.map do |coin|
-        concat(content_tag(:li) do
+        concat(content_tag(:div) do
           return coin.capitalize unless with_logo
 
-          logo = image_tag "coins/logo-#{coin}.svg", class: "#{size} inline-flex", title: coin.capitalize
+          logo = if coin == 'lightning_contactless'
+                   image_tag "coins/logo-#{coin}.svg", class: "#{size} inline-flex dark:bg-white dark:rounded-full dark:p-0.5 dark:border", title: coin.capitalize
+                 else
+                   image_tag "coins/logo-#{coin}.svg", class: "#{size} inline-flex", title: coin.capitalize
+                 end
 
           if with_name
             "#{logo} #{coin.capitalize}".html_safe # rubocop:disable Rails/OutputSafety

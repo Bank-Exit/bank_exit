@@ -17,10 +17,8 @@ tr.odd:hover:bg-base-200.transition-colors
 
   td
     .flex.items-center.gap-2
-      - merchant.coins.each do |coin|
-        = image_tag icon_by_coin(coin),
-                    title: coin.capitalize,
-                    class: 'w-6 h-6'
+      == coins_list(merchant.coins, with_logo: true, with_name: false, size: 'w-6', inline: true)
+
       = merchant_kyc_no_kyc(merchant.ask_kyc?, klass: 'w-6 h-6 text-[10px]')
 
   td

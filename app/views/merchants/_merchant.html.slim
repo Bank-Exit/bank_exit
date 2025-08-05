@@ -37,8 +37,7 @@
         = t("categories.#{merchant.category}", default: merchant.category)
 
     .flex.items-center.justify-center.gap-3
-      - merchant.coins.each do |coin|
-        = image_tag icon_by_coin(coin), title: coin.capitalize, class: 'w-10 h-10'
+      == coins_list(merchant.coins, with_logo: true, with_name: false, size: 'w-10', inline: true)
 
       div= merchant_kyc_no_kyc(merchant.ask_kyc?)
 
