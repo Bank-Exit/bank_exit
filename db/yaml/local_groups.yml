@@ -5,7 +5,7 @@
   countries:
     - name: France
       alpha2: FR
-      link: "#"
+      link: https://t.me/SortieDeBanque
 
       regions:
         - name: Paris et Ile-de-France
