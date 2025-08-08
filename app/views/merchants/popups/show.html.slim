@@ -5,7 +5,7 @@
                 class: 'merchant-name',
                 data: { map__popup_target: 'merchantLink' } do
         = render 'logo_or_initials', model: @merchant, mode: :small
-        = @merchant.name
+        =< @merchant.name
 
     - if @merchant.category.present?
       .badge.badge-secondary.badge-sm.flex.mx-auto
