@@ -13,11 +13,6 @@ article
                    categories_statistics: @categories_statistics
 
   .article-body.max-w-full class="!px-5"
-    .max-w-6xl.mx-auto
-      = turbo_frame_tag :weekly_merchants, src: daily_merchants_statistics_path(date: @created_on) do
-        .text-center
-          span.loading.loading-dots.loading-xl
-
     .space-y-5
       .flex.flex-col.lg:flex-row.items-center.gap-5
         figure.w-full.chart
@@ -56,3 +51,10 @@ article
 
         figure.w-full.flex-1.chart
           = pie_chart @coins_statistics[:by_coins], title: t('.merchants_and_coins_title')
+
+    .divider.divider-primary.w-sm.mx-auto
+
+    .max-w-6xl.mx-auto
+      = turbo_frame_tag :weekly_merchants, src: daily_merchants_statistics_path(date: @created_on), loading: :lazy do
+        .text-center
+          span.loading.loading-dots.loading-xl

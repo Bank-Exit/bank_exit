@@ -1,4 +1,4 @@
-.space-y-5.mb-5
+.space-y-5
   ul.menu.menu-horizontal.menu-sm.gap-2.w-full.justify-center
     - (1.week.ago.to_date..Date.current).each do |d|
       li
@@ -47,5 +47,3 @@
 
   .text-xs.text-center.font-semibold.italic
     = t('.merchants_added_on_title', date: l(date))
-
-  .divider.divider-primary.w-sm.mx-auto
