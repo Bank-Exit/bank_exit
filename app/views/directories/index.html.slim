@@ -2,21 +2,31 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
   header.hero.bg-fixed.bg-banner-directories
     .hero-overlay
     .hero-content.text-center.text-neutral-content
-      .max-w-xl.space-y-5
-        h1.text-3xl.font-bold= Directory.model_name.human.capitalize
+      .max-w-3xl.space-y-6
+        section.space-y-3
+          h1.text-3xl.font-bold= Directory.model_name.human.capitalize
+
+          div
+            p.italic
+              = t('.headline_directory_explanation')
+            p.italic
+              - link = link_to maps_path, class: 'btn btn-secondary btn-sm' do
+                = lucide_icon 'map'
+                = t('.physical_merchants')
+              = t('.headline_directory_physical_merchants_html', link: link)
 
         - if @spotlights.any?
-          section
-          p
-            = t('spotlight')
-            = lucide_icon('star', class: 'inline-flex ml-2 stroke-yellow-500 fill-yellow-500')
+          section.space-y-3
+            p.font-bold
+              = t('spotlight')
+              = lucide_icon('star', class: 'inline-flex ml-2 stroke-yellow-500 fill-yellow-500')
 
-          .flex.flex-col.lg:flex-row.items-center.gap-3
-            - @spotlights.each do |spotlight|
-              = link_to directory_path(spotlight), class: 'btn btn-primary' do
-                - if spotlight.logo.attached?
-                  = image_tag url_for(spotlight.logo), class: 'bg-white w-8 rounded-full'
-                = spotlight.name
+            .flex.flex-col.lg:flex-row.items-center.justify-center.gap-3
+              - @spotlights.each do |spotlight|
+                = link_to directory_path(spotlight), class: 'btn btn-primary' do
+                  - if spotlight.logo.attached?
+                    = image_tag url_for(spotlight.logo), class: 'bg-white w-8 rounded-full'
+                  = spotlight.name
 
   .flex.flex-col.lg:flex-row.gap-2.lg:gap-3.lg:p-5.justify-center
     .panel.panel-base-300.space-y-3.lg:basis-1/4

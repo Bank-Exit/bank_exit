@@ -368,6 +368,9 @@ en:
   directories:
     index:
       new_entry_title: Suggest an entry
+      headline_directory_explanation: For all online sales, and for shops that do not have a physical or local shop.
+      headline_directory_physical_merchants_html: Otherwise, see %{link} map.
+      physical_merchants: Physical shops
 
     new:
       title: Suggest a directory entry

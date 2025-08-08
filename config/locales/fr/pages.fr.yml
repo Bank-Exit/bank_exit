@@ -368,6 +368,9 @@ fr:
   directories:
     index:
       new_entry_title: Proposer une entrée
+      headline_directory_explanation: Pour toutes les ventes en ligne, et pour les commerces qui n'ont pas de boutique physique ou locale.
+      headline_directory_physical_merchants_html: Autrement, voir la carte des %{link}
+      physical_merchants: Commerces physiques
 
     new:
       title: Proposition d'une entrée de l'annuaire
