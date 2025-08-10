@@ -59,7 +59,7 @@ module ApplicationHelper
   end
 
   def map_referer_path
-    request.referer && request.referer != request.url ? request.referer : maps_path
+    session[:map_referer_url].presence || maps_path
   end
 
   def logo_by_locale

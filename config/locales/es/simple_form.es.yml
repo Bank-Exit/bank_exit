@@ -34,7 +34,7 @@ es:
         service: Quiero
       map:
         delivery: Con entrega a domicilio
-        no_kyc: No pida un <abbr title="Know Your Customer">KYC</abbr>
+        no_kyc: <span>No pida un <abbr title="Know Your Customer">KYC</abbr></span>
         with_atms: Incluir <abbr title="Automated Teller Machine (máquina de cajero automatizado)">ATMs</abbr> ?
         category:
           all: Todas las categorías

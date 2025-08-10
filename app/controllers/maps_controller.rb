@@ -36,7 +36,7 @@ class MapsController < PublicController
   # @route GET /en/map/:zoom/:lat/:lon {locale: "en"} (pretty_map_en)
   # @route GET /map/:zoom/:lat/:lon
   def index
-    session[:map_referer_url] = request.url.gsub('&pagy=true', '')
+    session[:map_referer_url] = clean_url(request.url.gsub('&pagy=true', ''))
 
     if params[:presentation].present? && params[:presentation].in?(%w[map table grid])
       session[:merchants_presentation] = params[:presentation]

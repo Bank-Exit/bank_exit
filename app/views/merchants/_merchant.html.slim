@@ -1,5 +1,5 @@
 = link_to merchant_path(merchant),
-         class: "card bg-base-200 border border-transparent hover:border-primary/50 hover:!text-inherit transition-color #{'image-full' if merchant.banner.attached?}",
+         class: "card bg-base-200 border border-transparent hover:border-primary/50 hover:!text-inherit transition-color focus-visible:ring-2 focus-visible:ring-primary #{'image-full' if merchant.banner.attached?}",
          id: "merchant-#{merchant.identifier}" do
   - if merchant.banner.attached?
     figure

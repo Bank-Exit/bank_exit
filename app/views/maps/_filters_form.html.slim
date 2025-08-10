@@ -1,33 +1,30 @@
 = simple_form_for '',
   url: pretty_map_path( \
-                    zoom: params[:zoom],
-                    lat: params[:lat],
-                    lon: params[:lon],
-                    presentation: session[:merchants_presentation] \
-                  ),
-                  id: 'merchants_filter',
-                  method: :get,
-                  data: { \
-                    turbo_stream: true , \
-                    search_target: 'form', \
-                    action: 'change->search#submit keydown->search#submit' \
-                  } do |f|
-
+    zoom: params[:zoom],
+    lat: params[:lat],
+    lon: params[:lon] \
+  ),
+  id: 'merchants_filter',
+  method: :get,
+  data: { \
+    controller: 'map--filter',
+    search_target: 'form',
+    turbo_stream: true \
+  } do |f|
   .mb-2.flex.items-center.gap-2
     = f.input :search,
               label: false,
               input_html: { \
-                value: params.dig(:search),
-                placeholder: t('simple_form.placeholders.map.search'),
+                value: params[:search],
+                placeholder: t('simple_form.placeholders.map.search'), \
                 data: { \
-                  search_target: :query \
+                  map__filter_target: "input", \
                 } \
               },
               wrapper: false
 
-    span tabindex="0" data-action="keydown.enter->search#clearQuery click->search#clearQuery" title=t('.clear_search_query')
-      = lucide_icon 'undo',
-                    class: 'btn btn-xs btn-circle btn-warning p-1'
+    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_query') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="search"
+      = lucide_icon 'undo', class: 'p-1'
 
   .mb-2.flex.items-center.gap-2
     .w-full
@@ -40,15 +37,12 @@
                 include_blank: :translate,
                 input_html: { \
                   autocomplete: true,
-                  class: 'select w-full',
-                  data: { \
-                    search_target: :country \
-                  } \
+                  data: { map__filter_target: "input" },
+                  class: 'select w-full' \
                 }
 
-    span tabindex="0" data-action="keydown.enter->search#clearCountry:prevent click->search#clearCountry:prevent" title=t('.clear_search_country')
-      = lucide_icon 'undo',
-                     class: 'btn btn-xs btn-circle btn-warning p-1'
+    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_country') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="country"
+      = lucide_icon 'undo', class: 'p-1'
 
   .mb-2.flex.items-center.gap-2
     .w-full
@@ -59,20 +53,19 @@
                 include_blank: :translate,
                 input_html: { \
                   data: { \
-                    search_target: :continent \
+                    map__filter_target: "input", \
                   } \
                 }
 
-    span tabindex="0" data-action="keydown.enter->search#clearContinent:prevent click->search#clearContinent:prevent" title=t('.clear_search_continent')
-      = lucide_icon 'undo',
-                    class: 'btn btn-xs btn-circle btn-warning p-1'
+    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_continent') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="continent"
+      = lucide_icon 'undo', class: 'p-1'
 
   .mb-2.flex.items-center.gap-2
     - category_scope = 'categories'
     - category_group_title_scope = 'simple_form.labels.map.category'
 
-    select.select.w-full name="category" data-action="input->search#syncQuickCategories input->search#submit" data-search-target="category"
-      option value="all" = t('all', scope: category_group_title_scope)
+    select.select.w-full name="category" data-map--filter-target="input" data-action="change->map--filter#syncQuickCategories"
+      option value="" = t('all', scope: category_group_title_scope)
 
       optgroup label= t('catering', scope: category_group_title_scope)
         - %w[restaurant bar cafe grocery bakery pastry farm].each do |catering|
@@ -109,25 +102,24 @@
           option value=other selected=(params.dig(:category) == other)
             = t(other, scope: category_scope)
 
-    span tabindex="0" data-action="keydown.enter->search#clearCategory:prevent click->search#clearCategory:prevent" title=t('.clear_search_category')
-      = lucide_icon 'undo',
-                    class: 'btn btn-xs btn-circle btn-warning p-1'
+    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_category') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField click->map--filter#syncQuickCategories keyup.enter->map--filter#syncQuickCategories" data-resetable="category"
+      = lucide_icon 'undo', class: 'p-1'
 
   ul.grid.w-full.gap-2.grid-cols-4.mb-2
     - %i[bar cafe restaurant grocery].each do |category|
       li
-        input type="checkbox" id="#{category}-option" value=category class="hidden peer" name="category" data-action="input->search#syncSelectCategories input->search#submit" checked=(params.dig(:category) == category.to_s)
-        label.pretty-checkbox.flex.flex-col.items-center.justify-center.gap-2 for="#{category}-option" tabindex="0"
+        input type="checkbox" id="#{category}-option" value=category class="sr-only peer" name="category" data-map--filter-target="input" data-action="change->map--filter#syncSelectCategories" checked=(params[:category] == category.to_s)
+        label.pretty-checkbox.flex.flex-col.items-center.justify-center.gap-2.peer-focus:outline-2.peer-focus:outline-offset-2 for="#{category}-option"
           = merchant_icon_svg icon_for_category(category), width: 50, height: 50
           .text-xs.xl:text-base.wrap-anywhere.text-center
             = t("categories.#{category}")
 
-  ul.grid.w-full.gap-2.grid-cols-3.mb-3
+  ul.grid.w-full.gap-2.grid-cols-3.mb-2
     - [:monero, :bitcoin, :june].each do |coin|
       li.flex.flex-col.items-center.justify-start.gap-2
         .w-full
-          input type="checkbox" id="#{coin}-option" value=coin class="hidden peer" name="coins[]" data-action="input->search#submit" checked=params.dig(:coins)&.include?(coin.to_s)
-          label.pretty-checkbox.flex.flex-col.xl:flex-row.items-center.justify-center.gap-1 for="#{coin}-option" tabindex="0"
+          input type="checkbox" id="#{coin}-option" value=coin class="sr-only peer" name="coins[]" data-map--filter-target="input" checked=params.dig(:coins)&.include?(coin.to_s)
+          label.pretty-checkbox.flex.flex-col.xl:flex-row.items-center.justify-center.gap-1.peer-focus:outline-2.peer-focus:outline-offset-2 for="#{coin}-option"
             .avatar-group.-space-x-4
               - if coin == :bitcoin
                 .avatar
@@ -143,29 +135,42 @@
         - if coin == :bitcoin
           = render 'tooltip', id: 'tooltip-map-bitcoin', text: t('.tooltip_bitcoin_html')
 
-  .mb-2
-    .fieldset
-      = f.input :order_by_survey, as: :boolean,
-                boolean_style: :inline,
-                include_hidden: false,
-                wrapper: false,
-                input_html: { checked: params[:order_by_survey] == '1' },
-                label: t('simple_form.labels.map.order_by_survey').html_safe
+  .fieldset
+    = f.input :order_by_survey, as: :boolean,
+              boolean_style: :inline,
+              include_hidden: false,
+              wrapper: false,
+              input_html: { \
+                checked: params[:order_by_survey] == '1', \
+                data: { \
+                  map__filter_target: "input", \
+                } \
+              },
+              label: t('simple_form.labels.map.order_by_survey').html_safe
 
-      = f.input :no_kyc, as: :boolean,
-                boolean_style: :inline,
-                include_hidden: false,
-                wrapper: false,
-                input_html: { checked: params[:no_kyc] == '1' },
-                label: t('simple_form.labels.map.no_kyc').html_safe
+    = f.input :no_kyc, as: :boolean,
+              boolean_style: :inline,
+              include_hidden: false,
+              wrapper: false,
+              input_html: { \
+                checked: params[:no_kyc] == '1', \
+                data: { \
+                  map__filter_target: "input", \
+                } \
+              },
+              label: t('simple_form.labels.map.no_kyc').html_safe
 
-    .fieldset
-      = f.input :delivery, as: :boolean,
-                boolean_style: :inline,
-                include_hidden: false,
-                wrapper: false,
-                input_html: { checked: params[:delivery] == '1' },
-                label: t('simple_form.labels.map.delivery')
+    = f.input :delivery, as: :boolean,
+              boolean_style: :inline,
+              include_hidden: false,
+              wrapper: false,
+              input_html: { \
+                checked: params[:delivery] == '1', \
+                data: { \
+                  map__filter_target: "input", \
+                } \
+              },
+              label: t('simple_form.labels.map.delivery')
 
   noscript
     = f.button :submit, t('search')

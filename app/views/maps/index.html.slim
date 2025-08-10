@@ -1,14 +1,12 @@
-= render 'page_header', presentation: 'table'
-
 .flex.flex-col.lg:flex-row.items-start
   = render 'sidebar', h_screen: false do
     - if @directory_friends.present?
       details data-controller="directory-friends"
-        summary#directory-friends.flex.items-center.justify-center.gap-2.cursor-pointer data-action="click->directory-friends#toggle"
+        summary#directory-friends.flex.items-center.justify-center.gap-2.cursor-pointer data-action="click->directory-friends#toggle keyup.enter->directory-friends#toggle"
           h3.text-center.font-bold.text-primary.text-xs.lg:text-base
             = t('maps.directory_friends.other_directories_to_spend_title')
 
-        .grid.grid-cols-4.gap-1.mt-2
+        .grid.grid-cols-4.gap-1.mt-2.p-1
           - @directory_friends.each do |directory_friend|
             = link_to directory_friend.link, target: :_blank, class: 'panel panel-base-200' do
               - image_size = 'w-6 h-6 lg:w-10 lg:h-10 mx-auto'
@@ -23,6 +21,8 @@
                 = directory_friend.name
 
   = render 'maps/merchants_table_or_grid', merchants: @merchants, pagy: @pagy
+
+= render 'page_header'
 
 - if @faqs.any?
   = render template: 'faqs/show'

@@ -35,7 +35,7 @@ fr:
         service: Je veux
       map:
         delivery: Avec livraison à domicile
-        no_kyc: Ne demande pas de <abbr title="Know Your Customer">KYC</abbr>
+        no_kyc: <span>Ne demande pas de <abbr title="Know Your Customer">KYC</abbr></span>
         with_atms: Inclure les <abbr title="Automated Teller Machine (distributeurs automatiques)">ATMs</abbr> ?
         order_by_survey: Trier par date de vérification
         category:

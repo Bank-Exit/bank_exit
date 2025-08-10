@@ -9,7 +9,7 @@
     - if @directory_friends.present?
       = render 'directory_friends', directory_friends: @directory_friends
 
-= render 'page_header', presentation: 'map'
+= render 'page_header'
 
 - if @faqs.any?
   = render template: 'faqs/show'

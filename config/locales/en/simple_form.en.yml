@@ -34,7 +34,7 @@ en:
         service: I want
       map:
         delivery: With home delivery
-        no_kyc: Don't ask for a <abbr title="Know Your Customer">KYC</abbr>
+        no_kyc: <span>Don't ask for a <abbr title="Know Your Customer">KYC</abbr></span>
         with_atms: Include <abbr title="Automated Teller Machine">ATMs</abbr> ?
         order_by_survey: Sort by recently checked
         category:
