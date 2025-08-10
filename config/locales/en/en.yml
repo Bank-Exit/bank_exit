@@ -21,9 +21,9 @@ en:
   reset_search: Reset search
   status: Status
 
-  presentation_map: Map display
-  presentation_grid: Grid display
-  presentation_table: Table display
+  display_map: Map display
+  display_grid: Grid display
+  display_table: Table display
 
   download: Download
   video_tutorial: Video tutorial

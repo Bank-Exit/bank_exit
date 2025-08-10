@@ -21,9 +21,9 @@ fr:
   reset_search: Réinitialiser la recherche
   status: Statut
 
-  presentation_map: Affichage carte
-  presentation_grid: Affichage grille
-  presentation_table: Affichage tableau
+  display_map: Affichage carte
+  display_grid: Affichage grille
+  display_table: Affichage tableau
 
   download: Télécharger
   video_tutorial: Tutoriel vidéo

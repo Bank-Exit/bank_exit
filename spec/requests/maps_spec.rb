@@ -48,11 +48,11 @@ RSpec.describe 'Maps' do
       it { expect(response).to have_http_status :ok }
     end
 
-    %i[map table grid].each do |presentation|
-      context "when presentation mode is #{presentation}" do
+    %i[map table grid].each do |display|
+      context "when display mode is #{display}" do
         subject! do
           get '/map/6/123.45/-678.90',
-              params: { presentation: presentation }
+              params: { display: display }
         end
 
         it { expect(response).to have_http_status :ok }

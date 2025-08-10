@@ -38,10 +38,10 @@ class MapsController < PublicController
   def index
     session[:map_referer_url] = clean_url(request.url.gsub('&pagy=true', ''))
 
-    if params[:presentation].present? && params[:presentation].in?(%w[map table grid])
-      session[:merchants_presentation] = params[:presentation]
+    if params[:display].present? && params[:display].in?(%w[map table grid])
+      session[:merchants_display] = params[:display]
     else
-      session[:merchants_presentation] ||= 'map'
+      session[:merchants_display] ||= 'map'
     end
 
     # Merchant markers are handled by backend to keep code
@@ -51,7 +51,7 @@ class MapsController < PublicController
     # concern that is shared with other controllers.
 
     unless from_pagination?
-      set_markers if session[:merchants_presentation] == 'map'
+      set_markers if session[:merchants_display] == 'map'
 
       @coins = Coin.all(decorate: true)
       @last_update = last_update.to_i
@@ -74,7 +74,7 @@ class MapsController < PublicController
     )
 
     render variants: [
-      session[:merchants_presentation].to_sym
+      session[:merchants_display].to_sym
     ]
   end
 
@@ -85,7 +85,7 @@ class MapsController < PublicController
       :search, :category, :country, :continent,
       :delivery, :no_kyc, :order_by_survey,
       :locale, :pagy, :page, :zoom, :lat, :lon,
-      :presentation, coins: []
+      :display, coins: []
     )
   end
 

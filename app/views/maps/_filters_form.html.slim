@@ -15,6 +15,7 @@
     = f.input :search,
               label: false,
               input_html: { \
+                autocomplete: 'off',
                 value: params[:search],
                 placeholder: t('simple_form.placeholders.map.search'), \
                 data: { \

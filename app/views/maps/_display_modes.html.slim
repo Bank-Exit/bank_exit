@@ -1,18 +1,18 @@
-#presentation_modes.flex.items-center.gap-2
+#display_modes.flex.items-center.gap-2
   - req_params = request.query_parameters.compact_blank
   - req_params.delete(:pagy)
 
-  = link_to url_for(params: req_params.merge(presentation: :map)),
+  = link_to url_for(params: req_params.merge(display: :map)),
             class: "btn btn-square btn-soft #{'btn-secondary' if merchants_as_map?}",
-            title: t('presentation_map') do
+            title: t('display_map') do
     = lucide_icon 'map'
 
-  = link_to url_for(params: req_params.merge(presentation: :table)),
+  = link_to url_for(params: req_params.merge(display: :table)),
             class: "btn btn-square btn-soft #{'btn-secondary' if merchants_as_table?}",
-            title: t('presentation_table') do
+            title: t('display_table') do
     = lucide_icon 'rows-3'
 
-  = link_to url_for(params: req_params.merge(presentation: :grid)),
+  = link_to url_for(params: req_params.merge(display: :grid)),
             class: "btn btn-square btn-soft #{'btn-secondary' if merchants_as_grid?}",
-            title: t('presentation_grid') do
+            title: t('display_grid') do
     = lucide_icon 'grid-3x3'

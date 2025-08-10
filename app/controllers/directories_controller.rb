@@ -15,10 +15,10 @@ class DirectoriesController < PublicController
   # @route GET /directories
   def index
     session[:directories_referer_url] = clean_url(request.url)
-    if params[:presentation].present?
-      session[:directories_presentation] = params[:presentation]
+    if params[:display].present?
+      session[:directories_display] = params[:display]
     else
-      session[:directories_presentation] ||= 'grid'
+      session[:directories_display] ||= 'grid'
     end
 
     directories_filter = Directories::Filter.new(**filter_params, ip: request.remote_ip)
@@ -139,7 +139,7 @@ class DirectoriesController < PublicController
     params.permit([
                     :around_me, :query, :category, :city, :postcode,
                     :department, :region, :country,
-                    :continent, :world, :presentation,
+                    :continent, :world, :display,
                     { coins: [] }
                   ])
   end

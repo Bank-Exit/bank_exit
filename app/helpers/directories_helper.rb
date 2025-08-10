@@ -10,6 +10,6 @@ module DirectoriesHelper
   end
 
   def directories_as_grid?
-    session[:directories_presentation] == 'grid'
+    session[:directories_display] == 'grid'
   end
 end
