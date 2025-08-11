@@ -174,7 +174,6 @@ es:
       clear_search_category: Borrar categoría
       clear_search_country: Borrar país
       clear_search_continent: Borrar continente
-      tooltip_bitcoin_html: Los resultados de Bitcoin son solo en Europa Occidental, América y Oceanía
 
     merchants:
       tips_pagination:

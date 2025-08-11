@@ -174,7 +174,6 @@ en:
       clear_search_category: Clear search category
       clear_search_country: Clear search country
       clear_search_continent: Clear search continent
-      tooltip_bitcoin_html: Bitcoin data is scoped to West Europe, America and Oceania only
 
     merchants:
       tips_pagination:

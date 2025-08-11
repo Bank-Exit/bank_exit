@@ -174,7 +174,6 @@ de:
       clear_search_category: Kategorie löschen
       clear_search_country: Land löschen
       clear_search_continent: Kontinent löschen
-      tooltip_bitcoin_html: Bitcoin-Daten sind nur auf Westeuropa, Amerika und Ozeanien beschränkt
 
     merchants:
       tips_pagination:
