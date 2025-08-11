@@ -61,59 +61,60 @@
     span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_continent') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="continent"
       = lucide_icon 'undo', class: 'p-1'
 
-  .mb-2.flex.items-center.gap-2
-    - category_scope = 'categories'
-    - category_group_title_scope = 'simple_form.labels.map.category'
+  .flex.items-center.justify-between.gap-2.mb-2
+    .space-y-2.w-full
+      - category_scope = 'categories'
+      - category_group_title_scope = 'simple_form.labels.map.category'
 
-    select.select.w-full name="category" data-map--filter-target="input" data-action="change->map--filter#syncQuickCategories"
-      option value="" = t('all', scope: category_group_title_scope)
+      select.select.w-full name="category" data-map--filter-target="input" data-action="change->map--filter#syncQuickCategories"
+        option value="" = t('all', scope: category_group_title_scope)
 
-      optgroup label= t('catering', scope: category_group_title_scope)
-        - %w[restaurant bar cafe grocery bakery pastry farm].each do |catering|
-          option value=catering selected=(params.dig(:category) == catering)
-            = t(catering, scope: category_scope)
+        optgroup label= t('catering', scope: category_group_title_scope)
+          - %w[restaurant bar cafe grocery bakery pastry farm].each do |catering|
+            option value=catering selected=(params.dig(:category) == catering)
+              = t(catering, scope: category_scope)
 
-      optgroup label= t('store', scope: category_group_title_scope)
-        - %w[supermarket clothes].each do |store|
-          option value=store selected=(params.dig(:category) == store)
-            = t(store, scope: category_scope)
+        optgroup label= t('store', scope: category_group_title_scope)
+          - %w[supermarket clothes].each do |store|
+            option value=store selected=(params.dig(:category) == store)
+              = t(store, scope: category_scope)
 
-      optgroup label= t('aesthetic', scope: category_group_title_scope)
-        - %w[hairdresser beauty massage].each do |store|
-          option value=store selected=(params.dig(:category) == store)
-            = t(store, scope: category_scope)
+        optgroup label= t('aesthetic', scope: category_group_title_scope)
+          - %w[hairdresser beauty massage].each do |store|
+            option value=store selected=(params.dig(:category) == store)
+              = t(store, scope: category_scope)
 
-      optgroup label= t('craft', scope: category_group_title_scope)
-        - %w[jewelry handicraft].each do |craft|
-          option value=craft selected=(params.dig(:category) == craft)
-            = t(craft, scope: category_scope)
+        optgroup label= t('craft', scope: category_group_title_scope)
+          - %w[jewelry handicraft].each do |craft|
+            option value=craft selected=(params.dig(:category) == craft)
+              = t(craft, scope: category_scope)
 
-      optgroup label= t('health', scope: category_group_title_scope)
-        - %w[doctor dentist optician ophthalmology midwife nurse pharmacy psychiatry].each do |health|
-          option value=health selected=(params.dig(:category) == health)
-            = t(health, scope: category_scope)
+        optgroup label= t('health', scope: category_group_title_scope)
+          - %w[doctor dentist optician ophthalmology midwife nurse pharmacy psychiatry].each do |health|
+            option value=health selected=(params.dig(:category) == health)
+              = t(health, scope: category_scope)
 
-      optgroup label= t('financial', scope: category_group_title_scope)
-        - %w[atm bank exchange].each do |financial|
-          option value=financial selected=(params.dig(:category) == financial)
-            = t(financial, scope: category_scope)
+        optgroup label= t('financial', scope: category_group_title_scope)
+          - %w[atm bank exchange].each do |financial|
+            option value=financial selected=(params.dig(:category) == financial)
+              = t(financial, scope: category_scope)
 
-      optgroup label= t('other', scope: category_group_title_scope)
-        - %w[hotel tourism telecommunication mobile_phone].each do |other|
-          option value=other selected=(params.dig(:category) == other)
-            = t(other, scope: category_scope)
+        optgroup label= t('other', scope: category_group_title_scope)
+          - %w[hotel tourism telecommunication mobile_phone].each do |other|
+            option value=other selected=(params.dig(:category) == other)
+              = t(other, scope: category_scope)
+
+      ul.grid.w-full.gap-2.grid-cols-4
+        - %i[bar cafe restaurant grocery].each do |category|
+          li
+            input type="checkbox" id="#{category}-option" value=category class="sr-only peer" name="category" data-map--filter-target="input" data-action="change->map--filter#syncSelectCategories" checked=(params[:category] == category.to_s)
+            label.pretty-checkbox.flex.flex-col.items-center.justify-center.gap-2.peer-focus:outline-2.peer-focus:outline-offset-2 for="#{category}-option"
+              = merchant_icon_svg icon_for_category(category), width: 50, height: 50
+              .text-xs.3xl:text-base.wrap-anywhere.text-center
+                = t("categories.#{category}")
 
     span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_category') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField click->map--filter#syncQuickCategories keyup.enter->map--filter#syncQuickCategories" data-resetable="category"
       = lucide_icon 'undo', class: 'p-1'
-
-  ul.grid.w-full.gap-2.grid-cols-4.mb-2
-    - %i[bar cafe restaurant grocery].each do |category|
-      li
-        input type="checkbox" id="#{category}-option" value=category class="sr-only peer" name="category" data-map--filter-target="input" data-action="change->map--filter#syncSelectCategories" checked=(params[:category] == category.to_s)
-        label.pretty-checkbox.flex.flex-col.items-center.justify-center.gap-2.peer-focus:outline-2.peer-focus:outline-offset-2 for="#{category}-option"
-          = merchant_icon_svg icon_for_category(category), width: 50, height: 50
-          .text-xs.xl:text-base.wrap-anywhere.text-center
-            = t("categories.#{category}")
 
   ul.grid.w-full.gap-2.grid-cols-3.mb-2
     - [:monero, :bitcoin, :june].each do |coin|
@@ -130,7 +131,7 @@
                 .w-10
                   = image_tag "coins/logo-#{coin}.svg"
 
-            .text-xs.xl:text-base
+            .text-xs.3xl:text-base
               = coin.capitalize
 
         - if coin == :bitcoin
