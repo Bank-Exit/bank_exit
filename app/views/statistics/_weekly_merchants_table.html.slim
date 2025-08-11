@@ -42,7 +42,7 @@
                 = link_to t('details'), merchant_path(row), class: 'btn btn-primary btn-sm', data: { turbo_frame: :_top }
 
         - if merchants.empty?
-          td colspan="7"
+          td colspan="100%"
             p.text-center= t('empty_results')
 
   .text-xs.text-center.font-semibold.italic

@@ -25,7 +25,7 @@ section.space-y-3 data-controller="admin--table"
 
         - if merchants.blank?
           tr
-            td.text-center colspan="8"
+            td.text-center colspan="100%"
               | Il n'y a aucun commerçant à afficher
 
   == pagy_nav(pagy) if pagy.count > pagy.limit
