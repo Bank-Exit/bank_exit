@@ -67,6 +67,7 @@ RSpec.describe 'MerchantProposals' do
                   "currency:XBT": "yes",
                   "payment:onchain": "yes",
                   "currency:XMR": "yes",
+                  "payment:kyc": "no",
                   "contact:odysee": "https://www.odysee.com/WoodToys",
                   "_extra_keys": {
                     "country": "🇫🇷 France"

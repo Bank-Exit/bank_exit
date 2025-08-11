@@ -105,13 +105,14 @@ class MerchantProposal
     end
 
     properties['currency:XMR'] = 'yes' if 'monero'.in?(coins)
+    properties['currency:XG1'] = 'yes' if 'june'.in?(coins)
+
     properties['payment:lightning'] = 'yes' if 'lightning'.in?(coins)
     properties['payment:lightning_contactless'] = 'yes' if 'contact_less'.in?(coins)
     properties['payment:silver'] = 'yes' if 'silver'.in?(coins)
     properties['payment:gold'] = 'yes' if 'gold'.in?(coins)
 
-    properties['payment:XG1'] = 'yes' if 'june'.in?(coins)
-    properties['payment:kyc'] = 'yes' if ask_kyc
+    properties['payment:kyc'] = ask_kyc ? 'yes' : 'no'
 
     # Social networks
     properties['contact:facebook'] = contact_facebook if contact_facebook
