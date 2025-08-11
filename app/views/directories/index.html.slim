@@ -4,7 +4,7 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
     .hero-content.text-center.text-neutral-content
       .max-w-3xl.space-y-6
         section.space-y-3
-          h1.text-3xl.font-bold= Directory.model_name.human.capitalize
+          h1.text-3xl.font-bold= t('application.nav.menu.directories')
 
           div
             p.italic
@@ -28,15 +28,15 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
                     = image_tag url_for(spotlight.logo), class: 'bg-white w-8 rounded-full'
                   = spotlight.name
 
-  .flex.flex-col.lg:flex-row.gap-2.lg:gap-3.lg:p-5.justify-center
-    .panel.panel-base-300.space-y-3.lg:basis-1/4
+  .flex.flex-col.lg:flex-row.gap-2.lg:gap-3.justify-center.p-3
+    .space-y-3.lg:basis-1/4.px-1
       = link_to new_directory_path, class: 'btn btn-success w-full' do
         = t('.new_entry_title')
         =< lucide_icon 'notebook', class: 'w-5'
 
       = render 'filters', pagy: @pagy
 
-    #directories.lg:basis-3/4.space-y-3
+    #directories.lg:basis-3/4.space-y-3.px-1
       = render 'directories', directories: @directories, pagy: @pagy
 
 - if @faqs.any?

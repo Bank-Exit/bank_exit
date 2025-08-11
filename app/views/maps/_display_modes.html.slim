@@ -3,16 +3,16 @@
   - req_params.delete(:pagy)
 
   = link_to url_for(params: req_params.merge(display: :map)),
-            class: "btn btn-square btn-soft #{'btn-secondary' if merchants_as_map?}",
+    class: "btn btn-square #{merchants_as_map? ? 'btn-success' : 'btn-neutral'}",
             title: t('display_map') do
     = lucide_icon 'map'
 
   = link_to url_for(params: req_params.merge(display: :table)),
-            class: "btn btn-square btn-soft #{'btn-secondary' if merchants_as_table?}",
+            class: "btn btn-square #{merchants_as_table? ? 'btn-info' : 'btn-neutral'}",
             title: t('display_table') do
     = lucide_icon 'rows-3'
 
   = link_to url_for(params: req_params.merge(display: :grid)),
-            class: "btn btn-square btn-soft #{'btn-secondary' if merchants_as_grid?}",
+            class: "btn btn-square #{merchants_as_grid? ? 'btn-warning' : 'btn-neutral'}",
             title: t('display_grid') do
     = lucide_icon 'grid-3x3'

@@ -1,15 +1,15 @@
-.flex.items-center.justify-center.lg:justify-end.gap-2
+.flex.items-center.justify-end.gap-2
   - req_params = request.query_parameters.compact_blank
 
   = link_to url_for(params: req_params.merge(display: :grid)),
            data: { turbo_stream: true },
-           class: "btn #{'btn-secondary' if directories_as_grid?}",
+           class: "btn btn-square #{directories_as_grid? ? 'btn-warning' : 'btn-neutral'}",
            title: t('display_grid') do
     = lucide_icon 'grid-3x3'
 
   = link_to url_for(params: req_params.merge(display: :table)),
             data: { turbo_stream: true },
-            class: "btn #{'btn-secondary' unless directories_as_grid?}",
+            class: "btn btn-square #{directories_as_grid? ? 'btn-neutral' : 'btn-info'}",
             title: t('display_table') do
     = lucide_icon 'rows-3'
 

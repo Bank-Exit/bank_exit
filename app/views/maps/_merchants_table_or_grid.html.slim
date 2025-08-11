@@ -1,6 +1,9 @@
 - should_paginate = pagy.count > pagy.limit
 
-#merchants_results.relative.w-full.h-full.lg:w-2/3.px-1.py-4.space-y-3 data-controller=("pagination" if should_paginate)
+#merchants_results.relative.w-full.h-full.lg:w-2/3.px-3.py-3.space-y-3 data-controller=("pagination" if should_paginate)
+  .flex.justify-end
+    = render 'display_modes'
+
   - if merchants.any?
     - if should_paginate
       == pagy_nav(pagy, anchor_string: 'data-turbo-stream="true" data-action="click->pagination#addPageToURL"')
