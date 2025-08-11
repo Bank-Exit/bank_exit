@@ -77,23 +77,33 @@ export default class extends Controller {
       event.target.parentElement.dataset.resetable;
     if (!fieldName) return;
 
-    const input = this.inputTargets.find(
+    const inputs = this.inputTargets.filter(
       (input) =>
         input.name === fieldName || input.name?.startsWith(fieldName + "["),
     );
 
-    if (input) {
-      if (input.type === "checkbox" || input.type === "radio") {
-        if (input.checked == false) return;
-        input.checked = false;
-      } else {
-        if (input.value == "") return;
-        input.value = "";
-      }
-    }
+    if (inputs.length === 0) return;
 
-    this.#updateBrowserUrl();
-    this.element.requestSubmit();
+    let changed = false;
+
+    inputs.forEach((input) => {
+      if (input.type === "checkbox" || input.type === "radio") {
+        if (input.checked) {
+          input.checked = false;
+          changed = true;
+        }
+      } else {
+        if (input.value !== "") {
+          input.value = "";
+          changed = true;
+        }
+      }
+    });
+
+    if (changed) {
+      this.#updateBrowserUrl();
+      this.element.requestSubmit();
+    }
   }
 
   // Synchronize select category option with quick

@@ -172,6 +172,7 @@ fr:
     filters_form:
       clear_search_query: Effacer la recherche
       clear_search_category: Effacer la catégorie
+      clear_search_coins: Effacer les monnaies
       clear_search_country: Effacer le pays
       clear_search_continent: Effacer le continent
 

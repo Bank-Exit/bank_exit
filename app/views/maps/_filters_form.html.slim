@@ -116,23 +116,27 @@
     span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_category') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField click->map--filter#syncQuickCategories keyup.enter->map--filter#syncQuickCategories" data-resetable="category"
       = lucide_icon 'undo', class: 'p-1'
 
-  ul.grid.w-full.gap-2.grid-cols-3.mb-2
-    - [:monero, :bitcoin, :june].each do |coin|
-      li.flex.flex-col.items-center.justify-start.gap-2
-        .w-full
-          input type="checkbox" id="#{coin}-option" value=coin class="sr-only peer" name="coins[]" data-map--filter-target="input" checked=params.dig(:coins)&.include?(coin.to_s)
-          label.pretty-checkbox.flex.flex-col.xl:flex-row.items-center.justify-center.gap-1.peer-focus:outline-2.peer-focus:outline-offset-2 for="#{coin}-option"
-            .avatar-group.-space-x-4
-              - if coin == :bitcoin
+  .mb-2.flex.items-center.gap-2
+    ul.grid.w-full.gap-2.grid-cols-3
+      - [:monero, :bitcoin, :june].each do |coin|
+        li.flex.flex-col.items-center.justify-start.gap-2
+          .w-full
+            input type="checkbox" id="#{coin}-option" value=coin class="sr-only peer" name="coins[]" data-map--filter-target="input" checked=params.dig(:coins)&.include?(coin.to_s)
+            label.pretty-checkbox.flex.flex-col.xl:flex-row.items-center.justify-center.gap-1.peer-focus:outline-2.peer-focus:outline-offset-2 for="#{coin}-option"
+              .avatar-group.-space-x-4
+                - if coin == :bitcoin
+                  .avatar
+                    .w-10
+                      = image_tag "coins/logo-lightning.svg"
                 .avatar
                   .w-10
-                    = image_tag "coins/logo-lightning.svg"
-              .avatar
-                .w-10
-                  = image_tag "coins/logo-#{coin}.svg"
+                    = image_tag "coins/logo-#{coin}.svg"
 
-            .text-xs.3xl:text-base
-              = coin.capitalize
+              .text-xs.3xl:text-base
+                = coin.capitalize
+
+    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_coins') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="coins"
+      = lucide_icon 'undo', class: 'p-1'
 
   .fieldset
     = f.input :order_by_survey, as: :boolean,

@@ -172,6 +172,7 @@ en:
     filters_form:
       clear_search_query: Clear search query
       clear_search_category: Clear search category
+      clear_search_coins: Clear search coins
       clear_search_country: Clear search country
       clear_search_continent: Clear search continent
 
