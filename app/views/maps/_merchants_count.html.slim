@@ -1,4 +1,6 @@
 - if pagy.count == 0
   span.badge.badge-error= t('x_results', count: 0)
 - else
-  span.badge.badge-success= t('x_results', count: pagy.count)
+  span.badge.badge-success
+    - count = number_with_delimiter(pagy.count)
+    = t('x_results', count: count)
