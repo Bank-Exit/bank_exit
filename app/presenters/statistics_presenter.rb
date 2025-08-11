@@ -160,7 +160,7 @@ class StatisticsPresenter < ApplicationPresenter
   def merchants_categories_podium
     base_merchants
       .group(:category)
-      .order('count_all DESC')
+      .order(count_all: :desc)
       .limit(3)
       .count
       .to_a

@@ -1,5 +1,6 @@
 class GithubAPI
   include HTTParty
+
   base_uri 'https://api.github.com'
 
   def create_issue!(title:, body: nil, labels: [])

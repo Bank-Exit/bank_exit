@@ -1,5 +1,6 @@
 class OSRMRouterAPI
   include HTTParty
+
   base_uri 'https://router.project-osrm.org'
 
   def calculate_itinerary(dep_lat, dep_long, arr_lat, arr_long, detailed_steps: false)

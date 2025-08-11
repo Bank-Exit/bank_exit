@@ -87,7 +87,7 @@ class DirectoriesController < PublicController
 
       @directory.build_address if @directory.address.blank?
 
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   end
 

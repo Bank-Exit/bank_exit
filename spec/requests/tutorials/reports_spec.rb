@@ -60,7 +60,7 @@ RSpec.describe 'Tutorials::Reports' do
           action
         end
 
-        it { expect(response).to have_http_status :unprocessable_entity }
+        it { expect(response).to have_http_status :unprocessable_content }
         it { expect(flash[:alert]).to eq('Github API error: Foobar error') }
       end
     end
@@ -72,7 +72,7 @@ RSpec.describe 'Tutorials::Reports' do
 
       before { action }
 
-      it { expect(response).to have_http_status :unprocessable_entity }
+      it { expect(response).to have_http_status :unprocessable_content }
     end
 
     context 'when :description is empty' do
@@ -82,7 +82,7 @@ RSpec.describe 'Tutorials::Reports' do
 
       before { action }
 
-      it { expect(response).to have_http_status :unprocessable_entity }
+      it { expect(response).to have_http_status :unprocessable_content }
     end
 
     context 'when bot make the request' do

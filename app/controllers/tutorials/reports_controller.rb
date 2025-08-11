@@ -33,11 +33,11 @@ module Tutorials
 
         flash.now[:notice] = t('.notice')
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     rescue StandardError => e
       flash.now[:alert] = e.message
-      render status: :unprocessable_entity
+      render status: :unprocessable_content
     end
 
     private

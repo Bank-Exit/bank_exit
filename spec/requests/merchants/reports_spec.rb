@@ -71,7 +71,7 @@ RSpec.describe 'Merchants::Reports' do
           describe '[HTTP Status]' do
             before { action }
 
-            it { expect(response).to have_http_status :unprocessable_entity }
+            it { expect(response).to have_http_status :unprocessable_content }
             it { expect(flash[:alert]).to eq('Github API error: Foobar error') }
           end
         end
@@ -85,7 +85,7 @@ RSpec.describe 'Merchants::Reports' do
         describe '[HTTP Status]' do
           before { action }
 
-          it { expect(response).to have_http_status :unprocessable_entity }
+          it { expect(response).to have_http_status :unprocessable_content }
           it { expect(flash[:alert]).to be_nil }
         end
       end

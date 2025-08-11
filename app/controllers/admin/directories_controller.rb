@@ -38,7 +38,7 @@ module Admin
       else
         @directory.build_address if @directory.address.blank?
 
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -61,7 +61,7 @@ module Admin
       else
         @directory.build_address if @directory.address.blank?
 
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 
@@ -84,7 +84,7 @@ module Admin
         directories = Directory.by_position.includes(:logo_attachment, :address, :coin_wallets, :contact_ways)
         @directories = DirectoryDecorator.wrap(directories)
       else
-        head :unprocessable_entity
+        head :unprocessable_content
       end
     end
 

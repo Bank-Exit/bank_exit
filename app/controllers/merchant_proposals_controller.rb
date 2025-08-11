@@ -59,7 +59,7 @@ class MerchantProposalsController < PublicController
     else
       set_faqs
 
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_content
     end
   rescue StandardError => e
     redirect_to maps_path, alert: e.message

@@ -76,7 +76,7 @@ RSpec.describe 'Directories' do
 
       it 'does not create a new Directory', :aggregate_failures do
         action
-        expect(response).to have_http_status :unprocessable_entity
+        expect(response).to have_http_status :unprocessable_content
       end
     end
 
@@ -106,7 +106,7 @@ RSpec.describe 'Directories' do
       describe '[HTTP Status]' do
         before { action }
 
-        it { expect(response).to have_http_status :unprocessable_entity }
+        it { expect(response).to have_http_status :unprocessable_content }
         it { expect(flash[:notice]).to be_nil }
       end
     end

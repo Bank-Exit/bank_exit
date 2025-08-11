@@ -1,5 +1,6 @@
 class OverpassAPI
   include HTTParty
+
   default_timeout 360
   base_uri 'https://overpass-api.de'
 

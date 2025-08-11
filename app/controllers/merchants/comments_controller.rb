@@ -39,7 +39,7 @@ module Merchants
       elsif @comment.save
         flash.now[:notice] = t('.notice')
       else
-        render :new, status: :unprocessable_entity
+        render :new, status: :unprocessable_content
       end
     end
 

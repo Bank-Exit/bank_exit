@@ -124,7 +124,7 @@ RSpec.describe 'MerchantProposals' do
       describe '[HTTP status]' do
         before { action }
 
-        it { expect(response).to have_http_status :unprocessable_entity }
+        it { expect(response).to have_http_status :unprocessable_content }
       end
     end
 
@@ -148,7 +148,7 @@ RSpec.describe 'MerchantProposals' do
       describe '[HTTP Status]' do
         before { action }
 
-        it { expect(response).to have_http_status :unprocessable_entity }
+        it { expect(response).to have_http_status :unprocessable_content }
         it { expect(flash[:alert]).to be_nil }
       end
     end
@@ -200,7 +200,7 @@ RSpec.describe 'MerchantProposals' do
       describe '[HTTP Status]' do
         before { action }
 
-        it { expect(response).to have_http_status :unprocessable_entity }
+        it { expect(response).to have_http_status :unprocessable_content }
         it { expect(flash[:notice]).to be_nil }
       end
     end

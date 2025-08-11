@@ -47,7 +47,7 @@ RSpec.describe 'Merchants::Comments' do
         describe '[HTTP status]' do
           before { action }
 
-          it { expect(response).to have_http_status :unprocessable_entity }
+          it { expect(response).to have_http_status :unprocessable_content }
         end
 
         it { expect { action }.to_not change { Comment.count } }
@@ -73,7 +73,7 @@ RSpec.describe 'Merchants::Comments' do
         describe '[HTTP status]' do
           before { action }
 
-          it { expect(response).to have_http_status :unprocessable_entity }
+          it { expect(response).to have_http_status :unprocessable_content }
         end
 
         it { expect { action }.to_not change { Comment.count } }

@@ -63,7 +63,7 @@ module Admin
 
         redirect_to admin_merchants_path(format: :html)
       else
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 
