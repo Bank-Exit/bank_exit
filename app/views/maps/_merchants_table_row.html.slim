@@ -9,7 +9,7 @@ tr.odd:hover:bg-base-200.transition-colors
   td
     .flex.items-center.gap-2
       = merchant_icon_svg(merchant.icon, width: 35, height: 35)
-      .text-xs.wrap-anywhere
+      .text-xs
         = t(merchant.category, scope: 'categories')
 
   td

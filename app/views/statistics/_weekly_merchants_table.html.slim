@@ -24,7 +24,9 @@
 
           tr
             td= "##{count}"
-            th scope="row"= row.name
+            th scope="row"
+              = link_to row.name, merchant_path(row)
+
             td= row.pretty_country
             td
               - if row.category

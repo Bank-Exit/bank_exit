@@ -29,7 +29,7 @@ module MerchantsHelper
   def coins_list(coins, with_logo: false, with_name: true, size: 'w-5', inline: false)
     content_tag(:div, class: "flex items-center gap-2 #{inline ? 'flex-row' : 'flex-col'}") do
       coins.map do |coin|
-        concat(content_tag(:div) do
+        concat(content_tag(:div, class: 'flex-shrink-0 min-w-max') do
           return coin.capitalize unless with_logo
 
           logo = if coin == 'lightning_contactless'
