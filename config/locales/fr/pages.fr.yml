@@ -314,7 +314,7 @@ fr:
 
     refresh:
       notice: La liste des commerçants est en cours de rafraîchissement. Veuillez patienter, un message vous informera dès que cela sera terminé.
-      refresh_success: Les commerçants ont été mis à jour, vous pouvez actualiser la carte pour accéder aux dernières données.
+      refresh_success: Les commerçants ont été mis à jour, vous pouvez actualiser la carte pour accéder aux dernières données ou cliquer sur <a href="%{link}">la carte</a>.
 
     popups:
       show:

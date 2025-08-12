@@ -36,11 +36,13 @@ class FetchMerchants < ApplicationService
 
     # Broadcast with message scoped by locale
     I18n.available_locales.each do |locale|
-      message = I18n.t('refresh_success', scope: i18n_scope, locale: locale)
+      I18n.with_locale(locale) do
+        message = I18n.t('refresh_success', link: maps_url, scope: i18n_scope)
 
-      Merchant.broadcast_flash(
-        :notice, message, locale: locale, disappear: false
-      )
+        Merchant.broadcast_flash(
+          :notice, message, locale: locale, disappear: false
+        )
+      end
     end
   rescue StandardError => e
     restore_backup_files_on_disk

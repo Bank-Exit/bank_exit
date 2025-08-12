@@ -16,8 +16,8 @@
 
   div
     - unless disappear
-      p.text-xs.italic.mb-1.underline= l(Time.current)
-    .max-h-64.overflow-y-auto= message
+      p.text-xs.italic.mb-1= l(Time.current)
+    .max-h-64.overflow-y-auto== message
 
   - unless disappear
     button.btn.btn-xs.btn-square aria-label="Close" class=close_button_classes data-action="click->removals#forceRemove"

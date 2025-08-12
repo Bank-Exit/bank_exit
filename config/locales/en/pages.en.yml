@@ -314,7 +314,7 @@ en:
 
     refresh:
       notice: The merchant list is currently being refreshed. Please wait, a message will inform you as soon as this is complete.
-      refresh_success: The merchants have been updated, you can refresh the map to access the latest data.
+      refresh_success: The merchants have been updated, you can refresh the map to access the latest data or click on <a href="%{link}">the map</a>.
 
     popups:
       show:

@@ -5,6 +5,10 @@
     top: 1rem;
     right: 1rem;
     z-index: 50;
+
+    a {
+        text-decoration: underline;
+    }
 }
 
 .appear-then-fade {
