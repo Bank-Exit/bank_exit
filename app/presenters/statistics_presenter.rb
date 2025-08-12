@@ -1,8 +1,8 @@
 class StatisticsPresenter < ApplicationPresenter
   include ApplicationHelper
 
-  WEST_EUROPEAN_COUNTRIES = %w[FR GB ES PT DE IT CH BE].freeze
-  NORTH_AMERICA_COUNTRIES = %w[CA US MX CU AU NZ].freeze
+  WEST_EUROPEAN_COUNTRIES = %w[FR GB ES PT DE IT CH BE NL CZ].freeze
+  NORTH_AMERICA_COUNTRIES = %w[CA US MX CU SV AU NZ].freeze
   SOUTH_AMERICA_COUNTRIES = %w[BR AR BO PY UY CL].freeze
   AFRICA_COUNTRIES = %w[ZA KE ZM RE].freeze
 
