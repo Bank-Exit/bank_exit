@@ -2,6 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   static targets = ["fitBounds", "gestureHandling"];
+
   connect() {
     if (localStorage.getItem("force-fit-bounds") == "true") {
       this.fitBoundsTarget.checked = true;
@@ -19,7 +20,9 @@ export default class extends Controller {
       localStorage.removeItem("force-fit-bounds");
     }
 
-    this.dispatch("refreshMap");
+    this.dispatch("toggleFitBounds", {
+      detail: { checked: e.target.checked },
+    });
   }
 
   toggleGestureHandling(e) {
@@ -29,6 +32,6 @@ export default class extends Controller {
       localStorage.removeItem("force-gesture-handling");
     }
 
-    this.dispatch("refreshMap");
+    this.dispatch("toggleGestureHandling");
   }
 }

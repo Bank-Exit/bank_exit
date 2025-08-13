@@ -48,15 +48,25 @@ export default class extends Controller {
     const newParams = new URLSearchParams();
 
     for (const [key, value] of formData.entries()) {
-      const input = form.querySelector(`[name="${CSS.escape(key)}"]`);
+      const inputs = Array.from(
+        form.querySelectorAll(`[name="${CSS.escape(key)}"]`),
+      );
+      const isArrayField = key.endsWith("[]");
 
-      const isCheckbox = input?.type === "checkbox";
-      const isChecked = isCheckbox ? input.checked : true;
+      const matchingInput = inputs.find((input) => input.value === value);
+      if (!matchingInput) continue;
+
+      const isCheckbox = matchingInput.type === "checkbox";
+      const isChecked = isCheckbox ? matchingInput.checked : true;
       const isFilled = value !== null && value.toString().trim() !== "";
-      const isDefaultBlank = input?.tagName === "SELECT" && value === "";
+      const isDefaultBlank = matchingInput.tagName === "SELECT" && value === "";
 
       if (isChecked && isFilled && !isDefaultBlank) {
-        newParams.set(key, value);
+        if (isArrayField) {
+          newParams.append(key, value);
+        } else {
+          newParams.set(key, value);
+        }
       }
     }
 

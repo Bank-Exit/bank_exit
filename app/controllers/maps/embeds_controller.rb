@@ -8,7 +8,6 @@ module Maps
     include Merchandable
 
     before_action :set_options
-    before_action :set_merchants, :set_markers
     after_action :remove_frame_header
 
     attr_reader :country, :continent, :coins

@@ -84,7 +84,6 @@ class MerchantDecorator < ProfesionalDecorator
 
   def to_osm_map
     {
-      identifier: identifier,
       icon: icon,
       latitude: latitude,
       longitude: longitude,

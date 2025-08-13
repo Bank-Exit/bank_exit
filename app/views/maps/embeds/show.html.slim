@@ -1,2 +1,14 @@
-#map.w-screen.h-screen data-controller="map--embed" data-map--embed-markers-value=@merchant_markers.to_json data-map--embed-latitude-value=@latitude data-map--embed-longitude-value=@longitude data-map--embed-zoom-value=@zoom data-map--embed-gesture-handling-value=@gesture_handling.to_s data-map--embed-fit-bounds-value=@fit_bounds.to_s data-map--embed-use-clusters-value=@use_clusters.to_s data-map--embed-show-attribution-value=@show_attribution.to_s data-map--embed-attribution-html-value=html_escape_once(embed_map_attribution_html)
-  = render 'maps/loader'
+#map.w-screen.h-screen(
+  data-controller="map--embed"
+  data-map--embed-fetch-markers-url-value=map_fetch_markers_path
+  data-map--embed-latitude-value=@latitude
+  data-map--embed-longitude-value=@longitude
+  data-map--embed-zoom-value=@zoom
+  data-map--embed-gesture-handling-value=@gesture_handling.to_s
+  data-map--embed-fit-bounds-value=@fit_bounds.to_s
+  data-map--embed-use-clusters-value=@use_clusters.to_s
+  data-map--embed-show-attribution-value=@show_attribution.to_s
+  data-map--embed-attribution-html-value=html_escape_once(embed_map_attribution_html)
+)
+  .absolute.inset-0 class="z-[999]" data-map--embed-target="loader"
+    = render 'maps/loader'

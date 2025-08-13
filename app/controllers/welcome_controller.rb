@@ -2,8 +2,6 @@ class WelcomeController < PublicController
   include Merchandable
   include Statisticable
 
-  before_action :set_merchants
-  before_action :set_markers
   before_action :set_statistics
 
   # @route GET /fr {locale: "fr"} (root_fr)

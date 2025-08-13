@@ -34,8 +34,12 @@ class FetchMerchants < ApplicationService
     # Might take time at the first execution !
     Merchants::AssignCountry.call
 
+    invalidate_cache
+
     # Broadcast with message scoped by locale
     I18n.available_locales.each do |locale|
+      Rails.cache.delete([locale, :statistics, :graphics])
+
       I18n.with_locale(locale) do
         message = I18n.t('refresh_success', link: maps_url, scope: i18n_scope)
 
@@ -102,5 +106,18 @@ class FetchMerchants < ApplicationService
 
   def i18n_scope
     'merchants.refresh'
+  end
+
+  # Manually invalidate cache after Overpass sync
+  def invalidate_cache
+    merchants_cache = '%:MERCHANTS_FILTER:%'
+    statistics_concern = "#{Rails.env}:concerns/statistics%"
+    statistics_views = "#{Rails.env}:views/statistics%"
+
+    records = SolidCache::Entry.where(
+      'key LIKE ? OR key LIKE ? OR key LIKE ?',
+      merchants_cache, statistics_concern, statistics_views
+    )
+    records.each(&:destroy)
   end
 end
