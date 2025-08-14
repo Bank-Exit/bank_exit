@@ -6,12 +6,12 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
         section.space-y-3
           h1.text-3xl.font-bold= t('application.nav.menu.directories')
 
-          div
+          .bg-base-100/60.p-6.rounded-box
             p.italic
               = t('.headline_directory_explanation')
             p.italic
-              - link = link_to maps_path, class: 'btn btn-secondary btn-sm' do
-                = lucide_icon 'map'
+              - link = link_to maps_path, class: 'btn btn-secondary btn-xs' do
+                = lucide_icon 'map', class: 'w-4'
                 = t('.physical_merchants')
               = t('.headline_directory_physical_merchants_html', link: link)
 
