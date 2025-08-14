@@ -1,0 +1,8 @@
+- i18n_scope = 'comments.modal'
+
+- content_for(:title) do
+  h3.text-xl.font-semibold
+    = t('title_html', name: commentable.name, scope: i18n_scope)
+
+= render_modal do
+  = render 'form', commentable: @commentable, comment: @comment

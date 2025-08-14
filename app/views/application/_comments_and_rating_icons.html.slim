@@ -1,0 +1,13 @@
+- if allowed_to?(:index?, Comment)
+  .flex.flex-col.items-center.gap-1
+    .text-xs.ml-1 title="#{model.comments_count} #{Comment.model_name.human(count: model.comments_count)}"
+      = lucide_icon 'message-square', class: 'inline-flex mr-0.5 font-normal w-3.5'
+      = model.comments_count
+
+    - if model.comments_count > 0
+      .flex.items-center.gap-1
+        .rating.rating-xs
+          .mask.mask-star.bg-primary aria-label="#{model.average_rating} star" aria-current="true" title="#{model.average_rating}/5"
+        p.text-xs
+          = number_with_precision(model.average_rating, strip_insignificant_zeros: true, precision: 2)
+          | /5

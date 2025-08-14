@@ -1,29 +1,24 @@
-article.panel.panel-base-300 id="comment_#{comment.id}"
-  header.flex.items-start.justify-between.border-b.dark:border-gray-500.pb-3.mb-3
-    div
-      p.flex.items-center.gap-2.text-sm
-        - if comment.pseudonym.present?
-          span.font-bold= comment.pseudonym
-
-        time.text-gray-400.text-xs datetime=comment.updated_at
-          = I18n.l(comment.updated_at)
-
-      .flex.items-center.gap-2
-        .rating.rating-sm
-          - 5.times do |i|
-            .mask.mask-star.bg-primary aria-label="#{i} star" aria-current=('true' if i + 1 == comment.rating)
-
-        span.text-sm= "#{comment.rating}/5"
+.bg-base-200.border.border-base-content/10.rounded-box.p-4.space-y-3
+  .flex.justify-between.items-start
+    .flex.flex-col.gap-2
+      - if comment.pseudonym.present?
+        p.text-sm.font-semibold.text-base-content= comment.pseudonym
+      p.text-xs.text-base-content= l(comment.updated_at)
 
     - if comment.flagged?
       = render 'comments/flag_tag'
     - elsif allowed_to?(:report?, comment)
-      = link_to new_comment_report_path(comment),
-                class: 'block',
-                title: t('report'),
+      = link_to new_polymorphic_path([comment.commentable, comment, :report]),
+                class: 'text-error tooltip tooltip-primary tooltip-left',
                 id: "report_comment_#{comment.id}",
-                data: { turbo_stream: true } do
+                data: { turbo_stream: true, tip: t('report') } do
         = lucide_icon 'flag', class: 'inline-flex mr-1 w-4'
 
-  .dark:text-gray-200.space-y-5
-    == simple_format(comment.content)
+  .flex.items-center.gap-2
+    .rating.rating-xs
+      - 5.times do |i|
+        .mask.mask-star.bg-primary aria-label="#{i} star" aria-current=('true' if i + 1 == comment.rating)
+
+    span.text-sm= "#{comment.rating}/5"
+
+  .text-base.text-base-content.leading-snug= comment.content

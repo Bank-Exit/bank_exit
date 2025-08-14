@@ -13,6 +13,7 @@ class Directory < ApplicationRecord
   has_many :contact_ways, as: :contactable, dependent: :destroy
   has_many :delivery_zones, as: :deliverable, dependent: :destroy
   has_many :weblinks, as: :weblinkable, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   accepts_nested_attributes_for :address, reject_if: :all_blank
   accepts_nested_attributes_for :coin_wallets, allow_destroy: true, reject_if: :all_blank
@@ -65,16 +66,17 @@ end
 #
 # Table name: directories
 #
-#  id          :integer          not null, primary key
-#  name        :string           not null
-#  description :text
-#  category    :string
-#  spotlight   :boolean          default(FALSE), not null
-#  enabled     :boolean          default(TRUE), not null
-#  position    :integer          not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  merchant_id :integer
+#  id             :integer          not null, primary key
+#  name           :string           not null
+#  description    :text
+#  category       :string
+#  spotlight      :boolean          default(FALSE), not null
+#  enabled        :boolean          default(TRUE), not null
+#  position       :integer          not null
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  merchant_id    :integer
+#  comments_count :integer          default(0), not null
 #
 # Indexes
 #

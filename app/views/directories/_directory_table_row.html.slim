@@ -2,14 +2,12 @@
 - delivery_zones = directory.delivery_zones.enabled
 
 tr.odd:hover:bg-base-200.transition-colors
-  td
-    = render 'logo_or_initials', model: directory
-
   th
-    = link_to directory_path(directory) do
-      = directory.name
+    .flex.items-center.gap-3
+      = render 'logo_or_initials', model: directory
+      = link_to directory_path(directory) do
+        = directory.name
 
-  td= directory.description&.truncate(100)
   td
     .flex.items-center.gap-3
       - coin_wallets.each do |coin_wallet|
@@ -32,5 +30,12 @@ tr.odd:hover:bg-base-200.transition-colors
 
     - else
       = lucide_icon 'x', class: 'bg-error text-error-content rounded-box'
+
+  td
+    strong= directory.comments_count
+    = lucide_icon 'message-square', class: 'w-3.5 inline-flex ml-1'
+
+  td
+    = render 'contact_ways_list', directory: directory
 
   td= link_to t('see'), directory_path(directory), class: 'btn btn-primary btn-sm'

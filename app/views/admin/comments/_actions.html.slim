@@ -1,10 +1,9 @@
-- merchant = comment.commentable
+- commentable = comment.commentable
 
 = content_for :dropdown_menu, flush: true do
   li
-    = link_to merchant_path(merchant), target: :_blank do
+    = link_to polymorphic_path([commentable]), target: :_blank do
       | Commerçant sur Bank-Exit
-
 
   - if allowed_to?(:update?, comment)
     li

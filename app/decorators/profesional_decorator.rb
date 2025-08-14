@@ -53,4 +53,9 @@ class ProfesionalDecorator < ApplicationDecorator
   rescue StandardError
     name.strip.first(2)
   end
+
+  def average_rating
+    ratings = comments.pluck(:rating)
+    ratings.sum / ratings.size
+  end
 end

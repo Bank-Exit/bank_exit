@@ -278,20 +278,6 @@ de:
       tooltip_itinerary_html: |
         Nutze die Tastenkombination <kbd class="kbd text-base-content">Strg</kbd> + <kbd class="kbd text-base-content">/</kbd>, um automatisch zur Routenplanung zu gelangen
 
-    comments:
-      create:
-        notice: Dein Kommentar wurde erfolgreich veröffentlicht.
-
-      modal:
-        title_html: Kommentar zu <strong>%{name}</strong>
-
-      form:
-        introduction: Schreibe nur eine Bewertung, wenn du eine echte Erfahrung mit diesem Händler gemacht hast.
-        submit: Kommentar veröffentlichen
-
-      no_comment_yet: Es gibt noch keine Bewertungen. Sei der Erste, der einen Kommentar zu diesem Händler schreibt, falls du echte Erfahrungen gemacht hast.
-      tooltip_no_moderation: Das Kollektiv überprüft die Nutzerkommentare nicht.
-
     itineraries:
       new:
         title: Route berechnen
@@ -330,6 +316,20 @@ de:
         submit: Anomalien melden
 
   comments:
+    create:
+      notice: Dein Kommentar wurde erfolgreich veröffentlicht.
+
+    modal:
+      title_html: Kommentar zu <strong>%{name}</strong>
+
+    form:
+      introduction: Schreibe nur eine Bewertung, wenn du eine echte Erfahrung mit diesem Händler gemacht hast.
+      submit: Kommentar veröffentlichen
+
+    comments:
+      no_comment_yet: Es gibt noch keine Bewertungen. Sei der Erste, der einen Kommentar zu diesem Händler schreibt, falls du echte Erfahrungen gemacht hast.
+      tooltip_no_moderation: Das Kollektiv überprüft die Nutzerkommentare nicht.
+
     flag_tag:
       flagged_comment: Kommentar wurde dem Kollektiv gemeldet
 

@@ -278,20 +278,6 @@ it:
       tooltip_itinerary_html: |
         Usa la scorciatoia da tastiera <kbd class="kbd text-base-content">Ctrl</kbd> + <kbd class="kbd text-base-content">/</kbd> per navigare automaticamente alla pagina dell’itinerario
 
-    comments:
-      create:
-        notice: Il tuo commento è stato pubblicato con successo.
-
-      modal:
-        title_html: Commenta su <strong>%{name}</strong>
-
-      form:
-        introduction: Scrivi una recensione solo se hai avuto una reale esperienza con questo commerciante.
-        submit: Pubblica il commento
-
-      no_comment_yet: Non ci sono ancora recensioni, sii il primo a lasciare un’opinione su questo commerciante se hai avuto una reale esperienza con lui.
-      tooltip_no_moderation: Il Collettivo non valida le opinioni lasciate dagli utenti.
-
     itineraries:
       new:
         title: Calcola il mio itinerario
@@ -330,6 +316,20 @@ it:
         submit: Segnala anomalie
 
   comments:
+    create:
+      notice: Il tuo commento è stato pubblicato con successo.
+
+    modal:
+      title_html: Commenta su <strong>%{name}</strong>
+
+    form:
+      introduction: Scrivi una recensione solo se hai avuto una reale esperienza con questo commerciante.
+      submit: Pubblica il commento
+
+    comments:
+      no_comment_yet: Non ci sono ancora recensioni, sii il primo a lasciare un’opinione su questo commerciante se hai avuto una reale esperienza con lui.
+      tooltip_no_moderation: Il Collettivo non valida le opinioni lasciate dagli utenti.
+
     flag_tag:
       flagged_comment: Commento segnalato al Collettivo
 

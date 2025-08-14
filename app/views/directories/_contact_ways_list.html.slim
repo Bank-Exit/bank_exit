@@ -1,0 +1,22 @@
+.flex.items-center.gap-3
+  - main_group = []
+  - extra_group = []
+
+  - directory.contact_ways.each.with_index(1) do |contact_way, index|
+    - if index > 3
+      - extra_group << contact_way
+    - else
+      - main_group << contact_way
+
+  - main_group.each do |contact_way|
+    = social_contact_icon contact_way.role,
+                          klass: ('opacity-10' unless contact_way.enabled?),
+                          title: contact_way.value
+
+  - if extra_group.present?
+    - text = extra_group.map { social_contact_icon(it.role, klass: ('opacity-10' unless it.enabled?)) }.join(' ')
+    = render 'tooltip',
+              position: :left,
+              text: text,
+              mode: 'info',
+              lucide_ikon: 'ellipsis'

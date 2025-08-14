@@ -1,15 +1,15 @@
-- merchant = comment.commentable
+- commentable = comment.commentable
 
 - content_for(:title) do
   h3.text-xl.font-semibold
-    = merchant.name
+    = commentable.name
 
 = render_modal do
   blockquote.panel.panel-base-300.panel-sm.space-y-5
     = simple_format(comment.content)
 
   = simple_form_for comment_report,
-                    url: comment_report_path(comment),
+                    url: polymorphic_path([commentable, comment, :report]),
                     method: :post,
                     html: { class: 'space-y-2 px-1' } do |f|
     = f.input :flag_reason,

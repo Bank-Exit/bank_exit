@@ -22,14 +22,14 @@
             span< title="Commerçants désactivés" ⚠️
 
       li
+        = link_to admin_directories_path, class: "#{nav_link_klass} #{params[:controller] == 'admin/directories' ? 'btn-primary' : 'btn-ghost' }" do
+          | L'annuaire
+
+      li
         = link_to admin_comments_path, class: "#{nav_link_klass} #{params[:controller] == 'admin/comments' ? 'btn-primary' : 'btn-ghost' }" do
           | Les commentaires
           - if Comment.flagged.any?
             span< title="Commentaire signalé" ⚠️
-
-      li
-        = link_to admin_directories_path, class: "#{nav_link_klass} #{params[:controller] == 'admin/directories' ? 'btn-primary' : 'btn-ghost' }" do
-          | L'annuaire
 
       li
         = link_to mission_control_jobs_path, class: 'btn btn-ghost', target: :_blank do
