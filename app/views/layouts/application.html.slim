@@ -21,6 +21,8 @@ html lang=I18n.locale
     = render 'initial_javascript'
     = javascript_importmap_tags
 
+    = debugbar_head if defined?(Debugbar)
+
     script type="application/ld+json"
       == schema_dot_org_organization
 
@@ -41,3 +43,5 @@ html lang=I18n.locale
 
     = turbo_stream_from :flashes
     = turbo_stream_from [:flashes, I18n.locale]
+
+    = debugbar_body minimized: true if defined?(Debugbar)
