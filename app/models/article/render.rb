@@ -7,7 +7,7 @@ class Article
       @template = template
       @pdf = pdf
       @caption = caption
-      @iframe = iframe
+      @iframe = iframe&.with_indifferent_access
     end
 
     def partial?
@@ -27,7 +27,9 @@ class Article
     end
 
     def iframe?
-      iframe.present?
+      return false unless iframe
+
+      iframe[:url].present?
     end
   end
 end

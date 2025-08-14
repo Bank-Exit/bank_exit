@@ -59,8 +59,9 @@ article
             - elsif content.render.pdf?
               = render 'articles/pdf', content: content
             - if content.render.iframe?
-              .h-screen
-                iframe.w-full.h-full title=article.title src=content.render.iframe
+              - iframe = content.render.iframe
+              div class=('h-screen' if iframe[:height].present?) style=("height: #{iframe[:height]}" if iframe[:height].present?)
+                iframe.w-full.h-full title=article.title src=iframe[:url]
 
           - if content.figure?
             - if content.figure.is_a?(Array)

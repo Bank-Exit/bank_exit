@@ -6,7 +6,9 @@
   short_description: Première assemblée Sortie de Banque 2025 avec des ateliers bénévoles encadrés par des experts.
   content:
     - render:
-        iframe: https://monero-map.org/ASDB.html
+        iframe:
+          url: https://monero-map.org/ASDB.html
+          height: 2950px
 
 - title: Prospectus Sortie de Banque
   identifier: flyer

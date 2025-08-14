@@ -6,7 +6,9 @@
   short_description: First Bank-Exit 2025 assembly with volunteer workshops led by experts.
   content:
     - render:
-        iframe: https://monero-map.org/ASDB.html
+        iframe:
+          url: https://monero-map.org/ASDB.html
+          height: 2950px
 
 - title: Flyer Bank-Exit
   identifier: flyer
