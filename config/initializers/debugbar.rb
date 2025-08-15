@@ -6,7 +6,8 @@ Debugbar.configure do |config|
       Debugbar.config.prefix,
       '/assets',
       '/rails/active_storage',
-      '/manifest.json'
+      '/manifest.json',
+      '/maps/referer'
     ].any? do |prefix|
       env['PATH_INFO'].start_with?(prefix)
     end

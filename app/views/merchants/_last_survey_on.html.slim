@@ -1,16 +1,23 @@
-.text-right.text-xs.text-gray-600.italic.dark:text-gray-400
-  p title=l(merchant.created_at)
+.text-right.text-xs.text-gray-600.italic.dark:text-gray-400.space-y-1
+  p.flex.items-center.justify-end.gap-1 title=l(merchant.created_at)
+    = lucide_icon 'clock', class: 'w-3 h-3'
     = t('.referenced_on', date: time_ago_in_words(merchant.created_at))
 
-  p
-    - if merchant.last_survey_on.nil?
-      = lucide_icon 'shield-question-mark', class: 'inline-flex w-4 mr-1.5'
+  p.flex.items-center.justify-end.gap-1
+    - outdated_level = merchant.outdated_level
+    - icon_class = 'w-3.5 h-3.5'
+
+    - if outdated_level == :unknown
+      = lucide_icon 'shield-question-mark', class: 'w-3.5 h-3.5'
       = t('.last_survey_unknown')
+
     - else
-      - if merchant.might_be_outdated?
-        = lucide_icon 'triangle-alert', class: 'text-warning inline-flex w-3 mr-1.5'
-      - else
-        = lucide_icon 'check', class: 'text-success inline-flex w-3 mr-1.5'
+      - if outdated_level == :soft
+        = lucide_icon 'check-check', class: "#{icon_class} text-success-content"
+      - elsif outdated_level == :medium
+          = lucide_icon 'triangle-alert', class: "#{icon_class} text-warning-content"
+      - elsif outdated_level == :hard
+          = lucide_icon 'triangle-alert', class: "#{icon_class} text-error-content"
 
       span title=l(merchant.last_survey_on)
         = t('.last_survey_on', date: time_ago_in_words(merchant.last_survey_on))

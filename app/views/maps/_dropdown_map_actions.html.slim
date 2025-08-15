@@ -7,7 +7,7 @@
         = t(".last_updated_at", last_updated_at: l(Time.zone.at(last_update)))
 
 - content_for(:dropdown_menu) do
-  li
+  li.border-b.border-base-content/20.pb-2
     = render 'statistics/include_atms_input', center: false
 
   - if merchants_as_map?
@@ -37,7 +37,7 @@
                   },
                   label: t('.map_gesture_handling')
 
-    li
+    li.border-b.border-base-content/20.pb-2
       = link_to tutorial_path('documentation-embed-map') do
         = lucide_icon 'info', class: 'inline-flex w-5'
         = t('.help_embed')

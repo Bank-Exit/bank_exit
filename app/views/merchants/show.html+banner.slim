@@ -22,7 +22,7 @@ article
   .article-body.max-w-5xl class="!space-y-8"
     .flex.items-center.justify-between.gap-2
       = render 'breadcrumb'
-      = render 'merchants/view_sections/dropdown_actions', merchant: @merchant
+      = render 'merchants/view_sections/dropdown_actions', merchant: @merchant, btn_klass: 'btn-primary btn-lg'
 
     - if @merchant.deleted?
       p.panel.panel-error

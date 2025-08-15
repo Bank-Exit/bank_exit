@@ -98,4 +98,17 @@ class MerchantDecorator < ProfesionalDecorator
 
     last_survey_on.before?(3.years.ago)
   end
+
+  def outdated_level
+    return :unknown unless object.last_survey_on
+
+    delta_days = (Date.current - object.last_survey_on).to_i
+
+    case delta_days
+    when 0..730 then :soft # 0 => 2 years
+    when 730..1095 then :medium # 2 years => 3 years
+    else
+      :hard # over 3 years
+    end
+  end
 end

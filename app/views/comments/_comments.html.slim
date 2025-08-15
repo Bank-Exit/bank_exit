@@ -5,7 +5,7 @@
         = commentable.comments_count
         =< Comment.model_name.human(count: commentable.comments_count)
 
-      = render 'tooltip', text: t('.tooltip_no_moderation'), position: :right
+      = render 'tooltip', text: t('.tooltip_no_moderation'), position: :bottom
 
     - if allowed_to?(:create?, Comment)
       = link_to new_polymorphic_path([commentable, Comment.new]),
@@ -17,7 +17,7 @@
   .space-y-3
     == pagy_nav(pagy) if pagy.count > pagy.limit
 
-    #comments.grid.grid-cols-1.lg:grid-cols-3.gap-2
+    #comments.space-y-2
       = render comments if comments.any?
 
     == pagy_nav(pagy) if pagy.count > pagy.limit

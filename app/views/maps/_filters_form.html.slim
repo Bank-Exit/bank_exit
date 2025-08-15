@@ -139,6 +139,31 @@
       = lucide_icon 'undo', class: 'p-1'
 
   .fieldset
+    .flex.items-center.gap-5
+      = f.input :no_kyc, as: :boolean,
+                boolean_style: :inline,
+                include_hidden: false,
+                wrapper: false,
+                input_html: { \
+                  checked: params[:no_kyc] == '1', \
+                  data: { \
+                    map__filter_target: "input", \
+                  } \
+                },
+                label: t('simple_form.labels.map.no_kyc').html_safe
+
+      = f.input :delivery, as: :boolean,
+                boolean_style: :inline,
+                include_hidden: false,
+                wrapper: false,
+                input_html: { \
+                  checked: params[:delivery] == '1', \
+                  data: { \
+                    map__filter_target: "input", \
+                  } \
+                },
+                label: t('simple_form.labels.map.delivery')
+
     = f.input :order_by_survey, as: :boolean,
               boolean_style: :inline,
               include_hidden: false,
@@ -151,29 +176,6 @@
               },
               label: t('simple_form.labels.map.order_by_survey').html_safe
 
-    = f.input :no_kyc, as: :boolean,
-              boolean_style: :inline,
-              include_hidden: false,
-              wrapper: false,
-              input_html: { \
-                checked: params[:no_kyc] == '1', \
-                data: { \
-                  map__filter_target: "input", \
-                } \
-              },
-              label: t('simple_form.labels.map.no_kyc').html_safe
-
-    = f.input :delivery, as: :boolean,
-              boolean_style: :inline,
-              include_hidden: false,
-              wrapper: false,
-              input_html: { \
-                checked: params[:delivery] == '1', \
-                data: { \
-                  map__filter_target: "input", \
-                } \
-              },
-              label: t('simple_form.labels.map.delivery')
 
   noscript
     = f.button :submit, t('search')
