@@ -32,4 +32,32 @@ RSpec.describe MerchantProposal do
 
     it { is_expected.to validate_presence_of(:other_category) }
   end
+
+  describe '#to_osm' do
+    subject { merchant_proposal.to_osm }
+
+    describe '[payment:kyc]' do
+      let(:merchant_proposal) do
+        build_stubbed :merchant_proposal, ask_kyc: ask_kyc
+      end
+
+      context 'when value is nil' do
+        let(:ask_kyc) { nil }
+
+        it { is_expected.to_not include 'payment:kyc' }
+      end
+
+      context 'when value is true' do
+        let(:ask_kyc) { true }
+
+        it { is_expected.to include('payment:kyc' => 'yes') }
+      end
+
+      context 'when value is false' do
+        let(:ask_kyc) { false }
+
+        it { is_expected.to include('payment:kyc' => 'no') }
+      end
+    end
+  end
 end

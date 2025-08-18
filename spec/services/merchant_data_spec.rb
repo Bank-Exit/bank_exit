@@ -457,6 +457,35 @@ RSpec.describe MerchantData do
     end
   end
 
+  describe '#ask_kyc' do
+    context 'when [payment:kyc] is yes' do
+      let(:twicked_feature) do
+        feature[:properties]['payment:kyc'] = 'yes'
+        feature
+      end
+
+      it { is_expected.to include(ask_kyc: true) }
+    end
+
+    context 'when [payment:kyc] is no' do
+      let(:twicked_feature) do
+        feature[:properties]['payment:kyc'] = 'no'
+        feature
+      end
+
+      it { is_expected.to include(ask_kyc: false) }
+    end
+
+    context 'when [payment:kyc] is not set' do
+      let(:twicked_feature) do
+        feature[:properties].delete(:'payment:kyc')
+        feature
+      end
+
+      it { is_expected.to include(ask_kyc: nil) }
+    end
+  end
+
   describe '#coins' do
     context 'when [currency:XBT] is yes' do
       let(:feature) do

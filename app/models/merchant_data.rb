@@ -56,7 +56,7 @@ class MerchantData
       contact_crowdbunker: social_networks_prefixer.contact_crowdbunker,
       contact_francelibretv: social_networks_prefixer.contact_francelibretv,
 
-      ask_kyc: ask_kyc?,
+      ask_kyc: ask_kyc,
 
       delivery: delivery?,
       delivery_zone: delivery_zone,
@@ -217,8 +217,10 @@ class MerchantData
 
   # KYC
 
-  def ask_kyc?
-    (properties['payment:kyc'] && properties['payment:kyc'] == 'yes') || false
+  def ask_kyc
+    return nil unless properties['payment:kyc']
+
+    properties['payment:kyc'] == 'yes'
   end
 
   # Delivery

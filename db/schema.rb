@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_04_193800) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_18_162318) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.string "site", null: false
     t.string "name", null: false
@@ -198,7 +198,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_04_193800) do
     t.string "contact_tiktok"
     t.string "contact_linkedin"
     t.string "contact_tripadvisor"
-    t.boolean "ask_kyc", default: false, null: false
+    t.boolean "ask_kyc"
     t.float "latitude"
     t.float "longitude"
     t.integer "comments_count", default: 0, null: false

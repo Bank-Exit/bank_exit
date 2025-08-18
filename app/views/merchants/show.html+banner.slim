@@ -17,7 +17,8 @@ article
             - @merchant.coins.each do |coin|
               = image_tag icon_by_coin(coin), title: coin.capitalize, class: 'w-12 h-12 hover:scale-110 transition-transform'
 
-            = merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-12 h-12 text-xl')
+            - unless @merchant.ask_kyc.nil?
+              = merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-12 h-12 text-xl')
 
   .article-body.max-w-5xl class="!space-y-8"
     .flex.items-center.justify-between.gap-2

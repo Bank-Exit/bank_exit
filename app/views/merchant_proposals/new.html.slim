@@ -90,14 +90,22 @@ article
                   p.mb-2= image_tag icon_by_coin(coin), class: 'w-16 rounded-full mx-auto'
                   p= MerchantProposal.human_attribute_name(coin)
 
-        .lg:w-2/5.mx-auto
-          input type="checkbox" id="ask_kyc-option" class="hidden peer" name="merchant_proposal[ask_kyc]" checked=(params.dig(:merchant_proposal, :ask_kyc)&.include?('on'))
-          label.pretty-checkbox.block.text-center for="ask_kyc-option" tabindex="0"
-            p.mb-2
-              = merchant_kyc_no_kyc(true, klass: 'w-16 h-16 mx-auto')
-            p= MerchantProposal.human_attribute_name(:ask_kyc)
+        div
+          .flex.items-center.justify-center.gap-2
+            - { false => 'false', nil => '', true => 'true' }.each do |label_val, val|
+              - input_id = "ask_kyc_option_#{val.presence || 'nil'}"
+              div
+                input type="radio" id=input_id name="merchant_proposal[ask_kyc]" value=val class="hidden peer" checked=(params.dig(:merchant_proposal, :ask_kyc).to_s == val)
+                label.pretty-checkbox.block.text-center for=input_id tabindex="0"
+                  - case val
+                  - when 'true'
+                    = merchant_kyc_no_kyc(true, klass: 'w-32 h-32 mx-auto')
+                  - when 'false'
+                    = merchant_kyc_no_kyc(false, klass: 'w-32 h-32 mx-auto')
+                  - else
+                    = merchant_kyc_no_kyc(nil, klass: 'w-32 h-32 mx-auto')
 
-          p.label.text-sm.mt-1.text-center
+          p.text-base-content/60.text-sm.mt-2.text-center.italic
             = t('simple_form.hints.merchant_proposal.ask_kyc')
 
       section

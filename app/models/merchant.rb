@@ -143,7 +143,7 @@ end
 #  contact_tiktok        :string
 #  contact_linkedin      :string
 #  contact_tripadvisor   :string
-#  ask_kyc               :boolean          default(FALSE), not null
+#  ask_kyc               :boolean
 #  latitude              :float
 #  longitude             :float
 #  comments_count        :integer          default(0), not null

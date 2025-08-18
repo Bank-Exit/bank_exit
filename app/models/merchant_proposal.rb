@@ -31,7 +31,7 @@ class MerchantProposal
   attribute :proposition_from, :string
 
   attribute :coins, default: -> { [] }
-  attribute :ask_kyc, :boolean, default: false
+  attribute :ask_kyc, :boolean
 
   attribute :contact_facebook, :string
   attribute :contact_twitter, :string
@@ -112,7 +112,9 @@ class MerchantProposal
     properties['payment:silver'] = 'yes' if 'silver'.in?(coins)
     properties['payment:gold'] = 'yes' if 'gold'.in?(coins)
 
-    properties['payment:kyc'] = ask_kyc ? 'yes' : 'no'
+    unless ask_kyc.nil?
+      properties['payment:kyc'] = ask_kyc ? 'yes' : 'no'
+    end
 
     # Social networks
     properties['contact:facebook'] = contact_facebook if contact_facebook

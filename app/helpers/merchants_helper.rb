@@ -72,8 +72,10 @@ module MerchantsHelper
   def merchant_kyc_no_kyc(kyc, klass: 'w-10 h-10')
     shared_classes = "#{klass} uppercase flex items-center justify-center text-center rounded-full hover:scale-110 transition-transform select-none font-bold leading-none"
 
-    if kyc
-      content_tag(:span, 'KYC', class: "#{shared_classes} bg-red-500", title: 'KYC')
+    if kyc.nil?
+      content_tag(:span, I18n.t('unspecified'), class: shared_classes, title: 'Unknown')
+    elsif kyc
+      content_tag(:span, 'KYC', class: "#{shared_classes} bg-red-500 text-white", title: 'KYC')
     else
       content_tag(:p, 'No <br /> KYC'.html_safe, class: "#{shared_classes} bg-green-500 text-white", title: 'No KYC')
     end

@@ -32,6 +32,7 @@ en:
 
   enabled: Enabled
   disabled: Disabled
+  unspecified: Unspecified
 
   added_on: Added %{date} ago
   updated_on: Updated %{date} ago

@@ -19,7 +19,8 @@ tr.odd:hover:bg-base-200.transition-colors
     .flex.items-center.gap-2
       == coins_list(merchant.coins, with_logo: true, with_name: false, size: 'w-6', inline: true)
 
-      = merchant_kyc_no_kyc(merchant.ask_kyc?, klass: 'w-6 h-6 text-[10px]')
+      - unless merchant.ask_kyc.nil?
+        = merchant_kyc_no_kyc(merchant.ask_kyc?, klass: 'w-6 h-6 text-[10px]')
 
   td
     .flex.items-center.gap-3

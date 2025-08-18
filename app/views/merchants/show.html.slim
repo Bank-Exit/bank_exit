@@ -35,7 +35,8 @@
 
       .flex.items-center.justify-center.gap-3
         == coins_list(@merchant.coins, with_logo: true, with_name: false, size: 'w-10 hover:scale-110 transition-transform', inline: true)
-        = merchant_kyc_no_kyc(@merchant.ask_kyc?)
+        - unless @merchant.ask_kyc.nil?
+          = merchant_kyc_no_kyc(@merchant.ask_kyc?)
 
       - if @merchant.description?
         div
