@@ -43,5 +43,4 @@ html data-theme="light"
     #modal
     = render 'turbo_confirm'
     = render 'ribbon' unless Rails.env.production?
-
-    = debugbar_body minimized: true if defined?(Debugbar)
+    = render 'debugbar' if defined?(Debugbar)

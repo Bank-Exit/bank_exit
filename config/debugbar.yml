@@ -1,0 +1,5 @@
+development:
+  cable_url: ws://localhost:3000
+
+staging:
+  cable_url: wss://staging.bank-exit.org

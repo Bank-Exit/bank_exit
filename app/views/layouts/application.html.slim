@@ -44,4 +44,4 @@ html lang=I18n.locale
     = turbo_stream_from :flashes
     = turbo_stream_from [:flashes, I18n.locale]
 
-    = debugbar_body minimized: true if defined?(Debugbar)
+    = render 'debugbar' if defined?(Debugbar)

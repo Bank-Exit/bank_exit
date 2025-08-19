@@ -1,0 +1,5 @@
+ruby:
+  debugbar_config = Rails.application.config_for(:debugbar)
+
+= debugbar_body minimized: true,
+                cable: { url: debugbar_config[:cable_url] }
