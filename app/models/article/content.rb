@@ -22,7 +22,7 @@ class Article
     end
 
     def mode?
-      mode&.in?(%w[default success warning info error])
+      mode&.in?(%w[default success warning info error base-300])
     end
 
     def render

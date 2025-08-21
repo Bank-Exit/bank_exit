@@ -1,4 +1,51 @@
 ---
+- title: "Qubic vs Monero : Faut-il s'inquiéter du minage IA ?"
+  identifier: qubic-vs-monero-08-2025
+  created_at: "2025-08-21"
+  banner: banner-hacker
+  short_description: Qubic mène une possible attaque contre Monero via un minage hybride IA. Analyse des risques, incohérences du projet et conseils pour protéger vos transactions XMR.
+  content:
+    - body:
+        - "<em>Le 20 août 2025, un débat vocal s’est tenu sur X/Twitter autour d’un sujet qui agite actuellement la communauté crypto : le projet Qubic et son approche de minage mêlant Monero et calculs d'intelligence artificielle (IA).</em>"
+        - Voici une synthèse claire et factuelle pour comprendre les enjeux.
+      mode: base-300
+
+    - title: "Qubic : comment ça fonctionne ?"
+      body:
+        - Le logiciel de Qubic permet de miner à la fois Monero (XMR) et des tâches IA, en alternance automatique. Les mineurs sont ensuite rémunérés en $Qubic, le token natif du projet.
+
+    - title: Trois scénarios possibles autour de Qubic
+      body:
+        - "- uPoW (unified Proof of Work) serait réel : il pourrait représenter une menace à long terme pour Monero."
+        - "- Il ne repose que sur la hausse spéculative du token Qubic, auquel cas l’effet s’éteindra rapidement."
+        - "- Il ne s’agit que d’un coup marketing, visant à gonfler artificiellement leur puissance de calcul pour attirer les mineurs."
+
+    - title: Des incohérences dans leur modèle
+      body:
+        - "- Incohérence 1 : Si l’IA est vraiment plus rentable que le minage de Monero, pourquoi ne pas l’utiliser à 100% ? Cela soulève la question d’un éventuel objectif caché contre Monero."
+        - "- Incohérence 2 : Pourquoi viser Monero, une crypto très peu rentable à miner (sauf avec électricité gratuite), et dont la communauté est réputée résiliente et incorruptible ?"
+
+    - title: Des résultats peu convaincants
+      body:
+        - Deux semaines après leur première attaque de minage (début août), Qubic n’a pas réussi à accroître son influence sur le réseau. Une anomalie de 1 GH/s a été repérée sur un pool, suggérant une triche possible pour gonfler artificiellement leur hashrate — mais sans atteindre les 51% nécessaires à un véritable contrôle du réseau.
+        - Même avec 60–70% du hashrate, Qubic ne pourrait pas réaliser de double dépense, seulement annuler leurs propres paiements sur une très courte période (20–30 minutes max), ce qui reste limité et peu rentable.
+
+    - title: "Qubic : hostiles ou juste flous ?"
+      body:
+        - Le projet se veut non hostile, mais ses financeurs sont anonymes, son leader a un passé controversé (revendu du Iota à sa propre communauté) et l’on observe des éléments troublants dans leur communication (références mystiques comme les "colonnes de Salomon").
+
+    - title: "Que penser de tout ça ?"
+      body:
+        - "Le consensus des intervenants lors du débat est clair : pas d’inquiétude majeure et laisser Qubic et son token s’essouffler."
+        - "Simple précaution : éviter les transactions importantes lorsqu’une attaque est soupçonnée."
+
+    - body:
+        - "La seule vraie menace à surveiller serait une tentative de faire basculer Monero en Proof of Stake (PoS), ce qui ouvrirait la voie à une centralisation, contraire aux fondements du projet. Si vous voyez ce genre de discours émerger, méfiance : cela pourrait venir d’acteurs mal intentionnés."
+
+  useful_links:
+    - url: https://x.com/SortieDeBanque/status/1958243439159751167
+      description: Space X/Twitter du 20/08/2025
+
 - title: Assemblée Sortie de Banque 2025
   identifier: bank-exit-assembly-2025
   banner: banner-assembly
