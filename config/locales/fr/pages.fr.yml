@@ -355,7 +355,7 @@ fr:
 
         <p>Notre objectif est de proposer une alternative à l'€uro numérique et protéger notre argent ainsi que celui d'un maximum de français. La priorité est donc de <strong>préserver</strong> nos actifs des différents risques (bankruns, crises financières comme en 2008, saisies autoritaires, MNBC, ...), tout en <strong>conservant</strong> notre pouvoir d'achat.</p>
 
-      local_groups_label: 35 petits groupes locaux
+      local_groups_label: "%{count} petits groupes locaux"
       workshop_caption: Atelier pratique Monero et Bitcoin animé par Pierre
 
   contacts:

@@ -348,7 +348,7 @@ de:
 
         <p>Unser Ziel ist es, eine Alternative zum digitalen Euro zu bieten und unser Geld – und das möglichst vieler Franzosen – zu schützen. Die Priorität liegt darin, unser Vermögen vor verschiedenen Risiken zu <strong>schützen</strong> (Bankruns, Finanzkrisen wie 2008, staatliche Beschlagnahmungen, CBDCs etc.) und gleichzeitig unsere Kaufkraft zu <strong>bewahren</strong>.</p>
 
-      local_groups_label: 35 kleine lokale Gruppen
+      local_groups_label: "%{count} kleine lokale Gruppen"
       workshop_caption: Praktischer Monero- und Bitcoin-Workshop unter Leitung von Pierre
 
   contacts:

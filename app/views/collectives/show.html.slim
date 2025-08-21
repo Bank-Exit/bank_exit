@@ -9,7 +9,7 @@ article#article
           h2.text-xl= t('.subtitle')
 
   .article-body.max-w-3xl
-    - local_groups_link = link_to t('.local_groups_label'), local_groups_path
+    - local_groups_link = link_to t('.local_groups_label', count: @local_groups_count), local_groups_path
 
     = t('.description_html', local_groups_link: local_groups_link)
 

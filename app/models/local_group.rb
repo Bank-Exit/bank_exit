@@ -10,4 +10,8 @@ class LocalGroup
 
     data.map { |row| new(row) }
   end
+
+  def france_count
+    countries.find { it['name'] == 'France' }['regions'].count
+  end
 end
