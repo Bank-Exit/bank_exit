@@ -25,7 +25,7 @@
           tr
             td= "##{count}"
             th scope="row"
-              = link_to row.name, merchant_path(row)
+              = link_to row.name, merchant_path(row), data: { turbo_frame: :_top }
 
             td= row.pretty_country
             td
