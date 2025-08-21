@@ -1,22 +1,27 @@
 import MapBaseController from "controllers/map_base_controller";
 import "leaflet.markercluster";
-import { patch } from "@rails/request.js";
+import { get, patch } from "@rails/request.js";
 import { useIntersection } from "stimulus-use";
 
 export default class MapController extends MapBaseController {
+  static targets = ["loader"];
   static values = {
-    markers: { type: Array, default: [] },
     trackGeolocationInUrl: { type: Boolean, default: true },
     fitBounds: { type: Boolean, default: false },
+    fetchMarkersUrl: String,
     refererUrl: String,
   };
 
   connect() {
     const [_, unobserve] = useIntersection(this);
     this.unobserve = unobserve;
+    this.bounds;
+    this.#showLoader();
+
+    window.addEventListener("popstate", this.handlePopState.bind(this));
   }
 
-  appear() {
+  async appear() {
     super.connect();
 
     this.mapOptions["gestureHandling"] = this.#forceGestureHandling();
@@ -24,47 +29,62 @@ export default class MapController extends MapBaseController {
     super._initMap();
     this.unobserve();
 
-    if (this.markersValue.length == 0) {
-      return;
-    }
+    const currentParams = new URLSearchParams(window.location.search);
+    const urlWithParams = `${this.fetchMarkersUrlValue}?${currentParams.toString()}`;
 
-    this.bitcoinMarkers = L.markerClusterGroup({
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: false,
-      zoomToBoundsOnClick: true,
-      chunkedLoading: true,
-    });
-
-    this.otherMarkers = L.markerClusterGroup({
-      spiderfyOnMaxZoom: true,
-      showCoverageOnHover: false,
-      zoomToBoundsOnClick: true,
-      maxClusterRadius: 40,
-    });
-
-    this.markersValue.forEach((item) => {
-      const marker = L.marker([item.latitude, item.longitude], {
-        icon: this.assignMarker(item.icon),
-        merchant: item,
+    try {
+      const response = await get(urlWithParams, {
+        responseKind: "json",
       });
 
-      marker.on("click", this.loadPopupContent.bind(this));
+      if (!response.ok) throw new Error("Error while fetching markers");
 
-      if (this.#isBitcoinOnly(item)) {
-        this.bitcoinMarkers.addLayer(marker);
-      } else {
-        this.otherMarkers.addLayer(marker);
+      const body = await response.json;
+
+      this.bitcoinMarkers = L.markerClusterGroup({
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        chunkedLoading: true,
+      });
+
+      this.otherMarkers = L.markerClusterGroup({
+        spiderfyOnMaxZoom: true,
+        showCoverageOnHover: false,
+        zoomToBoundsOnClick: true,
+        maxClusterRadius: 40,
+      });
+
+      body.forEach((data) => {
+        const marker = L.marker([data.latitude, data.longitude], {
+          icon: this.assignMarker(data.icon),
+          merchant: data,
+        });
+
+        marker.on("click", this.loadPopupContent.bind(this));
+
+        if (this.#isBitcoinOnly(data)) {
+          this.bitcoinMarkers.addLayer(marker);
+        } else {
+          this.otherMarkers.addLayer(marker);
+        }
+      });
+
+      this.map.addLayer(this.bitcoinMarkers);
+      this.map.addLayer(this.otherMarkers);
+
+      this.bounds = L.latLngBounds(this.bitcoinMarkers.getBounds());
+      this.bounds.extend(this.otherMarkers.getBounds());
+      if (this.#forceFitBounds()) {
+        if (this.bounds.isValid()) {
+          this.map.fitBounds(this.bounds, { maxZoom: 14 });
+        }
       }
-    });
 
-    this.map.addLayer(this.bitcoinMarkers);
-    this.map.addLayer(this.otherMarkers);
-
-    if (this.#forceFitBounds()) {
-      const bounds = L.latLngBounds(this.bitcoinMarkers.getBounds());
-      bounds.extend(this.otherMarkers.getBounds());
-
-      this.map.fitBounds(bounds, { maxZoom: 14 });
+      this.#hideLoader();
+    } catch (error) {
+      console.error("Failed to load map data:", error);
+      this.#hideLoader();
     }
 
     if (this.trackGeolocationInUrlValue) {
@@ -76,7 +96,7 @@ export default class MapController extends MapBaseController {
 
         if (newPathname !== undefined) {
           current.pathname = newPathname;
-          window.history.pushState("id", "", current);
+          window.history.replaceState(null, "", current);
 
           // Update merchants filter form action
           document.getElementById("merchants_filter").action = current.pathname;
@@ -97,7 +117,7 @@ export default class MapController extends MapBaseController {
 
         if (newPathname !== undefined) {
           current.pathname = newPathname;
-          window.history.pushState("id", "", current);
+          window.history.replaceState(null, "", current);
 
           // Update merchants filter form action
           document.getElementById("merchants_filter").action = current.pathname;
@@ -108,20 +128,43 @@ export default class MapController extends MapBaseController {
     }
   }
 
+  #showLoader() {
+    if (this.hasLoaderTarget) {
+      this.loaderTarget.classList.remove("hidden");
+    }
+  }
+
+  #hideLoader() {
+    if (this.hasLoaderTarget) {
+      this.loaderTarget.classList.add("hidden");
+    }
+  }
+
   disconnect() {
     if (this.bitcoinMarkers) {
       this.bitcoinMarkers.clearLayers();
     }
-    if (this.other) {
+    if (this.otherMarkers) {
       this.otherMarkers.clearLayers();
     }
+
+    window.removeEventListener("popstate", this.handlePopState.bind(this));
 
     super.disconnect();
   }
 
-  refreshMap() {
-    this.disconnect();
-    this.appear();
+  toggleFitBounds({ detail: { checked } }) {
+    if (checked && this.bounds.isValid()) {
+      this.map.fitBounds(this.bounds, { maxZoom: 14 });
+    }
+  }
+
+  toggleGestureHandling(_e) {
+    if (this.map.gestureHandling.enabled()) {
+      this.map.gestureHandling.disable();
+    } else {
+      this.map.gestureHandling.enable();
+    }
   }
 
   #buildNewPathnameForZoom(current, newZoom) {
@@ -182,5 +225,9 @@ export default class MapController extends MapBaseController {
 
   #forceGestureHandling() {
     return localStorage.getItem("force-gesture-handling") == "true";
+  }
+
+  handlePopState(_e) {
+    Turbo.visit(window.location.href);
   }
 }

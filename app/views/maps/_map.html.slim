@@ -1,2 +1,14 @@
-#map.w-full.z-0.relative class="#{defined?(from_welcome) && from_welcome ? 'h-[600px]' : 'h-[500px] lg:h-full'}" data-controller="map" data-map-markers-value=@merchant_markers.to_json data-map-zoom-value=@zoom data-map-latitude-value=@latitude data-map-longitude-value=@longitude data-map-track-geolocation-in-url-value=(defined?(from_welcome) && from_welcome ? 'false' : 'true') data-map-referer-url-value=maps_referer_url data-action="map--options:refreshMap@window->map#refreshMap" data-map-attribution-html-value=html_escape_once(map_attribution_html)
-  = render 'maps/loader'
+#map.w-full.z-0.relative(
+  class="#{defined?(from_welcome) && from_welcome ? 'h-[600px]' : 'h-[500px] lg:h-full'}"
+  data-controller="map"
+  data-map-zoom-value=@zoom
+  data-map-latitude-value=@latitude
+  data-map-longitude-value=@longitude
+  data-map-track-geolocation-in-url-value=(defined?(from_welcome) && from_welcome ? 'false' : 'true')
+  data-map-fetch-markers-url-value=map_fetch_markers_path
+  data-map-referer-url-value=maps_referer_url
+  data-action="map--options:toggleFitBounds@window->map#toggleFitBounds map--options:toggleGestureHandling@window->map#toggleGestureHandling"
+  data-map-attribution-html-value=html_escape_once(map_attribution_html)
+)
+  .absolute.inset-0.hidden class="z-[999]" data-map-target="loader"
+    = render 'maps/loader'

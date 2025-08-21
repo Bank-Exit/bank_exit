@@ -1,30 +1,23 @@
 import MapBaseController from "controllers/map_base_controller";
 import "leaflet.markercluster";
+import { get } from "@rails/request.js";
 
 export default class MapEmbedController extends MapBaseController {
+  static targets = ["loader"];
   static values = {
-    markers: { type: Array, default: [] },
+    fetchMarkersUrl: String,
     gestureHandling: { type: Boolean, default: true },
     fitBounds: { type: Boolean, default: true },
     useClusters: { type: Boolean, default: true },
   };
 
-  connect() {
+  async connect() {
+    this.#showLoader();
     super.connect();
 
     this.mapOptions["gestureHandling"] = this.gestureHandlingValue;
 
     super._initMap();
-
-    if (this.showAttributionValue) {
-      this.map.attributionControl.addAttribution(
-        `${this.markersValue.length} 📍`,
-      );
-    }
-
-    if (this.markersValue.length == 0) {
-      return;
-    }
 
     if (this.useClustersValue) {
       this.markers = L.markerClusterGroup({
@@ -37,23 +30,56 @@ export default class MapEmbedController extends MapBaseController {
       this.markers = L.featureGroup();
     }
 
-    this.markersValue.forEach((item) => {
-      const marker = L.marker([item.latitude, item.longitude], {
-        icon: this.assignMarker(item.icon),
-        merchant: item,
+    try {
+      const currentParams = new URLSearchParams(window.location.search);
+      const urlWithParams = `${this.fetchMarkersUrlValue}?${currentParams.toString()}`;
+      const response = await get(urlWithParams, {
+        responseKind: "json",
       });
 
-      marker.on("click", this.loadPopupContent.bind(this));
+      if (!response.ok) throw new Error("Error while fetching markers");
 
-      this.markers.addLayer(marker);
-    });
+      const body = await response.json;
 
-    this.map.addLayer(this.markers);
+      body.forEach((data) => {
+        const marker = L.marker([data.latitude, data.longitude], {
+          icon: this.assignMarker(data.icon),
+          merchant: data,
+        });
 
-    if (this.fitBoundsValue) {
-      this.map.fitBounds(this.markers.getBounds(), {
-        maxZoom: 15,
+        marker.on("click", this.loadPopupContent.bind(this));
+
+        this.markers.addLayer(marker);
       });
+
+      if (this.showAttributionValue) {
+        this.map.attributionControl.addAttribution(`${body.length} 📍`);
+      }
+
+      this.map.addLayer(this.markers);
+
+      if (this.fitBoundsValue) {
+        this.map.fitBounds(this.markers.getBounds(), {
+          maxZoom: 15,
+        });
+      }
+
+      this.#hideLoader();
+    } catch (error) {
+      console.error("Failed to load map data:", error);
+      this.#hideLoader();
+    }
+  }
+
+  #showLoader() {
+    if (this.hasLoaderTarget) {
+      this.loaderTarget.classList.remove("hidden");
+    }
+  }
+
+  #hideLoader() {
+    if (this.hasLoaderTarget) {
+      this.loaderTarget.classList.add("hidden");
     }
   }
 

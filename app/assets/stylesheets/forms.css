@@ -20,6 +20,7 @@ label.pretty-checkbox {
 
 .peer:checked ~ label.pretty-checkbox {
     background-color: rgb(from var(--color-primary) r g b/.25);
+    border-color: var(--color-primary);
 }
 
 .fieldset-legend {

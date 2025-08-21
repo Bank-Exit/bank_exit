@@ -4,10 +4,10 @@ class MapsController < PublicController
   FAQ_CATEGORY = 'map'.freeze
 
   before_action :set_zoom, :set_latitude, :set_longitude
-  before_action :redirect_with_coordinates, if: :missing_coordinates?
+  before_action :redirect_with_coordinates, if: :missing_coordinates?, only: :index
 
-  before_action :set_merchants
   after_action :set_seo
+  skip_after_action :record_page_view, only: :fetch_markers
 
   helper_method :from_pagination?
 
@@ -51,9 +51,7 @@ class MapsController < PublicController
     # concern that is shared with other controllers.
 
     unless from_pagination?
-      set_markers if session[:merchants_display] == 'map'
-
-      @coins = Coin.all(decorate: true)
+      @all_coins = Coin.all(decorate: true)
       @last_update = last_update.to_i
 
       @faqs = FAQ.all.select do |faq|
@@ -69,13 +67,27 @@ class MapsController < PublicController
       )
     end
 
-    @pagy, @merchants = pagy_array(
-      @merchants, params: ->(params) { params.compact_blank.merge!(pagy: true) }
+    @pagy, page_ids = pagy_array(
+      merchant_ids, params: ->(params) { params.compact_blank.merge!(pagy: true) }
     )
+
+    merchants = Merchant.where(id: page_ids).in_order_of(:id, page_ids)
+
+    @merchants = MerchantDecorator.wrap(merchants)
 
     render variants: [
       session[:merchants_display].to_sym
     ]
+  end
+
+  # @route GET /fr/map/fetch_markers {locale: "fr"} (map_fetch_markers_fr)
+  # @route GET /es/map/fetch_markers {locale: "es"} (map_fetch_markers_es)
+  # @route GET /de/map/fetch_markers {locale: "de"} (map_fetch_markers_de)
+  # @route GET /it/map/fetch_markers {locale: "it"} (map_fetch_markers_it)
+  # @route GET /en/map/fetch_markers {locale: "en"} (map_fetch_markers_en)
+  # @route GET /map/fetch_markers
+  def fetch_markers
+    render json: merchants_markers
   end
 
   private

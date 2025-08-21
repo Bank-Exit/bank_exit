@@ -73,6 +73,8 @@ Rails.application.routes.draw do
       get '/map/:zoom/:lat/:lon', to: 'maps#index', as: :pretty_map
     end
 
+    get '/map/fetch_markers', to: 'maps#fetch_markers'
+
     resources :projects, only: :show
 
     resources :merchant_proposals, only: %i[index new create]
