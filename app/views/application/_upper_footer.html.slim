@@ -36,6 +36,7 @@
                 = link_to project_path(:grocery) do
                   = grocery.title
 
+              li= link_to t('application.nav.menu.blogs'), blogs_path
               li= link_to t('application.nav.menu.tutorials'), tutorials_path
 
               li= link_to t('media.index.title'), media_path
