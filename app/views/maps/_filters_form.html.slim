@@ -8,6 +8,7 @@
   method: :get,
   data: { \
     controller: 'map--filter',
+    map__filter_highlight_class: 'bg-primary/20 border-primary',
     search_target: 'form',
     turbo_stream: true \
   } do |f|
@@ -38,7 +39,7 @@
                 include_blank: :translate,
                 input_html: { \
                   autocomplete: true,
-                  data: { map__filter_target: "input" },
+                  data: { map__filter_target: "input select" },
                   class: 'select w-full' \
                 }
 
@@ -54,7 +55,7 @@
                 include_blank: :translate,
                 input_html: { \
                   data: { \
-                    map__filter_target: "input", \
+                    map__filter_target: "input select" \
                   } \
                 }
 
@@ -66,7 +67,7 @@
       - category_scope = 'categories'
       - category_group_title_scope = 'simple_form.labels.map.category'
 
-      select.select.w-full name="category" data-map--filter-target="input" data-action="change->map--filter#syncQuickCategories"
+      select.select.w-full name="category" data-map--filter-target="input select" data-action="change->map--filter#syncQuickCategories"
         option value="" = t('all', scope: category_group_title_scope)
 
         optgroup label= t('catering', scope: category_group_title_scope)

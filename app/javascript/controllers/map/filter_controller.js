@@ -2,8 +2,9 @@ import { Controller } from "@hotwired/stimulus";
 import { useDebounce } from "stimulus-use";
 
 export default class extends Controller {
-  static targets = ["input"];
+  static targets = ["input", "select"];
   static debounces = ["onUserInput", "clearField"];
+  static classes = ["highlight"];
 
   connect() {
     useDebounce(this, { wait: 300 });
@@ -19,6 +20,11 @@ export default class extends Controller {
         input.addEventListener("input", this.#onUserInput);
         input.addEventListener("keydown", this.#ignoreNavigationKeys);
       }
+    });
+
+    this.selectTargets.forEach((select) => {
+      this.updateBackground(select);
+      select.addEventListener("change", () => this.updateBackground(select));
     });
   }
 
@@ -108,6 +114,8 @@ export default class extends Controller {
           changed = true;
         }
       }
+
+      input.classList.remove(...this.highlightClasses);
     });
 
     if (changed) {
@@ -131,11 +139,16 @@ export default class extends Controller {
     if (quickCategory) {
       quickCategory.checked = true;
     }
+
+    const select = document.querySelector('select[name="category"]');
+    this.updateBackground(select);
   }
 
   // Synchronize checked quick category input
   // with select category option to reflect selection
   syncSelectCategories(e) {
+    const select = document.querySelector('select[name="category"]');
+
     if (e.target.checked) {
       document.querySelectorAll('input[name="category"]').forEach((element) => {
         element.checked = false;
@@ -150,6 +163,16 @@ export default class extends Controller {
       document.querySelector(
         'select[name="category"] option[value=""]',
       ).selected = true;
+    }
+
+    this.updateBackground(select);
+  }
+
+  updateBackground(select) {
+    if (select.value === "") {
+      select.classList.remove(...this.highlightClasses);
+    } else {
+      select.classList.add(...this.highlightClasses);
     }
   }
 }

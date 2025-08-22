@@ -36,3 +36,8 @@ span.error {
     color: var(--color-error-content);
     font-size: 0.75rem;
 }
+
+select option,
+select optgroup {
+    background-color: var(--color-base-100);
+}
