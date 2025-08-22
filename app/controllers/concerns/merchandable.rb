@@ -19,7 +19,7 @@ module Merchandable
         no_kyc: no_kyc?,
         with_atms: with_atms?,
         order_by_survey: order_by_survey?
-      ).ids
+      ).select(:id)
     end
   end
 

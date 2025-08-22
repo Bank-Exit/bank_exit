@@ -68,7 +68,7 @@ class MapsController < PublicController
     end
 
     @pagy, page_ids = pagy_array(
-      merchant_ids, params: ->(params) { params.compact_blank.merge!(pagy: true) }
+      merchant_ids.ids, params: ->(params) { params.compact_blank.merge!(pagy: true) }
     )
 
     merchants = Merchant.where(id: page_ids).in_order_of(:id, page_ids)
