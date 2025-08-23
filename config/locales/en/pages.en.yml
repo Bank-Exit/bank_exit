@@ -413,7 +413,8 @@ en:
       monero_by_country_title: Monero merchants by country (minimum 3)
       june_by_country_title: June merchants by country
       merchants_by_categories_title: Merchants by essential categories
-      merchants_and_coins_title: Merchants and accepted currencies
+      merchants_and_coins_title: World accepted currencies
+      merchants_and_coins_in_france_title: France accepted currencies
       merchants_west_european_title: Merchants in Western Europe
 
     weekly_merchants_table:

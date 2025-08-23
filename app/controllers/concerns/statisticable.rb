@@ -45,7 +45,7 @@ module Statisticable
   private
 
   def cache_key_suffix
-    "with_atms=#{session[:include_atms]}"
+    "locale=#{I18n.locale}:with_atms=#{session[:include_atms]}"
   end
 
   def include_atms?

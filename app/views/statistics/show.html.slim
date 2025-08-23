@@ -50,8 +50,13 @@ article
           figure.w-full.flex-1.chart
             = column_chart @categories_statistics[:by_main_categories], title: t('.merchants_by_categories_title')
 
+        .flex.flex-col.lg:flex-row.items-center.gap-5
           figure.w-full.flex-1.chart
             = pie_chart @coins_statistics[:by_coins], title: t('.merchants_and_coins_title')
+
+          figure.w-full.flex-1.chart
+            = pie_chart @coins_statistics[:france_coins], title: t('.merchants_and_coins_in_france_title')
+
 
     .divider.divider-primary.w-sm.mx-auto
 

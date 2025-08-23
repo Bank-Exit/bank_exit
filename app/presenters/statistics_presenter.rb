@@ -48,7 +48,8 @@ class StatisticsPresenter < ApplicationPresenter
       bitcoin_world: merchants_bitcoin_world,
       monero_world: merchants_monero_world,
       june_world: merchants_june_world,
-      by_coins: merchants_coins
+      by_coins: merchants_coins,
+      france_coins: merchants_france_coins
     }
   end
 
@@ -180,6 +181,21 @@ class StatisticsPresenter < ApplicationPresenter
 
   def merchants_coins
     base_merchants.pluck(:coins).flatten.tally.map do |k, v|
+      [k.capitalize, v]
+    end
+  end
+
+  def merchants_france_coins
+    hash = base_merchants.in_france.pluck(:coins).flatten.tally
+
+    bitcoin_total = hash['bitcoin'].to_i + hash['lightning'].to_i + hash['lightning_contactless'].to_i
+
+    hash.delete('bitcoin')
+    hash.delete('lightning')
+    hash.delete('lightning_contactless')
+    hash = { 'Bitcoin & LN': bitcoin_total }.merge(hash)
+
+    hash.map do |k, v|
       [k.capitalize, v]
     end
   end
