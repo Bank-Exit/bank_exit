@@ -22,7 +22,7 @@
         - merchants.each.with_index do |row, index|
           - count = merchants_count - index
 
-          tr
+          tr class=('opacity-30' if row.atm? && !session[:include_atms])
             td= "##{count}"
             th scope="row"
               = link_to row.name, merchant_path(row), data: { turbo_frame: :_top }

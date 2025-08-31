@@ -30,6 +30,10 @@ class Merchant < ApplicationRecord
     [identifier, slug].join('-')
   end
 
+  def atm?
+    category == 'atm'
+  end
+
   def to_directory!
     directory = build_directory(
       name: name,
