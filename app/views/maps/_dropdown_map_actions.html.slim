@@ -42,6 +42,16 @@
         = lucide_icon 'info', class: 'inline-flex w-5'
         = t('.help_embed')
 
+  li
+    = link_to export_merchants_path(format: :gpx, **request.query_parameters), target: :_blank, id: 'download_merchants' do
+      = lucide_icon 'download', class: 'inline-flex w-5'
+      = t('.export_as_gpx')
+
+  li.border-b.border-base-content/20.pb-2
+    = link_to tutorial_path('import-merchants-in-comaps') do
+      = lucide_icon 'info', class: 'inline-flex w-5'
+      = t('.import_gpx_to_comaps')
+
   - if can_refresh_merchants?(last_updated_at: last_update)
     li
       = button_to refresh_merchants_path,

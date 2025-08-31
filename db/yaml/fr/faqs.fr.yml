@@ -44,6 +44,14 @@
     - map
   identifier: embed_map
 
+- question: Je souhaite exporter les commerçants pour y accéder hors-ligne dans mon application, comment faire ?
+  content:
+    - answer: Vous pouvez exporter votre recherche courante sur les commerçants en cliquant sur les 3 points en haut du formulaire puis <i>Télécharger les commerçants</i>.
+    - answer: Rendez-vous sur la page {{tutorials#show->import-merchants-in-comaps}} pour un tutoriel complet sur l'import des commerçants dans l'application CoMaps.
+  categories:
+    - map
+  identifier: export_gpx
+
 - question: Qu'est-ce qu'un KYC ?
   content:
     - answer: Le <b>KYC</b> (<i>Know Your Customer</i>) est un processus utilisé par les institutions financières, les banques, les entreprises de paiement et d'autres services financiers pour vérifier l'identité de leurs clients. Ce processus inclut généralement la collecte de documents tels que des pièces d'identité, des justificatifs de domicile et des informations personnelles afin d'assurer que les transactions sont légales et que les clients ne sont pas impliqués dans des activités frauduleuses ou criminelles.

@@ -164,6 +164,9 @@ fr:
 
       free_open_data_html: Les données affichées sur la carte sont <strong>libres</strong>, <strong>open source</strong> et proviennent d'<strong>OpenStreetMap</strong>.
 
+    export_merchants:
+      description: Points de vente acceptant les cryptomonnaies (export Sortie de Banque)
+
     sidebar:
       suggest_merchant: Proposer un commerçant
       show_search: Afficher la recherche
@@ -188,6 +191,9 @@ fr:
       map_fit_bounds: Centrer sur les commerces
       map_gesture_handling: Verrouiller au scroll
       help_embed: Documentation d'intégration
+
+      export_as_gpx: Télécharger les commerçants
+      import_gpx_to_comaps: Importer dans CoMaps
 
       refresh_confirm_html: Voulez-vous rafraîchir la liste des commerçants ? <br /> Soyez patient, cela peut prendre quelques minutes.
       refresh: Rafraîchir les commerçants

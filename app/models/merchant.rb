@@ -73,9 +73,9 @@ class Merchant < ApplicationRecord
 
   def traditional_contacts
     {
-      website: website,
       phone: phone,
-      email: email
+      email: email,
+      website: website
     }.compact_blank
   end
 

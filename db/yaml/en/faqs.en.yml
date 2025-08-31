@@ -44,6 +44,14 @@
     - map
   identifier: embed_map
 
+- question: I want to export merchants to access offline from my application. How can I do that?
+  content:
+    - answer: You can export your current merchant search by clicking the three dots at the top of the form, then selecting <i>Download merchants</i>.
+    - answer: Visit the page {{tutorials#show->import-merchants-in-comaps}} for a full tutorial on importing merchants into the CoMaps application.
+  categories:
+    - map
+  identifier: export_gpx
+
 - question: What is a KYC ?
   content:
     - answer: <b>KYC</b> (<i>Know Your Customer</i>) is a process used by financial institutions, banks, payment companies, and other financial services to verify the identity of their customers. This process typically involves collecting documents such as identification cards, proof of address, and personal information to ensure transactions are legitimate and that customers are not involved in fraudulent or criminal activities.

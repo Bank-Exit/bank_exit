@@ -1,12 +1,13 @@
 class Article
   class Figure
-    attr_reader :image, :caption, :url
+    attr_reader :image, :caption, :url, :klass
 
-    def initialize(image: nil, video: {}, caption: nil, url: nil)
+    def initialize(image: nil, video: {}, caption: nil, url: nil, klass: nil)
       @image = image
       @video = video.with_indifferent_access
       @caption = caption
       @url = url
+      @klass = klass
     end
 
     def image?
@@ -31,6 +32,10 @@ class Article
 
     def url?
       url.present?
+    end
+
+    def klass?
+      klass.present?
     end
   end
 end

@@ -85,3 +85,9 @@
     background-color: var(--color-error);
     color: var(--color-error-content);
 }
+
+.panel-intro {
+    background-color: var(--color-base-300);
+    color: var(--color-base-content);
+    font-style: italic;
+}
