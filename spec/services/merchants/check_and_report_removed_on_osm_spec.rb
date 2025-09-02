@@ -6,9 +6,9 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
 
     let(:merchant_ids) { %w[123 456 789] }
 
-    # Extra merchant only in bank-exit map
-    let!(:merchant) { create :merchant, name: 'John', identifier: '1234ABCD', country: 'FR' }
-
+    let!(:merchant) do
+      create :merchant, monero: true, name: 'John Monero', identifier: '111111', country: 'FR'
+    end
     let(:removed_merchants_txt_file) do
       'spec/fixtures/files/merchants/removed_merchants_from_open_street_map.txt'
     end
@@ -16,16 +16,24 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
     before do
       freeze_time
 
+      create :merchant, june: true, name: 'John June', identifier: '222222', country: 'FR'
+      create :merchant, bitcoin: true, name: 'John Bitcoin', identifier: '333333', country: 'FR'
+
       stub_request(:patch, /api.github.com/)
         .with(body: {
           body: <<~MARKDOWN
-            **1** merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
+            **2** Monero and/or June merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
             Please check the relevance of the information below:
 
-            - [ ] **John** [#1234ABCD] 🇫🇷 France
+            - [ ] **John Monero** [#111111] 🇫🇷 France
               - Date: #{I18n.l(Time.current)}
-              - [On Bank-Exit](http://example.test/en/merchants/1234ABCD-john?debug=true)
-              - [On OpenStreetMap](https://www.openstreetmap.org/node/1234ABCD)
+              - [On Bank-Exit](http://example.test/en/merchants/111111-john-monero?debug=true)
+              - [On OpenStreetMap](https://www.openstreetmap.org/node/111111)
+
+            - [ ] **John June** [#222222] 🇫🇷 France
+              - Date: #{I18n.l(Time.current)}
+              - [On Bank-Exit](http://example.test/en/merchants/222222-john-june?debug=true)
+              - [On OpenStreetMap](https://www.openstreetmap.org/node/222222)
 
 
             ---
@@ -44,12 +52,14 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
 
     it { expect(merchant.reload.deleted_at).to_not be_nil }
 
-    it 'creates missing_merchant_ids_from_open_street_map.txt file', :aggregate_failures do
+    it 'creates missing_merchant_ids_from_open_street_map.txt file', :aggregate_failures do # rubocop:disable RSpec/ExampleLength
       expect(File).to exist(removed_merchants_txt_file)
 
       text = File.read(removed_merchants_txt_file)
-      expect(text).to match(%r{http://example.test/en/merchants/1234ABCD})
-      expect(text).to match(%r{https://www.openstreetmap.org/node/1234ABCD})
+      expect(text).to match(%r{http://example.test/en/merchants/111111})
+      expect(text).to match(%r{https://www.openstreetmap.org/node/111111})
+      expect(text).to match(%r{http://example.test/en/merchants/222222})
+      expect(text).to match(%r{https://www.openstreetmap.org/node/222222})
     end
   end
 end

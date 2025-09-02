@@ -41,7 +41,7 @@ module Merchants
 
     def body
       <<~MARKDOWN
-        **#{merchants_list.count}** merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
+        **#{merchants_list.count}** Monero and/or June merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
         Please check the relevance of the information below:
 
         #{merchants_list.join("\n")}
@@ -53,7 +53,10 @@ module Merchants
     end
 
     def merchants
-      @merchants ||= Merchant.where(original_identifier: @diff_ids).order(deleted_at: :desc)
+      @merchants ||= Merchant
+                     .where(original_identifier: @diff_ids)
+                     .merge(Merchant.monero.or(Merchant.june))
+                     .order(deleted_at: :desc)
     end
 
     def merchants_list
