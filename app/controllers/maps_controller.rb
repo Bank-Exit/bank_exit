@@ -90,6 +90,27 @@ class MapsController < PublicController
     render json: merchants_markers
   end
 
+  # @route GET /fr/map/merchants {locale: "fr"} (export_merchants_fr)
+  # @route GET /es/map/merchants {locale: "es"} (export_merchants_es)
+  # @route GET /de/map/merchants {locale: "de"} (export_merchants_de)
+  # @route GET /it/map/merchants {locale: "it"} (export_merchants_it)
+  # @route GET /en/map/merchants {locale: "en"} (export_merchants_en)
+  # @route GET /map/merchants
+  def export_merchants
+    @merchants = Merchant.where(id: merchant_ids)
+
+    filename = helpers.merchant_metadata_filename(
+      coins, category, continent, country, query
+    )
+
+    respond_to do |format|
+      format.gpx do
+        response.headers['Content-Disposition'] = "attachment; filename=#{filename}.gpx"
+        render layout: false
+      end
+    end
+  end
+
   private
 
   def map_params

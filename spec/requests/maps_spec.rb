@@ -107,4 +107,53 @@ RSpec.describe 'Maps' do
       end
     end
   end
+
+  describe 'GET /map/merchants' do
+    subject(:action) { get '/map/merchants.gpx', params: params }
+
+    let(:params) do
+      {
+        coins: ['Monero'],
+        category: 'restaurant',
+        country: 'FR'
+      }
+    end
+
+    before do
+      create :merchant, :with_latlon, name: 'Merchant One', category: 'restaurant', country: 'FR', coins: %i[monero bitcoin]
+      create :merchant, :with_latlon, name: 'Merchant Two', category: 'restaurant', country: 'FR', coins: %i[monero]
+      create :merchant, :with_latlon, name: 'Merchant Three', category: 'cafe', country: 'FR', coins: %i[monero]
+      create :merchant, :with_latlon, name: 'Merchant Italy', country: 'IT', coins: %i[monero bitcoin june]
+
+      travel_to Date.new(2025, 8, 31)
+      action
+    end
+
+    describe '[metadata]' do
+      it 'has correct metadata', :aggregate_failures do
+        expect(response).to have_http_status(:ok)
+        expect(response.content_type).to include('application/gpx+xml')
+        expect(response.headers['Content-Disposition']).to match(/attachment; filename=.*\.gpx/)
+      end
+
+      it 'has correct document filename' do
+        expect(response.headers['Content-Disposition']).to match('merchants_monero_restaurant_fr_2025-08-31')
+      end
+
+      it { expect(response.body).to include('<name>Merchants - Monero - Restaurant - 🇫🇷 France - 2025-08-31 🚀</name>') }
+    end
+
+    it 'includes expected merchants in the GPX output', :aggregate_failures do
+      expect(response.body).to include('Merchant One')
+      expect(response.body).to include('Merchant Two')
+    end
+
+    it 'includes GPX root element' do
+      expect(response.body).to include('<gpx')
+    end
+
+    it 'includes waypoints for each merchant' do
+      expect(response.body.scan('<wpt').size).to eq(2)
+    end
+  end
 end

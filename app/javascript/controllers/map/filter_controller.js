@@ -80,6 +80,12 @@ export default class extends Controller {
     url.search = newParams.toString();
 
     window.history.pushState({ path: url.href }, "", url.href);
+
+    // Inject filters GET params to download merchants link
+    const $downloadLink = document.getElementById("download_merchants");
+    const baseUrl = $downloadLink.href.split("?")[0];
+    const newHref = `${baseUrl}${url.search}`;
+    $downloadLink.href = newHref;
   }
 
   clearField(event) {

@@ -164,6 +164,9 @@ en:
 
       free_open_data_html: Data displayed on the map is <strong>free</strong>, <strong>open source</strong> and comes from <strong>OpenStreetMap</strong>.
 
+    export_merchants:
+      description: Points of sale accepting cryptocurrencies (Bank-Exit export)
+
     sidebar:
       suggest_merchant: Suggest a merchant
       show_search: Show search form
@@ -188,6 +191,9 @@ en:
       map_fit_bounds: Focus on businesses
       map_gesture_handling: Lock on scroll
       help_embed: Embed documentation
+
+      export_as_gpx: Download merchants
+      import_gpx_to_comaps: Import in CoMaps
 
       refresh_confirm_html: Are you sure you want to refresh merchants ? <br /> Please be patient, it could take several minutes.
       refresh: Refresh merchants data

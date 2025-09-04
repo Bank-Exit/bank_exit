@@ -1,4 +1,75 @@
 ---
+- title: Import merchants to CoMaps
+  identifier: import-merchants-in-comaps
+  level: 0
+  time: 10
+  created_at: "2025-08-24"
+  banner: banner-offline
+  content:
+    - mode: intro
+      body:
+        - It is possible to export the merchants displayed on the map and import them into a mapping application such as <a href="https://www.comaps.app" target="_blank">CoMaps</a>, which works even without an internet connection.
+        - This tutorial walks you through the steps so you can access merchant data anytime—whether you're traveling, on a train, or offline.
+
+    - body:
+        - Select your search filters on the map page or leave them as default to export all merchants. In this example, we’ll use Monero merchants located in France. Open the menu by clicking the three vertical dots and download by clicking on <strong>Download merchants</strong>.
+      figure:
+        - image: tutorials/comaps-merchants-gpx/en/00_export_merchants_as_gpx.png
+          klass: "lg:w-1/2 border border-base-content/20"
+
+    - body:
+        - Then open the <strong>CoMaps</strong> app on your smartphone.
+      figure:
+        - image: tutorials/comaps-merchants-gpx/logo_comaps.webp
+          klass: "w-30"
+
+    - body:
+        - On the map view, tap the <strong>star icon</strong> in the bottom menu to access the <strong>Bookmarks and Tracks</strong> screen.
+      figure:
+        - image: tutorials/comaps-merchants-gpx/en/01_empty_map.png
+          klass: "lg:w-1/2"
+
+    - body:
+        - In the options, select <strong>Import bookmarks and tracks</strong>.
+      figure:
+        - image: tutorials/comaps-merchants-gpx/en/02_settings_import_gpx.png
+          klass: "lg:w-1/2"
+
+    - body:
+        - Navigate to the <strong>.gpx</strong> file you just downloaded (usually located in your device’s <strong>Downloads</strong> folder) and select it. This will start the import process.
+
+    - mode: info
+      body:
+        - "Note: Depending on the number of merchants in the file, the import process may take more or less time."
+
+    - body:
+        - Once imported, the merchants will appear on the map. You can now view or edit them for offline navigation.
+      figure:
+        - image: tutorials/comaps-merchants-gpx/en/04_maps_with_opened_marker.png
+          klass: "lg:w-1/2"
+
+    - body:
+        - To hide the newly imported merchants, tap the <strong>star icon</strong> again at the bottom of the map and uncheck the small green eye next to the import entry. Tap the eye again to make them reappear.
+      figure:
+        - image: tutorials/comaps-merchants-gpx/en/03_settings_gpx_imported.png
+          klass: "lg:w-1/2"
+
+    - mode: warning
+      body:
+        - "Note: There is no automatic synchronization, so you’ll need to download merchants and import then again into CoMaps to update the data."
+
+    - mode: info
+      body:
+        - If you have any problems, please contact the Collective for support on Telegram, Matrix, or Session ;)
+
+  useful_links:
+    - url: https://www.comaps.app
+      description: CoMaps website
+    - url: http://t.me/SortieDeBanque
+      description: Technical support on Telegram
+    - url: https://matrix.to/#/#bankexit:matrix.org
+      description: Technical support on Matrix
+
 - title: CakeWallet and Monero
   identifier: cakewallet-monero
   level: 0

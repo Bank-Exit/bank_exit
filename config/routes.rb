@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     end
 
     get '/map/fetch_markers', to: 'maps#fetch_markers'
+    get '/map/merchants(.:format)', to: 'maps#export_merchants', as: :export_merchants
 
     resources :projects, only: :show
 

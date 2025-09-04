@@ -92,3 +92,8 @@
 .bg-banner-hacker {
     background-image: url("/banners/banner-hacker.jpg");
 }
+
+.bg-banner-offline {
+    background-position: top;
+    background-image: url("/banners/banner-offline.jpg");
+}

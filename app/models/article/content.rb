@@ -22,7 +22,7 @@ class Article
     end
 
     def mode?
-      mode&.in?(%w[default success warning info error base-300])
+      mode&.in?(%w[default success warning info error base-300 intro])
     end
 
     def render
@@ -42,7 +42,7 @@ class Article
 
       @figure.map do |figure|
         Article::Figure.new(
-          **figure.with_indifferent_access.slice(:image, :video, :caption).symbolize_keys
+          **figure.with_indifferent_access.slice(:image, :video, :caption, :klass).symbolize_keys
         )
       end
     end

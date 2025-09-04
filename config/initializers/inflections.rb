@@ -21,4 +21,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'OSRM'
   inflect.acronym 'OSM'
   inflect.acronym 'CBDC'
+  inflect.acronym 'GPX'
 end

@@ -70,6 +70,10 @@ fr:
       contact_way: moyen de contact
       coin_wallet: portefeuille crypto
       weblink: source
+      merchant:
+        zero: Commerçant
+        one: Commerçant
+        other: Commerçants
 
     attributes:
       merchant:
