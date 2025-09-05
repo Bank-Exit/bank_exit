@@ -5,5 +5,6 @@ Rails.application.config.generators do |g|
   g.view_specs false
   g.routing_specs false
   g.test_framework nil
+  g.system_tests nil
   g.template_engine :slim
 end

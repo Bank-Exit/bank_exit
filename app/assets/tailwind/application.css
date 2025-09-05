@@ -12,7 +12,9 @@
         christmas,
         dark_christmas,
         halloween;
-    exclude: diff;
+
+    /* See https://github.com/saadeghi/daisyui/issues/3882#issuecomment-3382480890 */
+    exclude: diff, properties;
 }
 
 @plugin "./daisyui-theme.mjs" {
