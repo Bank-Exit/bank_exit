@@ -516,6 +516,16 @@ RSpec.describe MerchantData do
         it { is_expected.to include(bitcoin: true) }
       end
 
+      context 'when [payment:onchain] is no' do
+        let(:twicked_feature) do
+          feature[:properties]['payment:onchain'] = 'no'
+          feature
+        end
+
+        it { is_expected.to include(coins: %w[]) }
+        it { is_expected.to include(bitcoin: false) }
+      end
+
       context 'when [payment:lightning] is yes' do
         let(:twicked_feature) do
           feature[:properties]['payment:lightning'] = 'yes'

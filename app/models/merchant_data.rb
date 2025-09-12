@@ -189,6 +189,8 @@ class MerchantData
   end
 
   def bitcoin?
+    return false if properties['payment:onchain'] == 'no'
+
     properties['currency:XBT'] == 'yes' || properties['payment:onchain'] == 'yes'
   end
 
