@@ -32,6 +32,8 @@ module MerchantsGPXHelper
     icon << '🟠' if merchant.monero?
     icon << '🟡' if merchant.bitcoin? || merchant.lightning? || merchant.contact_less?
     icon << '🌀' if merchant.june?
+
+    icon.join(' ')
   end
 
   def merchant_description(merchant)
@@ -42,7 +44,7 @@ module MerchantsGPXHelper
     crypto_summary << '🔒 Monero' if merchant.monero?
     crypto_summary << '🌀 June' if merchant.june?
     crypto_summary << '⚡ Lightning' if merchant.lightning? || merchant.contact_less?
-    lines << "#{merchant_icon(merchant)} #{crypto_summary.join(' + ')}" unless crypto_summary.empty?
+    lines << crypto_summary.join(' + ') unless crypto_summary.empty?
 
     # Category
     lines << "🏛️ Service: #{I18n.t(merchant.category, scope: 'categories')}" if merchant.category.present?

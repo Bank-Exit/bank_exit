@@ -5,7 +5,34 @@ FactoryBot.define do
     sequence(:name) { |n| "Merchant ##{n}" }
     slug { name.parameterize }
     category { 'bakery' }
-    coins { %w[bitcoin monero] }
+
+    trait :bitcoin do
+      bitcoin { true }
+    end
+
+    trait :lightning do
+      lightning { true }
+    end
+
+    trait :lightning_contactless do
+      contact_less { true }
+    end
+
+    trait :monero do
+      monero { true }
+    end
+
+    trait :june do
+      june { true }
+    end
+
+    after(:build) do |merchant|
+      merchant.coins << :bitcoin if merchant.bitcoin?
+      merchant.coins << :lightning if merchant.lightning?
+      merchant.coins << :lightning_contactless if merchant.contact_less?
+      merchant.coins << :monero if merchant.monero?
+      merchant.coins << :june if merchant.june?
+    end
 
     with_address
 
