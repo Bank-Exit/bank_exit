@@ -6,13 +6,13 @@ RSpec.describe 'Directories' do
   describe 'GET /directories' do
     subject! { get '/directories' }
 
-    it { expect(response).to have_http_status :ok }
+    it { expect(response).to have_http_status :redirect }
   end
 
   describe 'GET /directories/new' do
     subject! { get '/directories/new' }
 
-    it { expect(response).to have_http_status :ok }
+    it { expect(response).to have_http_status :redirect }
   end
 
   describe 'GET /directories/:id' do
@@ -20,7 +20,7 @@ RSpec.describe 'Directories' do
 
     let(:directory) { directories.first }
 
-    it { expect(response).to have_http_status :ok }
+    it { expect(response).to have_http_status :redirect }
   end
 
   I18n.available_locales.each do |locale|
@@ -56,11 +56,11 @@ RSpec.describe 'Directories' do
     end
   end
 
-  describe 'POST /directories' do
+  describe 'POST /en/directories' do
     subject(:action) { post path, params: params }
 
     let(:method) { :post }
-    let(:path) { '/directories' }
+    let(:path) { '/en/directories' }
 
     before do
       stub_geocoder_from_fixture!

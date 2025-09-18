@@ -1,4 +1,5 @@
 class PublicController < ApplicationController
+  include Localizable
   include Analyticable
 
   before_action :set_projects

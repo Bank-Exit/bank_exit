@@ -12,20 +12,26 @@ RSpec.describe 'Projects' do
       context "when #{project_id} project" do
         subject! { get "/projects/#{project_id}" }
 
-        it { expect(response).to have_http_status :ok }
+        it { expect(response).to redirect_to project_en_path(project_id) }
       end
     end
 
     context 'when flyer project' do
       subject! { get '/projects/flyer' }
 
-      it { expect(response).to redirect_to blog_en_path('flyer') }
+      it 'follows redirects', :aggregate_failures do
+        expect(response).to redirect_to project_en_path('flyer')
+
+        follow_redirect!
+
+        expect(response).to redirect_to blog_en_path('flyer')
+      end
     end
 
     context 'when project does not exist' do
       subject! { get "/projects/#{invalid_project_id}" }
 
-      it { expect(response).to have_http_status :not_found }
+      it { expect(response).to have_http_status :redirect }
     end
   end
 

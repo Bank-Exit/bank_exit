@@ -53,19 +53,19 @@ RSpec.describe 'Statistics' do
     context 'when date is valid' do
       let(:date) { Date.current.to_s }
 
-      it { expect(response).to have_http_status :ok }
+      it { expect(response).to have_http_status :redirect }
     end
 
     context 'when date is invalid' do
       let(:date) { 'fake' }
 
-      it { expect(response).to have_http_status :ok }
+      it { expect(response).to have_http_status :redirect }
     end
 
     context 'when date is missing' do
       let(:params) { {} }
 
-      it { expect(response).to have_http_status :ok }
+      it { expect(response).to have_http_status :redirect }
     end
   end
 end

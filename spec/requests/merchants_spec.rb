@@ -17,14 +17,19 @@ RSpec.describe 'Merchants' do
         action
       end
 
-      it { expect(response).to have_http_status :ok }
+      it { expect(response).to have_http_status :redirect }
     end
 
     context 'when merchant does not exist' do
       subject! { get "/merchants/#{invalid_merchant_id}" }
 
-      it { expect(response).to have_http_status :moved_permanently }
-      it { expect(response).to redirect_to maps_en_path }
+      it 'follows redirects to maps page', :aggregate_failures do
+        expect(response).to redirect_to merchant_en_path(invalid_merchant_id)
+
+        follow_redirect!
+
+        expect(response).to redirect_to maps_en_path
+      end
     end
 
     describe 'when logo and banner are attached' do
@@ -34,7 +39,7 @@ RSpec.describe 'Merchants' do
         create :merchant, :with_address, :with_opening_hours, :with_geometry_polygon, :with_all_contacts, :with_logo, :with_banner
       end
 
-      it { expect(response).to have_http_status :ok }
+      it { expect(response).to have_http_status :redirect }
     end
 
     describe '[pre-deleted]' do
@@ -47,15 +52,20 @@ RSpec.describe 'Merchants' do
           get "/merchants/#{merchant.identifier}", params: { debug: 'true' }
         end
 
-        it { expect(response).to have_http_status :ok }
+        it { expect(response).to redirect_to merchant_en_path(merchant.identifier, debug: true) }
       end
 
       context 'when debug flag is missing' do
         subject! { get "/merchants/#{merchant.identifier}" }
 
-        it { expect(response).to have_http_status :found }
-        it { expect(response).to redirect_to maps_en_path }
-        it { expect(flash[:alert]).to eq I18n.t('merchants.show.alert', locale: :en) }
+        it 'follows redirects to maps page', :aggregate_failures do
+          expect(response).to redirect_to merchant_en_path(merchant.identifier)
+
+          follow_redirect!
+
+          expect(flash[:alert]).to eq I18n.t('merchants.show.alert', locale: :en)
+          expect(response).to redirect_to maps_en_path
+        end
       end
     end
   end
@@ -105,8 +115,8 @@ RSpec.describe 'Merchants' do
     end
   end
 
-  describe 'GET /merchants/refresh.turbo_stream' do
-    subject(:action) { post '/merchants/refresh', as: :turbo_stream }
+  describe 'GET /en/merchants/refresh.turbo_stream' do
+    subject(:action) { post '/en/merchants/refresh', as: :turbo_stream }
 
     before { stub_overpass_request_success }
 

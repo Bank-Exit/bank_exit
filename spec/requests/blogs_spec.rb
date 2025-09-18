@@ -13,7 +13,7 @@ RSpec.describe 'Blogs' do
   describe 'GET /blogs' do
     subject! { get '/blogs/' }
 
-    it { expect(response).to have_http_status :ok }
+    it { expect(response).to have_http_status :redirect }
   end
 
   describe 'GET /blogs/:id' do
@@ -21,14 +21,14 @@ RSpec.describe 'Blogs' do
       context "when #{blog_id} blog" do
         subject! { get "/blogs/#{blog_id}" }
 
-        it { expect(response).to have_http_status :ok }
+        it { expect(response).to have_http_status :redirect }
       end
     end
 
     context 'when blog does not exist' do
       subject! { get "/blogs/#{invalid_blog_id}" }
 
-      it { expect(response).to have_http_status :not_found }
+      it { expect(response).to have_http_status :redirect }
     end
   end
 

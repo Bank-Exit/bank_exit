@@ -7,7 +7,7 @@ RSpec.describe 'Comments' do
     describe 'GET /merchants/:merchant_id/comments/new' do
       subject! { get "/merchants/#{commentable.identifier}/comments/new", as: :turbo_stream }
 
-      it { expect(response).to have_http_status :ok }
+      it { expect(response).to have_http_status :redirect }
     end
 
     I18n.available_locales.each do |locale|
@@ -104,7 +104,7 @@ RSpec.describe 'Comments' do
     describe 'GET /directories/:directory_id/comments/new' do
       subject! { get "/directories/#{commentable.id}/comments/new", as: :turbo_stream }
 
-      it { expect(response).to have_http_status :ok }
+      it { expect(response).to have_http_status :redirect }
     end
 
     I18n.available_locales.each do |locale|

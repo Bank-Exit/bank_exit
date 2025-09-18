@@ -185,6 +185,7 @@ class MapsController < PublicController
 
   def redirect_with_coordinates
     redirect_to pretty_map_path(
+      locale: find_locale,
       zoom: @zoom || Setting::MAP_DEFAULT_ZOOM,
       lat: @latitude || Setting::MAP_DEFAULT_LATITUDE,
       lon: @longitude || Setting::MAP_DEFAULT_LONGITUDE,
