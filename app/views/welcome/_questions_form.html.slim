@@ -2,10 +2,10 @@
                   url: results_questions_path, \
                   method: :get,
                   html: { \
-                    class: 'order-2 lg:order-none' \
+                    class: 'order-2 lg:order-none w-full md:w-sm' \
                   } do |f|
 
-  fieldset.bg-base-200/95.border-base-content/20.rounded-box.md:w-sm.border.p-4.mx-auto
+  fieldset.bg-base-200/95.border-base-content/20.rounded-box.border.p-4
     legend.badge.badge-primary= t('.title')
 
     .space-y-4
