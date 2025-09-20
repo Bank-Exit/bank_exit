@@ -38,8 +38,6 @@ class FetchMerchants < ApplicationService
 
     # Broadcast with message scoped by locale
     I18n.available_locales.each do |locale|
-      Rails.cache.delete([locale, :statistics, :graphics])
-
       I18n.with_locale(locale) do
         message = I18n.t('refresh_success', link: maps_url, scope: i18n_scope)
 

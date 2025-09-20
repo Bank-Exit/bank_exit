@@ -7,7 +7,7 @@ module Statisticable
     @statistics_presenter = StatisticsPresenter.new(include_atms: include_atms?)
 
     @merchants_statistics = Rails.cache.fetch(
-      "concerns/statistics:merchants:with_atms=#{cache_key_suffix}",
+      "concerns/statistics:merchants:#{cache_key_suffix}",
       expires_in: CACHE_EXPIRES_IN
     ) do
       @statistics_presenter.merchants_statistics
@@ -45,7 +45,7 @@ module Statisticable
   private
 
   def cache_key_suffix
-    "locale=#{I18n.locale}:with_atms=#{session[:include_atms]}"
+    "locale=#{I18n.locale}:with_atms=#{include_atms?}"
   end
 
   def include_atms?
