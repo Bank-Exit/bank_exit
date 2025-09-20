@@ -4,7 +4,7 @@ RSpec.describe 'Media' do
   describe 'GET /media' do
     subject! { get '/media' }
 
-    it { expect(response).to have_http_status :ok }
+    it { expect(response).to have_http_status :redirect }
   end
 
   I18n.available_locales.each do |locale|

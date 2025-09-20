@@ -4,7 +4,13 @@ RSpec.describe 'Shortcuts', type: :request do
   describe '/asdb' do
     subject! { get('/asdb') }
 
-    it { is_expected.to redirect_to('/en/blogs/bank-exit-assembly-2025') }
+    it 'follows redirects to english article', :aggregate_failures do
+      expect(response).to redirect_to('/blogs/bank-exit-assembly-2025')
+
+      follow_redirect!
+
+      expect(response).to redirect_to('/en/blogs/bank-exit-assembly-2025')
+    end
   end
 
   I18n.available_locales.each do |locale|

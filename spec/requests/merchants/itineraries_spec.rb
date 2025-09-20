@@ -6,7 +6,7 @@ RSpec.describe 'Merchants::Itineraries' do
   describe 'GET /merchants/:id/itinerary/new' do
     subject! { get "/merchants/#{merchant.identifier}/itinerary/new" }
 
-    it { expect(response).to have_http_status :ok }
+    it { expect(response).to have_http_status :redirect }
   end
 
   I18n.available_locales.each do |locale|

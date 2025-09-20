@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Questions' do
   I18n.available_locales.each do |locale|
     describe "GET /#{locale}/questions/results" do
-      subject! { get '/questions/results', params: params }
+      subject! { get "/#{locale}/questions/results", params: params }
 
       let(:params) do
         {
@@ -24,49 +24,49 @@ RSpec.describe 'Questions' do
       context 'when :accounting' do
         let(:service) { 'accounting' }
 
-        it { expect(response).to redirect_to tutorial_en_path('accounting') }
+        it { expect(response).to redirect_to send("tutorial_#{locale}_path", 'accounting') }
       end
 
       context 'when :messaging' do
         let(:service) { 'messaging' }
 
-        it { expect(response).to redirect_to tutorial_en_path('session-messaging') }
+        it { expect(response).to redirect_to send("tutorial_#{locale}_path", 'session-messaging') }
       end
 
       context 'when :social_network' do
         let(:service) { 'social_network' }
 
-        it { expect(response).to redirect_to tutorial_en_path('nostr-social-network') }
+        it { expect(response).to redirect_to send("tutorial_#{locale}_path", 'nostr-social-network') }
       end
 
       context 'when :buy_no_kyc' do
         let(:service) { 'buy_no_kyc' }
 
-        it { expect(response).to redirect_to tutorial_en_path('bitcoin-nokyc') }
+        it { expect(response).to redirect_to send("tutorial_#{locale}_path", 'bitcoin-nokyc') }
       end
 
       context 'when :kitty' do
         let(:service) { 'kitty' }
 
-        it { expect(response).to redirect_to tutorial_en_path('funding-monero') }
+        it { expect(response).to redirect_to send("tutorial_#{locale}_path", 'funding-monero') }
       end
 
       context 'when :debank' do
         let(:service) { 'debank' }
 
-        it { expect(response).to redirect_to tutorial_en_path('crash-course') }
+        it { expect(response).to redirect_to send("tutorial_#{locale}_path", 'crash-course') }
       end
 
       context 'when :node' do
         let(:service) { 'node' }
 
-        it { expect(response).to redirect_to tutorial_en_path('monero-node-easymonerod') }
+        it { expect(response).to redirect_to send("tutorial_#{locale}_path", 'monero-node-easymonerod') }
       end
 
       context 'when :anonymous' do
         let(:service) { 'anonymous' }
 
-        it { expect(response).to redirect_to tutorial_en_path('cakewallet-monero') }
+        it { expect(response).to redirect_to send("tutorial_#{locale}_path", 'cakewallet-monero') }
       end
     end
 

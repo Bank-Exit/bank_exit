@@ -4,7 +4,7 @@ RSpec.describe 'FAQs' do
   describe 'GET /faq' do
     subject! { get '/faq' }
 
-    it { expect(response).to have_http_status :ok }
+    it { expect(response).to have_http_status :redirect }
   end
 
   I18n.available_locales.each do |locale|

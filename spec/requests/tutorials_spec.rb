@@ -17,7 +17,7 @@ RSpec.describe 'Tutorials' do
   describe 'GET /tutorials' do
     subject! { get '/tutorials/' }
 
-    it { expect(response).to have_http_status :ok }
+    it { expect(response).to have_http_status :redirect }
   end
 
   describe 'GET /tutorials/:id' do
@@ -25,14 +25,14 @@ RSpec.describe 'Tutorials' do
       context "when #{tutorial_id} tutorial" do
         subject! { get "/tutorials/#{tutorial_id}" }
 
-        it { expect(response).to have_http_status :ok }
+        it { expect(response).to have_http_status :redirect }
       end
     end
 
     context 'when tutorial does not exist' do
       subject! { get "/tutorials/#{invalid_tutorial_id}" }
 
-      it { expect(response).to have_http_status :not_found }
+      it { expect(response).to have_http_status :redirect }
     end
   end
 

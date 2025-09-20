@@ -12,14 +12,14 @@ RSpec.describe 'Coins' do
       context "when #{coin}" do
         subject! { get "/coins/#{coin}" }
 
-        it { expect(response).to have_http_status :ok }
+        it { expect(response).to have_http_status :redirect }
       end
     end
 
     context 'when coin does not exist' do
       subject! { get "/coins/#{invalid_coin_id}" }
 
-      it { expect(response).to have_http_status :not_found }
+      it { expect(response).to have_http_status :redirect }
     end
   end
 

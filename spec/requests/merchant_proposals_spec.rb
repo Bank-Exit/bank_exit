@@ -4,13 +4,13 @@ RSpec.describe 'MerchantProposals' do
   describe 'GET /merchant_proposals' do
     subject! { get '/merchant_proposals' }
 
-    it { expect(response).to redirect_to new_merchant_proposal_en_path }
+    it { expect(response).to redirect_to merchant_proposals_en_path }
   end
 
   describe 'GET /merchant_proposals/new' do
     subject! { get '/merchant_proposals/new' }
 
-    it { expect(response).to have_http_status :ok }
+    it { expect(response).to have_http_status :redirect }
   end
 
   I18n.available_locales.each do |locale|
@@ -27,8 +27,8 @@ RSpec.describe 'MerchantProposals' do
     end
   end
 
-  describe 'POST /merchant_proposals' do
-    subject(:action) { post '/merchant_proposals', params: params }
+  describe 'POST /en/merchant_proposals' do
+    subject(:action) { post '/en/merchant_proposals', params: params }
 
     context 'when params are valid' do
       let(:params) do
