@@ -15,23 +15,23 @@
     li
       = link_to 'Modifier',
                 edit_admin_merchant_path(merchant),
-                class: 'block text-center bg-warning text-warning-content'
+                class: 'btn btn-sm btn-warning'
 
   - if allowed_to?(:create?, merchant, with: Admin::Merchants::DirectoryConverterPolicy)
     li
-      = button_to "Convertir en entrée d'annuaire",
-                admin_directory_converters_path(merchant),
-                method: :post,
-                form_class: 'block text-center bg-success text-success-content',
-                data: { \
-                  turbo_confirm: "Voulez-vous convertir ce commerçant et l'intégrer dans l'annuaire ?<br />(le commerçant de la carte ne sera pas modifié)" \
-                }
+      = link_to "Convertir en entrée d'annuaire",
+                  admin_directory_converters_path(merchant),
+                  class: 'btn btn-sm btn-success',
+                  data: { \
+                    turbo_method: :post,
+                    turbo_confirm: "Voulez-vous convertir ce commerçant et l'intégrer dans l'annuaire ?<br />(le commerçant de la carte ne sera pas modifié)" \
+                  }
 
   - if allowed_to?(:reactivate?, merchant)
     li
       = link_to 'Réactiver',
                 admin_merchant_reactivate_path(merchant),
-                class: 'block text-center bg-success text-success-content',
+                class: 'btn btn-sm btn-success',
                 data: { \
                   turbo_method: :post,
                   turbo_confirm: 'Voulez-vous réactiver ce commerçant pour le référencer à nouveau sur la carte ?' \
@@ -41,10 +41,10 @@
     li
       = link_to 'Supprimer',
                 admin_merchant_path(merchant),
-                class: 'block text-center bg-error text-error-content',
+                class: 'btn btn-sm btn-error',
                 data: { \
                   turbo_method: :delete,
                   turbo_confirm: 'Voulez-vous supprimer ce commerçant ? <br /> ⚠️ Il ne sera plus référencé sur la carte' \
                 }
 
-= render 'dropdown_actions'
+= render 'dropdown_actions', item_id: merchant.id

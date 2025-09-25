@@ -77,4 +77,6 @@
         = lucide_icon 'square-arrow-out-up-right', class: 'inline-flex w-4'
 
 = render 'dropdown_actions',
-         details_html: { data: { controller: ("map--options" if merchants_as_map?) } }
+         details_html: { data: { controller: ("map--options" if merchants_as_map?) } },
+         button_style: { class: 'btn-square btn-neutral' },
+         item_id: 'map'

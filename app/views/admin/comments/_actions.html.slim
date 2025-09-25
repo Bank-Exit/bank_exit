@@ -9,7 +9,7 @@
     li
       = link_to 'Réactiver',
                 admin_comment_path(comment),
-                class: 'block text-center bg-success text-success-content',
+                class: 'btn btn-sm btn-success',
                 data: { \
                   turbo_method: :patch,
                   turbo_confirm: 'Voulez-vous retirer le signalement de ce commentaire ?' \
@@ -19,10 +19,10 @@
     li
       = link_to 'Supprimer',
                 admin_comment_path(comment),
-                class: 'block text-center bg-error text-error-content',
+                class: 'btn btn-sm btn-error',
                 data: { \
                   turbo_method: :delete,
                   turbo_confirm: 'Voulez-vous supprimer ce commentaire ?' \
                 }
 
-= render 'dropdown_actions'
+= render 'dropdown_actions', item_id: comment.id

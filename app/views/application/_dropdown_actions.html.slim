@@ -1,11 +1,11 @@
 - details_html = {} unless defined?(details_html)
+- btn_style = { class: 'btn-ghost' } unless defined?(button_style)
 
-details.dropdown.dropdown-end *{**details_html}
-  summary.btn.btn-square.btn-neutral
-    = lucide_icon 'ellipsis-vertical'
+button.btn.btn-square popovertarget="popover-#{item_id}" style="anchor-name:--anchor-#{item_id}" *{**btn_style}
+  = lucide_icon 'ellipsis-vertical'
 
-  .dropdown-content.z-1.w-72
-    = yield(:dropdown_header)
+.dropdown.dropdown-end.w-max.rounded-box.bg-base-100.border.border-base-content/20.shadow-sm popover="" id="popover-#{item_id}" style="position-anchor:--anchor-#{item_id}" *{**details_html}
+  = yield(:dropdown_header)
 
-    ul.menu.space-y-2.w-full
-      = yield(:dropdown_menu)
+  ul.menu.space-y-2
+    = yield(:dropdown_menu)
