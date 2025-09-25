@@ -74,6 +74,7 @@ fr:
         zero: Commerçant
         one: Commerçant
         other: Commerçants
+      announcement: annonce
 
     attributes:
       merchant:
@@ -171,3 +172,17 @@ fr:
 
       address:
         label: Adresse approximative du "commerçant"
+
+      announcement:
+        title: Titre
+        picture: Image
+        published_at: Publication le
+        unpublished_at: Dépublication le
+        link_to_visit: Lien à visiter
+        enabled: Activé ?
+        modes:
+          default: Défaut
+          info: Information
+          success: Succès
+          warning: Attention
+          error: Alerte !

@@ -1,0 +1,10 @@
+header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
+  h1.text-3xl Les annonces
+
+  - if allowed_to?(:create?, Announcement, namespace: Admin)
+    = link_to 'Nouvelle annonce', new_admin_announcement_path, class: 'btn btn-success'
+
+#announcements
+  = render 'announcements', announcements: @announcements, pagy: @pagy
+
+#announcement_preview.fixed.bottom-5.left-5.right-5.lg:w-1/2.mx-auto.z-50.space-y-2

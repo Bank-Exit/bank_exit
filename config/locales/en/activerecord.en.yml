@@ -164,3 +164,11 @@ en:
 
       address:
         label: Approximate address of the "merchant"
+
+      announcement:
+        modes:
+          default: Default
+          info: Information
+          success: Success
+          warning: Warning
+          error: Alert !

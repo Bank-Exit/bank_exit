@@ -1,0 +1,34 @@
+= simple_form_for [:admin, announcement],
+                  html: { class: 'space-y-5' } do |f|
+
+  - if announcement.errors.any?
+    .panel.panel-error.mt-3
+      ul.list-disc.list-inside
+        - announcement.errors.each do |error|
+          li= error.full_message
+
+  = f.input :title
+  = f.input :description
+
+  div
+    = f.input :picture, as: :file
+    - if f.object.picture.persisted? && f.object.picture.attached?
+      = image_tag url_for(f.object.picture.variant(:small)), class: 'w-32 rounded-lg my-1'
+      = f.input :remove_picture, as: :boolean
+
+  .flex.flex-col.lg:flex-row.gap-3
+    = f.input :locale,
+              collection: announcement_locale_select_helper,
+              include_blank: false
+    = f.input :mode,
+              collection: select_options_for(Announcement, :modes),
+              include_blank: false
+
+  = f.input :link_to_visit
+
+  .flex.flex-col.lg:flex-row.gap-3
+    = f.input :published_at, html5: true, wrapper_html: { class: 'w-1/2' }
+    = f.input :unpublished_at, html5: true, wrapper_html: { class: 'w-1/2' }
+
+  = f.input :enabled
+  = f.button :submit

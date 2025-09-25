@@ -70,6 +70,9 @@ fr:
       comment:
         affidavit: J'atteste sur l'honneur avoir eu l'expérience indiquée avec ce commerçant
 
+      announcement:
+        remove_picture: Supprimer l'image ?
+
     placeholders:
       defaults:
         latitude: Latitude par défaut
@@ -179,6 +182,15 @@ fr:
 
       weblinks:
         title: Laisser vide pour afficher l'URL ou spécifier un titre adapté aux humains
+
+      announcement:
+        description: Contenu de l'annonce. Peut inclure des balises HTML.
+        picture: Image d'ilustration de l'annonce (format carré privilégié). <b>⚠️ JPEG ou PNG inférieur à 1MB</b>
+        locale: L'admin n'étant pas encore internationalisé, vous devez sélectionnez la langue sur laquelle l'annonce apparaîtra. Pensez donc à créer l'annonce pour chacune des locales nécessaires, il n'y a pas de fallback vers la locale par défaut pour l'instant.
+        mode: Sélectionnez le mode de l'annonce pour définir le style visuel (couleur du thème pour défaut, vert pour succès, bleu pour info, orange pour warning et rouge pour alerte).
+        link_to_visit: Spécifiez le lien du bouton "Voir" de l'annonce. Ce peut être un lien externe ou interne, relatif ou absolu.
+        published_at: Date et heure à partir de laquelle l'annonce sera visible sur le site. Laisser vide pour qu'elle apparaisse immédiatement
+        unpublished_at: Date et heure à partir de laquelle l'annonce sera masquée du site. Laisser vide ce champs signifie qu'il vous faudra la désactiver manuellement.
 
     include_blanks:
       defaults:
