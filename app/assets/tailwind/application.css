@@ -5,11 +5,11 @@
     --map-road-color: #3388ff;
 }
 
-@plugin "./daisyui.js" {
+@plugin "./daisyui.mjs" {
     themes: false;
 }
 
-@plugin "./daisyui-theme.js" {
+@plugin "./daisyui-theme.mjs" {
     name: "light";
     --color-neutral: var(--color-base-300);
     --color-neutral-content: oklch(32% 0 0);
@@ -27,7 +27,7 @@
     --color-error-content: oklch(44.4% 0.177 26.899);
 }
 
-@plugin "./daisyui-theme.js" {
+@plugin "./daisyui-theme.mjs" {
     name: "dark-bankexit";
     default: false;
     prefersdark: false;
