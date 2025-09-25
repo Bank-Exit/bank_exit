@@ -64,6 +64,7 @@ module Merchants
         <<~MARKDOWN
           - [ ] **#{merchant.name}** [##{merchant.identifier}] #{pretty_country_html(merchant.country)}
             - Date: #{I18n.l(merchant.deleted_at)}
+            - Coins: #{merchant.coins.map(&:capitalize).join(', ')}
             - [On Bank-Exit](#{merchant_url(merchant, debug: 'true')})
             - [On OpenStreetMap](#{merchant.osm_link})
         MARKDOWN

@@ -27,11 +27,13 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
 
             - [ ] **John Monero** [#111111] 🇫🇷 France
               - Date: #{I18n.l(Time.current)}
+              - Coins: Monero
               - [On Bank-Exit](http://example.test/en/merchants/111111-john-monero?debug=true)
               - [On OpenStreetMap](https://www.openstreetmap.org/node/111111)
 
             - [ ] **John June** [#222222] 🇫🇷 France
               - Date: #{I18n.l(Time.current)}
+              - Coins: June
               - [On Bank-Exit](http://example.test/en/merchants/222222-john-june?debug=true)
               - [On OpenStreetMap](https://www.openstreetmap.org/node/222222)
 
