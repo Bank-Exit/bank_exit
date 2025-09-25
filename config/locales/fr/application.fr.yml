@@ -1,9 +1,5 @@
 fr:
   application:
-    scam_alert:
-      title: Attention aux faux sites
-      headline_html: "Vérifiez toujours que le site affiché dans votre navigateur corresponde à %{url}"
-
     nav:
       collectif: Sortie
       bank_exit: De Banque

@@ -1,9 +1,5 @@
 it:
   application:
-    scam_alert:
-      title: Attenzione alle truffe
-      headline_html: "Controlla sempre che il sito visualizzato nel tuo browser corrisponda a %{url}"
-
     nav:
       collectif: Bank-Exit
       bank_exit: Collettivo

@@ -1,9 +1,5 @@
 en:
   application:
-    scam_alert:
-      title: Beware of scams
-      headline_html: "Always check that the site displayed in your browser corresponds to %{url}"
-
     nav:
       collectif: Bank-Exit
       bank_exit: Collective

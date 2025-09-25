@@ -1,9 +1,5 @@
 de:
   application:
-    scam_alert:
-      title: Vorsicht vor Betrug
-      headline_html: "Überprüfen Sie stets, ob die in Ihrem Browser angezeigte Website mit %{url} übereinstimmt"
-
     nav:
       collectif: Bank-Exit
       bank_exit: Kollektiv
