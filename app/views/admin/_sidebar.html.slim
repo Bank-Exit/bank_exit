@@ -1,47 +1,45 @@
 .drawer-side
   label.drawer-overlay for="sidebarDrawer" aria-label="close sidebar"
 
-  .bg-base-200.min-h-full.w-80.border-r-2.border-primary.px-4
-    = link_to admin_dashboard_path, class: 'text-primary block p-2 mb-3' do
+  .bg-base-300.min-h-full.w-80.border-r-2.border-primary.px-4
+    = link_to admin_dashboard_path, class: 'block p-2 mb-3' do
       = image_tag logo_by_locale, class: 'w-32 mx-auto'
 
       .text-center
         h1.text-xl.font-bold Sortie de Banque
         p Admin
 
-    ul.menu.w-full.space-y-2.mb-5.border.border-base-content/20.rounded-lg
-      - nav_link_klass = 'btn'
+    ul.menu.bg-base-200.mb-5.border.border-base-content/20.rounded-lg.w-full.items-center
+      li
+        = link_to 'Tableau de bord', admin_dashboard_path, class: ('menu-active' if params[:controller] == 'admin/dashboards')
 
       li
-        = link_to 'Tableau de bord', admin_dashboard_path, class: "#{nav_link_klass} #{params[:controller] == 'admin/dashboards' ? 'btn-primary' : 'btn-ghost' }"
-
-      li
-        = link_to admin_merchants_path, class: "#{nav_link_klass} #{params[:controller] == 'admin/merchants' ? 'btn-primary' : 'btn-ghost' }" do
+        = link_to admin_merchants_path, class: ('menu-active' if params[:controller] == 'admin/merchants') do
           | Les commerçants
           - if Merchant.deleted.any?
             span< title="Commerçants désactivés" ⚠️
 
       li
-        = link_to admin_directories_path, class: "#{nav_link_klass} #{params[:controller] == 'admin/directories' ? 'btn-primary' : 'btn-ghost' }" do
+        = link_to admin_directories_path, class: ('menu-active' if params[:controller] == 'admin/directories') do
           | L'annuaire
 
       li
-        = link_to admin_comments_path, class: "#{nav_link_klass} #{params[:controller] == 'admin/comments' ? 'btn-primary' : 'btn-ghost' }" do
+        = link_to admin_comments_path, class: ('menu-active' if params[:controller] == 'admin/comments') do
           | Les commentaires
           - if Comment.flagged.any?
             span< title="Commentaire signalé" ⚠️
 
       li
-        = link_to mission_control_jobs_path, class: 'btn btn-ghost', target: :_blank do
+        = link_to mission_control_jobs_path, target: :_blank do
           | Mission Control Jobs
 
       - if allowed_to?(:analytics?, with: Admin::UserPolicy)
         li
-          = link_to active_analytics_path, class: 'btn btn-ghost', target: :_blank do
+          = link_to active_analytics_path, target: :_blank do
             | Analytics
 
       li
-        = link_to 'https://bank-exit-uptime-production.up.railway.app', class: 'btn btn-ghost', target: :_blank do
+        = link_to 'https://bank-exit-uptime-production.up.railway.app', target: :_blank do
           | Uptime Kuma
 
     .space-y-2.mb-8

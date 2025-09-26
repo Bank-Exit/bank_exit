@@ -42,7 +42,7 @@ article
       div
         h2.text-primary.uppercase.mb-2= Directory.human_attribute_name(:coins)
 
-        .panel.panel-base-200.space-y-2.overflow-y-auto
+        .alert.alert-vertical.overflow-y-auto
           - coin_wallets.each do |coin_wallet|
             .flex.items-center.gap-1
               = image_tag icon_by_coin(coin_wallet.coin),
@@ -68,7 +68,7 @@ article
           = DeliveryZone.model_name.human.capitalize
           =< lucide_icon 'truck', class: 'inline-flex w-5'
 
-        .panel.panel-base-200.overflow-y-auto.space-y-3
+        .alert.alert-vertical.overflow-y-auto.space-y-3
           - delivery_zones.group_by(&:mode).each do |group|
             - mode = group.first
             - rows = group.last
@@ -90,7 +90,7 @@ article
       div
         h2.text-primary.uppercase.mb-2= t('contact')
 
-        .panel.panel-base-200.space-y-3.overflow-y-auto
+        .alert.alert-vertical.overflow-y-auto
           - contact_ways.each do |contact_way|
             .flex.items-center.gap-2
               = social_contact_icon(contact_way.role, klass: "!w-6")
@@ -108,7 +108,7 @@ article
       div
         h2.text-primary.uppercase.mb-2= Weblink.model_name.human
 
-        .panel.panel-base-200.space-y-3.overflow-y-auto
+        .alert.overflow-y-auto
           - if weblinks.count > 1
             ul.list-disc.list-inside
               - weblinks.each do |weblink|

@@ -1,7 +1,7 @@
 ---
 - question: Je souhaite proposer un nouveau commerçant, comment faire ?
   content:
-    - answer: Pour proposer un nouveau commerçant, cliquez sur le bouton vert <mark>Proposer un commerçant</mark> au dessus de la carte ou bien cliquez directement sur l'URL {{merchant_proposals#new}} et remplissez les données du formulaire.
+    - answer: Pour proposer un nouveau commerçant, cliquez sur le bouton vert <span class="badge badge-success">Proposer un commerçant</span> au dessus de la carte ou bien cliquez directement sur l'URL {{merchant_proposals#new}} et remplissez les données du formulaire.
     - answer: Le Collectif sera alors informé de votre demande et ajoutera le commerçant sur OpenStreetMap.
   categories:
     - map
@@ -13,7 +13,7 @@
         - Imprimer (ou faire imprimer) quelques flyers (article sur {{blogs#show->flyer}}).
         - L'aider à faire un portefeuille Monero avec CakeWallet (tutoriel sur {{tutorials#show->cakewallet-monero}}).
         - Une fois par an, reporter ses quelques ventes Monero sur le fichier Excel tout prêt (tutoriel sur {{tutorials#show->accounting}}).
-        - Une fois effectué, le rajouter sur la carte avec le bouton vert <mark>Proposer un commerçant</mark> sur {{maps#index}} ou directement sur le formulaire {{merchant_proposals#new}} !
+        - Une fois effectué, le rajouter sur la carte avec le bouton vert <span class="badge badge-success">Proposer un commerçant</span> sur {{maps#index}} ou directement sur le formulaire {{merchant_proposals#new}} !
   categories:
     - map
     - merchant
@@ -31,7 +31,7 @@
 - question: J'ai ajouté un commerçant sur OpenStreetMap mais il n'apparait toujours pas sur la carte du Collectif, pourquoi ?
   content:
     - answer: La carte du Collectif est actualisée automatiquement 4 fois par jour. Si vous avez ajouté un commerçant récemment sur OpenStreetMap, il faudra donc attendre le prochain rafraîchissement qui pourra prendre jusqu'à 6h.
-    - answer: A noter que vous pouvez effectuer vous même un rafraîchissement manuel des données depuis la carte en cliquant sur <mark>⋮</mark> > <mark>Rafraîchir les commerçants</mark> (à côté du bouton vert "Proposer un commerçant").
+    - answer: A noter que vous pouvez effectuer vous même un rafraîchissement manuel des données depuis la carte en cliquant sur <span class="badge badge-primary">⋮</span> > <span class="badge badge-primary">Rafraîchir les commerçants</span> (à côté du bouton vert "Proposer un commerçant").
   categories:
     - map
   identifier: merchant_not_visible

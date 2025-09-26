@@ -15,8 +15,8 @@ ruby:
   sentence = [city, region, country, continent].compact_blank
 
 - if sentence.present?
-  .panel.panel-info.w-full.panel-sm
+  .alert.alert-info
     p= sentence.join(', ')
 - else
-  .panel.panel-warning.w-full.panel-sm
+  .alert.alert-warning
     p Unknown geolocation

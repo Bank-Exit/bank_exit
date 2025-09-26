@@ -6,7 +6,7 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
         section.space-y-3
           h1.text-3xl.font-bold= t('application.nav.menu.directories')
 
-          .bg-base-100/60.p-6.rounded-box
+          div
             p.italic
               = t('.headline_directory_explanation')
             p.italic
@@ -16,6 +16,8 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
               = t('.headline_directory_physical_merchants_html', link: link)
 
         - if @spotlights.any?
+          hr.border-neutral-content/50.w-1/2.mx-auto
+
           section.space-y-3
             p.font-bold
               = t('spotlight')

@@ -6,13 +6,14 @@
   ),
   id: 'merchants_filter',
   method: :get,
+  html: { class: 'space-y-2' },
   data: { \
     controller: 'map--filter',
     map__filter_highlight_class: 'select-primary',
     search_target: 'form',
     turbo_stream: true \
   } do |f|
-  .mb-2.flex.items-center.gap-2
+  .flex.items-center.gap-2
     = f.input :search,
               label: false,
               input_html: { \
@@ -25,10 +26,10 @@
               },
               wrapper: false
 
-    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_query') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="search"
+    span.btn.btn-xs.btn-circle.btn-primary tabindex="0" title=t('.clear_search_query') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="search"
       = lucide_icon 'undo', class: 'p-1'
 
-  .mb-2.flex.items-center.gap-2
+  .flex.items-center.gap-2
     .w-full
       = f.input :country,
                 wrapper: false,
@@ -43,10 +44,10 @@
                   class: 'select w-full' \
                 }
 
-    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_country') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="country"
+    span.btn.btn-xs.btn-circle.btn-primary tabindex="0" title=t('.clear_search_country') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="country"
       = lucide_icon 'undo', class: 'p-1'
 
-  .mb-2.flex.items-center.gap-2
+  .flex.items-center.gap-2
     .w-full
       = f.input :continent,
                 label: false,
@@ -59,10 +60,10 @@
                   } \
                 }
 
-    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_continent') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="continent"
+    span.btn.btn-xs.btn-circle.btn-primary tabindex="0" title=t('.clear_search_continent') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="continent"
       = lucide_icon 'undo', class: 'p-1'
 
-  .flex.items-center.justify-between.gap-2.mb-2
+  .flex.items-center.justify-between.gap-2
     .space-y-2.w-full
       - category_scope = 'categories'
       - category_group_title_scope = 'simple_form.labels.map.category'
@@ -114,10 +115,10 @@
               .text-xs.3xl:text-base.wrap-anywhere.text-center
                 = t("categories.#{category}")
 
-    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_category') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField click->map--filter#syncQuickCategories keyup.enter->map--filter#syncQuickCategories" data-resetable="category"
+    span.btn.btn-xs.btn-circle.btn-primary tabindex="0" title=t('.clear_search_category') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField click->map--filter#syncQuickCategories keyup.enter->map--filter#syncQuickCategories" data-resetable="category"
       = lucide_icon 'undo', class: 'p-1'
 
-  .mb-2.flex.items-center.gap-2
+  .flex.items-center.gap-2
     ul.grid.w-full.gap-2.grid-cols-3
       - [:monero, :bitcoin, :june].each do |coin|
         li.flex.flex-col.items-center.justify-start.gap-2
@@ -136,7 +137,7 @@
               .text-xs.3xl:text-base
                 = coin.capitalize
 
-    span.btn.btn-xs.btn-circle tabindex="0" title=t('.clear_search_coins') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="coins"
+    span.btn.btn-xs.btn-circle.btn-primary tabindex="0" title=t('.clear_search_coins') role="button" data-action="click->map--filter#clearField keyup.enter->map--filter#clearField" data-resetable="coins"
       = lucide_icon 'undo', class: 'p-1'
 
   .fieldset
@@ -179,4 +180,4 @@
 
 
   noscript
-    = f.button :submit, t('search')
+    = f.button :submit, t('search'), class: 'mt-2'

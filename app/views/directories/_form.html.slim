@@ -1,7 +1,7 @@
 = simple_form_for directory,
                   html: { class: 'space-y-5' } do |f|
   - if directory.errors.any?
-    .panel.panel-error
+    .alert.alert-error
       ul.list-disc.list-inside
         - directory.errors.each do |error|
           li= error.full_message
@@ -28,7 +28,7 @@
   section.space-y-3
     h2.text-lg.font-bold.text-primary.mb-2.border-b-2= Address.model_name.human.capitalize
 
-    .panel.panel-base-200
+    .alert
       = f.simple_fields_for :address do |ff|
         = ff.input :label,
                    label_html: { class: 'mb-2' },

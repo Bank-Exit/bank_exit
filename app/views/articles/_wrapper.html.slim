@@ -28,7 +28,7 @@ article
         = yield :outdated_content
 
         - if article.missing_content_for_locale?
-          p.panel.panel-warning= t('missing_content_for_locale')
+          p.alert.alert-warning= t('missing_content_for_locale')
 
   section.max-w-5xl.mx-auto.p-5.space-y-5
     .space-y-3
@@ -39,16 +39,18 @@ article
 
     #article.space-y-8
       - article.contents.each do |content|
-        .space-y-3 class=("panel panel-#{content.mode}" if content.mode?)
+        .space-y-3 class=("alert alert-vertical alert-#{content.mode}" if content.mode?)
           - if content.title?
             h2.text-lg.font-bold= content.title
 
           - if content.body?
-            .space-y-2.text-left
-              - content.body.each do |body|
-                - if body.starts_with?('- ')
-                  li== auto_link(body.delete_prefix('- '), html: { target: :_blank }, sanitize: false)
-                - else
+            .space-y-2
+              - if content.body.first.starts_with?('- ')
+                ul.list-disc.list-inside
+                  - content.body.each do |body|
+                    li== auto_link(body.delete_prefix('- '), html: { target: :_blank }, sanitize: false)
+              - else
+                - content.body.each do |body|
                   p== auto_link(body, html: { target: :_blank }, sanitize: false)
 
           - if content.render?
@@ -82,10 +84,11 @@ article
       div
         h2.text-primary.uppercase.mb-5= t('useful_links')
 
-        ul.panel.panel-base-200.list-disc.list-inside
-          - article.useful_links.each do |link|
-            li
-              = link_to link.url, target: :_blank do
-                = link.description.presence || link.url
+        .alert.alert-vertical.text-left.justify-start
+          ul.list-disc.list-inside
+            - article.useful_links.each do |link|
+              li
+                = link_to link.url, target: :_blank do
+                  = link.description.presence || link.url
 
   = yield :footer_actions

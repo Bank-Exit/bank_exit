@@ -1,7 +1,7 @@
 ---
 - question: Vorrei suggerire un nuovo commerciante. Come posso fare?
   content:
-    - answer: Per suggerire un nuovo commerciante, clicca sul pulsante verde <mark>Suggest a Merchant</mark> sopra la mappa oppure vai direttamente all’URL {{merchant_proposals#new}} e compila il modulo.
+    - answer: Per suggerire un nuovo commerciante, clicca sul pulsante verde <span class="badge badge-success">Suggest a merchant</span> sopra la mappa oppure vai direttamente all’URL {{merchant_proposals#new}} e compila il modulo.
     - answer: Il Collectif verrà quindi informato della tua richiesta e aggiungerà il commerciante su OpenStreetMap.
   categories:
     - map
@@ -13,7 +13,7 @@
         - Stampa (o fai stampare) qualche volantino (articolo su {{blogs#show->flyer}}).
         - Aiutali a creare un portafoglio Monero con CakeWallet (tutorial su {{tutorials#show->cakewallet-monero}}).
         - Una volta all’anno, inserisci le loro vendite in Monero nel file Excel già pronto (tutorial su {{tutorials#show->accounting}}).
-        - Una volta fatto, aggiungili alla mappa usando il pulsante verde <mark>Suggest a merchant</mark> su {{maps#index}} o direttamente sul modulo {{merchant_proposals#new}}!
+        - Una volta fatto, aggiungili alla mappa usando il pulsante verde <span class="badge badge-success">Suggest a merchant</span> su {{maps#index}} o direttamente sul modulo {{merchant_proposals#new}}!
   categories:
     - map
     - merchant
@@ -31,7 +31,7 @@
 - question: Ho aggiunto un commerciante su OpenStreetMap, ma non appare ancora sulla mappa del Collectif. Perché?
   content:
     - answer: La mappa del Collectif si aggiorna automaticamente quattro volte al giorno. Se hai aggiunto recentemente un commerciante su OpenStreetMap, dovrai attendere il prossimo aggiornamento, che può richiedere fino a sei ore.
-    - answer: Puoi anche aggiornare i dati manualmente dalla mappa cliccando <mark>⋮</mark> > <mark>Refresh merchants data</mark> (accanto al pulsante verde "Suggest a merchant").
+    - answer: Puoi anche aggiornare i dati manualmente dalla mappa cliccando <span class="badge badge-primary">⋮</span> > <span class="badge badge-primary">Refresh merchants data</span> (accanto al pulsante verde "Suggest a merchant").
   categories:
     - map
   identifier: merchant_not_visible

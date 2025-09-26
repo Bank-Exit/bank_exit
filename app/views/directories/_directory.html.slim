@@ -2,7 +2,7 @@
 - delivery_zones = directory.delivery_zones.enabled
 - contact_ways = directory.contact_ways.enabled
 
-= link_to directory_path(directory), class: "card bg-base-200 shadow-sm hover:-translate-y-1 transition-transform #{'image-full' if directory.banner.attached?} #{'border-l-2 border-success' if delivery_zones.exists?}" do
+= link_to directory_path(directory), class: "card bg-base-100 shadow-sm hover:-translate-y-1 transition-transform hover:!text-inherit #{'image-full' if directory.banner.attached?} #{'border-l-2 border-success' if delivery_zones.exists?}" do
   - if directory.banner.attached?
     figure
       = image_tag url_for(directory.banner.variant(:thumb))

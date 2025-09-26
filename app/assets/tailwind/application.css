@@ -1,65 +1,40 @@
 @import "tailwindcss";
-@custom-variant dark (&:where([data-theme=dark-bankexit], [data-theme=dark-bankexit] *));
 
 @theme {
     --map-road-color: #3388ff;
 }
 
 @plugin "./daisyui.mjs" {
-    themes: false;
+    themes:
+        silk --default,
+        dracula --prefersdark;
 }
 
 @plugin "./daisyui-theme.mjs" {
-    name: "light";
-    --color-neutral: var(--color-base-300);
-    --color-neutral-content: oklch(32% 0 0);
+    name: "silk";
+    default: true;
     --color-primary: oklch(72.772% 0.149 33.2);
     --color-primary-content: oklch(0% 0 0);
-    --color-secondary: oklch(61.302% 0.202 261.294);
-    --color-secondary-content: oklch(100% 0 0);
-    --color-info: oklch(93.2% 0.032 255.585);
-    --color-info-content: oklch(42.4% 0.199 265.638);
-    --color-success: oklch(96.2% 0.044 156.743);
-    --color-success-content: oklch(44.8% 0.119 151.328);
-    --color-warning: oklch(95.4% 0.038 75.164);
-    --color-warning-content: oklch(47% 0.157 37.304);
-    --color-error: oklch(93.6% 0.032 17.717);
-    --color-error-content: oklch(44.4% 0.177 26.899);
-}
-
-@plugin "./daisyui-theme.mjs" {
-    name: "dark-bankexit";
-    default: false;
-    prefersdark: false;
-    color-scheme: "dark";
-    --color-base-100: oklch(30.857% 0.023 264.149);
-    --color-base-200: oklch(28.036% 0.019 264.182);
-    --color-base-300: oklch(26.346% 0.018 262.177);
-    --color-base-content: oklch(97% 0 0);
-    --color-primary: oklch(73.375% 0.165 35.353);
-    --color-primary-content: oklch(14.675% 0.033 35.353);
-    --color-secondary: oklch(86.133% 0.141 139.549);
-    --color-secondary-content: oklch(17.226% 0.028 139.549);
-    --color-accent: oklch(65% 0.241 354.308);
-    --color-accent-content: oklch(97% 0.014 343.198);
-    --color-neutral: oklch(50% 0 0);
-    --color-neutral-content: oklch(98% 0 0);
-    --color-info: oklch(58% 0.158 241.966);
-    --color-info-content: oklch(97% 0.013 236.62);
-    --color-success: oklch(62% 0.194 149.214);
-    --color-success-content: oklch(98% 0.018 155.826);
-    --color-warning: oklch(68% 0.162 75.834);
-    --color-warning-content: oklch(98% 0.026 102.212);
-    --color-error: oklch(39.6% 0.141 25.723);
-    --color-error-content: oklch(80.8% 0.114 19.571);
+    --color-neutral-content: oklch(90% 0 0);
     --radius-selector: 0.5rem;
     --radius-field: 0.5rem;
     --radius-box: 0.5rem;
     --size-selector: 0.25rem;
     --size-field: 0.25rem;
     --border: 1px;
-    --depth: 0;
-    --noise: 1;
+}
+
+@plugin "./daisyui-theme.mjs" {
+    name: "dracula";
+    --color-primary: oklch(73.375% 0.165 35.353);
+    --color-primary-content: oklch(14.675% 0.033 35.353);
+    --radius-selector: 0.5rem;
+    --radius-field: 0.5rem;
+    --radius-box: 0.5rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
+    --border: 1px;
+    --depth: 0.5;
 }
 
 @utility fieldset-legend {
@@ -85,17 +60,11 @@
 }
 
 @utility table-wrapper {
-    @apply overflow-x-auto rounded-box border border-base-content/20;
+    @apply overflow-x-auto;
 }
 
 @utility card {
     &.image-full {
-        > .card-body {
-            color: light-dark(
-                var(--color-base-100),
-                var(--color-neutral-content)
-            );
-        }
         > figure img {
             filter: brightness(0.6) blur(3px);
         }
@@ -112,6 +81,10 @@
     width: calc(var(--size-selector, 0.25rem) * 16);
 }
 
+@utility alert-vertical {
+    @apply text-left justify-start place-items-start;
+}
+
 @layer components {
     .absolute-center {
         @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
@@ -123,8 +96,8 @@ a {
 }
 
 a:not(.btn, .badge):hover,
-.panel-success a,
-.panel-info a,
+.alert-success a,
+.alert-info a,
 .highlight-link a {
     color: var(--color-primary);
 }
@@ -132,7 +105,7 @@ a:not(.btn, .badge):hover,
 footer a[target="_blank"],
 p a[target="_blank"],
 .admin a[target="_blank"],
-.panel a[target="_blank"] {
+.alert a[target="_blank"] {
     &:after {
         content: " ";
         display: inline-block;
@@ -151,7 +124,7 @@ p a[target="_blank"],
 }
 
 mark {
-    @apply border bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900 dark:text-yellow-300 dark:border-yellow-500;
+    @apply badge badge-primary;
 }
 
 @media print {
@@ -181,34 +154,8 @@ abbr[title] {
     @apply space-y-2;
 }
 
-[data-theme="dark-bankexit"] .chart canvas {
+/* Chartjs does not support dark mode. Background is
+forced to white to make texts readables */
+[data-theme="dracula"] .chart canvas {
     @apply bg-white rounded-lg p-3;
-}
-
-@layer utilities {
-    @keyframes rotate-in {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-
-    @keyframes rotate-out {
-        0% {
-            transform: rotate(360deg);
-        }
-        100% {
-            transform: rotate(0deg);
-        }
-    }
-
-    .animate-rotate-in {
-        animation: rotate-in 0.5s ease-out forwards;
-    }
-
-    .animate-rotate-out {
-        animation: rotate-out 0.5s ease-out forwards;
-    }
 }

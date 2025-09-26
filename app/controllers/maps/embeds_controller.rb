@@ -27,7 +27,7 @@ module Maps
 
     def set_options
       @theme = {
-        light: 'light',
+        light: Setting::LIGHT_THEME_NAME,
         dark: Setting::DARK_THEME_NAME
       }[params[:theme]&.to_sym] || Setting::MAP_DEFAULT_THEME
 

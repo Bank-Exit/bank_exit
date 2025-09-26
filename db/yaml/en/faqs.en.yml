@@ -1,7 +1,7 @@
 ---
 - question: I would like to suggest a new merchant. How do I do this?
   content:
-    - answer: To suggest a new merchant, click the green <mark>Suggest a Merchant</mark> button above the map or click directly on the URL {{merchant_proposals#new}} and fill out the form.
+    - answer: To suggest a new merchant, click the green <span class="badge badge-success">Suggest a merchant</span> button above the map or click directly on the URL {{merchant_proposals#new}} and fill out the form.
     - answer: The Collective will then be notified of your request and will add the merchant to OpenStreetMap.
   categories:
     - map
@@ -13,7 +13,7 @@
         - Print (or have printed) a few flyers (article on {{blogs#show->flyer}}).
         - Help them create a Monero wallet with CakeWallet (tutorial on {{tutorials#show->cakewallet-monero}}).
         - Once a year, enter their Monero sales into the ready-made Excel file (tutorial on {{tutorials#show->accounting}}).
-        - Once done, add them to the map using the green <mark>Suggest a merchant</mark> button on {{maps#index}} or directly on the {{merchant_proposals#new}} form!
+        - Once done, add them to the map using the green <span class="badge badge-success">Suggest a merchant</span> button on {{maps#index}} or directly on the {{merchant_proposals#new}} form!
   categories:
     - map
     - merchant
@@ -31,7 +31,7 @@
 - question: I added a merchant on OpenStreetMap, but he still doesn't appear on the Collective's map. Why?
   content:
     - answer: The Collective's map is automatically updated four times a day. If you recently added a merchant to OpenStreetMap, you'll have to wait for the next refresh, which can take up to six hours.
-    - answer: Note that you can refresh the data yourself from the map by clicking <mark>⋮</mark> > <mark>Refresh merchants data</mark> (next to the green "Suggest a merchant" button).
+    - answer: Note that you can refresh the data yourself from the map by clicking <span class="badge badge-primary">⋮</span> > <span class="badge badge-primary">Refresh merchants data</span> (next to the green "Suggest a merchant" button).
   categories:
     - map
   identifier: merchant_not_visible

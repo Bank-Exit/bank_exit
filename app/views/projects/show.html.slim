@@ -6,18 +6,19 @@ article
         h1.text-3xl.font-bold= @project.title
         p= @project.description
 
-        .panel.bg-base-300/50.lg:inline-block.overflow-x-auto.max-w-sm.lg:max-w-max
-          - if @project.iframe_url?
-            p
-              = link_to @project.iframe_url, target: :_blank, class: 'text-lg' do
-                = lucide_icon 'link', class: 'inline-flex w-5', title: 'Website'
-                =< @project.iframe_url
+        .card.bg-base-100.text-base-content
+          .card-body
+            - if @project.iframe_url?
+              p
+                = link_to @project.iframe_url, target: :_blank do
+                  = lucide_icon 'link', class: 'inline-flex w-5', title: 'Website'
+                  =< @project.iframe_url
 
-          - if @project.github_url?
-            p.mt-1
-              = link_to @project.github_url, target: :_blank, class: 'text-lg', title: 'Github repository' do
-                = lucide_icon 'github', class: "w-5 inline-flex"
-                =< @project.github_url
+            - if @project.github_url?
+              p
+                = link_to @project.github_url, target: :_blank, title: 'Github repository' do
+                  = lucide_icon 'github', class: "w-5 inline-flex"
+                  =< @project.github_url
 
   section.article-body.max-w-3xl
     / TODO: Find a way to load the website by iframe when domain

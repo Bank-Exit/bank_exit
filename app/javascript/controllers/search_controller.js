@@ -1,27 +1,35 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["form", "toggleSearch"];
-  static values = {
-    showSearch: String,
-    hideSearch: String,
-  };
-
   connect() {
-    if (sessionStorage.getItem("hideSearch")) {
-      this.toggleSearchForm();
+    this.storageKey = "hide-merchants-filters";
+
+    this.element.addEventListener(
+      "toggle",
+      this.#toggleSearchForm.bind(this),
+      false,
+    );
+
+    if (this.storageKey in localStorage) {
+      if (this.element.hasAttribute("open")) {
+        this.element.removeAttribute("open");
+      }
     }
   }
 
-  toggleSearchForm() {
-    if (this.formTarget.classList.contains("hidden")) {
-      this.formTarget.classList.remove("hidden");
-      this.toggleSearchTarget.innerText = this.hideSearchValue;
-      sessionStorage.removeItem("hideSearch");
+  disconnect() {
+    this.element.removeEventListener(
+      "toggle",
+      this.#toggleSearchForm.bind(this),
+      false,
+    );
+  }
+
+  #toggleSearchForm() {
+    if (this.element.open) {
+      localStorage.removeItem(this.storageKey);
     } else {
-      this.formTarget.classList.add("hidden");
-      this.toggleSearchTarget.innerText = this.showSearchValue;
-      sessionStorage.setItem("hideSearch", true);
+      localStorage.setItem(this.storageKey, true);
     }
   }
 }

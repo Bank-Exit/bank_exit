@@ -2,7 +2,7 @@
                   html: { class: 'space-y-5' } do |f|
 
   - if directory.errors.any?
-    .panel.panel-error.mt-3
+    .alert.alert-error.mt-3
       ul.list-disc.list-inside
         - directory.errors.each do |error|
           li= error.full_message
@@ -44,9 +44,10 @@
   section.space-y-3
     h2.text-lg.font-bold.text-primary.mb-2.border-b-2= Address.model_name.human.capitalize
 
-    .panel.panel-info.panel-sm
-      p Adresse du commerçant: laisser vide ou rester approximatif pour protéger son anonymat.
-      p Note: ce champs n'a pas de lien avec la zone de livraison et est uniquement affiché sur la fiche annuaire.
+    .alert.alert-info
+      div
+        p Adresse du commerçant: laisser vide ou rester approximatif pour protéger son anonymat.
+        p Note: ce champs n'a pas de lien avec la zone de livraison et est uniquement affiché sur la fiche annuaire.
 
     div
       = f.simple_fields_for :address do |ff|
@@ -64,9 +65,10 @@
   section.space-y-3
     h2.text-lg.font-bold.text-primary.mb-2.border-b-2= CoinWallet.model_name.human.capitalize
 
-    .panel.panel-info.panel-sm
-      p Sélectionnez la ou les cryptomonnaies acceptées par ce commerçant.
-      p Si l'adresse publique est renseignée, un QRCode sera proposée aux utilisateurs afin qu'ils puissent scanner et envoyer directement de l'argent dessus. Autrement, seule l'icône de la cryptomonnaie sera affichée.
+    .alert.alert-info
+      div
+        p Sélectionnez la ou les cryptomonnaies acceptées par ce commerçant.
+        p Si l'adresse publique est renseignée, un QRCode sera proposée aux utilisateurs afin qu'ils puissent scanner et envoyer directement de l'argent dessus. Autrement, seule l'icône de la cryptomonnaie sera affichée.
 
     .grid.grid-cols-1.lg:grid-cols-3.gap-3 data-controller="nested-form"
       = f.simple_fields_for :coin_wallets, directory.coin_wallets, wrapper: false, include_id: false do |ff|
@@ -86,10 +88,11 @@
   section.space-y-3
     h2.text-lg.font-bold.text-primary.mb-2.border-b-2= DeliveryZone.model_name.human.capitalize
 
-    .panel.panel-info.panel-sm
-      p L'API Nominatim sera appelée pour les entrées de type "ville" ou "département" pour récupérer les informations de géolocalisation applicables, le but étant de pouvoir filtrer en "poupées russes". Par exemple, une zone de livraison avec le pays "France" doit être compatible avec une recherche utilisateur sur la région "Corse", le département "Cher" ou la ville de "Strasbourg". Les codes ISO sont utilisés pour cela.
-      p Note: les entrées de type "région" étant forcées sur la France actuellement, un appel Geocoder inutile est évité en forçant la valeur.
-      p Note: le traitement peut mettre quelques secondes à se finaliser selon le nombre de zones à analyser.
+    .alert.alert-info
+      div
+        p L'API Nominatim sera appelée pour les entrées de type "ville" ou "département" pour récupérer les informations de géolocalisation applicables, le but étant de pouvoir filtrer en "poupées russes". Par exemple, une zone de livraison avec le pays "France" doit être compatible avec une recherche utilisateur sur la région "Corse", le département "Cher" ou la ville de "Strasbourg". Les codes ISO sont utilisés pour cela.
+        p Note: les entrées de type "région" étant forcées sur la France actuellement, un appel Geocoder inutile est évité en forçant la valeur.
+        p Note: le traitement peut mettre quelques secondes à se finaliser selon le nombre de zones à analyser.
 
     .grid.grid-cols-1.lg:grid-cols-3.gap-3 data-controller="nested-form"
       = f.simple_fields_for :delivery_zones, directory.delivery_zones, wrapper: false, include_id: false do |ff|

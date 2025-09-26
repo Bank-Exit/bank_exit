@@ -4,13 +4,12 @@
   .hero-content.py-10.text-neutral-content
     div
       - unless params[:controller] == 'risks'
-        .panel.panel-info.mb-10.lg:w-2/3.mx-auto
-          details
-            summary.cursor-pointer.text-lg.font-bold.text-center
-              = t('.warning_title')
+        details.collapse.collapse-arrow.bg-info.text-info-content.mx-auto.mb-10 class="lg:!w-2/3"
+          summary.collapse-title.font-semibold.text-center
+            = t('.warning_title')
 
-            .pt-5.space-y-2
-              = t('risks.index.body_html')
+          .collapse-content.space-y-2
+            = t('risks.index.body_html')
 
       .max-w-8xl.space-y-8
         .grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-6.lg:gap-3.place-items-center.lg:place-items-stretch.text-center

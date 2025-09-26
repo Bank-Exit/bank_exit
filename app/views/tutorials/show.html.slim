@@ -15,7 +15,7 @@
 
 - content_for :outdated_content do
   - if @tutorial.might_be_outdated?
-    .panel-warning.lg:w-2/3.mx-auto
+    .alert.alert-warning.lg:w-2/3.mx-auto
       p= t('.tutorial_might_be_outdated')
 
 - content_for :coins do
@@ -42,5 +42,5 @@
 
 = render 'articles/wrapper', article: @tutorial do
   - if @tutorial.contents.is_a?(Array) && @tutorial.contents.blank?
-    .panel.panel-info
+    .alert.alert-info
       p= t('tutorials.show.pending_redaction')

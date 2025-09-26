@@ -8,14 +8,14 @@ header.flex.flex-col.lg:flex-row.items-center.justify-between.mb-3
     = back_link_to "Retour aux commerçants", session[:admin_merchant_referer_url] || admin_merchants_path, klass: 'btn'
 
     - if allowed_to?(:update?, @merchant)
-      = link_to 'Modifier', edit_admin_merchant_path(@merchant), class: 'btn btn-warning btn-soft'
+      = link_to 'Modifier', edit_admin_merchant_path(@merchant), class: 'btn btn-warning'
 
 - if @merchant.banner.attached?
   section.flex.flex-col.gap-3.mb-3
     = image_tag url_for(@merchant.banner), class: 'lg:w-1/2 rounded-lg'
 
 section
-  pre.panel.panel-base-200.overflow-x-auto
+  pre.alert.overflow-x-auto
     .max-w-sm
       == JSON.pretty_generate(@merchant.as_json)
 

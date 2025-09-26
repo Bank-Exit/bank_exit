@@ -3,8 +3,9 @@ article
     .hero-overlay
     .hero-content.py-16.w-full.lg:w-auto
       .w-full.max-w-5xl
-        .text-center.space-y-3.text-neutral-content
-          h1.text-3xl.font-bold= t('.title')
+        .text-center.space-y-3
+          h1.text-3xl.font-bold.text-neutral-content
+            = t('.title')
 
           = render 'statistics_numbers',
                    merchants_statistics: @merchants_statistics,

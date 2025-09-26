@@ -1,10 +1,10 @@
 #map_details
   - if no_results
-    .panel.panel-warning.panel-sm.rounded-b-none
+    .alert.alert-warning
       p= t('.no_results')
 
   - else
-    .panel.panel-success.panel-sm class="!rounded-b-none"
+    .alert.alert-success.alert-vertical.gap-1 class="!rounded-b-none"
       - unless start_address.blank?
         p
           strong= t('.start')
@@ -40,7 +40,7 @@
     .mt-6
       h3.mb-2.uppercase.font-bold.text-primary Routing
 
-      details.panel.panel-base-300.overflow-x-auto
-        summary.cursor-pointer Debug Routing
-        pre.mt-2
+      details.collapse.collapse-arrow.bg-base-300
+        summary.collapse-title Debug Routing
+        pre.collapse-content.overflow-x-auto
           == JSON.pretty_generate(routing.to_h)

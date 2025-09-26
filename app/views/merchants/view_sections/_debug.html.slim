@@ -1,7 +1,7 @@
 div
   h3.mb-2.uppercase.font-bold.text-primary Debug
 
-  details.panel.panel-base-300
-    summary.cursor-pointer JSON Feature
-    pre.mt-2.overflow-x-auto
+  details.collapse.collapse-arrow.bg-base-300
+    summary.collapse-title JSON Feature
+    pre.collapse-content.overflow-x-auto
       == JSON.pretty_generate(merchant.raw_feature.to_h)

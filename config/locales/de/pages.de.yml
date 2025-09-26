@@ -166,8 +166,6 @@ de:
 
     sidebar:
       suggest_merchant: Händler vorschlagen
-      show_search: Suchformular anzeigen
-      hide_search: Suchformular verbergen
 
     filters_form:
       clear_search_query: Suchbegriff löschen

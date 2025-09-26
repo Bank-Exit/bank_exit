@@ -1,24 +1,25 @@
 .flex.flex-col.lg:flex-row.items-start
   = render 'sidebar', h_screen: false do
     - if @directory_friends.present?
-      details data-controller="directory-friends"
-        summary#directory-friends.flex.items-center.justify-center.gap-2.cursor-pointer data-action="click->directory-friends#toggle keyup.enter->directory-friends#toggle"
-          h3.text-center.font-bold.text-primary.text-xs.lg:text-base
-            = t('maps.directory_friends.other_directories_to_spend_title')
+      details.collapse.collapse-arrow open=""
+        summary#directory-friends.collapse-title.text-center.font-bold.text-primary
+          = t('maps.directory_friends.other_directories_to_spend_title')
 
-        .grid.grid-cols-4.gap-1.mt-2.p-1
+        .grid.grid-cols-4.gap-2
           - @directory_friends.each do |directory_friend|
-            = link_to directory_friend.link, target: :_blank, class: 'panel panel-base-200' do
-              - image_size = 'w-6 h-6 lg:w-10 lg:h-10 mx-auto'
-              - if directory_friend.icon?
-                = lucide_icon directory_friend.icon, class: image_size
-              - if directory_friend.image?
-                = image_tag "directory_friends/#{directory_friend.image}", class: "rounded-lg #{image_size} object-cover"
-              - elsif directory_friend.svg_image?
-                = inline_svg_tag "directory_friends/#{directory_friend.svg_image}", class: "#{image_size} rounded-lg object-cover"
+            = link_to directory_friend.link, target: :_blank, class: 'card bg-base-200 p-5 space-y-3 border border-base-content/20' do
+              figure
+                - image_size = 'w-6 h-6 lg:w-10 lg:h-10 mx-auto'
+                - if directory_friend.icon?
+                  = lucide_icon directory_friend.icon, class: image_size
+                - if directory_friend.image?
+                  = image_tag "directory_friends/#{directory_friend.image}", class: "rounded-lg #{image_size} object-cover"
+                - elsif directory_friend.svg_image?
+                  = inline_svg_tag "directory_friends/#{directory_friend.svg_image}", class: "#{image_size} rounded-lg object-cover"
 
-              h4.lg:font-semibold.text-center.text-xs.lg:text-sm.mt-2
-                = directory_friend.name
+              .card-body.items-center.text-center.p-0
+                h4.card-title.text-sm
+                  = directory_friend.name
 
   = render 'maps/merchants_table_or_grid', merchants: @merchants, pagy: @pagy
 

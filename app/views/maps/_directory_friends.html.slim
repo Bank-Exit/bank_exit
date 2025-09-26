@@ -1,20 +1,20 @@
-details.absolute.bottom-2.left-1/2.-translate-x-1/2.bg-base-100.p-2.lg:px-3.lg:py-2.rounded-xl.opacity-80.lg:opacity-60.hover:opacity-100.transition-opacity open="open" data-controller="directory-friends"
-  summary#directory-friends.flex.items-center.justify-center.gap-2.cursor-pointer data-action="click->directory-friends#toggle"
-    h3.text-center.font-bold.text-primary.text-xs.lg:text-base
+.absolute.bottom-2.left-1/2.-translate-x-1/2
+  details.collapse.collapse-arrow.bg-base-100.opacity-80.lg:opacity-60.hover:opacity-100.transition-opacity class="!w-76 lg:!w-xl" open="" data-controller="directory-friends"
+    summary#directory-friends.collapse-title.text-center.font-bold.text-primary.text-xs.lg:text-base
       = t('.other_directories_to_spend_title')
 
-  .w-76.lg:w-xl.overflow-x-auto.mt-2
-    ul.flex.items-center.gap-1.lg:gap-2
-      - directory_friends.each do |directory_friend|
-        li.px-2.py-1.w-full
-          = link_to directory_friend.link, target: :_blank, class: 'flex flex-col items-center justify-center gap-2 w-full' do
-            - image_size = 'w-6 h-6 lg:w-8 lg:h-8'
-            - if directory_friend.icon?
-              = lucide_icon directory_friend.icon, class: image_size
-            - if directory_friend.image?
-              = image_tag "directory_friends/#{directory_friend.image}", class: "rounded-lg #{image_size} object-cover"
-            - elsif directory_friend.svg_image?
-              = inline_svg_tag "directory_friends/#{directory_friend.svg_image}", class: "#{image_size} rounded-lg object-cover"
+    .collapse-content.overflow-x-auto.mx-3
+      ul.flex.items-center.gap-3.lg:gap-6
+        - directory_friends.each do |directory_friend|
+          li
+            = link_to directory_friend.link, target: :_blank, class: 'flex flex-col items-center justify-center gap-2 w-full' do
+              - image_size = 'w-6 h-6 lg:w-8 lg:h-8'
+              - if directory_friend.icon?
+                = lucide_icon directory_friend.icon, class: image_size
+              - if directory_friend.image?
+                = image_tag "directory_friends/#{directory_friend.image}", class: "rounded-lg #{image_size} object-cover"
+              - elsif directory_friend.svg_image?
+                = inline_svg_tag "directory_friends/#{directory_friend.svg_image}", class: "#{image_size} rounded-lg object-cover"
 
-            h4.lg:font-semibold.text-center.text-xs.lg:text-sm
-              = directory_friend.name
+              h4.lg:font-semibold.text-center.text-xs.lg:text-sm
+                = directory_friend.name

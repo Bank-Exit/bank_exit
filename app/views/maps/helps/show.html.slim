@@ -9,7 +9,7 @@
       h2.text-primary.mb-1 URL
 
       .relative
-        .panel.panel-base-200.overflow-x-auto.w-full.select-all
+        .alert.overflow-x-auto.w-full.select-all
           = maps_embed_url
 
         .absolute.top-1.right-1
@@ -22,7 +22,7 @@
       h2.text-primary.mb-1= t('.iframe')
 
       .relative
-        .panel.panel-base-200.overflow-x-auto.w-full.select-all
+        .alert.overflow-x-auto.w-full.select-all
           = default_map_iframe_html
 
         .absolute.top-1.right-1
@@ -138,7 +138,7 @@
       p.text-primary.mb-1 URL
 
       .relative
-        .panel.panel-base-200.overflow-x-auto.w-full
+        .alert.overflow-x-auto.w-full
           .w-full.select-all
             = maps_embed_url
             mark data-map--embed-generator-target="queryRenderer"
@@ -154,7 +154,7 @@
       p.text-primary.mb-1= t('.iframe')
 
       .relative
-        .panel.panel-base-200.overflow-x-auto.w-full
+        .alert.overflow-x-auto.w-full
           .w-full.select-all
             = html_escape_once('<iframe src="')
             = maps_embed_url

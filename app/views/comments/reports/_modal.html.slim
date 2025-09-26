@@ -5,7 +5,7 @@
     = commentable.name
 
 = render_modal do
-  blockquote.panel.panel-base-300.panel-sm.space-y-5
+  blockquote.alert.space-y-5
     = simple_format(comment.content)
 
   = simple_form_for comment_report,

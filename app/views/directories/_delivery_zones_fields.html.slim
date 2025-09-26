@@ -1,30 +1,31 @@
-.nested-fields.relative.panel.panel-base-200 class=('opacity-50' unless f.object.enabled?)
-  = f.input :id, as: :hidden, wrapper: false
-  = f.input :_destroy, as: :hidden, wrapper: false
+.nested-fields.relative.card.bg-base-200 class=('opacity-50' unless f.object.enabled?)
+  .card-body
+    = f.input :id, as: :hidden, wrapper: false
+    = f.input :_destroy, as: :hidden, wrapper: false
 
-  .flex.flex-col.items-center.gap-3 data-controller="delivery-zones" data-delivery-zones-url-value=mode_values_delivery_zones_path data-delivery-zones-param-value="mode"
-    = f.input :mode,
-              collection: select_options_for(DeliveryZone, :modes),
-              include_blank: false,
-              input_html: { \
-                data: { \
-                  action: "change->delivery-zones#change" \
-                } \
-              }
+    .flex.flex-col.items-center.gap-3 data-controller="delivery-zones" data-delivery-zones-url-value=mode_values_delivery_zones_path data-delivery-zones-param-value="mode"
+      = f.input :mode,
+                collection: select_options_for(DeliveryZone, :modes),
+                include_blank: false,
+                input_html: { \
+                  data: { \
+                    action: "change->delivery-zones#change" \
+                  } \
+                }
 
-    ruby:
-      data = case f.object.mode
-             when 'region' then french_regions_select_helper
-             when 'department' then french_departments_select_helper
-             when 'continent' then continents_select_helper
-             end
+      ruby:
+        data = case f.object.mode
+              when 'region' then french_regions_select_helper
+              when 'department' then french_departments_select_helper
+              when 'continent' then continents_select_helper
+              end
 
-    = render 'delivery_zones/input_value',
-             f: f,
-             mode: f.object.mode,
-             data: data
+      = render 'delivery_zones/input_value',
+              f: f,
+              mode: f.object.mode,
+              data: data
 
-    = f.input :enabled, as: :boolean unless f.object.deliverable.requested_by_user?
+      = f.input :enabled, as: :boolean unless f.object.deliverable.requested_by_user?
 
   .remove-link-wrapper.absolute.top-2.right-2
     = link_to "#",

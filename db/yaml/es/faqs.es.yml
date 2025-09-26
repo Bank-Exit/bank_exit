@@ -1,7 +1,7 @@
 ---
 - question: Me gustaría sugerir un nuevo comercio. ¿Cómo lo hago?
   content:
-    - answer: Para sugerir un nuevo comercio, haga clic en el botón verde <mark>Sugerir un comerciante</mark> sobre el mapa o haga clic directamente en la URL {{merchant_proposals#new}} y complete el formulario.
+    - answer: Para sugerir un nuevo comercio, haga clic en el botón verde <span class="badge badge-success">Sugerir un comerciante</span> sobre el mapa o haga clic directamente en la URL {{merchant_proposals#new}} y complete el formulario.
     - answer: El Colectivo recibirá una notificación de su solicitud y añadirá el comercio a OpenStreetMap.
   categories:
     - map
@@ -13,7 +13,7 @@
         - Imprime (o encarga que se impriman) algunos folletos (artículo en {{blogs#show->flyer}}).
         - Ayúdalos a crear una billetera Monero con CakeWallet (tutorial en {{tutorials#show->cakewallet-monero}}).
         - Una vez al año, registra sus ventas de Monero en el archivo Excel predefinido (tutorial en {{tutorials#show->accounting}}).
-        - Una vez hecho esto, agrégalos al mapa usando el botón verde <mark>Sugerir un comerciante</mark> en {{maps#index}} o directamente en el formulario {{merchant_proposals#new}}.
+        - Una vez hecho esto, agrégalos al mapa usando el botón verde <span class="badge badge-success">Sugerir un comerciante</span> en {{maps#index}} o directamente en el formulario {{merchant_proposals#new}}.
   categories:
     - map
     - merchant
@@ -31,7 +31,7 @@
 - question: Agregué un comercio a OpenStreetMap, pero sigue sin aparecer en el mapa del Colectivo. ¿Por qué?
   content:
     - answer: El mapa del Colectivo se actualiza automáticamente cuatro veces al día. Si agregó recientemente un comercio a OpenStreetMap, deberá esperar a la siguiente actualización, que puede tardar hasta seis horas.
-    - answer: Puede actualizar los datos usted mismo desde el mapa haciendo clic en <mark>⋮</mark> > <mark>Refrescar a los commerciantes</mark> (junto al botón verde "Sugerir un commerciante").
+    - answer: Puede actualizar los datos usted mismo desde el mapa haciendo clic en <span class="badge badge-primary">⋮</span> > <span class="badge badge-primary">Refrescar a los commerciantes</span> (junto al botón verde "Sugerir un commerciante").
   categories:
     - map
   identifier: merchant_not_visible

@@ -169,8 +169,6 @@ en:
 
     sidebar:
       suggest_merchant: Suggest a merchant
-      show_search: Show search form
-      hide_search: Hide search form
 
     filters_form:
       clear_search_query: Clear search query

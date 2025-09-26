@@ -56,6 +56,7 @@
     li
       = button_to refresh_merchants_path,
                   class: 'cursor-pointer',
+                  form: { class: 'hover:text-primary' },
                   data: { \
                     turbo_confirm: t('.refresh_confirm_html') \
                   } do
@@ -78,5 +79,4 @@
 
 = render 'dropdown_actions',
          details_html: { data: { controller: ("map--options" if merchants_as_map?) } },
-         button_style: { class: 'btn-square btn-neutral' },
          item_id: 'map'

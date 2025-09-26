@@ -23,15 +23,15 @@ article
   .article-body.max-w-5xl class="!space-y-8"
     .flex.items-center.justify-between.gap-2
       = render 'breadcrumb'
-      = render 'merchants/view_sections/dropdown_actions', merchant: @merchant, btn_klass: 'btn-primary btn-lg'
+      = render 'merchants/view_sections/dropdown_actions', merchant: @merchant, btn_klass: 'btn-lg'
 
     - if @merchant.deleted?
-      p.panel.panel-error
+      p.alert.alert-error
         = lucide_icon 'info', class: 'inline-flex w-4 h-4'
         span=< t('.soft_deleted_warning')
 
     - if @merchant.might_be_outdated?
-      p.panel.panel-warning
+      p.alert.alert-warning
         = lucide_icon 'triangle-alert', class: 'inline-flex w-4 h-4'
         span<
           = t('.last_survey_warning_html', date: time_ago_in_words(@merchant.last_survey_on), raw_date: l(@merchant.last_survey_on))
@@ -47,7 +47,7 @@ article
       div
         h2.text-primary.font-bold.uppercase.mb-2= t('address')
 
-        .panel.panel-base-300
+        .alert
           == @merchant.full_address_with_country
 
     = render 'map', merchant: @merchant,
@@ -58,7 +58,7 @@ article
       div
         h2.text-primary.font-bold.uppercase.mb-2= t('contact')
 
-        .panel.panel-base-300.space-y-3.overflow-y-auto
+        .alert.alert-vertical.overflow-y-auto
           - @merchant.all_contacts.each do |contact|
             - key = contact[0]
             - value = contact[1]

@@ -5,7 +5,7 @@
     = merchant.name
 
 = render_modal do
-  .panel.panel-info
+  .alert.alert-info
     p.text-sm= t('introduction_html', scope: i18n_scope)
 
   = simple_form_for merchant_report,

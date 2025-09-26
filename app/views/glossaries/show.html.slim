@@ -17,7 +17,7 @@ article
 
         .space-y-3
           - glossaries.each do |glossary|
-            article.panel.panel-base-300.space-y-3 id=glossary.acronym
+            article.alert.alert-vertical id=glossary.acronym
               header.border-b.border-dotted.pb-2
                 = link_to "##{glossary.acronym}" do
                   h3.text-lg.font-bold

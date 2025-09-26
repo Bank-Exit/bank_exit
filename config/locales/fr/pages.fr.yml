@@ -169,8 +169,6 @@ fr:
 
     sidebar:
       suggest_merchant: Proposer un commerçant
-      show_search: Afficher la recherche
-      hide_search: Masquer la recherche
 
     filters_form:
       clear_search_query: Effacer la recherche

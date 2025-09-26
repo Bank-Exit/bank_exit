@@ -1,16 +1,17 @@
-details.bg-base-100.p-4.rounded-lg
-  summary.cursor-pointer
-    span= faq.question
-    span.ml-1<
+.collapse.collapse-arrow.join-item.border-base-300.border
+  input type="radio" name="faq-radio"
+  .collapse-title.font-semibold.flex.justify-between
+    = faq.question
+    div
       - faq.categories.each do |category|
-        span.badge.badge-sm.badge-success=< t(".#{category}")
+        span.badge.badge-xs.badge-success=< t(".#{category}")
 
-  .pt-5.space-y-3
+  .collapse-content
     - faq.content.each do |paragraph|
       - if paragraph['answer']&.is_a?(String)
-        p class=("panel panel-#{paragraph['mode']}" if paragraph['mode'].present?)
-          == parsed_faq_answer(paragraph['answer'])
+        == simple_format parsed_faq_answer(paragraph['answer'])
       - elsif paragraph['answer']&.is_a?(Array)
-        ol.list-decimal.list-inside.space-y-1 class=("panel-#{paragraph['mode']}" if paragraph['mode'].present?)
-          - paragraph['answer'].each do |item|
-            li== parsed_faq_answer(item)
+        .space-y-2
+          ul.list-disc.list-inside
+            - paragraph['answer'].each do |item|
+              li== parsed_faq_answer(item)

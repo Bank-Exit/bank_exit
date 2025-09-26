@@ -1,22 +1,22 @@
 .flex.flex-col.lg:flex-row
-  .lg:w-1/3.overflow-y-auto class="lg:h-[calc(100vh-96px)]"
-    .flex.items-center.justify-between.bg-base-200.p-2.print:hidden
-      = back_link_to t('.back_to_map'), session[:map_referer_url].presence || maps_path
+  .lg:w-1/3.overflow-y-auto.space-y-3.p-3 class="lg:h-[calc(100vh-80px)]"
+    .flex.items-center.justify-between.print:hidden
+      = back_link_to t('.back_to_map'), session[:map_referer_url].presence || maps_path, klass: 'text-sm'
 
-      = render 'merchants/view_sections/dropdown_actions', merchant: @merchant, btn_klass: 'btn-ghost btn-sm'
+      = render 'merchants/view_sections/dropdown_actions', merchant: @merchant, btn_klass: 'btn-md'
 
     - if @merchant.deleted?
-      p.panel.panel-error.panel-sm.mx-3.mt-3
+      p.alert.alert-error
         = lucide_icon 'info', class: 'inline-flex w-4 h-4'
         span=< t('.soft_deleted_warning')
 
     - if @merchant.might_be_outdated?
-      p.panel.panel-warning.panel-sm.mx-3.mt-3
+      p.alert.alert-warning
         = lucide_icon 'triangle-alert', class: 'inline-flex w-4 h-4'
         span<
           = t('.last_survey_warning_html', date: time_ago_in_words(@merchant.last_survey_on), raw_date: l(@merchant.last_survey_on))
 
-    article.p-3.space-y-6 data-controller="merchants"
+    article.space-y-6 data-controller="merchants"
       header.flex.flex-col.items-center.space-y-3.rounded-lg
         .relative
           = render 'logo_or_initials', model: @merchant, mode: :extra_large
@@ -30,7 +30,7 @@
             = t("categories.#{@merchant.category}", default: @merchant.category.capitalize)
 
         - if @merchant.address?
-          .panel.panel-base-200.text-center
+          .alert.alert-vertical.text-center
             == @merchant.full_address_with_country
 
       .flex.items-center.justify-center.gap-3
@@ -42,13 +42,13 @@
         div
           h3.mb-2.uppercase.font-bold.text-primary= t('description')
 
-          .panel.panel-base-300
+          .alert
             = @merchant.description
 
       - if @merchant.contact?
         div
           h3.mb-2.uppercase.font-bold.text-primary= t('contact')
-          .panel.panel-base-300
+          .alert
             = render 'merchants/contacts', merchant: @merchant
 
       = render 'merchants/view_sections/other_informations', merchant: @merchant

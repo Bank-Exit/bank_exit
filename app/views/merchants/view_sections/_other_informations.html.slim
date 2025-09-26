@@ -1,6 +1,6 @@
 div
   h3.mb-2.uppercase.font-bold.text-primary= t('other')
-  .panel.panel-base-300.space-y-1
+  .alert.alert-vertical
     - if merchant.opening_hours.present?
       - multi_hours = merchant.opening_hours_sentences.count > 1
 
