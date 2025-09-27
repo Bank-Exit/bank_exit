@@ -4,6 +4,7 @@ module Maps
       policy.frame_ancestors '*'
     end
 
+    include Localizable
     include Analyticable
     include Merchandable
 
