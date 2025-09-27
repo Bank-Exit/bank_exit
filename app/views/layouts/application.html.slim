@@ -36,7 +36,7 @@ html lang=I18n.locale
 
     = render 'upper_footer', projects: @projects, contacts: @contacts
     = render 'footer'
-    = render 'scam_alert'
+    = turbo_frame_tag :announcements, src: announcements_path
     = render 'turbo_confirm'
 
     = render 'ribbon' unless Rails.env.production?

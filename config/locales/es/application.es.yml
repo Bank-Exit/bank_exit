@@ -1,9 +1,5 @@
 es:
   application:
-    scam_alert:
-      title: Cuidado con las estafas
-      headline_html: "Compruebe siempre que el sitio que aparece en su navegador corresponde a %{url}"
-
     nav:
       collectif: Colectivo
       bank_exit: Bank-Exit

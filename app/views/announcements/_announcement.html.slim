@@ -1,0 +1,25 @@
+- hide_value = defined?(remember_hide_after_close) ? remember_hide_after_close.to_s : 'true'
+
+.alert.alert-vertical.border.border-base-content/20.flex.flex-col.mx-auto class="alert-#{announcement.mode}" data-controller="announcement" data-announcement-model-id-value=announcement.id data-announcement-remember-hide-after-close-value=hide_value
+  .flex.items-center.justify-between.gap-3.w-full
+    h3.font-bold.text-lg= announcement.title
+
+    button.btn.btn-sm.btn-square.btn-ghost type="button" data-action="click->announcement#hide"
+      = lucide_icon 'x'
+
+  .space-y-3.w-full
+    - if announcement.picture.attached?
+      .flex.flex-col.lg:flex-row.gap-3.items-center
+        = image_tag url_for(announcement.picture.variant(:thumb)), class: 'w-24 rounded-lg object-cover'
+        .space-y-2
+          == simple_format announcement.description
+    - else
+      div
+        == simple_format announcement.description
+
+    - if announcement.link_to_visit.present?
+      .text-right
+        = link_to t('see'),
+                  announcement.link_to_visit,
+                  class: 'btn btn-secondary btn-sm w-full lg:w-auto',
+                  data: { action: 'click->announcement#openLink:prevent', turbo_frame: :_top }

@@ -245,6 +245,7 @@ SimpleForm.setup do |config|
     url: :daisy_input,
     tel: :daisy_input,
     date: :daisy_input,
+    datetime: :daisy_input,
     integer: :daisy_input,
     float: :daisy_input,
     file: :daisy_file

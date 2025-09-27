@@ -45,6 +45,8 @@ Rails.application.routes.draw do
         patch :update_position
       end
     end
+
+    resources :announcements
   end
 
   localized do
@@ -123,6 +125,7 @@ Rails.application.routes.draw do
     end
 
     resource :glossaries, only: :show
+    resources :announcements, only: :index
   end
 
   namespace :addresses do

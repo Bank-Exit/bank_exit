@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_08_18_162318) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_20_102611) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.string "site", null: false
     t.string "name", null: false
@@ -81,6 +81,19 @@ ActiveRecord::Schema[8.0].define(version: 2025_08_18_162318) do
     t.index ["latitude", "longitude"], name: "index_addresses_on_latitude_and_longitude"
     t.index ["latitude"], name: "index_addresses_on_latitude"
     t.index ["longitude"], name: "index_addresses_on_longitude"
+  end
+
+  create_table "announcements", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "locale"
+    t.integer "mode"
+    t.string "link_to_visit"
+    t.datetime "published_at"
+    t.datetime "unpublished_at"
+    t.boolean "enabled", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "coin_wallets", force: :cascade do |t|

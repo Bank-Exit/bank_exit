@@ -96,8 +96,8 @@ a {
 }
 
 a:not(.btn, .badge):hover,
-.alert-success a,
-.alert-info a,
+.alert-success a:not(.btn),
+.alert-info a:not(.btn),
 .highlight-link a {
     color: var(--color-primary);
 }

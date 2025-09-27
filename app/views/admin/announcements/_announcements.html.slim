@@ -1,0 +1,25 @@
+section.space-y-3
+  == pagy_nav(pagy) if pagy.count > pagy.limit
+
+  .table-wrapper
+    table.table.table-zebra
+      thead
+        tr
+          th scope="col"= Announcement.human_attribute_name(:title)
+          th scope="col"= Announcement.human_attribute_name(:picture)
+          th scope="col"= Announcement.human_attribute_name(:link_to_visit)
+          th scope="col"= Announcement.human_attribute_name(:locale)
+          th scope="col"= Announcement.human_attribute_name(:mode)
+          th scope="col"= Announcement.human_attribute_name(:published_at)
+          th scope="col"= Announcement.human_attribute_name(:unpublished_at)
+          th scope="col"= Announcement.human_attribute_name(:enabled)
+          th scope="col"= t('actions')
+      tbody
+        = render announcements
+
+        - if announcements.blank?
+          tr
+            td.text-center colspan="100%"
+              | Il n'y a aucune annonce à afficher
+
+  == pagy_nav(pagy) if pagy.count > pagy.limit

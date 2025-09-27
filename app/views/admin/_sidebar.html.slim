@@ -29,6 +29,11 @@
           - if Comment.flagged.any?
             span< title="Commentaire signalé" ⚠️
 
+      - if allowed_to?(:index?, Announcement, namespace: Admin)
+        li
+          = link_to admin_announcements_path, class: ('menu-active' if params[:controller] == 'admin/announcements') do
+            | Les annonces
+
       li
         = link_to mission_control_jobs_path, target: :_blank do
           | Mission Control Jobs

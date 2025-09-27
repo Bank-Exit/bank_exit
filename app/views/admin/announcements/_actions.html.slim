@@ -1,0 +1,24 @@
+= content_for :dropdown_menu, flush: true do
+  - if allowed_to?(:show?, announcement)
+    li
+      = link_to "Prévisualiser l'annonce",
+                admin_announcement_path(announcement),
+                data: { turbo_stream: true }
+
+  - if allowed_to?(:update?, announcement)
+    li
+      = link_to 'Modifier',
+                edit_admin_announcement_path(announcement),
+                class: 'btn btn-sm btn-warning'
+
+  - if allowed_to?(:destroy?, announcement)
+    li
+      = link_to 'Supprimer',
+                admin_announcement_path(announcement),
+                class: 'btn btn-sm btn-error',
+                data: { \
+                  turbo_method: :delete,
+                  turbo_confirm: "Voulez-vous supprimer cette annonce ?" \
+                }
+
+= render 'dropdown_actions', item_id: announcement.id

@@ -1,0 +1,4 @@
+= turbo_frame_tag :announcements do
+  - if @announcements.any?
+    .fixed.bottom-5.left-5.right-5.lg:w-1/2.mx-auto.z-50.space-y-2
+      = render @announcements

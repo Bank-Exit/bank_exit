@@ -1,0 +1,38 @@
+tr class=('opacity-25' if announcement.overpass?) title=("Date de dépublication passée" if announcement.overpass?)
+  th= announcement.title
+  td
+    - if announcement.picture.attached?
+      = image_tag url_for(announcement.picture.variant(:thumb)), class: 'w-16 rounded-lg'
+    - else
+      | -
+  td
+    - if announcement.link_to_visit.present?
+      = link_to t('link'), announcement.link_to_visit, target: :_blank
+    - else
+      | -
+
+  td= emoji_by_locale(announcement.locale)
+  td
+    .badge class=announcement_color_by_mode(announcement.mode)
+      = Announcement.human_enum_name(:modes, announcement.mode)
+  td
+    - if announcement.published_at
+      = I18n.l(announcement.published_at)
+    - else
+      | -
+  td
+    - if announcement.unpublished_at
+      = I18n.l(announcement.unpublished_at)
+    - else
+      | -
+  td
+    - if announcement.enabled?
+      .status.status-lg.status-success.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
+        = lucide_icon 'check', class: 'text-success-content'
+
+    - else
+      .status.status-lg.status-error.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
+        = lucide_icon 'x', class: 'text-error-content'
+
+  td
+    = render 'actions', announcement: announcement

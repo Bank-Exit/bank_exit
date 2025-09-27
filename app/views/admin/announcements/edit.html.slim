@@ -1,0 +1,8 @@
+header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
+  h1.text-3xl Modifier une annonce
+
+  - if allowed_to?(:index?, Announcement, namespace: Admin)
+    = back_link_to 'Retour', admin_announcements_path, klass: 'btn'
+
+section
+  = render 'form', announcement: @announcement
