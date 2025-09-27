@@ -4,7 +4,7 @@ details.dropdown
       = emoji_by_locale(I18n.locale)
       span.hidden.xl:inline-block.ml-1= Rails.configuration.i18n_human_languages[I18n.locale]
 
-  ul.p-2.bg-base-300.w-max
+  ul.menu.dropdown-content.w-max
     - I18n.available_locales.each do |locale|
       - next if locale == I18n.locale
       li

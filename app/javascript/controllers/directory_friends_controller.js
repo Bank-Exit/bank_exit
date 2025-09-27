@@ -4,22 +4,24 @@ export default class extends Controller {
   connect() {
     this.storageKey = "hide-directory-friends";
 
-    if (this.#shouldHideDirectoryFriends()) {
-      this.element.removeAttribute("open");
-    } else {
-      this.element.setAttribute("open", "open");
+    this.element.addEventListener("toggle", this.#toggle.bind(this), false);
+
+    if (this.storageKey in localStorage) {
+      if (this.element.hasAttribute("open")) {
+        this.element.removeAttribute("open");
+      }
     }
   }
 
-  toggle() {
+  disconnect() {
+    this.element.removeEventListener("toggle", this.#toggle.bind(this), false);
+  }
+
+  #toggle() {
     if (this.element.open) {
-      localStorage.setItem(this.storageKey, true);
-    } else {
       localStorage.removeItem(this.storageKey);
+    } else {
+      localStorage.setItem(this.storageKey, true);
     }
-  }
-
-  #shouldHideDirectoryFriends() {
-    return localStorage.getItem(this.storageKey) == "true";
   }
 }

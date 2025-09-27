@@ -6,12 +6,11 @@
 
     figcaption.text-xs.mt-2
       - if @contact.session? || @contact.nostr?
-        .panel.panel-base-200.panel-sm.break-words
+        .alert.alert-vertical.place-items-center.justify-center.break-words
           p= link_to @contact.main_link, target: :_blank do
             = @contact.main_link
 
-
-          p.italic.break-all
+          p.italic.text-center.break-all
             - if @contact.nostr?
               = link_to @contact.secondary_link, target: :_blank do
                 = @contact.public_key
@@ -20,7 +19,7 @@
               = @contact.public_key
 
       - elsif @contact.email?
-        .panel.panel-base-200.space-y-3
+        .alert.alert-vertical.place-items-center.justify-center
           p.text-lg
             = lucide_icon 'mail', class: 'inline-flex mr-1'
             = mail_to @contact.main_link, @contact.main_link,

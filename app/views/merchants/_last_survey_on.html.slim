@@ -13,11 +13,11 @@
 
     - else
       - if outdated_level == :soft
-        = lucide_icon 'check-check', class: "#{icon_class} text-success-content"
+        = lucide_icon 'check-check', class: "#{icon_class} text-success"
       - elsif outdated_level == :medium
-          = lucide_icon 'triangle-alert', class: "#{icon_class} text-warning-content"
+          = lucide_icon 'triangle-alert', class: "#{icon_class} text-warning"
       - elsif outdated_level == :hard
-          = lucide_icon 'triangle-alert', class: "#{icon_class} text-error-content"
+          = lucide_icon 'triangle-alert', class: "#{icon_class} text-error"
 
       span title=l(merchant.last_survey_on)
         = t('.last_survey_on', date: time_ago_in_words(merchant.last_survey_on))

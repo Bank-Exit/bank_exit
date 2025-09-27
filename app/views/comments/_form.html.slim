@@ -1,4 +1,4 @@
-.panel.panel-info.text-sm= t('.introduction')
+.alert.alert-info= t('.introduction')
 
 = simple_form_for [commentable, comment], html: { class: 'space-y-2 px-1' } do |f|
   = f.input :content

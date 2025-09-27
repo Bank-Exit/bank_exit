@@ -1,5 +1,5 @@
 doctype html
-html data-theme="light"
+html data-theme="silk"
   head
     = display_meta_tags site: '[Admin] Collectif Sortie de Banque',
                         reverse: true,
@@ -33,10 +33,10 @@ html data-theme="light"
     main.drawer.lg:drawer-open
       input#sidebarDrawer.drawer-toggle type="checkbox"
       .drawer-content
-        label.btn.btn-square.btn-outline.drawer-button.lg:hidden.absolute.top-3.right-3 for="sidebarDrawer"
+        label.btn.btn-square.drawer-button.lg:hidden.absolute.top-3.right-3 for="sidebarDrawer"
           = lucide_icon 'menu', class: 'w-5 h-5'
 
-        .px-4.py-2.lg:px-8.lg:py-4= yield
+        .p-4= yield
 
       = render 'admin/sidebar'
 

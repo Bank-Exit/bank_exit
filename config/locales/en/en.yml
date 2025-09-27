@@ -20,6 +20,7 @@ en:
   spotlight: Spotlight
   reset_search: Reset search
   status: Status
+  filters: Filters
 
   display_map: Map display
   display_grid: Grid display

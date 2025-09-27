@@ -20,19 +20,18 @@ article
     .space-y-8
       - @local_groups.each do |zone|
         .space-y-3
-          header.panel.panel-success.flex.flex-col.lg:flex-row.items-center.justify-between
+          header.alert.alert-success
             h2.text-xl.font-bold= zone.name
             - if zone.link && zone.link != '#'
-              = link_to zone.link, target: :_blank do
+              = link_to zone.link, class: 'justify-self-end', target: :_blank do
                 = zone.link
-
 
           - zone.countries.each do |country|
             - has_link = country['link'] && country['link'] != '#'
             - groups_count = country['regions']&.count || 0
 
             - if groups_count == 0
-              header.panel.panel-base-300.flex.flex-col.lg:flex-row.items-center.cursor-not-allowed class=('justify-between' if has_link)
+              header.alert.cursor-not-allowed class=('justify-between' if has_link)
                 h3.text-lg.font-bold
                   - c = ISO3166::Country[:"#{country['alpha2']}"]
                   = c.emoji_flag
@@ -40,13 +39,13 @@ article
                   = "(#{groups_count})"
 
                 - if has_link
-                  = link_to country['link'], target: :_blank do
+                  = link_to country['link'], class: 'justify-self-end', target: :_blank do
                     = country['link']
 
 
             - else
               details.space-y-3 open=('true' if country['alpha2'].downcase == I18n.locale.to_s)
-                summary.panel.panel-base-300.flex.flex-col.lg:flex-row.items-center.cursor-pointer class=('justify-between' if has_link)
+                summary.alert.cursor-pointer class=('justify-between' if has_link)
                   h3.text-lg.font-bold
                     - c = ISO3166::Country[:"#{country['alpha2']}"]
                     = c.emoji_flag
@@ -54,7 +53,7 @@ article
                     = "(#{groups_count})"
 
                   - if has_link
-                    = link_to country['link'], target: :_blank do
+                    = link_to country['link'], class: 'justify-self-end', target: :_blank do
                       = country['link']
 
 

@@ -19,6 +19,7 @@ it:
   link: Link
   spotlight: In evidenza
   reset_search: Reimposta ricerca
+  filters: Filtri
 
   grid: Griglia
   table: Tabella

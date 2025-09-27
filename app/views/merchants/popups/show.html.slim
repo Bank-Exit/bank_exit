@@ -1,4 +1,4 @@
-#map_popup.panel.panel-base-100.space-y-3 data-controller="map--popup"
+#map_popup.card.space-y-3 data-controller="map--popup"
   header.space-y-2
     h3
       = link_to merchant_path(@merchant),
@@ -14,7 +14,7 @@
         =< t("categories.#{@merchant.category}", default: @merchant.category)
 
   - if @merchant.address? || @merchant.opening_hours.present? || @merchant.delivery.present?
-    .panel.panel-base-200.panel-sm.space-y-2
+    .alert.alert-vertical
       - if @merchant.address?
         .flex.items-center.gap-2
           .flex-shrink-0= lucide_icon 'home', class: 'w-4'
@@ -39,7 +39,7 @@
             =< "(#{@merchant.delivery_zone})"
 
   div
-    .text-xs.mb-1= t('.payment_methods')
+    .text-xs.mb-1.text-base-content= t('.payment_methods')
     .method-icons
       = image_tag('coins/logo-monero.svg', alt: 'monero', title: t(@merchant.monero? ? '.monero_accepted' : '.monero_not_accepted'), class: ('opacity-20' unless @merchant.monero?))
 
@@ -55,7 +55,7 @@
         = merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-6 h-6 text-[10px]')
 
   - if @merchant.comments_count > 0
-    div
+    .text-base-content
       .text-xs.mb-1= t('.notes_and_comments')
       .flex.items-center.gap-2
         .flex.items-center.gap-1

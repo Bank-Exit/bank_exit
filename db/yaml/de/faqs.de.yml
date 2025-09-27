@@ -1,7 +1,7 @@
 ---
 - question: Ich möchte einen neuen Händler vorschlagen. Wie mache ich das?
   content:
-    - answer: Um einen neuen Händler vorzuschlagen, klicke auf den grünen Button <mark>Händler vorschlagen</mark> über der Karte oder direkt auf {{merchant_proposals#new}} und fülle das Formular aus.
+    - answer: Um einen neuen Händler vorzuschlagen, klicke auf den grünen Button <span class="badge badge-success">Händler vorschlagen</span> über der Karte oder direkt auf {{merchant_proposals#new}} und fülle das Formular aus.
     - answer: Das Kollektiv wird anschließend über deinen Vorschlag informiert und fügt den Händler zu OpenStreetMap hinzu.
   categories:
     - map
@@ -13,7 +13,7 @@
         - Drucke (oder lasse drucken) ein paar Flyer aus (Artikel unter {{blogs#show->flyer}}).
         - Hilf dem Händler, ein Monero-Wallet mit CakeWallet zu erstellen (Anleitung unter {{tutorials#show->cakewallet-monero}}).
         - "Einmal jährlich: Trage die Monero-Verkäufe in die vorbereitete Excel-Datei ein (Anleitung unter {{tutorials#show->accounting}})."
-        - Danach kannst du den Händler auf der Karte hinzufügen, über den grünen Button <mark>Händler vorschlagen</mark> auf {{maps#index}} oder direkt über das Formular {{merchant_proposals#new}}!
+        - Danach kannst du den Händler auf der Karte hinzufügen, über den grünen Button <span class="badge badge-success">Händler vorschlagen</span> auf {{maps#index}} oder direkt über das Formular {{merchant_proposals#new}}!
   categories:
     - map
     - merchant
@@ -31,7 +31,7 @@
 - question: Ich habe einen Händler zu OpenStreetMap hinzugefügt, aber er erscheint nicht auf der Karte. Warum?
   content:
     - answer: Die Karte des Kollektivs wird viermal täglich automatisch aktualisiert. Wenn du einen Händler gerade erst hinzugefügt hast, musst du eventuell bis zur nächsten Aktualisierung warten (bis zu 6 Stunden).
-    - answer: "Du kannst die Daten auch manuell aktualisieren: Auf der Karte klickst du auf <mark>⋮</mark> > <mark>Händlerdaten aktualisieren</mark> (neben dem grünen Button „Händler vorschlagen“)."
+    - answer: 'Du kannst die Daten auch manuell aktualisieren: Auf der Karte klickst du auf <span class="badge badge-primary">⋮</span> > <span class="badge badge-primary">Händlerdaten aktualisieren</span> (neben dem grünen Button „Händler vorschlagen“).'
   categories:
     - map
   identifier: merchant_not_visible

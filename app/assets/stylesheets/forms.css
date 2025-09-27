@@ -1,4 +1,5 @@
 label.pretty-checkbox {
+    background-color: var(--color-base-100);
     border-radius: var(--radius-field);
     border: var(--border) solid #0000;
     cursor: pointer;
@@ -33,7 +34,7 @@ label.pretty-checkbox {
 
 .with-error,
 span.error {
-    color: var(--color-error-content);
+    color: var(--color-error);
     font-size: 0.75rem;
 }
 

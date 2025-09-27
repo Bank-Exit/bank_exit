@@ -16,7 +16,7 @@ ruby:
         .timeline-middle
           = lucide_icon 'circle-check', class: "w-6 h-6 rounded-full border-0 #{item.started_on <= @now ? 'bg-primary stroke-base-200' : 'bg-base-200/50 dark:bg-warning dark:stroke-base-200'}"
 
-        .mb-5.md:text-end.timeline-box.max-w-lg class=cycle('timeline-start', 'timeline-end !text-left') class=('bg-warning' if first_item) class=(item.started_on < @now ? 'bg-primary text-primary-content' : 'bg-base-200')
+        .mb-5.md:text-end.timeline-box.max-w-lg class=cycle('timeline-start', 'timeline-end !text-left') class=('bg-warning text-primary-content' if first_item) class=(item.started_on < @now ? 'bg-primary text-primary-content' : 'bg-base-200')
           .text-lg.font-black.mb-3
             = item.title
 

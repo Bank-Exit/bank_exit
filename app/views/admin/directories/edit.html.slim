@@ -6,13 +6,13 @@ header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
 
 section
   - unless @directory.enabled?
-    .panel.panel-error.panel-sm.mb-1
+    .alert.alert-error.mb-3
       p
         = lucide_icon 'triangle-alert', class: 'inline-flex w-4 mr-1'
         | Cette entrée est actuellement désactivée et n'est donc pas visible sur le site.
 
   - if @directory.merchant
-    .panel.panel-warning.panel-sm.mb-3
+    .alert.alert-warning.mb-3
       p
         | Cette entrée d'annuaire est associée au commerçant
         =<> link_to @directory.merchant.name, @directory.merchant, target: :_blank, class: 'btn btn-xs'

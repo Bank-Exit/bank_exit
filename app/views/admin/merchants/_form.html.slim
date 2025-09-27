@@ -1,7 +1,7 @@
 = simple_form_for [:admin, merchant],
                   html: { class: 'space-y-8' } do |f|
   - if merchant.errors.any?
-    .panel.panel-error
+    .alert.alert-error
       ul.list-disc.list-inside
         - merchant.errors.each do |error|
           li= error.full_message

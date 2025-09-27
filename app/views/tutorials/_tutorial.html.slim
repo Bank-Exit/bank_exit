@@ -1,4 +1,4 @@
-= link_to tutorial_path(tutorial.identifier), class: 'card bg-base-300' do
+= link_to tutorial_path(tutorial.identifier), class: 'card bg-base-200' do
   - if File.exist?(Rails.root.join("app/assets/images/tutorials/_highlight/#{tutorial.identifier}.png"))
     figure.px-3.pt-3
       = image_tag "tutorials/_highlight/#{tutorial.identifier}.png", class: 'w-24 mx-auto'

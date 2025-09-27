@@ -11,7 +11,7 @@ article
     = render 'breadcrumb'
 
     - if @merchant_proposal.errors.any?
-      .panel.panel-error.mt-3
+      .alert.alert-error.mt-3
         ul.list-disc.list-inside
           - @merchant_proposal.errors.each do |error|
             li= error.full_message
@@ -84,10 +84,11 @@ article
         .mb-6
           .grid.grid-cols-2.md:grid-cols-3.lg:grid-cols-5.gap-3
             - MerchantProposal::ALLOWED_COINS.each do |coin|
-              div
+              .hover:scale-110.transition-transform
                 input type="checkbox" id="#{coin}-option" value=coin class="hidden peer" name="merchant_proposal[coins][]" checked=params.dig(:merchant_proposal, :coins)&.include?(coin.to_s)
                 label.pretty-checkbox.block.text-center for="#{coin}-option" tabindex="0"
-                  p.mb-2= image_tag icon_by_coin(coin), class: 'w-16 rounded-full mx-auto'
+                  p.mb-2
+                    = image_tag icon_by_coin(coin), class: 'w-16 rounded-full mx-auto'
                   p= MerchantProposal.human_attribute_name(coin)
 
         div

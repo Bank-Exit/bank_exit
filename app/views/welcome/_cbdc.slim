@@ -1,10 +1,10 @@
-.panel.panel-base-100.panel-wide-y.px-5
+.alert.alert-vertical.justify-center.px-5 class="!py-12"
   .max-w-5xl.mx-auto.space-y-8
     h3.text-3xl.text-center= t('.title')
 
     = render 'countdown'
 
-    .panel.panel-warning.space-y-2
+    .alert.alert-warning.alert-vertical
       - t('.body').each do |paragraph|
         p== paragraph
 

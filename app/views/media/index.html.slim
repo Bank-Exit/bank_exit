@@ -26,8 +26,8 @@ article
     .article-body.max-w-5xl
       ul
         - @newspapers.each do |newspaper|
-          li.panel.panel-base-300
-            .flex.items-center.gap-1.mb-2
+          li.alert.alert-vertical
+            .flex.items-center.gap-1
               h4.font-bold= newspaper.brand
               span.text-sm= l(newspaper.created_at)
 

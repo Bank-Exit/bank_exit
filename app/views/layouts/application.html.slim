@@ -26,12 +26,12 @@ html lang=I18n.locale
     script type="application/ld+json"
       == schema_dot_org_organization
 
-  body.max-w-screen-3xl.mx-auto data-controller=("layout" if welcome_page?) data-layout-header-background-class=("bg-base-100 border-b-2 border-primary transition-colors" if welcome_page?)
-    header.fixed.max-w-screen-3xl.w-full.print:hidden class=('z-[9999]') class=('bg-base-100 border-b-2 border-primary' unless welcome_page?) data-layout-target=("header" if welcome_page?)
+  body.max-w-screen-3xl.mx-auto data-controller=("layout" if welcome_page?) data-layout-header-background-class=("!bg-base-100" if welcome_page?)
+    header.fixed.max-w-screen-3xl.w-full.print:hidden.bg-base-100/80.border-b-2.border-primary.transition-colors class=('z-[9999]') class=('!bg-base-100' unless welcome_page?) data-layout-target=("header" if welcome_page?)
       #flashes= render 'flashes'
       = render 'nav', projects: @projects
 
-    main.pt-24
+    main.pt-20
       = yield
 
     = render 'upper_footer', projects: @projects, contacts: @contacts

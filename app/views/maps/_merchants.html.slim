@@ -6,7 +6,7 @@
   - if pagy.count > pagy.limit
     == pagy_nav(pagy, anchor_string: 'data-turbo-stream="true" data-action="click->pagination#addPageToURL"')
 
-    .hidden.lg:block.panel.panel-xs.panel-info.text-center
+    .hidden.lg:block.alert.alert-info.text-center
       span.font-bold Tips:
       span=< t('.tips_pagination.use')
 

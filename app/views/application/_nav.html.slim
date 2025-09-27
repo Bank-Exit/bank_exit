@@ -8,7 +8,7 @@
 - active_map = params[:controller].in?(%w[maps merchants])
 - active_project = (params[:controller] == 'projects' && !params[:id].in?(%w[map grocery local_groups])) || params[:id] == 'flyer'
 - active_article = params[:controller].in?(%w[blogs tutorials]) && params[:id] != 'flyer'  && params[:id] != 'accounting' && params[:id] != 'cryptopayment-for-business'
-- active_other = params[:controller].in?(%w[local_groups colectives media statistics])
+- active_other = params[:controller].in?(%w[local_groups collectives media statistics])
 
 nav.navbar
   .navbar-start
@@ -107,7 +107,7 @@ nav.navbar
 
     / Desktop
     = link_to root_path, class: 'flex items-center justify-center gap-2 ml-3 lg:ml-0' do
-      = image_tag logo_by_locale, class: 'w-20 h-20 object-cover rounded-full'
+      = image_tag logo_by_locale, class: 'w-16 h-16 object-cover rounded-full'
       span class="self-center font-semibold whitespace-nowrap"
         span.block= t('.collectif')
         span.block= t('.bank_exit')
@@ -131,7 +131,7 @@ nav.navbar
           summary class=("text-primary" if active_project)
             = t('.menu.projects')
 
-          ul.p-2.bg-base-200.w-max
+          ul.menu.dropdown-content.w-max
             - projects.each do |project|
               - next if project.identifier.in?(%w[map grocery local_groups accounting])
               li
@@ -147,7 +147,7 @@ nav.navbar
           summary class=('text-primary' if active_article)
             = t('.menu.articles')
 
-          ul.p-2.bg-base-200.w-max
+          ul.menu.dropdown-content.w-max
             li
               = link_to blogs_path, class: ('text-primary' if params[:controller] == 'blogs' && params[:id] != 'flyer') do
                 = t('.menu.blogs')
@@ -166,7 +166,7 @@ nav.navbar
           summary class=('text-primary' if active_other)
             = t('other')
 
-          ul.p-2.bg-base-200.w-max
+          ul.menu.dropdown-content.w-max
             li
               = link_to collective_path, class: ('text-primary' if params[:controller] == 'collectives') do
                 = t('collectives.show.title')
@@ -192,10 +192,10 @@ nav.navbar
       li
         details.dropdown
           summary class=("text-primary" if params[:id].in?(%w[accounting cryptopayment-for-business]))
-            .status.status-secondary
+            .status.status-primary
             = t('.menu.pros')
 
-          ul.p-2.bg-base-200.w-max
+          ul.menu.dropdown-content.w-max
             li
               = link_to tutorial_path(business_guide_tutorial.identifier),
                         class: ('text-primary' if params[:id] == 'cryptopayment-for-business') do

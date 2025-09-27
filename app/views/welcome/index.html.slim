@@ -1,6 +1,6 @@
 .hero.bg-fixed class=("bg-banner-#{rand(1..5)} -mt-24")
   .hero-overlay
-  .hero-content.text-neutral-content.text-center.pt-24.pb-10.lg:py-36
+  .hero-content.text-center.pt-24.pb-10.lg:py-36
     .max-w-max.space-y-8
       .flex.flex-col.lg:flex-row.items-center.gap-5.justify-between
         figure.order-3.lg:order-none
@@ -9,9 +9,10 @@
                       autoplay: false,
                       class: 'rounded-box mx-auto max-h-[400px]',
                       poster: image_path('poster_first_market_gardener_monero.jpg')
-          figcaption.text-sm.mt-1.text-center.italic= t('.video_caption')
+          figcaption.text-sm.mt-1.text-center.italic.text-white
+            = t('.video_caption')
 
-        .lg:w-1/3.text-center.order-1.lg:order-none
+        .lg:w-1/3.text-center.order-1.lg:order-none.text-white
           = image_tag logo_by_locale, class: 'w-48 mx-auto mb-3 hover:scale-110 transition-transform'
 
           h1.text-3xl.font-bold.mb-6= t('.title')
@@ -34,7 +35,7 @@
 
       h4.text-lg= t('.map.subtitle')
 
-      .panel.panel-info.panel-sm
+      .alert.alert-info
         = t('.map.merchant_highlight_tooltip_html')
 
     .space-y-3
