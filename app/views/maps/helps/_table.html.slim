@@ -81,11 +81,10 @@ table.table.table-zebra
         span.badge.badge-info.badge-sm String
 
       td.block.w-max
-        .grid.grid-cols-3.lg:grid-cols-2.gap-1
+        .grid.grid-cols-6.gap-2
           - Merchant.available.pluck(:country).uniq.compact_blank.sort.each do |country|
-            div
+            .tooltip.tooltip-bottom data-tip=pretty_country_html(country.to_sym)
               span.badge.badge-info.badge-sm= country
-              =< pretty_country_html(country.to_sym)
 
       td
         span.badge.badge-info.badge-sm= Setting::MAP_DEFAULT_COUNTRY
