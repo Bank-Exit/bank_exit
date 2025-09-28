@@ -9,7 +9,7 @@
         h1.text-xl.font-bold Sortie de Banque
         p Admin
 
-    ul.menu.bg-base-200.mb-5.border.border-base-content/20.rounded-lg.w-full.items-center
+    ul.menu.bg-base-200.mb-5.border.border-base-content/20.rounded-lg.w-full.items-center.space-y-2
       li
         = link_to 'Tableau de bord', admin_dashboard_path, class: ('menu-active' if params[:controller] == 'admin/dashboards')
 
