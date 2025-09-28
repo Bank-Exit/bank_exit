@@ -14,7 +14,7 @@ header.mb-3
     .stat-title
       span.status.status-success.status-lg
       |< Commerçants visibles
-    .stat-value= Merchant.available.count
+    .stat-value= number_with_delimiter(Merchant.available.count)
     .stat-desc au #{l(@dashboard_presenter.today.to_date)}
 
   .stat
@@ -23,7 +23,7 @@ header.mb-3
     .stat-title
       span.status.status-error.status-lg
       |< Commerçants désactivés
-    .stat-value= merchant_deleted_count
+    .stat-value= number_with_delimiter(merchant_deleted_count)
     - if merchant_deleted_count > 0
       .stat-actions.mt-1
         =< link_to 'Afficher', admin_merchants_path(show_deleted: true), class: 'btn btn-error btn-xs'
@@ -56,7 +56,7 @@ section
   .mb-3.max-w-5xl.mx-auto
     .badge.badge-secondary.badge-sm.text-center.my-2
       p
-        strong#merchants_count= @pagy.count
+        strong#merchants_count= number_with_delimiter(@pagy.count)
         |< résultat(s)
 
     = simple_form_for '',

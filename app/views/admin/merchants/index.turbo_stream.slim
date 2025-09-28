@@ -4,4 +4,4 @@
   = render 'merchants', merchants: @merchants, pagy: @pagy
 
 = turbo_stream.update :merchants_count do
-  = @pagy.count
+  = number_with_delimiter(@pagy.count)
