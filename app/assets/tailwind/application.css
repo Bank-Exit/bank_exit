@@ -98,14 +98,16 @@ a {
 a:not(.btn, .badge):hover,
 .alert-success a:not(.btn),
 .alert-info a:not(.btn),
-.highlight-link a {
+.highlight-link a,
+#faq a {
     color: var(--color-primary);
 }
 
 footer a[target="_blank"],
 p a[target="_blank"],
 .admin a[target="_blank"],
-.alert a[target="_blank"] {
+.alert a[target="_blank"],
+#faq a[target="_blank"] {
     &:after {
         content: " ";
         display: inline-block;
