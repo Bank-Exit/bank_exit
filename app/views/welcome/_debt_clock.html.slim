@@ -1,0 +1,28 @@
+.alert.alert-vertical.flex.flex-col.justify-center.px-5.py-12(
+  data-controller="debt-clock"
+  data-debt-clock-d0-value="3425000000000"
+  data-debt-clock-t0-value=Time.new(2025, 9, 27).to_i
+  data-debt-clock-rate-value="5136"
+  data-debt-clock-locale-value=I18n.locale
+)
+  .max-w-5xl.mx-auto.space-y-8.text-center
+    h3.text-3xl= t('.title')
+
+    figure
+      .alert.alert-warning.text-2xl.lg:text-6xl.justify-center data-debt-clock-target="amount"
+        .loading.loading-spinner.loading-3xl.text-warning-content
+
+      figcaption.mt-3.italic.text-sm
+        p= t('.headline_html')
+
+        p
+          = t('.source_label')
+          |:
+          =< link_to t('.source_link'), class: 'text-primary', target: :_blank do
+            = t('.source_link').delete_prefix('https://')
+
+  .w-full.lg:w-1/2.mx-auto
+    = area_chart france_debt_data_by_years, ytitle: t('.chart_debt_title')
+
+    - if I18n.locale == :fr
+      = image_tag 'sdb_debt_clock.jpeg', class: 'rounded-lg lg:w-3/4 mx-auto mt-8'

@@ -92,4 +92,16 @@ module ApplicationHelper
          .delete_prefix('www.')
          .delete_suffix('/')
   end
+
+  def france_debt_data_by_years
+    {
+      '1974' => 92,
+      '1981' => 210,
+      '1995' => 660,
+      '2007' => 1210,
+      '2012' => 1870,
+      '2017' => 2260,
+      '2025' => 3345
+    }
+  end
 end

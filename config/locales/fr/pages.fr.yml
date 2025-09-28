@@ -38,6 +38,13 @@ fr:
     questions_form:
       title: Rechercher un contenu
 
+    debt_clock:
+      title: Dette publique de la France 🇫🇷 en temps réel
+      headline_html: La dette publique augmente de <strong>5.136 €</strong> par seconde (<strong>443,7 millions €</strong> par jour)
+      source_label: Source
+      source_link: https://horloge-de-la-dette-publique.com
+      chart_debt_title: Dette (en milliards)
+
     cbdc:
       title: €uro numérique "Cash+"
       body:

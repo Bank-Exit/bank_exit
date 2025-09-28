@@ -38,6 +38,13 @@ es:
     questions_form:
       title: Buscar a un contenido
 
+    debt_clock:
+      title: Deuda pública de Francia 🇫🇷 en tiempo real
+      headline_html: La deuda pública aumenta en <strong>5.136&nbsp;€</strong> por segundo (<strong>443,7 millones&nbsp;€</strong> por día)
+      source_label: Fuente
+      source_link: https://horloge-de-la-dette-publique.com/en
+      chart_debt_title: Deuda (en miles de millones)
+
     cbdc:
       title: €uro digital "Cash+"
       body:
