@@ -26,7 +26,8 @@ header.mb-3
     .stat-value= number_with_delimiter(merchant_deleted_count)
     - if merchant_deleted_count > 0
       .stat-actions.mt-1
-        =< link_to 'Afficher', admin_merchants_path(show_deleted: true), class: 'btn btn-error btn-xs'
+        - req_params = request.query_parameters.compact_blank
+        =< link_to 'Afficher', admin_merchants_path(params: req_params.merge(show_deleted: true)), class: 'btn btn-error btn-xs'
 
         button.btn.btn-square.btn-ghost.btn-xs.ml-1 onclick="merchants_deleted_help.showModal()"
           = lucide_icon 'circle-question-mark', class: 'w-4'
