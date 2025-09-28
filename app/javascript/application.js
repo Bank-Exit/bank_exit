@@ -36,3 +36,31 @@ window.addEventListener("click", function (e) {
     }
   });
 });
+
+// This patch makes dropdown with popover aware of page
+// bottom in order to render menu in a top position.
+document.addEventListener("turbo:load", () => {
+  const triggerButtons = document.querySelectorAll("[popovertarget]");
+
+  triggerButtons.forEach((button) => {
+    const popoverId = button.getAttribute("popovertarget");
+    const popover = document.getElementById(popoverId);
+
+    if (!popover) return;
+
+    button.addEventListener("click", () => {
+      requestAnimationFrame(() => {
+        const rect = button.getBoundingClientRect();
+        const menuHeight = popover.offsetHeight || 150;
+
+        const spaceBelow = window.innerHeight - rect.bottom;
+
+        if (spaceBelow < menuHeight + 16) {
+          popover.classList.add("dropdown-top");
+        } else {
+          popover.classList.remove("dropdown-top");
+        }
+      });
+    });
+  });
+});
