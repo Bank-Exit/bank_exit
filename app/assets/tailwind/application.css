@@ -124,7 +124,7 @@ p a[target="_blank"],
 }
 
 mark {
-    @apply badge badge-primary;
+    @apply bg-primary text-primary-content rounded-sm;
 }
 
 @media print {
