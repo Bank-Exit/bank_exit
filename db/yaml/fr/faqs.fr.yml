@@ -5,6 +5,7 @@
     - answer: Le Collectif sera alors informé de votre demande et ajoutera le commerçant sur OpenStreetMap.
   categories:
     - map
+    - merchant
   identifier: suggest_merchant
 
 - question: Comment convaincre un commerçant ?
@@ -26,6 +27,7 @@
       answer: A noter qu'après suppression sur OpenStreetMap, le commerçant peut encore apparaître quelques heures sur la carte du Collectif, en attendant la prochaine synchronisation des données.
   categories:
     - map
+    - merchant
   identifier: remove_from_map
 
 - question: J'ai ajouté un commerçant sur OpenStreetMap mais il n'apparait toujours pas sur la carte du Collectif, pourquoi ?
@@ -34,6 +36,7 @@
     - answer: A noter que vous pouvez effectuer vous même un rafraîchissement manuel des données depuis la carte en cliquant sur <span class="badge badge-primary">⋮</span> > <span class="badge badge-primary">Rafraîchir les commerçants</span> (à côté du bouton vert "Proposer un commerçant").
   categories:
     - map
+    - merchant
   identifier: merchant_not_visible
 
 - question: Je souhaite intégrer la carte sur mon site, comment faire ?
@@ -50,6 +53,7 @@
     - answer: Rendez-vous sur la page {{tutorials#show->import-merchants-in-comaps}} pour un tutoriel complet sur l'import des commerçants dans l'application CoMaps.
   categories:
     - map
+    - merchant
   identifier: export_gpx
 
 - question: Qu'est-ce qu'un KYC ?

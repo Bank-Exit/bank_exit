@@ -91,3 +91,6 @@ article
     == schema_dot_org_merchant(@merchant)
 
 #modal
+
+- if @faqs.any?
+  = render template: 'faqs/show'

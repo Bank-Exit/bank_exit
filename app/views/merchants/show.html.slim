@@ -69,3 +69,6 @@
 
   script type="application/ld+json"
     == schema_dot_org_merchant(@merchant)
+
+- if @faqs.any?
+  = render template: 'faqs/show'

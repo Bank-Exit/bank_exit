@@ -13,6 +13,10 @@ class MerchantsController < PublicController
   # @route GET /en/merchants/:id {locale: "en"} (merchant_en)
   # @route GET /merchants/:id
   def show
+    @faqs = FAQ.all.select do |faq|
+      faq.categories.include?('merchant')
+    end
+
     add_breadcrumb @merchant.name
 
     set_meta_tags title: @merchant.name,

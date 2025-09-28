@@ -5,6 +5,7 @@
     - answer: El Colectivo recibirá una notificación de su solicitud y añadirá el comercio a OpenStreetMap.
   categories:
     - map
+    - merchant
   identifier: suggest_merchant
 
 - question: ¿Cómo convencer a un comerciante?
@@ -26,6 +27,7 @@
       answer: Tenga en cuenta que, tras eliminarlo de OpenStreetMap, el comerciante podría seguir apareciendo en el mapa del Colectivo durante unas horas, a la espera de la siguiente sincronización de datos.
   categories:
     - map
+    - merchant
   identifier: remove_from_map
 
 - question: Agregué un comercio a OpenStreetMap, pero sigue sin aparecer en el mapa del Colectivo. ¿Por qué?
@@ -34,6 +36,7 @@
     - answer: Puede actualizar los datos usted mismo desde el mapa haciendo clic en <span class="badge badge-primary">⋮</span> > <span class="badge badge-primary">Refrescar a los commerciantes</span> (junto al botón verde "Sugerir un commerciante").
   categories:
     - map
+    - merchant
   identifier: merchant_not_visible
 
 - question: Quiero incrustar el mapa en mi sitio web. ¿Cómo lo hago?

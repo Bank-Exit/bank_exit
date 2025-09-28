@@ -5,6 +5,7 @@
     - answer: Il Collectif verrà quindi informato della tua richiesta e aggiungerà il commerciante su OpenStreetMap.
   categories:
     - map
+    - merchant
   identifier: suggest_merchant
 
 - question: Come convincere un commerciante?
@@ -26,6 +27,7 @@
       answer: Nota che dopo la cancellazione da OpenStreetMap, il commerciante potrebbe apparire ancora sulla mappa del Collectif per alcune ore, fino alla prossima sincronizzazione dei dati.
   categories:
     - map
+    - merchant
   identifier: remove_from_map
 
 - question: Ho aggiunto un commerciante su OpenStreetMap, ma non appare ancora sulla mappa del Collectif. Perché?
@@ -34,6 +36,7 @@
     - answer: Puoi anche aggiornare i dati manualmente dalla mappa cliccando <span class="badge badge-primary">⋮</span> > <span class="badge badge-primary">Refresh merchants data</span> (accanto al pulsante verde "Suggest a merchant").
   categories:
     - map
+    - merchant
   identifier: merchant_not_visible
 
 - question: Voglio incorporare la mappa sul mio sito web. Come si fa?

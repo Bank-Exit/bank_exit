@@ -5,6 +5,7 @@
     - answer: The Collective will then be notified of your request and will add the merchant to OpenStreetMap.
   categories:
     - map
+    - merchant
   identifier: suggest_merchant
 
 - question: How to convince a merchant?
@@ -26,6 +27,7 @@
       answer: Please note that after deletion from OpenStreetMap, the merchant may still appear on the Collective's map for a few hours, pending the next data synchronization.
   categories:
     - map
+    - merchant
   identifier: remove_from_map
 
 - question: I added a merchant on OpenStreetMap, but he still doesn't appear on the Collective's map. Why?
@@ -34,6 +36,7 @@
     - answer: Note that you can refresh the data yourself from the map by clicking <span class="badge badge-primary">⋮</span> > <span class="badge badge-primary">Refresh merchants data</span> (next to the green "Suggest a merchant" button).
   categories:
     - map
+    - merchant
   identifier: merchant_not_visible
 
 - question: I want to embed the map on my website. How do I do this?
@@ -50,6 +53,7 @@
     - answer: Visit the page {{tutorials#show->import-merchants-in-comaps}} for a full tutorial on importing merchants into the CoMaps application.
   categories:
     - map
+    - merchant
   identifier: export_gpx
 
 - question: What is a KYC ?
