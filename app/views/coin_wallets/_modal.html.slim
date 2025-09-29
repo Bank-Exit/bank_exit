@@ -7,7 +7,7 @@
     == qr_code_for_coin_wallet(@coin_wallet, show_logo: true)
 
     figcaption.mt-2
-      .alert.mb-1.tracking-wider.break-all.inline-block
+      .alert.mb-1.tracking-wider.break-all.inline-block.text-center
         == highlight_address(@coin_wallet.public_address)
 
       p= render 'copy_to_clipboard',
