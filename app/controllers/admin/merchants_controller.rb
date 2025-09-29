@@ -24,7 +24,7 @@ module Admin
       )
       merchants = merchants.where.associated(:comments) if with_comments?
 
-      merchants = MerchantDecorator.wrap(merchants.reverse_order)
+      merchants = MerchantDecorator.wrap(merchants.distinct.reverse_order)
 
       @last_update = last_update.to_i
 
