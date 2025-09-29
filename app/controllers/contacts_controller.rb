@@ -1,4 +1,6 @@
 class ContactsController < PublicController
+  skip_after_action :record_page_view
+
   ALLOWED_CONTACTS = %w[Session Nostr Email].freeze
 
   # @route GET /fr/contacts/:id {locale: "fr"} (contact_fr)
