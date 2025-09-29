@@ -36,6 +36,12 @@ class StatisticsController < PublicController
     merchants.not_atms unless session[:include_atms]
 
     @merchants = MerchantDecorator.wrap(merchants)
+
+    respond_to do |format|
+      format.html
+      format.json
+      format.turbo_stream
+    end
   end
 
   # @route POST /statistics/toggle_atms (statistics_toggle_atms)

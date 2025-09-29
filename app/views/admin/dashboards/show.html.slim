@@ -45,7 +45,7 @@ section.space-y-5
         .stat-desc au #{l(@dashboard_presenter.today.to_date)}
 
     figure.w-full
-      #map.w-full.mx-auto.z-0.relative.rounded-lg class="h-[500px]" data-controller="map" data-map-markers-value=@merchants_statistics[:today].to_json data-map-fit-bounds-value='true' data-map-track-geolocation-in-url-value='false'
+      #map.w-full.mx-auto.z-0.relative.rounded-lg class="h-[500px]" data-controller="map" data-map-fetch-markers-url-value=daily_merchants_statistics_path(date: Date.today) data-map-fit-bounds-value="true" data-map-track-geolocation-in-url-value="false"
         = render 'maps/loader'
 
       figcaption.text-center.text-xs.text-base-content.italic.mt-2 Commerçants ajoutés le #{l(@dashboard_presenter.today.to_date)}
