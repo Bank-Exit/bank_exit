@@ -328,12 +328,14 @@ de:
       title_html: Kommentar zu <strong>%{name}</strong>
 
     form:
-      introduction: Schreibe nur eine Bewertung, wenn du eine echte Erfahrung mit diesem Händler gemacht hast.
+      introduction: Hinterlassen Sie eine Bewertung nur, wenn Sie tatsächliche Erfahrungen mit diesem Händler gemacht haben. Bitte melden Sie keine Fehler in den Händlerdaten über dieses Formular.
       submit: Kommentar veröffentlichen
 
     comments:
-      no_comment_yet: Es gibt noch keine Bewertungen. Sei der Erste, der einen Kommentar zu diesem Händler schreibt, falls du echte Erfahrungen gemacht hast.
-      tooltip_no_moderation: Das Kollektiv überprüft die Nutzerkommentare nicht.
+      no_comment_yet: Es gibt noch keine Kommentare. Seien Sie der Erste, der seine persönliche Erfahrung mit diesem Händler teilt.
+      comment_as_testimony_only_html: Verwenden Sie dieses Formular <strong>nur, um eine Erfahrung mit dem Händler zu teilen</strong>. Um eine Unstimmigkeit oder einen Fehler in den Daten zu melden, verwenden Sie bitte dieses %{link}.
+      other_form: anderes Formular
+      comments_no_moderation: Das Kollektiv überprüft die Nutzerkommentare nicht.
 
     flag_tag:
       flagged_comment: Kommentar wurde dem Kollektiv gemeldet

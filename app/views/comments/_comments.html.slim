@@ -1,11 +1,9 @@
-.space-y-2
+.space-y-3
   .flex.items-center.justify-between
     .flex.items-center.gap-2
       h3#comments_count.uppercase.font-bold.text-primary
         = commentable.comments_count
         =< Comment.model_name.human(count: commentable.comments_count)
-
-      = render 'tooltip', text: t('.tooltip_no_moderation'), position: :bottom
 
     - if allowed_to?(:create?, Comment)
       = link_to new_polymorphic_path([commentable, Comment.new]),
@@ -13,6 +11,18 @@
                 data: { turbo_stream: true } do
         = t('add')
         = lucide_icon 'message-square', class: 'w-4 inline-flex'
+
+  .alert.alert-warning.text-xs
+    = lucide_icon 'triangle-alert', class: 'w-5'
+    div
+      p
+        - testimony_form_link = link_to new_merchant_report_path(commentable),
+                  title: t('merchants.show.report_a_fault.title'),
+                  data: { turbo_stream: true }, class: 'font-bold underline decoration-dotted' do
+          = t('.other_form')
+        =< t('.comment_as_testimony_only_html', link: testimony_form_link)
+
+      p.mt-1= t('.comments_no_moderation')
 
   .space-y-3
     == pagy_nav(pagy) if pagy.count > pagy.limit

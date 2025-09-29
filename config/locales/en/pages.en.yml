@@ -341,12 +341,14 @@ en:
       title_html: Comment on <strong>%{name}</strong>
 
     form:
-      introduction: Only write a review if you have had a real experience with this merchant.
+      introduction: Only leave a review if you have had a genuine experience with this business. Please do not report errors in the business information using this form.
       submit: Publish the comment
 
     comments:
-      no_comment_yet: There are no reviews yet, be the first to leave one on this merchant if you have had a real experience with him.
-      tooltip_no_moderation: The Collective does not validate the opinions left by users.
+      no_comment_yet: There are no comments yet, be the first to share your personal experience with this merchant.
+      comment_as_testimony_only_html: Use this form <strong>only to share an experience with the merchant</strong>. To report an anomaly or error in the data, please use this %{link}.
+      other_form: other form
+      comments_no_moderation: The Collective does not validate the opinions left by users.
 
     flag_tag:
       flagged_comment: Commentaire indicated to the Collectif

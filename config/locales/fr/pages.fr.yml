@@ -341,12 +341,14 @@ fr:
       title_html: Commentaire sur <strong>%{name}</strong>
 
     form:
-      introduction: N'inscrivez un commentaire que si vous avez eu une réelle expérience avec ce commerçant.
+      introduction: Ne témoignez que si vous avez eu une réelle expérience avec ce commerçant. Merci de ne pas signaler d'erreurs sur les données du commerçant dans ce formulaire.
       submit: Publier le commentaire
 
     comments:
-      no_comment_yet: Il n'y a pas encore de commentaires, soyez le premier à en déposer un sur ce commerçant si vous avez eu une réelle expérience avec.
-      tooltip_no_moderation: Le Collectif ne valide pas les avis laissés par les utilisateurs
+      no_comment_yet: Il n'y a pas encore de commentaires, soyez le premier à témoigner de votre expérience personnelle avec ce commerçant.
+      comment_as_testimony_only_html: N'utilisez ce formulaire que <strong>pour témoigner d'une expérience avec le commerçant</strong>. Pour signaler une anomalie ou erreur dans les données, veuillez utiliser cet %{link}.
+      other_form: autre formulaire
+      comments_no_moderation: Le Collectif ne valide pas les avis laissés par les utilisateurs.
 
     flag_tag:
       flagged_comment: Commentaire signalé au Collectif

@@ -330,12 +330,14 @@ es:
       title_html: Comentario sobre <strong>%{name}</strong>
 
     form:
-      introduction: Solo escribe una reseña si has tenido una experiencia real con este comerciante.
+      introduction: Solo deje un comentario si ha tenido una experiencia real con este comerciante. Por favor, no informe de errores en los datos del comerciante mediante este formulario.
       submit: Publicar el comentario
 
     comments:
-      no_comment_yet: Aún no hay reseñas, sé el primero en dejar una sobre este comerciante si has tenido una experiencia real con el.
-      tooltip_no_moderation: El Colectivo no valida las opiniones dejadas por los usuarios.
+      no_comment_yet: Aún no hay comentarios, sé el primero en compartir tu experiencia personal con este comerciante.
+      comment_as_testimony_only_html: Utilice este formulario <strong>solo para compartir una experiencia con el comerciante</strong>. Para informar de una anomalía o error en los datos, por favor utilice este %{link}.
+      other_form: otro formulario
+      comments_no_moderation: El Colectivo no valida las opiniones dejadas por los usuarios.
 
     flag_tag:
       flagged_comment: Comentarios señalizados al Colectivo

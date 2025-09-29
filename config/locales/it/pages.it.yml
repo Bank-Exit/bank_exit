@@ -328,12 +328,14 @@ it:
       title_html: Commenta su <strong>%{name}</strong>
 
     form:
-      introduction: Scrivi una recensione solo se hai avuto una reale esperienza con questo commerciante.
+      introduction: Lascia una recensione solo se hai avuto una reale esperienza con questo commerciante. Ti preghiamo di non segnalare errori nei dati del commerciante tramite questo modulo.
       submit: Pubblica il commento
 
     comments:
-      no_comment_yet: Non ci sono ancora recensioni, sii il primo a lasciare un’opinione su questo commerciante se hai avuto una reale esperienza con lui.
-      tooltip_no_moderation: Il Collettivo non valida le opinioni lasciate dagli utenti.
+      no_comment_yet: Non ci sono ancora commenti, sii il primo a condividere la tua esperienza personale con questo commerciante.
+      comment_as_testimony_only_html: Utilizza questo modulo <strong>solo per condividere un'esperienza con il commerciante</strong>. Per segnalare un'anomalia o un errore nei dati, ti preghiamo di utilizzare questo %{link}.
+      other_form: altro modulo
+      comments_no_moderation: Il Collettivo non valida le opinioni lasciate dagli utenti.
 
     flag_tag:
       flagged_comment: Commento segnalato al Collettivo
