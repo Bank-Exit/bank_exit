@@ -18,9 +18,10 @@ class Merchant < ApplicationRecord
   scope :by_category, ->(category) { where(category: category) }
   scope :by_country, ->(country) { where(country: country) }
   scope :by_continent, ->(continent) { where(continent_code: continent) }
-  scope :bitcoin, -> { where(bitcoin: true).or(where(lightning: true)) }
+  scope :bitcoin, -> { where(bitcoin: true).or(where(lightning: true)).or(where(contact_less: true)) }
   scope :monero, -> { where(monero: true) }
   scope :june, -> { where(june: true) }
+  scope :bitcoin_only, -> { where(monero: false, june: false) }
 
   scope :in_france, -> { where(country: %w[FR France]) }
   scope :no_kyc, -> { where(ask_kyc: false) }
