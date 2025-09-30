@@ -15,8 +15,6 @@ module Merchants
     def call
       @diff_ids = Merchant.pluck(:original_identifier) - geojson_merchant_ids
 
-      return if @diff_ids.empty?
-
       # Mark record as soft deleted
       merchants
         .where(deleted_at: nil)
@@ -33,23 +31,33 @@ module Merchants
 
       File.write(
         "#{output_folder}/removed_merchants_from_open_street_map.txt",
-        "#{I18n.l(Time.current)}\n\n#{merchants_list.join("\n")}"
+        body
       )
     end
 
     private
 
     def body
-      <<~MARKDOWN
-        **#{merchants_list.count}** Monero and/or June merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
-        Please check the relevance of the information below:
+      if @diff_ids.empty?
+        <<~MARKDOWN
+          There are no Monero/June merchants disabled for now 🎉
 
-        #{merchants_list.join("\n")}
+          ---
 
-        ---
+          *Note: this issue has been automatically updated from bank-exit website using the Github API.*
+        MARKDOWN
+      else
+        <<~MARKDOWN
+          **#{merchants_list.count}** Monero and/or June merchants seems to have been removed on OpenStreetMap but are still present in Bank-Exit.org website.
+          Please check the relevance of the information below:
 
-        *Note: this issue has been automatically updated from bank-exit website using the Github API.*
-      MARKDOWN
+          #{merchants_list.join("\n")}
+
+          ---
+
+          *Note: this issue has been automatically updated from bank-exit website using the Github API.*
+        MARKDOWN
+      end
     end
 
     def merchants
