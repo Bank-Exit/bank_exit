@@ -3,6 +3,11 @@ fetch_merchants: &fetch_merchants
     command: "FetchMerchants.call"
     schedule: "10 2,8,14,20 * * *" # Every 6 hours starting at 2:10am
 
+clear_merchants: &clear_merchants
+  periodic_clear_merchants:
+    command: "Merchants::ClearOutdated.call"
+    schedule: every day at 6am
+
 refresh_sitemap: &refresh_sitemap
   periodic_refresh_sitemap:
     class: RakeTaskJob
@@ -12,11 +17,13 @@ refresh_sitemap: &refresh_sitemap
 staging:
   <<:
     - *fetch_merchants
+    - *clear_merchants
     - *refresh_sitemap
 
 production:
   <<:
     - *fetch_merchants
+    - *clear_merchants
     - *refresh_sitemap
 
   periodic_backup_geojson:

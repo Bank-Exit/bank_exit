@@ -30,6 +30,10 @@ class FetchMerchants < ApplicationService
     # are still present in Bank-Exit map.
     Merchants::CheckAndReportRemovedOnOSM.call(@geojson_merchant_ids)
 
+    # Reactivate soft-deleted merchants if they have been
+    # made available to OSM again
+    Merchants::CheckAndReactivate.call(@geojson_merchant_ids)
+
     # Assign country to merchants that have nil value
     # Might take time at the first execution !
     Merchants::AssignCountry.call
