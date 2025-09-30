@@ -54,10 +54,26 @@ RSpec.describe FetchMerchants do
     it { expect(Merchants::CheckAndReportRemovedOnOSM).to have_received(:call).with(['node/296731584', 'node/445766280', 'way/125059083']).once }
   end
 
+  describe '[Reactivate soft deleted merchants]' do
+    before do
+      stub_overpass_request_success
+      allow(Merchants::AssignCountry).to receive(:call)
+      allow(Merchants::CheckAndReportRemovedOnOSM).to receive(:call)
+      allow(Merchants::CheckAndReactivate).to receive(:call)
+
+      call
+    end
+
+    after { clear_files }
+
+    it { expect(Merchants::CheckAndReactivate).to have_received(:call).once }
+  end
+
   describe '[Reverse geocoding Nominatim API]' do
     before do
       stub_overpass_request_success
       allow(Merchants::AssignCountry).to receive(:call)
+      allow(Merchants::CheckAndReportRemovedOnOSM).to receive(:call)
 
       call
     end
