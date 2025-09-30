@@ -38,7 +38,7 @@ module Merchants
     private
 
     def body
-      if @diff_ids.empty?
+      if merchants_list.none?
         <<~MARKDOWN
           There are no Monero/June merchants disabled for now 🎉
 
