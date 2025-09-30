@@ -8,7 +8,7 @@
     - if @merchant.deleted?
       p.alert.alert-error
         = lucide_icon 'info', class: 'inline-flex w-4 h-4'
-        span=< t('.soft_deleted_warning')
+        span=< t('.soft_deleted_warning', date: l(@merchant.deleted_at.to_date))
 
     - if @merchant.might_be_outdated?
       p.alert.alert-warning

@@ -276,7 +276,7 @@ en:
       itinerary_title: Itinerary
       last_survey_warning_html: This merchant has not been verified since <span title="%{raw_date}">%{date}</span>. The information provided may no longer match.
       view_on_osm: View on OpenStreetMap
-      soft_deleted_warning: This merchant was marked as a pre-suppressed. It will no longer come out in the search results as long as it has not been reactivated or deleted definitively.
+      soft_deleted_warning: This merchant was marked as a pre-suppressed on %{date}. It will no longer come out in the search results as long as it has not been reactivated or deleted definitively.
       alert: This merchant is not available and has been marked as pre-deleted.
 
       share_by_email:

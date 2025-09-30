@@ -276,7 +276,7 @@ fr:
       itinerary_title: Itinéraire
       last_survey_warning_html: Ce commerçant n'a pas été vérifié depuis <span title="%{raw_date}">%{date}</span>. Les informations indiquées peuvent ne plus correspondre.
       view_on_osm: Ouvrir sur OpenStreetMap
-      soft_deleted_warning: Ce commerçant a été marqué comme pré-supprimé. Il ne ressortira plus dans les résultats de recherche tant qu'il n'aura pas été réactivé ou supprimé définitivement.
+      soft_deleted_warning: Ce commerçant a été marqué comme pré-supprimé le %{date}. Il ne ressortira plus dans les résultats de recherche tant qu'il n'aura pas été réactivé ou supprimé définitivement.
       alert: Ce commerçant n'est plus accessible car il a été marqué comme pré-supprimé.
 
       share_by_email:

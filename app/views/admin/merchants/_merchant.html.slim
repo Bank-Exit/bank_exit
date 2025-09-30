@@ -39,18 +39,18 @@ tr
   td
     .status.status-lg> class=(merchant.deleted? ? 'status-error' : 'status-success') aria-label="status"
     - if merchant.deleted?
-      | Désactivé
+      span.tooltip data-tip=l(merchant.deleted_at) Désactivé
     - else
       | En ligne
 
   td class=('text-center' if merchant.updated?)
-    p title=Merchant.human_attribute_name(:created_at)
+    p.tooltip data-tip=Merchant.human_attribute_name(:created_at)
       = l(merchant.created_at)
 
     - if merchant.updated?
       = lucide_icon 'move-left', class: 'mx-auto w-5 h-5 -rotate-90 bg-primary text-primary-content rounded-full my-2 p-1'
 
-      p title=Merchant.human_attribute_name(:updated_at)
+      p.tooltip data-tip=Merchant.human_attribute_name(:updated_at)
         = l(merchant.updated_at)
 
   td
