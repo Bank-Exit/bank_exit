@@ -1,0 +1,21 @@
+section.space-y-3
+  == pagy_nav(pagy) if pagy.count > pagy.limit
+
+  .table-wrapper
+    table.table.table-zebra
+      thead
+        tr
+          th scope="col"= EcosystemItem.human_attribute_name(:picture)
+          th scope="col"= EcosystemItem.human_attribute_name(:name)
+          th scope="col"= EcosystemItem.human_attribute_name(:url)
+          th scope="col"= EcosystemItem.human_attribute_name(:enabled)
+          th scope="col"= t('actions')
+      tbody
+        = render ecosystem_items
+
+        - if ecosystem_items.blank?
+          tr
+            td.text-center.italic colspan="100%"
+              = t('.empty_results')
+
+  == pagy_nav(pagy) if pagy.count > pagy.limit

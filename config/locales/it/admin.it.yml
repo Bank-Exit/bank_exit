@@ -95,6 +95,25 @@ it:
         view_public_page: Visualizza pagina pubblica
         destroy_confirm: Vuoi eliminare questa voce della directory?
 
+    ecosystem_items:
+      index:
+        title: L'ecosistema Monero
+      new:
+        title: Aggiungi un elemento all'ecosistema
+      create:
+        notice: L'elemento dell'ecosistema è stato creato con successo
+      edit:
+        title: Modifica un elemento dell'ecosistema
+      update:
+        notice: L'elemento dell'ecosistema è stato aggiornato con successo
+      destroy:
+        notice: L'elemento dell'ecosistema è stato eliminato con successo
+
+      ecosystem_items:
+        empty_results: Non ci sono elementi da visualizzare
+      actions:
+        destroy_confirm: Vuoi eliminare questo elemento dell'ecosistema?
+
     merchants:
       index:
         title: Commercianti
@@ -177,6 +196,8 @@ it:
     sidebar:
       title: Bank-Exit
       subtitle: Admin
+
+      monero_ecosystem: Ecosistema Monero
 
       merchants_disabled: Commercianti disabilitati
       comments_disabled: Commenti disabilitati

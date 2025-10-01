@@ -7,6 +7,10 @@ class ApplicationPolicy < ActionPolicy::Base
     deny! unless user&.super_admin?
   end
 
+  def require_admins!
+    deny! unless user&.super_admin? || user&.admin?
+  end
+
   def admins_or_moderator?
     user.super_admin? || user.admin? || user.moderator?
   end

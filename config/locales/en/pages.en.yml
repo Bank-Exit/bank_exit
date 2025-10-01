@@ -372,6 +372,11 @@ en:
       local_groups_label: "%{count} small local groups"
       workshop_caption: Practical Monero and Bitcoin workshop led by Pierre
 
+  ecosystems:
+    show:
+      title: Monero ecosystem
+      headline: Dive into the world of Monero and discover the projects that make it unique. From everyday tools to major innovations, explore an ecosystem built around privacy.
+
   contacts:
     show:
       pgp_key: PGP key

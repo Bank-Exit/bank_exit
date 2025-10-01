@@ -372,6 +372,11 @@ fr:
       local_groups_label: "%{count} petits groupes locaux"
       workshop_caption: Atelier pratique Monero et Bitcoin animé par Pierre
 
+  ecosystems:
+    show:
+      title: L'écosystème Monero
+      headline: Plongez dans l’univers Monero et découvrez les projets qui le rendent unique. Des outils du quotidien aux innovations majeures, explorez un écosystème dédié à la confidentialité.
+
   contacts:
     show:
       pgp_key: Clé PGP

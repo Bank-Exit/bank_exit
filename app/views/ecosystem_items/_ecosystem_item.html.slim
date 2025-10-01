@@ -1,0 +1,21 @@
+.collapse.collapse-arrow.join-item.border-base-300.border
+  input type="radio" name="ecosystem_item-radio"
+  .collapse-title.font-semibold.flex.items-center.gap-2
+    - if ecosystem_item.picture.attached?
+      = image_tag url_for(ecosystem_item.picture.variant(:thumb)), class: 'w-6'
+    = ecosystem_item.name
+
+  .collapse-content.space-y-5
+    == simple_format ecosystem_item.description
+
+    - if ecosystem_item.picture.attached?
+      p= image_tag url_for(ecosystem_item.picture.variant(:small)), class: 'max-w-32 mx-auto'
+
+    footer.flex.items-center.justify-end.gap-2
+      - if logged_in? && allowed_to?(:update?, ecosystem_item, namespace: Admin)
+        = link_to edit_admin_ecosystem_item_path(ecosystem_item), class: 'btn btn-sm btn-warning' do
+          = t('edit')
+
+      - if ecosystem_item.url.present?
+        p.text-right
+          = link_to t('see'), ecosystem_item.url, target: :blank, class: 'btn btn-sm btn-primary w-full lg:w-auto'

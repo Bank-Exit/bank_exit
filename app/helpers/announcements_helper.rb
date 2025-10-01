@@ -9,13 +9,4 @@ module AnnouncementsHelper
       ''
     end
   end
-
-  def announcement_locale_select_helper
-    I18n.available_locales.map do |locale|
-      [
-        "#{emoji_by_locale(locale)} #{Rails.configuration.i18n_human_languages[locale]}",
-        locale
-      ]
-    end
-  end
 end

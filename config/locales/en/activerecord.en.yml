@@ -79,6 +79,9 @@ en:
       user:
         one: user
         other: users
+      ecosystem_item:
+        one: Ecosystem item
+        other: Ecosystem items
 
     attributes:
       merchant:
@@ -182,6 +185,9 @@ en:
           success: Success
           warning: Warning
           error: Alert !
+
+      ecosystem_item:
+        enabled: Enabled ?
 
       user:
         email: Email address

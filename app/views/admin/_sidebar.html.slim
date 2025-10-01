@@ -46,6 +46,11 @@
             = link_to admin_users_path, class: ('menu-active' if params[:controller] == 'admin/users') do
               = User.model_name.human(count: 2).capitalize
 
+        - if allowed_to?(:index?, EcosystemItem)
+          li
+            = link_to admin_ecosystem_items_path, class: ('menu-active' if params[:controller] == 'admin/ecosystem_items') do
+              = t('.monero_ecosystem')
+
         - if allowed_to?(:mission_control?, User)
           li
             = link_to admin_mission_control_jobs_path, target: :_blank do

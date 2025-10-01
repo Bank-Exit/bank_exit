@@ -95,6 +95,25 @@ fr:
         view_public_page: Voir page publique
         destroy_confirm: Voulez-vous supprimer cette entrée de l'annuaire ?
 
+    ecosystem_items:
+      index:
+        title: L'écosystème Monero
+      new:
+        title: Ajouter un élément dans l'écosystème
+      create:
+        notice: L'élément de l'écosystème a bien été créé
+      edit:
+        title: Modifier un élément de l'écosystème
+      update:
+        notice: L'élément de l'écosystème a bien été modifié
+      destroy:
+        notice: L'élément de l'écosystème a bien été supprimé
+
+      ecosystem_items:
+        empty_results: Il n'y a aucun élément à afficher
+      actions:
+        destroy_confirm: Voulez-vous supprimer cet élément de l'écosystème ?
+
     merchants:
       index:
         title: Les commerçants
@@ -177,6 +196,8 @@ fr:
     sidebar:
       title: Sortie de Banque
       subtitle: Admin
+
+      monero_ecosystem: Ecosystème Monero
 
       merchants_disabled: Commerçants désactivés
       comments_disabled: Commentaires signalés

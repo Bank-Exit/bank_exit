@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     get '/session', to: redirect('/session/new')
 
     resource :collective, only: :show
+    resource :ecosystem, only: :show
     resources :coins, only: :show
     resources :local_groups, only: %i[index]
 
@@ -134,6 +135,7 @@ Rails.application.routes.draw do
       end
 
       resources :announcements
+      resources :ecosystem_items, except: :show
     end
   end
 

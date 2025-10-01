@@ -97,3 +97,8 @@
     background-position: top;
     background-image: url("/banners/banner-offline.jpg");
 }
+
+.bg-banner-ecosystem {
+    background-position: top;
+    background-image: url("/banners/banner-ecosystem.jpg");
+}

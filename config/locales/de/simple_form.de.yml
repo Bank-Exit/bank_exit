@@ -64,6 +64,9 @@ de:
       comment:
         affidavit: Hiermit bestätige ich, die angegebene Erfahrung mit diesem Händler gemacht zu haben.
 
+      ecosystem_item:
+        remove_picture: Bild entfernen?
+
     placeholders:
       defaults:
         latitude: Standard-Breitengrad
