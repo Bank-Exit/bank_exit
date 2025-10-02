@@ -1,156 +1,188 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin::DirectoriesController' do
-  let(:headers) { basic_auth_headers }
+RSpec.describe 'Admin::Directories' do
+  let!(:directory) { create :directory }
 
   describe 'GET /admin/directories' do
-    subject(:action) { get path, headers: headers }
+    subject { get admin_directories_path }
 
-    let(:method) { :get }
-    let(:path) { '/admin/directories' }
-
-    before do
-      create_list :directory, 2
-      action
+    %i[super_admin admin publisher moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted'
+      end
     end
 
-    it { expect(response).to have_http_status :ok }
-
-    it_behaves_like 'an authenticated endpoint'
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 
   describe 'GET /admin/directories/new' do
-    subject(:action) { get path, headers: headers }
+    subject { get '/admin/directories/new' }
 
-    let(:method) { :get }
-    let(:path) { '/admin/directories/new' }
+    %i[super_admin admin publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted'
+      end
+    end
 
-    before { action }
+    %i[moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
 
-    it { expect(response).to have_http_status :ok }
-
-    it_behaves_like 'an authenticated endpoint'
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 
   describe 'POST /admin/directories' do
-    subject(:action) { post path, params: params, headers: headers }
+    subject(:action) { post '/admin/directories', params: valid_params }
 
-    let(:method) { :post }
-    let(:path) { '/admin/directories' }
+    let(:valid_params) { { directory: attributes_for(:directory) } }
 
-    let(:params) do
-      {
-        directory: {
-          name: 'Nouveau',
-          description: 'Desc',
-          category: :food,
-          address_attributes: { label: 'Paris' }
-        }
-      }
-    end
+    %i[super_admin admin publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted with redirection' do
+          let(:redirection_url) { admin_directories_path }
+          let(:flash_notice) { "L'entrée a bien été ajoutée à l'annuaire" }
+        end
 
-    before do
-      stub_geocoder_from_fixture!
-    end
-
-    context 'with valid params' do
-      it { expect { action }.to change { Directory.count }.by(1) }
-
-      it 'creates a new Directory', :aggregate_failures do
-        action
-        expect(response).to redirect_to(admin_directories_path)
-        expect(flash[:notice]).to eq("L'entrée a bien été ajoutée à l'annuaire")
+        it { expect { action }.to change { Directory.count }.by(1) }
       end
     end
 
-    it_behaves_like 'an authenticated endpoint'
+    %i[moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 
   describe 'GET /admin/directories/:id/edit' do
-    subject(:action) { get path, headers: headers }
+    subject { get "/admin/directories/#{directory.id}/edit" }
 
-    let(:directory) { create :directory }
-    let(:method) { :get }
-    let(:path) { "/admin/directories/#{directory.id}/edit" }
-
-    before { action }
-
-    it { expect(response).to have_http_status :ok }
-
-    it_behaves_like 'an authenticated endpoint'
-  end
-
-  describe 'PATCH /admin/directories/:id' do
-    subject(:action) { patch path, params: params, headers: headers }
-
-    let(:directory) { create :directory }
-    let(:method) { :patch }
-    let(:path) { "/admin/directories/#{directory.id}" }
-
-    let(:params) do
-      {
-        directory: {
-          name: 'Nom modifié'
-        }
-      }
-    end
-
-    context 'with valid params' do
-      before { action }
-
-      it { expect(response).to redirect_to(admin_directories_path) }
-      it { expect(flash[:notice]).to eq("L'entrée de l'annuaire a bien été modifiée") }
-
-      it 'updates the directory' do
-        expect(directory.reload.name).to eq('Nom modifié')
+    %i[super_admin admin publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted'
       end
     end
 
-    it_behaves_like 'an authenticated endpoint'
+    %i[moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
+  end
+
+  describe 'PATCH /admin/directories/:id' do
+    subject { patch "/admin/directories/#{directory.id}", params: valid_params }
+
+    let(:valid_params) { { directory: { name: 'Name updated' } } }
+
+    %i[super_admin admin publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted with redirection' do
+          let(:redirection_url) { admin_directories_path }
+          let(:flash_notice) { "L'entrée de l'annuaire a bien été modifiée" }
+        end
+      end
+    end
+
+    %i[moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 
   describe 'DELETE /admin/directories/:id' do
-    subject(:action) { delete path, headers: headers }
+    subject(:action) { delete "/admin/directories/#{directory.id}" }
 
-    let!(:directory) { create :directory }
-    let(:method) { :delete }
-    let(:path) { "/admin/directories/#{directory.id}" }
+    %i[super_admin admin publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted with redirection' do
+          let(:redirection_url) { admin_directories_path }
+          let(:flash_notice) { "L'entrée de l'annuaire a bien été supprimée" }
+        end
 
-    it 'deletes the directory' do
-      expect { action }.to change { Directory.count }.by(-1)
+        it { expect { action }.to change { Directory.count }.by(-1) }
+      end
     end
 
-    it 'redirects with success message', :aggregate_failures do
-      action
-      expect(response).to redirect_to(admin_directories_path)
-      expect(flash[:notice]).to eq("L'entrée de l'annuaire a bien été supprimée")
+    %i[moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
     end
 
-    it_behaves_like 'an authenticated endpoint'
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 
-  describe 'PATCH /admin/directories/:id/update_position.tubo_stream' do
-    subject(:action) { patch path, params: params, headers: headers, as: :turbo_stream }
-
-    let!(:directory) { create :directory, position: 1 }
-    let(:method) { :patch }
-    let(:path) { "/admin/directories/#{directory.id}/update_position" }
-
-    let(:params) do
-      { directory: { position: 5 } }
+  describe 'PATCH /admin/directories/:id/update_position' do
+    subject(:action) do
+      patch "/admin/directories/#{directory.id}/update_position",
+            params: params,
+            as: :turbo_stream
     end
 
     before do
       create_list :directory, 5
     end
 
-    context 'with valid params' do
-      before { action }
+    let(:params) { { directory: { position: 5 } } }
 
-      it { expect(response).to have_http_status :ok }
-      it { expect(directory.reload.position).to eq 5 }
+    %i[super_admin admin publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted'
+
+        it { expect { action }.to change { directory.reload.position }.from(1).to(5) }
+      end
     end
 
-    it_behaves_like 'an authenticated endpoint'
+    %i[moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 end

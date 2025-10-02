@@ -9,7 +9,7 @@ module Admin
 
         @merchant.undelete!
 
-        flash[:notice] = 'Le commerçant a bien été réactivé'
+        flash[:notice] = t('.notice')
 
         redirect_back_or_to admin_merchants_path(show_deleted: true)
       end

@@ -11,8 +11,6 @@ module Admin
       directories = Directory.includes(:address, :coin_wallets, :contact_ways, :logo_attachment).by_position
       directories = directories.by_query(query) if query
       @directories = DirectoryDecorator.wrap(directories)
-
-      set_meta_tags title: "L'annuaire"
     end
 
     # @route GET /admin/directories/new (new_admin_directory)
@@ -21,8 +19,6 @@ module Admin
 
       @directory = Directory.new
       @directory.build_address
-
-      set_meta_tags title: "Ajouter une entrée à l'annuaire"
     end
 
     # @route POST /admin/directories (admin_directories)
@@ -32,7 +28,7 @@ module Admin
       @directory = Directory.new(directory_params)
 
       if @directory.save
-        flash[:notice] = "L'entrée a bien été ajoutée à l'annuaire"
+        flash[:notice] = t('.notice')
 
         redirect_to admin_directories_path
       else
@@ -55,7 +51,7 @@ module Admin
       authorize! @directory
 
       if @directory.update(directory_params)
-        flash[:notice] = "L'entrée de l'annuaire a bien été modifiée"
+        flash[:notice] = t('.notice')
 
         redirect_to admin_directories_path
       else
@@ -71,7 +67,7 @@ module Admin
 
       @directory.destroy
 
-      flash[:notice] = "L'entrée de l'annuaire a bien été supprimée"
+      flash[:notice] = t('.notice')
 
       redirect_to admin_directories_path
     end

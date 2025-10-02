@@ -172,3 +172,14 @@ en:
           success: Success
           warning: Warning
           error: Alert !
+
+      user:
+        email: Email address
+        password: Password
+        enabled: Enabled ?
+        role: Role
+        roles:
+          super_admin: Super administrator
+          admin: Administrator
+          publisher: Publisher
+          moderator: Moderator

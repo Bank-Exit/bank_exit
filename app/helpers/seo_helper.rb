@@ -1,7 +1,7 @@
 module SEOHelper
   def seo_meta_tags(pagy)
     display_meta_tags(
-      site: I18n.t('seo.default.title'),
+      site: site_for_page,
       title: title_for_page,
       description: description_for_page,
       reverse: true,
@@ -307,17 +307,24 @@ module SEOHelper
 
   private
 
+  def site_for_page
+    [
+      ('[Admin]' if controller_path.include?('admin/')),
+      I18n.t('seo.default.title')
+    ].join(' ')
+  end
+
   def title_for_page
     content_for(:title) ||
-      t('title', scope: [controller_name, action_name], default: default_title)
+      t('title', scope: seo_scope, default: default_title)
   end
 
   def description_for_page
-    desc = t('description', scope: [controller_name, action_name], default: '')
+    desc = t('description', scope: seo_scope, default: '')
 
     return desc.truncate(150) unless desc.empty?
 
-    desc_html = t('description_html', scope: [controller_name, action_name], default: '')
+    desc_html = t('description_html', scope: seo_scope, default: '')
 
     if desc_html.present?
       strip_tags(desc_html).truncate(150)
@@ -342,5 +349,9 @@ module SEOHelper
     end
 
     hash
+  end
+
+  def seo_scope
+    [controller_path.split('/'), action_name].flatten
   end
 end

@@ -1,0 +1,21 @@
+header.flex.flex-col.lg:flex-row.items-center.justify-between.mb-6
+  h1.text-3xl= t('.title')
+
+  - if allowed_to?(:create?, User)
+    = link_to "Ajouter", new_admin_user_path, class: 'btn btn-success'
+
+section.space-y-3
+  == pagy_nav(@pagy) if @pagy.count > @pagy.limit
+
+  .table-wrapper
+    table.table.table-zebra
+      thead
+        tr
+          th scope="col"= Merchant.human_attribute_name(:email)
+          th scope="col"= Merchant.human_attribute_name(:role)
+          th scope="col" Date
+          th scope="col" Actions
+      tbody
+        = render @users
+
+  == pagy_nav(@pagy) if @pagy.count > @pagy.limit

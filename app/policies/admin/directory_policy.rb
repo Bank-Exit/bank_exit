@@ -9,7 +9,7 @@ module Admin
     end
 
     def create?
-      true
+      admins_or_publisher?
     end
 
     def edit?
@@ -17,11 +17,11 @@ module Admin
     end
 
     def update?
-      destroy?
+      admins_or_publisher?
     end
 
     def destroy?
-      true
+      admins_or_publisher?
     end
 
     def update_position?

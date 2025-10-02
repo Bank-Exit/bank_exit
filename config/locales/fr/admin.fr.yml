@@ -1,0 +1,86 @@
+fr:
+  admin:
+    announcements:
+      index:
+        title: Les annonces
+      new:
+        title: Ajouter une annonce
+      create:
+        notice: L'annonce a bien été créée
+      edit:
+        title: Modifier une annonce
+      update:
+        notice: L'annonce a bien été modifiée
+      destroy:
+        notice: L'annonce a bien été supprimée
+
+    comments:
+      index:
+        title: Les commentaires
+      update:
+        notice: Le commentaire a bien été réactivé
+      destroy:
+        notice: Le commentaire a bien été supprimé
+
+    dashboards:
+      show:
+        title: Tableau de bord administrateur
+
+    directories:
+      index:
+        title: L'annuaire
+      new:
+        title: Ajouter une entrée à l'annuaire
+      create:
+        notice: L'entrée a bien été ajoutée à l'annuaire
+      edit:
+        title: Modifier une entrée
+      update:
+        notice: L'entrée de l'annuaire a bien été modifiée
+      destroy:
+        notice: L'entrée de l'annuaire a bien été supprimée
+
+    merchants:
+      index:
+        title: Les commerçants
+        title_for_disabled: Les commerçants désactivés
+      edit:
+        title: Modifier le commerçant
+      update:
+        notice: Le commerçant a bien été modifié
+      destroy:
+        notice: Le commerçant a bien été supprimé
+
+      batch_actions:
+        update:
+          notice: Les commerçants ont bien été réactivés
+        destroy:
+          notice: Les commerçants ont bien été supprimés
+
+      directory_converters:
+        create:
+          notice: L'entrée de l'annuaire a bien été créée. Pensez à la réactiver une fois les modifications effectuées
+
+      reactivates:
+        create:
+          notice: Le commerçant a bien été réactivé
+
+    profiles:
+      edit:
+        title: Modifier mon profil
+      update:
+        notice: Votre profil a bien été mis à jour
+
+    users:
+      index:
+        title: Les utilisateurs
+      new:
+        title: Ajouter un utilisateur
+      create:
+        notice: L'utilisateur a bien été créé
+      edit:
+        title: Modifier un utilisateur
+      update:
+        notice: L'utilisateur a bien été modifié
+      destroy:
+        notice: L'utilisateur a bien été supprimé

@@ -23,7 +23,28 @@ article
                 = image_tag icon_by_coin(coin_wallet.coin), title: coin_wallet.coin.capitalize, class: 'w-10 h-10 hover:scale-110 transition-transform'
 
   .article-body.max-w-5xl class="!space-y-8"
-    = render 'breadcrumb'
+    .flex.items-center.justify-between.gap-2
+      = render 'breadcrumb'
+      - if logged_in?
+        button.btn.btn-square.btn-lg tabindex="0" role="button" popovertarget="popover-directory" style="anchor-name:--anchor-directory"
+          = lucide_icon 'ellipsis-vertical', class: 'w-6'
+
+        ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.border.border-base-content/20.space-y-2 tabindex="0" popover="" id="popover-directory" style="position-anchor:--anchor-directory"
+          - if allowed_to?(:update?, @directory, namespace: Admin)
+            li
+              = link_to 'Modifier',
+                        edit_admin_directory_path(@directory),
+                        class: 'btn btn-warning btn-sm'
+
+          - if allowed_to?(:destroy?, @directory, namespace: Admin)
+            li
+              = link_to 'Supprimer',
+                        admin_directory_path(@directory),
+                        class: 'btn btn-error btn-sm',
+                        data: { \
+                          turbo_method: :delete,
+                          turbo_confirm: "Voulez-vous supprimer cette entrée d'annuaire ?" \
+                        }
 
     - if @directory.description?
       div

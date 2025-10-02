@@ -1,61 +1,94 @@
 .drawer-side
   label.drawer-overlay for="sidebarDrawer" aria-label="close sidebar"
 
-  .bg-base-300.min-h-full.w-80.border-r-2.border-primary.px-4
-    = link_to admin_dashboard_path, class: 'block p-2 mb-3' do
-      = image_tag logo_by_locale, class: 'w-32 mx-auto'
+  .bg-base-300.min-h-full.w-80.border-r-2.border-primary.p-4.flex.flex-col.justify-between
+    div
+      = link_to admin_dashboard_path, class: 'block mb-3' do
+        = image_tag logo_by_locale, class: 'w-32 mx-auto'
 
-      .text-center
-        h1.text-xl.font-bold Sortie de Banque
-        p Admin
+        .text-center
+          h1.text-xl.font-bold Sortie de Banque
+          p Admin
 
-    ul.menu.bg-base-200.mb-5.border.border-base-content/20.rounded-lg.w-full.items-center.space-y-2
-      li
-        = link_to 'Tableau de bord', admin_dashboard_path, class: ('menu-active' if params[:controller] == 'admin/dashboards')
-
-      li
-        = link_to admin_merchants_path, class: ('menu-active' if params[:controller] == 'admin/merchants') do
-          | Les commerçants
-          - if Merchant.deleted.any?
-            span< title="Commerçants désactivés" ⚠️
-
-      li
-        = link_to admin_directories_path, class: ('menu-active' if params[:controller] == 'admin/directories') do
-          | L'annuaire
-
-      li
-        = link_to admin_comments_path, class: ('menu-active' if params[:controller] == 'admin/comments') do
-          | Les commentaires
-          - if Comment.flagged.any?
-            span< title="Commentaire signalé" ⚠️
-
-      - if allowed_to?(:index?, Announcement, namespace: Admin)
+      ul.menu.bg-base-200.mb-5.border.border-base-content/20.rounded-lg.w-full.items-center.space-y-2
         li
-          = link_to admin_announcements_path, class: ('menu-active' if params[:controller] == 'admin/announcements') do
-            | Les annonces
+          = link_to 'Tableau de bord', admin_dashboard_path, class: ('menu-active' if params[:controller] == 'admin/dashboards')
 
-      li
-        = link_to mission_control_jobs_path, target: :_blank do
-          | Mission Control Jobs
-
-      - if allowed_to?(:analytics?, with: Admin::UserPolicy)
         li
-          = link_to active_analytics_path, target: :_blank do
-            | Analytics
+          = link_to admin_merchants_path, class: ('menu-active' if params[:controller] == 'admin/merchants') do
+            | Les commerçants
+            - if Merchant.deleted.any?
+              span< title="Commerçants désactivés" ⚠️
 
-      li
-        = link_to 'https://bank-exit-uptime-production.up.railway.app', target: :_blank do
-          | Uptime Kuma
+        li
+          = link_to admin_directories_path, class: ('menu-active' if params[:controller] == 'admin/directories') do
+            | L'annuaire
 
-    .space-y-2.mb-8
-      label.flex.cursor-pointer.gap-2.justify-center
-        = lucide_icon 'sun', class: 'swap-on h-6 w-6 fill-current'
+        - if allowed_to?(:index?, Comment)
+          li
+            = link_to admin_comments_path, class: ('menu-active' if params[:controller] == 'admin/comments') do
+              | Les commentaires
+              - if Comment.flagged.any?
+                span< title="Commentaire signalé" ⚠️
 
-        input#theme-switcher.toggle.theme-controller type="checkbox" value=Setting::DARK_THEME_NAME data-controller="themes" data-action="click->themes#switch"
+        - if allowed_to?(:index?, Announcement)
+          li
+            = link_to admin_announcements_path, class: ('menu-active' if params[:controller] == 'admin/announcements') do
+              | Les annonces
 
-        = lucide_icon 'moon', class: 'swap-off h-6 w-6 fill-current'
+        - if allowed_to?(:index?, User)
+          li
+            = link_to admin_users_path, class: ('menu-active' if params[:controller] == 'admin/users') do
+              | Les utilisateurs
 
-    nav.flex.flex-col.gap-2.text-sm
-      = back_link_to "Retour à l'accueil", root_path
-      = back_link_to "Retour à la carte", maps_path
-      = back_link_to "Retour à l'annuaire", directories_path
+
+        - if allowed_to?(:mission_control?, User)
+          li
+            = link_to admin_mission_control_jobs_path, target: :_blank do
+              | Mission Control Jobs
+
+        - if allowed_to?(:analytics?, User)
+          li
+            = link_to admin_active_analytics_path, target: :_blank do
+              | Analytics
+
+        li
+          = link_to 'https://bank-exit-uptime-production.up.railway.app', target: :_blank do
+            | Uptime Kuma
+
+      .space-y-2.mb-8
+        label.flex.cursor-pointer.gap-2.justify-center
+          = lucide_icon 'sun', class: 'swap-on h-6 w-6 fill-current'
+
+          input#theme-switcher.toggle.theme-controller type="checkbox" value=Setting::DARK_THEME_NAME data-controller="themes" data-action="click->themes#switch"
+
+          = lucide_icon 'moon', class: 'swap-off h-6 w-6 fill-current'
+
+    - color = color_for_role(current_user.role)
+
+    .space-y-2
+      = render 'pretender_message' if true_user != current_user
+
+      details.dropdown.dropdown-top.dropdown-center.w-full
+        summary.btn.btn-block.py-7 class="btn-#{color}"
+          p
+            = current_user.email
+            br
+            small= User.human_enum_name(:role, current_user.role)
+
+        .dropdown-content.bg-base-200.rounded-box.z-1.shadow-sm.border.border-base-content/20.w-full
+          ul.menu.space-y-2.w-full.text-center
+            li
+              = back_link_to "Retour à l'accueil", root_path
+            li
+              = back_link_to "Retour à la carte", maps_path
+            li
+              = back_link_to "Retour à l'annuaire", directories_path
+            li
+              = link_to 'Modifier mon profil', edit_admin_profile_path
+
+            li
+              = link_to t('simple_form.user.logout'),
+                        session_path,
+                        data: { turbo_method: :delete },
+                        class: 'text-error'

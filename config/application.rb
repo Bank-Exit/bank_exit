@@ -26,7 +26,7 @@ module BankExit
     # Please, add to the `ignore` list any other `lib` subdirectories that do
     # not contain `.rb` files, or that should not be reloaded or eager loaded.
     # Common ones are `templates`, `generators`, or `middleware`, for example.
-    config.autoload_lib(ignore: %w[assets tasks])
+    config.autoload_lib(ignore: %w[assets tasks patches])
 
     # Configuration for the application, engines, and railties goes here.
     #
@@ -47,5 +47,9 @@ module BankExit
       de: 'Deutsch',
       it: 'Italiano'
     }.freeze
+
+    config.active_record.encryption.primary_key = ENV.fetch('RAILS_ENCRYPTION_PRIMARY_KEY', nil)
+    config.active_record.encryption.deterministic_key = ENV.fetch('RAILS_ENCRYPTION_DETERMINISTIC_KEY', nil)
+    config.active_record.encryption.key_derivation_salt = ENV.fetch('RAILS_ENCRYPTION_KEY_DERIVATION_SALT', nil)
   end
 end

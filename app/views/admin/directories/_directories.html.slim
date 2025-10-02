@@ -3,7 +3,8 @@ section.table-wrapper
     thead
       tr
         th scope="col"
-        th scope="col" Position
+        - if allowed_to?(:update_position?, Directory)
+          th scope="col" Position
         th scope="col" Logo
         th scope="col" Nom
         th scope="col" Localisation
@@ -12,7 +13,7 @@ section.table-wrapper
         th scope="col" Date
         th scope="col" Actions
 
-    tbody data-controller="admin--directories"
+    tbody data-controller=("admin--directories" if allowed_to?(:update_position?, Directory))
       = render directories
 
       - if directories.blank?

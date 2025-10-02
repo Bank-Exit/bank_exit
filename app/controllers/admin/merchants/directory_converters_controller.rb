@@ -9,7 +9,7 @@ module Admin
 
         @directory = @merchant.to_directory!
 
-        flash[:notice] = "L'entrée de l'annuaire a bien été créée. Pensez à la réactiver une fois les modifications effectuées"
+        flash[:notice] = t('.notice')
 
         redirect_to edit_admin_directory_path(@directory)
       end

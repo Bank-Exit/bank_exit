@@ -6,7 +6,7 @@ module Admin
       end
 
       def destroy?
-        true
+        admins_or_publisher?
       end
     end
   end

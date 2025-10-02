@@ -13,11 +13,11 @@ module Admin
     end
 
     def update?
-      true
+      admins_or_publisher?
     end
 
     def destroy?
-      record.deleted_at.present?
+      record.deleted_at.present? && admins_or_moderator?
     end
 
     def reactivate?

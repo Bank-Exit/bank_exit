@@ -241,6 +241,7 @@ SimpleForm.setup do |config|
     select: :daisy_select,
     text: :daisy_textarea,
     string: :daisy_input,
+    password: :daisy_input,
     email: :daisy_input,
     url: :daisy_input,
     tel: :daisy_input,

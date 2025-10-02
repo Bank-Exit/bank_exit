@@ -1,5 +1,5 @@
 header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
-  h1.text-3xl Les annonces
+  h1.text-3xl= t('.title')
 
   - if allowed_to?(:create?, Announcement, namespace: Admin)
     = link_to 'Nouvelle annonce', new_admin_announcement_path, class: 'btn btn-success'

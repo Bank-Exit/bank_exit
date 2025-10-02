@@ -1,0 +1,17 @@
+tr
+  th= user.email
+  td
+    .badge class=user_badge_color_for_role(user.role)
+      = User.human_enum_name(:role, user.role)
+
+  td= l(user.created_at)
+
+  td
+    .flex.items-center.justify-end.gap-2
+      - if allowed_to?(:impersonate?, user)
+        = button_to 'Connexion en tant que',
+                    impersonate_admin_user_path(user),
+                    class: 'btn btn-secondary btn-sm',
+                    data: { turbo_confirm: "Voulez-vous vous connecter en tant que <strong>#{user.email}</strong> ?" }
+
+      = render 'actions', user: user

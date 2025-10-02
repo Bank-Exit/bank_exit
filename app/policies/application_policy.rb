@@ -3,7 +3,15 @@ class ApplicationPolicy < ActionPolicy::Base
 
   private
 
-  def allow_super_admins!
-    allow! if user&.super_admin?
+  def require_super_admins!
+    deny! unless user&.super_admin?
+  end
+
+  def admins_or_moderator?
+    user.super_admin? || user.admin? || user.moderator?
+  end
+
+  def admins_or_publisher?
+    user.super_admin? || user.admin? || user.publisher?
   end
 end

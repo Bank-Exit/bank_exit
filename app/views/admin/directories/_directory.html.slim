@@ -1,6 +1,9 @@
-tr data-update-url=update_position_admin_directory_path(directory) class=('opacity-25' unless directory.enabled?)
-  td.handle.cursor-grab.bg-primary/5
-    = lucide_icon 'grip-vertical', class: 'mx-auto'
+- can_update_position = allowed_to?(:update_position?, Directory)
+
+tr data-update-url=(update_position_admin_directory_path(directory) if can_update_position) class=('opacity-25' unless directory.enabled?)
+  - if can_update_position
+    td.handle.cursor-grab.bg-primary/5
+      = lucide_icon 'grip-vertical', class: 'mx-auto'
 
   td
     span.font-bold= "##{directory.position}"
@@ -14,8 +17,11 @@ tr data-update-url=update_position_admin_directory_path(directory) class=('opaci
 
   td scope="row"
     p.mb-1
-      = link_to edit_admin_directory_path(directory), class: 'font-bold' do
-        = highlight(directory.name, params[:query])
+      - if allowed_to?(:update?, directory)
+        = link_to edit_admin_directory_path(directory), class: 'font-bold' do
+          = highlight(directory.name, params[:query])
+      - else
+        span.font-bold= highlight(directory.name, params[:query])
 
     - if directory.category.present?
       p.text-xs

@@ -1,7 +1,7 @@
 button.btn.btn-square class=(defined?(btn_klass) ? btn_klass : 'btn-lg') tabindex="0" role="button" popovertarget="popover-merchant" style="anchor-name:--anchor-merchant"
   = lucide_icon 'ellipsis-vertical', class: 'w-6'
 
-ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.border.border-base-content/20 tabindex="0" popover="" id="popover-merchant" style="position-anchor:--anchor-merchant"
+ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.border.border-base-content/20.space-y-2 tabindex="0" popover="" id="popover-merchant" style="position-anchor:--anchor-merchant"
   li
     = content_tag(:div,
         class: 'hover:text-primary transition-colors',
@@ -39,3 +39,30 @@ ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.bo
               data: { turbo_stream: true } do
       = lucide_icon 'bug'
       = t('merchants.show.report_a_fault.title')
+
+  - if logged_in?
+    - if allowed_to?(:update?, merchant, namespace: Admin)
+      li
+        = link_to 'Modifier',
+                  edit_admin_merchant_path(merchant),
+                  class: 'btn btn-warning btn-sm'
+
+    - if allowed_to?(:reactivate?, merchant, namespace: Admin)
+      li
+        = link_to 'Réactiver',
+                  admin_merchant_reactivate_path(merchant),
+                  class: 'btn btn-success btn-sm',
+                  data: { \
+                    turbo_method: :post,
+                    turbo_confirm: 'Voulez-vous réactiver ce commerçant pour le référencer à nouveau sur la carte ?' \
+                  }
+
+    - if allowed_to?(:destroy?, merchant, namespace: Admin)
+      li
+        = link_to 'Supprimer',
+                  admin_merchant_path(merchant),
+                  class: 'btn btn-error btn-sm',
+                  data: { \
+                    turbo_method: :delete,
+                    turbo_confirm: 'Voulez-vous supprimer ce commerçant ? <br /> ⚠️ Il ne sera plus référencé sur la carte' \
+                  }

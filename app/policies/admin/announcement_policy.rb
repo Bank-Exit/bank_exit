@@ -1,6 +1,6 @@
 module Admin
   class AnnouncementPolicy < ApplicationPolicy
-    pre_check :allow_super_admins!
+    pre_check :require_super_admins!
 
     def index?
       true

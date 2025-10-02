@@ -1,0 +1,12 @@
+.alert.alert-warning.alert-vertical.place-items-center.justify-center.text-center
+  p
+    | Vous êtes actuellement connecté en tant que
+    strong=< current_user.email
+    |< (
+    = User.human_enum_name(:role, current_user.role)
+    | )
+
+  p Pour revenir à votre tableau de bord, veuillez cliquer sur le lien suivant:
+  = button_to 'Retour à mon vrai compte',
+              stop_impersonating_admin_users_path,
+              class: 'underline cursor-pointer'

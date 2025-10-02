@@ -1,17 +1,21 @@
 module Admin
   class BaseController < ApplicationController
-    include HttpAuthConcern
+    before_action :require_login
 
-    around_action :switch_locale
+    include Localizable
 
     layout 'admin'
 
     private
 
+    def should_redirect_to_localized_path?
+      false
+    end
+
     # Temporarily force the locale to French on the admin side
     # until full i18n integration is implemented.
-    def switch_locale(&action)
-      I18n.with_locale(:fr, &action)
+    def find_locale
+      :fr
     end
   end
 end

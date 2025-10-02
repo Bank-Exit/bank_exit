@@ -11,13 +11,14 @@
 - active_other = params[:controller].in?(%w[local_groups collectives media statistics])
 
 nav.navbar
-  .navbar-start
+  .navbar-start.lg:w-full
     / Mobile
     .dropdown
       .lg:hidden tabindex="0" role="button"
         = lucide_icon 'menu', class: 'w-7 h-7 cursor-pointer'
 
       ul.menu.menu-md.dropdown-content.z-1.mt-2.w-max.overflow-auto.p-2 tabindex="0" class="max-h-[90vh] max-w-[90vw]"
+        li.menu-title= "#{t('.collectif')} #{t('.bank_exit')}"
         li
           = link_to maps_path, class: ('text-primary' if active_map) do
             = t('.menu.map')
@@ -108,7 +109,7 @@ nav.navbar
     / Desktop
     = link_to root_path, class: 'flex items-center justify-center gap-2 ml-3 lg:ml-0' do
       = image_tag logo_by_locale, class: 'w-16 h-16 object-cover rounded-full'
-      span class="self-center font-semibold whitespace-nowrap"
+      span.self-center.font-semibold.whitespace-nowrap.hidden.lg:block
         span.block= t('.collectif')
         span.block= t('.bank_exit')
 
@@ -206,7 +207,7 @@ nav.navbar
                         class: ('text-primary' if params[:id] == 'accounting') do
                 = project.title
 
-  .navbar-end
+  .navbar-end.w-full
     ul.menu.menu-horizontal.items-center.px-1
       li
         = render 'language_switcher'
@@ -217,3 +218,31 @@ nav.navbar
       li
         = link_to 'https://github.com/Unbanked0', target: :_blank, title: t('.menu.github_title') do
           = lucide_icon 'github', class: "w-6"
+
+      - if logged_in?
+        - color = color_for_role(current_user.role)
+        details.dropdown.dropdown-end.ml-2
+          summary.avatar.avatar-placeholder.cursor-pointer
+            .w-8.rounded-full.uppercase class="bg-#{color} text-#{color}-content"
+              = current_user.email.first(2)
+
+          ul.menu.dropdown-content.bg-base-200.rounded-box.z-1.w-60.p-2.border.border-base-content/20
+            li
+              p.menu-title= current_user.email
+
+              ul.space-y-2
+                li
+                  = link_to "Espace admin", admin_root_path
+
+                - if true_user != current_user
+                  li
+                    = link_to 'Retour à mon vrai compte !',
+                                stop_impersonating_admin_users_path,
+                                data: { turbo_method: :post },
+                                class: 'btn btn-warning btn-sm'
+
+                li
+                  = link_to t('logout'),
+                            session_path,
+                            data: { turbo_method: :delete },
+                            class: 'btn btn-error btn-sm'

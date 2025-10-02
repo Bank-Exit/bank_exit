@@ -1,0 +1,14 @@
+.card.max-w-lg.mx-auto.bg-base-200.lg:my-10.rounded-box
+  figure.px-10.pt-10
+    = image_tag logo_by_locale, class: 'w-32 mx-auto'
+
+  .card-body.space-y-5
+    h1.card-title.lg:text-3xl.text-primary.justify-center
+      = t('welcome.index.title')
+
+    = simple_form_for :session, url: session_path, html: { class: 'space-y-4' } do |f|
+      = f.input :email
+      = f.input :password
+
+      .card-actions.justify-end
+        = f.button :submit

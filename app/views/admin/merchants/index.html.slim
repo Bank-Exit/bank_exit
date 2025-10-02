@@ -1,9 +1,9 @@
 header.mb-3
   h1.text-3xl
     - if params[:show_deleted] == 'true'
-      | Les commerçants désactivés
+      = t('.title_for_disabled')
     - else
-      | Les commerçants
+      = t('.title')
 
 - merchant_deleted_count = Merchant.deleted.count
 

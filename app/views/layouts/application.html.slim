@@ -27,9 +27,7 @@ html lang=I18n.locale
       == schema_dot_org_organization
 
   body.max-w-screen-3xl.mx-auto data-controller=("layout" if welcome_page?) data-layout-header-background-class=("!bg-base-100" if welcome_page?)
-    header.fixed.max-w-screen-3xl.w-full.print:hidden.bg-base-100/80.border-b-2.border-primary.transition-colors class=('z-[9999]') class=('!bg-base-100' unless welcome_page?) data-layout-target=("header" if welcome_page?)
-      #flashes= render 'flashes'
-      = render 'nav', projects: @projects
+    = render 'header', projects: @projects
 
     main.pt-20
       = yield

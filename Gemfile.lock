@@ -90,6 +90,7 @@ GEM
       activesupport (>= 6.0.0)
     ast (2.4.3)
     base64 (0.3.0)
+    bcrypt (3.1.20)
     bcrypt_pbkdf (1.1.1)
     bcrypt_pbkdf (1.1.1-arm64-darwin)
     bcrypt_pbkdf (1.1.1-x86_64-darwin)
@@ -152,6 +153,12 @@ GEM
       railties (>= 6.1.0)
     faker (3.5.2)
       i18n (>= 1.8.11, < 2)
+    faraday (2.14.0)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-net_http (3.4.1)
+      net-http (>= 0.5.0)
     ffi (1.17.2-aarch64-linux-gnu)
     ffi (1.17.2-aarch64-linux-musl)
     ffi (1.17.2-arm-linux-gnu)
@@ -173,6 +180,7 @@ GEM
     groupdate (6.7.0)
       activesupport (>= 7.1)
     hashdiff (1.2.1)
+    hashie (5.0.0)
     hotwire-spark (0.1.13)
       listen
       rails (>= 7.0.0)
@@ -202,6 +210,8 @@ GEM
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     json (2.15.0)
+    jwt (3.1.2)
+      base64
     kamal (2.7.0)
       activesupport (>= 7.0)
       base64 (~> 0.2)
@@ -263,6 +273,8 @@ GEM
     msgpack (1.8.0)
     multi_xml (0.7.2)
       bigdecimal (~> 3.1)
+    net-http (0.6.0)
+      uri
     net-imap (0.5.10)
       date
       net-protocol
@@ -297,6 +309,20 @@ GEM
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-linux-musl)
       racc (~> 1.4)
+    oauth (1.1.2)
+      oauth-tty (~> 1.0, >= 1.0.6)
+      snaky_hash (~> 2.0)
+      version_gem (~> 1.1, >= 1.1.9)
+    oauth-tty (1.0.6)
+      version_gem (~> 1.1, >= 1.1.9)
+    oauth2 (2.0.17)
+      faraday (>= 0.17.3, < 4.0)
+      jwt (>= 1.0, < 4.0)
+      logger (~> 1.2)
+      multi_xml (~> 0.5)
+      rack (>= 1.2, < 4)
+      snaky_hash (~> 2.0, >= 2.0.3)
+      version_gem (~> 1.1, >= 1.1.9)
     osrm_text_instructions (0.1.1)
     ostruct (0.6.3)
     pagy (9.4.0)
@@ -309,6 +335,8 @@ GEM
       activesupport (>= 6.1)
     pp (0.6.2)
       prettyprint
+    pretender (0.6.0)
+      actionpack (>= 7.1)
     prettyprint (0.2.0)
     prism (1.5.1)
     propshaft (1.3.1)
@@ -459,6 +487,9 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 6.0, != 5.0.0)
+    snaky_hash (2.0.3)
+      hashie (>= 0.1.0, < 6)
+      version_gem (>= 1.1.8, < 3)
     solid_cable (3.0.12)
       actioncable (>= 7.2)
       activejob (>= 7.2)
@@ -475,6 +506,10 @@ GEM
       fugit (~> 1.11.0)
       railties (>= 7.1)
       thor (>= 1.3.1)
+    sorcery (0.17.0)
+      bcrypt (~> 3.1)
+      oauth (>= 0.6)
+      oauth2 (~> 2.0)
     sqlite3 (2.7.4-aarch64-linux-gnu)
     sqlite3 (2.7.4-aarch64-linux-musl)
     sqlite3 (2.7.4-arm-linux-gnu)
@@ -529,6 +564,7 @@ GEM
     uniform_notifier (1.18.0)
     uri (1.0.3)
     useragent (0.16.11)
+    version_gem (1.1.9)
     web-console (4.2.1)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -565,6 +601,7 @@ DEPENDENCIES
   active_analytics
   active_storage_validations
   annotaterb
+  bcrypt (~> 3.1.7)
   bootsnap
   brakeman
   breadcrumbs_on_rails
@@ -596,6 +633,7 @@ DEPENDENCIES
   ostruct
   pagy
   positioning
+  pretender
   propshaft
   puma (>= 5.0)
   rails (~> 8.0.0)
@@ -616,6 +654,7 @@ DEPENDENCIES
   solid_cable
   solid_cache
   solid_queue
+  sorcery
   sqlite3 (>= 2.1)
   stimulus-rails
   tailwindcss-rails

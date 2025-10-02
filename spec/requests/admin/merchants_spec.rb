@@ -1,91 +1,123 @@
 require 'rails_helper'
 
 RSpec.describe 'Admin::Merchants' do
-  let(:headers) { basic_auth_headers }
+  let!(:merchant) { create :merchant }
 
   describe 'GET /admin/merchants' do
-    subject(:action) { get path, headers: headers }
+    subject { get '/admin/merchants' }
 
-    let(:method) { :get }
-    let(:path) { '/admin/merchants' }
-
-    context 'when credentials are valid' do
-      before do
-        create :merchant, :deleted
-
-        merchants = create_list :merchant, 3
-        create_list :comment, 2, commentable: merchants.first
-
-        create :comment, commentable: merchants.second
-        create :comment, commentable: merchants.third
-
-        action
-      end
-
-      it { expect(response).to have_http_status :ok }
+    before do
+      merchants = create_list :merchant, 3
+      create_list :comment, 2, commentable: merchants.first
     end
 
-    it_behaves_like 'an authenticated endpoint'
+    %i[super_admin admin publisher moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 
   describe 'GET /admin/merchants/:id' do
-    subject(:action) { get path, headers: headers }
+    subject { get "/admin/merchants/#{merchant.to_param}" }
 
-    let(:merchant) { create :merchant }
-    let(:method) { :get }
-    let(:path) { "/admin/merchants/#{merchant.identifier}" }
-
-    context 'when credentials are valid' do
-      before do
-        create_list :comment, 3, commentable: merchant
-        action
+    %i[super_admin admin publisher moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted'
       end
-
-      it { expect(response).to have_http_status :ok }
     end
 
-    it_behaves_like 'an authenticated endpoint'
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
+  end
+
+  describe 'GET /admin/merchants/:id/edit' do
+    subject { get "/admin/merchants/#{merchant.to_param}/edit" }
+
+    %i[super_admin admin publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted'
+      end
+    end
+
+    %i[moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 
   describe 'PATCH /admin/merchants/:id' do
-    subject(:action) do
-      patch path, params: params, headers: headers
-    end
+    subject { patch "/admin/merchants/#{merchant.to_param}", params: valid_params }
 
-    let(:merchant) { create :merchant }
-    let(:method) { :patch }
-    let(:path) { "/admin/merchants/#{merchant.identifier}" }
+    let(:valid_params) { { merchant: { remove_logo: '1' } } }
 
-    let(:params) { { merchant: { remove_logo: '0' } } }
-
-    context 'when credentials are valid' do
-      before { action }
-
-      it { expect(response).to redirect_to admin_merchants_path(format: :html) }
-      it { expect(flash[:notice]).to eq('Le commerçant a bien été modifié') }
-    end
-
-    it_behaves_like 'an authenticated endpoint'
-  end
-
-  describe 'DELETE /admin/merchants/:id' do
-    subject(:action) { delete path, headers: headers }
-
-    let!(:merchant) { create :merchant, :deleted }
-    let(:method) { :delete }
-    let(:path) { "/admin/merchants/#{merchant.identifier}" }
-
-    context 'when credentials are valid' do
-      it { expect { action }.to change { Merchant.count }.by(-1) }
-
-      describe '[HTTP status]' do
-        before { action }
-
-        it { expect(response).to redirect_to admin_merchants_path(show_deleted: true) }
-        it { expect(flash[:notice]).to eq('Le commerçant a bien été supprimé') }
+    %i[super_admin admin publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted with redirection' do
+          let(:redirection_url) { admin_merchants_path }
+          let(:flash_notice) { 'Le commerçant a bien été modifié' }
+        end
       end
     end
 
-    it_behaves_like 'an authenticated endpoint'
+    %i[moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
+  end
+
+  describe 'DELETE /admin/merchants/:id' do
+    subject(:action) { delete "/admin/merchants/#{merchant.to_param}" }
+
+    let!(:merchant) { create :merchant, :deleted }
+
+    %i[super_admin admin moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted with redirection' do
+          let(:redirection_url) { admin_merchants_path(show_deleted: true) }
+          let(:flash_notice) { 'Le commerçant a bien été supprimé' }
+        end
+
+        it { expect { action }.to change { Merchant.count }.by(-1) }
+      end
+    end
+
+    %i[publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
   end
 end
