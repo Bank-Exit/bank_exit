@@ -15,12 +15,13 @@
   .alert.alert-warning.text-xs
     = lucide_icon 'triangle-alert', class: 'w-5'
     div
-      p
-        - testimony_form_link = link_to new_merchant_report_path(commentable),
-                  title: t('merchants.show.report_a_fault.title'),
-                  data: { turbo_stream: true }, class: 'font-bold underline decoration-dotted' do
-          = t('.other_form')
-        =< t('.comment_as_testimony_only_html', link: testimony_form_link)
+      - if commentable.is_a?(MerchantDecorator)
+        p
+          - testimony_form_link = link_to new_merchant_report_path(commentable),
+                    title: t('merchants.show.report_a_fault.title'),
+                    data: { turbo_stream: true }, class: 'font-bold underline decoration-dotted' do
+            = t('.other_form')
+          =< t('.comment_as_testimony_only_html', link: testimony_form_link)
 
       p.mt-1= t('.comments_no_moderation')
 
