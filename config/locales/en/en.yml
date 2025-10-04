@@ -22,7 +22,15 @@ en:
   status: Status
   filters: Filters
   edit: Edit
+  destroy: Destroy
   logout: Logout
+  back: Back
+  reactivate: Reactivate
+  preview: Preview
+  actions: Actions
+  date_title: Date
+  display: Display
+  refresh: Rafraîchir
 
   display_map: Map display
   display_grid: Grid display
@@ -46,9 +54,9 @@ en:
   empty_results: There are no results
 
   x_results:
-    zero: "%{count} result"
-    one: "%{count} result"
-    other: "%{count} results"
+    zero: "0 result"
+    one: "1 result"
+    other: "%{formatted_count} results"
 
   from: from
   to: to

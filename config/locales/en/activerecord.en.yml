@@ -57,12 +57,17 @@ en:
 
   activerecord:
     models:
+      announcement:
+        one: announcement
+        other: announcements
       comment:
         zero: comment
         one: comment
         other: comments
       address: address
-      directory: directory
+      directory:
+        one: directory
+        other: directories
       delivery_zone: delivery zone
       contact_way: contact way
       coin_wallet: crypto wallet
@@ -71,6 +76,9 @@ en:
         zero: Merchant
         one: Merchant
         other: Merchants
+      user:
+        one: user
+        other: users
 
     attributes:
       merchant:

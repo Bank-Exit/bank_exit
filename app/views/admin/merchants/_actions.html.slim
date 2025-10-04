@@ -1,50 +1,50 @@
 = content_for :dropdown_menu, flush: true do
   li
     = link_to admin_merchant_path(merchant) do
-      | Fiche admin
+      = t('.merchant_admin_page')
 
   li
     = link_to merchant_path(merchant, debug: merchant.deleted? ? 'true' : nil), target: :_blank do
-      | Commerçant sur Bank-Exit
+      = t('.merchant_public_page')
 
   li
     = link_to merchant.osm_link, target: :_blank do
-      | Commerçant sur OSM
+      = t('.merchant_on_osm')
 
   - if allowed_to?(:update?, merchant)
     li
-      = link_to 'Modifier',
+      = link_to t('edit'),
                 edit_admin_merchant_path(merchant),
                 class: 'btn btn-sm btn-warning'
 
   - if allowed_to?(:create?, merchant, with: Admin::Merchants::DirectoryConverterPolicy)
     li
-      = link_to "Convertir en entrée d'annuaire",
+      = link_to t('.convert_to_directory'),
                   admin_directory_converters_path(merchant),
                   class: 'btn btn-sm btn-success',
                   data: { \
                     turbo_method: :post,
-                    turbo_confirm: "Voulez-vous convertir ce commerçant et l'intégrer dans l'annuaire ?<br />(le commerçant de la carte ne sera pas modifié)" \
+                    turbo_confirm: t('.convert_to_directory_confirm_html') \
                   }
 
   - if allowed_to?(:reactivate?, merchant)
     li
-      = link_to 'Réactiver',
+      = link_to t('reactivate'),
                 admin_merchant_reactivate_path(merchant),
                 class: 'btn btn-sm btn-success',
                 data: { \
                   turbo_method: :post,
-                  turbo_confirm: 'Voulez-vous réactiver ce commerçant pour le référencer à nouveau sur la carte ?' \
+                  turbo_confirm: t('.reactivate_confirm') \
                 }
 
   - if allowed_to?(:destroy?, merchant)
     li
-      = link_to 'Supprimer',
+      = link_to t('destroy'),
                 admin_merchant_path(merchant),
                 class: 'btn btn-sm btn-error',
                 data: { \
                   turbo_method: :delete,
-                  turbo_confirm: 'Voulez-vous supprimer ce commerçant ? <br /> ⚠️ Il ne sera plus référencé sur la carte' \
+                  turbo_confirm: t('.destroy_confirm_html') \
                 }
 
 = render 'dropdown_actions', item_id: merchant.id

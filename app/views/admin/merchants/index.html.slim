@@ -1,3 +1,6 @@
+- today_i18n = l(@dashboard_presenter.today.to_date)
+- dated_i18n = t('statistics.statistics_numbers.dated', date: today_i18n)
+
 header.mb-3
   h1.text-3xl
     - if params[:show_deleted] == 'true'
@@ -13,21 +16,21 @@ header.mb-3
       = lucide_icon 'store', class: 'w-12 h-12'
     .stat-title
       span.status.status-success.status-lg
-      |< Commerçants visibles
+      =< t('.merchants_visibles')
     .stat-value= number_with_delimiter(Merchant.available.count)
-    .stat-desc au #{l(@dashboard_presenter.today.to_date)}
+    .stat-desc= dated_i18n
 
   .stat
     .stat-figure
       = lucide_icon 'store', class: 'w-12 h-12'
     .stat-title
       span.status.status-error.status-lg
-      |< Commerçants désactivés
+      =< t('.merchants_disabled')
     .stat-value= number_with_delimiter(merchant_deleted_count)
     - if merchant_deleted_count > 0
       .stat-actions.mt-1
         - req_params = request.query_parameters.compact_blank
-        =< link_to 'Afficher', admin_merchants_path(params: req_params.merge(show_deleted: true)), class: 'btn btn-error btn-xs'
+        =< link_to t('display'), admin_merchants_path(params: req_params.merge(show_deleted: true)), class: 'btn btn-error btn-xs'
 
         button.btn.btn-square.btn-ghost.btn-xs.ml-1 onclick="merchants_deleted_help.showModal()"
           = lucide_icon 'circle-question-mark', class: 'w-4'
@@ -39,10 +42,9 @@ header.mb-3
     - if @last_update > 0
       .stat-title
         span.status.status-info.status-lg
-        |< Dernière actualisation
+        =< t('.last_update')
       .stat-value.text-lg title=l(Time.zone.at(@last_update))
-        | Il y a
-        =< time_ago_in_words(@last_update)
+        = t('.there_is', time: time_ago_in_words(@last_update))
 
     .stat-actions
       = button_to refresh_merchants_path,
@@ -51,14 +53,14 @@ header.mb-3
                   data: { \
                     turbo_confirm: t('maps.dropdown_map_actions.refresh_confirm_html') \
                   } do
-        | Rafraîchir
+        = t('refresh')
 
 section
   .mb-3.max-w-5xl.mx-auto
     .badge.badge-secondary.badge-sm.text-center.my-2
       p
-        strong#merchants_count= number_with_delimiter(@pagy.count)
-        |< résultat(s)
+        strong#merchants_count
+          = I18n.t('x_results', count: @pagy.count, formatted_count: number_with_delimiter(@pagy.count))
 
     = simple_form_for '',
                       url: admin_merchants_path,
@@ -141,10 +143,10 @@ section
       form method="dialog"
         button.btn.btn-sm.btn-circle.btn-ghost.absolute.right-2.top-2 ✕
 
-      h3.text-lg.font-bold Commerçants désactivés
-      p.pt-4.pb-2 Les commerçants labélisés comme <span class="badge badge-sm badge-error">Désactivé</span> n'ont pas été remontés dans les résultats lors du dernier rafraîchissement API avec Overpass. Cela peut signifier que le commerçant a arrêté son activité, n'accepte plus les cryptomonnaies (Bitcoin, Monero ou June) ou bien qu'un troll a fait du vandalisme sur OpenStreetMap.
-      p.py-2 Il convient donc au Collectif d'étudier ces changements et confirmer si le commerçant doit bien être supprimé de la carte ou être réactivé (par défaut le commerçant passe en "soft deleted" ce qui signifie qu'il reste présent dans la base de données mais devient invisible sur la carte et dans la recherche).
-      p.py-2 A noter que si le commerçant est confirmé comme légitime et réactivé sur Bank-Exit, il redeviendra <span class="badge badge-sm badge-error">Désactivé</span> à chaque rafraîchissement des données tant que la source n'aura pas été corrigée sur OSM car l'algorithme considère que la "vérité" vient d'OSM.
+      h3.text-lg.font-bold.mb-4= t('.merchants_disabled')
+
+      .space-y-3
+        == simple_format t('.merchant_disabled_body_html')
 
     form.modal-backdrop method="dialog"
       / Not displayed

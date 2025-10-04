@@ -24,6 +24,7 @@ RSpec.describe 'Admin::Merchants::DirectoryConverters' do
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { edit_admin_directory_path(directory) }
           let(:flash_notice) { "L'entrée de l'annuaire a bien été créée. Pensez à la réactiver une fois les modifications effectuées" }
+          let(:flash_notice) { I18n.t('admin.merchants.directory_converters.create.notice') }
         end
 
         context 'when directory has already been created' do

@@ -4,4 +4,4 @@
   = render 'merchants', merchants: @merchants, pagy: @pagy
 
 = turbo_stream.update :merchants_count do
-  = number_with_delimiter(@pagy.count)
+  = I18n.t('x_results', count: @pagy.count, formatted_count: number_with_delimiter(@pagy.count))

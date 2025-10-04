@@ -21,15 +21,15 @@ section.space-y-3 data-controller="admin--table"
           th scope="col"= Merchant.human_attribute_name(:category)
           th scope="col"= Merchant.human_attribute_name(:coins)
           th scope="col"= Comment.model_name.human.capitalize
-          th scope="col" Statut
-          th scope="col" Date
-          th scope="col" Actions
+          th scope="col"= t('status')
+          th scope="col"= t('date_title')
+          th scope="col"= t('actions')
       tbody
         = render merchants
 
         - if merchants.blank?
           tr
-            td.text-center colspan="100%"
-              | Il n'y a aucun commerçant à afficher
+            td.text-center.italic colspan="100%"
+              = t('.empty_results')
 
   == pagy_nav(pagy) if pagy.count > pagy.limit

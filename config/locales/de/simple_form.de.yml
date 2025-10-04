@@ -159,6 +159,7 @@ de:
 
       directory:
         banner: Hintergrundbanner
+        spotlight: Wenn ausgewählt, wird dieser Eintrag oben auf der Verzeichnisseite hervorgehoben
         address:
           label: Lass das Feld leer oder gib eine ungefähre Adresse an, um die Anonymität des Händlers zu schützen.<br />Diese Info wird für die Funktion „In meiner Nähe“ verwendet und beeinflusst die Relevanz der Ergebnisse nach Breiten- und Längengrad.
 

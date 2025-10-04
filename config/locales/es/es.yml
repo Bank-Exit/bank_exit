@@ -19,7 +19,18 @@ es:
   link: Enlace
   spotlight: Destacado
   reset_search: Restablecer búsqueda
+  status: Estado
   filters: Filtros
+  edit: Editar
+  destroy: Eliminar
+  logout: Cerrar sesión
+  back: Volver
+  reactivate: Reactivar
+  preview: Vista previa
+  actions: Acciones
+  date_title: Fecha
+  display: Mostrar
+  refresh: Refrescar
 
   grid: Cuadrícula
   table: Tabla
@@ -40,9 +51,9 @@ es:
   empty_results: No hay resultados
 
   x_results:
-    zero: "%{count} resultado"
-    one: "%{count} resultado"
-    other: "%{count} resultados"
+    zero: "0 resultado"
+    one: "1 resultado"
+    other: "%{formatted_count} resultados"
 
   from: de
   to: para

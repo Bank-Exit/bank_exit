@@ -14,7 +14,7 @@ RSpec.describe 'Admin::Merchants::BatchActions' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_merchants_path(show_deleted: true) }
-          let(:flash_notice) { 'Les commerçants ont bien été réactivés' }
+          let(:flash_notice) { I18n.t('admin.merchants.batch_actions.update.notice') }
         end
 
         it { expect { action }.to change { merchant.reload.deleted_at }.to nil }
@@ -49,7 +49,7 @@ RSpec.describe 'Admin::Merchants::BatchActions' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_merchants_path(show_deleted: true) }
-          let(:flash_notice) { 'Les commerçants ont bien été supprimés' }
+          let(:flash_notice) { I18n.t('admin.merchants.batch_actions.destroy.notice') }
         end
 
         it { expect { action }.to change { Merchant.count }.by(-2) }

@@ -67,7 +67,7 @@ RSpec.describe 'Admin::Announcements' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_announcements_path }
-          let(:flash_notice) { "L'annonce a bien été créée" }
+          let(:flash_notice) { I18n.t('admin.announcements.create.notice') }
         end
 
         it { expect { action }.to change { Announcement.count }.by(1) }
@@ -143,7 +143,7 @@ RSpec.describe 'Admin::Announcements' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_announcements_path }
-          let(:flash_notice) { "L'annonce a bien été modifiée" }
+          let(:flash_notice) { I18n.t('admin.announcements.update.notice') }
         end
       end
     end
@@ -169,7 +169,7 @@ RSpec.describe 'Admin::Announcements' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_announcements_path }
-          let(:flash_notice) { "L'annonce a bien été supprimée" }
+          let(:flash_notice) { I18n.t('admin.announcements.destroy.notice') }
         end
 
         it { expect { action }.to change { Announcement.count }.by(-1) }

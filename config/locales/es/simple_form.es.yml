@@ -17,6 +17,7 @@ es:
         gestureHandling: Bloque el map (gestureHandling)
         fitBounds: Centra el mapa (fitBounds)
         attribution: Menciones (attribution)
+        with_comments: Con comentarios
 
         query: Búsqueda
         category: Categoría
@@ -159,6 +160,7 @@ es:
 
       directory:
         banner: Banner de fondo
+        spotlight: Si está marcado, esta entrada se destacará en la parte superior de la página del directorio
         address:
           label: Déjelo en blanco o proporcione una dirección aproximada para proteger el anonimato del comerciante.<br /> Esta información es utilizada por la función "A mi alrededor" e influye en la relevancia de los resultados geolocalizados según la latitud y la longitud.
 

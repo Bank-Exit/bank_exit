@@ -2,7 +2,7 @@ header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
   h1.text-3xl= t('.title')
 
   - if allowed_to?(:create?, Directory, namespace: Admin)
-    = link_to 'Nouvelle entrée', new_admin_directory_path, class: 'btn btn-success'
+    = link_to t('add'), new_admin_directory_path, class: 'btn btn-success'
 
 .stats.shadow.bg-base-200.mb-3.w-full.lg:w-auto
   .stat
@@ -10,16 +10,16 @@ header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
       = lucide_icon 'notebook', class: 'w-12 h-12'
     .stat-title
       span.status.status-success.status-lg
-      |< Entrées d'annuaire
+      =< t('.directory_entries')
     .stat-value= Directory.enabled.count
-    .stat-desc au #{l(Date.current)}
+    .stat-desc= I18n.t('statistics.statistics_numbers.dated', date: l(Date.current))
 
   .stat
     .stat-figure
       = lucide_icon 'notebook', class: 'w-12 h-12'
     .stat-title
       span.status.status-error.status-lg
-      |< Entrées désactivées
+      =< t('.directory_entries_disabled')
     .stat-value= Directory.disabled.count
 
 section
@@ -39,8 +39,8 @@ section
 
     - if params[:query].present?
       p.text-sm.badge.badge-primary
-        strong#directories_count= @directories.count
-        | résultat(s)
+        strong#directories_count
+          = I18n.t('x_results', count: @directories.count, formatted_count: number_with_delimiter(@directories.count))
 
   #directories
     = render 'directories', directories: @directories

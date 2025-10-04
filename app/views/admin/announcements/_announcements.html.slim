@@ -18,7 +18,7 @@ section.space-y-3
 
         - if announcements.blank?
           tr
-            td.text-center colspan="100%"
-              | Il n'y a aucune annonce à afficher
+            td.text-center.italic colspan="100%"
+              = t('.empty_results')
 
   == pagy_nav(pagy) if pagy.count > pagy.limit

@@ -195,6 +195,7 @@ es:
 
       refresh_confirm_html: ¿Quieres actualizar la lista de comerciantes? <br /> Por favor tenga paciencia, esto puede tardar unos minutos.
       refresh: Refrescar a los comerciantes
+      view_in_admin: Ver en el admin
 
     helps:
       show:

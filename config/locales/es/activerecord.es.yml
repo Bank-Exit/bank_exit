@@ -43,6 +43,9 @@ merchant_attributes: &merchant_attributes
 
   last_survey_on: Fecha de la última verificación de datos
 
+  created_at: Fecha de creación
+  updated_at: Fecha de actualización
+
 es:
   activemodel:
     attributes:
@@ -53,16 +56,28 @@ es:
 
   activerecord:
     models:
+      announcement:
+        one: anuncio
+        other: anuncios
       comment:
-        zero: commentario
-        one: commentario
-        other: commentarios
-      address: dirección
-      directory: directorio
+        zero: comentario
+        one: comentario
+        other: comentarios
+      address: Dirección
+      directory:
+        one: directorio
+        other: directorios
       delivery_zone: zona de entrega
-      contact_way: vía de contacto
-      coin_wallet: billetera de criptomonedas
-      weblink: enlace web
+      contact_way: medio de contacto
+      coin_wallet: monedero cripto
+      weblink: fuente
+      merchant:
+        zero: Comerciante
+        one: Comerciante
+        other: Comerciantes
+      user:
+        one: usuario
+        other: usuarios
 
     attributes:
       merchant:
@@ -157,3 +172,30 @@ es:
 
       address:
         label: Dirección aproximada del "comerciante"
+
+      announcement:
+        title: Título
+        picture: Imagen
+        published_at: Publicado el
+        unpublished_at: Despublicado el
+        link_to_visit: Enlace para visitar
+        enabled: ¿Activado?
+        mode: Modo
+        modes:
+          default: Predeterminado
+          info: Información
+          success: Éxito
+          warning: Advertencia
+          error: ¡Alerta!
+
+      user:
+        email: Dirección de correo
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
+        enabled: ¿Activado?
+        role: Rol
+        roles:
+          super_admin: Superadministrador
+          admin: Administrador
+          publisher: Editor
+          moderator: Moderador

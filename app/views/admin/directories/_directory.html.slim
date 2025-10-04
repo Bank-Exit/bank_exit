@@ -10,7 +10,7 @@ tr data-update-url=(update_position_admin_directory_path(directory) if can_updat
 
   td.relative
     - if directory.spotlight?
-      .absolute.top-0.left-0 title="En vedette"
+      .absolute.top-0.left-0 title=t('spotlight')
         = lucide_icon 'star', class: 'fill-yellow-500 stroke-black'
 
     = render 'logo_or_initials', model: directory

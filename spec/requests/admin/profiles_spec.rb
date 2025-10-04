@@ -24,7 +24,7 @@ RSpec.describe 'Admin::Users' do
       include_context 'with user role', :admin
       it_behaves_like 'access granted with redirection' do
         let(:redirection_url) { admin_root_path }
-        let(:flash_notice) { 'Votre profil a bien été mis à jour' }
+        let(:flash_notice) { I18n.t('admin.profiles.update.notice') }
 
         it { expect { action }.to change { current_user.reload.email }.to 'newemail@demo.test' }
       end

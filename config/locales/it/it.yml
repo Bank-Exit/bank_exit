@@ -19,7 +19,18 @@ it:
   link: Link
   spotlight: In evidenza
   reset_search: Reimposta ricerca
+  status: Stato
   filters: Filtri
+  edit: Modifica
+  destroy: Elimina
+  logout: Disconnessione
+  back: Indietro
+  reactivate: Riattiva
+  preview: Anteprima
+  actions: Azioni
+  date_title: Data
+  display: Mostra
+  refresh: Aggiorna
 
   grid: Griglia
   table: Tabella
@@ -40,9 +51,9 @@ it:
   empty_results: Nessun risultato
 
   x_results:
-    zero: "%{count} risultato"
-    one: "%{count} risultato"
-    other: "%{count} risultati"
+    zero: "0 risultato"
+    one: "1 risultato"
+    other: "%{formatted_count} risultati"
 
   from: da
   to: a

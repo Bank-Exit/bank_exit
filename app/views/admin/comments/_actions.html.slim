@@ -3,26 +3,26 @@
 = content_for :dropdown_menu, flush: true do
   li
     = link_to polymorphic_path([commentable]), target: :_blank do
-      | Commerçant sur Bank-Exit
+      = t('.view_merchant_public_page')
 
   - if allowed_to?(:update?, comment)
     li
-      = link_to 'Réactiver',
+      = link_to t('reactivate'),
                 admin_comment_path(comment),
                 class: 'btn btn-sm btn-success',
                 data: { \
                   turbo_method: :patch,
-                  turbo_confirm: 'Voulez-vous retirer le signalement de ce commentaire ?' \
+                  turbo_confirm: t('.reactivate_confirm') \
                 }
 
   - if allowed_to?(:destroy?, comment)
     li
-      = link_to 'Supprimer',
+      = link_to t('destroy'),
                 admin_comment_path(comment),
                 class: 'btn btn-sm btn-error',
                 data: { \
                   turbo_method: :delete,
-                  turbo_confirm: 'Voulez-vous supprimer ce commentaire ?' \
+                  turbo_confirm: t('.destroy_confirm') \
                 }
 
 = render 'dropdown_actions', item_id: comment.id

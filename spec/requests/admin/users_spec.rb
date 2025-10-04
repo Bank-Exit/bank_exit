@@ -59,7 +59,7 @@ RSpec.describe 'Admin::Users' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_users_path }
-          let(:flash_notice) { "L'utilisateur a bien été créé" }
+          let(:flash_notice) { I18n.t('admin.users.create.notice') }
         end
 
         it { expect { action }.to change { User.count }.by(1) }
@@ -112,7 +112,7 @@ RSpec.describe 'Admin::Users' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_users_path }
-          let(:flash_notice) { "L'utilisateur a bien été modifié" }
+          let(:flash_notice) { I18n.t('admin.users.update.notice') }
         end
       end
     end
@@ -138,7 +138,7 @@ RSpec.describe 'Admin::Users' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_users_path }
-          let(:flash_notice) { "L'utilisateur a bien été supprimé" }
+          let(:flash_notice) { I18n.t('admin.users.destroy.notice') }
         end
 
         it { expect { action }.to change { User.count }.by(-1) }

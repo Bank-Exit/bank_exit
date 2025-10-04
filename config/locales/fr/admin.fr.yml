@@ -14,36 +14,103 @@ fr:
       destroy:
         notice: L'annonce a bien été supprimée
 
+      announcements:
+        empty_results: Il n'y a aucune annonce à afficher
+      announcement:
+        date_overpass_title: Date de publication dépassée
+      actions:
+        destroy_confirm: Voulez-vous supprimer cette annonce ?
+
     comments:
       index:
         title: Les commentaires
+        comments_visibles: Commentaires visibles
+        comments_reported: Commentaires signalés
+        comments_disabled: Commentaires désactivés ⚠️
+        comments_disabled_body_html: |
+          La fonctionnalité des commentaires est désactivée par la variable d'environnement <mark>FF_COMMENTS_ENABLED</mark> (Feature Flag).
+
+          Les utilisateurs ne peuvent donc plus publier de commentaires ou voir ceux déjà présents tant que la fonctionnalité restera désactivée.
+
       update:
         notice: Le commentaire a bien été réactivé
       destroy:
         notice: Le commentaire a bien été supprimé
 
+      comments:
+        resource: Ressource
+        report: Signalement
+        empty_results: Il n'y a aucun commentaire à afficher
+      actions:
+        view_merchant_public_page: Voir page publique commerçant
+        reactivate_confirm: Voulez-vous retirer le signalement de ce commentaire ?
+        destroy_confirm: Voulez-vous supprimer ce commentaire ?
+
     dashboards:
       show:
-        title: Tableau de bord administrateur
+        title: Tableau de bord
 
     directories:
       index:
         title: L'annuaire
+        directory_entries: Entrées d'annuaire
+        directory_entries_disabled: Entrées désactivées
       new:
         title: Ajouter une entrée à l'annuaire
       create:
         notice: L'entrée a bien été ajoutée à l'annuaire
       edit:
         title: Modifier une entrée
+        entry_disabled: Cette entrée est actuellement désactivée et n'est donc pas visible sur le site.
+        entry_associated_to_merchant_html: Cette entrée d'annuaire est associée au commerçant %{merchant_link} sur la carte.
       update:
         notice: L'entrée de l'annuaire a bien été modifiée
       destroy:
         notice: L'entrée de l'annuaire a bien été supprimée
 
+      form:
+        address_body_help: |
+          Adresse du commerçant: laisser vide ou rester approximatif pour protéger son anonymat.
+
+          Note: ce champs n'a pas de lien avec la zone de livraison et est uniquement affiché sur la fiche annuaire.
+
+        new_coin_wallet: Nouveau portefeuille crypto
+        coin_wallet_body_help: |
+          Sélectionnez la ou les cryptomonnaies acceptées par ce commerçant.
+
+          Si l'adresse publique est renseignée, un QRCode sera proposée aux utilisateurs afin qu'ils puissent scanner et envoyer directement de l'argent dessus. Autrement, seule l'icône de la cryptomonnaie sera affichée.
+
+        new_delivery_zone: Nouvelle zone de livraison
+        delivery_zone_body_help: |
+          L'API Nominatim sera appelée pour les entrées de type "ville" ou "département" pour récupérer les informations de géolocalisation applicables, le but étant de pouvoir filtrer en "poupées russes". Par exemple, une zone de livraison avec le pays "France" doit être compatible avec une recherche utilisateur sur la région "Corse", le département "Cher" ou la ville de "Strasbourg". Les codes ISO sont utilisés pour cela.
+
+          Note: les entrées de type "région" étant forcées sur la France actuellement, un appel Geocoder inutile est évité en forçant la valeur.
+
+          Note: le traitement peut mettre quelques secondes à se finaliser selon le nombre de zones à analyser.
+
+        new_contact_way: Nouveau contact
+        new_weblink: Nouvelle source
+
+      actions:
+        view_public_page: Voir page publique
+        destroy_confirm: Voulez-vous supprimer cette entrée de l'annuaire ?
+
     merchants:
       index:
         title: Les commerçants
         title_for_disabled: Les commerçants désactivés
+        merchants_visibles: Commerçants visibles
+        merchants_disabled: Commerçants désactivés
+        last_update: Dernière actualisation
+        there_is: Il y a %{time}
+
+        merchant_disabled_body_html: |
+          Les commerçants labélisés comme <span class="badge badge-sm badge-error">Désactivé</span> n'ont pas été remontés dans les résultats lors du dernier rafraîchissement API avec Overpass. Cela peut signifier que le commerçant a arrêté son activité, n'accepte plus les cryptomonnaies (Bitcoin, Monero ou June) ou bien qu'un troll a fait du vandalisme sur OpenStreetMap.
+
+          Il convient donc au Collectif d'étudier ces changements et confirmer si le commerçant doit bien être supprimé de la carte ou être réactivé (par défaut le commerçant passe en "soft deleted" ce qui signifie qu'il reste présent dans la base de données mais devient invisible sur la carte et dans la recherche).
+
+          A noter que si le commerçant est confirmé comme légitime et réactivé sur Bank-Exit, il redeviendra <span class="badge badge-sm badge-error">Désactivé</span> à chaque rafraîchissement des données tant que la source n'aura pas été corrigée sur OSM car l'algorithme considère que la "vérité" vient d'OSM.
+
       edit:
         title: Modifier le commerçant
       update:
@@ -51,11 +118,28 @@ fr:
       destroy:
         notice: Le commerçant a bien été supprimé
 
+      merchants:
+        empty_results: Il n'y a aucun commerçant à afficher
+
+      actions:
+        merchant_admin_page: Fiche admin
+        merchant_public_page: Fiche publique
+        merchant_on_osm: Commerçant sur OpenStreetMap
+        convert_to_directory: Convertir en entrée d'annuaire
+        convert_to_directory_confirm_html: Voulez-vous convertir ce commerçant et l'intégrer dans l'annuaire ?<br />(le commerçant de la carte ne sera pas modifié)
+        reactivate_confirm: Voulez-vous réactiver ce commerçant pour le référencer à nouveau sur la carte ?
+        destroy_confirm_html: Voulez-vous supprimer ce commerçant ? <br /> ⚠️ Il ne sera plus référencé sur la carte.
+
       batch_actions:
         update:
           notice: Les commerçants ont bien été réactivés
         destroy:
           notice: Les commerçants ont bien été supprimés
+
+        reactivate_title: Réactiver les sélectionnés
+        reactivate_confirm: Voulez-vous réactiver ces commerçants ?
+        destroy_title: Supprimer les sélectionnés
+        destroy_confirm: Voulez-vous supprimer définitivement ces commerçants ?
 
       directory_converters:
         create:
@@ -68,6 +152,7 @@ fr:
     profiles:
       edit:
         title: Modifier mon profil
+        submit: Mettre à jour mon profil
       update:
         notice: Votre profil a bien été mis à jour
 
@@ -84,3 +169,20 @@ fr:
         notice: L'utilisateur a bien été modifié
       destroy:
         notice: L'utilisateur a bien été supprimé
+
+      user:
+        logged_in_as: Connexion en tant que
+        logged_in_as_confirm_html: Voulez-vous vous connecter en tant que <strong>%{email}</strong> ?
+
+    sidebar:
+      title: Sortie de Banque
+      subtitle: Admin
+
+      merchants_disabled: Commerçants désactivés
+      comments_disabled: Commentaires signalés
+
+      back_to_home: Retour à l'accueil
+      back_to_map: Retour à la carte
+      back_to_directory: Retour à l'annuaire
+
+      edit_my_profile: Modifier mon profil

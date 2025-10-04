@@ -6,18 +6,18 @@ section.space-y-3
       thead
         tr
           - unless params[:controller] == 'admin/merchants'
-            th scope="col" Ressource
-          th scope="col" Contenu
-          th scope="col" Note
-          th scope="col" Signalement
-          th scope="col" Date
-          th scope="col" Actions
+            th scope="col"= t('.resource')
+          th scope="col"= Comment.human_attribute_name(:content)
+          th scope="col"= Comment.human_attribute_name(:rating)
+          th scope="col"= t('.report')
+          th scope="col"= t('date_title')
+          th scope="col"= t('actions')
       tbody
         = render comments
 
         - if comments.blank?
           tr
-            td colspan="100%"
-              | Il n'y a aucun commentaire à afficher
+            td.text-center.italic colspan="100%"
+              = t('.empty_results')
 
   == pagy_nav(pagy) if pagy.count > pagy.limit

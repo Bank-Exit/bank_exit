@@ -1,4 +1,4 @@
-tr class=('opacity-25' if announcement.overpass?) title=("Date de dépublication passée" if announcement.overpass?)
+tr class=('opacity-25' if announcement.overpass?) title=(t('.date_overpass_title') if announcement.overpass?)
   td.text-center
     - if announcement.picture.attached?
       = image_tag url_for(announcement.picture.variant(:thumb)), class: 'w-16 rounded-lg mx-auto'

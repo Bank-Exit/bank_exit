@@ -19,7 +19,7 @@
         = render 'description_with_counter', f: f, input_name: description
 
   = f.input :category,
-            prompt: 'Sélectionner une catégorie',
+            prompt: :translate,
             collection: directories_categories_select_helper
 
   - if params[:debug] == 'true'
@@ -49,12 +49,12 @@
         p= image_tag url_for(f.object.banner)
 
   section.space-y-3
-    h2.text-lg.font-bold.text-primary.mb-2.border-b-2= Address.model_name.human.capitalize
+    .flex.items-center.gap-1.mb-2.border-b-2.text-primary
+      h2.text-lg.font-bold
+        = Address.model_name.human.capitalize
 
-    .alert.alert-info
-      div
-        p Adresse du commerçant: laisser vide ou rester approximatif pour protéger son anonymat.
-        p Note: ce champs n'a pas de lien avec la zone de livraison et est uniquement affiché sur la fiche annuaire.
+      .btn.btn-ghost.btn-xs.btn-circle onclick="address_help.showModal()"
+        = lucide_icon 'info', class: 'w-4'
 
     div
       = f.simple_fields_for :address do |ff|
@@ -70,12 +70,12 @@
                    hint: false
 
   section.space-y-3
-    h2.text-lg.font-bold.text-primary.mb-2.border-b-2= CoinWallet.model_name.human.capitalize
+    .flex.items-center.gap-1.mb-2.border-b-2.text-primary
+      h2.text-lg.font-bold
+        = CoinWallet.model_name.human.capitalize
 
-    .alert.alert-info
-      div
-        p Sélectionnez la ou les cryptomonnaies acceptées par ce commerçant.
-        p Si l'adresse publique est renseignée, un QRCode sera proposée aux utilisateurs afin qu'ils puissent scanner et envoyer directement de l'argent dessus. Autrement, seule l'icône de la cryptomonnaie sera affichée.
+      .btn.btn-ghost.btn-xs.btn-circle onclick="coin_wallet_help.showModal()"
+        = lucide_icon 'info', class: 'w-4'
 
     .grid.grid-cols-1.lg:grid-cols-3.gap-3 data-controller="nested-form"
       = f.simple_fields_for :coin_wallets, directory.coin_wallets, wrapper: false, include_id: false do |ff|
@@ -85,7 +85,7 @@
         = f.simple_fields_for :coin_wallets, directory.coin_wallets.new, child_index: 'TEMPLATE_RECORD' do |f|
           = render 'directories/coin_wallets_fields', f: f
 
-      = link_to 'Nouveau portefeuille crypto', '#',
+      = link_to t('.new_coin_wallet'), '#',
                 class: 'btn btn-success col-span-2 col-start-1 col-end-1',
                 data: { \
                   nested_form_target: 'addItem',
@@ -93,13 +93,12 @@
                 }
 
   section.space-y-3
-    h2.text-lg.font-bold.text-primary.mb-2.border-b-2= DeliveryZone.model_name.human.capitalize
+    .flex.items-center.gap-1.mb-2.border-b-2.text-primary
+      h2.text-lg.font-bold
+        = DeliveryZone.model_name.human.capitalize
 
-    .alert.alert-info
-      div
-        p L'API Nominatim sera appelée pour les entrées de type "ville" ou "département" pour récupérer les informations de géolocalisation applicables, le but étant de pouvoir filtrer en "poupées russes". Par exemple, une zone de livraison avec le pays "France" doit être compatible avec une recherche utilisateur sur la région "Corse", le département "Cher" ou la ville de "Strasbourg". Les codes ISO sont utilisés pour cela.
-        p Note: les entrées de type "région" étant forcées sur la France actuellement, un appel Geocoder inutile est évité en forçant la valeur.
-        p Note: le traitement peut mettre quelques secondes à se finaliser selon le nombre de zones à analyser.
+      .btn.btn-ghost.btn-xs.btn-circle onclick="delivery_zone_help.showModal()"
+        = lucide_icon 'info', class: 'w-4'
 
     .grid.grid-cols-1.lg:grid-cols-3.gap-3 data-controller="nested-form"
       = f.simple_fields_for :delivery_zones, directory.delivery_zones, wrapper: false, include_id: false do |ff|
@@ -109,7 +108,7 @@
         = f.simple_fields_for :delivery_zones, directory.delivery_zones.new, child_index: 'TEMPLATE_RECORD' do |f|
           = render 'directories/delivery_zones_fields', f: f
 
-      = link_to 'Nouvelle zone', '#',
+      = link_to t('.new_delivery_zone'), '#',
                 class: 'btn btn-success col-span-3 col-start-1 col-end-1',
                 data: { \
                   nested_form_target: 'addItem',
@@ -127,7 +126,7 @@
         = f.simple_fields_for :contact_ways, directory.contact_ways.new, child_index: 'TEMPLATE_RECORD' do |f|
           = render 'directories/contact_ways_fields', f: f
 
-      = link_to 'Nouveau contact', '#',
+      = link_to t('.new_contact_way'), '#',
                 class: 'btn btn-success col-span-3 col-start-1 col-end-1',
                 data: { \
                   nested_form_target: 'addItem',
@@ -145,7 +144,7 @@
         = f.simple_fields_for :weblinks, directory.weblinks.new, child_index: 'TEMPLATE_RECORD' do |f|
           = render 'directories/weblinks_fields', f: f
 
-      = link_to 'Nouvelle source', '#',
+      = link_to t('.new_weblink'), '#',
                 class: 'btn btn-success col-span-3 col-start-1 col-end-1',
                 data: { \
                   nested_form_target: 'addItem',
@@ -155,3 +154,19 @@
   = f.input :spotlight
   = f.input :enabled
   = f.button :submit
+
+- %w[address coin_wallet delivery_zone].each do |model_key|
+  dialog.modal id="#{model_key}_help"
+    .modal-box.w-11/12.max-w-3xl
+      form method="dialog"
+        button.btn.btn-sm.btn-circle.btn-ghost.absolute.right-2.top-2 ✕
+
+      h3.text-lg.font-bold.mb-4
+        = model_key.classify.constantize.model_name.human.capitalize
+
+      .space-y-2
+        == simple_format t(".#{model_key}_body_help")
+
+    form.modal-backdrop method="dialog"
+      / Not displayed
+      button close

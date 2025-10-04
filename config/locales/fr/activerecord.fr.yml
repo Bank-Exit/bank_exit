@@ -60,12 +60,17 @@ fr:
 
   activerecord:
     models:
+      announcement:
+        one: annonce
+        other: annonces
       comment:
         zero: commentaire
         one: commentaire
         other: commentaires
       address: Adresse
-      directory: annuaire
+      directory:
+        one: annuaire
+        other: annuaire
       delivery_zone: zone de livraison
       contact_way: moyen de contact
       coin_wallet: portefeuille crypto
@@ -74,7 +79,9 @@ fr:
         zero: Commerçant
         one: Commerçant
         other: Commerçants
-      announcement: annonce
+      user:
+        one: utilisateur
+        other: utilisateurs
 
     attributes:
       merchant:
@@ -152,6 +159,7 @@ fr:
         contact_ways: Moyen de contact
         weblinks: Liens web
         proposition_from: Email de suivi (facultatif)
+        position: Position
 
       delivery_zone:
         enabled: Activé ?
@@ -182,6 +190,7 @@ fr:
         unpublished_at: Dépublication le
         link_to_visit: Lien à visiter
         enabled: Activé ?
+        mode: Mode
         modes:
           default: Défaut
           info: Information
@@ -192,6 +201,7 @@ fr:
       user:
         email: Adresse email
         password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
         enabled: Activé ?
         role: Rôle
         roles:
