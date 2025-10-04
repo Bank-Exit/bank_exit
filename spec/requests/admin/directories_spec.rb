@@ -4,7 +4,7 @@ RSpec.describe 'Admin::Directories' do
   let!(:directory) { create :directory }
 
   describe 'GET /admin/directories' do
-    subject { get admin_directories_path }
+    subject { get '/admin/directories' }
 
     %i[super_admin admin publisher moderator].each do |role|
       context "when role is #{role}" do
@@ -98,7 +98,7 @@ RSpec.describe 'Admin::Directories' do
   describe 'PATCH /admin/directories/:id' do
     subject { patch "/admin/directories/#{directory.id}", params: valid_params }
 
-    let(:valid_params) { { directory: { name: 'Name updated' } } }
+    let(:valid_params) { { directory: { name_en: 'Name updated' } } }
 
     %i[super_admin admin publisher].each do |role|
       context "when role is #{role}" do

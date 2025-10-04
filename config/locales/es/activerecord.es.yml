@@ -123,6 +123,8 @@ es:
       directory:
         name: Nombre
         description: Descripción
+        name_en: Nombre
+        description_en: Descripción
         delivery_zone: Zona de entrega
         enabled: ¿Activado?
         spotlight: ¿Destacado?

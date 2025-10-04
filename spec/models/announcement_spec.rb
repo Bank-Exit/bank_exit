@@ -1,10 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Announcement do
-  it { is_expected.to validate_presence_of(:title) }
-  it { is_expected.to validate_presence_of(:description) }
-  it { is_expected.to validate_presence_of(:locale) }
-  it { is_expected.to validate_inclusion_of(:locale).in_array(I18n.available_locales.map(&:to_s)) }
+  it { is_expected.to validate_presence_of(:title_en) }
+  it { is_expected.to validate_presence_of(:description_en) }
 
   it {
     expect(described_class.new).to define_enum_for(:mode)

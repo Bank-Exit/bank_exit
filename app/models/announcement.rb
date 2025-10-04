@@ -1,4 +1,6 @@
 class Announcement < ApplicationRecord
+  extend Mobility
+
   enum :mode,
        { default: 0, info: 1, success: 2, warning: 3, error: 4 },
        default: :default,
@@ -11,9 +13,12 @@ class Announcement < ApplicationRecord
     attachable.variant :thumb, resize_to_limit: [100, 100]
   end
 
-  validates :title, presence: true
-  validates :description, presence: true
-  validates :locale, presence: true, inclusion: { in: I18n.available_locales.map(&:to_s) }
+  translates :title, type: :string
+  translates :description, type: :text
+  translates :link_to_visit, type: :string, fallbacks: false
+
+  validates :title_en, presence: true
+  validates :description_en, presence: true
   validates :picture,
             content_type: {
               in: ['image/png', 'image/jpeg'],

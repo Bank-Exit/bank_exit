@@ -87,26 +87,33 @@ module Admin
     private
 
     def directory_params
+      translated_params = I18n.available_locales.map do |l|
+        [
+          :"name_#{Mobility.normalize_locale(l)}",
+          :"description_#{Mobility.normalize_locale(l)}"
+        ]
+      end.flatten
+
       params.expect(directory: [
-                      :name, :description, :position, :enabled, :spotlight,
-                      :logo, :banner, :category,
-                      :remove_logo, :remove_banner,
-                      {
-                        address_attributes: %i[id label],
-                        coin_wallets_attributes: [%i[
-                          id coin public_address enabled _destroy
-                        ]],
-                        delivery_zones_attributes: [%i[
-                          id mode value enabled _destroy
-                        ]],
-                        contact_ways_attributes: [%i[
-                          id role value enabled _destroy
-                        ]],
-                        weblinks_attributes: [%i[
-                          id url title enabled _destroy
-                        ]]
-                      }
-                    ])
+        :position, :enabled, :spotlight,
+        :logo, :banner, :category,
+        :remove_logo, :remove_banner,
+        {
+          address_attributes: %i[id label],
+          coin_wallets_attributes: [%i[
+            id coin public_address enabled _destroy
+          ]],
+          delivery_zones_attributes: [%i[
+            id mode value enabled _destroy
+          ]],
+          contact_ways_attributes: [%i[
+            id role value enabled _destroy
+          ]],
+          weblinks_attributes: [%i[
+            id url title enabled _destroy
+          ]]
+        }
+      ].push(translated_params))
     end
 
     def set_directory

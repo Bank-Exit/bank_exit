@@ -1,8 +1,10 @@
 FactoryBot.define do
   factory :announcement do
-    title { Faker::Lorem.sentence }
-    description { Faker::Lorem.paragraph }
-    locale { I18n.default_locale }
+    I18n.available_locales.each do |locale|
+      send("title_#{locale}") { "Title #{locale}" }
+      send("description_#{locale}") { "Description #{locale}" }
+    end
+
     enabled { true }
 
     traits_for_enum :mode

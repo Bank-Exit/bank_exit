@@ -115,8 +115,8 @@ RSpec.describe 'Directories' do
       let(:params) do
         {
           directory: {
-            name: 'Nouveau',
-            description: 'Desc',
+            name_en: 'Nouveau',
+            description_en: 'Desc',
             category: :food,
             address_attributes: { label: 'Paris' }
           }

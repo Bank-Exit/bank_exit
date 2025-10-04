@@ -1,8 +1,10 @@
 - max_counter_value = Setting::MAX_DEFAULT_DESCRIPTION_LENGTH
-- content_length = f.object.description&.length || 0
+- description_input_name = defined?(input_name) ? input_name : :description
+- content_length = f.object.send(description_input_name)&.length || 0
 
-div data-controller="character-counter" data-character-counter-max-counter-value=max_counter_value data-character-counter-within-class="bg-success" data-character-counter-near-class="bg-warning" data-character-counter-out-class="bg-error"
-  = f.input :description, as: :text,
+div data-controller="character-counter" data-character-counter-max-counter-value=max_counter_value data-character-counter-within-class="badge-success" data-character-counter-near-class="badge-warning" data-character-counter-out-class="badge-error"
+  = f.input description_input_name, as: :text,
+            label: f.object.class.human_attribute_name(:description),
             input_html: { \
               data: { \
                 character_counter_target: 'textarea', \
@@ -11,5 +13,5 @@ div data-controller="character-counter" data-character-counter-max-counter-value
             }
 
   p.text-right.text-sm.mt-2
-    span.rounded-box.px-2 class=(content_length < 50 ? 'bg-warning' : (content_length < max_counter_value ? 'bg-success' : 'bg-error')) data-character-counter-target="counter"= content_length
+    span.badge.badge-sm class=(content_length < 50 ? 'badge-warning' : (content_length < max_counter_value ? 'badge-success' : 'badge-error')) data-character-counter-target="counter"= content_length
     |< / #{max_counter_value}
