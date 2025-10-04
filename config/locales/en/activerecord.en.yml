@@ -131,6 +131,8 @@ en:
       directory:
         name: Name
         description: Description
+        name_en: Name
+        description_en: Description
         delivery_zone: Delivery zone
         enabled: Enabled?
         spotlight: Featured?

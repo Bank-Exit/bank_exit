@@ -71,11 +71,18 @@ module Admin
     private
 
     def announcement_params
+      translated_params = I18n.available_locales.map do |l|
+        [
+          :"title_#{Mobility.normalize_locale(l)}",
+          :"description_#{Mobility.normalize_locale(l)}",
+          :"link_to_visit_#{Mobility.normalize_locale(l)}"
+        ]
+      end.flatten
+
       params.expect(announcement: %i[
-                      title description locale mode enabled picture
-                      link_to_visit published_at unpublished_at
-                      remove_picture
-                    ])
+        mode enabled picture remove_picture
+        published_at unpublished_at
+      ].push(translated_params))
     end
 
     def set_announcement

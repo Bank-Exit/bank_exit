@@ -138,6 +138,8 @@ fr:
       directory:
         name: Nom
         description: Description
+        name_en: Nom
+        description_en: Description
         delivery_zone: Zone de livraison
         enabled: Activé ?
         spotlight: En vedette ?

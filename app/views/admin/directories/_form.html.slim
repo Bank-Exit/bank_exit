@@ -7,13 +7,20 @@
         - directory.errors.each do |error|
           li= error.full_message
 
-  .flex.flex-col.lg:flex-row.gap-3
-    = f.input :name
-    = f.input :category,
-              prompt: 'Sélectionner une catégorie',
-              collection: directories_categories_select_helper
+  .tabs.tabs-box
+    - announcement_locale_select_helper.each do |label, locale|
+      input.tab.mb-1 type="radio" name="tabs_directory"  checked=("checked" if locale == I18n.default_locale) aria-label=label
 
-  = render 'description_with_counter', f: f
+      .tab-content.bg-base-100.border-base-300.rounded-box.p-6.space-y-2
+        - name = :"name_#{Mobility.normalize_locale(locale)}"
+        - description = :"description_#{Mobility.normalize_locale(locale)}"
+
+        = f.input name, label: Directory.human_attribute_name(:name)
+        = render 'description_with_counter', f: f, input_name: description
+
+  = f.input :category,
+            prompt: 'Sélectionner une catégorie',
+            collection: directories_categories_select_helper
 
   - if params[:debug] == 'true'
     = f.input :position

@@ -5,7 +5,8 @@ RSpec.describe Directory do
     I18n.t('directories_categories').keys.map(&:to_s)
   end
 
-  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:name_en) }
+  it { is_expected.to validate_presence_of(:description_en) }
   it { is_expected.to allow_values(*allowed_categories).for(:category) }
   it { is_expected.to allow_value(nil).for(:category) }
   it { is_expected.to_not allow_value('fake').for(:category) }
@@ -18,6 +19,29 @@ RSpec.describe Directory do
     subject { build :directory, requested_by_user: true }
 
     it { is_expected.to_not allow_value(nil).for(:category) }
-    it { is_expected.to validate_presence_of(:description) }
+  end
+
+  describe '.by_query' do
+    subject { described_class.by_query(query) }
+
+    before do
+      create :directory, name_en: 'Jane Doe name'
+      create :directory, description_en: 'Jane Doe description'
+    end
+
+    context 'when query matches records' do
+      let(:query) { 'john' }
+
+      let!(:directory_with_name) { create :directory, name_en: 'It is John Doe' }
+      let!(:directory_with_description) { create :directory, description_en: 'Here is John Doe description' }
+
+      it { is_expected.to contain_exactly(directory_with_name, directory_with_description) }
+    end
+
+    context 'when query does not match records' do
+      let(:query) { 'nothing to return' }
+
+      it { is_expected.to be_empty }
+    end
   end
 end

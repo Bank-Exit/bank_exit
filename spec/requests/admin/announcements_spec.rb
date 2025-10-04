@@ -136,7 +136,7 @@ RSpec.describe 'Admin::Announcements' do
   describe 'PATCH /admin/announcements/:id' do
     subject { patch "/admin/announcements/#{announcement.id}", params: valid_params }
 
-    let(:valid_params) { { announcement: { title: 'Name updated' } } }
+    let(:valid_params) { { announcement: { title_en: 'Name updated' } } }
 
     %i[super_admin].each do |role|
       context "when role is #{role}" do

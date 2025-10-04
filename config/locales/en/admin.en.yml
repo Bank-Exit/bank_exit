@@ -1,0 +1,86 @@
+en:
+  admin:
+    announcements:
+      index:
+        title: Announcements
+      new:
+        title: Add an Announcement
+      create:
+        notice: The announcement was successfully created
+      edit:
+        title: Edit Announcement
+      update:
+        notice: The announcement was successfully updated
+      destroy:
+        notice: The announcement was successfully deleted
+
+    comments:
+      index:
+        title: Comments
+      update:
+        notice: The comment was successfully reactivated
+      destroy:
+        notice: The comment was successfully deleted
+
+    dashboards:
+      show:
+        title: Admin Dashboard
+
+    directories:
+      index:
+        title: Directory
+      new:
+        title: Add a Directory Entry
+      create:
+        notice: The entry was successfully added to the directory
+      edit:
+        title: Edit Entry
+      update:
+        notice: The directory entry was successfully updated
+      destroy:
+        notice: The directory entry was successfully deleted
+
+    merchants:
+      index:
+        title: Merchants
+        title_for_disabled: Disabled Merchants
+      edit:
+        title: Edit Merchant
+      update:
+        notice: The merchant was successfully updated
+      destroy:
+        notice: The merchant was successfully deleted
+
+      batch_actions:
+        update:
+          notice: The merchants were successfully reactivated
+        destroy:
+          notice: The merchants were successfully deleted
+
+      directory_converters:
+        create:
+          notice: The directory entry was successfully created. Remember to reactivate it after making changes
+
+      reactivates:
+        create:
+          notice: The merchant was successfully reactivated
+
+    profiles:
+      edit:
+        title: Edit My Profile
+      update:
+        notice: Your profile was successfully updated
+
+    users:
+      index:
+        title: Users
+      new:
+        title: Add a User
+      create:
+        notice: The user was successfully created
+      edit:
+        title: Edit User
+      update:
+        notice: The user was successfully updated
+      destroy:
+        notice: The user was successfully deleted

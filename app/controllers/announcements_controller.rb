@@ -8,8 +8,6 @@ class AnnouncementsController < PublicController
   # @route GET /en/announcements {locale: "en"} (announcements_en)
   # @route GET /announcements
   def index
-    @announcements = Announcement.enabled.published.where(
-      locale: I18n.locale
-    )
+    @announcements = Announcement.enabled.published
   end
 end

@@ -7,13 +7,13 @@
           li= error.full_message
 
   .flex.flex-col.lg:flex-row.gap-3
-    = f.input :name
+    = f.input :name_en, label: Directory.human_attribute_name(:name)
     = f.input :category,
               required: true,
               prompt: :translate,
               collection: directories_categories_select_helper
 
-  = render 'description_with_counter', f: f
+  = render 'description_with_counter', f: f, input_name: :description_en
 
   .flex.flex-col.lg:flex-row.gap-3
     = f.input :logo, as: :file,

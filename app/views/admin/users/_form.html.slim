@@ -3,7 +3,7 @@
     = simple_form_for [:admin, user],
                       html: { class: 'space-y-5' } do |f|
       - if user.errors.any?
-        .panel.panel-error
+        .alert.alert-error
           ul.list-disc.list-inside
             - user.errors.each do |error|
               li= error.full_message

@@ -37,8 +37,10 @@ class Merchant < ApplicationRecord
 
   def to_directory!
     directory = build_directory(
-      name: name,
-      description: description,
+      name_en: name,
+      description_en: description,
+      name_fr: name,
+      description_fr: description,
       enabled: false
     )
 

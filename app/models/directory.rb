@@ -1,6 +1,8 @@
 class Directory < ApplicationRecord
+  extend Mobility
   include WithCaptcha
   include WithLogoAndBanner
+  include MobilityQueryable
 
   attribute :requested_by_user, :boolean, default: false
   attribute :proposition_from, :string
@@ -21,12 +23,16 @@ class Directory < ApplicationRecord
   accepts_nested_attributes_for :delivery_zones, allow_destroy: true
   accepts_nested_attributes_for :weblinks, allow_destroy: true
 
+  translates :name, type: :string
+  translates :description, type: :text
+  queryable_by name: :string, description: :text
+
   positioned
 
-  validates :name, presence: true
+  validates :name_en, presence: true
+  validates :description_en, presence: true
   validates :category, presence: true, inclusion: { in: :allowed_categories }, if: :requested_by_user?
   validates :category, allow_blank: true, inclusion: { in: :allowed_categories }, unless: :requested_by_user?
-  validates :description, presence: true, if: :requested_by_user?
   validates :proposition_from, allow_blank: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   validates_associated :coin_wallets
@@ -39,10 +45,6 @@ class Directory < ApplicationRecord
   scope :disabled, -> { where(enabled: false) }
   scope :spotlights, -> { where(spotlight: true) }
   scope :by_category, ->(category) { where(category: category) }
-  scope :by_query, lambda { |query|
-    where('name LIKE :query', query: "%#{query}%")
-      .or(where('description LIKE :query', query: "%#{query}%"))
-  }
   scope :by_coins, lambda { |coins|
     # Handle BTC onchain and Lightning in a similar way
     coins <<= 'lightning' if coins.include?('bitcoin')
@@ -66,17 +68,17 @@ end
 #
 # Table name: directories
 #
-#  id             :integer          not null, primary key
-#  name           :string           not null
-#  description    :text
-#  category       :string
-#  spotlight      :boolean          default(FALSE), not null
-#  enabled        :boolean          default(TRUE), not null
-#  position       :integer          not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  merchant_id    :integer
-#  comments_count :integer          default(0), not null
+#  id                 :integer          not null, primary key
+#  name_legacy        :string
+#  description_legacy :text
+#  category           :string
+#  spotlight          :boolean          default(FALSE), not null
+#  enabled            :boolean          default(TRUE), not null
+#  position           :integer          not null
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  merchant_id        :integer
+#  comments_count     :integer          default(0), not null
 #
 # Indexes
 #

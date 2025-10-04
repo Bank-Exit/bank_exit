@@ -2,13 +2,23 @@
                   html: { class: 'space-y-5' } do |f|
 
   - if announcement.errors.any?
-    .panel.panel-error.mt-3
+    .alert.alert-error
       ul.list-disc.list-inside
         - announcement.errors.each do |error|
           li= error.full_message
 
-  = f.input :title
-  = f.input :description
+  .tabs.tabs-box
+    - announcement_locale_select_helper.each do |label, locale|
+      input.tab.mb-1 type="radio" name="tabs_announcement"  checked=("checked" if locale == I18n.default_locale) aria-label=label
+
+      .tab-content.bg-base-100.border-base-300.rounded-box.p-6.space-y-2
+        - title = :"title_#{Mobility.normalize_locale(locale)}"
+        - description = :"description_#{Mobility.normalize_locale(locale)}"
+        - link_to_visit = :"link_to_visit_#{Mobility.normalize_locale(locale)}"
+
+        = f.input title, label: Announcement.human_attribute_name(:title)
+        = f.input description, as: :text, label: Announcement.human_attribute_name(:description)
+        = f.input link_to_visit, label: Announcement.human_attribute_name(:link_to_visit)
 
   div
     = f.input :picture, as: :file
@@ -17,14 +27,9 @@
       = f.input :remove_picture, as: :boolean
 
   .flex.flex-col.lg:flex-row.gap-3
-    = f.input :locale,
-              collection: announcement_locale_select_helper,
-              include_blank: false
     = f.input :mode,
               collection: select_options_for(Announcement, :modes),
               include_blank: false
-
-  = f.input :link_to_visit
 
   .flex.flex-col.lg:flex-row.gap-3
     = f.input :published_at, html5: true, wrapper_html: { class: 'w-1/2' }

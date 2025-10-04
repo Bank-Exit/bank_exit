@@ -115,7 +115,7 @@ class DirectoriesController < PublicController
   def directory_params
     params.expect(
       directory: [
-        :name, :description,
+        :name_en, :description_en,
         :logo, :banner, :category,
         :proposition_from, :nickname,
         {
