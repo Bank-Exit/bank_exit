@@ -5,7 +5,7 @@
                       method: :patch,
                       html: { \
                         data: { \
-                          turbo_confirm: 'Voulez-vous réactiver ces commerçants ?' \
+                          turbo_confirm: t('.reactivate_confirm') \
                         } \
                       } do |f|
       = f.input :directory_ids,
@@ -16,7 +16,7 @@
                   data: { admin__table_target: 'batchIdsInput' } \
                 }
       = button_tag class: 'btn btn-success btn-square',
-                  title: 'Réactiver les sélectionnés',
+                  title: t('.reactivate_title'),
                   data: { admin__table_target: 'batchEnableSubmit' },
                   disabled: true do
         = lucide_icon('check-check')
@@ -27,7 +27,7 @@
                       method: :delete,
                       html: { \
                         data: { \
-                          turbo_confirm: 'Voulez-vous supprimer définitivement ces commerçants ?' \
+                          turbo_confirm: t('.destroy_confirm') \
                         } \
                       } do |f|
       = f.input :directory_ids,
@@ -39,7 +39,7 @@
                 }
 
       = button_tag class: 'btn btn-error btn-square',
-                  title: 'Supprimer les sélectionnés',
+                  title: t('.destroy_title'),
                   data: { admin__table_target: 'batchDestroySubmit' },
                   disabled: true do
         = lucide_icon('trash-2')

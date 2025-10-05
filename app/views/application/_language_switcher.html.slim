@@ -1,8 +1,11 @@
+- show_label = defined?(with_label) ? with_label : true
+
 details.dropdown
   summary
     span
       = emoji_by_locale(I18n.locale)
-      span.hidden.xl:inline-block.ml-1= Rails.configuration.i18n_human_languages[I18n.locale]
+      - if show_label
+        span.hidden.xl:inline-block.ml-1= Rails.configuration.i18n_human_languages[I18n.locale]
 
   ul.menu.dropdown-content.w-max
     - I18n.available_locales.each do |locale|
@@ -11,4 +14,5 @@ details.dropdown
         = link_to url_for(locale: locale.to_s, params: request.query_parameters), role: :menuitem, hreflang: locale.to_s, rel: 'alternate' do
           span
             = emoji_by_locale(locale)
-            span.ml-1=< Rails.configuration.i18n_human_languages[locale]
+            - if show_label
+              span.ml-1=< Rails.configuration.i18n_human_languages[locale]

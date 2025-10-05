@@ -1,0 +1,188 @@
+es:
+  admin:
+    announcements:
+      index:
+        title: Los anuncios
+      new:
+        title: Añadir un anuncio
+      create:
+        notice: El anuncio se ha creado correctamente
+      edit:
+        title: Editar un anuncio
+      update:
+        notice: El anuncio se ha modificado correctamente
+      destroy:
+        notice: El anuncio se ha eliminado correctamente
+
+      announcements:
+        empty_results: No hay ningún anuncio para mostrar
+      announcement:
+        date_overpass_title: Fecha de publicación pasada
+      actions:
+        destroy_confirm: ¿Desea eliminar este anuncio?
+
+    comments:
+      index:
+        title: Los comentarios
+        comments_visibles: Comentarios visibles
+        comments_reported: Comentarios reportados
+        comments_disabled: Comentarios deshabilitados ⚠️
+        comments_disabled_body_html: |
+          La funcionalidad de comentarios está deshabilitada mediante la variable de entorno <mark>FF_COMMENTS_ENABLED</mark> (Feature Flag).
+
+          Los usuarios ya no pueden publicar comentarios ni ver los existentes mientras esta funcionalidad permanezca deshabilitada.
+
+      update:
+        notice: El comentario ha sido reactivado correctamente
+      destroy:
+        notice: El comentario ha sido eliminado correctamente
+
+      comments:
+        resource: Recurso
+        report: Reporte
+        empty_results: No hay ningún comentario para mostrar
+      actions:
+        view_merchant_public_page: Ver página pública del comerciante
+        reactivate_confirm: ¿Desea quitar el reporte de este comentario?
+        destroy_confirm: ¿Desea eliminar este comentario?
+
+    dashboards:
+      show:
+        title: Panel de control
+
+    directories:
+      index:
+        title: El directorio
+        directory_entries: Entradas del directorio
+        directory_entries_disabled: Entradas deshabilitadas
+      new:
+        title: Añadir una entrada al directorio
+      create:
+        notice: La entrada se ha añadido correctamente al directorio
+      edit:
+        title: Editar una entrada
+        entry_disabled: Esta entrada está deshabilitada y no es visible en el sitio.
+        entry_associated_to_merchant_html: Esta entrada del directorio está asociada al comerciante %{merchant_link} en el mapa.
+      update:
+        notice: La entrada del directorio se ha modificado correctamente
+      destroy:
+        notice: La entrada del directorio se ha eliminado correctamente
+
+      form:
+        address_body_help: |
+          Dirección del comerciante: déjala vacía o mantenla imprecisa para proteger su anonimato.
+
+          Nota: este campo no está vinculado a la zona de entrega y solo se muestra en la ficha del directorio.
+
+        new_coin_wallet: Nueva cartera cripto
+        coin_wallet_body_help: |
+          Selecciona las criptomonedas aceptadas por este comerciante.
+
+          Si se proporciona una dirección pública, se mostrará un código QR a los usuarios para que puedan escanearlo y enviar dinero directamente. De lo contrario, solo se mostrará el ícono de la criptomoneda.
+
+        new_delivery_zone: Nueva zona de entrega
+        delivery_zone_body_help: |
+          La API de Nominatim se utilizará para entradas del tipo "ciudad" o "departamento" con el fin de recuperar los datos de geolocalización necesarios. El objetivo es permitir un filtrado jerárquico (como muñecas rusas). Por ejemplo, una zona de entrega con el país "Francia" debería coincidir con una búsqueda de usuario para la región "Córcega", el departamento "Cher" o la ciudad de "Estrasburgo". Se utilizan códigos ISO para esto.
+
+          Nota: dado que actualmente las entradas de tipo "región" están limitadas a Francia, se evita una llamada innecesaria al geocodificador forzando el valor.
+
+          Nota: el procesamiento puede tardar unos segundos en completarse dependiendo del número de zonas que se analicen.
+
+        new_contact_way: Nuevo medio de contacto
+        new_weblink: Nueva fuente
+
+      actions:
+        view_public_page: Ver página pública
+        destroy_confirm: ¿Desea eliminar esta entrada del directorio?
+
+    merchants:
+      index:
+        title: Los comerciantes
+        title_for_disabled: Comerciantes deshabilitados
+        merchants_visibles: Comerciantes visibles
+        merchants_disabled: Comerciantes deshabilitados
+        last_update: Última actualización
+        there_is: Hace %{time}
+
+        merchant_disabled_body_html: |
+          Los comerciantes marcados como <span class="badge badge-sm badge-error">Deshabilitado</span> no se incluyeron en los resultados durante la última actualización de la API con Overpass. Esto puede significar que el comerciante ha cerrado, ya no acepta criptomonedas (Bitcoin, Monero o June), o que un troll ha vandalizado los datos en OpenStreetMap.
+
+          Corresponde entonces al Colectivo revisar estos cambios y confirmar si el comerciante debe ser eliminado del mapa o reactivado (por defecto, el comerciante pasa a estar "soft deleted", lo que significa que sigue en la base de datos pero ya no es visible en el mapa ni en la búsqueda).
+
+          Cabe señalar que si el comerciante es confirmado como legítimo y reactivado en Bank-Exit, volverá a aparecer como <span class="badge badge-sm badge-error">Deshabilitado</span> en cada actualización de datos mientras la fuente no haya sido corregida en OSM, ya que el algoritmo considera que la "verdad" proviene de OSM.
+
+      edit:
+        title: Editar el comerciante
+      update:
+        notice: El comerciante se ha modificado correctamente
+      destroy:
+        notice: El comerciante se ha eliminado correctamente
+
+      merchants:
+        empty_results: No hay ningún comerciante para mostrar
+
+      actions:
+        merchant_admin_page: Ficha admin
+        merchant_public_page: Ficha pública
+        merchant_on_osm: Comerciante en OSM
+        convert_to_directory: Convertir en entrada del directorio
+        convert_to_directory_confirm_html: ¿Desea convertir este comerciante e integrarlo en el directorio?<br />(el comerciante del mapa no será modificado)
+        reactivate_confirm: ¿Desea reactivar este comerciante para volver a referenciarlo en el mapa?
+        destroy_confirm_html: ¿Desea eliminar este comerciante?<br /> ⚠️ Ya no aparecerá en el mapa.
+
+      batch_actions:
+        update:
+          notice: Los comerciantes han sido reactivados correctamente
+        destroy:
+          notice: Los comerciantes han sido eliminados correctamente
+
+        reactivate_title: Reactivar seleccionados
+        reactivate_confirm: ¿Desea reactivar estos comerciantes?
+        destroy_title: Eliminar seleccionados
+        destroy_confirm: ¿Desea eliminar definitivamente estos comerciantes?
+
+      directory_converters:
+        create:
+          notice: La entrada del directorio ha sido creada correctamente. Recuerde reactivarla una vez finalizadas las modificaciones
+
+      reactivates:
+        create:
+          notice: El comerciante ha sido reactivado correctamente
+
+    profiles:
+      edit:
+        title: Editar mi perfil
+        submit: Actualizar mi perfil
+      update:
+        notice: Su perfil ha sido actualizado correctamente
+
+    users:
+      index:
+        title: Los usuarios
+      new:
+        title: Añadir un usuario
+      create:
+        notice: El usuario ha sido creado correctamente
+      edit:
+        title: Editar un usuario
+      update:
+        notice: El usuario ha sido modificado correctamente
+      destroy:
+        notice: El usuario ha sido eliminado correctamente
+
+      user:
+        logged_in_as: Conectado como
+        logged_in_as_confirm_html: ¿Desea conectarse como <strong>%{email}</strong>?
+
+    sidebar:
+      title: Salida del Banco
+      subtitle: Admin
+
+      merchants_disabled: Comerciantes deshabilitados
+      comments_disabled: Comentarios reportados
+
+      back_to_home: Volver al inicio
+      back_to_map: Volver al mapa
+      back_to_directory: Volver al directorio
+
+      edit_my_profile: Editar mi perfil

@@ -202,6 +202,7 @@ en:
 
       refresh_confirm_html: Are you sure you want to refresh merchants ? <br /> Please be patient, it could take several minutes.
       refresh: Refresh merchants data
+      view_in_admin: View in admin
 
     helps:
       show:

@@ -19,7 +19,18 @@ de:
   link: Link
   spotlight: Im Rampenlicht
   reset_search: Suche zurücksetzen
+  status: Status
   filters: Filter
+  edit: Bearbeiten
+  destroy: Löschen
+  logout: Abmelden
+  back: Zurück
+  reactivate: Reaktivieren
+  preview: Vorschau
+  actions: Aktionen
+  date_title: Datum
+  display: Anzeigen
+  refresh: Aktualisieren
 
   grid: Raster
   table: Tabelle
@@ -40,9 +51,9 @@ de:
   empty_results: Keine Ergebnisse vorhanden
 
   x_results:
-    zero: "%{count} Ergebnis"
-    one: "%{count} Ergebnis"
-    other: "%{count} Ergebnisse"
+    zero: "0 Ergebnis"
+    one: "1 Ergebnis"
+    other: "%{formatted_count} Ergebnisse"
 
   from: von
   to: bis

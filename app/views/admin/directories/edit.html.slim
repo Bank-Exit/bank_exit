@@ -2,20 +2,19 @@ header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
   h1.text-3xl= t('.title')
 
   - if allowed_to?(:index?, Directory, namespace: Admin)
-    = back_link_to 'Retour', admin_directories_path, klass: 'btn'
+    = back_link_to t('back'), admin_directories_path, klass: 'btn'
 
 section
   - unless @directory.enabled?
     .alert.alert-error.mb-3
       p
         = lucide_icon 'triangle-alert', class: 'inline-flex w-4 mr-1'
-        | Cette entrée est actuellement désactivée et n'est donc pas visible sur le site.
+        = t('.entry_disabled')
 
   - if @directory.merchant
     .alert.alert-warning.mb-3
       p
-        | Cette entrée d'annuaire est associée au commerçant
-        =<> link_to @directory.merchant.name, @directory.merchant, target: :_blank, class: 'btn btn-xs'
-        | sur la carte.
+        - merchant_link = link_to @directory.merchant.name, @directory.merchant, target: :_blank, class: 'btn btn-xs'
+        = t('.entry_associated_to_merchant_html', merchant_link: merchant_link)
 
   = render 'form', directory: @directory

@@ -4,14 +4,14 @@ section.table-wrapper
       tr
         th scope="col"
         - if allowed_to?(:update_position?, Directory)
-          th scope="col" Position
-        th scope="col" Logo
-        th scope="col" Nom
+          th scope="col"= Directory.human_attribute_name(:position)
+        th scope="col"= Directory.human_attribute_name(:logo)
+        th scope="col"= Directory.human_attribute_name(:name)
         th scope="col" Localisation
-        th scope="col" Monnaies
+        th scope="col"= Directory.human_attribute_name(:coins)
         th scope="col" Contact
-        th scope="col" Date
-        th scope="col" Actions
+        th scope="col"= t('date_title')
+        th scope="col"= t('actions')
 
     tbody data-controller=("admin--directories" if allowed_to?(:update_position?, Directory))
       = render directories

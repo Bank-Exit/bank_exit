@@ -52,7 +52,7 @@ RSpec.describe 'Admin::Directories' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_directories_path }
-          let(:flash_notice) { "L'entrée a bien été ajoutée à l'annuaire" }
+          let(:flash_notice) { I18n.t('admin.directories.create.notice') }
         end
 
         it { expect { action }.to change { Directory.count }.by(1) }
@@ -105,7 +105,7 @@ RSpec.describe 'Admin::Directories' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_directories_path }
-          let(:flash_notice) { "L'entrée de l'annuaire a bien été modifiée" }
+          let(:flash_notice) { I18n.t('admin.directories.update.notice') }
         end
       end
     end
@@ -131,7 +131,7 @@ RSpec.describe 'Admin::Directories' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_directories_path }
-          let(:flash_notice) { "L'entrée de l'annuaire a bien été supprimée" }
+          let(:flash_notice) { I18n.t('admin.directories.destroy.notice') }
         end
 
         it { expect { action }.to change { Directory.count }.by(-1) }

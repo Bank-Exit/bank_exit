@@ -202,6 +202,7 @@ fr:
 
       refresh_confirm_html: Voulez-vous rafraîchir la liste des commerçants ? <br /> Soyez patient, cela peut prendre quelques minutes.
       refresh: Rafraîchir les commerçants
+      view_in_admin: Voir dans l'admin
 
     helps:
       show:

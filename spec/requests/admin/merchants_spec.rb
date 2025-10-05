@@ -73,7 +73,7 @@ RSpec.describe 'Admin::Merchants' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_merchants_path }
-          let(:flash_notice) { 'Le commerçant a bien été modifié' }
+          let(:flash_notice) { I18n.t('admin.merchants.update.notice') }
         end
       end
     end
@@ -101,7 +101,7 @@ RSpec.describe 'Admin::Merchants' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_merchants_path(show_deleted: true) }
-          let(:flash_notice) { 'Le commerçant a bien été supprimé' }
+          let(:flash_notice) { I18n.t('admin.merchants.destroy.notice') }
         end
 
         it { expect { action }.to change { Merchant.count }.by(-1) }

@@ -160,6 +160,7 @@ it:
 
       directory:
         banner: Banner di sfondo
+        spotlight: Se selezionato, questa voce verrà evidenziata in cima alla pagina della directory
         address:
           label: Lascia vuoto o inserisci un indirizzo approssimativo per proteggere l’anonimato del commerciante.<br />Questa informazione viene utilizzata dalla funzione "Intorno a me" e influenza la rilevanza dei risultati geolocalizzati in base a latitudine e longitudine.
 

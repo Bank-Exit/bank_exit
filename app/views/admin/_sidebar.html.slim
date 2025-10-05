@@ -2,45 +2,49 @@
   label.drawer-overlay for="sidebarDrawer" aria-label="close sidebar"
 
   .bg-base-300.min-h-full.w-80.border-r-2.border-primary.p-4.flex.flex-col.justify-between
-    div
-      = link_to admin_dashboard_path, class: 'block mb-3' do
+    .space-y-2
+      = link_to admin_dashboard_path, class: 'block' do
         = image_tag logo_by_locale, class: 'w-32 mx-auto'
 
         .text-center
-          h1.text-xl.font-bold Sortie de Banque
-          p Admin
+          p.text-xl.font-bold= t('.title')
+          p= t('.subtitle')
 
-      ul.menu.bg-base-200.mb-5.border.border-base-content/20.rounded-lg.w-full.items-center.space-y-2
+      ul.menu.absolute.top-1.right-1
+        li= render 'language_switcher', with_label: false
+
+      ul.menu.bg-base-200.border.border-base-content/20.rounded-lg.w-full.items-center.space-y-2
         li
-          = link_to 'Tableau de bord', admin_dashboard_path, class: ('menu-active' if params[:controller] == 'admin/dashboards')
+          = link_to t('admin.dashboards.show.title'), admin_dashboard_path, class: ('menu-active' if params[:controller] == 'admin/dashboards')
 
         li
           = link_to admin_merchants_path, class: ('menu-active' if params[:controller] == 'admin/merchants') do
-            | Les commerçants
+            = Merchant.model_name.human(count: 2).capitalize
             - if Merchant.deleted.any?
-              span< title="Commerçants désactivés" ⚠️
+              span< title=t('.merchants_disabled')
+                = lucide_icon 'triangle-alert', class: 'w-4'
 
         li
           = link_to admin_directories_path, class: ('menu-active' if params[:controller] == 'admin/directories') do
-            | L'annuaire
+            = Directory.model_name.human(count: 2).capitalize
 
         - if allowed_to?(:index?, Comment)
           li
             = link_to admin_comments_path, class: ('menu-active' if params[:controller] == 'admin/comments') do
-              | Les commentaires
+              = Comment.model_name.human(count: 2).capitalize
               - if Comment.flagged.any?
-                span< title="Commentaire signalé" ⚠️
+                span< title=t('.comments_disabled')
+                  = lucide_icon 'triangle-alert', class: 'w-4'
 
         - if allowed_to?(:index?, Announcement)
           li
             = link_to admin_announcements_path, class: ('menu-active' if params[:controller] == 'admin/announcements') do
-              | Les annonces
+              = Announcement.model_name.human(count: 2).capitalize
 
         - if allowed_to?(:index?, User)
           li
             = link_to admin_users_path, class: ('menu-active' if params[:controller] == 'admin/users') do
-              | Les utilisateurs
-
+              = User.model_name.human(count: 2).capitalize
 
         - if allowed_to?(:mission_control?, User)
           li
@@ -52,17 +56,17 @@
             = link_to admin_active_analytics_path, target: :_blank do
               | Analytics
 
-        li
+        / Instance is down
+        / li
           = link_to 'https://bank-exit-uptime-production.up.railway.app', target: :_blank do
             | Uptime Kuma
 
-      .space-y-2.mb-8
-        label.flex.cursor-pointer.gap-2.justify-center
-          = lucide_icon 'sun', class: 'swap-on h-6 w-6 fill-current'
+      label.flex.cursor-pointer.gap-2.justify-center.items-center.my-5
+        = lucide_icon 'sun', class: 'swap-on h-5 w-5 fill-current'
 
-          input#theme-switcher.toggle.theme-controller type="checkbox" value=Setting::DARK_THEME_NAME data-controller="themes" data-action="click->themes#switch"
+        input#theme-switcher.toggle.toggle-sm.theme-controller type="checkbox" value=Setting::DARK_THEME_NAME data-controller="themes" data-action="click->themes#switch"
 
-          = lucide_icon 'moon', class: 'swap-off h-6 w-6 fill-current'
+        = lucide_icon 'moon', class: 'swap-off h-5 w-5 fill-current'
 
     - color = color_for_role(current_user.role)
 
@@ -79,16 +83,16 @@
         .dropdown-content.bg-base-200.rounded-box.z-1.shadow-sm.border.border-base-content/20.w-full
           ul.menu.space-y-2.w-full.text-center
             li
-              = back_link_to "Retour à l'accueil", root_path
+              = back_link_to t('.back_to_home'), root_path
             li
-              = back_link_to "Retour à la carte", maps_path
+              = back_link_to t('.back_to_map'), maps_path
             li
-              = back_link_to "Retour à l'annuaire", directories_path
+              = back_link_to t('.back_to_directory'), directories_path
             li
-              = link_to 'Modifier mon profil', edit_admin_profile_path
+              = link_to t('.edit_my_profile'), edit_admin_profile_path
 
             li
-              = link_to t('simple_form.user.logout'),
+              = link_to t('logout'),
                         session_path,
                         data: { turbo_method: :delete },
                         class: 'text-error'

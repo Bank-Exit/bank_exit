@@ -1,0 +1,188 @@
+it:
+  admin:
+    announcements:
+      index:
+        title: Annunci
+      new:
+        title: Aggiungi un annuncio
+      create:
+        notice: L'annuncio è stato creato con successo
+      edit:
+        title: Modifica annuncio
+      update:
+        notice: L'annuncio è stato aggiornato con successo
+      destroy:
+        notice: L'annuncio è stato eliminato con successo
+
+      announcements:
+        empty_results: Non ci sono annunci da visualizzare
+      announcement:
+        date_overpass_title: Data di pubblicazione superata
+      actions:
+        destroy_confirm: Vuoi eliminare questo annuncio?
+
+    comments:
+      index:
+        title: Commenti
+        comments_visibles: Commenti visibili
+        comments_reported: Commenti segnalati
+        comments_disabled: Commenti disabilitati ⚠️
+        comments_disabled_body_html: |
+          La funzione di commento è disabilitata dalla variabile di ambiente <mark>FF_COMMENTS_ENABLED</mark> (Feature Flag).
+
+          Gli utenti non possono più pubblicare commenti né vedere quelli esistenti finché la funzione rimane disabilitata.
+
+      update:
+        notice: Il commento è stato riattivato con successo
+      destroy:
+        notice: Il commento è stato eliminato con successo
+
+      comments:
+        resource: Risorsa
+        report: Segnala
+        empty_results: Non ci sono commenti da visualizzare
+      actions:
+        view_merchant_public_page: Visualizza pagina pubblica del commerciante
+        reactivate_confirm: Vuoi rimuovere la segnalazione da questo commento?
+        destroy_confirm: Vuoi eliminare questo commento?
+
+    dashboards:
+      show:
+        title: Pannello di controllo admin
+
+    directories:
+      index:
+        title: Directory
+        directory_entries: Voci della directory
+        directory_entries_disabled: Voci disabilitate
+      new:
+        title: Aggiungi una voce alla directory
+      create:
+        notice: La voce è stata aggiunta con successo alla directory
+      edit:
+        title: Modifica voce
+        entry_disabled: Questa voce è attualmente disabilitata e quindi non visibile sul sito.
+        entry_associated_to_merchant_html: Questa voce della directory è associata al commerciante %{merchant_link} sulla mappa.
+      update:
+        notice: La voce della directory è stata aggiornata con successo
+      destroy:
+        notice: La voce della directory è stata eliminata con successo
+
+      form:
+        address_body_help: |
+          Indirizzo del commerciante: lasciare vuoto o approssimativo per proteggerne l’anonimato.
+
+          Nota: questo campo non è collegato alla zona di consegna ed è mostrato solo nella scheda della directory.
+
+        new_coin_wallet: Nuovo portafoglio crypto
+        coin_wallet_body_help: |
+          Seleziona le criptovalute accettate da questo commerciante.
+
+          Se viene fornito un indirizzo pubblico, agli utenti verrà mostrato un codice QR da scansionare per inviare direttamente denaro. Altrimenti verrà visualizzata solo l’icona della criptovaluta.
+
+        new_delivery_zone: Nuova zona di consegna
+        delivery_zone_body_help: |
+          L’API di Nominatim verrà utilizzata per le voci di tipo "città" o "dipartimento" per recuperare i dati di geolocalizzazione, con l’obiettivo di permettere un filtro "a matrioska". Ad esempio, una zona di consegna impostata su "Francia" dovrebbe essere compatibile con una ricerca utente per la regione "Corsica", il dipartimento "Cher" o la città di "Strasburgo". Vengono utilizzati i codici ISO a questo scopo.
+
+          Nota: poiché le voci di tipo "regione" sono attualmente limitate alla Francia, viene evitata una chiamata inutile al geocoder forzando il valore.
+
+          Nota: l'elaborazione può richiedere alcuni secondi a seconda del numero di zone da analizzare.
+
+        new_contact_way: Nuovo metodo di contatto
+        new_weblink: Nuova fonte
+
+      actions:
+        view_public_page: Visualizza pagina pubblica
+        destroy_confirm: Vuoi eliminare questa voce della directory?
+
+    merchants:
+      index:
+        title: Commercianti
+        title_for_disabled: Commercianti disabilitati
+        merchants_visibles: Commercianti visibili
+        merchants_disabled: Commercianti disabilitati
+        last_update: Ultimo aggiornamento
+        there_is: Ci sono %{time}
+
+        merchant_disabled_body_html: |
+          I commercianti etichettati come <span class="badge badge-sm badge-error">Disabilitati</span> non sono stati inclusi nei risultati durante l'ultimo aggiornamento API con Overpass. Ciò potrebbe significare che il commerciante ha chiuso, non accetta più criptovalute (Bitcoin, Monero o June), oppure che qualcuno ha vandalizzato i dati su OpenStreetMap.
+
+          Spetta quindi al Collettivo rivedere queste modifiche e confermare se il commerciante debba essere rimosso dalla mappa o riattivato (di default, il commerciante è contrassegnato come "soft deleted", il che significa che rimane nel database ma non è più visibile sulla mappa o nei risultati di ricerca).
+
+          Nota che se il commerciante viene confermato come legittimo e riattivato su Bank-Exit, diventerà di nuovo <span class="badge badge-sm badge-error">Disabilitato</span> ad ogni aggiornamento dei dati finché la fonte non sarà corretta su OSM, poiché l'algoritmo considera OSM come fonte di verità.
+
+      edit:
+        title: Modifica commerciante
+      update:
+        notice: Il commerciante è stato aggiornato con successo
+      destroy:
+        notice: Il commerciante è stato eliminato con successo
+
+      merchants:
+        empty_results: Non ci sono commercianti da visualizzare
+
+      actions:
+        merchant_admin_page: Profilo admin
+        merchant_public_page: Profilo pubblico
+        merchant_on_osm: Commerciante su OpenStreetMap
+        convert_to_directory: Converti in voce della directory
+        convert_to_directory_confirm_html: Vuoi convertire questo commerciante e aggiungerlo alla directory?<br />(il commerciante sulla mappa non sarà modificato)
+        reactivate_confirm: Vuoi riattivare questo commerciante per referenziarlo di nuovo sulla mappa?
+        destroy_confirm_html: Vuoi eliminare questo commerciante?<br /> ⚠️ Non sarà più elencato sulla mappa.
+
+      batch_actions:
+        update:
+          notice: I commercianti sono stati riattivati con successo
+        destroy:
+          notice: I commercianti sono stati eliminati con successo
+
+        reactivate_title: Riattiva selezionati
+        reactivate_confirm: Vuoi riattivare questi commercianti?
+        destroy_title: Elimina selezionati
+        destroy_confirm: Vuoi eliminare definitivamente questi commercianti?
+
+      directory_converters:
+        create:
+          notice: La voce della directory è stata creata con successo. Ricorda di riattivarla dopo aver effettuato modifiche
+
+      reactivates:
+        create:
+          notice: Il commerciante è stato riattivato con successo
+
+    profiles:
+      edit:
+        title: Modifica il mio profilo
+        submit: Aggiorna il mio profilo
+      update:
+        notice: Il tuo profilo è stato aggiornato con successo
+
+    users:
+      index:
+        title: Utenti
+      new:
+        title: Aggiungi un utente
+      create:
+        notice: L'utente è stato creato con successo
+      edit:
+        title: Modifica utente
+      update:
+        notice: L'utente è stato aggiornato con successo
+      destroy:
+        notice: L'utente è stato eliminato con successo
+
+      user:
+        logged_in_as: Connesso come
+        logged_in_as_confirm_html: Vuoi accedere come <strong>%{email}</strong>?
+
+    sidebar:
+      title: Bank-Exit
+      subtitle: Admin
+
+      merchants_disabled: Commercianti disabilitati
+      comments_disabled: Commenti disabilitati
+
+      back_to_home: Torna alla home
+      back_to_map: Torna alla mappa
+      back_to_directory: Torna alla directory
+
+      edit_my_profile: Modifica il mio profilo

@@ -5,7 +5,7 @@ header.flex.flex-col.lg:flex-row.items-center.justify-between.mb-6
     h1.text-2xl.font-bold= t('.title')
 
   - if allowed_to?(:index?, @merchant)
-    = back_link_to "Retour au commerçant", admin_merchant_path(@merchant), klass: 'btn'
+    = back_link_to t('back'), admin_merchant_path(@merchant), klass: 'btn'
 
 section
   = render 'form', merchant: @merchant

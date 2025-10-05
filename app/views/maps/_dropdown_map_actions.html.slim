@@ -77,6 +77,11 @@
         span.mx-2 Matrix (#bankexit:matrix.org)
         = lucide_icon 'square-arrow-out-up-right', class: 'inline-flex w-4'
 
+  - if logged_in? && allowed_to?(:index?, Merchant, namespace: Admin)
+    li.border-t.border-base-content/20.pt-2
+      = link_to admin_merchants_path, class: 'btn btn-success btn-sm' do
+        = t('.view_in_admin')
+
 = render 'dropdown_actions',
          details_html: { data: { controller: ("map--options" if merchants_as_map?) } },
          item_id: 'map'

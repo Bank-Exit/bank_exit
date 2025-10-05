@@ -22,7 +22,15 @@ fr:
   status: Statut
   filters: Filtres
   edit: Modifier
+  destroy: Supprimer
   logout: Déconnexion
+  back: Retour
+  reactivate: Réactiver
+  preview: Prévisualiser
+  actions: Actions
+  date_title: Date
+  display: Afficher
+  refresh: Rafraîchir
 
   display_map: Affichage carte
   display_grid: Affichage grille
@@ -46,9 +54,9 @@ fr:
   empty_results: Il n'y a aucun résultat
 
   x_results:
-    zero: "%{count} résultat"
-    one: "%{count} résultat"
-    other: "%{count} résultats"
+    zero: "0 résultat"
+    one: "1 résultat"
+    other: "%{formatted_count} résultats"
 
   from: de
   to: à

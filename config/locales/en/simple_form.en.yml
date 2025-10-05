@@ -175,6 +175,7 @@ en:
 
       directory:
         banner: Background banner
+        spotlight: If checked, this entry will be highlighted at the top of the directory page
         address:
           label: Leave blank or provide an approximate address to protect the merchant's anonymity.<br /> This information is used by the "Around Me" feature and influences the relevance of geolocated results based on latitude and longitude.
         proposition_from: Please provide a private or anonymous email address if you would like to be notified when this directory entry is added. Your email address will not be used for any purpose other than this.

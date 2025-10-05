@@ -1,0 +1,188 @@
+de:
+  admin:
+    announcements:
+      index:
+        title: Ankündigungen
+      new:
+        title: Eine Ankündigung hinzufügen
+      create:
+        notice: Die Ankündigung wurde erfolgreich erstellt
+      edit:
+        title: Ankündigung bearbeiten
+      update:
+        notice: Die Ankündigung wurde erfolgreich aktualisiert
+      destroy:
+        notice: Die Ankündigung wurde erfolgreich gelöscht
+
+      announcements:
+        empty_results: Es gibt keine Ankündigung zum Anzeigen
+      announcement:
+        date_overpass_title: Veröffentlichungsdatum überschritten
+      actions:
+        destroy_confirm: Möchten Sie diese Ankündigung löschen?
+
+    comments:
+      index:
+        title: Kommentare
+        comments_visibles: Sichtbare Kommentare
+        comments_reported: Gemeldete Kommentare
+        comments_disabled: Kommentare deaktiviert ⚠️
+        comments_disabled_body_html: |
+          Die Kommentarfunktion ist durch die Umgebungsvariable <mark>FF_COMMENTS_ENABLED</mark> (Feature-Flag) deaktiviert.
+
+          Benutzer können keine Kommentare mehr posten oder bestehende Kommentare sehen, solange die Funktion deaktiviert ist.
+
+      update:
+        notice: Der Kommentar wurde erfolgreich reaktiviert
+      destroy:
+        notice: Der Kommentar wurde erfolgreich gelöscht
+
+      comments:
+        resource: Ressource
+        report: Melden
+        empty_results: Es gibt keinen Kommentar zum Anzeigen
+      actions:
+        view_merchant_public_page: Händler-Öffentliche Seite ansehen
+        reactivate_confirm: Möchten Sie die Meldung von diesem Kommentar entfernen?
+        destroy_confirm: Möchten Sie diesen Kommentar löschen?
+
+    dashboards:
+      show:
+        title: Admin-Dashboard
+
+    directories:
+      index:
+        title: Verzeichnis
+        directory_entries: Verzeichniseinträge
+        directory_entries_disabled: Einträge deaktiviert
+      new:
+        title: Verzeichniseintrag hinzufügen
+      create:
+        notice: Der Eintrag wurde erfolgreich zum Verzeichnis hinzugefügt
+      edit:
+        title: Eintrag bearbeiten
+        entry_disabled: Dieser Eintrag ist derzeit deaktiviert und daher nicht auf der Website sichtbar.
+        entry_associated_to_merchant_html: Dieser Verzeichniseintrag ist dem Händler %{merchant_link} auf der Karte zugeordnet.
+      update:
+        notice: Der Verzeichniseintrag wurde erfolgreich aktualisiert
+      destroy:
+        notice: Der Verzeichniseintrag wurde erfolgreich gelöscht
+
+      form:
+        address_body_help: |
+          Adresse des Händlers: leer lassen oder ungenau angeben, um seine Anonymität zu schützen.
+
+          Hinweis: Dieses Feld steht in keinem Zusammenhang mit der Lieferzone und wird nur im Verzeichniseintrag angezeigt.
+
+        new_coin_wallet: Neues Krypto-Wallet
+        coin_wallet_body_help: |
+          Wählen Sie die Kryptowährung(en) aus, die dieser Händler akzeptiert.
+
+          Wenn eine öffentliche Adresse angegeben ist, wird den Nutzern ein QR-Code angezeigt, damit sie diesen scannen und direkt Geld senden können. Andernfalls wird nur das Symbol der Kryptowährung angezeigt.
+
+        new_delivery_zone: Neue Lieferzone
+        delivery_zone_body_help: |
+          Die Nominatim-API wird für Einträge vom Typ „Stadt“ oder „Bezirk“ aufgerufen, um passende Geodaten abzurufen. Ziel ist es, eine verschachtelte („russische Puppen“-) Filterung zu ermöglichen. Zum Beispiel sollte eine Lieferzone mit dem Land „Frankreich“ mit einer Benutzersuche nach der Region „Korsika“, dem Departement „Cher“ oder der Stadt „Straßburg“ kompatibel sein. Dafür werden ISO-Codes verwendet.
+
+          Hinweis: Da Einträge vom Typ „Region“ derzeit auf Frankreich beschränkt sind, wird ein unnötiger Geocoder-Aufruf vermieden, indem der Wert festgelegt wird.
+
+          Hinweis: Die Verarbeitung kann je nach Anzahl der zu analysierenden Zonen einige Sekunden dauern.
+
+        new_contact_way: Neue Kontaktmöglichkeit
+        new_weblink: Neue Quelle
+
+      actions:
+        view_public_page: Öffentliche Seite ansehen
+        destroy_confirm: Möchten Sie diesen Verzeichniseintrag löschen?
+
+    merchants:
+      index:
+        title: Händler
+        title_for_disabled: Deaktivierte Händler
+        merchants_visibles: Sichtbare Händler
+        merchants_disabled: Deaktivierte Händler
+        last_update: Letzte Aktualisierung
+        there_is: Es gibt %{time}
+
+        merchant_disabled_body_html: |
+          Händler, die als <span class="badge badge-sm badge-error">Deaktiviert</span> gekennzeichnet sind, wurden bei der letzten API-Aktualisierung mit Overpass nicht in die Ergebnisse aufgenommen. Dies kann bedeuten, dass der Händler geschlossen hat, keine Kryptowährungen (Bitcoin, Monero oder June) mehr akzeptiert oder dass jemand die Daten auf OpenStreetMap manipuliert hat.
+
+          Es liegt daher am Kollektiv, diese Änderungen zu überprüfen und zu bestätigen, ob der Händler von der Karte entfernt oder reaktiviert werden soll (standardmäßig wird der Händler als "soft gelöscht" markiert, was bedeutet, dass er in der Datenbank bleibt, aber nicht mehr auf der Karte oder in den Suchergebnissen sichtbar ist).
+
+          Beachten Sie, dass wenn der Händler als legitim bestätigt und auf Bank-Exit reaktiviert wird, er bei jeder Datenaktualisierung erneut als <span class="badge badge-sm badge-error">Deaktiviert</span> markiert wird, solange die Quelle auf OSM nicht korrigiert wurde, da der Algorithmus OSM als wahre Quelle betrachtet.
+
+      edit:
+        title: Händler bearbeiten
+      update:
+        notice: Der Händler wurde erfolgreich aktualisiert
+      destroy:
+        notice: Der Händler wurde erfolgreich gelöscht
+
+      merchants:
+        empty_results: Es gibt keinen Händler zum Anzeigen
+
+      actions:
+        merchant_admin_page: Admin-Profil
+        merchant_public_page: Öffentliches Profil
+        merchant_on_osm: Händler auf OpenStreetMap
+        convert_to_directory: In Verzeichniseintrag umwandeln
+        convert_to_directory_confirm_html: Möchten Sie diesen Händler umwandeln und zum Verzeichnis hinzufügen?<br />(Der Händler auf der Karte wird nicht geändert)
+        reactivate_confirm: Möchten Sie diesen Händler reaktivieren, um ihn wieder auf der Karte zu referenzieren?
+        destroy_confirm_html: Möchten Sie diesen Händler löschen?<br /> ⚠️ Er wird nicht mehr auf der Karte aufgeführt.
+
+      batch_actions:
+        update:
+          notice: Die Händler wurden erfolgreich reaktiviert
+        destroy:
+          notice: Die Händler wurden erfolgreich gelöscht
+
+        reactivate_title: Ausgewählte reaktivieren
+        reactivate_confirm: Möchten Sie diese Händler reaktivieren?
+        destroy_title: Ausgewählte löschen
+        destroy_confirm: Möchten Sie diese Händler dauerhaft löschen?
+
+      directory_converters:
+        create:
+          notice: Der Verzeichniseintrag wurde erfolgreich erstellt. Denken Sie daran, ihn nach Änderungen zu reaktivieren
+
+      reactivates:
+        create:
+          notice: Der Händler wurde erfolgreich reaktiviert
+
+    profiles:
+      edit:
+        title: Mein Profil bearbeiten
+        submit: Mein Profil aktualisieren
+      update:
+        notice: Ihr Profil wurde erfolgreich aktualisiert
+
+    users:
+      index:
+        title: Benutzer
+      new:
+        title: Benutzer hinzufügen
+      create:
+        notice: Der Benutzer wurde erfolgreich erstellt
+      edit:
+        title: Benutzer bearbeiten
+      update:
+        notice: Der Benutzer wurde erfolgreich aktualisiert
+      destroy:
+        notice: Der Benutzer wurde erfolgreich gelöscht
+
+      user:
+        logged_in_as: Angemeldet als
+        logged_in_as_confirm_html: Möchten Sie sich als <strong>%{email}</strong> anmelden?
+
+    sidebar:
+      title: Bank-Exit
+      subtitle: Admin
+
+      merchants_disabled: Deaktivierte Händler
+      comments_disabled: Deaktivierte Kommentare
+
+      back_to_home: Zurück zur Startseite
+      back_to_map: Zurück zur Karte
+      back_to_directory: Zurück zum Verzeichnis
+
+      edit_my_profile: Mein Profil bearbeiten

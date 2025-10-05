@@ -4,58 +4,142 @@ en:
       index:
         title: Announcements
       new:
-        title: Add an Announcement
+        title: Add an announcement
       create:
         notice: The announcement was successfully created
       edit:
-        title: Edit Announcement
+        title: Edit announcement
       update:
         notice: The announcement was successfully updated
       destroy:
         notice: The announcement was successfully deleted
 
+      announcements:
+        empty_results: There is no announcement to display
+      announcement:
+        date_overpass_title: Publication date passed
+      actions:
+        destroy_confirm: Do you want to delete this announcement ?
+
     comments:
       index:
         title: Comments
+        comments_visibles: Visibles comments
+        comments_reported: Reported comments
+        comments_disabled: Comments disabled ⚠️
+        comments_disabled_body_html: |
+          The commenting feature is disabled by the <mark>FF_COMMENTS_ENABLED</mark> environment variable (Feature Flag).
+
+          Users can no longer post comments or view existing ones as long as the feature remains disabled.
+
       update:
         notice: The comment was successfully reactivated
       destroy:
         notice: The comment was successfully deleted
 
+      comments:
+        resource: Resource
+        report: Report
+        empty_results: There is no comment to display
+      actions:
+        view_merchant_public_page: View merchant public page
+        reactivate_confirm: Do you want to remove the report from this comment?
+        destroy_confirm: Do you want to delete this comment?
+
     dashboards:
       show:
-        title: Admin Dashboard
+        title: Admin dashboard
 
     directories:
       index:
         title: Directory
+        directory_entries: Directory entries
+        directory_entries_disabled: Entries disabled
       new:
-        title: Add a Directory Entry
+        title: Add a directory entry
       create:
         notice: The entry was successfully added to the directory
       edit:
-        title: Edit Entry
+        title: Edit entry
+        entry_disabled: This entry is currently disabled and therefore not visible on the site.
+        entry_associated_to_merchant_html: This directory entry is associated with the merchant %{merchant_link} on the map.
       update:
         notice: The directory entry was successfully updated
       destroy:
         notice: The directory entry was successfully deleted
 
+      form:
+        address_body_help: |
+          Merchant's address: leave empty or vague to protect their anonymity.
+
+          Note: this field is not linked to the delivery zone and is only displayed on the directory listing.
+
+        new_coin_wallet: New crypto wallet
+        coin_wallet_body_help: |
+          Select the cryptocurrency or cryptocurrencies accepted by this merchant.
+
+          If a public address is provided, a QR code will be shown to users so they can scan and send money directly. Otherwise, only the cryptocurrency icon will be displayed.
+
+        new_delivery_zone: New delivery zone
+        delivery_zone_body_help: |
+          The Nominatim API will be called for entries of type "city" or "department" to retrieve applicable geolocation data, with the goal of enabling nested ("Russian doll") filtering. For example, a delivery zone set to the country "France" should match a user search for the region "Corsica", the department "Cher", or the city of "Strasbourg". ISO codes are used for this.
+
+          Note: since "region" entries are currently limited to France, unnecessary geocoder calls are avoided by forcing the value.
+
+          Note: processing may take a few seconds to complete depending on the number of zones to analyze.
+
+        new_contact_way: New contact method
+        new_weblink: New source
+
+      actions:
+        view_public_page: View public page
+        destroy_confirm: Do you want to delete this directory entry?
+
     merchants:
       index:
         title: Merchants
-        title_for_disabled: Disabled Merchants
+        title_for_disabled: Disabled merchants
+        merchants_visibles: Visible merchants
+        merchants_disabled: Disabled merchants
+        last_update: Last update
+        there_is: There is %{time}
+
+        merchant_disabled_body_html: |
+          Merchants labeled as <span class="badge badge-sm badge-error">Disabled</span> were not included in the results during the latest API refresh with Overpass. This may mean the merchant has closed, no longer accepts cryptocurrencies (Bitcoin, Monero, or June), or that someone vandalized the data on OpenStreetMap.
+
+          It is therefore up to the Collective to review these changes and confirm whether the merchant should be removed from the map or reactivated (by default, the merchant is marked as "soft deleted," which means they remain in the database but are no longer visible on the map or in search results).
+
+          Note that if the merchant is confirmed as legitimate and reactivated on Bank-Exit, they will become <span class="badge badge-sm badge-error">Disabled</span> again at each data refresh as long as the source hasn't been corrected on OSM, since the algorithm considers OSM to be the source of truth.
+
       edit:
-        title: Edit Merchant
+        title: Edit merchant
       update:
         notice: The merchant was successfully updated
       destroy:
         notice: The merchant was successfully deleted
+
+      merchants:
+        empty_results: There is no merchant to display
+
+      actions:
+        merchant_admin_page: Admin profile
+        merchant_public_page: Public profile
+        merchant_on_osm: Merchant on OpenStreetMap
+        convert_to_directory: Convert to directory entry
+        convert_to_directory_confirm_html: Do you want to convert this merchant and add it to the directory?<br />(the merchant on the map will not be modified)
+        reactivate_confirm: Do you want to reactivate this merchant to reference them again on the map?
+        destroy_confirm_html: Do you want to delete this merchant?<br /> ⚠️ They will no longer be listed on the map.
 
       batch_actions:
         update:
           notice: The merchants were successfully reactivated
         destroy:
           notice: The merchants were successfully deleted
+
+        reactivate_title: Reactivate selected
+        reactivate_confirm: Do you want to reactivate these merchants?
+        destroy_title: Delete selected
+        destroy_confirm: Do you want to permanently delete these merchants?
 
       directory_converters:
         create:
@@ -67,7 +151,8 @@ en:
 
     profiles:
       edit:
-        title: Edit My Profile
+        title: Edit my profile
+        submit: Update my profile
       update:
         notice: Your profile was successfully updated
 
@@ -84,3 +169,20 @@ en:
         notice: The user was successfully updated
       destroy:
         notice: The user was successfully deleted
+
+      user:
+        logged_in_as: Logged in as
+        logged_in_as_confirm_html: Do you want to log in as <strong>%{email}</strong>?
+
+    sidebar:
+      title: Bank-Exit
+      subtitle: Admin
+
+      merchants_disabled: Disabled merchants
+      comments_disabled: Disabled comments
+
+      back_to_home: Back to home
+      back_to_map: Back to map
+      back_to_directory: Back to directory
+
+      edit_my_profile: Edit my profile

@@ -40,9 +40,10 @@ tr
   td
     .status.status-lg> class=(merchant.deleted? ? 'status-error' : 'status-success') aria-label="status"
     - if merchant.deleted?
-      span.tooltip data-tip=l(merchant.deleted_at) Désactivé
+      span.tooltip data-tip=l(merchant.deleted_at)
+        = t('disabled')
     - else
-      | En ligne
+      = t('enabled')
 
   td class=('text-center' if merchant.updated?)
     p.tooltip data-tip=Merchant.human_attribute_name(:created_at)

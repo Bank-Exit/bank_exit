@@ -11,7 +11,7 @@ RSpec.describe 'Admin::Merchants::Reactivates' do
         include_context 'with user role', role
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_merchants_path(show_deleted: true) }
-          let(:flash_notice) { 'Le commerçant a bien été réactivé' }
+          let(:flash_notice) { I18n.t('admin.merchants.reactivates.create.notice') }
         end
 
         it { expect { action }.to change { merchant.reload.deleted_at }.to nil }

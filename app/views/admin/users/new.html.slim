@@ -2,7 +2,7 @@ header.flex.flex-col.lg:flex-row.items-center.justify-between.mb-6
   h1.text-2xl.font-bold= t('.title')
 
   - if allowed_to?(:index?, User)
-    = back_link_to "Retour aux utilisateurs", admin_users_path, klass: 'btn'
+    = back_link_to t('back'), admin_users_path, klass: 'btn'
 
 section
   = render 'form', user: @user

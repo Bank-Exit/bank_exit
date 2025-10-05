@@ -5,10 +5,10 @@ header.flex.flex-col.lg:flex-row.items-center.justify-between.mb-3
     h1.text-2xl.font-bold= @merchant.name
 
   .flex.items-center.gap-1
-    = back_link_to "Retour aux commerçants", session[:admin_merchant_referer_url] || admin_merchants_path, klass: 'btn'
+    = back_link_to t('back'), session[:admin_merchant_referer_url] || admin_merchants_path, klass: 'btn'
 
     - if allowed_to?(:update?, @merchant)
-      = link_to 'Modifier', edit_admin_merchant_path(@merchant), class: 'btn btn-warning'
+      = link_to t('edit'), edit_admin_merchant_path(@merchant), class: 'btn btn-warning'
 
 - if @merchant.banner.attached?
   section.flex.flex-col.gap-3.mb-3
@@ -21,6 +21,6 @@ section
 
 - if @merchant.comments_count > 0
   section.mt-8
-    h2.text-xl.font-bold.mb-3 Commentaires
+    h2.text-xl.font-bold.mb-3= Comment.model_name.human(count: 2)
 
     = render 'admin/comments/comments', comments: @comments, pagy: @pagy

@@ -25,7 +25,7 @@
         .stat-figure
           = lucide_icon 'notebook', class: 'w-12 h-12'
         .stat-title= Directory.model_name.human.capitalize
-        .stat-value= @directories_statistics[:enabled].count
+        .stat-value= number_with_delimiter(@directories_statistics[:enabled].count)
         .stat-desc= dated_i18n
 
   .overflow-x-auto

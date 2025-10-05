@@ -23,7 +23,7 @@ RSpec.describe 'Risks' do
       context 'when already logged in' do
         include_context 'with user role', :admin
         it_behaves_like 'access granted with redirection' do
-          let(:redirection_url) { admin_root_path }
+          let(:redirection_url) { send("admin_root_#{locale}_path") }
         end
       end
 
@@ -60,7 +60,7 @@ RSpec.describe 'Risks' do
         context 'when user is enabled' do
           let(:enabled) { true }
 
-          it { expect(response).to redirect_to admin_root_path }
+          it { expect(response).to redirect_to send("admin_root_#{locale}_path") }
         end
 
         context 'when user is not enabled' do
