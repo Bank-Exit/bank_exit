@@ -1,0 +1,30 @@
+= simple_form_for [:admin, ecosystem_item],
+                  html: { class: 'space-y-5' } do |f|
+
+  - if ecosystem_item.errors.any?
+    .alert.alert-error
+      ul.list-disc.list-inside
+        - ecosystem_item.errors.each do |error|
+          li= error.full_message
+
+  .tabs.tabs-box
+    - locales_select_helper.each do |label, locale|
+      input.tab.mb-1 type="radio" name="tabs_ecosystem_item"  checked=("checked" if locale == I18n.default_locale) aria-label=label
+
+      .tab-content.bg-base-100.border-base-300.rounded-box.p-6.space-y-2
+        - name = :"name_#{Mobility.normalize_locale(locale)}"
+        - description = :"description_#{Mobility.normalize_locale(locale)}"
+
+        = f.input name, label: EcosystemItem.human_attribute_name(:name)
+        = f.input description, as: :text, label: EcosystemItem.human_attribute_name(:description)
+
+  = f.input :url, as: :url
+
+  div
+    = f.input :picture, as: :file
+    - if f.object.picture.persisted? && f.object.picture.attached?
+      = image_tag url_for(f.object.picture.variant(:small)), class: 'w-32 rounded-lg my-1'
+      = f.input :remove_picture, as: :boolean
+
+  = f.input :enabled
+  = f.button :submit

@@ -1,0 +1,8 @@
+header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
+  h1.text-3xl= t('.title')
+
+  - if allowed_to?(:create?, EcosystemItem, namespace: Admin)
+    = link_to t('add'), new_admin_ecosystem_item_path, class: 'btn btn-success'
+
+#ecosystem_items
+  = render 'ecosystem_items', ecosystem_items: @ecosystem_items, pagy: @pagy

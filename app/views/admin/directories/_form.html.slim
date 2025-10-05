@@ -8,7 +8,7 @@
           li= error.full_message
 
   .tabs.tabs-box
-    - announcement_locale_select_helper.each do |label, locale|
+    - locales_select_helper.each do |label, locale|
       input.tab.mb-1 type="radio" name="tabs_directory"  checked=("checked" if locale == I18n.default_locale) aria-label=label
 
       .tab-content.bg-base-100.border-base-300.rounded-box.p-6.space-y-2

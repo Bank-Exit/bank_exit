@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_03_170418) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_05_153722) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.string "site", null: false
     t.string "name", null: false
@@ -166,6 +166,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_03_170418) do
     t.index ["category"], name: "index_directories_on_category"
     t.index ["merchant_id"], name: "index_directories_on_merchant_id"
     t.index ["position"], name: "index_directories_on_position", unique: true
+  end
+
+  create_table "ecosystem_items", force: :cascade do |t|
+    t.string "url"
+    t.boolean "enabled", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "merchants", force: :cascade do |t|

@@ -1,0 +1,8 @@
+header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
+  h1.text-3xl= t('.title')
+
+  - if allowed_to?(:index?, EcosystemItem, namespace: Admin)
+    = back_link_to t('back'), admin_ecosystem_items_path, klass: 'btn'
+
+section
+  = render 'form', ecosystem_item: @ecosystem_item

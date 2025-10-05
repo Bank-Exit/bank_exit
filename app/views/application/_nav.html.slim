@@ -8,7 +8,7 @@
 - active_map = params[:controller].in?(%w[maps merchants])
 - active_project = (params[:controller] == 'projects' && !params[:id].in?(%w[map grocery local_groups])) || params[:id] == 'flyer'
 - active_article = params[:controller].in?(%w[blogs tutorials]) && params[:id] != 'flyer'  && params[:id] != 'accounting' && params[:id] != 'cryptopayment-for-business'
-- active_other = params[:controller].in?(%w[local_groups collectives media statistics])
+- active_other = params[:controller].in?(%w[local_groups collectives ecosystems media statistics])
 
 nav.navbar
   .navbar-start.lg:w-full
@@ -81,6 +81,11 @@ nav.navbar
             li
               = link_to media_path, class: ('text-primary' if params[:controller] == 'media') do
                 = t('media.index.title')
+
+            li
+              = link_to ecosystem_path, class: ('text-primary' if params[:controller] == 'ecosystems') do
+                = t('ecosystems.show.title')
+                = image_tag icon_by_coin('monero'), class: 'w-5'
 
             li
               = link_to statistics_path, class: ('text-primary' if params[:controller] == 'statistics') do
@@ -178,9 +183,14 @@ nav.navbar
                 = local_groups.title
                 = image_tag "contacts/telegram.svg", class: 'inline-flex bg-white w-5 rounded-full', title: 'Telegram'
 
-            li.border-b.border-base-content/20.pb-2.mb-2
+            li
               = link_to media_path, class: ('text-primary' if params[:controller] == 'media') do
                 = t('media.index.title')
+
+            li.border-b.border-base-content/20.pb-2.mb-2
+              = link_to ecosystem_path, class: ('text-primary' if params[:controller] == 'ecosystems') do
+                = t('ecosystems.show.title')
+                = image_tag icon_by_coin('monero')
 
             li
               = link_to statistics_path, class: ('text-primary' if params[:controller] == 'statistics') do

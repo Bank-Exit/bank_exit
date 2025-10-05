@@ -95,6 +95,25 @@ de:
         view_public_page: Öffentliche Seite ansehen
         destroy_confirm: Möchten Sie diesen Verzeichniseintrag löschen?
 
+    ecosystem_items:
+      index:
+        title: Das Monero-Ökosystem
+      new:
+        title: Element zum Ökosystem hinzufügen
+      create:
+        notice: Das Ökosystemelement wurde erfolgreich erstellt
+      edit:
+        title: Ökosystemelement bearbeiten
+      update:
+        notice: Das Ökosystemelement wurde erfolgreich aktualisiert
+      destroy:
+        notice: Das Ökosystemelement wurde erfolgreich gelöscht
+
+      ecosystem_items:
+        empty_results: Es gibt keine Elemente anzuzeigen
+      actions:
+        destroy_confirm: Möchten Sie dieses Ökosystemelement löschen?
+
     merchants:
       index:
         title: Händler
@@ -177,6 +196,8 @@ de:
     sidebar:
       title: Bank-Exit
       subtitle: Admin
+
+      monero_ecosystem: Monero-Ökosystem
 
       merchants_disabled: Deaktivierte Händler
       comments_disabled: Deaktivierte Kommentare

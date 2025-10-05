@@ -75,6 +75,9 @@ it:
       user:
         one: utente
         other: utenti
+      ecosystem_item:
+        one: Elemento dell'ecosistema
+        other: Elementi dell'ecosistema
 
     attributes:
       merchant:
@@ -182,6 +185,13 @@ it:
           success: Successo
           warning: Attenzione
           error: Avviso!
+
+      ecosystem_item:
+        name: Nome
+        description: Descrizione
+        picture: Immagine
+        url: Link
+        enabled: Attivo?
 
       user:
         email: Indirizzo email

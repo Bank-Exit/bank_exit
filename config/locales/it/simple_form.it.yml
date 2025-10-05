@@ -65,6 +65,9 @@ it:
       comment:
         affidavit: Dichiaro di aver avuto l’esperienza indicata con questo commerciante
 
+      ecosystem_item:
+        remove_picture: Rimuovere l'immagine?
+
     placeholders:
       defaults:
         latitude: Latitudine predefinita

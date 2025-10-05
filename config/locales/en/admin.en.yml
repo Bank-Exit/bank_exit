@@ -95,6 +95,25 @@ en:
         view_public_page: View public page
         destroy_confirm: Do you want to delete this directory entry?
 
+    ecosystem_items:
+      index:
+        title: The Monero Ecosystem
+      new:
+        title: Add an item to the ecosystem
+      create:
+        notice: The ecosystem item was successfully created
+      edit:
+        title: Edit an ecosystem item
+      update:
+        notice: The ecosystem item was successfully updated
+      destroy:
+        notice: The ecosystem item was successfully deleted
+
+      ecosystem_items:
+        empty_results: There are no items to display
+      actions:
+        destroy_confirm: Do you want to delete this ecosystem item?
+
     merchants:
       index:
         title: Merchants
@@ -177,6 +196,8 @@ en:
     sidebar:
       title: Bank-Exit
       subtitle: Admin
+
+      monero_ecosystem: Monero ecosystem
 
       merchants_disabled: Disabled merchants
       comments_disabled: Disabled comments
