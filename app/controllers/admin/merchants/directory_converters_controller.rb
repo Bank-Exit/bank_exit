@@ -3,7 +3,12 @@ module Admin
     class DirectoryConvertersController < BaseController
       before_action :set_merchant, only: %i[create]
 
-      # @route POST /admin/merchants/:id/directory_converters (admin_directory_converters)
+      # @route POST /fr/admin/merchants/:id/directory_converters {locale: "fr"} (admin_directory_converters_fr)
+      # @route POST /es/admin/merchants/:id/directory_converters {locale: "es"} (admin_directory_converters_es)
+      # @route POST /de/admin/merchants/:id/directory_converters {locale: "de"} (admin_directory_converters_de)
+      # @route POST /it/admin/merchants/:id/directory_converters {locale: "it"} (admin_directory_converters_it)
+      # @route POST /en/admin/merchants/:id/directory_converters {locale: "en"} (admin_directory_converters_en)
+      # @route POST /admin/merchants/:id/directory_converters
       def create
         authorize! @merchant, with: DirectoryConverterPolicy
 

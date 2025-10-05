@@ -4,21 +4,36 @@ module Admin
       show edit update destroy
     ]
 
-    # @route GET /admin/announcements (admin_announcements)
+    # @route GET /fr/admin/announcements {locale: "fr"} (admin_announcements_fr)
+    # @route GET /es/admin/announcements {locale: "es"} (admin_announcements_es)
+    # @route GET /de/admin/announcements {locale: "de"} (admin_announcements_de)
+    # @route GET /it/admin/announcements {locale: "it"} (admin_announcements_it)
+    # @route GET /en/admin/announcements {locale: "en"} (admin_announcements_en)
+    # @route GET /admin/announcements
     def index
       authorize!
 
       @pagy, @announcements = pagy(Announcement.all)
     end
 
-    # @route GET /admin/announcements/new (new_admin_announcement)
+    # @route GET /fr/admin/announcements/new {locale: "fr"} (new_admin_announcement_fr)
+    # @route GET /es/admin/announcements/new {locale: "es"} (new_admin_announcement_es)
+    # @route GET /de/admin/announcements/new {locale: "de"} (new_admin_announcement_de)
+    # @route GET /it/admin/announcements/new {locale: "it"} (new_admin_announcement_it)
+    # @route GET /en/admin/announcements/new {locale: "en"} (new_admin_announcement_en)
+    # @route GET /admin/announcements/new
     def new
       authorize!
 
       @announcement = Announcement.new
     end
 
-    # @route POST /admin/announcements (admin_announcements)
+    # @route POST /fr/admin/announcements {locale: "fr"} (admin_announcements_fr)
+    # @route POST /es/admin/announcements {locale: "es"} (admin_announcements_es)
+    # @route POST /de/admin/announcements {locale: "de"} (admin_announcements_de)
+    # @route POST /it/admin/announcements {locale: "it"} (admin_announcements_it)
+    # @route POST /en/admin/announcements {locale: "en"} (admin_announcements_en)
+    # @route POST /admin/announcements
     def create
       authorize!
 
@@ -33,18 +48,38 @@ module Admin
       end
     end
 
-    # @route GET /admin/announcements/:id (admin_announcement)
+    # @route GET /fr/admin/announcements/:id {locale: "fr"} (admin_announcement_fr)
+    # @route GET /es/admin/announcements/:id {locale: "es"} (admin_announcement_es)
+    # @route GET /de/admin/announcements/:id {locale: "de"} (admin_announcement_de)
+    # @route GET /it/admin/announcements/:id {locale: "it"} (admin_announcement_it)
+    # @route GET /en/admin/announcements/:id {locale: "en"} (admin_announcement_en)
+    # @route GET /admin/announcements/:id
     def show
       authorize! @announcement
     end
 
-    # @route GET /admin/announcements/:id/edit (edit_admin_announcement)
+    # @route GET /fr/admin/announcements/:id/edit {locale: "fr"} (edit_admin_announcement_fr)
+    # @route GET /es/admin/announcements/:id/edit {locale: "es"} (edit_admin_announcement_es)
+    # @route GET /de/admin/announcements/:id/edit {locale: "de"} (edit_admin_announcement_de)
+    # @route GET /it/admin/announcements/:id/edit {locale: "it"} (edit_admin_announcement_it)
+    # @route GET /en/admin/announcements/:id/edit {locale: "en"} (edit_admin_announcement_en)
+    # @route GET /admin/announcements/:id/edit
     def edit
       authorize! @announcement
     end
 
-    # @route PATCH /admin/announcements/:id (admin_announcement)
-    # @route PUT /admin/announcements/:id (admin_announcement)
+    # @route PATCH /fr/admin/announcements/:id {locale: "fr"} (admin_announcement_fr)
+    # @route PATCH /es/admin/announcements/:id {locale: "es"} (admin_announcement_es)
+    # @route PATCH /de/admin/announcements/:id {locale: "de"} (admin_announcement_de)
+    # @route PATCH /it/admin/announcements/:id {locale: "it"} (admin_announcement_it)
+    # @route PATCH /en/admin/announcements/:id {locale: "en"} (admin_announcement_en)
+    # @route PATCH /admin/announcements/:id
+    # @route PUT /fr/admin/announcements/:id {locale: "fr"} (admin_announcement_fr)
+    # @route PUT /es/admin/announcements/:id {locale: "es"} (admin_announcement_es)
+    # @route PUT /de/admin/announcements/:id {locale: "de"} (admin_announcement_de)
+    # @route PUT /it/admin/announcements/:id {locale: "it"} (admin_announcement_it)
+    # @route PUT /en/admin/announcements/:id {locale: "en"} (admin_announcement_en)
+    # @route PUT /admin/announcements/:id
     def update
       authorize! @announcement
 
@@ -57,7 +92,12 @@ module Admin
       end
     end
 
-    # @route DELETE /admin/announcements/:id (admin_announcement)
+    # @route DELETE /fr/admin/announcements/:id {locale: "fr"} (admin_announcement_fr)
+    # @route DELETE /es/admin/announcements/:id {locale: "es"} (admin_announcement_es)
+    # @route DELETE /de/admin/announcements/:id {locale: "de"} (admin_announcement_de)
+    # @route DELETE /it/admin/announcements/:id {locale: "it"} (admin_announcement_it)
+    # @route DELETE /en/admin/announcements/:id {locale: "en"} (admin_announcement_en)
+    # @route DELETE /admin/announcements/:id
     def destroy
       authorize! @announcement
 

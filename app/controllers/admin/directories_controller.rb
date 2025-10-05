@@ -4,7 +4,12 @@ module Admin
       edit update destroy update_position
     ]
 
-    # @route GET /admin/directories (admin_directories)
+    # @route GET /fr/admin/directories {locale: "fr"} (admin_directories_fr)
+    # @route GET /es/admin/directories {locale: "es"} (admin_directories_es)
+    # @route GET /de/admin/directories {locale: "de"} (admin_directories_de)
+    # @route GET /it/admin/directories {locale: "it"} (admin_directories_it)
+    # @route GET /en/admin/directories {locale: "en"} (admin_directories_en)
+    # @route GET /admin/directories
     def index
       authorize!
 
@@ -13,7 +18,12 @@ module Admin
       @directories = DirectoryDecorator.wrap(directories)
     end
 
-    # @route GET /admin/directories/new (new_admin_directory)
+    # @route GET /fr/admin/directories/new {locale: "fr"} (new_admin_directory_fr)
+    # @route GET /es/admin/directories/new {locale: "es"} (new_admin_directory_es)
+    # @route GET /de/admin/directories/new {locale: "de"} (new_admin_directory_de)
+    # @route GET /it/admin/directories/new {locale: "it"} (new_admin_directory_it)
+    # @route GET /en/admin/directories/new {locale: "en"} (new_admin_directory_en)
+    # @route GET /admin/directories/new
     def new
       authorize!
 
@@ -21,7 +31,12 @@ module Admin
       @directory.build_address
     end
 
-    # @route POST /admin/directories (admin_directories)
+    # @route POST /fr/admin/directories {locale: "fr"} (admin_directories_fr)
+    # @route POST /es/admin/directories {locale: "es"} (admin_directories_es)
+    # @route POST /de/admin/directories {locale: "de"} (admin_directories_de)
+    # @route POST /it/admin/directories {locale: "it"} (admin_directories_it)
+    # @route POST /en/admin/directories {locale: "en"} (admin_directories_en)
+    # @route POST /admin/directories
     def create
       authorize!
 
@@ -38,15 +53,30 @@ module Admin
       end
     end
 
-    # @route GET /admin/directories/:id/edit (edit_admin_directory)
+    # @route GET /fr/admin/directories/:id/edit {locale: "fr"} (edit_admin_directory_fr)
+    # @route GET /es/admin/directories/:id/edit {locale: "es"} (edit_admin_directory_es)
+    # @route GET /de/admin/directories/:id/edit {locale: "de"} (edit_admin_directory_de)
+    # @route GET /it/admin/directories/:id/edit {locale: "it"} (edit_admin_directory_it)
+    # @route GET /en/admin/directories/:id/edit {locale: "en"} (edit_admin_directory_en)
+    # @route GET /admin/directories/:id/edit
     def edit
       authorize! @directory
 
       @directory.build_address if @directory.address.blank?
     end
 
-    # @route PATCH /admin/directories/:id (admin_directory)
-    # @route PUT /admin/directories/:id (admin_directory)
+    # @route PATCH /fr/admin/directories/:id {locale: "fr"} (admin_directory_fr)
+    # @route PATCH /es/admin/directories/:id {locale: "es"} (admin_directory_es)
+    # @route PATCH /de/admin/directories/:id {locale: "de"} (admin_directory_de)
+    # @route PATCH /it/admin/directories/:id {locale: "it"} (admin_directory_it)
+    # @route PATCH /en/admin/directories/:id {locale: "en"} (admin_directory_en)
+    # @route PATCH /admin/directories/:id
+    # @route PUT /fr/admin/directories/:id {locale: "fr"} (admin_directory_fr)
+    # @route PUT /es/admin/directories/:id {locale: "es"} (admin_directory_es)
+    # @route PUT /de/admin/directories/:id {locale: "de"} (admin_directory_de)
+    # @route PUT /it/admin/directories/:id {locale: "it"} (admin_directory_it)
+    # @route PUT /en/admin/directories/:id {locale: "en"} (admin_directory_en)
+    # @route PUT /admin/directories/:id
     def update
       authorize! @directory
 
@@ -61,7 +91,12 @@ module Admin
       end
     end
 
-    # @route DELETE /admin/directories/:id (admin_directory)
+    # @route DELETE /fr/admin/directories/:id {locale: "fr"} (admin_directory_fr)
+    # @route DELETE /es/admin/directories/:id {locale: "es"} (admin_directory_es)
+    # @route DELETE /de/admin/directories/:id {locale: "de"} (admin_directory_de)
+    # @route DELETE /it/admin/directories/:id {locale: "it"} (admin_directory_it)
+    # @route DELETE /en/admin/directories/:id {locale: "en"} (admin_directory_en)
+    # @route DELETE /admin/directories/:id
     def destroy
       authorize! @directory
 
@@ -72,7 +107,12 @@ module Admin
       redirect_to admin_directories_path
     end
 
-    # @route PATCH /admin/directories/:id/update_position (update_position_admin_directory)
+    # @route PATCH /fr/admin/directories/:id/update_position {locale: "fr"} (update_position_admin_directory_fr)
+    # @route PATCH /es/admin/directories/:id/update_position {locale: "es"} (update_position_admin_directory_es)
+    # @route PATCH /de/admin/directories/:id/update_position {locale: "de"} (update_position_admin_directory_de)
+    # @route PATCH /it/admin/directories/:id/update_position {locale: "it"} (update_position_admin_directory_it)
+    # @route PATCH /en/admin/directories/:id/update_position {locale: "en"} (update_position_admin_directory_en)
+    # @route PATCH /admin/directories/:id/update_position
     def update_position
       authorize! @directory
 

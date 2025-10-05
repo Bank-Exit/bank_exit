@@ -4,7 +4,12 @@ module Admin
       show edit update destroy
     ]
 
-    # @route GET /admin/merchants (admin_merchants)
+    # @route GET /fr/admin/merchants {locale: "fr"} (admin_merchants_fr)
+    # @route GET /es/admin/merchants {locale: "es"} (admin_merchants_es)
+    # @route GET /de/admin/merchants {locale: "de"} (admin_merchants_de)
+    # @route GET /it/admin/merchants {locale: "it"} (admin_merchants_it)
+    # @route GET /en/admin/merchants {locale: "en"} (admin_merchants_en)
+    # @route GET /admin/merchants
     def index
       session[:admin_merchant_referer_url] = request.url
 
@@ -31,7 +36,12 @@ module Admin
       @pagy, @merchants = pagy_array(merchants)
     end
 
-    # @route GET /admin/merchants/:id (admin_merchant)
+    # @route GET /fr/admin/merchants/:id {locale: "fr"} (admin_merchant_fr)
+    # @route GET /es/admin/merchants/:id {locale: "es"} (admin_merchant_es)
+    # @route GET /de/admin/merchants/:id {locale: "de"} (admin_merchant_de)
+    # @route GET /it/admin/merchants/:id {locale: "it"} (admin_merchant_it)
+    # @route GET /en/admin/merchants/:id {locale: "en"} (admin_merchant_en)
+    # @route GET /admin/merchants/:id
     def show
       authorize! @merchant
 
@@ -41,13 +51,28 @@ module Admin
       set_meta_tags title: @merchant.name
     end
 
-    # @route GET /admin/merchants/:id/edit (edit_admin_merchant)
+    # @route GET /fr/admin/merchants/:id/edit {locale: "fr"} (edit_admin_merchant_fr)
+    # @route GET /es/admin/merchants/:id/edit {locale: "es"} (edit_admin_merchant_es)
+    # @route GET /de/admin/merchants/:id/edit {locale: "de"} (edit_admin_merchant_de)
+    # @route GET /it/admin/merchants/:id/edit {locale: "it"} (edit_admin_merchant_it)
+    # @route GET /en/admin/merchants/:id/edit {locale: "en"} (edit_admin_merchant_en)
+    # @route GET /admin/merchants/:id/edit
     def edit
       authorize! @merchant
     end
 
-    # @route PATCH /admin/merchants/:id (admin_merchant)
-    # @route PUT /admin/merchants/:id (admin_merchant)
+    # @route PATCH /fr/admin/merchants/:id {locale: "fr"} (admin_merchant_fr)
+    # @route PATCH /es/admin/merchants/:id {locale: "es"} (admin_merchant_es)
+    # @route PATCH /de/admin/merchants/:id {locale: "de"} (admin_merchant_de)
+    # @route PATCH /it/admin/merchants/:id {locale: "it"} (admin_merchant_it)
+    # @route PATCH /en/admin/merchants/:id {locale: "en"} (admin_merchant_en)
+    # @route PATCH /admin/merchants/:id
+    # @route PUT /fr/admin/merchants/:id {locale: "fr"} (admin_merchant_fr)
+    # @route PUT /es/admin/merchants/:id {locale: "es"} (admin_merchant_es)
+    # @route PUT /de/admin/merchants/:id {locale: "de"} (admin_merchant_de)
+    # @route PUT /it/admin/merchants/:id {locale: "it"} (admin_merchant_it)
+    # @route PUT /en/admin/merchants/:id {locale: "en"} (admin_merchant_en)
+    # @route PUT /admin/merchants/:id
     def update
       authorize! @merchant
 
@@ -60,7 +85,12 @@ module Admin
       end
     end
 
-    # @route DELETE /admin/merchants/:id (admin_merchant)
+    # @route DELETE /fr/admin/merchants/:id {locale: "fr"} (admin_merchant_fr)
+    # @route DELETE /es/admin/merchants/:id {locale: "es"} (admin_merchant_es)
+    # @route DELETE /de/admin/merchants/:id {locale: "de"} (admin_merchant_de)
+    # @route DELETE /it/admin/merchants/:id {locale: "it"} (admin_merchant_it)
+    # @route DELETE /en/admin/merchants/:id {locale: "en"} (admin_merchant_en)
+    # @route DELETE /admin/merchants/:id
     def destroy
       authorize! @merchant
 
