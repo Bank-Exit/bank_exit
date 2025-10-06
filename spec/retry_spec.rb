@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-# rubocop:disable Lint/SuppressedException, RSpec/ExampleLength
+# rubocop:disable Lint/SuppressedException
 RSpec.describe Retry do
   describe '.on' do
     context 'when no exception happens' do
@@ -55,4 +55,4 @@ RSpec.describe Retry do
     end
   end
 end
-# rubocop:enable Lint/SuppressedException, RSpec/ExampleLength
+# rubocop:enable Lint/SuppressedException

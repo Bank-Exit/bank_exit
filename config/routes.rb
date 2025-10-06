@@ -137,6 +137,12 @@ Rails.application.routes.draw do
       resources :announcements
       resources :ecosystem_items, except: :show
     end
+
+    namespace :api do
+      namespace :v1 do
+        resources :merchants, only: %i[index show]
+      end
+    end
   end
 
   namespace :addresses do

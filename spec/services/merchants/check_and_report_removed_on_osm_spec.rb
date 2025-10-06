@@ -77,7 +77,7 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
 
       it { expect(merchant).to be_soft_deleted }
 
-      it 'creates missing_merchant_ids_from_open_street_map.txt file', :aggregate_failures do # rubocop:disable RSpec/ExampleLength
+      it 'creates missing_merchant_ids_from_open_street_map.txt file', :aggregate_failures do
         expect(File).to exist(removed_merchants_txt_file)
 
         text = File.read(removed_merchants_txt_file)
