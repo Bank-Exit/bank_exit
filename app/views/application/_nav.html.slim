@@ -190,7 +190,7 @@ nav.navbar
             li.border-b.border-base-content/20.pb-2.mb-2
               = link_to ecosystem_path, class: ('text-primary' if params[:controller] == 'ecosystems') do
                 = t('ecosystems.show.title')
-                = image_tag icon_by_coin('monero')
+                = image_tag icon_by_coin('monero'), class: 'w-5'
 
             li
               = link_to statistics_path, class: ('text-primary' if params[:controller] == 'statistics') do
