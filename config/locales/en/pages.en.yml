@@ -42,7 +42,7 @@ en:
       title: 🇫🇷 France's public debt in real time
       headline_html: Public debt increases by <strong>€5,136</strong> per second (<strong>€443.7 million</strong> per day)
       source_label: Source
-      source_link: https://horloge-de-la-dette-publique.com/en
+      source_link: https://horloge-de-la-dette-publique.com/en/debt-clock-france-national-debt-real-time
       chart_debt_title: Debt (in billions)
 
     cbdc:
