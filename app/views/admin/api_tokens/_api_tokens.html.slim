@@ -1,0 +1,21 @@
+section.space-y-3
+  == pagy_nav(pagy) if pagy.count > pagy.limit
+
+  .table-wrapper
+    table.table.table-zebra
+      thead
+        tr
+          th scope="col"= APIToken.human_attribute_name(:name)
+          th scope="col"= APIToken.human_attribute_name(:requests_count)
+          th scope="col"= APIToken.human_attribute_name(:expired_at)
+          th scope="col"= APIToken.human_attribute_name(:enabled)
+          th scope="col"= t('actions')
+      tbody
+        = render api_tokens
+
+        - if api_tokens.blank?
+          tr
+            td.text-center.italic colspan="100%"
+              = t('.empty_results')
+
+  == pagy_nav(pagy) if pagy.count > pagy.limit

@@ -1,0 +1,31 @@
+tr class=('opacity-25' unless api_token.live?)
+  th= api_token.name
+
+  td= api_token.requests_count
+  td
+    - if api_token.expired_at
+      .flex.items-center.gap-2
+        - if api_token.expired?
+          .status.status-lg.status-error.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
+            = lucide_icon 'x', class: 'text-error-content'
+
+        - else
+          .status.status-lg.status-success.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
+            = lucide_icon 'check', class: 'text-success-content'
+
+        = I18n.l(api_token.expired_at)
+
+    - else
+      | -
+
+  td
+    - if api_token.enabled?
+      .status.status-lg.status-success.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
+        = lucide_icon 'check', class: 'text-success-content'
+
+    - else
+      .status.status-lg.status-error.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
+        = lucide_icon 'x', class: 'text-error-content'
+
+  td
+    = render 'actions', api_token: api_token

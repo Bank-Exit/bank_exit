@@ -1,0 +1,5 @@
+fr:
+  exceptions:
+    authenticable_errors:
+      unauthorized_token: Jeton d'authentification invalide ou manquant.
+      forbidden_token: Accès interdit pour ce jeton.

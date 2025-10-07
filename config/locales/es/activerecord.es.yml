@@ -63,6 +63,9 @@ es:
       announcement:
         one: anuncio
         other: anuncios
+      api_token:
+        one: clave API
+        other: claves API
       comment:
         zero: comentario
         one: comentario
@@ -202,6 +205,14 @@ es:
         picture: Imagen
         url: Enlace
         enabled: ¿Activo?
+
+      api_token:
+        name: Nombre
+        description: Descripción
+        token: Token
+        requests_count: Número de solicitudes
+        enabled: ¿Activada?
+        expired_at: Expira el
 
       user:
         email: Dirección de correo

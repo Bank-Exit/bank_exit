@@ -1,0 +1,5 @@
+it:
+  exceptions:
+    authenticable_errors:
+      unauthorized_token: Token di autenticazione non valido o mancante.
+      forbidden_token: Accesso vietato per questo token.

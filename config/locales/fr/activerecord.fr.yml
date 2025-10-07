@@ -67,6 +67,9 @@ fr:
       announcement:
         one: annonce
         other: annonces
+      api_token:
+        one: clé d'API
+        other: clés d'API
       comment:
         zero: commentaire
         one: commentaire
@@ -212,6 +215,14 @@ fr:
         picture: Image
         url: Lien
         enabled: Activé ?
+
+      api_token:
+        name: Nom
+        description: Description
+        token: Token
+        requests_count: Nombre de requêtes
+        enabled: Activé ?
+        expired_at: Expiration le
 
       user:
         email: Adresse email

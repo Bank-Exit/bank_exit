@@ -136,6 +136,7 @@ Rails.application.routes.draw do
 
       resources :announcements
       resources :ecosystem_items, except: :show
+      resources :api_tokens
     end
 
     namespace :api do

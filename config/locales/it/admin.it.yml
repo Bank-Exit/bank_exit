@@ -21,6 +21,25 @@ it:
       actions:
         destroy_confirm: Vuoi eliminare questo annuncio?
 
+    api_tokens:
+      index:
+        title: Chiavi API
+      new:
+        title: Aggiungi una chiave API
+      create:
+        notice: La chiave API è stata creata con successo
+      edit:
+        title: Modifica chiave API
+      update:
+        notice: La chiave API è stata aggiornata con successo
+      destroy:
+        notice: La chiave API è stata eliminata con successo
+
+      api_tokens:
+        empty_results: Nessuna chiave API da mostrare
+      actions:
+        destroy_confirm: Vuoi eliminare questa chiave API? <br /> ⚠️ Questa azione impedirà l'utilizzo futuro di questo token per effettuare chiamate all'API.
+
     comments:
       index:
         title: Commenti
