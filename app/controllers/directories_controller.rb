@@ -28,7 +28,7 @@ class DirectoriesController < PublicController
 
     @my_geocoder = directories_filter.geocoder_ip if around_me?
 
-    @spotlights = Directory.enabled.spotlights.by_position.includes(:logo_attachment)
+    @spotlights = Directory.enabled.spotlights.includes(:logo_attachment).shuffle
 
     directories = DirectoryDecorator.wrap(directories.uniq)
 
