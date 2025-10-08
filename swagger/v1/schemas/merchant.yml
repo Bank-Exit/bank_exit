@@ -1,0 +1,158 @@
+type: object
+required:
+  - id
+  - type
+  - attributes
+properties:
+  id:
+    type: string
+    example: "1234567890"
+  type:
+    type: string
+    example: "merchants"
+  attributes:
+    type: object
+    properties:
+      id:
+        type: string
+        example: "1234567890"
+      name:
+        type: string
+        example: "Example Merchant"
+      description:
+        type: string
+        nullable: true
+        example: "A nice café located downtown."
+      email:
+        type: string
+        nullable: true
+        example: "contact@examplemerchant.com"
+      phone:
+        type: string
+        nullable: true
+        example: "+1 234 567 890"
+      website:
+        type: string
+        nullable: true
+        format: uri
+        example: "https://www.examplemerchant.com"
+      merchant_url:
+        type: string
+        format: uri
+        example: "http://example.com/en/merchants/1234567890-example-merchant"
+      category:
+        type: string
+        example: "restaurant"
+      coins:
+        type: array
+        items:
+          type: string
+          example: ["monero", "bitcoin", "lightning"]
+      ask_kyc:
+        type: boolean
+        nullable: true
+        example: false
+      last_survey_on:
+        type: string
+        format: date
+        example: "2025-10-01"
+      opening_hours:
+        type: string
+        nullable: true
+        example: "Mo-Fr 08:00-18:00; Sa-Su 09:00-16:00"
+      address:
+        type: object
+        properties:
+          street:
+            type: string
+            example: "Main Street"
+          house_number:
+            type: string
+            example: "42"
+          postcode:
+            type: string
+            example: "12345"
+          city:
+            type: string
+            example: "Sample City"
+          country:
+            type: string
+            example: "US"
+      social_contacts:
+        type: object
+        properties:
+          facebook:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://facebook.com/examplemerchant"
+          instagram:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://instagram.com/examplemerchant"
+          twitter:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://x.com/examplemerchant"
+          session:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://session.examplemerchant.com"
+          signal:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://signal.examplemerchant.com"
+          matrix:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://matrix.to/#/@merchant:example.org"
+          jabber:
+            type: string
+            nullable: true
+            format: uri
+            example: "xmpp:merchant@example.org"
+          telegram:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://t.me/examplemerchant"
+          youtube:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://youtube.com/c/examplemerchant"
+          odysee:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://odysee.com/@examplemerchant"
+          crowdbunker:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://crowdbunker.com/@examplemerchant"
+          francelibretv:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://francelibre.tv/@examplemerchant"
+          tiktok:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://tiktok.com/@examplemerchant"
+          linkedin:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://linkedin.com/in/examplemerchant"
+          tripadvisor:
+            type: string
+            nullable: true
+            format: uri
+            example: "https://tripadvisor.com/examplemerchant"

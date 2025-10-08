@@ -12,7 +12,7 @@ module API
       # @route GET /en/api/v1/merchants {locale: "en"} (api_v1_merchants_en)
       # @route GET /api/v1/merchants
       def index
-        pagy, page_ids = pagy_array(merchant_ids.ids)
+        pagy, page_ids = pagy_array(merchant_ids.ids, limit: per_page)
 
         merchants = Merchant.where(id: page_ids).in_order_of(:id, page_ids)
 
@@ -33,7 +33,9 @@ module API
 
       def merchant_params
         params.permit(
-          :country, :continent, :no_kyc, coins: []
+          :per, :page,
+          :query, :category, :country, :continent,
+          :with_atms, :no_kyc, :coins, coins: []
         )
       end
 
@@ -43,6 +45,14 @@ module API
 
       def merchant_id
         params[:id]
+      end
+
+      def query
+        @query ||= merchant_params[:query]
+      end
+
+      def category
+        @category ||= merchant_params[:category]
       end
 
       def coins
@@ -59,6 +69,15 @@ module API
 
       def no_kyc?
         merchant_params[:no_kyc] == 'true'
+      end
+
+      def with_atms?
+        merchant_params[:with_atms]
+      end
+
+      def per_page
+        per = merchant_params[:per].to_i
+        per <= 0 ? Pagy::DEFAULT[:limit] : per
       end
     end
   end

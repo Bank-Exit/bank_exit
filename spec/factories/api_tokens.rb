@@ -8,5 +8,9 @@ FactoryBot.define do
       enabled { true }
       expired_at { nil }
     end
+
+    trait :expired do
+      expired_at { 1.day.ago }
+    end
   end
 end

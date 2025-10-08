@@ -211,6 +211,9 @@ GEM
       actionview (>= 7.0.0)
       activesupport (>= 7.0.0)
     json (2.15.0)
+    json-schema (5.2.2)
+      addressable (~> 2.8)
+      bigdecimal (~> 3.1)
     jwt (3.1.2)
       base64
     kamal (2.7.0)
@@ -440,6 +443,17 @@ GEM
       rspec-mocks (~> 3.13)
       rspec-support (~> 3.13)
     rspec-support (3.13.6)
+    rswag-api (2.16.0)
+      activesupport (>= 5.2, < 8.1)
+      railties (>= 5.2, < 8.1)
+    rswag-specs (2.16.0)
+      activesupport (>= 5.2, < 8.1)
+      json-schema (>= 2.2, < 6.0)
+      railties (>= 5.2, < 8.1)
+      rspec-core (>= 2.14)
+    rswag-ui (2.16.0)
+      actionpack (>= 5.2, < 8.1)
+      railties (>= 5.2, < 8.1)
     rubocop (1.81.0)
       json (~> 2.3)
       language_server-protocol (~> 3.17.0.2)
@@ -650,6 +664,9 @@ DEPENDENCIES
   route_translator
   rqrcode
   rspec-rails
+  rswag-api
+  rswag-specs
+  rswag-ui
   rubocop
   rubocop-performance
   rubocop-rails

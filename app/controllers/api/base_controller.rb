@@ -1,8 +1,11 @@
 module API
   class BaseController < ActionController::API
-    include TokenAuthenticable
     include Localizable
+    include TokenAuthenticable
+    include Renderer
     include APIResponder
+
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
     before_action :authenticate
     before_action :increment_requests_count

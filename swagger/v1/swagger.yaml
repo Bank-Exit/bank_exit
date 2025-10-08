@@ -1,0 +1,619 @@
+---
+openapi: 3.0.1
+info:
+  title: Bank-Exit API
+  version: v1
+  description: "Welcome to the Bank-Exit API v1 documentation.\n\n- This API requires
+    Bearer token authentication.\n- All endpoints are prefixed by a locale (e.g.,
+    `/en`, `/fr`, etc.).\n- You can try out the endpoints directly from this interface.\n\n**Important:**
+    To authenticate, click the \U0001F512 \"Authorize\" button and provide your token
+    in the format: `Bearer YOUR_TOKEN_HERE`.\n\nFor more information, please refer
+    to the official developer documentation or contact the API support team.\n"
+paths:
+  "/{locale}/api/v1/merchants":
+    get:
+      summary: List merchants
+      tags:
+      - Merchants
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: locale
+        in: path
+        type: string
+        required: true
+        schema:
+          type: string
+          default: en
+          enum:
+          - en
+          - fr
+          - es
+          - de
+          - it
+        description: Locale to render JSON
+      - in: query
+        name: query
+        schema:
+          type: string
+          default:
+        description: Query matching merchant name or description
+      - in: query
+        name: coins[]
+        schema:
+          type: array
+          default: []
+          items:
+            type: string
+            enum:
+            - monero
+            - bitcoin
+            - june
+        description: Coins for merchants
+      - in: query
+        name: country
+        schema:
+          type: string
+          default:
+          enum:
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CR
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - YE
+          - YT
+          - ZA
+          - ZM
+          - ZW
+        description: Country to filter as ISO 3166-1 alpha-2 value
+      - in: query
+        name: continent
+        schema:
+          type: string
+          default:
+          enum:
+          - EU
+          - AF
+          - NA
+          - SA
+          - AS
+          - OC
+          - AN
+        description: Continent to filter as ISO 3166-1 alpha-2 value
+      - in: query
+        name: page
+        default: 1
+        required: false
+        description: Page number
+        schema:
+          type: integer
+      - in: query
+        name: per
+        default: 12
+        required: false
+        description: Per page value
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/merchants_index_response"
+        '401':
+          description: unauthorized token
+        '403':
+          description: forbidden token
+  "/{locale}/api/v1/merchants/{id}":
+    get:
+      summary: Show a merchant
+      tags:
+      - Merchants
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: locale
+        in: path
+        type: string
+        required: true
+        schema:
+          type: string
+          default: en
+          enum:
+          - en
+          - fr
+          - es
+          - de
+          - it
+        description: Locale to render JSON
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: merchant found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/merchant_show_response"
+        '401':
+          description: unauthorized token
+        '403':
+          description: forbidden token
+        '404':
+          description: merchant not found
+components:
+  securitySchemes:
+    bearer_auth:
+      type: http
+      scheme: bearer
+      bearerFormat: Token
+  security:
+  - bearer_auth: []
+  schemas:
+    merchant:
+      type: object
+      required:
+      - id
+      - type
+      - attributes
+      properties:
+        id:
+          type: string
+          example: '1234567890'
+        type:
+          type: string
+          example: merchants
+        attributes:
+          type: object
+          properties:
+            id:
+              type: string
+              example: '1234567890'
+            name:
+              type: string
+              example: Example Merchant
+            description:
+              type: string
+              nullable: true
+              example: A nice café located downtown.
+            email:
+              type: string
+              nullable: true
+              example: contact@examplemerchant.com
+            phone:
+              type: string
+              nullable: true
+              example: "+1 234 567 890"
+            website:
+              type: string
+              nullable: true
+              format: uri
+              example: https://www.examplemerchant.com
+            merchant_url:
+              type: string
+              format: uri
+              example: http://example.com/en/merchants/1234567890-example-merchant
+            category:
+              type: string
+              example: restaurant
+            coins:
+              type: array
+              items:
+                type: string
+                example:
+                - monero
+                - bitcoin
+                - lightning
+            ask_kyc:
+              type: boolean
+              nullable: true
+              example: false
+            last_survey_on:
+              type: string
+              format: date
+              example: '2025-10-01'
+            opening_hours:
+              type: string
+              nullable: true
+              example: Mo-Fr 08:00-18:00; Sa-Su 09:00-16:00
+            address:
+              type: object
+              properties:
+                street:
+                  type: string
+                  example: Main Street
+                house_number:
+                  type: string
+                  example: '42'
+                postcode:
+                  type: string
+                  example: '12345'
+                city:
+                  type: string
+                  example: Sample City
+                country:
+                  type: string
+                  example: US
+            social_contacts:
+              type: object
+              properties:
+                facebook:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://facebook.com/examplemerchant
+                instagram:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://instagram.com/examplemerchant
+                twitter:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://x.com/examplemerchant
+                session:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://session.examplemerchant.com
+                signal:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://signal.examplemerchant.com
+                matrix:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://matrix.to/#/@merchant:example.org
+                jabber:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: xmpp:merchant@example.org
+                telegram:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://t.me/examplemerchant
+                youtube:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://youtube.com/c/examplemerchant
+                odysee:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://odysee.com/@examplemerchant
+                crowdbunker:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://crowdbunker.com/@examplemerchant
+                francelibretv:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://francelibre.tv/@examplemerchant
+                tiktok:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://tiktok.com/@examplemerchant
+                linkedin:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://linkedin.com/in/examplemerchant
+                tripadvisor:
+                  type: string
+                  nullable: true
+                  format: uri
+                  example: https://tripadvisor.com/examplemerchant
+    merchant_show_response:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          "$ref": "#/components/schemas/merchant"
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
+              example: http://example.com/api/v1/merchants/1234567890.json
+    merchants_index_response:
+      type: object
+      required:
+      - data
+      - meta
+      - links
+      properties:
+        data:
+          type: array
+          items:
+            "$ref": "#/components/schemas/merchant"
+        meta:
+          type: object
+          properties:
+            page:
+              type: integer
+              example: 1
+            count:
+              type: integer
+              example: 200
+            pages:
+              type: integer
+              example: 1500
+            per_page:
+              type: integer
+              example: 12
+        links:
+          type: object
+          properties:
+            first:
+              type: string,
+              format: uri
+              example: http://example.com/en/api/v1/merchants?page=1
+            last:
+              type: string
+              format: uri
+              example: http://example.com/en/api/v1/merchants?page=10
+            prev:
+              type: string
+              format: uri
+              nullable: true
+              example:
+            next:
+              type: string
+              format: uri
+              nullable: true
+              example: http://example.com/en/api/v1/merchants?page=2

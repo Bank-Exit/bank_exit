@@ -6,7 +6,7 @@ module APIResponder
   end
 
   def render_collection(collection, pagy:, blueprint: nil, type: nil, **)
-    resource_class = collection.first&.class
+    resource_class = collection.class.to_s.split('::').first.constantize
 
     raise ArgumentError, 'Cannot infer type and blueprint from empty collection' if resource_class.nil? && (blueprint.nil? || type.nil?)
 
@@ -49,7 +49,7 @@ module APIResponder
       page: pagy.page,
       count: pagy.count,
       pages: pagy.pages,
-      size: pagy.vars[:limit]
+      per_page: pagy.vars[:limit]
     }
   end
 

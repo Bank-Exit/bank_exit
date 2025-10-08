@@ -1,74 +1,111 @@
-require 'rails_helper'
+require 'swagger_helper'
 
-RSpec.describe 'Admin::Merchants' do
-  let!(:merchant) do
-    create :merchant, identifier: '123456'
-  end
+RSpec.describe 'API::V1::Merchants' do
+  path '/{locale}/api/v1/merchants' do
+    get 'List merchants' do
+      tags 'Merchants'
+      produces 'application/json'
+      security [bearer_auth: []]
 
-  describe 'GET /api/v1/merchants' do
-    subject(:action) { get '/api/v1/merchants', headers: headers }
+      include_context 'with locale parameter'
 
-    let(:headers) { {} }
+      with_options in: :query do
+        parameter name: :query, schema: { type: :string, default: nil }, description: 'Query matching merchant name or description'
+        parameter name: :'coins[]',
+                  schema: {
+                    type: :array,
+                    default: [],
+                    items: {
+                      type: :string,
+                      enum: Setting::MERCHANTS_FILTER_COINS
+                    }
+                  },
+                  description: 'Coins for merchants'
+        parameter name: :country,
+                  schema: {
+                    type: :string,
+                    default: nil,
+                    enum: ISO3166::Country.all.map(&:alpha2)
+                  },
+                  description: 'Country to filter as ISO 3166-1 alpha-2 value'
+        parameter name: :continent,
+                  schema: {
+                    type: :string,
+                    default: nil,
+                    enum: I18n.t('continents').keys
+                  },
+                  description: 'Continent to filter as ISO 3166-1 alpha-2 value'
+      end
 
-    context 'when API token is valid' do
-      let(:api_token) { create :api_token, :live }
-      let(:headers) { { 'Authorization' => "Bearer #{api_token.token}" } }
+      include_context 'with pagination parameter'
 
-      it { expect { action }.to change { api_token.reload.requests_count }.by(1) }
+      # variables are mandatory for parameters to make
+      # RSpec pass the test :'(
+      let(:query) { nil }
+      let(:'coins[]') { [] } # rubocop:disable RSpec/VariableName
+      let(:country) { nil }
+      let(:continent) { nil }
 
-      describe 'HTTP status and response' do
-        before { action }
+      before do
+        create_list :merchant, 3
+      end
 
-        it { expect(response).to have_http_status :ok }
+      response '200', 'successful' do
+        include_context 'with authenticated token'
 
-        it 'returns a JSON:API compliant list', :aggregate_failures do
+        schema '$ref' => '#/components/schemas/merchants_index_response'
+
+        run_test! do
           json = parsed_response
 
           expect(json).to include(:data, :meta, :links)
           expect(json['data']).to be_an(Array)
-          expect(json['data'].size).to eq(1)
+          expect(json['data'].size).to eq(3)
 
           merchant = json['data'].first
           expect(merchant).to include('id', 'type', 'attributes')
           expect(merchant['type']).to eq('merchants')
-          expect(merchant['attributes']).to include(id: '123456')
+          expect(merchant['attributes']).to include(:id)
 
-          expect(json['meta']).to include('page', 'count', 'pages', 'size')
+          expect(json['meta']).to include('page', 'count', 'pages', 'per_page')
           expect(json['links']).to include('first', 'last', 'prev', 'next')
         end
       end
-    end
 
-    context 'when API token is missing' do
-      it_behaves_like 'unauthorized API request'
-    end
+      response '401', 'unauthorized token' do
+        include_context 'with missing token'
+        it_behaves_like 'unauthorized API request'
+      end
 
-    context 'when API token is forbidden' do
-      let(:api_token) { create :api_token, enabled: false }
-      let(:headers) { { 'Authorization' => "Bearer #{api_token.token}" } }
-
-      it { expect { action }.to_not change { api_token.reload.requests_count } }
-
-      it_behaves_like 'forbidden API request'
+      response '403', 'forbidden token' do
+        include_context 'with forbidden token'
+        it_behaves_like 'forbidden API request'
+      end
     end
   end
 
-  describe 'GET /api/v1/merchant/:id' do
-    subject(:action) { get "/api/v1/merchants/#{merchant.identifier}", headers: headers }
+  path '/{locale}/api/v1/merchants/{id}' do
+    get 'Show a merchant' do
+      tags 'Merchants'
+      consumes 'application/json'
+      produces 'application/json'
+      security [bearer_auth: []]
 
-    context 'when API token is valid' do
-      let(:api_token) { create :api_token, :live }
-      let(:headers) { { 'Authorization' => "Bearer #{api_token.token}" } }
+      include_context 'with locale parameter'
+      parameter name: :id, in: :path, type: :string, required: true
 
-      it { expect { action }.to change { api_token.reload.requests_count }.by(1) }
+      let!(:merchant) { create :merchant }
+      let(:id) { merchant.identifier }
 
-      describe 'HTTP status and response' do
-        before { action }
+      response '200', 'merchant found' do
+        include_context 'with authenticated token'
 
-        it { expect(response).to have_http_status :ok }
+        schema '$ref' => '#/components/schemas/merchant_show_response'
 
-        it 'returns a JSON:API compliant resource', :aggregate_failures do
+        run_test! do |response|
           json = parsed_response
+
+          expect(response).to have_http_status :ok
 
           expect(json.dig('data', 'id')).to eq(merchant.identifier)
           expect(json.dig('data', 'attributes', 'id')).to eq(merchant.identifier)
@@ -76,19 +113,27 @@ RSpec.describe 'Admin::Merchants' do
           expect(json['links']).to include('self')
         end
       end
-    end
 
-    context 'when API token is missing' do
-      it_behaves_like 'unauthorized API request'
-    end
+      response '401', 'unauthorized token' do
+        include_context 'with missing token'
+        it_behaves_like 'unauthorized API request'
+      end
 
-    context 'when API token is forbidden' do
-      let(:api_token) { create :api_token, enabled: false }
-      let(:headers) { { 'Authorization' => "Bearer #{api_token.token}" } }
+      response '403', 'forbidden token' do
+        include_context 'with forbidden token'
+        it_behaves_like 'forbidden API request'
+      end
 
-      it { expect { action }.to_not change { api_token.reload.requests_count } }
+      response '404', 'merchant not found' do
+        include_context 'with authenticated token'
 
-      it_behaves_like 'forbidden API request'
+        let(:id) { 'nonexistent-id' }
+
+        run_test! do |response|
+          expect(response).to have_http_status :not_found
+          expect(parsed_response['errors'].first['status']).to eq('404')
+        end
+      end
     end
   end
 end

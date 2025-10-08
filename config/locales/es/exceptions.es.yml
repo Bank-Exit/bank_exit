@@ -3,3 +3,6 @@ es:
     authenticable_errors:
       unauthorized_token: Token de autenticación inválido o ausente.
       forbidden_token: Acceso prohibido para este token.
+
+    merchant:
+      not_found: El comerciante solicitado no existe

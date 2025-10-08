@@ -1,0 +1,13 @@
+type: object
+required:
+  - data
+properties:
+  data:
+    $ref: "#/components/schemas/merchant"
+  links:
+    type: object
+    properties:
+      self:
+        type: string
+        format: uri
+        example: http://example.com/api/v1/merchants/1234567890.json

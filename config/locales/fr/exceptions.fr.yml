@@ -3,3 +3,6 @@ fr:
     authenticable_errors:
       unauthorized_token: Jeton d'authentification invalide ou manquant.
       forbidden_token: Accès interdit pour ce jeton.
+
+    merchant:
+      not_found: Le commerçant demandé n'existe pas

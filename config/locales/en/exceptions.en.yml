@@ -3,3 +3,6 @@ en:
     authenticable_errors:
       unauthorized_token: Invalid or missing authentication token.
       forbidden_token: Access forbidden for this token.
+
+    merchant:
+      not_found: The requested merchant does not exist
