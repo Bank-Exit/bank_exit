@@ -26,6 +26,6 @@ class UrlValidator < ActiveModel::EachValidator
     parts = host.to_s.split('.')
 
     tld = parts.last
-    tld.present? && tld.match?(/\A[a-z]{2,6}\z/i) && parts.size > 1
+    tld.present? && tld.match?(/\A[a-z]{2,8}\z/i) && parts.size > 1
   end
 end

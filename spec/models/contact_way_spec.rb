@@ -13,7 +13,7 @@ RSpec.describe ContactWay do
   context 'when role is :website' do
     subject { build_stubbed :contact_way, :website }
 
-    it { is_expected.to allow_value('https://foobar.com', 'http://foobar.com', 'foobar.com', 'foobar.com/index.html').for(:value) }
+    it { is_expected.to allow_value('https://foobar.com', 'http://foobar.com', 'foobar.com', 'foobar.com/index.html', 'foobar.finance').for(:value) }
     it { is_expected.to_not allow_values(nil, 'foobar', 'foobar@test.com').for(:value) }
   end
 
