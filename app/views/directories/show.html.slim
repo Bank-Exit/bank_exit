@@ -4,7 +4,7 @@
 - weblinks = WeblinkDecorator.wrap(@directory.weblinks.enabled)
 
 article
-  .hero.bg-fixed style=("background-image: url(#{rails_blob_path(@directory.banner.variant(:thumb))})" if @directory.banner.attached?) class=(@directory.banner.attached? ? 'bg-contain' : 'bg-banner-default')
+  .hero.bg-fixed.bg-no-repeat.bg-top style=("background-image: url(#{rails_blob_path(@directory.banner.variant(:thumb))})" if @directory.banner.attached?) class=(@directory.banner.attached? ? 'bg-contain' : 'bg-banner-default')
     .hero-overlay
     .hero-content.py-16
       header.max-w-xl
