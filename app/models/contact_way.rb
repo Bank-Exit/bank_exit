@@ -20,7 +20,8 @@ class ContactWay < ApplicationRecord
          jabber: 16,
          linkedin: 17,
          tripadvisor: 18,
-         simplex: 19
+         simplex: 19,
+         nostr: 20
        },
        validate: true,
        default: :website
@@ -52,7 +53,7 @@ class ContactWay < ApplicationRecord
   end
 
   def social_network?
-    !email? && !website? && !phone? && !substack?
+    !email? && !website? && !phone? && !substack? && !nostr?
   end
 end
 

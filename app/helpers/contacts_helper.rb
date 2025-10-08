@@ -29,6 +29,8 @@ module ContactsHelper
       else
         lucide_icon 'link', class: icon_klass
       end
+    when :nostr
+      image_tag 'contacts/nostr.svg', class: image_klass, title: title.presence || t(mode.to_sym, scope: i18n_scope)
     when :session, :signal, :matrix, :jabber, :telegram, :facebook, :instagram, :twitter, :youtube, :odysee, :tiktok, :linkedin, :substack, :tripadvisor
       image_tag "contacts/#{mode}.svg", class: image_klass, title: title.presence || t(mode.to_sym, scope: i18n_scope)
     when :crowdbunker

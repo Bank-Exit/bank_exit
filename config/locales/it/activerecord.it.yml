@@ -134,6 +134,7 @@ it:
           linkedin: LinkedIn
           substack: Substack
           simplex: SimpleX
+          nostr: Nostr
 
       directory:
         name: Nome

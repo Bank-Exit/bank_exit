@@ -138,6 +138,7 @@ en:
           linkedin: Linkedin
           substack: Substack
           simplex: SimpleX
+          nostr: Nostr
 
       directory:
         name: Name

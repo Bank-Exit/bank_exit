@@ -69,6 +69,7 @@ RSpec.describe ContactsHelper, type: :helper do
         linkedin
         tripadvisor
         substack
+        nostr
       ].each do |mode|
         context "when mode is :#{mode}" do
           let(:mode) { mode }
