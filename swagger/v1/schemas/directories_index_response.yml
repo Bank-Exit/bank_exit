@@ -7,7 +7,7 @@ properties:
   data:
     type: array
     items:
-      $ref: "#/components/schemas/merchant"
+      $ref: "#/components/schemas/directory"
 
   meta:
     type: object
@@ -23,11 +23,11 @@ properties:
       first:
         type: string
         format: uri
-        example: http://example.com/en/api/v1/merchants?page=1
+        example: http://example.com/en/api/v1/directories?page=1
       last:
         type: string
         format: uri
-        example: http://example.com/en/api/v1/merchants?page=10
+        example: http://example.com/en/api/v1/directories?page=10
       prev:
         type: string
         format: uri
@@ -37,4 +37,4 @@ properties:
         type: string
         format: uri
         nullable: true
-        example: http://example.com/en/api/v1/merchants?page=2
+        example: http://example.com/en/api/v1/directories?page=2

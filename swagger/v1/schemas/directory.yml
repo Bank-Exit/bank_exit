@@ -1,0 +1,111 @@
+type: object
+properties:
+  data:
+    type: object
+    properties:
+      id:
+        type: integer
+        example: 123
+      type:
+        type: string
+        example: directories
+      attributes:
+        type: object
+        properties:
+          id:
+            type: integer
+            example: 123
+          name:
+            type: string
+            example: "The Lighthouse Journal"
+          category:
+            type: string
+            example: "media"
+          description:
+            type: string
+            example: >
+              Independent publication sharing solutions for personal and collective emancipation.
+          banner_url:
+            type: string
+            format: uri
+            example: "http://example.com/rails/active_storage/blobs/redirect/abc123/banner.png"
+          logo_url:
+            type: string
+            format: uri
+            example: "http://example.com/rails/active_storage/blobs/redirect/abc123/logo.png"
+          directory_url:
+            type: string
+            format: uri
+            example: "http://example.com/en/directories/123-the-lighthouse-journal"
+          last_survey_on:
+            type: string
+            format: date-time
+            example: "2025-10-03T14:27:39Z"
+          comments:
+            type: array
+            items:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: "Clear and well-structured content, easy to understand."
+                language:
+                  type: string
+                  example: "en"
+                rating:
+                  type: integer
+                  example: 5
+          coins:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "bitcoin"
+                public_address:
+                  type: string
+                  example: "1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa"
+          contact:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "email"
+                  description: any of email, phone, website, twitter, facebook, instagram, tiktok, youtube, odysee, crowdbunker, francelibretv, session, signal, telegram, substack, matrix, jabber, linkedin, tripadvisor, simplex, nostr
+                value:
+                  type: string
+                  example: "contact@example.org"
+          delivery_zones:
+            type: array
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "continent"
+                value:
+                  type: string
+                  example: "EU"
+                continent_code:
+                  type: string
+                  nullable: true
+                  example: "EU"
+                country_code:
+                  type: string
+                  nullable: true
+                  example: null
+                region_code:
+                  type: string
+                  nullable: true
+                  example: null
+                department_code:
+                  type: string
+                  nullable: true
+                  example: null
+                city_name:
+                  type: string
+                  nullable: true
+                  example: null

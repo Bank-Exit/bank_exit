@@ -43,7 +43,10 @@ RSpec.configure do |config|
         schemas: {
           merchant: load_schema('merchant'),
           merchant_show_response: load_schema('merchant_show_response'),
-          merchants_index_response: load_schema('merchants_index_response')
+          merchants_index_response: load_schema('merchants_index_response'),
+          directory: load_schema('directory'),
+          directory_show_response: load_schema('directory_show_response'),
+          directories_index_response: load_schema('directories_index_response')
         }
       }
     }

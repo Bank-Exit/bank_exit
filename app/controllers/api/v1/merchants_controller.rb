@@ -35,7 +35,7 @@ module API
         params.permit(
           :per, :page,
           :query, :category, :country, :continent,
-          :with_atms, :no_kyc, :coins, coins: []
+          :with_atms, :no_kyc, coins: []
         )
       end
 

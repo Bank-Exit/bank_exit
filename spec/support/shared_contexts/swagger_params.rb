@@ -10,7 +10,7 @@ RSpec.shared_context 'with locale parameter' do
               default: I18n.default_locale,
               enum: I18n.available_locales
             },
-            description: 'Locale to render JSON'
+            description: 'Locale used for the response language, must be one of the supported locales.'
 end
 
 RSpec.shared_context 'with pagination parameter' do
@@ -18,7 +18,15 @@ RSpec.shared_context 'with pagination parameter' do
   let(:per) { 12 }
 
   with_options in: :query do
-    parameter name: :page, type: :integer, default: 1, required: false, description: 'Page number'
-    parameter name: :per, type: :integer, default: Pagy::DEFAULT[:limit], required: false, description: 'Per page value'
+    parameter name: :page,
+              type: :integer,
+              default: 1,
+              required: false,
+              description: 'Page number'
+    parameter name: :per,
+              type: :integer,
+              default: Pagy::DEFAULT[:limit],
+              required: false,
+              description: 'Per page value'
   end
 end

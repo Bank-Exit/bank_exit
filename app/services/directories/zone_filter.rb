@@ -23,8 +23,6 @@ module Directories
               .joins(:delivery_zones)
               .where(delivery_zones: { enabled: true })
               .where(sql, sql_params)
-
-      # debugger
     end
 
     private

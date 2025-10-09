@@ -38,7 +38,7 @@ module APIResponder
 
   def serialize_resource(record, blueprint, type:, **)
     {
-      id: record.identifier.to_s,
+      id: record.is_a?(Merchant) ? record.identifier : record.id,
       type: type.to_s,
       attributes: blueprint.render_as_hash(record, **)
     }

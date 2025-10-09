@@ -1,16 +1,16 @@
 require 'swagger_helper'
 
-RSpec.describe 'API::V1::Merchants' do
-  path '/{locale}/api/v1/merchants' do
-    get 'List merchants' do
-      tags 'Merchants'
+RSpec.describe 'API::V1::Directories' do
+  path '/{locale}/api/v1/directories' do
+    get 'List directories' do
+      tags 'Directories'
       produces 'application/json'
       security [bearer_auth: []]
 
       include_context 'with locale parameter'
 
       with_options in: :query do
-        parameter name: :query, schema: { type: :string, default: nil }, description: 'Query matching merchant name or description'
+        parameter name: :query, schema: { type: :string, default: nil }, description: 'Filters results by name or description'
         parameter name: :'coins[]',
                   schema: {
                     type: :array,
@@ -21,20 +21,41 @@ RSpec.describe 'API::V1::Merchants' do
                     }
                   },
                   description: 'Filters results by coins'
+        parameter name: :city,
+                  schema: {
+                    type: :string,
+                    default: nil
+                  },
+                  description: 'Filters results by delivery zone city'
+        parameter name: :department,
+                  schema: {
+                    type: :string,
+                    default: nil,
+                    enum: I18n.t('departments').keys
+                  },
+                  description: 'Filters results by delivery zone French departments'
         parameter name: :country,
                   schema: {
                     type: :string,
                     default: nil,
                     enum: ISO3166::Country.all.map(&:alpha2)
                   },
-                  description: 'Filters results by country (ISO 3166-1 alpha-2 code)'
+                  description: 'Filters results by delivery zone country (ISO 3166-1 alpha-2 code)'
         parameter name: :continent,
                   schema: {
                     type: :string,
                     default: nil,
                     enum: I18n.t('continents').keys
                   },
-                  description: 'Filters results by continent (ISO 3166-1 alpha-2 code)'
+                  description: 'Filters results by delivery zone continent (ISO 3166-1 alpha-2 code)'
+        parameter name: :with_comments,
+                  schema: {
+                    type: :boolean,
+                    default: nil,
+                    nullable: true,
+                    enum: [true, false]
+                  },
+                  description: 'Boolean to include related comments'
       end
 
       include_context 'with pagination parameter'
@@ -43,17 +64,20 @@ RSpec.describe 'API::V1::Merchants' do
       # RSpec pass the test :'(
       let(:query) { nil }
       let(:'coins[]') { [] } # rubocop:disable RSpec/VariableName
+      let(:city) { nil }
+      let(:department) { nil }
       let(:country) { nil }
       let(:continent) { nil }
+      let(:with_comments) { false }
 
       before do
-        create_list :merchant, 3
+        create_list :directory, 3
       end
 
       response '200', 'successful' do
         include_context 'with authenticated token'
 
-        schema '$ref' => '#/components/schemas/merchants_index_response'
+        schema '$ref' => '#/components/schemas/directories_index_response'
 
         run_test! do
           json = parsed_response
@@ -62,10 +86,10 @@ RSpec.describe 'API::V1::Merchants' do
           expect(json['data']).to be_an(Array)
           expect(json['data'].size).to eq(3)
 
-          merchant = json['data'].first
-          expect(merchant).to include('id', 'type', 'attributes')
-          expect(merchant['type']).to eq('merchants')
-          expect(merchant['attributes']).to include(:id)
+          directory = json['data'].first
+          expect(directory).to include('id', 'type', 'attributes')
+          expect(directory['type']).to eq('directories')
+          expect(directory['attributes']).to include(:id)
 
           expect(json['meta']).to include('page', 'count', 'pages', 'per_page')
           expect(json['links']).to include('first', 'last', 'prev', 'next')
@@ -84,9 +108,9 @@ RSpec.describe 'API::V1::Merchants' do
     end
   end
 
-  path '/{locale}/api/v1/merchants/{id}' do
-    get 'Show a merchant' do
-      tags 'Merchants'
+  path '/{locale}/api/v1/directories/{id}' do
+    get 'Show a directory' do
+      tags 'Directories'
       consumes 'application/json'
       produces 'application/json'
       security [bearer_auth: []]
@@ -94,21 +118,21 @@ RSpec.describe 'API::V1::Merchants' do
       include_context 'with locale parameter'
       parameter name: :id, in: :path, type: :string, required: true
 
-      let!(:merchant) { create :merchant }
-      let(:id) { merchant.identifier }
+      let!(:directory) { create :directory }
+      let(:id) { directory.id }
 
-      response '200', 'merchant found' do
+      response '200', 'directory found' do
         include_context 'with authenticated token'
 
-        schema '$ref' => '#/components/schemas/merchant_show_response'
+        schema '$ref' => '#/components/schemas/directory_show_response'
 
         run_test! do |response|
           json = parsed_response
 
           expect(response).to have_http_status :ok
 
-          expect(json.dig('data', 'id')).to eq(merchant.identifier)
-          expect(json.dig('data', 'attributes', 'id')).to eq(merchant.identifier)
+          expect(json.dig('data', 'id')).to eq(directory.id)
+          expect(json.dig('data', 'attributes', 'id')).to eq(directory.id)
 
           expect(json['links']).to include('self')
         end
@@ -124,7 +148,7 @@ RSpec.describe 'API::V1::Merchants' do
         it_behaves_like 'forbidden API request'
       end
 
-      response '404', 'merchant not found' do
+      response '404', 'directory not found' do
         include_context 'with authenticated token'
 
         let(:id) { 'nonexistent-id' }
