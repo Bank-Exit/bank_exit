@@ -3,14 +3,14 @@ class UrlValidator < ActiveModel::EachValidator
     return if value.blank?
 
     if value.include?('@')
-      record.errors.add(attribute, options[:message] || "n'est pas une URL valide")
+      record.errors.add(attribute, options[:message] || :invalid_url)
       return
     end
 
     uri = parse_uri(value)
     return unless uri.nil? || uri.host.blank? || !valid_tld?(uri.host)
 
-    record.errors.add(attribute, options[:message] || "n'est pas une URL valide")
+    record.errors.add(attribute, options[:message] || :invalid_url)
   end
 
   private

@@ -49,6 +49,10 @@ merchant_attributes: &merchant_attributes
   updated_at: Date de modification
 
 fr:
+  errors:
+    messages:
+      invalid_url: n'est pas une URL valide
+
   activemodel:
     attributes:
       merchant_proposal:
