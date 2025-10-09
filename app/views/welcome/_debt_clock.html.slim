@@ -21,8 +21,12 @@
           =< link_to t('.source_link'), class: 'text-primary', target: :_blank do
             = t('.source_link').delete_prefix('https://')
 
-  .w-full.lg:w-1/2.mx-auto
+  .w-full.lg:w-1/2.mx-auto.space-y-8
     = area_chart france_debt_data_by_years, ytitle: t('.chart_debt_title')
 
     - if I18n.locale == :fr
-      = image_tag 'sdb_debt_clock.jpeg', class: 'rounded-lg lg:w-3/4 mx-auto mt-8'
+      - meme = "sdb_debt_clock.jpeg"
+    - else
+      - meme = "sdb_debt_clock_en.jpeg"
+
+    = image_tag meme, class: 'rounded-lg lg:w-3/4 mx-auto'
