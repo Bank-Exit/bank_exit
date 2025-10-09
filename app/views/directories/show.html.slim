@@ -32,18 +32,18 @@ article
         ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.border.border-base-content/20.space-y-2 tabindex="0" popover="" id="popover-directory" style="position-anchor:--anchor-directory"
           - if allowed_to?(:update?, @directory, namespace: Admin)
             li
-              = link_to 'Modifier',
+              = link_to t('edit'),
                         edit_admin_directory_path(@directory),
                         class: 'btn btn-warning btn-sm'
 
           - if allowed_to?(:destroy?, @directory, namespace: Admin)
             li
-              = link_to 'Supprimer',
+              = link_to t('destroy'),
                         admin_directory_path(@directory),
                         class: 'btn btn-error btn-sm',
                         data: { \
                           turbo_method: :delete,
-                          turbo_confirm: "Voulez-vous supprimer cette entrée d'annuaire ?" \
+                          turbo_confirm: t('admin.directories.actions.destroy_confirm') \
                         }
 
     - if @directory.description?
