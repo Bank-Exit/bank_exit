@@ -37,6 +37,6 @@ html lang=I18n.locale data-theme="silk"
       = render 'admin/sidebar'
 
     #modal
-    = render 'turbo_confirm'
+    = render 'modal', id: 'turbo-confirm'
     = render 'ribbon' unless Rails.env.production?
     = render 'debugbar' if defined?(Debugbar)

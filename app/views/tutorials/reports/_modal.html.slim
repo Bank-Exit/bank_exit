@@ -1,8 +1,7 @@
 - i18n_scope = 'tutorials.reports.modal'
 
-- content_for(:title) do
-  h3.text-xl.font-semibold
-    = tutorial.title
+- content_for(:modal_title) do
+  = tutorial.title
 
 = render_modal do
   = simple_form_for tutorial_report,

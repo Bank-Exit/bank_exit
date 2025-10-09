@@ -138,16 +138,7 @@ section
     = render 'merchants', merchants: @merchants, pagy: @pagy
 
 - if merchant_deleted_count
-  dialog#merchants_deleted_help.modal
-    .modal-box.w-11/12.max-w-3xl
-      form method="dialog"
-        button.btn.btn-sm.btn-circle.btn-ghost.absolute.right-2.top-2 ✕
-
-      h3.text-lg.font-bold.mb-4= t('.merchants_disabled')
-
-      .space-y-3
-        == simple_format t('.merchant_disabled_body_html')
-
-    form.modal-backdrop method="dialog"
-      / Not displayed
-      button close
+  = render 'modal',
+           id: :merchants_deleted_help,
+           modal_title: t('.merchants_disabled'),
+           modal_body: t('.merchant_disabled_body_html')

@@ -36,16 +36,7 @@ section.mb-3.space-y-2
   = render 'comments', comments: @comments, pagy: @pagy
 
 - unless comments_enabled?
-  dialog#comments_disabled_help.modal
-    .modal-box.w-11/12.max-w-3xl
-      form method="dialog"
-        button.btn.btn-sm.btn-circle.btn-ghost.absolute.right-2.top-2 ✕
-
-      h3.text-lg.font-bold.mb-4= t('.comments_disabled')
-
-      .space-y-2
-        == simple_format t('.comments_disabled_body_html')
-
-    form.modal-backdrop method="dialog"
-      / Not displayed
-      button close
+  = render 'modal',
+           id: :comments_disabled_help,
+           modal_title: t('.comments_disabled'),
+           modal_body: t('.comments_disabled_body_html')

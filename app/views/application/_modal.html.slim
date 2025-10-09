@@ -1,0 +1,37 @@
+- is_turbo_confirm = defined?(id) && id == 'turbo-confirm'
+
+/ When the modal is loaded via Turbo Stream, the original button click
+/ that would trigger this controller no longer exists.
+/
+/ Therefore, we manually open the modal in the `connect()` method.
+/ This ensures the modal still appears as expected even when injected dynamically.
+dialog.modal id=(id if defined?(id)) data-controller=("modal" unless defined?(id))
+  .modal-box.max-w-xl
+    form method="dialog"
+      button.btn.btn-sm.btn-square.btn-ghost.absolute.right-2.top-2 aria-label="Close"
+        = lucide_icon 'x'
+
+    - if defined?(modal_title)
+      h3.text-lg.font-bold.mb-4= modal_title
+    - elsif content_for?(:modal_title)
+      h3.text-lg.font-bold.mb-4= yield :modal_title
+
+    .body.space-y-2.mr-4
+      - if defined?(modal_body)
+        == simple_format modal_body
+      - elsif defined?(modal_body_html)
+        == modal_body_html
+
+    - if is_turbo_confirm
+      .modal-action
+        form method="dialog"
+          button.btn.btn-neutral.mr-2 value="cancel"
+            = t('cancel')
+
+          button.btn.btn-success value="confirm"
+            = t('confirm')
+
+  - unless is_turbo_confirm
+    / Not displayed
+    form.modal-backdrop method="dialog"
+      button= t('close')

@@ -1,8 +1,7 @@
 - i18n_scope = 'merchants.reports.modal'
 
-- content_for(:title) do
-  h3.text-xl.font-semibold
-    = merchant.name
+- content_for(:modal_title) do
+  = merchant.name
 
 = render_modal do
   .alert.alert-info

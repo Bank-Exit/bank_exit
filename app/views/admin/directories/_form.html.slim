@@ -156,17 +156,7 @@
   = f.button :submit
 
 - %w[address coin_wallet delivery_zone].each do |model_key|
-  dialog.modal id="#{model_key}_help"
-    .modal-box.w-11/12.max-w-3xl
-      form method="dialog"
-        button.btn.btn-sm.btn-circle.btn-ghost.absolute.right-2.top-2 ✕
-
-      h3.text-lg.font-bold.mb-4
-        = model_key.classify.constantize.model_name.human.capitalize
-
-      .space-y-2
-        == simple_format t(".#{model_key}_body_help")
-
-    form.modal-backdrop method="dialog"
-      / Not displayed
-      button close
+  = render 'modal',
+           id: "#{model_key}_help",
+           modal_title: model_key.classify.constantize.model_name.human.capitalize,
+           modal_body: t(".#{model_key}_body_help")
