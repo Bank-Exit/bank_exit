@@ -84,6 +84,9 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          RAILS_DB_ENCRYPTION_PRIMARY_KEY: ${{ secrets.RAILS_DB_ENCRYPTION_PRIMARY_KEY }}
+          RAILS_DB_ENCRYPTION_DETERMINISTIC_KEY: ${{ secrets.RAILS_DB_ENCRYPTION_DETERMINISTIC_KEY }}
+          RAILS_DB_ENCRYPTION_KEY_DERIVATION_SALT: ${{ secrets.RAILS_DB_ENCRYPTION_KEY_DERIVATION_SALT }}
           # REDIS_URL: redis://localhost:6379/0
         run: bin/rspec
 
