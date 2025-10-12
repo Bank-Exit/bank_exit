@@ -11,7 +11,7 @@ module API
       # @route GET /api/v1/directories
       def index
         directories_filter = Directories::Filter.call(**directory_params)
-        pagy, directories = pagy(directories_filter.by_position)
+        pagy, directories = pagy(directories_filter.by_position, limit: per_page)
 
         args = with_comments? ? { view: :with_comments } : {}
 
@@ -44,26 +44,6 @@ module API
 
       def set_directory
         @directory = Directory.find(params[:id])
-      end
-
-      def query
-        @query ||= directory_params[:query]
-      end
-
-      def category
-        @category ||= directory_params[:category]
-      end
-
-      def coins
-        @coins ||= directory_params[:coins] || []
-      end
-
-      def country
-        @country ||= directory_params[:country]
-      end
-
-      def continent
-        @continent ||= directory_params[:continent]
       end
 
       def per

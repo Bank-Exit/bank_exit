@@ -46,10 +46,10 @@ module APIResponder
 
   def pagination_meta(pagy)
     {
-      page: pagy.page,
-      count: pagy.count,
-      pages: pagy.pages,
-      per_page: pagy.vars[:limit]
+      current_page: pagy.page,
+      total_pages: pagy.pages,
+      per_page: pagy.vars[:limit],
+      items_count: pagy.count
     }
   end
 
