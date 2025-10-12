@@ -6,3 +6,5 @@ fr:
 
     merchant:
       not_found: Le commerçant demandé n'existe pas
+    directory:
+      not_found: L'entrée d'annuaire demandée n'existe pas

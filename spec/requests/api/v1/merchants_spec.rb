@@ -35,6 +35,14 @@ RSpec.describe 'API::V1::Merchants' do
                     enum: I18n.t('continents').keys
                   },
                   description: 'Filters results by continent (ISO 3166-1 alpha-2 code)'
+        parameter name: :with_comments,
+                  schema: {
+                    type: :boolean,
+                    default: nil,
+                    nullable: true,
+                    enum: [true, false]
+                  },
+                  description: 'Boolean to include related comments'
       end
 
       include_context 'with pagination parameter'
@@ -45,6 +53,7 @@ RSpec.describe 'API::V1::Merchants' do
       let(:'coins[]') { [] } # rubocop:disable RSpec/VariableName
       let(:country) { nil }
       let(:continent) { nil }
+      let(:with_comments) { false }
 
       before do
         create_list :merchant, 3

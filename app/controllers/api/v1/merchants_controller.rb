@@ -16,7 +16,9 @@ module API
 
         merchants = Merchant.where(id: page_ids).in_order_of(:id, page_ids)
 
-        render_collection(merchants, pagy: pagy)
+        args = with_comments? ? { view: :with_comments } : {}
+
+        render_collection(merchants, pagy: pagy, **args)
       end
 
       # @route GET /fr/api/v1/merchants/:id {locale: "fr"} (api_v1_merchant_fr)
@@ -26,7 +28,9 @@ module API
       # @route GET /en/api/v1/merchants/:id {locale: "en"} (api_v1_merchant_en)
       # @route GET /api/v1/merchants/:id
       def show
-        render_resource(@merchant)
+        args = with_comments? ? { view: :with_comments } : {}
+
+        render_resource(@merchant, **args)
       end
 
       private
@@ -75,9 +79,8 @@ module API
         merchant_params[:with_atms]
       end
 
-      def per_page
-        per = merchant_params[:per].to_i
-        per <= 0 ? Pagy::DEFAULT[:limit] : per
+      def per
+        merchant_params[:per].to_i
       end
     end
   end

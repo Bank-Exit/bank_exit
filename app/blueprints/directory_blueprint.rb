@@ -11,7 +11,7 @@ class DirectoryBlueprint < Blueprinter::Base
   end
 
   field :last_survey_on do |directory, _|
-    directory.updated_at.to_s
+    directory.updated_at.iso8601
   end
 
   field :logo_url,
@@ -33,7 +33,7 @@ class DirectoryBlueprint < Blueprinter::Base
   end
 
   association :contact_ways,
-              name: :contact,
+              name: :contacts,
               blueprint: ContactWayBlueprint do |directory|
     directory.contact_ways.enabled
   end

@@ -6,5 +6,13 @@ FactoryBot.define do
     end
 
     category { :food }
+
+    trait :with_logo do
+      logo { Rack::Test::UploadedFile.new('spec/fixtures/1x1.png', 'image/png') }
+    end
+
+    trait :with_banner do
+      banner { Rack::Test::UploadedFile.new('spec/fixtures/1x1.png', 'image/png') }
+    end
   end
 end

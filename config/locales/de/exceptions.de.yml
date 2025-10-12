@@ -6,3 +6,5 @@ de:
 
     merchant:
       not_found: Der angeforderte Händler existiert nicht
+    directory:
+      not_found: Der angeforderte Verzeichniseintrag existiert nicht

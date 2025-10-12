@@ -7,9 +7,11 @@ properties:
   id:
     type: string
     example: "1234567890"
+
   type:
     type: string
     example: "merchants"
+
   attributes:
     type: object
     properties:
@@ -48,6 +50,14 @@ properties:
         items:
           type: string
           example: ["monero", "bitcoin", "lightning"]
+      banner_url:
+        type: string
+        format: uri
+        example: "http://example.com/rails/active_storage/blobs/redirect/abc123/banner.png"
+      logo_url:
+        type: string
+        format: uri
+        example: "http://example.com/rails/active_storage/blobs/redirect/abc123/logo.png"
       ask_kyc:
         type: boolean
         nullable: true
@@ -78,6 +88,20 @@ properties:
           country:
             type: string
             example: "US"
+      comments:
+        type: array
+        items:
+          type: object
+          properties:
+            content:
+              type: string
+              example: "Clear and well-structured content, easy to understand."
+            language:
+              type: string
+              example: "en"
+            rating:
+              type: integer
+              example: 5
       social_contacts:
         type: object
         properties:

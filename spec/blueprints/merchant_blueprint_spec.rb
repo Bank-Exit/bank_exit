@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe MerchantBlueprint do
-  subject!(:json) { described_class.render_as_hash(merchant) }
+  subject(:json) { described_class.render_as_hash(merchant, **args) }
+
+  let(:args) { {} }
 
   let(:merchant) do
     create :merchant,
@@ -24,7 +26,7 @@ RSpec.describe MerchantBlueprint do
   end
 
   it 'has correct attributes' do
-    expect(json).to include(
+    expect(json).to eq(
       id: '123456',
       name: 'FooBar',
       description: 'Lorem ipsum !',
@@ -48,5 +50,15 @@ RSpec.describe MerchantBlueprint do
         odysee: 'https://www.odysee.com/FooBar'
       }
     )
+  end
+
+  context 'with attached logo and banner' do
+    let(:merchant) { create :merchant, :with_logo, :with_banner }
+
+    it { expect(json).to include(:logo_url, :banner_url) }
+  end
+
+  it_behaves_like 'a commentable API' do
+    let(:commentable) { merchant }
   end
 end

@@ -19,11 +19,30 @@ class MerchantBlueprint < Blueprinter::Base
     merchant.last_survey_on.to_s
   end
 
+  field :logo_url,
+        if: ->(_, merchant, _) { merchant.logo.attached? } do |merchant, _|
+    url_helpers = Rails.application.routes.url_helpers
+    url_helpers.rails_blob_url(merchant.logo)
+  end
+
+  field :banner_url,
+        if: ->(_, merchant, _) { merchant.banner.attached? } do |merchant, _|
+    url_helpers = Rails.application.routes.url_helpers
+    url_helpers.rails_blob_url(merchant.banner)
+  end
+
   field :address do |merchant, _|
     MerchantAddressBlueprint.render_as_hash(merchant)
   end
 
   field :social_contacts do |merchant, _|
     MerchantSocialContactBlueprint.render_as_hash(merchant)
+  end
+
+  view :with_comments do
+    association :comments,
+                blueprint: CommentBlueprint do |merchant|
+      merchant.comments.available
+    end
   end
 end

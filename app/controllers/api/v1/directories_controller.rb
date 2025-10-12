@@ -13,8 +13,7 @@ module API
         directories_filter = Directories::Filter.call(**directory_params)
         pagy, directories = pagy(directories_filter.by_position)
 
-        args = {}
-        args = { view: :with_comments } if with_comments?
+        args = with_comments? ? { view: :with_comments } : {}
 
         render_collection(directories, pagy: pagy, **args)
       end
@@ -26,7 +25,9 @@ module API
       # @route GET /en/api/v1/directories/:id {locale: "en"} (api_v1_directory_en)
       # @route GET /api/v1/directories/:id
       def show
-        render_resource(@directory)
+        args = with_comments? ? { view: :with_comments } : {}
+
+        render_resource(@directory, **args)
       end
 
       private
@@ -65,13 +66,8 @@ module API
         @continent ||= directory_params[:continent]
       end
 
-      def per_page
-        per = directory_params[:per].to_i
-        per <= 0 ? Pagy::DEFAULT[:limit] : per
-      end
-
-      def with_comments?
-        params[:with_comments] == 'true'
+      def per
+        directory_params[:per].to_i
       end
     end
   end

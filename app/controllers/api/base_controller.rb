@@ -19,5 +19,13 @@ module API
     def should_redirect_to_localized_path?
       false
     end
+
+    def per_page
+      per <= 0 ? Pagy::DEFAULT[:limit] : per
+    end
+
+    def with_comments?
+      params[:with_comments] == 'true'
+    end
   end
 end

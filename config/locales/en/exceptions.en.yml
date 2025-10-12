@@ -6,3 +6,5 @@ en:
 
     merchant:
       not_found: The requested merchant does not exist
+    directory:
+      not_found: The requested directory entry does not exist
