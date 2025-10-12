@@ -1,0 +1,13 @@
+type: object
+required:
+  - data
+properties:
+  data:
+    $ref: "#/components/schemas/directory"
+  links:
+    type: object
+    properties:
+      self:
+        type: string
+        format: uri
+        example: http://example.com/api/v1/directories/1234567890

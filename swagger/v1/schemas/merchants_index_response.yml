@@ -1,0 +1,40 @@
+type: object
+required:
+  - data
+  - meta
+  - links
+properties:
+  data:
+    type: array
+    items:
+      $ref: "#/components/schemas/merchant"
+
+  meta:
+    type: object
+    properties:
+      page: { type: integer, example: 1 }
+      count: { type: integer, example: 200 }
+      pages: { type: integer, example: 1500 }
+      per_page: { type: integer, example: 12 }
+
+  links:
+    type: object
+    properties:
+      first:
+        type: string
+        format: uri
+        example: http://example.com/en/api/v1/merchants?page=1
+      last:
+        type: string
+        format: uri
+        example: http://example.com/en/api/v1/merchants?page=10
+      prev:
+        type: string
+        format: uri
+        nullable: true
+        example: null
+      next:
+        type: string
+        format: uri
+        nullable: true
+        example: http://example.com/en/api/v1/merchants?page=2

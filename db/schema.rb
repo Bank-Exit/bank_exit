@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_05_153722) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_06_165850) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.string "site", null: false
     t.string "name", null: false
@@ -94,6 +94,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_05_153722) do
     t.boolean "enabled", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "api_tokens", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.string "token", null: false
+    t.integer "requests_count", default: 0, null: false
+    t.boolean "enabled", default: false, null: false
+    t.datetime "expired_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_api_tokens_on_token", unique: true
   end
 
   create_table "coin_wallets", force: :cascade do |t|

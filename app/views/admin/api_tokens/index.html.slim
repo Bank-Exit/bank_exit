@@ -1,0 +1,10 @@
+header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
+  h1.text-3xl= t('.title')
+
+  - if allowed_to?(:create?, APIToken, namespace: Admin)
+    = link_to t('add'), new_admin_api_token_path, class: 'btn btn-success'
+
+#api_tokens
+  = render 'api_tokens', api_tokens: @api_tokens, pagy: @pagy
+
+#api_token_preview.fixed.lg:w-1/2.mx-auto.z-50.space-y-2

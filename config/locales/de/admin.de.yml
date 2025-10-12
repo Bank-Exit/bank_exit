@@ -21,6 +21,25 @@ de:
       actions:
         destroy_confirm: Möchten Sie diese Ankündigung löschen?
 
+      api_tokens:
+        index:
+          title: API-Schlüssel
+        new:
+          title: API-Schlüssel hinzufügen
+        create:
+          notice: Der API-Schlüssel wurde erfolgreich erstellt
+        edit:
+          title: API-Schlüssel bearbeiten
+        update:
+          notice: Der API-Schlüssel wurde erfolgreich aktualisiert
+        destroy:
+          notice: Der API-Schlüssel wurde erfolgreich gelöscht
+
+        api_tokens:
+          empty_results: Es gibt keine API-Schlüssel anzuzeigen
+        actions:
+          destroy_confirm: Möchten Sie diesen API-Schlüssel löschen? <br /> ⚠️ Diese Aktion verhindert die zukünftige Nutzung dieses Tokens für API-Aufrufe.
+
     comments:
       index:
         title: Kommentare

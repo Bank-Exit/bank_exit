@@ -21,6 +21,9 @@ Naming/MethodParameterName:
 Rails/SkipsModelValidations:
   Enabled: false
 
+RSpec/ExampleLength:
+  Enabled: false
+
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
 

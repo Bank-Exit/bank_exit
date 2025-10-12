@@ -21,6 +21,25 @@ en:
       actions:
         destroy_confirm: Do you want to delete this announcement ?
 
+    api_tokens:
+      index:
+        title: API keys
+      new:
+        title: Add an API key
+      create:
+        notice: The API key was successfully created
+      edit:
+        title: Edit API key
+      update:
+        notice: The API key was successfully updated
+      destroy:
+        notice: The API key was successfully deleted
+
+      api_tokens:
+        empty_results: There are no API keys to display
+      actions:
+        destroy_confirm: Do you want to delete this API key? <br /> ⚠️ This action will prevent any future use of this token to make API calls.
+
     comments:
       index:
         title: Comments

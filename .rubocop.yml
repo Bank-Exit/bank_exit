@@ -24,6 +24,10 @@ Rails/RedundantActiveRecordAllMethod:
   AllowedReceivers:
     - FAQ
 
+RSpec/VariableName:
+  AllowedPatterns:
+    - Authorization # false positive (rswag need the capitalized letter)
+
 Style/RedundantParentheses:
   Exclude:
     - config/sitemap.rb # False positive

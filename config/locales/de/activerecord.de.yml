@@ -60,6 +60,9 @@ de:
       announcement:
         one: Ankündigung
         other: Ankündigungen
+      api_token:
+        one: API-Schlüssel
+        other: API-Schlüssel
       comment:
         zero: Kommentar
         one: Kommentar
@@ -197,6 +200,14 @@ de:
         picture: Bild
         url: Link
         enabled: Aktiviert?
+
+      api_token:
+        name: Name
+        description: Beschreibung
+        token: Token
+        requests_count: Anzahl der Anfragen
+        enabled: Aktiv?
+        expired_at: Läuft ab am
 
       user:
         email: E-Mail-Adresse

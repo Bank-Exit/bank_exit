@@ -1,0 +1,14 @@
+= simple_form_for [:admin, api_token],
+                  html: { class: 'space-y-5' } do |f|
+
+  - if api_token.errors.any?
+    .alert.alert-error
+      ul.list-disc.list-inside
+        - api_token.errors.each do |error|
+          li= error.full_message
+
+  = f.input :name
+  = f.input :description, as: :text
+  = f.input :expired_at, html5: true, input_html: { min: Date.current }
+  = f.input :enabled
+  = f.button :submit

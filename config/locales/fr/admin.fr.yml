@@ -21,6 +21,25 @@ fr:
       actions:
         destroy_confirm: Voulez-vous supprimer cette annonce ?
 
+    api_tokens:
+      index:
+        title: Les clés d'API
+      new:
+        title: Ajouter une clé d'API
+      create:
+        notice: La clé d'API a bien été créée
+      edit:
+        title: Modifier une clé d'API
+      update:
+        notice: La clé d'API a bien été modifiée
+      destroy:
+        notice: La clé d'API a bien été supprimée
+
+      api_tokens:
+        empty_results: Il n'y a aucune clé d'API à afficher
+      actions:
+        destroy_confirm: Voulez-vous supprimer cette clé d'API ? <br /> ⚠️ Cette action empêchera toute utilisation future de ce token pour effectuer des appels à l'API.
+
     comments:
       index:
         title: Les commentaires

@@ -120,7 +120,7 @@
 
   .flex.items-center.gap-2
     ul.grid.w-full.gap-2.grid-cols-3
-      - [:monero, :bitcoin, :june].each do |coin|
+      - Setting::MERCHANTS_FILTER_COINS.each do |coin|
         li.flex.flex-col.items-center.justify-start.gap-2
           .w-full
             input type="checkbox" id="#{coin}-option" value=coin class="sr-only peer" name="coins[]" data-map--filter-target="input" checked=params.dig(:coins)&.include?(coin.to_s)

@@ -21,6 +21,25 @@ es:
       actions:
         destroy_confirm: ¿Desea eliminar este anuncio?
 
+    api_tokens:
+      index:
+        title: Claves API
+      new:
+        title: Añadir una clave API
+      create:
+        notice: La clave API se ha creado correctamente
+      edit:
+        title: Editar clave API
+      update:
+        notice: La clave API se ha actualizado correctamente
+      destroy:
+        notice: La clave API se ha eliminado correctamente
+
+      api_tokens:
+        empty_results: No hay claves API para mostrar
+      actions:
+        destroy_confirm: ¿Deseas eliminar esta clave API? <br /> ⚠️ Esta acción impedirá el uso futuro de este token para realizar llamadas a la API.
+
     comments:
       index:
         title: Los comentarios

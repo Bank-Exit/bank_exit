@@ -42,7 +42,7 @@ FactoryBot.define do
   sequence :monero_address do |_n|
     # Monero address simplified: starts with 4 + 93 base58 characters
     # This is a simplified approximation matching the regex pattern
-    "4#{SecureRandom.base58(93)}"
+    "4#{SecureRandom.base58(94)}"
   end
 
   sequence :june_key do |n|

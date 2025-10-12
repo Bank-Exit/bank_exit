@@ -64,6 +64,9 @@ en:
       announcement:
         one: announcement
         other: announcements
+      api_token:
+        one: API key
+        other: API keys
       comment:
         zero: comment
         one: comment
@@ -193,6 +196,14 @@ en:
 
       ecosystem_item:
         enabled: Enabled ?
+
+      api_token:
+        name: Name
+        description: Description
+        token: Token
+        requests_count: Number of requests
+        enabled: Enabled?
+        expired_at: Expires on
 
       user:
         email: Email address

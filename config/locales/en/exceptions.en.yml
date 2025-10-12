@@ -1,0 +1,10 @@
+en:
+  exceptions:
+    authenticable_errors:
+      unauthorized_token: Invalid or missing authentication token.
+      forbidden_token: Access forbidden for this token.
+
+    merchant:
+      not_found: The requested merchant does not exist
+    directory:
+      not_found: The requested directory entry does not exist

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -136,6 +137,14 @@ Rails.application.routes.draw do
 
       resources :announcements
       resources :ecosystem_items, except: :show
+      resources :api_tokens
+    end
+
+    namespace :api do
+      namespace :v1 do
+        resources :merchants, only: %i[index show]
+        resources :directories, only: %i[index show]
+      end
     end
   end
 
