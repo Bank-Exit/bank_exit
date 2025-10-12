@@ -18,5 +18,5 @@ class Setting
 
   MAX_DEFAULT_DESCRIPTION_LENGTH = 255
 
-  MERCHANTS_FILTER_COINS = %i[monero bitcoin june]
+  MERCHANTS_FILTER_COINS = %i[monero bitcoin june].freeze
 end
