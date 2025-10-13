@@ -161,3 +161,20 @@ forced to white to make texts readables */
 [data-theme="dracula"] .chart canvas {
     @apply bg-white rounded-lg p-3;
 }
+
+.scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+.scrollable-url {
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    width: 100% !important;
+    text-overflow: clip !important;
+    max-width: 100%;
+}
