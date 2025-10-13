@@ -35,6 +35,7 @@
                 wrapper: false,
                 label: false,
                 format: :with_flag,
+                priority: %w[GB FR DE ES IT],
                 only: Merchant.pluck(:country).uniq,
                 selected: params[:country],
                 include_blank: :translate,
