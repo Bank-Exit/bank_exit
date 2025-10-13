@@ -1,5 +1,9 @@
 module Merchants
   class AssignCountry < ApplicationService
+    def initialize(initial_scope = nil)
+      @initial_scope = initial_scope
+    end
+
     def call
       merchants.find_in_batches(batch_size: 300) do |group|
         @updated_merchants = []
@@ -21,6 +25,15 @@ module Merchants
           # Use accurate French DOM/TOM country code
           # instead of the main country
           country_code = handle_country_state(result.state) || country_code
+
+          # Extra patching for islands, municipalities
+          # and territories not properly handled by
+          # Geocoder
+          country_code = 'AW' if country == 'Aruba'
+          country_code = 'CW' if country == 'Curacao'
+          country_code = 'SX' if country == 'Sint Maarten'
+          # Bonaire, Sint Eustatius and Saba
+          country_code = 'BQ' if result.data.dig('address', 'ISO3166-2-lvl8')
 
           # Assign corresponding continent for the
           # identified `country_code`.
@@ -49,7 +62,7 @@ module Merchants
     private
 
     def merchants
-      @merchants ||= Merchant.where(country: nil)
+      @merchants ||= @initial_scope || Merchant.where(country: nil)
     end
 
     def handle_country_state(state)
@@ -58,7 +71,9 @@ module Merchants
         'Guadeloupe' => 'GP',
         'Martinique' => 'MQ',
         'Reunion' => 'RE',
-        'Mayotte' => 'YT'
+        'Mayotte' => 'YT',
+        'Guam' => 'GU',
+        'Puerto Rico' => 'PR'
       }[state]
     end
 
