@@ -80,6 +80,8 @@ de:
 
       map:
         search: Finde ein Geschäft nach Name, Adresse oder Beschreibung
+      command_palette:
+        search: Einen Händler nach Name, Adresse oder Beschreibung suchen
 
       itinerary:
         my_address: Musterstraße 1, Berlin

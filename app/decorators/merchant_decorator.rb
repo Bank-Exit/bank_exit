@@ -13,7 +13,7 @@ class MerchantDecorator < ProfesionalDecorator
     full_address.present? || country.present?
   end
 
-  def full_address_with_country(show_flag: true, expanded: true)
+  def full_address_with_country(show_flag: true, expanded: true, inline: false)
     @full_address_with_country ||= begin
       lines = if expanded
                 line_1 = [house_number, street].compact_blank.join(' ')
@@ -27,7 +27,12 @@ class MerchantDecorator < ProfesionalDecorator
               end
 
       lines << pretty_country(show_flag: show_flag)
-      lines.compact_blank.join('<br />')
+
+      if inline
+        lines.compact_blank.join(' ')
+      else
+        lines.compact_blank.join('<br />')
+      end
     end
   end
 

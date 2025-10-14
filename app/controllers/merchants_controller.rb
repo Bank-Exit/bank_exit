@@ -6,6 +6,17 @@ class MerchantsController < PublicController
   add_breadcrumb proc { I18n.t('application.nav.menu.home') }, :root_path
   add_breadcrumb proc { I18n.t('application.nav.menu.map') }, :map_referer_path
 
+  # @route GET /fr/merchants {locale: "fr"} (merchants_fr)
+  # @route GET /es/merchants {locale: "es"} (merchants_es)
+  # @route GET /de/merchants {locale: "de"} (merchants_de)
+  # @route GET /it/merchants {locale: "it"} (merchants_it)
+  # @route GET /en/merchants {locale: "en"} (merchants_en)
+  # @route GET /merchants
+  def index
+    @pagy, merchants = pagy(Merchant.available.by_query(query).with_attached_logo)
+    @merchants = MerchantDecorator.wrap(merchants)
+  end
+
   # @route GET /fr/merchants/:id {locale: "fr"} (merchant_fr)
   # @route GET /es/merchants/:id {locale: "es"} (merchant_es)
   # @route GET /de/merchants/:id {locale: "de"} (merchant_de)
@@ -68,5 +79,9 @@ class MerchantsController < PublicController
 
   def commentable
     @merchant
+  end
+
+  def query
+    params[:query]
   end
 end

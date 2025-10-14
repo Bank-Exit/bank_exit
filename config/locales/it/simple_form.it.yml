@@ -81,6 +81,8 @@ it:
 
       map:
         search: Trova un'attività per nome, indirizzo o descrizione
+      command_palette:
+        search: Cerca un commerciante per nome, indirizzo o descrizione
 
       itinerary:
         my_address: Via Roma, 123 00100 Roma

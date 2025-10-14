@@ -223,6 +223,14 @@ nav.navbar
         = render 'language_switcher'
 
       li
+        button.btn.btn-ghost.btn-sm(
+          data-controller="dispatcher"
+          data-action="click->dispatcher#dispatch"
+          data-dispatch-event="command-palette:open"
+        )
+          = lucide_icon 'search', class: 'w-5'
+
+      li
         = render 'theme_switcher'
 
       li

@@ -63,7 +63,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :merchants, only: %i[show], concerns: :commentable do
+    resources :merchants, only: %i[index show], concerns: :commentable do
       post :refresh, on: :collection
 
       scope module: :merchants do
