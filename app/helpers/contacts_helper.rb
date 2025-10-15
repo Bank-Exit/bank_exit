@@ -1,7 +1,7 @@
 module ContactsHelper
-  def social_contact_icon(mode, klass: '', title: nil)
+  def social_contact_icon(mode, klass: 'mr-1', title: nil)
     icon_klass = "inline-flex w-4 #{klass}"
-    image_klass = "inline-flex w-5 rounded-lg #{klass}"
+    image_klass = "inline-flex w-4 rounded-lg #{klass}"
     i18n_scope = 'activerecord.attributes.contact_way.roles'
 
     case mode.to_sym

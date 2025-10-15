@@ -48,8 +48,8 @@
       - if @merchant.contact?
         div
           h3.mb-2.uppercase.font-bold.text-primary= t('contact')
-          .alert
-            = render 'merchants/contacts', merchant: @merchant
+
+          = render 'merchants/contacts', merchant: @merchant
 
       = render 'merchants/view_sections/other_informations', merchant: @merchant
 

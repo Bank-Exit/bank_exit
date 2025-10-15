@@ -58,22 +58,7 @@ article
       div
         h2.text-primary.font-bold.uppercase.mb-2= t('contact')
 
-        .alert.alert-vertical.overflow-y-auto
-          - @merchant.all_contacts.each do |contact|
-            - key = contact[0]
-            - value = contact[1]
-
-            .flex.items-center.gap-2
-              = social_contact_icon(key, klass: "!w-6")
-
-              - if key == :email
-                = mail_to value, value
-              - elsif key == :phone
-                = phone_to value, value
-              - elsif key.in? %i[session signal]
-                = value
-              - else
-                = link_to clean_url(value).truncate(50), value, target: :_blank
+        = render 'merchants/contacts', merchant: @merchant
 
     = render 'merchants/view_sections/other_informations', merchant: @merchant
 

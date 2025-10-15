@@ -1,93 +1,16 @@
-.overflow-x-auto.space-y-1
-  - if merchant.phone?
-    p
-      = social_contact_icon :phone
-      =< phone_to merchant.phone, merchant.phone
+.alert.alert-vertical.overflow-y-auto.gap-2
+  - merchant.all_contacts.each do |contact|
+    - key = contact[0]
+    - value = contact[1]
 
-  - if merchant.email?
-    p
-      = social_contact_icon :email
-      =< mail_to merchant.email, merchant.email
+    .flex.items-center.gap-1
+      = social_contact_icon(key)
 
-  - if merchant.website?
-    p
-      = social_contact_icon :website
-      =< link_to clean_url(merchant.website), merchant.website, target: :_blank
-
-  - if merchant.contact_session?
-    p
-      = social_contact_icon :session
-      =< merchant.contact_session
-
-  - if merchant.contact_signal?
-    p.truncate
-      = social_contact_icon :signal
-      - if merchant.contact_signal.starts_with?('http')
-        =< link_to clean_url(merchant.contact_signal), merchant.contact_signal, target: :_blank
+      - if key == :email
+        = mail_to value, value
+      - elsif key == :phone
+        = phone_to value, value
+      - elsif key.in? %i[session] || (key == :signal && !contact.starts_with?('http'))
+        = value
       - else
-        =< merchant.contact_signal
-
-  - if merchant.contact_matrix?
-    p
-      = social_contact_icon :matrix
-      =< merchant.contact_matrix
-
-  - if merchant.contact_jabber?
-    p
-      = social_contact_icon :jabber
-      =< merchant.contact_jabber
-
-  - if merchant.contact_telegram?
-    p
-      = social_contact_icon :telegram
-      =< link_to clean_url(merchant.contact_telegram), merchant.contact_telegram, target: :_blank
-
-  - if merchant.contact_facebook?
-    p
-      = social_contact_icon :facebook
-      =< link_to clean_url(merchant.contact_facebook), merchant.contact_facebook, target: :_blank
-
-  - if merchant.contact_instagram?
-    p
-      = social_contact_icon :instagram
-      =< link_to clean_url(merchant.contact_instagram), merchant.contact_instagram, target: :_blank
-
-  - if merchant.contact_twitter?
-    p
-      = social_contact_icon :twitter
-      =< link_to clean_url(merchant.contact_twitter), merchant.contact_twitter, target: :_blank
-
-  - if merchant.contact_youtube?
-    p
-      = social_contact_icon :youtube
-      =< link_to clean_url(merchant.contact_youtube), merchant.contact_youtube, target: :_blank
-
-  - if merchant.contact_odysee?
-    p
-      = social_contact_icon :odysee
-      =< link_to clean_url(merchant.contact_odysee), merchant.contact_odysee, target: :_blank
-
-  - if merchant.contact_crowdbunker?
-    p
-      = social_contact_icon :crowdbunker
-      =< link_to clean_url(merchant.contact_crowdbunker), merchant.contact_crowdbunker, target: :_blank
-
-  - if merchant.contact_francelibretv?
-    p
-      = social_contact_icon :francelibretv
-      =< link_to clean_url(merchant.contact_francelibretv), merchant.contact_francelibretv, target: :_blank
-
-  - if merchant.contact_tiktok?
-    p
-      = social_contact_icon :tiktok
-      =< link_to clean_url(merchant.contact_tiktok), merchant.contact_tiktok, target: :_blank
-
-  - if merchant.contact_linkedin?
-    p
-      = social_contact_icon :linkedin
-      =< link_to clean_url(merchant.contact_linkedin), merchant.contact_linkedin, target: :_blank
-
-  - if merchant.contact_tripadvisor?
-    p
-      = social_contact_icon :tripadvisor
-      =< link_to clean_url(merchant.contact_tripadvisor), merchant.contact_tripadvisor, target: :_blank
+        = link_to clean_url(value).truncate(50), value, target: :_blank

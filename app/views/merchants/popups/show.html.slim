@@ -14,7 +14,7 @@
         =< t("categories.#{@merchant.category}", default: @merchant.category)
 
   - if @merchant.address? || @merchant.opening_hours.present? || @merchant.delivery.present?
-    .alert.alert-vertical
+    .alert.alert-vertical.text-sm
       - if @merchant.address?
         .flex.items-center.gap-2
           .flex-shrink-0= lucide_icon 'home', class: 'w-4'
@@ -22,7 +22,7 @@
 
       - if @merchant.opening_hours.present?
         - multi_hours = @merchant.opening_hours_sentences.count > 1
-        .flex.items-center class=(multi_hours ? 'gap-5' : 'gap-1')
+        .flex.items-center class=(multi_hours ? 'gap-5' : 'gap-2')
           .flex-shrink-0= lucide_icon 'clock', class: 'w-4'
           - if multi_hours
             ul.list-disc
@@ -32,7 +32,7 @@
             = @merchant.opening_hours_sentences.first
 
       - if @merchant.delivery.present?
-        .flex.items-center.gap-1
+        .flex.items-center.gap-2
           .flex-shrink-0= lucide_icon 'truck', class: 'w-4'
           = t('.home_delivery')
           - if @merchant.delivery_zone
