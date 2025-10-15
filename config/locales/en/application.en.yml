@@ -3,6 +3,8 @@ en:
     nav:
       collectif: Bank-Exit
       bank_exit: Collective
+      admin_area: Admin area
+      back_to_my_account: Back to my real account
 
       menu:
         home: Home

@@ -3,6 +3,8 @@ fr:
     nav:
       collectif: Sortie
       bank_exit: De Banque
+      admin_area: Espace admin
+      back_to_my_account: Retour à mon vrai compte
 
       menu:
         home: Accueil

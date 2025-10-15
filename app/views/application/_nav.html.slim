@@ -250,11 +250,11 @@ nav.navbar
 
               ul.space-y-2
                 li
-                  = link_to "Espace admin", admin_root_path
+                  = link_to t('.admin_area'), admin_root_path
 
                 - if true_user != current_user
                   li
-                    = link_to 'Retour à mon vrai compte !',
+                    = link_to t('.back_to_my_account'),
                                 stop_impersonating_admin_users_path,
                                 data: { turbo_method: :post },
                                 class: 'btn btn-warning btn-sm'
