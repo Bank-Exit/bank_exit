@@ -89,6 +89,8 @@ en:
 
       map:
         search: Find a business by name, address or description
+      command_palette:
+        search: Find a business by name, address or description
 
       itinerary:
         my_address: 1 Church street, London

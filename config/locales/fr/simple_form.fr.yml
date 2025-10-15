@@ -93,6 +93,8 @@ fr:
 
       map:
         search: Rechercher par nom, adresse ou description
+      command_palette:
+        search: Rechercher un commerçant par nom, adresse ou description
 
       itinerary:
         my_address: 1 rue de l'Eglise, Paris

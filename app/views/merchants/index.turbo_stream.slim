@@ -1,0 +1,27 @@
+= turbo_stream.update :command_palette_results do
+  div data-command-palette-target="results"
+    ul.overflow-y-auto.bg-base-100.rounded-box.text-sm.divide-y.divide-base-content/20.border.border-base-content/20.p-1.scroll-smooth.scroll-py-2.mb-1 class="max-h-[60svh]"
+      - @merchants.each_with_index do |merchant, index|
+        li
+          = link_to merchant_path(merchant), class: 'block p-4 space-y-3 hover:bg-base-200 hover:!text-inherit focus:bg-base-200 transition-colors' do
+            .flex.items-center.justify-between
+              .flex.items-center.gap-2.font-medium.text-base
+                = render 'logo_or_initials', model: merchant, mode: :small
+
+                .space.y-1
+                  p= highlight(merchant.name, params[:query])
+                  p.italic.text-xs.text-base-content/70
+                    = highlight(merchant.full_address_with_country(expanded: false, inline: true), params[:query])
+
+              == coins_list(merchant.coins, with_logo: true, with_name: false, size: 'w-5', inline: true)
+
+            - if merchant.description.present?
+              .text-sm.truncate
+                = highlight(merchant.description, params[:query])
+
+      - if @merchants.empty?
+        li.p-3.text-center= t('empty_results')
+
+    - if @pagy.count > @pagy.limit
+      .bg-base-200.border.border-base-content/20.p-2.rounded-box data-controller="pagination"
+        == pagy_nav(@pagy, anchor_string: 'data-turbo-stream="true"')
