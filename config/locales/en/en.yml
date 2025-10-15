@@ -31,6 +31,7 @@ en:
   date_title: Date
   display: Display
   refresh: Rafraîchir
+  help: Help
 
   display_map: Map display
   display_grid: Grid display

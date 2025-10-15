@@ -184,12 +184,6 @@ en:
       clear_search_country: Clear search country
       clear_search_continent: Clear search continent
 
-    merchants:
-      tips_pagination:
-        use: Use
-        or: or
-        move_through: from keyboard to change page
-
     dropdown_map_actions:
       map_title: Map
       last_updated_at: Updated on %{last_updated_at}
@@ -292,9 +286,6 @@ en:
 
       itinerary:
         calculate_my_itinerary: Calculate my itinerary by car
-
-      tooltip_itinerary_html: |
-        Use the <kbd class="kbd text-base-content">Ctrl</kbd> + <kbd class="kbd text-base-content">/</kbd> keyboard shortcut to automatically navigate to the itinerary page
 
     itineraries:
       new:

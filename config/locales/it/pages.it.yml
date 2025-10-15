@@ -180,12 +180,6 @@ it:
       clear_search_country: Cancella paese
       clear_search_continent: Cancella continente
 
-    merchants:
-      tips_pagination:
-        use: Usa
-        or: o
-        move_through: dalla tastiera per cambiare pagina
-
     dropdown_map_actions:
       map_title: Mappa
       last_updated_at: Aggiornato il %{last_updated_at}
@@ -279,9 +273,6 @@ it:
 
       itinerary:
         calculate_my_itinerary: Calcola il mio itinerario in auto
-
-      tooltip_itinerary_html: |
-        Usa la scorciatoia da tastiera <kbd class="kbd text-base-content">Ctrl</kbd> + <kbd class="kbd text-base-content">/</kbd> per navigare automaticamente alla pagina dell’itinerario
 
     itineraries:
       new:

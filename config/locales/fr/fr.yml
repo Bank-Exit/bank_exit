@@ -31,6 +31,7 @@ fr:
   date_title: Date
   display: Afficher
   refresh: Rafraîchir
+  help: Aide
 
   display_map: Affichage carte
   display_grid: Affichage grille

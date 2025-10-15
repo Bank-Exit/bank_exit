@@ -180,12 +180,6 @@ es:
       clear_search_country: Borrar país
       clear_search_continent: Borrar continente
 
-    merchants:
-      tips_pagination:
-        use: Usa
-        or: o
-        move_through: en el teclado para cambiar de página
-
     dropdown_map_actions:
       map_title: El mapa
       last_updated_at: Actualizado al %{last_updated_at}
@@ -282,9 +276,6 @@ es:
 
       itinerary:
         calculate_my_itinerary: Calcular mi ruta en coche
-
-      tooltip_itinerary_html: |
-        Utilice el atajo de teclado <kbd class="kbd text-base-content">Ctrl</kbd> + <kbd class="kbd text-base-content">/</kbd> para mostrar la página de cálculo de ruta automáticamente
 
     itineraries:
       new:

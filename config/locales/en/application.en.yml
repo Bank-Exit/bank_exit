@@ -38,3 +38,13 @@ en:
     footer:
       copyright_html: Copyright &copy; Bank-Exit 2022 - %{year} &bullet; All rights reserved
       developed_by_html: Developed with %{heart} by the Bank-Exit Collective
+
+    modal_help:
+      shortcut: Shortcut
+      description: Description
+      open_help_modal: Open help modal
+      open_command_palette_modal: Show command palette
+      access_prev_page: Go to previous page
+      access_next_page: Go to next page
+      access_page_subtitle: (when pagination is present)
+      open_merchant_routing_form: Open route planner to reach a merchant

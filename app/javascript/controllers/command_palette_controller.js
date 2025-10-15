@@ -31,6 +31,10 @@ export default class extends Controller {
   open(e) {
     e.preventDefault();
 
+    if (!this.element.isConnected) {
+      return;
+    }
+
     this.element.showModal();
 
     requestAnimationFrame(() => {

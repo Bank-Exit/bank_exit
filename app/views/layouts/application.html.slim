@@ -37,6 +37,7 @@ html lang=I18n.locale
     = turbo_frame_tag :announcements, src: announcements_path
     = render 'modal', id: 'turbo-confirm'
     = render 'command_palette'
+    = render 'modal_help'
 
     = render 'ribbon' unless Rails.env.production?
 

@@ -31,6 +31,7 @@ de:
   date_title: Datum
   display: Anzeigen
   refresh: Aktualisieren
+  help: Hilfe
 
   grid: Raster
   table: Tabelle

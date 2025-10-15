@@ -13,3 +13,10 @@ footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary
 
     - unless logged_in?
       = link_to '.', new_session_path
+
+  button.btn.btn-xs.btn-ghost.btn-circle(
+    data-controller="dispatcher"
+    data-action="click->dispatcher#dispatch"
+    data-dispatch-event="help:open"
+  )
+    = lucide_icon 'circle-question-mark', class: 'w-4'

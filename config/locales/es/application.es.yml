@@ -38,3 +38,13 @@ es:
     footer:
       copyright_html: Copyright &copy; Bank-Exit 2022 - %{year} &bullet; Todos derechos reservados
       developed_by_html: Desarrollado con %{heart} por Collectif Sortie de Banque
+
+    modal_help:
+      shortcut: Atajo
+      description: Descripción
+      open_help_modal: Abrir la ventana de ayuda
+      open_command_palette_modal: Mostrar la paleta de comandos
+      access_prev_page: Ir a la página anterior
+      access_next_page: Ir a la página siguiente
+      access_page_subtitle: (cuando hay paginación)
+      open_merchant_routing_form: Abrir la página para calcular la ruta hacia un comerciante

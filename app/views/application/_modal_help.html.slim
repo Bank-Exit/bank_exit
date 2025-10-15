@@ -1,0 +1,53 @@
+= render_modal id: 'modal_help',
+                modal_title: t('help'),
+                data: { controller: :help } do
+  table.table
+    thead
+      tr
+        th.whitespace-nowrap= t('.shortcut')
+        td= t('.description')
+    tbody
+      tr
+        td.whitespace-nowrap
+          kbd.kbd Shift
+          |<> +
+          kbd.kbd ?
+        td
+          = t('.open_help_modal')
+
+      tr
+        td
+          kbd.kbd Ctrl
+          |<> +
+          kbd.kbd k
+        td
+          = t('.open_command_palette_modal')
+
+      tr
+        td
+          kbd.kbd Ctrl
+          |<> +
+          kbd.kbd ◀︎
+        td
+          span= t('.access_prev_page')
+          span.block.italic.text-sm.text-base-content/50
+            = t('.access_page_subtitle')
+
+      tr
+        td
+          kbd.kbd Ctrl
+          |<> +
+          kbd.kbd ▶︎
+        td
+          span= t('.access_next_page')
+          span.block.italic.text-sm.text-base-content/50
+            = t('.access_page_subtitle')
+
+      tr
+        td
+          kbd.kbd Ctrl
+          |<> +
+          kbd.kbd
+            | /
+        td
+          span= t('.open_merchant_routing_form')

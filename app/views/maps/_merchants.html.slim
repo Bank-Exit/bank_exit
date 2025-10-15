@@ -5,14 +5,3 @@
 
   - if pagy.count > pagy.limit
     == pagy_nav(pagy, anchor_string: 'data-turbo-stream="true" data-action="click->pagination#addPageToURL"')
-
-    .hidden.lg:block.alert.alert-info.text-center
-      span.font-bold Tips:
-      span=< t('.tips_pagination.use')
-
-      kbd.kbd.kbd-xs< Ctrl
-      span< +
-      kbd.kbd.kbd-xs< ◀︎
-      span=< t('.tips_pagination.or')
-      kbd.kbd.kbd-xs< ▶︎
-      span=< t('.tips_pagination.move_through')

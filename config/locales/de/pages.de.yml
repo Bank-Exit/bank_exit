@@ -180,12 +180,6 @@ de:
       clear_search_country: Land löschen
       clear_search_continent: Kontinent löschen
 
-    merchants:
-      tips_pagination:
-        use: Nutze
-        or: oder
-        move_through: auf der Tastatur, um die Seite zu wechseln
-
     dropdown_map_actions:
       map_title: Karte
       last_updated_at: Aktualisiert am %{last_updated_at}
@@ -279,9 +273,6 @@ de:
 
       itinerary:
         calculate_my_itinerary: Meine Route mit dem Auto berechnen
-
-      tooltip_itinerary_html: |
-        Nutze die Tastenkombination <kbd class="kbd text-base-content">Strg</kbd> + <kbd class="kbd text-base-content">/</kbd>, um automatisch zur Routenplanung zu gelangen
 
     itineraries:
       new:

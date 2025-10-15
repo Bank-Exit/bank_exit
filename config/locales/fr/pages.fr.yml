@@ -184,12 +184,6 @@ fr:
       clear_search_country: Effacer le pays
       clear_search_continent: Effacer le continent
 
-    merchants:
-      tips_pagination:
-        use: Utilisez
-        or: ou
-        move_through: au clavier pour changer de page
-
     dropdown_map_actions:
       map_title: La carte
       last_updated_at: A jour au %{last_updated_at}
@@ -292,9 +286,6 @@ fr:
 
       itinerary:
         calculate_my_itinerary: Calculer mon itinéraire en voiture
-
-      tooltip_itinerary_html: |
-        Utiliser le raccourci clavier <kbd class="kbd text-base-content">Ctrl</kbd> + <kbd class="kbd text-base-content">/</kbd> pour afficher la page de calcul d'itinéraire automatiquement
 
     itineraries:
       new:

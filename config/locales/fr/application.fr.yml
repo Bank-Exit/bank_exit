@@ -38,3 +38,13 @@ fr:
     footer:
       copyright_html: Copyright &copy; Sortie de Banque 2022 - %{year} &bullet; Tous droits réservés
       developed_by_html: Développé avec %{heart} par le Collectif Sortie de Banque
+
+    modal_help:
+      shortcut: Raccourci
+      description: Description
+      open_help_modal: Ouvrir la modale d'aide
+      open_command_palette_modal: Afficher la palette de commande
+      access_prev_page: Accéder à la page précédente
+      access_next_page: Accéder à la page suivante
+      access_page_subtitle: (lorsqu'une pagination est présente)
+      open_merchant_routing_form: Ouvrir la page de calcul d'itinéraire pour se rendre chez un commerçant
