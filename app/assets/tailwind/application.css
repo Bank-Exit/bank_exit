@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source not "./daisyui{,*}.mjs";
 
 @theme {
     --map-road-color: #3388ff;
