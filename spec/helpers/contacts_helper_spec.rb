@@ -74,7 +74,7 @@ RSpec.describe ContactsHelper, type: :helper do
         context "when mode is :#{mode}" do
           let(:mode) { mode }
 
-          it { is_expected.to include '<img', "src=\"/assets/contacts/#{mode}", '.svg', 'class="inline-flex w-5 rounded-lg' }
+          it { is_expected.to include '<img', "src=\"/assets/contacts/#{mode}", '.svg', 'class="inline-flex w-4 rounded-lg' }
         end
       end
     end
@@ -86,7 +86,7 @@ RSpec.describe ContactsHelper, type: :helper do
         context "when mode is :#{mode}" do
           let(:mode) { mode }
 
-          it { is_expected.to include '<img', "src=\"/assets/contacts/#{mode}", '.png', 'class="inline-flex w-5 rounded-lg' }
+          it { is_expected.to include '<img', "src=\"/assets/contacts/#{mode}", '.png', 'class="inline-flex w-4 rounded-lg' }
         end
       end
     end
@@ -99,7 +99,7 @@ RSpec.describe ContactsHelper, type: :helper do
         context "when mode is :#{mode}" do
           let(:mode) { mode }
 
-          it { is_expected.to include '<img', "src=\"/assets/contacts/#{mode}", '.webp', 'class="inline-flex w-5 rounded-lg' }
+          it { is_expected.to include '<img', "src=\"/assets/contacts/#{mode}", '.webp', 'class="inline-flex w-4 rounded-lg' }
         end
       end
     end
