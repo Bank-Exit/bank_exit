@@ -21,6 +21,8 @@ export default class extends Controller {
       escape: [this.close],
     });
 
+    this.defaultMerchants = this.resultsTarget.innerHTML;
+
     window.addEventListener("command-palette:open", this.open.bind(this));
   }
 
@@ -49,7 +51,7 @@ export default class extends Controller {
 
     if (query.length < 3) {
       if (this.hasResultsTarget) {
-        this.resultsTarget.remove();
+        this.resultsTarget.innerHTML = this.defaultMerchants;
       }
 
       this.spinnerTarget.classList.add("hidden");

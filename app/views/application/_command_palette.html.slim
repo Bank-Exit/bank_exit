@@ -16,3 +16,6 @@ dialog#command_palette.modal(
         span.loading.loading-spinner.w-6.h-6.text-primary
 
     #command_palette_results
+      = render 'merchants/merchants_dropdown',
+               directories_spotlight: @directories_spotlight,
+               merchants: @default_merchants
