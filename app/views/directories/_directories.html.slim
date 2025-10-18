@@ -1,4 +1,4 @@
-.flex.items-center.justify-end.gap-2
+.flex.items-center.justify-end.gap-2 data-controller=("pagination" if pagy.count > pagy.limit)
   - req_params = request.query_parameters.compact_blank
 
   = link_to url_for(params: req_params.merge(display: :grid)),
@@ -21,7 +21,7 @@
     .grid.grid-cols-1.lg:grid-cols-3.gap-2.lg:gap-3
       = render directories
   - else
-    .overflow-x-auto.rounded-box.border.border-base-content/5.bg-base-100
+    .overflow-x-auto
       table.table.table-zebra.lg:table-fixed
         thead
           tr

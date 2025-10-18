@@ -15,21 +15,17 @@ tr
 
   td
     - if delivery_zones.any?
-      - delivery_zones.group_by(&:mode).each do |group|
-        - mode = group.first
-        - rows = group.last
+      .tooltip
+        .tooltip-content
+          - delivery_zones.group_by(&:mode).each do |group|
+            - mode = group.first
+            - rows = group.last
+            - row = rows.first
+            p= render 'delivery_zones/formatted_zone_by_mode', delivery_zone: row
 
-        - if rows.count == 1
-          - row = rows.first
-          p= render 'delivery_zones/formatted_zone_by_mode', delivery_zone: row
-        - else
-          ul
-            - rows.each do |row|
-              li
-                = render 'delivery_zones/formatted_zone_by_mode', delivery_zone: row
-
+        = render 'enabled_or_disabled', enabled: true
     - else
-      = lucide_icon 'x', class: 'bg-error text-error-content rounded-box'
+      = render 'enabled_or_disabled', enabled: false
 
   td
     strong= directory.comments_count

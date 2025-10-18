@@ -28,7 +28,7 @@ class DirectoriesController < PublicController
 
     @my_geocoder = directories_filter.geocoder_ip if around_me?
 
-    directories = directories.includes(:string_translations, :logo_attachment)
+    directories = directories.includes(:string_translations, :logo_attachment, :coin_wallets)
     directories = directories.includes(:contact_ways) if session[:directories_display] == 'table'
     directories = directories.includes(:text_translations, :banner_attachment) if session[:directories_display] == 'grid'
 

@@ -1,5 +1,7 @@
 - if delivery_zone.world?
-  = lucide_icon 'earth'
+  .flex.items-center.gap-1
+    = lucide_icon 'earth'
+    = DeliveryZone.human_enum_name(:modes, :world)
 - elsif delivery_zone.country?
   = pretty_country_html(delivery_zone.country_code)
 - elsif delivery_zone.continent?

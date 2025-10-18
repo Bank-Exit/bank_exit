@@ -1,0 +1,7 @@
+- if enabled
+  .status.status-lg.status-success.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
+    = lucide_icon 'check', class: 'text-success-content'
+
+- else
+  .status.status-lg.status-error.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
+    = lucide_icon 'x', class: 'text-error-content'

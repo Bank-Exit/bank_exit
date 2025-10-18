@@ -5,21 +5,14 @@ tr class=('opacity-25' unless api_token.live?)
   td
     - if api_token.expired_at
       .flex.items-center.gap-2
-        - if api_token.expired?
-          = status_icon :error
-        - else
-          = status_icon :success
-
+        = render 'enabled_or_disabled', enabled: api_token.expired?
         = I18n.l(api_token.expired_at)
 
     - else
       | --
 
   td
-    - if api_token.enabled?
-      = status_icon :success
-    - else
-      = status_icon :error
+    = render 'enabled_or_disabled', enabled: api_token.enabled?
 
   td
     = render 'actions', api_token: api_token
