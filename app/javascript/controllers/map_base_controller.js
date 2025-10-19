@@ -34,11 +34,10 @@ export default class MapBaseController extends Controller {
   }
 
   disconnect() {
-    if (this.map.gestureHandling.enabled()) {
-      this.map.gestureHandling.disable();
-    }
-
     if (this.map) {
+      if (this.map.gestureHandling.enabled()) {
+        this.map.gestureHandling.disable();
+      }
       this.map.remove();
     }
   }
