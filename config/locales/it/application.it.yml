@@ -48,3 +48,7 @@ it:
       access_next_page: Vai alla pagina successiva
       access_page_subtitle: (quando è presente la paginazione)
       open_merchant_routing_form: Apri la pagina per calcolare il percorso verso un commerciante
+
+    snowflakes:
+      enable_snowflakes: Attiva i fiocchi di neve
+      disable_snowflakes: Disattiva i fiocchi di neve

@@ -4,7 +4,17 @@ footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary
     - heart = lucide_icon('heart', class: 'h-5 w-5 stroke-red-600 fill-red-600 inline-flex mx-1 hover:scale-150 transition transition-scale')
     = t('.developed_by_html', heart: heart)
 
-  .flex.items-center.justify-center.gap-3
+  .flex.items-center.justify-center.gap-3.mt-2
+    button.cursor-pointer(
+      data-controller="dispatcher"
+      data-action="click->dispatcher#dispatch"
+      data-dispatch-event="help:open"
+    )
+      = lucide_icon 'circle-question-mark', class: 'h-5 w-5'
+
+    - if christmas_time?
+      = render 'snowflakes'
+
     = link_to 'https://bank-exit-uptime-production.up.railway.app/status/bank-exit', target: :_blank do
       .inline-grid.mr-1 class="*:[grid-area:1/1]"
         .status.status-success.animate-ping
@@ -13,10 +23,3 @@ footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary
 
     - unless logged_in?
       = link_to '.', new_session_path
-
-  button.btn.btn-xs.btn-ghost.btn-circle(
-    data-controller="dispatcher"
-    data-action="click->dispatcher#dispatch"
-    data-dispatch-event="help:open"
-  )
-    = lucide_icon 'circle-question-mark', class: 'w-4'

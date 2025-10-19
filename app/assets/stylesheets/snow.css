@@ -1,0 +1,96 @@
+.snow {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 4;
+    overflow: hidden;
+}
+
+.snow__layer {
+    position: absolute;
+    left: -100px;
+    right: -100px;
+    animation: wind 5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+    perspective: 100px;
+    transform: translateX(-50px);
+}
+
+.snow__fall {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2000px;
+    background: url(/christmas/snow-light.png);
+    animation: fall 10s linear infinite;
+    will-change: transform;
+}
+
+.snow__layer:nth-child(1) {
+    animation-duration: 35s;
+}
+
+.snow__layer:nth-child(1) .snow__fall {
+    background: url(/christmas/snow-blur.png);
+    transform: translateZ(25px);
+    animation-name: fallblur;
+    width: 4000px;
+    left: -2000px;
+}
+
+.snow__layer:nth-child(2) {
+    animation: wind 5s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite alternate;
+}
+
+.snow__layer:nth-child(2) .snow__fall {
+    background: url(/christmas/snow-medium.png);
+    animation-duration: 25s;
+}
+
+.snow__fall:nth-child(3) {
+    animation-duration: 10s;
+    background-size: 250px;
+}
+
+.snow__fall:nth-child(2) {
+    animation-duration: 20s;
+    background-size: 500px;
+}
+
+.snow__layer:nth-child(4) .snow__fall {
+    animation-duration: 5s;
+    transform: translateZ(50px);
+    animation-name: falllight;
+}
+
+@keyframes fall {
+    from {
+        transform: translateY(-1000px);
+    }
+}
+
+@keyframes falllight {
+    from {
+        transform: translateY(-1000px) translateZ(50px);
+    }
+}
+
+@keyframes fallblur {
+    from {
+        transform: translateY(-1000px) translateZ(25px);
+    }
+}
+
+@keyframes wind {
+    to {
+        transform: translateX(50px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .snow__layer,
+    .snow__fall {
+        animation: none !important;
+    }
+}

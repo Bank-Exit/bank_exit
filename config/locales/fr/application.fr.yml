@@ -50,3 +50,7 @@ fr:
       access_next_page: Accéder à la page suivante
       access_page_subtitle: (lorsqu'une pagination est présente)
       open_merchant_routing_form: Ouvrir la page de calcul d'itinéraire pour se rendre chez un commerçant
+
+    snowflakes:
+      enable_snowflakes: Activer les flocons de neige
+      disable_snowflakes: Désactiver les flocons de neige

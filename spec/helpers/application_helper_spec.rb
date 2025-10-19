@@ -67,4 +67,66 @@ RSpec.describe ApplicationHelper do
       it { is_expected.to eq 'foobar.test' }
     end
   end
+
+  describe '#christmas_time?' do
+    subject { christmas_time? }
+
+    before do
+      allow(ENV)
+        .to receive(:fetch)
+        .with('FF_SNOWFLAKES_ENABLED', 'true') { ff_snowflakes_enabled }
+
+      travel_to date
+    end
+
+    context 'when FF_SNOWFLAKES_ENABLED ENV is false' do
+      let(:ff_snowflakes_enabled) { 'false' }
+
+      context 'when before Christmas time' do
+        let(:date) { Date.new(2025, 12, 1) } # December 1st
+
+        it { is_expected.to be false }
+      end
+
+      context 'when during Christmas time' do
+        let(:date) { Date.new(2025, 12, 25) } # December 25
+
+        it { is_expected.to be false }
+      end
+
+      context 'when after Christmas time' do
+        let(:date) { Date.new(2026, 1, 8) } # January 8
+
+        it { is_expected.to be false }
+      end
+    end
+
+    context 'when FF_SNOWFLAKES_ENABLED ENV is true' do
+      let(:ff_snowflakes_enabled) { 'true' }
+
+      context 'when before Christmas time' do
+        let(:date) { Date.new(2025, 12, 1) } # December 1st
+
+        it { is_expected.to be false }
+      end
+
+      context 'when during Christmas time' do
+        let(:date) { Date.new(2025, 12, 25) } # December 25
+
+        it { is_expected.to be true }
+      end
+
+      context 'when during new year time' do
+        let(:date) { Date.new(2026, 1, 2) } # January 2nd
+
+        it { is_expected.to be true }
+      end
+
+      context 'when after Christmas time' do
+        let(:date) { Date.new(2026, 1, 8) } # January 8
+
+        it { is_expected.to be false }
+      end
+    end
+  end
 end

@@ -1,0 +1,26 @@
+div data-controller="snowflakes"
+  .snow aria-hidden="true" data-snowflakes-target="snow"
+    .snow__layer
+      .snow__fall
+    .snow__layer
+      .snow__fall
+    .snow__layer
+      .snow__fall
+      .snow__fall
+      .snow__fall
+    .snow__layer
+      .snow__fall
+
+  label.swap.swap-rotate
+    input type="checkbox" data-snowflakes-target="input" data-action="click->snowflakes#switch"
+
+    span.swap-on title=t('.disable_snowflakes')
+      = lucide_icon 'snowflake', class: 'h-5 w-5 fill-current'
+
+    span.swap-off title=t('.enable_snowflakes')
+      = lucide_icon 'snowflake', class: 'h-5 w-5 fill-current opacity-50'
+
+css:
+  .snow-disabled .snow {
+    display: none !important;
+  }

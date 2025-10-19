@@ -50,3 +50,7 @@ en:
       access_next_page: Go to next page
       access_page_subtitle: (when pagination is present)
       open_merchant_routing_form: Open route planner to reach a merchant
+
+    snowflakes:
+      enable_snowflakes: Enable snowflakes
+      disable_snowflakes: Disable snowflakes

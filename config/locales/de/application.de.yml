@@ -48,3 +48,7 @@ de:
       access_next_page: Zur nächsten Seite gehen
       access_page_subtitle: (wenn eine Seitennummerierung vorhanden ist)
       open_merchant_routing_form: Routenplaner zur Händleradresse öffnen
+
+    snowflakes:
+      enable_snowflakes: Schneeflocken aktivieren
+      disable_snowflakes: Schneeflocken deaktivieren

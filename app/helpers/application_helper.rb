@@ -113,4 +113,12 @@ module ApplicationHelper
       ]
     end
   end
+
+  def christmas_time?
+    ff_enabled = ENV.fetch('FF_SNOWFLAKES_ENABLED', 'true') == 'true'
+    return false unless ff_enabled
+
+    month_day = Date.current.strftime('%m-%d')
+    month_day >= '12-12' || month_day <= '01-05'
+  end
 end
