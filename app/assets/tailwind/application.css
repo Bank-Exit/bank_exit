@@ -67,7 +67,7 @@
 @utility card {
     &.image-full {
         > figure img {
-            filter: brightness(0.6) blur(3px);
+            @apply blur-sm brightness-[28%];
         }
     }
 }
