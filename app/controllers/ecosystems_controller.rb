@@ -6,6 +6,6 @@ class EcosystemsController < PublicController
   # @route GET /en/ecosystem {locale: "en"} (ecosystem_en)
   # @route GET /ecosystem
   def show
-    @ecosystem_items = EcosystemItem.enabled
+    @ecosystem_items = EcosystemItem.enabled.includes(:picture_attachment, :string_translations, :text_translations)
   end
 end

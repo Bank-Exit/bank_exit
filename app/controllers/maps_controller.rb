@@ -71,13 +71,15 @@ class MapsController < PublicController
       merchant_ids.ids, params: ->(params) { params.compact_blank.merge!(pagy: true) }
     )
 
-    merchants = Merchant.where(id: page_ids).in_order_of(:id, page_ids)
+    merchants = Merchant.where(id: page_ids).in_order_of(:id, page_ids).includes(:logo_attachment)
+
+    variant = session[:merchants_display].to_sym
+
+    merchants = merchants.includes(:banner_attachment) if variant.in?(%i[grid map])
 
     @merchants = MerchantDecorator.wrap(merchants)
 
-    render variants: [
-      session[:merchants_display].to_sym
-    ]
+    render variants: [variant]
   end
 
   # @route GET /fr/map/fetch_markers {locale: "fr"} (map_fetch_markers_fr)

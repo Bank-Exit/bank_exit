@@ -20,7 +20,7 @@ class WelcomeController < PublicController
     @profiles = Questions::BuildProfiles.call
     @levels = Questions::BuildLevels.call
 
-    merchants_sample = Merchant.available.monero.in_france.no_kyc.sample(3)
+    merchants_sample = Merchant.available.monero.in_france.no_kyc.includes(:logo_attachment, :banner_attachment).sample(3)
     @merchants_sample = MerchantDecorator.wrap(merchants_sample)
   end
 end

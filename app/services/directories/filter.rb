@@ -29,7 +29,7 @@ module Directories
     private
 
     def relation
-      @relation ||= initial_scope || Directory.enabled.includes(:text_translations, :string_translations, :logo_attachment, :banner_attachment)
+      @relation ||= initial_scope || Directory.enabled
     end
 
     def around_me?
