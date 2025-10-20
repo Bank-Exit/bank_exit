@@ -84,7 +84,7 @@ article
         .mb-6
           .grid.grid-cols-2.md:grid-cols-3.lg:grid-cols-5.gap-3
             - MerchantProposal::ALLOWED_COINS.each do |coin|
-              .hover:scale-110.transition-transform
+              .hover:scale-110.motion-safe:transition-transform
                 input type="checkbox" id="#{coin}-option" value=coin class="hidden peer" name="merchant_proposal[coins][]" checked=params.dig(:merchant_proposal, :coins)&.include?(coin.to_s)
                 label.pretty-checkbox.block.text-center for="#{coin}-option" tabindex="0"
                   p.mb-2

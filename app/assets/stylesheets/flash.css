@@ -11,8 +11,14 @@
     }
 }
 
-.appear-then-fade {
-    animation: appear-then-fade 10s both;
+@media (prefers-reduced-motion: no-preference) {
+    .appear-then-fade {
+        animation: appear-then-fade 10s both;
+    }
+
+    .fade-out {
+        animation: fade-out 1s both;
+    }
 }
 
 @keyframes appear-then-fade {
@@ -24,10 +30,6 @@
     60% {
         opacity: 1;
     }
-}
-
-.fade-out {
-    animation: fade-out 1s both;
 }
 
 @keyframes fade-out {

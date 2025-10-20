@@ -2,7 +2,7 @@
           class: 'inline-block',
           data: { turbo_frame: :coin } do
   figure
-    = image_tag coin.image, title: coin.name, class: 'w-12 lg:w-16 mx-auto mb-2 hover:scale-110 transition-transform rounded-full'
+    = image_tag coin.image, title: coin.name, class: 'w-12 lg:w-16 mx-auto mb-2 hover:scale-110 motion-safe:transition-transform rounded-full'
     figcaption.text-center.text-sm
       p.font-bold
         - if coin.ticker?

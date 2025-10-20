@@ -49,7 +49,9 @@
     svg path {
         fill: var(--color-primary);
         stroke: var(--color-primary-content);
-        transition: fill 0.3s ease-out;
+        @media (prefers-reduced-motion: no-preference) {
+            transition: fill 0.3s ease-out;
+        }
     }
 
     &.home-icon {

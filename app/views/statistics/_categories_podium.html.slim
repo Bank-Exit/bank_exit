@@ -21,7 +21,7 @@ section.flex.justify-center.items-end.gap-3
                      when 2 then "h-32" \
                      end
 
-    .flex.flex-col.items-center.hover:scale-105.transition-transform
+    .flex.flex-col.items-center.hover:scale-105.motion-safe:transition-transform
       .mb-2= merchant_icon_svg icon_for_category(category), width: 60, height: 60
 
       .text-base-content.rounded-box.w-24.flex.flex-col.items-center.justify-center.border.border-base-content/20.text-center class=bg_class class=height_class

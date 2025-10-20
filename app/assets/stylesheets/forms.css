@@ -8,14 +8,17 @@ label.pretty-checkbox {
     border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
     --tw-bg-opacity: 1;
     padding: 0.5rem;
-    transition-duration: 0.15s;
-    transition-property:
-        color, background-color, border-color, text-decoration-color, fill,
-        stroke;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
         border-color: var(--color-primary);
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        transition-duration: 0.15s;
+        transition-property:
+            color, background-color, border-color, text-decoration-color, fill,
+            stroke;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
 

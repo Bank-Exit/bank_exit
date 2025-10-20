@@ -14,15 +14,34 @@ export default class extends Controller {
     this.startTime = Date.now() / 1000;
     this.initialValue =
       this.d0Value + this.rateValue * (this.startTime - this.t0Value);
-    this._tick();
+
+    this.prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    if (this.prefersReducedMotion) {
+      this.interval = setInterval(() => this._update(), 5000);
+    } else {
+      this._tick();
+    }
+  }
+
+  disconnect() {
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
   }
 
   _tick() {
+    this._update();
+    requestAnimationFrame(this._tick.bind(this));
+  }
+
+  _update() {
     const now = Date.now() / 1000;
     const elapsed = now - this.startTime;
     const currentValue = this.initialValue + this.rateValue * elapsed;
     this.amountTarget.textContent = this.formatEuro(currentValue);
-    requestAnimationFrame(this._tick.bind(this));
   }
 
   formatEuro(value) {

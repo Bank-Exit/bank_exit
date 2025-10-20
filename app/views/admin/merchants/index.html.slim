@@ -36,7 +36,7 @@ header.mb-3
           = lucide_icon 'circle-question-mark', class: 'w-4'
 
   .stat.space-y-3
-    .stat-figure.transition-transform.duration-700.hover:rotate-360
+    .stat-figure.motion-safe:transition-transform.motion-safe:duration-700.hover:rotate-360
       = lucide_icon 'refresh-cw', class: 'w-12 h-12'
 
     - if @last_update > 0

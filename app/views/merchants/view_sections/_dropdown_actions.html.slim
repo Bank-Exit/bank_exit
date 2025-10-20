@@ -4,7 +4,7 @@ button.btn.btn-square class=(defined?(btn_klass) ? btn_klass : 'btn-lg') tabinde
 ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.border.border-base-content/20.space-y-2 tabindex="0" popover="" id="popover-merchant" style="position-anchor:--anchor-merchant"
   li
     = content_tag(:div,
-        class: 'hover:text-primary transition-colors',
+        class: 'hover:text-primary motion-safe:transition-colors',
         data: { \
           controller: "clipboard",
           action: "click->clipboard#copy:prevent",

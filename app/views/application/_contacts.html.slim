@@ -6,12 +6,12 @@
       - if contact.session? || contact.nostr? || contact.email?
         = link_to contact_path(id: contact.title), title: contact.title, data: { turbo_frame: :contact_details } do
           - if contact.email?
-            = lucide_icon contact.icon, class: 'bg-primary text-primary-content w-10 h-9 p-1 rounded-full hover:scale-110 transition-transform'
+            = lucide_icon contact.icon, class: 'bg-primary text-primary-content w-10 h-9 p-1 rounded-full hover:scale-110 motion-safe:transition-transform'
           - else
-            = image_tag "contacts/#{contact.icon}", class: 'bg-white w-10 rounded-full hover:scale-110 transition-transform'
+            = image_tag "contacts/#{contact.icon}", class: 'bg-white w-10 rounded-full hover:scale-110 motion-safe:transition-transform'
 
       - else
         = link_to contact.main_link, title: contact.title, target: :_blank do
-            = image_tag "contacts/#{contact.icon}", class: 'bg-white w-10 h-10 rounded-full hover:scale-110 transition-transform'
+            = image_tag "contacts/#{contact.icon}", class: 'bg-white w-10 h-10 rounded-full hover:scale-110 motion-safe:transition-transform'
 
   = turbo_frame_tag :contact_details

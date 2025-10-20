@@ -1,7 +1,7 @@
-- link_klass = "block p-4 space-y-3 hover:bg-primary/20 hover:!text-inherit transition-colors focus-visible:outline-none focus-visible:bg-primary/10"
+- link_klass = "block p-4 space-y-3 hover:bg-primary/20 hover:!text-inherit focus-visible:outline-none focus-visible:bg-primary/10"
 
 div data-command-palette-target="results"
-  ul.overflow-y-auto.bg-base-100.rounded-box.text-sm.divide-y.divide-base-content/20.border.border-base-content/20.scroll-smooth.scroll-py-2.mb-1 class="max-h-[60svh]"
+  ul.overflow-y-auto.bg-base-100.rounded-box.text-sm.divide-y.divide-base-content/20.border.border-base-content/20.motion-safe:scroll-smooth.scroll-py-2.mb-1 class="max-h-[60svh]"
     - if defined?(directories_spotlight) && directories_spotlight.any?
       - directories_spotlight.first(3).each do |directory|
         li

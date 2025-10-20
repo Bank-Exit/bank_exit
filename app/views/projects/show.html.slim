@@ -28,7 +28,7 @@ article
 
     - if @project.website_screenshot?
       figure.mb-6
-        - image = image_tag "projects/#{@project.website_screenshot}", class: "mx-auto object-cover rounded-t-lg rounded-lg border-2 border-base-300/80 hover:border-primary transition-color"
+        - image = image_tag "projects/#{@project.website_screenshot}", class: "mx-auto object-cover rounded-t-lg rounded-lg border-2 border-base-300/80 hover:border-primary motion-safe:transition-color"
         - if @project.iframe_url?
           = link_to @project.iframe_url, target: :_blank do
             = image

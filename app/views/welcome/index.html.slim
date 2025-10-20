@@ -13,7 +13,7 @@
             = t('.video_caption')
 
         .lg:w-1/3.text-center.order-1.lg:order-none.text-white
-          = image_tag logo_by_locale, class: 'w-48 mx-auto mb-3 hover:scale-110 transition-transform'
+          = image_tag logo_by_locale, class: 'w-48 mx-auto mb-3 hover:scale-110 motion-safe:transition-transform'
 
           h1.text-3xl.font-bold.mb-6= t('.title')
           p.text-xl= t('.headline')

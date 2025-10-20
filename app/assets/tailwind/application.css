@@ -97,7 +97,7 @@
 }
 
 a {
-    @apply transition-colors;
+    @apply motion-safe:transition-colors;
 }
 
 a:not(.btn, .badge):hover,
@@ -122,7 +122,7 @@ p a[target="_blank"],
         width: 24px;
         height: 24px;
         vertical-align: middle;
-        @apply scale-50 transition-colors;
+        @apply scale-50 motion-safe:transition-colors;
     }
 
     &:hover:after {

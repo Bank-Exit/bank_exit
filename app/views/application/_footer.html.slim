@@ -1,7 +1,7 @@
 footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary
   p= t('.copyright_html', year: Date.current.year)
   p
-    - heart = lucide_icon('heart', class: 'h-5 w-5 stroke-red-600 fill-red-600 inline-flex mx-1 hover:scale-150 transition transition-scale')
+    - heart = lucide_icon('heart', class: 'h-5 w-5 stroke-red-600 fill-red-600 inline-flex mx-1 hover:scale-150  motion-safe:transition-scale')
     = t('.developed_by_html', heart: heart)
 
   .flex.items-center.justify-center.gap-3.mt-2
@@ -17,7 +17,7 @@ footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary
 
     = link_to 'https://bank-exit-uptime-production.up.railway.app/status/bank-exit', target: :_blank do
       .inline-grid.mr-1 class="*:[grid-area:1/1]"
-        .status.status-success.animate-ping
+        .status.status-success.motion-safe:animate-ping
         .status.status-success
       =< t('status')
 

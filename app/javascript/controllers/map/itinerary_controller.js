@@ -57,7 +57,7 @@ export default class MapItineraryController extends MapBaseController {
           const routing = new L.Polyline(polyUtil.decode(step.geometry), {
             ...this.polylineConfig,
             ...{
-              className: `step_${index} transition-colors`,
+              className: `step_${index} motion-safe:transition-colors`,
             },
           });
           routing.addTo(this.map);

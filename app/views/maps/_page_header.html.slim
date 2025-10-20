@@ -6,7 +6,7 @@ header.hero.bg-fixed.bg-banner-projects
         .space-y-5.text-neutral-content
           .flex.items-center.justify-center.gap-3
             - %i[monero bitcoin june].each do |coin|
-              = image_tag icon_by_coin(coin), class: 'w-12 h-12 hover:scale-110 transition-transform', title: coin
+              = image_tag icon_by_coin(coin), class: 'w-12 h-12 hover:scale-110 motion-safe:transition-transform', title: coin
 
           div
             h1.text-3xl.font-bold.mb-1
