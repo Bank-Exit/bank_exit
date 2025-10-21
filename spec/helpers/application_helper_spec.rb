@@ -69,7 +69,9 @@ RSpec.describe ApplicationHelper do
   end
 
   describe '#christmas_time?' do
-    subject { christmas_time? }
+    subject { christmas_time?(force: force_snowflakes) }
+
+    let(:force_snowflakes) { false }
 
     before do
       allow(ENV)
@@ -77,6 +79,14 @@ RSpec.describe ApplicationHelper do
         .with('FF_SNOWFLAKES_ENABLED', 'true') { ff_snowflakes_enabled }
 
       travel_to date
+    end
+
+    context 'when force params is true' do
+      let(:force_snowflakes) { true }
+      let(:ff_snowflakes_enabled) { 'false' }
+      let(:date) { Date.new(2025, 12, 1) } # December 1st
+
+      it { is_expected.to be true }
     end
 
     context 'when FF_SNOWFLAKES_ENABLED ENV is false' do

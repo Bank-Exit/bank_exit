@@ -7,14 +7,3 @@ javascript:
     const theme = localStorage.getItem('color-theme') || 'light';
     document.documentElement.setAttribute('data-theme', theme);
   })();
-
-- if christmas_time?
-  javascript:
-    // Snowflakes
-    (function () {
-      const withSnowflakes = localStorage.getItem('with-snowflakes') || "true";
-
-      if (withSnowflakes === "false") {
-        document.documentElement.classList.add("snow-disabled");
-      }
-    })();

@@ -114,7 +114,9 @@ module ApplicationHelper
     end
   end
 
-  def christmas_time?
+  def christmas_time?(force: false)
+    return true if force
+
     ff_enabled = ENV.fetch('FF_SNOWFLAKES_ENABLED', 'true') == 'true'
     return false unless ff_enabled
 
