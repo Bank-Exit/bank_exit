@@ -133,10 +133,51 @@ RSpec.describe ApplicationHelper do
       end
 
       context 'when after Christmas time' do
-        let(:date) { Date.new(2026, 1, 8) } # January 8
+        let(:date) { Date.new(2026, 1, 20) } # January 20
 
         it { is_expected.to be false }
       end
+    end
+  end
+
+  describe '#halloween_time?' do
+    subject { halloween_time?(force: force_halloween) }
+
+    let(:force_halloween) { false }
+
+    before do
+      travel_to date
+    end
+
+    context 'when force params is true' do
+      let(:force_halloween) { true }
+      let(:date) { Date.new(2025, 12, 1) } # December 1st
+
+      it { is_expected.to be true }
+    end
+
+    context 'when before halloween time' do
+      let(:date) { Date.new(2025, 10, 1) } # October 1st
+
+      it { is_expected.to be false }
+    end
+
+    context 'when halloween eve time' do
+      let(:date) { Date.new(2025, 10, 30) } # October 30
+
+      it { is_expected.to be true }
+    end
+
+    context 'when halloween time' do
+      let(:date) { Date.new(2025, 10, 31) } # October 31
+
+      it { is_expected.to be true }
+    end
+
+    context 'when after halloween time' do
+      let(:date) { Date.new(2025, 11, 2) } # November 2nd
+
+      it { is_expected.to be false }
     end
   end
 end

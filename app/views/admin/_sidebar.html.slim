@@ -1,7 +1,10 @@
+- today = Date.current
+- themes = find_themes(today)
+
 .drawer-side
   label.drawer-overlay for="sidebarDrawer" aria-label="close sidebar"
 
-  .bg-base-300.min-h-full.w-80.border-r-2.border-primary.p-4.flex.flex-col.justify-between
+  .bg-base-100.min-h-full.w-80.border-r-2.border-primary.p-4.flex.flex-col.justify-between
     .space-y-2
       = link_to admin_dashboard_path, class: 'block' do
         = image_tag logo_by_locale, class: 'w-32 mx-auto'
@@ -73,7 +76,14 @@
       label.flex.cursor-pointer.gap-2.justify-center.items-center.my-5
         = lucide_icon 'sun', class: 'swap-on h-5 w-5 fill-current'
 
-        input#theme-switcher.toggle.toggle-sm.theme-controller type="checkbox" value=Setting::DARK_THEME_NAME data-controller="themes" data-action="click->themes#switch"
+        input#theme-switcher.toggle.toggle-sm.theme-controller(
+          type="checkbox"
+          value=themes[:dark]
+          data-controller="themes"
+          data-action="click->themes#switch"
+          data-themes-light-value=themes[:light]
+          data-themes-dark-value=themes[:dark]
+        )
 
         = lucide_icon 'moon', class: 'swap-off h-5 w-5 fill-current'
 

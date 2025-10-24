@@ -1,5 +1,6 @@
 module ApplicationHelper
   include Pagy::Frontend
+  include ThemesHelper
 
   def render_turbo_stream_flash_messages
     turbo_stream.prepend 'flashes', partial: 'flashes'
@@ -120,7 +121,12 @@ module ApplicationHelper
     ff_enabled = ENV.fetch('FF_SNOWFLAKES_ENABLED', 'true') == 'true'
     return false unless ff_enabled
 
-    month_day = Date.current.strftime('%m-%d')
-    month_day >= '12-12' || month_day <= '01-05'
+    find_themes[:light] == :christmas
+  end
+
+  def halloween_time?(force: false)
+    return true if force
+
+    find_themes[:dark] == :halloween
   end
 end

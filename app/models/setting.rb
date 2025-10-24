@@ -1,8 +1,8 @@
 # This class acts as a model (not related to the database)
 # to interact more elegantly with the global settings.
 class Setting
-  LIGHT_THEME_NAME = 'silk'.freeze
-  DARK_THEME_NAME = 'dracula'.freeze
+  LIGHT_THEME_NAME = :silk
+  DARK_THEME_NAME = :dracula
 
   MAP_DEFAULT_THEME = LIGHT_THEME_NAME
   MAP_DEFAULT_ZOOM = 5
