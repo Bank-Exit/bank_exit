@@ -1,6 +1,5 @@
-.collapse.collapse-arrow.join-item.border-base-300.border
-  input type="radio" name="ecosystem_item-radio"
-  .collapse-title.font-semibold.flex.items-center.gap-2
+details.collapse.collapse-arrow.bg-base-300
+  summary.collapse-title.font-semibold.flex.items-center.gap-2
     - if ecosystem_item.picture.attached?
       = image_tag url_for(ecosystem_item.picture.variant(:thumb)), class: 'w-6'
     = ecosystem_item.name
