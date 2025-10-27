@@ -6,7 +6,7 @@
   data-debt-clock-locale-value=I18n.locale
 )
   .max-w-5xl.mx-auto.space-y-8.text-center
-    h3.text-3xl= t('.title')
+    h2.text-3xl= t('.title')
 
     figure
       .alert.alert-warning.text-2xl.lg:text-6xl.justify-center data-debt-clock-target="amount"
@@ -29,4 +29,4 @@
     - else
       - meme = "sdb_debt_clock_en.jpeg"
 
-    = image_tag meme, class: 'rounded-lg lg:w-3/4 mx-auto'
+    = image_tag meme, class: 'rounded-lg lg:w-3/4 mx-auto', alt: 'Bank-Exit debt France Twitter/X post'

@@ -14,7 +14,7 @@ nav.navbar
   .navbar-start.lg:w-full
     / Mobile
     .dropdown
-      .lg:hidden tabindex="0" role="button"
+      .lg:hidden tabindex="0" role="button" aria-label="Menu"
         = lucide_icon 'menu', class: 'w-7 h-7 cursor-pointer'
 
       ul.menu.menu-md.dropdown-content.z-1.mt-2.w-max.overflow-auto.p-2 tabindex="0" class="max-h-[90vh] max-w-[90vw]"
@@ -76,7 +76,7 @@ nav.navbar
             li
               = link_to local_groups_path, class: ('text-primary' if params[:controller] == 'local_groups') do
                 = local_groups.title
-                = image_tag "contacts/telegram.svg", class: 'inline-flex bg-white w-5 rounded-full', title: 'Telegram'
+                = image_tag "contacts/telegram.svg", class: 'inline-flex bg-white w-5 rounded-full', title: 'Telegram', alt: 'Logo Telegram'
 
             li
               = link_to media_path, class: ('text-primary' if params[:controller] == 'media') do
@@ -113,10 +113,10 @@ nav.navbar
 
     / Desktop
     = link_to root_path, class: 'flex items-center justify-center gap-2 ml-3 lg:ml-0' do
-      = image_tag logo_by_locale, class: 'w-16 h-16 object-cover rounded-full'
+      = image_tag logo_by_locale, class: 'w-16 h-16 object-cover rounded-full', alt: 'Logo Bank-Exit'
       span.self-center.font-semibold.whitespace-nowrap.hidden.lg:block
         span.block= t('.collectif')
-        span.block= t('.bank_exit')
+        span.block=< t('.bank_exit')
 
   .navbar-center.hidden class="lg:!flex"
     ul.menu.menu-horizontal.px-1
@@ -181,7 +181,7 @@ nav.navbar
               - local_groups = projects.find(&:local_groups?)
               = link_to local_groups_path, class: ('text-primary' if params[:controller] == 'local_groups') do
                 = local_groups.title
-                = image_tag "contacts/telegram.svg", class: 'inline-flex bg-white w-5 rounded-full', title: 'Telegram'
+                = image_tag "contacts/telegram.svg", class: 'inline-flex bg-white w-5 rounded-full', title: 'Telegram', alt: 'Logo Telegram'
 
             li
               = link_to media_path, class: ('text-primary' if params[:controller] == 'media') do
@@ -224,6 +224,7 @@ nav.navbar
 
       li
         button.btn.btn-ghost.btn-sm(
+          aria-label="Command Palette"
           data-controller="dispatcher"
           data-action="click->dispatcher#dispatch"
           data-dispatch-event="command-palette:open"
@@ -238,29 +239,30 @@ nav.navbar
           = lucide_icon 'github', class: "w-6"
 
       - if logged_in?
-        - color = color_for_role(current_user.role)
-        details.dropdown.dropdown-end.ml-2
-          summary.avatar.avatar-placeholder.cursor-pointer
-            .w-8.rounded-full.uppercase class="bg-#{color} text-#{color}-content"
-              = current_user.email.first(2)
+        li
+          - color = color_for_role(current_user.role)
+          details.dropdown.dropdown-end.ml-2
+            summary.avatar.avatar-placeholder.cursor-pointer
+              .w-8.rounded-full.uppercase class="bg-#{color} text-#{color}-content"
+                = current_user.email.first(2)
 
-          ul.menu.dropdown-content.bg-base-200.rounded-box.z-1.w-60.p-2.border.border-base-content/20
-            li
-              p.menu-title= current_user.email
+            ul.menu.dropdown-content.bg-base-200.rounded-box.z-1.w-60.p-2.border.border-base-content/20
+              li
+                p.menu-title= current_user.email
 
-              ul.space-y-2
-                li
-                  = link_to t('.admin_area'), admin_root_path
-
-                - if true_user != current_user
+                ul.space-y-2
                   li
-                    = link_to t('.back_to_my_account'),
-                                stop_impersonating_admin_users_path,
-                                data: { turbo_method: :post },
-                                class: 'btn btn-warning btn-sm'
+                    = link_to t('.admin_area'), admin_root_path
 
-                li
-                  = link_to t('logout'),
-                            session_path,
-                            data: { turbo_method: :delete },
-                            class: 'btn btn-error btn-sm'
+                  - if true_user != current_user
+                    li
+                      = link_to t('.back_to_my_account'),
+                                  stop_impersonating_admin_users_path,
+                                  data: { turbo_method: :post },
+                                  class: 'btn btn-warning btn-sm'
+
+                  li
+                    = link_to t('logout'),
+                              session_path,
+                              data: { turbo_method: :delete },
+                              class: 'btn btn-error btn-sm'

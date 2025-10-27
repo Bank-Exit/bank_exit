@@ -64,3 +64,14 @@ document.addEventListener("turbo:load", () => {
     });
   });
 });
+
+// After a Turbo navigation, <track> subtitles often disappear because
+// the <video> element persists in memory. Cloning it forces the browser
+// to re-parse the <track> elements and reload subtitles properly.
+document.addEventListener("turbo:render", (e) => {
+  const video = document.querySelector("video[data-reload-subtitles]");
+  if (!video) return;
+
+  const clone = video.cloneNode(true);
+  video.parentNode.replaceChild(clone, video);
+});

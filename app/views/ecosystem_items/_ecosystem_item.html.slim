@@ -1,14 +1,14 @@
 details.collapse.collapse-arrow.bg-base-300
   summary.collapse-title.font-semibold.flex.items-center.gap-2
     - if ecosystem_item.picture.attached?
-      = image_tag url_for(ecosystem_item.picture.variant(:thumb)), class: 'w-6'
+      = image_tag url_for(ecosystem_item.picture.variant(:thumb)), class: 'w-6', alt: "Logo #{ecosystem_item.name}"
     = ecosystem_item.name
 
   .collapse-content.space-y-5
     == simple_format ecosystem_item.description
 
     - if ecosystem_item.picture.attached?
-      p= image_tag url_for(ecosystem_item.picture.variant(:small)), class: 'max-w-32 mx-auto'
+      p= image_tag url_for(ecosystem_item.picture.variant(:small)), class: 'max-w-32 mx-auto', alt: "Logo #{ecosystem_item.name}"
 
     footer.flex.items-center.justify-end.gap-2
       - if logged_in? && allowed_to?(:update?, ecosystem_item, namespace: Admin)

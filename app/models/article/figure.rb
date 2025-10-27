@@ -37,5 +37,9 @@ class Article
     def klass?
       klass.present?
     end
+
+    def alt_image
+      image.split('/').last.split('.').first.titleize
+    end
   end
 end

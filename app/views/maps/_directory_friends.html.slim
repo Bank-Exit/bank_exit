@@ -10,11 +10,11 @@
             = link_to directory_friend.link, target: :_blank, class: 'flex flex-col items-center justify-center gap-2 w-full' do
               - image_size = 'w-6 h-6 lg:w-8 lg:h-8'
               - if directory_friend.icon?
-                = lucide_icon directory_friend.icon, class: image_size
+                = lucide_icon directory_friend.icon, class: image_size, alt: "Logo #{directory_friend.name}"
               - if directory_friend.image?
-                = image_tag "directory_friends/#{directory_friend.image}", class: "rounded-lg #{image_size} object-cover"
+                = image_tag "directory_friends/#{directory_friend.image}", class: "rounded-lg #{image_size} object-cover", alt: "Logo #{directory_friend.name}"
               - elsif directory_friend.svg_image?
-                = inline_svg_tag "directory_friends/#{directory_friend.svg_image}", class: "#{image_size} rounded-lg object-cover"
+                = inline_svg_tag "directory_friends/#{directory_friend.svg_image}", class: "#{image_size} rounded-lg object-cover", alt: "Logo #{directory_friend.name}"
 
-              h4.lg:font-semibold.text-center.text-xs.lg:text-sm
+              p.lg:font-semibold.text-center.text-xs.lg:text-sm
                 = directory_friend.name

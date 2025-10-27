@@ -5,6 +5,7 @@
   time: 10
   created_at: "2025-08-24"
   banner: banner-offline
+  short_description: Tutorial for importing merchants into CoMaps from GPX export.
   content:
     - mode: intro
       body:

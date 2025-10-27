@@ -3,13 +3,13 @@
          id: "merchant-#{merchant.identifier}" do
   - if merchant.banner.attached?
     figure
-      = image_tag url_for(merchant.banner.variant(:thumb))
+      = image_tag url_for(merchant.banner.variant(:thumb)), alt: "Banner for #{merchant.name}"
 
   .card-body.space-y-3
     .flex.items-center.justify-between
       .flex.items-center.gap-2
         = render 'logo_or_initials', model: merchant
-        h2.card-title
+        h3.card-title
           span
             = highlight(merchant.name, params[:search])
 

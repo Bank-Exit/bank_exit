@@ -14,7 +14,7 @@
       .max-w-8xl.space-y-8
         .grid.grid-cols-1.md:grid-cols-2.lg:grid-cols-3.gap-6.lg:gap-3.place-items-center.lg:place-items-stretch.text-center
           div
-            h3.font-bold.mb-3.text-lg= t('.navigation')
+            h2.font-bold.mb-3.text-lg= t('.navigation')
             ul.lg:grid.grid-cols-2.gap-x-8
               li= link_to t('application.nav.menu.home'), root_path
 
@@ -44,7 +44,7 @@
                 - local_groups = projects.find(&:local_groups?)
                 = link_to local_groups_path do
                   = local_groups.title
-                  = image_tag "contacts/telegram.svg", class: 'inline-flex ml-2 bg-white w-5 rounded-full', title: 'Telegram'
+                  = image_tag "contacts/telegram.svg", class: 'inline-flex ml-2 bg-white w-5 rounded-full', title: 'Telegram', alt: 'Logo Telegram'
 
               li= link_to t('application.nav.menu.faq'), faq_path
 
@@ -60,7 +60,7 @@
                   = lucide_icon 'square-arrow-out-up-right', class: 'w-4 inline-flex ml-1'
 
           div
-            h3.font-bold.mb-3.text-lg= t('.projects')
+            h2.font-bold.mb-3.text-lg= t('.projects')
             ul.mb-5
               - projects.each do |project|
                 - next if project.identifier.in?(%w[map grocery local_groups])
@@ -70,8 +70,8 @@
                     - if project.external?
                       = lucide_icon 'square-arrow-out-up-right', class: 'w-4 inline-flex ml-1'
 
-            = image_tag 'logo_by_mondetta.jpeg', class: 'w-20 mx-auto rounded-full', title: 'Logo by Mondetta'
+            = image_tag 'logo_by_mondetta.jpeg', class: 'w-20 mx-auto rounded-full', title: 'Logo by Mondetta', alt: 'Logo by Mondetta'
 
-          = image_tag 'banners/banner-btc-monero-farmer.jpeg', class: 'rounded-lg mx-auto object-cover lg:hidden'
+          = image_tag 'banners/banner-btc-monero-farmer.jpeg', class: 'rounded-lg mx-auto object-cover lg:hidden', alt: 'Banner BTC/Monero farmers'
 
           = render 'application/contacts', contacts: contacts

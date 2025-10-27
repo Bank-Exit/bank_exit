@@ -1,7 +1,8 @@
 - details_html = {} unless defined?(details_html)
 - btn_style = defined?(button_style) ? button_style : { class: 'btn-ghost' }
+- aria_attrs = defined?(aria) ? { aria: aria } : {}
 
-button.btn.btn-square popovertarget="popover-#{item_id}" style="anchor-name:--anchor-#{item_id}" *{**btn_style}
+button.btn.btn-square popovertarget="popover-#{item_id}" style="anchor-name:--anchor-#{item_id}" *{**btn_style} *{**aria_attrs}
   = lucide_icon 'ellipsis-vertical'
 
 .dropdown.dropdown-end.rounded-box.bg-base-100.border.border-base-content/20.shadow-sm popover="" id="popover-#{item_id}" style="position-anchor:--anchor-#{item_id}" *{**details_html}

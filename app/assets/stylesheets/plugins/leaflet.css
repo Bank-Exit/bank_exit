@@ -130,11 +130,8 @@
         filter: invert(100%) hue-rotate(180deg) brightness(0.95) contrast(90%);
     }
 
-    img.map_loader {
-        --tw-brightness: brightness(0.95);
-        --tw-contrast: contrast(90%);
-        --tw-hue-rotate: hue-rotate(180deg);
-        --tw-invert: invert(100%);
-        --tw-blur: blur(var(--blur-md));
+    img.map-loader {
+        filter: invert(100%) hue-rotate(180deg) brightness(0.95) contrast(90%)
+            blur(5px);
     }
 }

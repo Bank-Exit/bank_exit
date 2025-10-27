@@ -1,19 +1,25 @@
 .hero.bg-fixed class=("bg-banner-#{rand(1..5)} -mt-24")
   .hero-overlay
-  .hero-content.text-center.pt-24.pb-10.lg:py-36
+  .hero-content.text-center.pt-32.pb-10.lg:pt-36
     .max-w-max.space-y-8
       .flex.flex-col.lg:flex-row.items-center.gap-5.justify-between
         figure.order-3.lg:order-none
-          = video_tag 'first_market_gardener_monero.mp4',
-                      controls: true,
-                      autoplay: false,
-                      class: 'rounded-box mx-auto max-h-[400px]',
-                      poster: image_path('poster_first_market_gardener_monero.jpg')
+          - tracks = [ \
+            { src: "first_market_gardener_monero.#{I18n.locale}.vtt", srclang: I18n.locale, default: I18n.locale != :fr } \
+          ]
+
+          = video_with_tracks_tag 'first_market_gardener_monero.mp4',
+            tracks,
+            controls: true,
+            autoplay: false,
+            class: 'rounded-box mx-auto max-h-[550px] border-4 border-base-300',
+            poster: image_path('poster_first_market_gardener_monero.jpg'),
+            data: { reload_subtitles: true }
           figcaption.text-sm.mt-1.text-center.italic.text-white
             = t('.video_caption')
 
         .lg:w-1/3.text-center.order-1.lg:order-none.text-white
-          = image_tag logo_by_locale, class: 'w-48 mx-auto mb-3 hover:scale-110 motion-safe:transition-transform'
+          = image_tag logo_by_locale, class: 'w-48 mx-auto mb-3 hover:scale-110 motion-safe:transition-transform', alt: "Logo #{t('.title')}"
 
           h1.text-3xl.font-bold.mb-6= t('.title')
           p.text-xl= t('.headline')
@@ -31,9 +37,9 @@
   .w-full.lg:w-1/2.space-y-3.lg:overflow-y-auto.pb-4.lg:border-l.dark:border-gray-500.p-3 class="lg:h-[600px]"
     header.text-center.space-y-2
       = link_to maps_path, class: 'text-primary' do
-        h3.text-3xl= t('.map.title')
+        h2.text-3xl= t('.map.title')
 
-      h4.text-lg= t('.map.subtitle')
+      p.text-lg= t('.map.subtitle')
 
       .alert.alert-info
         = t('.map.merchant_highlight_tooltip_html')

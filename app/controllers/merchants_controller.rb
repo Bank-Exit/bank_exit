@@ -31,7 +31,7 @@ class MerchantsController < PublicController
     add_breadcrumb @merchant.name
 
     set_meta_tags title: @merchant.name,
-                  description: @merchant.description
+                  description: @merchant.description || @merchant.name
 
     # Render adapted `show.html+banner` template if
     # merchant has an attached banner to highlight.

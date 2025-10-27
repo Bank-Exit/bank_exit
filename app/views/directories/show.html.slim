@@ -26,7 +26,13 @@ article
     .flex.items-center.justify-between.gap-2
       = render 'breadcrumb'
       - if logged_in?
-        button.btn.btn-square.btn-lg tabindex="0" role="button" popovertarget="popover-directory" style="anchor-name:--anchor-directory"
+        button.btn.btn-square.btn-lg(
+          role="button"
+          tabindex="0"
+          aria-label="Menu for directory"
+          popovertarget="popover-directory"
+          style="anchor-name:--anchor-directory"
+        )
           = lucide_icon 'ellipsis-vertical', class: 'w-6'
 
         ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.border.border-base-content/20.space-y-2 tabindex="0" popover="" id="popover-directory" style="position-anchor:--anchor-directory"

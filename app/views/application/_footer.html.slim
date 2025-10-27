@@ -11,6 +11,7 @@ footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary class=('sn
 
   .flex.items-center.justify-center.gap-3.mt-2
     button.cursor-pointer(
+      aria-label="Help modal"
       data-controller="dispatcher"
       data-action="click->dispatcher#dispatch"
       data-dispatch-event="help:open"

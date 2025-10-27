@@ -25,7 +25,7 @@ ruby:
 - if model.logo.attached?
   .avatar
     .rounded-full.bg-white class=size
-      = image_tag url_for(model.logo)
+      = image_tag url_for(model.logo), alt: "Logo for #{model.name}"
 - else
   .avatar.avatar-placeholder
     .text-white.rounded-full class=size style="background-color: #{model.name.to_rgb}"

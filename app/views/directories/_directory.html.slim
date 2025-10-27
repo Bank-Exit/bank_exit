@@ -5,7 +5,7 @@
 = link_to directory_path(directory), class: "card bg-base-200 shadow-sm hover:-translate-y-1 motion-safe:transition-transform hover:!text-inherit #{'image-full' if directory.banner.attached?} #{'border-l-2 border-success' if delivery_zones.exists?}" do
   - if directory.banner.attached?
     figure
-      = image_tag url_for(directory.banner.variant(:thumb))
+      = image_tag url_for(directory.banner.variant(:thumb)), alt: "Directory's banner"
 
   .card-body.space-y-4.justify-between
     .flex.items-center.justify-between
@@ -27,7 +27,10 @@
 
     .flex.items-center.justify-center.gap-3
       - coin_wallets.each do |coin_wallet|
-        = image_tag icon_by_coin(coin_wallet.coin), title: coin_wallet.coin.capitalize, class: 'w-10 h-10'
+        = image_tag icon_by_coin(coin_wallet.coin),
+                    title: coin_wallet.coin.capitalize,
+                    alt: "Logo #{coin_wallet.coin.capitalize}",
+                    class: 'w-10 h-10'
 
     .flex.items-center.justify-between
       .flex.items-center.gap-3
@@ -41,7 +44,7 @@
             - main_group << contact_way
 
         - main_group.each do |contact_way|
-          = social_contact_icon contact_way.role, title: contact_way.value
+          = social_contact_icon contact_way.role
 
         - if extra_group.present?
           - text = extra_group.map { social_contact_icon(it.role) }.join(' ')
