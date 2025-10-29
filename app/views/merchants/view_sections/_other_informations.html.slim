@@ -1,5 +1,5 @@
 div
-  h3.mb-2.uppercase.font-bold.text-primary= t('other')
+  h2.mb-2.uppercase.font-bold.text-primary= t('other')
   .alert.alert-vertical.gap-1
     - if merchant.opening_hours.present?
       - multi_hours = merchant.opening_hours_sentences.count > 1

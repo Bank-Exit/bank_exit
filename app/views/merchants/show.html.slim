@@ -40,14 +40,14 @@
 
       - if @merchant.description?
         div
-          h3.mb-2.uppercase.font-bold.text-primary= t('description')
+          h2.mb-2.uppercase.font-bold.text-primary= t('description')
 
           .alert
             = @merchant.description
 
       - if @merchant.contact?
         div
-          h3.mb-2.uppercase.font-bold.text-primary= t('contact')
+          h2.mb-2.uppercase.font-bold.text-primary= t('contact')
 
           = render 'merchants/contacts', merchant: @merchant
 

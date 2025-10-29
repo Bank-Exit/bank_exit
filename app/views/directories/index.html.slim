@@ -32,7 +32,7 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
               - @directories_spotlight.each do |spotlight|
                 = link_to directory_path(spotlight), class: 'btn btn-primary' do
                   - if spotlight.logo.attached?
-                    = image_tag url_for(spotlight.logo), class: 'bg-white w-8 rounded-full'
+                    = image_tag url_for(spotlight.logo), class: 'bg-white w-8 rounded-full', alt: "Logo #{spotlight.name}"
                   = spotlight.name
 
   .flex.flex-col.lg:flex-row.gap-2.lg:gap-3.justify-center.p-3

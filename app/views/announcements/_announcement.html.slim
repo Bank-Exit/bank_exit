@@ -4,7 +4,11 @@
   .flex.items-center.justify-between.gap-3.w-full
     h3.font-bold.text-lg= announcement.title
 
-    button.btn.btn-sm.btn-square.btn-ghost type="button" data-action="click->announcement#hide"
+    button.btn.btn-sm.btn-square.btn-ghost(
+      type="button"
+      aria-label="Close"
+      data-action="click->announcement#hide"
+    )
       = lucide_icon 'x'
 
   .space-y-3.w-full

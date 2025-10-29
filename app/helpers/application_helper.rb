@@ -129,4 +129,25 @@ module ApplicationHelper
 
     find_themes[:dark] == :halloween
   end
+
+  # Rails' built-in `video_tag` helper does not support a `track` option for adding subtitles or captions.
+  # This helper manually builds the <track> tags and appends them inside the generated <video> element.
+  def video_with_tracks_tag(source, tracks = [], **)
+    sources_html = Array(source).map do |src|
+      tag.source(src: asset_path(src), type: "video/#{File.extname(src).delete('.')}")
+    end
+
+    tracks_html = tracks.map do |track|
+      tag.track(
+        **track,
+        src: video_path("tracks/#{track[:src]}"),
+        kind: :subtitles,
+        label: Rails.configuration.i18n_human_languages[track[:srclang]]
+      )
+    end
+
+    inner_html = safe_join(sources_html + tracks_html)
+
+    content_tag(:video, inner_html, **)
+  end
 end

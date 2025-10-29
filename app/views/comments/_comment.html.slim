@@ -11,7 +11,8 @@
       = link_to new_polymorphic_path([comment.commentable, comment, :report]),
                 class: 'text-error tooltip tooltip-primary tooltip-left',
                 id: "report_comment_#{comment.id}",
-                data: { turbo_stream: true, tip: t('report') } do
+                data: { turbo_stream: true, tip: t('report') },
+                'aria-label': 'Report comment' do
         = lucide_icon 'flag', class: 'inline-flex mr-1 w-4'
 
   .flex.items-center.gap-2

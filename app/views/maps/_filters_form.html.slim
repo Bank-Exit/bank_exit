@@ -130,10 +130,10 @@
                 - if coin == :bitcoin
                   .avatar
                     .w-10
-                      = image_tag "coins/logo-lightning.svg"
+                      = image_tag "coins/logo-lightning.svg", alt: 'Logo Lightning'
                 .avatar
                   .w-10
-                    = image_tag "coins/logo-#{coin}.svg"
+                    = image_tag "coins/logo-#{coin}.svg", alt: "Logo #{coin}"
 
               .text-xs.3xl:text-base
                 = coin.capitalize

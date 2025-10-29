@@ -66,7 +66,7 @@
   li
     = link_to 'https://t.me/Monero_map_label', target: :_blank do
       div
-        = inline_svg_tag "contacts/telegram.svg", class: 'inline-flex w-5 h-5', title: 'Telegram'
+        = inline_svg_tag "contacts/telegram.svg", class: 'inline-flex w-5 h-5', title: 'Telegram', alt: 'Logo Telegram'
         span.mx-2 Monero map labelers
         = lucide_icon 'square-arrow-out-up-right', class: 'inline-flex w-4'
 
@@ -84,4 +84,5 @@
 
 = render 'dropdown_actions',
          details_html: { data: { controller: ("map--options" if merchants_as_map?) } },
-         item_id: 'map'
+         item_id: 'map',
+         aria: { label: 'Map options' }

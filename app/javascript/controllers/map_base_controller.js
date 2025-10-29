@@ -72,12 +72,14 @@ export default class MapBaseController extends Controller {
   assignMarker(icon, extraClass = "") {
     return L.divIcon({
       html: `
-        <svg width="32" height="43" viewBox="0 0 32 43" xmlns="http://www.w3.org/2000/svg">
+        <div aria-label="${icon} icon">
+          <svg width="32" height="43" viewBox="0 0 32 43" xmlns="http://www.w3.org/2000/svg">
             <path d="M16 0C7.16 0 0 7.16 0 16c0 9.9 16 27 16 27s16-17.1 16-27c0-8.84-7.16-16-16-16z" fill="currentColor"/>
             <svg x="6" y="6" width="20" height="20" class="merchant-icon">
               <use href="/map/spritesheet.svg#${icon}"/>
             </svg>
-        </svg>
+          </svg>
+        </div>
       `,
       className: `custom-pin-icon ${extraClass}`,
       iconSize: [32, 43],

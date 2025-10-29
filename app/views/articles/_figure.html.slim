@@ -3,7 +3,9 @@
     = link_to image_path(figure.image),
             target: :_blank,
             title: strip_tags(figure.caption) do
-      = image_tag figure.image, class: "rounded-lg mx-auto inline-block #{figure.klass if figure.klass?}"
+      = image_tag figure.image,
+                  class: "rounded-lg mx-auto inline-block #{figure.klass if figure.klass?}",
+                  alt: figure.alt_image
 
     - if figure.caption?
       figcaption.text-xs.text-center.italic.mt-2

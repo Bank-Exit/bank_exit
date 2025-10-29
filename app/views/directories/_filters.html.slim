@@ -56,12 +56,12 @@
                   .avatar-group.-space-x-4
                     .avatar
                       .w-8
-                        = image_tag "coins/logo-lightning.svg"
+                        = image_tag "coins/logo-lightning.svg", alt: 'Logo Lightning'
                     .avatar
                       .w-8
-                        = image_tag "coins/logo-#{coin}.svg"
+                        = image_tag "coins/logo-#{coin}.svg", alt: "Logo #{coin}"
                 - else
-                    = image_tag "coins/logo-#{coin}.svg", class: 'w-10'
+                    = image_tag "coins/logo-#{coin}.svg", class: 'w-10', alt: "Logo #{coin}"
 
                 .text-xs
                   = coin.capitalize

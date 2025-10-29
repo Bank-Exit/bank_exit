@@ -5,6 +5,7 @@
   time: 10
   created_at: "2025-08-24"
   banner: banner-offline
+  short_description: Tutoriel pour importer les commerçants dans CoMaps à partir d'un export GPX.
   content:
     - mode: intro
       body:

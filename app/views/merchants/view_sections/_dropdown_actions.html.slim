@@ -1,4 +1,11 @@
-button.btn.btn-square class=(defined?(btn_klass) ? btn_klass : 'btn-lg') tabindex="0" role="button" popovertarget="popover-merchant" style="anchor-name:--anchor-merchant"
+button.btn.btn-square(
+  role="button"
+  class=(defined?(btn_klass) ? btn_klass : 'btn-lg')
+  tabindex="0"
+  aria-label="Menu for merchant"
+  popovertarget="popover-merchant"
+  style="anchor-name:--anchor-merchant"
+)
   = lucide_icon 'ellipsis-vertical', class: 'w-6'
 
 ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.border.border-base-content/20.space-y-2 tabindex="0" popover="" id="popover-merchant" style="position-anchor:--anchor-merchant"

@@ -11,14 +11,14 @@
               figure
                 - image_size = 'w-6 h-6 lg:w-10 lg:h-10 mx-auto'
                 - if directory_friend.icon?
-                  = lucide_icon directory_friend.icon, class: image_size
+                  = lucide_icon directory_friend.icon, class: image_size, alt: "Logo #{directory_friend.name}"
                 - if directory_friend.image?
-                  = image_tag "directory_friends/#{directory_friend.image}", class: "rounded-lg #{image_size} object-cover"
+                  = image_tag "directory_friends/#{directory_friend.image}", class: "rounded-lg #{image_size} object-cover", alt: "Logo #{directory_friend.name}"
                 - elsif directory_friend.svg_image?
-                  = inline_svg_tag "directory_friends/#{directory_friend.svg_image}", class: "#{image_size} rounded-lg object-cover"
+                  = inline_svg_tag "directory_friends/#{directory_friend.svg_image}", class: "#{image_size} rounded-lg object-cover", alt: "Logo #{directory_friend.name}"
 
               .card-body.items-center.text-center.p-0
-                h4.card-title.text-sm
+                p.card-title.text-sm
                   = directory_friend.name
 
   = render 'maps/merchants_table_or_grid', merchants: @merchants, pagy: @pagy

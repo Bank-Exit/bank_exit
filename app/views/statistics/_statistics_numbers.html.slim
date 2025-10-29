@@ -32,14 +32,14 @@
     .flex.gap-3.sm:grid.sm:grid-cols-3.lg:grid-cols-4.max-w-xs.sm:max-w-max.sm:mx-auto
       .stat.bg-base-100.shadow.rounded-lg
         .stat-figure
-          = image_tag icon_by_coin('bitcoin'), class: 'w-12 h-12'
+          = image_tag icon_by_coin('bitcoin'), class: 'w-12 h-12', alt: 'Logo Bitcoin'
         .stat-title= t('.bitcoin_world_title')
         .stat-value= number_with_delimiter(coins_statistics[:bitcoin_world].count)
         .stat-desc= dated_i18n
 
       .stat.bg-base-100.shadow.rounded-lg
         .stat-figure
-          = image_tag icon_by_coin('monero'), class: 'w-12 h-12'
+          = image_tag icon_by_coin('monero'), class: 'w-12 h-12', alt: 'Logo Monero'
 
         .stat-title= t('.monero_world_title')
         .stat-value= number_with_delimiter(coins_statistics[:monero_world].count)
@@ -47,14 +47,14 @@
 
       .stat.bg-base-100.shadow.rounded-lg
         .stat-figure
-          = image_tag icon_by_coin('monero'), class: 'w-12 h-12'
+          = image_tag icon_by_coin('monero'), class: 'w-12 h-12', alt: 'Logo Monero'
         .stat-title= t('.monero_france_title')
         .stat-value= number_with_delimiter(countries_statistics[:monero_in_france].count)
         .stat-desc= dated_i18n
 
       .stat.bg-base-100.shadow.rounded-lg
         .stat-figure
-          = image_tag icon_by_coin('june'), class: 'w-12 h-12 object-cover'
+          = image_tag icon_by_coin('june'), class: 'w-12 h-12 object-cover', alt: 'Logo June'
         .stat-title= t('.june_world_title')
         .stat-value= number_with_delimiter(coins_statistics[:june_world].count)
         .stat-desc= dated_i18n
