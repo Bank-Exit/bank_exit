@@ -3,7 +3,6 @@ RSpec.shared_context 'with locale parameter' do
 
   parameter name: :locale,
             in: :path,
-            type: :string,
             required: true,
             schema: {
               type: :string,
@@ -19,14 +18,18 @@ RSpec.shared_context 'with pagination parameter' do
 
   with_options in: :query do
     parameter name: :page,
-              type: :integer,
-              default: 1,
               required: false,
+              schema: {
+                type: :integer,
+                default: 1
+              },
               description: 'Page number'
     parameter name: :per,
-              type: :integer,
-              default: Pagy::DEFAULT[:limit],
               required: false,
+              schema: {
+                type: :integer,
+                default: Pagy::DEFAULT[:limit]
+              },
               description: 'Per page value'
   end
 end

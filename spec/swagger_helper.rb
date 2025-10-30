@@ -17,7 +17,7 @@ RSpec.configure do |config|
       openapi: '3.0.1',
       info: {
         title: 'Bank-Exit API',
-        version: 'v1',
+        version: 'v1.0.1',
         description: <<~DESC
           Welcome to the Bank-Exit API v1 documentation.
 
@@ -30,7 +30,7 @@ RSpec.configure do |config|
           For more information, please refer to the official developer documentation or contact the API support team.
         DESC
       },
-      paths: {},
+      security: [{ bearer_auth: [] }],
       components: {
         securitySchemes: {
           bearer_auth: {
@@ -39,7 +39,6 @@ RSpec.configure do |config|
             bearerFormat: 'Token'
           }
         },
-        security: [{ bearer_auth: [] }],
         schemas: {
           merchant: load_schema('merchant'),
           merchant_show_response: load_schema('merchant_show_response'),

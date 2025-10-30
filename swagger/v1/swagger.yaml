@@ -2,905 +2,21 @@
 openapi: 3.0.1
 info:
   title: Bank-Exit API
-  version: v1
+  version: v1.0.1
   description: "Welcome to the Bank-Exit API v1 documentation.\n\n- This API requires
     Bearer token authentication.\n- All endpoints are prefixed by a locale (e.g.,
     `/en`, `/fr`, etc.).\n- You can try out the endpoints directly from this interface.\n\n**Important:**
     To authenticate, click the \U0001F512 \"Authorize\" button and provide your token
     in the format: `Bearer YOUR_TOKEN_HERE`.\n\nFor more information, please refer
     to the official developer documentation or contact the API support team.\n"
-paths:
-  "/{locale}/api/v1/directories":
-    get:
-      summary: List directories
-      tags:
-      - Directories
-      security:
-      - bearer_auth: []
-      parameters:
-      - name: locale
-        in: path
-        type: string
-        required: true
-        schema:
-          type: string
-          default: en
-          enum:
-          - en
-          - fr
-          - es
-          - de
-          - it
-        description: Locale used for the response language, must be one of the supported
-          locales.
-      - in: query
-        name: query
-        schema:
-          type: string
-          default:
-        description: Filters results by name or description
-      - in: query
-        name: coins[]
-        schema:
-          type: array
-          default:
-          items:
-            type: string
-            enum:
-            - monero
-            - bitcoin
-            - june
-        description: Filters results by coins
-      - in: query
-        name: city
-        schema:
-          type: string
-          default:
-        description: Filters results by delivery zone city
-      - in: query
-        name: department
-        schema:
-          type: string
-          default:
-          enum:
-          - FR-01
-          - FR-02
-          - FR-03
-          - FR-04
-          - FR-05
-          - FR-06
-          - FR-07
-          - FR-08
-          - FR-09
-          - FR-10
-          - FR-11
-          - FR-12
-          - FR-13
-          - FR-14
-          - FR-15
-          - FR-16
-          - FR-17
-          - FR-18
-          - FR-19
-          - FR-21
-          - FR-22
-          - FR-23
-          - FR-24
-          - FR-25
-          - FR-26
-          - FR-27
-          - FR-28
-          - FR-29
-          - FR-30
-          - FR-31
-          - FR-32
-          - FR-33
-          - FR-34
-          - FR-35
-          - FR-36
-          - FR-37
-          - FR-38
-          - FR-39
-          - FR-40
-          - FR-41
-          - FR-42
-          - FR-43
-          - FR-44
-          - FR-45
-          - FR-46
-          - FR-47
-          - FR-48
-          - FR-49
-          - FR-50
-          - FR-51
-          - FR-52
-          - FR-53
-          - FR-54
-          - FR-55
-          - FR-56
-          - FR-57
-          - FR-58
-          - FR-59
-          - FR-60
-          - FR-61
-          - FR-62
-          - FR-63
-          - FR-64
-          - FR-65
-          - FR-66
-          - FR-67
-          - FR-68
-          - FR-69
-          - FR-70
-          - FR-71
-          - FR-72
-          - FR-73
-          - FR-74
-          - FR-75
-          - FR-76
-          - FR-77
-          - FR-78
-          - FR-79
-          - FR-80
-          - FR-81
-          - FR-82
-          - FR-83
-          - FR-84
-          - FR-85
-          - FR-86
-          - FR-87
-          - FR-88
-          - FR-89
-          - FR-90
-          - FR-91
-          - FR-92
-          - FR-93
-          - FR-94
-          - FR-95
-        description: Filters results by delivery zone French departments
-      - in: query
-        name: country
-        schema:
-          type: string
-          default:
-          enum:
-          - AD
-          - AE
-          - AF
-          - AG
-          - AI
-          - AL
-          - AM
-          - AO
-          - AQ
-          - AR
-          - AS
-          - AT
-          - AU
-          - AW
-          - AX
-          - AZ
-          - BA
-          - BB
-          - BD
-          - BE
-          - BF
-          - BG
-          - BH
-          - BI
-          - BJ
-          - BL
-          - BM
-          - BN
-          - BO
-          - BQ
-          - BR
-          - BS
-          - BT
-          - BV
-          - BW
-          - BY
-          - BZ
-          - CA
-          - CC
-          - CD
-          - CF
-          - CG
-          - CH
-          - CI
-          - CK
-          - CL
-          - CM
-          - CN
-          - CO
-          - CR
-          - CU
-          - CV
-          - CW
-          - CX
-          - CY
-          - CZ
-          - DE
-          - DJ
-          - DK
-          - DM
-          - DO
-          - DZ
-          - EC
-          - EE
-          - EG
-          - EH
-          - ER
-          - ES
-          - ET
-          - FI
-          - FJ
-          - FK
-          - FM
-          - FO
-          - FR
-          - GA
-          - GB
-          - GD
-          - GE
-          - GF
-          - GG
-          - GH
-          - GI
-          - GL
-          - GM
-          - GN
-          - GP
-          - GQ
-          - GR
-          - GS
-          - GT
-          - GU
-          - GW
-          - GY
-          - HK
-          - HM
-          - HN
-          - HR
-          - HT
-          - HU
-          - ID
-          - IE
-          - IL
-          - IM
-          - IN
-          - IO
-          - IQ
-          - IR
-          - IS
-          - IT
-          - JE
-          - JM
-          - JO
-          - JP
-          - KE
-          - KG
-          - KH
-          - KI
-          - KM
-          - KN
-          - KP
-          - KR
-          - KW
-          - KY
-          - KZ
-          - LA
-          - LB
-          - LC
-          - LI
-          - LK
-          - LR
-          - LS
-          - LT
-          - LU
-          - LV
-          - LY
-          - MA
-          - MC
-          - MD
-          - ME
-          - MF
-          - MG
-          - MH
-          - MK
-          - ML
-          - MM
-          - MN
-          - MO
-          - MP
-          - MQ
-          - MR
-          - MS
-          - MT
-          - MU
-          - MV
-          - MW
-          - MX
-          - MY
-          - MZ
-          - NA
-          - NC
-          - NE
-          - NF
-          - NG
-          - NI
-          - NL
-          - 'NO'
-          - NP
-          - NR
-          - NU
-          - NZ
-          - OM
-          - PA
-          - PE
-          - PF
-          - PG
-          - PH
-          - PK
-          - PL
-          - PM
-          - PN
-          - PR
-          - PS
-          - PT
-          - PW
-          - PY
-          - QA
-          - RE
-          - RO
-          - RS
-          - RU
-          - RW
-          - SA
-          - SB
-          - SC
-          - SD
-          - SE
-          - SG
-          - SH
-          - SI
-          - SJ
-          - SK
-          - SL
-          - SM
-          - SN
-          - SO
-          - SR
-          - SS
-          - ST
-          - SV
-          - SX
-          - SY
-          - SZ
-          - TC
-          - TD
-          - TF
-          - TG
-          - TH
-          - TJ
-          - TK
-          - TL
-          - TM
-          - TN
-          - TO
-          - TR
-          - TT
-          - TV
-          - TW
-          - TZ
-          - UA
-          - UG
-          - UM
-          - US
-          - UY
-          - UZ
-          - VA
-          - VC
-          - VE
-          - VG
-          - VI
-          - VN
-          - VU
-          - WF
-          - WS
-          - YE
-          - YT
-          - ZA
-          - ZM
-          - ZW
-        description: Filters results by delivery zone country (ISO 3166-1 alpha-2
-          code)
-      - in: query
-        name: continent
-        schema:
-          type: string
-          default:
-          enum:
-          - EU
-          - AF
-          - NA
-          - SA
-          - AS
-          - OC
-          - AN
-        description: Filters results by delivery zone continent (ISO 3166-1 alpha-2
-          code)
-      - in: query
-        name: with_comments
-        schema:
-          type: boolean
-          default:
-          nullable: true
-          enum:
-          - true
-          - false
-        description: Boolean to include related comments
-      - in: query
-        name: page
-        default: 1
-        required: false
-        description: Page number
-        schema:
-          type: integer
-      - in: query
-        name: per
-        default: 15
-        required: false
-        description: Per page value
-        schema:
-          type: integer
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/directories_index_response"
-        '401':
-          description: unauthorized token
-        '403':
-          description: forbidden token
-  "/{locale}/api/v1/directories/{id}":
-    get:
-      summary: Show a directory
-      tags:
-      - Directories
-      security:
-      - bearer_auth: []
-      parameters:
-      - name: locale
-        in: path
-        type: string
-        required: true
-        schema:
-          type: string
-          default: en
-          enum:
-          - en
-          - fr
-          - es
-          - de
-          - it
-        description: Locale used for the response language, must be one of the supported
-          locales.
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: directory found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/directory_show_response"
-        '401':
-          description: unauthorized token
-        '403':
-          description: forbidden token
-        '404':
-          description: directory not found
-  "/{locale}/api/v1/merchants":
-    get:
-      summary: List merchants
-      tags:
-      - Merchants
-      security:
-      - bearer_auth: []
-      parameters:
-      - name: locale
-        in: path
-        type: string
-        required: true
-        schema:
-          type: string
-          default: en
-          enum:
-          - en
-          - fr
-          - es
-          - de
-          - it
-        description: Locale used for the response language, must be one of the supported
-          locales.
-      - in: query
-        name: query
-        schema:
-          type: string
-          default:
-        description: Query matching merchant name or description
-      - in: query
-        name: coins[]
-        schema:
-          type: array
-          default:
-          items:
-            type: string
-            enum:
-            - monero
-            - bitcoin
-            - june
-        description: Filters results by coins
-      - in: query
-        name: country
-        schema:
-          type: string
-          default:
-          enum:
-          - AD
-          - AE
-          - AF
-          - AG
-          - AI
-          - AL
-          - AM
-          - AO
-          - AQ
-          - AR
-          - AS
-          - AT
-          - AU
-          - AW
-          - AX
-          - AZ
-          - BA
-          - BB
-          - BD
-          - BE
-          - BF
-          - BG
-          - BH
-          - BI
-          - BJ
-          - BL
-          - BM
-          - BN
-          - BO
-          - BQ
-          - BR
-          - BS
-          - BT
-          - BV
-          - BW
-          - BY
-          - BZ
-          - CA
-          - CC
-          - CD
-          - CF
-          - CG
-          - CH
-          - CI
-          - CK
-          - CL
-          - CM
-          - CN
-          - CO
-          - CR
-          - CU
-          - CV
-          - CW
-          - CX
-          - CY
-          - CZ
-          - DE
-          - DJ
-          - DK
-          - DM
-          - DO
-          - DZ
-          - EC
-          - EE
-          - EG
-          - EH
-          - ER
-          - ES
-          - ET
-          - FI
-          - FJ
-          - FK
-          - FM
-          - FO
-          - FR
-          - GA
-          - GB
-          - GD
-          - GE
-          - GF
-          - GG
-          - GH
-          - GI
-          - GL
-          - GM
-          - GN
-          - GP
-          - GQ
-          - GR
-          - GS
-          - GT
-          - GU
-          - GW
-          - GY
-          - HK
-          - HM
-          - HN
-          - HR
-          - HT
-          - HU
-          - ID
-          - IE
-          - IL
-          - IM
-          - IN
-          - IO
-          - IQ
-          - IR
-          - IS
-          - IT
-          - JE
-          - JM
-          - JO
-          - JP
-          - KE
-          - KG
-          - KH
-          - KI
-          - KM
-          - KN
-          - KP
-          - KR
-          - KW
-          - KY
-          - KZ
-          - LA
-          - LB
-          - LC
-          - LI
-          - LK
-          - LR
-          - LS
-          - LT
-          - LU
-          - LV
-          - LY
-          - MA
-          - MC
-          - MD
-          - ME
-          - MF
-          - MG
-          - MH
-          - MK
-          - ML
-          - MM
-          - MN
-          - MO
-          - MP
-          - MQ
-          - MR
-          - MS
-          - MT
-          - MU
-          - MV
-          - MW
-          - MX
-          - MY
-          - MZ
-          - NA
-          - NC
-          - NE
-          - NF
-          - NG
-          - NI
-          - NL
-          - 'NO'
-          - NP
-          - NR
-          - NU
-          - NZ
-          - OM
-          - PA
-          - PE
-          - PF
-          - PG
-          - PH
-          - PK
-          - PL
-          - PM
-          - PN
-          - PR
-          - PS
-          - PT
-          - PW
-          - PY
-          - QA
-          - RE
-          - RO
-          - RS
-          - RU
-          - RW
-          - SA
-          - SB
-          - SC
-          - SD
-          - SE
-          - SG
-          - SH
-          - SI
-          - SJ
-          - SK
-          - SL
-          - SM
-          - SN
-          - SO
-          - SR
-          - SS
-          - ST
-          - SV
-          - SX
-          - SY
-          - SZ
-          - TC
-          - TD
-          - TF
-          - TG
-          - TH
-          - TJ
-          - TK
-          - TL
-          - TM
-          - TN
-          - TO
-          - TR
-          - TT
-          - TV
-          - TW
-          - TZ
-          - UA
-          - UG
-          - UM
-          - US
-          - UY
-          - UZ
-          - VA
-          - VC
-          - VE
-          - VG
-          - VI
-          - VN
-          - VU
-          - WF
-          - WS
-          - YE
-          - YT
-          - ZA
-          - ZM
-          - ZW
-        description: Filters results by country (ISO 3166-1 alpha-2 code)
-      - in: query
-        name: continent
-        schema:
-          type: string
-          default:
-          enum:
-          - EU
-          - AF
-          - NA
-          - SA
-          - AS
-          - OC
-          - AN
-        description: Filters results by continent (ISO 3166-1 alpha-2 code)
-      - in: query
-        name: with_comments
-        schema:
-          type: boolean
-          default:
-          nullable: true
-          enum:
-          - true
-          - false
-        description: Boolean to include related comments
-      - in: query
-        name: page
-        default: 1
-        required: false
-        description: Page number
-        schema:
-          type: integer
-      - in: query
-        name: per
-        default: 15
-        required: false
-        description: Per page value
-        schema:
-          type: integer
-      responses:
-        '200':
-          description: successful
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/merchants_index_response"
-        '401':
-          description: unauthorized token
-        '403':
-          description: forbidden token
-  "/{locale}/api/v1/merchants/{id}":
-    get:
-      summary: Show a merchant
-      tags:
-      - Merchants
-      security:
-      - bearer_auth: []
-      parameters:
-      - name: locale
-        in: path
-        type: string
-        required: true
-        schema:
-          type: string
-          default: en
-          enum:
-          - en
-          - fr
-          - es
-          - de
-          - it
-        description: Locale used for the response language, must be one of the supported
-          locales.
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
-      responses:
-        '200':
-          description: merchant found
-          content:
-            application/json:
-              schema:
-                "$ref": "#/components/schemas/merchant_show_response"
-        '401':
-          description: unauthorized token
-        '403':
-          description: forbidden token
-        '404':
-          description: merchant not found
+security:
+- bearer_auth: []
 components:
   securitySchemes:
     bearer_auth:
       type: http
       scheme: bearer
       bearerFormat: Token
-  security:
-  - bearer_auth: []
   schemas:
     merchant:
       type: object
@@ -1326,3 +442,874 @@ components:
               format: uri
               nullable: true
               example: http://example.com/en/api/v1/directories?page=2
+paths:
+  "/{locale}/api/v1/directories":
+    get:
+      summary: List directories
+      tags:
+      - Directories
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: locale
+        in: path
+        required: true
+        schema:
+          type: string
+          default: en
+          enum:
+          - en
+          - fr
+          - es
+          - de
+          - it
+        description: Locale used for the response language, must be one of the supported
+          locales.
+      - in: query
+        name: query
+        schema:
+          type: string
+          default:
+        description: Filters results by name or description
+      - in: query
+        name: coins[]
+        schema:
+          type: array
+          default:
+          items:
+            type: string
+            enum:
+            - monero
+            - bitcoin
+            - june
+        description: Filters results by coins
+      - in: query
+        name: city
+        schema:
+          type: string
+        description: Filters results by delivery zone city
+      - in: query
+        name: department
+        schema:
+          type: string
+          enum:
+          - FR-01
+          - FR-02
+          - FR-03
+          - FR-04
+          - FR-05
+          - FR-06
+          - FR-07
+          - FR-08
+          - FR-09
+          - FR-10
+          - FR-11
+          - FR-12
+          - FR-13
+          - FR-14
+          - FR-15
+          - FR-16
+          - FR-17
+          - FR-18
+          - FR-19
+          - FR-21
+          - FR-22
+          - FR-23
+          - FR-24
+          - FR-25
+          - FR-26
+          - FR-27
+          - FR-28
+          - FR-29
+          - FR-30
+          - FR-31
+          - FR-32
+          - FR-33
+          - FR-34
+          - FR-35
+          - FR-36
+          - FR-37
+          - FR-38
+          - FR-39
+          - FR-40
+          - FR-41
+          - FR-42
+          - FR-43
+          - FR-44
+          - FR-45
+          - FR-46
+          - FR-47
+          - FR-48
+          - FR-49
+          - FR-50
+          - FR-51
+          - FR-52
+          - FR-53
+          - FR-54
+          - FR-55
+          - FR-56
+          - FR-57
+          - FR-58
+          - FR-59
+          - FR-60
+          - FR-61
+          - FR-62
+          - FR-63
+          - FR-64
+          - FR-65
+          - FR-66
+          - FR-67
+          - FR-68
+          - FR-69
+          - FR-70
+          - FR-71
+          - FR-72
+          - FR-73
+          - FR-74
+          - FR-75
+          - FR-76
+          - FR-77
+          - FR-78
+          - FR-79
+          - FR-80
+          - FR-81
+          - FR-82
+          - FR-83
+          - FR-84
+          - FR-85
+          - FR-86
+          - FR-87
+          - FR-88
+          - FR-89
+          - FR-90
+          - FR-91
+          - FR-92
+          - FR-93
+          - FR-94
+          - FR-95
+        description: Filters results by delivery zone French departments
+      - in: query
+        name: country
+        schema:
+          type: string
+          enum:
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CR
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - YE
+          - YT
+          - ZA
+          - ZM
+          - ZW
+        description: Filters results by delivery zone country (ISO 3166-1 alpha-2
+          code)
+      - in: query
+        name: continent
+        schema:
+          type: string
+          enum:
+          - EU
+          - AF
+          - NA
+          - SA
+          - AS
+          - OC
+          - AN
+        description: Filters results by delivery zone continent (ISO 3166-1 alpha-2
+          code)
+      - in: query
+        name: with_comments
+        schema:
+          type: boolean
+          nullable: true
+          enum:
+          - true
+          - false
+        description: Boolean to include related comments
+      - in: query
+        name: page
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: Page number
+      - in: query
+        name: per
+        required: false
+        schema:
+          type: integer
+          default: 15
+        description: Per page value
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/directories_index_response"
+        '401':
+          description: unauthorized token
+        '403':
+          description: forbidden token
+  "/{locale}/api/v1/directories/{id}":
+    get:
+      summary: Show a directory
+      tags:
+      - Directories
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: locale
+        in: path
+        required: true
+        schema:
+          type: string
+          default: en
+          enum:
+          - en
+          - fr
+          - es
+          - de
+          - it
+        description: Locale used for the response language, must be one of the supported
+          locales.
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: directory found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/directory_show_response"
+        '401':
+          description: unauthorized token
+        '403':
+          description: forbidden token
+        '404':
+          description: directory not found
+  "/{locale}/api/v1/merchants":
+    get:
+      summary: List merchants
+      tags:
+      - Merchants
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: locale
+        in: path
+        required: true
+        schema:
+          type: string
+          default: en
+          enum:
+          - en
+          - fr
+          - es
+          - de
+          - it
+        description: Locale used for the response language, must be one of the supported
+          locales.
+      - in: query
+        name: query
+        schema:
+          type: string
+          default:
+        description: Query matching merchant name or description
+      - in: query
+        name: coins[]
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - monero
+            - bitcoin
+            - june
+        description: Filters results by coins
+      - in: query
+        name: country
+        schema:
+          type: string
+          enum:
+          - AD
+          - AE
+          - AF
+          - AG
+          - AI
+          - AL
+          - AM
+          - AO
+          - AQ
+          - AR
+          - AS
+          - AT
+          - AU
+          - AW
+          - AX
+          - AZ
+          - BA
+          - BB
+          - BD
+          - BE
+          - BF
+          - BG
+          - BH
+          - BI
+          - BJ
+          - BL
+          - BM
+          - BN
+          - BO
+          - BQ
+          - BR
+          - BS
+          - BT
+          - BV
+          - BW
+          - BY
+          - BZ
+          - CA
+          - CC
+          - CD
+          - CF
+          - CG
+          - CH
+          - CI
+          - CK
+          - CL
+          - CM
+          - CN
+          - CO
+          - CR
+          - CU
+          - CV
+          - CW
+          - CX
+          - CY
+          - CZ
+          - DE
+          - DJ
+          - DK
+          - DM
+          - DO
+          - DZ
+          - EC
+          - EE
+          - EG
+          - EH
+          - ER
+          - ES
+          - ET
+          - FI
+          - FJ
+          - FK
+          - FM
+          - FO
+          - FR
+          - GA
+          - GB
+          - GD
+          - GE
+          - GF
+          - GG
+          - GH
+          - GI
+          - GL
+          - GM
+          - GN
+          - GP
+          - GQ
+          - GR
+          - GS
+          - GT
+          - GU
+          - GW
+          - GY
+          - HK
+          - HM
+          - HN
+          - HR
+          - HT
+          - HU
+          - ID
+          - IE
+          - IL
+          - IM
+          - IN
+          - IO
+          - IQ
+          - IR
+          - IS
+          - IT
+          - JE
+          - JM
+          - JO
+          - JP
+          - KE
+          - KG
+          - KH
+          - KI
+          - KM
+          - KN
+          - KP
+          - KR
+          - KW
+          - KY
+          - KZ
+          - LA
+          - LB
+          - LC
+          - LI
+          - LK
+          - LR
+          - LS
+          - LT
+          - LU
+          - LV
+          - LY
+          - MA
+          - MC
+          - MD
+          - ME
+          - MF
+          - MG
+          - MH
+          - MK
+          - ML
+          - MM
+          - MN
+          - MO
+          - MP
+          - MQ
+          - MR
+          - MS
+          - MT
+          - MU
+          - MV
+          - MW
+          - MX
+          - MY
+          - MZ
+          - NA
+          - NC
+          - NE
+          - NF
+          - NG
+          - NI
+          - NL
+          - 'NO'
+          - NP
+          - NR
+          - NU
+          - NZ
+          - OM
+          - PA
+          - PE
+          - PF
+          - PG
+          - PH
+          - PK
+          - PL
+          - PM
+          - PN
+          - PR
+          - PS
+          - PT
+          - PW
+          - PY
+          - QA
+          - RE
+          - RO
+          - RS
+          - RU
+          - RW
+          - SA
+          - SB
+          - SC
+          - SD
+          - SE
+          - SG
+          - SH
+          - SI
+          - SJ
+          - SK
+          - SL
+          - SM
+          - SN
+          - SO
+          - SR
+          - SS
+          - ST
+          - SV
+          - SX
+          - SY
+          - SZ
+          - TC
+          - TD
+          - TF
+          - TG
+          - TH
+          - TJ
+          - TK
+          - TL
+          - TM
+          - TN
+          - TO
+          - TR
+          - TT
+          - TV
+          - TW
+          - TZ
+          - UA
+          - UG
+          - UM
+          - US
+          - UY
+          - UZ
+          - VA
+          - VC
+          - VE
+          - VG
+          - VI
+          - VN
+          - VU
+          - WF
+          - WS
+          - YE
+          - YT
+          - ZA
+          - ZM
+          - ZW
+        description: Filters results by country (ISO 3166-1 alpha-2 code)
+      - in: query
+        name: continent
+        schema:
+          type: string
+          enum:
+          - EU
+          - AF
+          - NA
+          - SA
+          - AS
+          - OC
+          - AN
+        description: Filters results by continent (ISO 3166-1 alpha-2 code)
+      - in: query
+        name: with_comments
+        schema:
+          type: boolean
+          nullable: true
+          enum:
+          - true
+          - false
+        description: Boolean to include related comments
+      - in: query
+        name: page
+        required: false
+        schema:
+          type: integer
+          default: 1
+        description: Page number
+      - in: query
+        name: per
+        required: false
+        schema:
+          type: integer
+          default: 15
+        description: Per page value
+      responses:
+        '200':
+          description: successful
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/merchants_index_response"
+        '401':
+          description: unauthorized token
+        '403':
+          description: forbidden token
+  "/{locale}/api/v1/merchants/{id}":
+    get:
+      summary: Show a merchant
+      tags:
+      - Merchants
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: locale
+        in: path
+        required: true
+        schema:
+          type: string
+          default: en
+          enum:
+          - en
+          - fr
+          - es
+          - de
+          - it
+        description: Locale used for the response language, must be one of the supported
+          locales.
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: merchant found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/merchant_show_response"
+        '401':
+          description: unauthorized token
+        '403':
+          description: forbidden token
+        '404':
+          description: merchant not found

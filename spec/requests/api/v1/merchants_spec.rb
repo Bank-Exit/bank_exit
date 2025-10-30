@@ -14,7 +14,6 @@ RSpec.describe 'API::V1::Merchants' do
         parameter name: :'coins[]',
                   schema: {
                     type: :array,
-                    default: nil,
                     items: {
                       type: :string,
                       enum: Setting::MERCHANTS_FILTER_COINS
@@ -24,21 +23,18 @@ RSpec.describe 'API::V1::Merchants' do
         parameter name: :country,
                   schema: {
                     type: :string,
-                    default: nil,
                     enum: ISO3166::Country.all.map(&:alpha2)
                   },
                   description: 'Filters results by country (ISO 3166-1 alpha-2 code)'
         parameter name: :continent,
                   schema: {
                     type: :string,
-                    default: nil,
                     enum: I18n.t('continents').keys
                   },
                   description: 'Filters results by continent (ISO 3166-1 alpha-2 code)'
         parameter name: :with_comments,
                   schema: {
                     type: :boolean,
-                    default: nil,
                     nullable: true,
                     enum: [true, false]
                   },

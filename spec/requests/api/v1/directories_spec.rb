@@ -23,35 +23,30 @@ RSpec.describe 'API::V1::Directories' do
                   description: 'Filters results by coins'
         parameter name: :city,
                   schema: {
-                    type: :string,
-                    default: nil
+                    type: :string
                   },
                   description: 'Filters results by delivery zone city'
         parameter name: :department,
                   schema: {
                     type: :string,
-                    default: nil,
                     enum: I18n.t('departments').keys
                   },
                   description: 'Filters results by delivery zone French departments'
         parameter name: :country,
                   schema: {
                     type: :string,
-                    default: nil,
                     enum: ISO3166::Country.all.map(&:alpha2)
                   },
                   description: 'Filters results by delivery zone country (ISO 3166-1 alpha-2 code)'
         parameter name: :continent,
                   schema: {
                     type: :string,
-                    default: nil,
                     enum: I18n.t('continents').keys
                   },
                   description: 'Filters results by delivery zone continent (ISO 3166-1 alpha-2 code)'
         parameter name: :with_comments,
                   schema: {
                     type: :boolean,
-                    default: nil,
                     nullable: true,
                     enum: [true, false]
                   },
