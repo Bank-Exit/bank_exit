@@ -26,9 +26,11 @@ class FetchMerchants < ApplicationService
       remove_backup_files_from_disk
     end
 
-    # Check and log removed merchants from OpenStreetMap that
-    # are still present in Bank-Exit map.
-    Merchants::CheckAndReportRemovedOnOSM.call(@geojson_merchant_ids)
+    I18n.with_locale(I18n.default_locale) do
+      # Check and log removed merchants from OpenStreetMap that
+      # are still present in Bank-Exit map.
+      Merchants::CheckAndReportRemovedOnOSM.call(@geojson_merchant_ids)
+    end
 
     # Reactivate soft-deleted merchants if they have been
     # made available to OSM again
