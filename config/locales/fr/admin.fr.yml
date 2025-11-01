@@ -137,17 +137,7 @@ fr:
       index:
         title: Les commerçants
         title_for_disabled: Les commerçants désactivés
-        merchants_visibles: Commerçants visibles
-        merchants_disabled: Commerçants désactivés
-        last_update: Dernière actualisation
-        there_is: Il y a %{time}
-
-        merchant_disabled_body_html: |
-          Les commerçants labélisés comme <span class="badge badge-sm badge-error">Désactivé</span> n'ont pas été remontés dans les résultats lors du dernier rafraîchissement API avec Overpass. Cela peut signifier que le commerçant a arrêté son activité, n'accepte plus les cryptomonnaies (Bitcoin, Monero ou June) ou bien qu'un troll a fait du vandalisme sur OpenStreetMap.
-
-          Il convient donc au Collectif d'étudier ces changements et confirmer si le commerçant doit bien être supprimé de la carte ou être réactivé (par défaut le commerçant passe en "soft deleted" ce qui signifie qu'il reste présent dans la base de données mais devient invisible sur la carte et dans la recherche).
-
-          A noter que si le commerçant est confirmé comme légitime et réactivé sur Bank-Exit, il redeviendra <span class="badge badge-sm badge-error">Désactivé</span> à chaque rafraîchissement des données tant que la source n'aura pas été corrigée sur OSM car l'algorithme considère que la "vérité" vient d'OSM.
+        history: Historique
 
       edit:
         title: Modifier le commerçant
@@ -158,6 +148,20 @@ fr:
 
       merchants:
         empty_results: Il n'y a aucun commerçant à afficher
+
+      stats:
+        merchants_visibles: Commerçants visibles
+        merchants_disabled: Commerçants désactivés
+        merchant_disabled_body_html: |
+          Les commerçants labélisés comme <span class="badge badge-sm badge-error">Désactivé</span> n'ont pas été remontés dans les résultats lors du dernier rafraîchissement API avec Overpass. Cela peut signifier que le commerçant a arrêté son activité, n'accepte plus les cryptomonnaies (Bitcoin, Monero ou June) ou bien qu'un troll a fait du vandalisme sur OpenStreetMap.
+
+          Il convient donc au Collectif d'étudier ces changements et confirmer si le commerçant doit bien être supprimé de la carte ou être réactivé (par défaut le commerçant passe en "soft deleted" ce qui signifie qu'il reste présent dans la base de données mais devient invisible sur la carte et dans la recherche).
+
+          A noter que si le commerçant est confirmé comme légitime et réactivé sur Bank-Exit, il redeviendra <span class="badge badge-sm badge-error">Désactivé</span> à chaque rafraîchissement des données tant que la source n'aura pas été corrigée sur OSM car l'algorithme considère que la "vérité" vient d'OSM.
+
+      merchant_sync_stat:
+        last_update: Dernière actualisation
+        there_is: Il y a %{time}
 
       actions:
         merchant_admin_page: Fiche admin
@@ -186,6 +190,11 @@ fr:
       reactivates:
         create:
           notice: Le commerçant a bien été réactivé
+
+    merchant_syncs:
+      index:
+        new_merchants: Nouveaux commerçants
+        empty_results: Il n'y a pas d'historique à afficher
 
     profiles:
       edit:

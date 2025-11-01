@@ -137,17 +137,6 @@ de:
       index:
         title: Händler
         title_for_disabled: Deaktivierte Händler
-        merchants_visibles: Sichtbare Händler
-        merchants_disabled: Deaktivierte Händler
-        last_update: Letzte Aktualisierung
-        there_is: Es gibt %{time}
-
-        merchant_disabled_body_html: |
-          Händler, die als <span class="badge badge-sm badge-error">Deaktiviert</span> gekennzeichnet sind, wurden bei der letzten API-Aktualisierung mit Overpass nicht in die Ergebnisse aufgenommen. Dies kann bedeuten, dass der Händler geschlossen hat, keine Kryptowährungen (Bitcoin, Monero oder June) mehr akzeptiert oder dass jemand die Daten auf OpenStreetMap manipuliert hat.
-
-          Es liegt daher am Kollektiv, diese Änderungen zu überprüfen und zu bestätigen, ob der Händler von der Karte entfernt oder reaktiviert werden soll (standardmäßig wird der Händler als "soft gelöscht" markiert, was bedeutet, dass er in der Datenbank bleibt, aber nicht mehr auf der Karte oder in den Suchergebnissen sichtbar ist).
-
-          Beachten Sie, dass wenn der Händler als legitim bestätigt und auf Bank-Exit reaktiviert wird, er bei jeder Datenaktualisierung erneut als <span class="badge badge-sm badge-error">Deaktiviert</span> markiert wird, solange die Quelle auf OSM nicht korrigiert wurde, da der Algorithmus OSM als wahre Quelle betrachtet.
 
       edit:
         title: Händler bearbeiten
@@ -158,6 +147,20 @@ de:
 
       merchants:
         empty_results: Es gibt keinen Händler zum Anzeigen
+
+      stats:
+        merchants_visibles: Sichtbare Händler
+        merchants_disabled: Deaktivierte Händler
+        merchant_disabled_body_html: |
+          Händler, die als <span class="badge badge-sm badge-error">Deaktiviert</span> gekennzeichnet sind, wurden bei der letzten API-Aktualisierung mit Overpass nicht in die Ergebnisse aufgenommen. Dies kann bedeuten, dass der Händler geschlossen hat, keine Kryptowährungen (Bitcoin, Monero oder June) mehr akzeptiert oder dass jemand die Daten auf OpenStreetMap manipuliert hat.
+
+          Es liegt daher am Kollektiv, diese Änderungen zu überprüfen und zu bestätigen, ob der Händler von der Karte entfernt oder reaktiviert werden soll (standardmäßig wird der Händler als "soft gelöscht" markiert, was bedeutet, dass er in der Datenbank bleibt, aber nicht mehr auf der Karte oder in den Suchergebnissen sichtbar ist).
+
+          Beachten Sie, dass wenn der Händler als legitim bestätigt und auf Bank-Exit reaktiviert wird, er bei jeder Datenaktualisierung erneut als <span class="badge badge-sm badge-error">Deaktiviert</span> markiert wird, solange die Quelle auf OSM nicht korrigiert wurde, da der Algorithmus OSM als wahre Quelle betrachtet.
+
+      merchant_sync_stat:
+        last_update: Letzte Aktualisierung
+        there_is: Es gibt %{time}
 
       actions:
         merchant_admin_page: Admin-Profil

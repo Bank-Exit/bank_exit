@@ -137,17 +137,7 @@ en:
       index:
         title: Merchants
         title_for_disabled: Disabled merchants
-        merchants_visibles: Visible merchants
-        merchants_disabled: Disabled merchants
-        last_update: Last update
-        there_is: There is %{time}
-
-        merchant_disabled_body_html: |
-          Merchants labeled as <span class="badge badge-sm badge-error">Disabled</span> were not included in the results during the latest API refresh with Overpass. This may mean the merchant has closed, no longer accepts cryptocurrencies (Bitcoin, Monero, or June), or that someone vandalized the data on OpenStreetMap.
-
-          It is therefore up to the Collective to review these changes and confirm whether the merchant should be removed from the map or reactivated (by default, the merchant is marked as "soft deleted," which means they remain in the database but are no longer visible on the map or in search results).
-
-          Note that if the merchant is confirmed as legitimate and reactivated on Bank-Exit, they will become <span class="badge badge-sm badge-error">Disabled</span> again at each data refresh as long as the source hasn't been corrected on OSM, since the algorithm considers OSM to be the source of truth.
+        history: History
 
       edit:
         title: Edit merchant
@@ -158,6 +148,20 @@ en:
 
       merchants:
         empty_results: There is no merchant to display
+
+      stats:
+        merchants_visibles: Visible merchants
+        merchants_disabled: Disabled merchants
+        merchant_disabled_body_html: |
+          Merchants labeled as <span class="badge badge-sm badge-error">Disabled</span> were not included in the results during the latest API refresh with Overpass. This may mean the merchant has closed, no longer accepts cryptocurrencies (Bitcoin, Monero, or June), or that someone vandalized the data on OpenStreetMap.
+
+          It is therefore up to the Collective to review these changes and confirm whether the merchant should be removed from the map or reactivated (by default, the merchant is marked as "soft deleted," which means they remain in the database but are no longer visible on the map or in search results).
+
+          Note that if the merchant is confirmed as legitimate and reactivated on Bank-Exit, they will become <span class="badge badge-sm badge-error">Disabled</span> again at each data refresh as long as the source hasn't been corrected on OSM, since the algorithm considers OSM to be the source of truth.
+
+      merchant_sync_stat:
+        last_update: Last update
+        there_is: There is %{time}
 
       actions:
         merchant_admin_page: Admin profile
@@ -186,6 +190,11 @@ en:
       reactivates:
         create:
           notice: The merchant was successfully reactivated
+
+    merchant_syncs:
+      index:
+        new_merchants: New merchants
+        empty_results: There is no history to display
 
     profiles:
       edit:

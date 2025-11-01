@@ -24,6 +24,8 @@ html lang=I18n.locale
     = debugbar_head if defined?(Debugbar)
 
   body.admin
+    = turbo_stream_from :flashes
+    = turbo_stream_from [:flashes, I18n.locale]
     #flashes= render 'flashes'
 
     main.drawer.lg:drawer-open

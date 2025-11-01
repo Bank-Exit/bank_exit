@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_10_06_165850) do
+ActiveRecord::Schema[8.0].define(version: 2025_10_30_175818) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.string "site", null: false
     t.string "name", null: false
@@ -183,6 +183,26 @@ ActiveRecord::Schema[8.0].define(version: 2025_10_06_165850) do
   create_table "ecosystem_items", force: :cascade do |t|
     t.string "url"
     t.boolean "enabled", default: true, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "merchant_syncs", force: :cascade do |t|
+    t.datetime "started_at"
+    t.datetime "ended_at"
+    t.integer "mode", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.integer "instigator", default: 0, null: false
+    t.integer "added_merchants_count", default: 0, null: false
+    t.integer "updated_merchants_count", default: 0, null: false
+    t.integer "soft_deleted_merchants_count", default: 0, null: false
+    t.json "payload_added_merchants", default: {}, null: false
+    t.json "payload_before_updated_merchants", default: {}, null: false
+    t.json "payload_updated_merchants", default: {}, null: false
+    t.json "payload_soft_deleted_merchants", default: {}, null: false
+    t.json "payload_countries", default: {}, null: false
+    t.json "payload_error", default: {}, null: false
+    t.json "process_logs", default: [], null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

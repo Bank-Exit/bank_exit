@@ -52,7 +52,7 @@ class MapsController < PublicController
 
     unless from_pagination?
       @all_coins = Coin.all(decorate: true)
-      @last_update = last_update.to_i
+      @merchant_sync = MerchantSync.success.last
 
       @faqs = FAQ.all.select do |faq|
         FAQ_CATEGORY.in?(faq.categories)
@@ -166,12 +166,6 @@ class MapsController < PublicController
 
   def set_longitude
     @longitude = map_params[:lon]
-  end
-
-  def last_update
-    File.read('storage/last_fetch_at.txt')
-  rescue Errno::ENOENT
-    nil
   end
 
   def from_pagination?

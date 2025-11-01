@@ -97,6 +97,7 @@ it:
     am: am
     formats:
       default: "%d/%m/%Y alle %Hh%M"
+      hms: "%H:%M:%S"
 
   helpers:
     submit:

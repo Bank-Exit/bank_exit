@@ -137,17 +137,6 @@ it:
       index:
         title: Commercianti
         title_for_disabled: Commercianti disabilitati
-        merchants_visibles: Commercianti visibili
-        merchants_disabled: Commercianti disabilitati
-        last_update: Ultimo aggiornamento
-        there_is: Ci sono %{time}
-
-        merchant_disabled_body_html: |
-          I commercianti etichettati come <span class="badge badge-sm badge-error">Disabilitati</span> non sono stati inclusi nei risultati durante l'ultimo aggiornamento API con Overpass. Ciò potrebbe significare che il commerciante ha chiuso, non accetta più criptovalute (Bitcoin, Monero o June), oppure che qualcuno ha vandalizzato i dati su OpenStreetMap.
-
-          Spetta quindi al Collettivo rivedere queste modifiche e confermare se il commerciante debba essere rimosso dalla mappa o riattivato (di default, il commerciante è contrassegnato come "soft deleted", il che significa che rimane nel database ma non è più visibile sulla mappa o nei risultati di ricerca).
-
-          Nota che se il commerciante viene confermato come legittimo e riattivato su Bank-Exit, diventerà di nuovo <span class="badge badge-sm badge-error">Disabilitato</span> ad ogni aggiornamento dei dati finché la fonte non sarà corretta su OSM, poiché l'algoritmo considera OSM come fonte di verità.
 
       edit:
         title: Modifica commerciante
@@ -158,6 +147,20 @@ it:
 
       merchants:
         empty_results: Non ci sono commercianti da visualizzare
+
+      stats:
+        merchants_visibles: Commercianti visibili
+        merchants_disabled: Commercianti disabilitati
+        merchant_disabled_body_html: |
+          I commercianti etichettati come <span class="badge badge-sm badge-error">Disabilitati</span> non sono stati inclusi nei risultati durante l'ultimo aggiornamento API con Overpass. Ciò potrebbe significare che il commerciante ha chiuso, non accetta più criptovalute (Bitcoin, Monero o June), oppure che qualcuno ha vandalizzato i dati su OpenStreetMap.
+
+          Spetta quindi al Collettivo rivedere queste modifiche e confermare se il commerciante debba essere rimosso dalla mappa o riattivato (di default, il commerciante è contrassegnato come "soft deleted", il che significa che rimane nel database ma non è più visibile sulla mappa o nei risultati di ricerca).
+
+          Nota che se il commerciante viene confermato come legittimo e riattivato su Bank-Exit, diventerà di nuovo <span class="badge badge-sm badge-error">Disabilitato</span> ad ogni aggiornamento dei dati finché la fonte non sarà corretta su OSM, poiché l'algoritmo considera OSM come fonte di verità.
+
+      merchant_sync_stat:
+        last_update: Ultimo aggiornamento
+        there_is: Ci sono %{time}
 
       actions:
         merchant_admin_page: Profilo admin

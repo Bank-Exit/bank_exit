@@ -93,6 +93,7 @@ es:
     am: am
     formats:
       default: "%d/%m/%Y à las %Hh%M"
+      hms: "%H:%M:%S"
 
   helpers:
     submit:

@@ -1,0 +1,60 @@
+tr id=dom_id(merchant_sync)
+  td
+    .badge.badge-outline class=(merchant_sync.task? ? 'badge-success' : 'badge-info')
+      = MerchantSync.human_enum_name(:instigator, merchant_sync.instigator)
+
+  td
+    .badge.badge-outline class=(merchant_sync.sync? ? 'badge-success' : 'badge-warning')
+      = MerchantSync.human_enum_name(:mode, merchant_sync.mode)
+
+  td= l(merchant_sync.started_at)
+  td
+    - if merchant_sync.ended_at
+      = l(merchant_sync.ended_at)
+    - else
+      .skeleton.h-5.w-full
+
+  td
+    - if merchant_sync.pending? || merchant_sync.clear?
+      .skeleton.h-5.w-full
+    - else
+      .badge.badge-success class=('opacity-25' unless merchant_sync.added_merchants_count.positive?)
+        = merchant_sync.added_merchants_count
+
+  td
+    - if merchant_sync.pending? || merchant_sync.clear?
+      .skeleton.h-5.w-full
+    - else
+      .badge.badge-warning class=('opacity-25' unless merchant_sync.updated_merchants_count.positive?)
+        = merchant_sync.updated_merchants_count
+
+  td
+    - if merchant_sync.pending?
+      .skeleton.h-5.w-full
+    - else
+      .badge.badge-error class=('opacity-25' unless merchant_sync.soft_deleted_merchants_count.positive?)
+        = merchant_sync.soft_deleted_merchants_count
+
+  td
+    - label = MerchantSync.human_enum_name(:status, merchant_sync.status)
+
+    - if merchant_sync.success?
+      .badge.badge-success= label
+    - elsif merchant_sync.error?
+      .badge.badge-error= label
+    - else
+      .badge.badge-soft.animate-pulse= label
+
+  td
+    - if merchant_sync.pending?
+      .skeleton.h-5.w-full
+    - else
+      = link_to admin_merchant_sync_path(merchant_sync),
+                data: { turbo_stream: true },
+                class: 'btn btn-info btn-sm' do
+          = t('details')
+
+- if merchant_sync.pending? || merchant_sync.ended_at >= Setting::MERCHANTS_DELTA_SYNC_TIME.ago
+  tr#process_logs_wrapper
+    td#process_logs.p-0 colspan="100%"
+      = render 'admin/merchant_syncs/process_logs', merchant_sync: merchant_sync

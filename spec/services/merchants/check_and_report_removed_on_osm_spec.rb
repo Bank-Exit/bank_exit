@@ -7,16 +7,9 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
     let!(:merchant) do
       create :merchant, monero: true, name: 'John Monero', identifier: '111111', country: 'FR'
     end
-    let(:removed_merchants_txt_file) do
-      'spec/fixtures/files/merchants/removed_merchants_from_open_street_map.txt'
-    end
 
     before do
       freeze_time
-    end
-
-    after do
-      FileUtils.rm_rf(Rails.root.join('spec/fixtures/files/merchants'))
     end
 
     context 'when all data are matching' do
@@ -76,16 +69,6 @@ RSpec.describe Merchants::CheckAndReportRemovedOnOSM do
       end
 
       it { expect(merchant).to be_soft_deleted }
-
-      it 'creates missing_merchant_ids_from_open_street_map.txt file', :aggregate_failures do
-        expect(File).to exist(removed_merchants_txt_file)
-
-        text = File.read(removed_merchants_txt_file)
-        expect(text).to match(%r{http://example.test/en/merchants/111111})
-        expect(text).to match(%r{https://www.openstreetmap.org/node/111111})
-        expect(text).to match(%r{http://example.test/en/merchants/222222})
-        expect(text).to match(%r{https://www.openstreetmap.org/node/222222})
-      end
     end
   end
 end

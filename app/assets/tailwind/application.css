@@ -12,6 +12,7 @@
         christmas,
         dark_christmas,
         halloween;
+    exclude: diff;
 }
 
 @plugin "./daisyui-theme.mjs" {
@@ -273,4 +274,34 @@ forced to white to make texts readables */
     width: 100% !important;
     text-overflow: clip !important;
     max-width: 100%;
+}
+
+.json-colorized {
+    @apply text-sm text-pretty;
+}
+
+.json-diff {
+    @apply will-change-transform overflow-x-auto font-mono text-sm;
+
+    li {
+        @apply flex whitespace-pre !text-pretty;
+
+        .symbol {
+            @apply mx-2;
+        }
+
+        del,
+        ins,
+        .unchanged {
+            @apply w-full no-underline;
+        }
+
+        del {
+            @apply bg-error/20 text-error;
+        }
+
+        ins {
+            @apply bg-success/20 text-success;
+        }
+    }
 }

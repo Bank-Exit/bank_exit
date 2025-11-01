@@ -97,6 +97,7 @@ de:
     am: Uhr
     formats:
       default: "%d.%m.%Y um %H:%M Uhr"
+      hms: "%H:%M:%S"
 
   helpers:
     submit:

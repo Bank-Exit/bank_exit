@@ -17,7 +17,6 @@ module Admin
       @merchants_statistics = @dashboard_presenter.merchants_statistics
 
       merchants = Merchant.order(updated_at: :asc)
-      merchants = merchants.deleted if show_deleted?
 
       merchants = FilterMerchants.call(
         merchants,
@@ -29,9 +28,15 @@ module Admin
       )
       merchants = merchants.where.associated(:comments) if with_comments?
 
-      merchants = MerchantDecorator.wrap(merchants.distinct.reverse_order)
+      merchants = if show_deleted?
+                    merchants.deleted.reorder(deleted_at: :desc)
+                  else
+                    merchants.reverse_order
+                  end
 
-      @last_update = last_update.to_i
+      merchants = MerchantDecorator.wrap(merchants.distinct)
+
+      @merchant_sync = MerchantSync.sync.last
 
       @pagy, @merchants = pagy_array(merchants)
     end
@@ -148,12 +153,6 @@ module Admin
 
     def merchant_id
       params[:id].split('-').first
-    end
-
-    def last_update
-      File.read('storage/last_fetch_at.txt')
-    rescue Errno::ENOENT
-      nil
     end
   end
 end
