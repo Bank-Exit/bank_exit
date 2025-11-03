@@ -40,7 +40,7 @@
     .mt-6
       h3.mb-2.uppercase.font-bold.text-primary Routing
 
-      details.collapse.collapse-arrow.bg-base-300
-        summary.collapse-title Debug Routing
+      details.collapse.collapse-arrow.border.border-base-content/20
+        summary.collapse-title.font-semibold Debug Routing
         pre.collapse-content.overflow-x-auto
-          == JSON.pretty_generate(routing.to_h)
+          == json_highlight(routing.to_h)

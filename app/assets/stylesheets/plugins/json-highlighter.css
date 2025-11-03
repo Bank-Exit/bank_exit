@@ -1,0 +1,31 @@
+.json-key {
+    color: var(--color-primary);
+}
+.json-string {
+    color: var(--color-success);
+}
+.json-number {
+    color: var(--color-warning);
+}
+.json-boolean {
+    color: var(--color-info);
+    font-weight: 600;
+}
+.json-null {
+    color: var(--color-error);
+    font-style: italic;
+}
+.json-date {
+    color: var(--color-secondary);
+}
+
+.json-brace,
+.json-bracket {
+    color: var(--color-base-content);
+    opacity: 0.7;
+}
+
+.json-punct {
+    color: var(--color-base-content);
+    opacity: 0.5;
+}
