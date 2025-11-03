@@ -171,10 +171,6 @@
     }
 }
 
-@utility alert {
-    @apply text-base;
-}
-
 @utility checkbox {
     &:focus-visible {
         --input-color: var(--color-base-content);
