@@ -14,7 +14,7 @@
           td= Merchant.human_attribute_name(:category)
           td= Merchant.human_attribute_name(:coins)
           td= Merchant.human_attribute_name(:created_at)
-          td= t('link')
+          td= t('actions')
 
       tbody
         - merchants_count = merchants.count
@@ -36,12 +36,21 @@
 
             td
               = I18n.l(row.created_at, format: '%Hh%M')
-            td
-              p.text-center
-                = link_to 'OpenStreetMap', row.osm_link, target: :_blank, class: 'btn btn-link btn-sm', data: { turbo_frame: :_top }
 
-              p.text-center
-                = link_to t('details'), merchant_path(row), class: 'btn btn-primary btn-sm', data: { turbo_frame: :_top }
+            td
+              = content_for :dropdown_menu, flush: true do
+                li
+                  = link_to row.osm_link,
+                            target: :_blank,
+                            data: { turbo_frame: :_top } do
+                    = t('admin.merchants.actions.merchant_on_osm')
+
+                li
+                  = link_to merchant_path(row),
+                            data: { turbo_frame: :_top } do
+                    = t('details')
+
+              = render 'dropdown_actions', item_id: row.id
 
         - if merchants.empty?
           td colspan="100%"
