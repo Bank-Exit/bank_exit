@@ -21,7 +21,7 @@
           = link_to t('admin.dashboards.show.title'), admin_dashboard_path, class: ('menu-active' if params[:controller] == 'admin/dashboards')
 
         li
-          = link_to admin_merchants_path, class: ('menu-active' if params[:controller] == 'admin/merchants') do
+          = link_to admin_merchants_path, class: ('menu-active' if params[:controller].in?(['admin/merchants', 'admin/merchant_syncs'])) do
             = Merchant.model_name.human(count: 2).capitalize
             - if Merchant.deleted.any?
               span< title=t('.merchants_disabled')

@@ -1,0 +1,8 @@
+= button_to refresh_merchants_path,
+            class: 'cursor-pointer btn btn-success btn-xs',
+            disabled: disabled,
+            data: { \
+              turbo_confirm: t('maps.dropdown_map_actions.refresh_confirm_html') \
+            } do
+  = t('refresh')
+  =< lucide_icon 'refresh-cw', class: 'w-3 h-3'

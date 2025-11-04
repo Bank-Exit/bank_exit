@@ -126,7 +126,7 @@ RSpec.describe 'Merchants' do
 
     before { stub_overpass_request_success }
 
-    it { expect { action }.to have_enqueued_job(CallableJob).with('FetchMerchants') }
+    it { expect { action }.to have_enqueued_job(CallableJob).with('FetchMerchants', :manual) }
 
     describe '[HTTP status]' do
       before { action }

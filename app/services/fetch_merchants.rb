@@ -6,41 +6,119 @@ class FetchMerchants < ApplicationService
   include Rails.application.routes.url_helpers
 
   RETRYABLE_ERRORS = [
-    HTTParty::Error, Timeout, Net::HTTPGatewayTimeout
+    HTTParty::Error, Timeout, Net::OpenTimeout, Net::ReadTimeout
   ].freeze
 
-  def call
-    Merchant.transaction do
-      backup_old_files_on_disk
+  attr_reader :instigator
 
-      json = Retry.on(*RETRYABLE_ERRORS) do
+  def initialize(instigator = :task)
+    @instigator = instigator
+    @current_features = Merchant.pluck(:raw_feature)
+    @logs = []
+  end
+
+  def prepare
+    @merchant_sync = MerchantSync.find_or_create_by!(
+      status: :pending,
+      instigator: instigator
+    ) do |merchant_sync|
+      merchant_sync.started_at = Time.current
+    end
+
+    @merchant_sync.update!(process_logs: @logs)
+  end
+
+  def call
+    @logs << { mode: 'info', message: 'Calling Overpass API to fetch data', timestamp: Time.current.to_i }
+    @merchant_sync.update!(process_logs: @logs)
+
+    Merchant.transaction do
+      response = Retry.on(*RETRYABLE_ERRORS) do
         OverpassAPI.new.fetch_merchants
       end
 
-      geojson = JSONToGeoJSON.call(json)
+      @logs << { mode: 'info', message: 'Converting JSON to GeoJSON', timestamp: Time.current.to_i }
+      @merchant_sync.update!(process_logs: @logs)
+
+      geojson = JSONToGeoJSON.call(response.parsed_response)
+
       @geojson_merchant_ids = geojson['features'].pluck('id')
 
-      upsert_merchants_to_database(geojson)
-      save_new_files_to_disk(json, geojson)
+      @logs << { mode: 'info', message: 'Upserting data to database', timestamp: Time.current.to_i }
+      @merchant_sync.broadcast_admin_replace_process_logs
 
-      remove_backup_files_from_disk
+      upsert_merchants_to_database(geojson)
+
+      @logs << { mode: 'info', message: 'Attaching JSON file to most recent record', timestamp: Time.current.to_i }
+      @merchant_sync.broadcast_admin_replace_process_logs
+
+      @merchant_sync.raw_json.attach(
+        io: StringIO.new(geojson.to_s),
+        filename: "overpass_merchants_#{Time.current.to_fs(:number)}.json",
+        content_type: 'application/json'
+      )
+
+      # As we are in a transaction, we cannot use
+      # auto model broadcast.
+      @merchant_sync.update!(process_logs: @logs)
     end
 
+    @logs << { mode: 'info', message: 'Checking removed merchants from OSM', timestamp: Time.current.to_i }
+    @logs << { mode: 'info', message: 'Notifying to Github issue', timestamp: Time.current.to_i }
+    @merchant_sync.update!(process_logs: @logs)
+
     I18n.with_locale(I18n.default_locale) do
-      # Check and log removed merchants from OpenStreetMap that
-      # are still present in Bank-Exit map.
       Merchants::CheckAndReportRemovedOnOSM.call(@geojson_merchant_ids)
     end
 
-    # Reactivate soft-deleted merchants if they have been
-    # made available to OSM again
+    @logs << { mode: 'info', message: 'Reactivating legit soft-deleted merchants', timestamp: Time.current.to_i }
+    @merchant_sync.update!(process_logs: @logs)
+
     Merchants::CheckAndReactivate.call(@geojson_merchant_ids)
 
-    # Assign country to merchants that have nil value
-    # Might take time at the first execution !
-    Merchants::AssignCountry.call
+    @logs << { mode: 'info', message: "Assigning country to merchants that don't have one", timestamp: Time.current.to_i }
+    @merchant_sync.update!(process_logs: @logs)
 
-    invalidate_cache
+    payload_countries = Merchants::AssignCountry.call
+
+    ended_at = Time.current
+
+    added_merchants = Merchant.where(created_at: @merchant_sync.started_at..ended_at)
+    soft_deleted_merchants = Merchant.where(deleted_at: @merchant_sync.started_at..ended_at)
+    updated_merchants = Merchant.where(updated_at: @merchant_sync.started_at..ended_at).where.not(id: [added_merchants.ids, soft_deleted_merchants.ids].flatten)
+
+    if updated_merchants.any?
+      updated_ids = updated_merchants.pluck(:original_identifier)
+      features_previously_was = @current_features.select do |feature|
+        feature['id'].in?(updated_ids)
+      end
+
+      @merchant_sync.payload_before_updated_merchants = features_previously_was
+      @merchant_sync.payload_updated_merchants = updated_merchants.map(&:raw_feature)
+    end
+
+    @merchant_sync.update!(
+      added_merchants_count: added_merchants.count,
+      updated_merchants_count: updated_merchants.count,
+      soft_deleted_merchants_count: soft_deleted_merchants.count,
+
+      payload_added_merchants: added_merchants.map(&:raw_feature),
+      payload_soft_deleted_merchants: soft_deleted_merchants.map(&:raw_feature),
+      payload_countries: payload_countries
+    )
+
+    @logs << { mode: 'info', message: 'Purging previous JSON attachments on older records', timestamp: Time.current.to_i }
+    @merchant_sync.update!(process_logs: @logs)
+
+    @merchant_sync.purge_all_attachments_not_self
+
+    @logs << { mode: 'success', message: 'End of synchronization ! 🎉', timestamp: Time.current.to_i }
+
+    @merchant_sync.update!(
+      status: :success,
+      ended_at: ended_at,
+      process_logs: @logs
+    )
 
     # Broadcast with message scoped by locale
     I18n.available_locales.each do |locale|
@@ -53,50 +131,27 @@ class FetchMerchants < ApplicationService
       end
     end
   rescue StandardError => e
-    restore_backup_files_on_disk
+    @logs << { mode: 'error', message: "💥 #{e.message}", timestamp: Time.current.to_i }
+
+    @merchant_sync.update!(
+      status: :error,
+      ended_at: Time.current,
+      process_logs: @logs,
+      payload_error: {
+        exception: e.class.name,
+        message: e.message,
+        backtrace: e.backtrace
+      }
+    )
 
     Merchant.broadcast_flash(:alert, e.message)
   end
 
+  def finish
+    invalidate_cache
+  end
+
   private
-
-  def backup_old_files_on_disk
-    return unless File.exist?("#{files_folder_prefix}/export.json")
-
-    # :nocov:
-    File.rename("#{files_folder_prefix}/export.json", "#{files_folder_prefix}/export.backup.json")
-    File.rename("#{files_folder_prefix}/export.geojson", "#{files_folder_prefix}/export.backup.geojson")
-    File.rename("#{files_folder_prefix}/last_fetch_at.txt", "#{files_folder_prefix}/last_fetch_at.backup.txt")
-    # :nocov:
-  end
-
-  def restore_backup_files_on_disk
-    return unless File.exist?("#{files_folder_prefix}/export.backup.json")
-
-    # :nocov:
-    File.rename("#{files_folder_prefix}/export.backup.json", "#{files_folder_prefix}/export.json")
-    File.rename("#{files_folder_prefix}/export.backup.geojson", "#{files_folder_prefix}/export.geojson")
-    File.rename("#{files_folder_prefix}/last_fetch_at.backup.txt", "#{files_folder_prefix}/last_fetch_at.txt")
-    # :nocov:
-  end
-
-  def remove_backup_files_from_disk
-    return unless File.exist?("#{files_folder_prefix}/export.backup.json")
-
-    # :nocov:
-    File.delete("#{files_folder_prefix}/export.backup.json")
-    File.delete("#{files_folder_prefix}/export.backup.geojson")
-    File.delete("#{files_folder_prefix}/last_fetch_at.backup.txt")
-    # :nocov:
-  end
-
-  def save_new_files_to_disk(json, geojson)
-    timestamp = Time.parse(geojson['timestamp']).to_i
-
-    File.write("#{files_folder_prefix}/last_fetch_at.txt", timestamp)
-    File.write("#{files_folder_prefix}/export.json", JSON.pretty_generate(json.as_json))
-    File.write("#{files_folder_prefix}/export.geojson", JSON.pretty_generate(geojson.as_json))
-  end
 
   # Store data into database within a batch insert
   def upsert_merchants_to_database(geojson)
@@ -113,7 +168,10 @@ class FetchMerchants < ApplicationService
   end
 
   # Manually invalidate cache after Overpass sync
+  # :nocov:
   def invalidate_cache
+    return if Rails.env.test?
+
     merchants_cache = '%:MERCHANTS_FILTER:%'
     statistics_concern = "#{Rails.env}:concerns/statistics%"
     statistics_views = "#{Rails.env}:views/statistics%"
@@ -124,4 +182,5 @@ class FetchMerchants < ApplicationService
     )
     records.each(&:destroy)
   end
+  # :nocov:
 end

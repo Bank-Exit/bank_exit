@@ -48,7 +48,11 @@ module Mixin
     module ClassMethods
       # @param ... any service parameters
       def call(...)
-        new(...).call
+        service = new(...)
+        service.prepare
+        result = service.call
+        service.finish
+        result
       end
 
       # @param ... any service parameters
@@ -65,8 +69,14 @@ module Mixin
       end
     end
 
+    def prepare
+    end
+
     def call
-      raise NotImplementedError
+      raise NotImplementedError, "#{self.class} must implement #call"
+    end
+
+    def finish
     end
   end
 end

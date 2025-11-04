@@ -1,7 +1,10 @@
 module Merchants
   class AssignCountry < ApplicationService
+    attr_reader :payload_countries
+
     def initialize(initial_scope = nil)
       @initial_scope = initial_scope
+      @payload_countries = []
     end
 
     def call
@@ -54,9 +57,11 @@ module Merchants
 
           Merchant.upsert_all(data, unique_by: :id)
 
-          log_updated_merchants
+          payload_countries << data
         end
       end
+
+      payload_countries.flatten
     end
 
     private
@@ -75,16 +80,6 @@ module Merchants
         'Guam' => 'GU',
         'Puerto Rico' => 'PR'
       }[state]
-    end
-
-    def log_updated_merchants
-      output_folder = "#{files_folder_prefix}/merchants"
-      FileUtils.mkdir_p(output_folder)
-
-      File.write(
-        "#{output_folder}/#{Time.current.to_fs(:number)}_merchants_assigned_country.json",
-        JSON.pretty_generate(@updated_merchants)
-      )
     end
   end
 end

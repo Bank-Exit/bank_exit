@@ -1,8 +1,12 @@
 module MerchantsHelper
   # Prevent users to manually refresh merchants
   # before delta time of 10 minutes.
-  def can_refresh_merchants?(last_updated_at:, delta: 10.minutes)
-    Time.zone.at(last_updated_at) < delta.ago
+  def can_refresh_merchants?(merchant_sync, delta: Setting::MERCHANTS_DELTA_SYNC_TIME)
+    return true if merchant_sync.nil?
+    return true if merchant_sync.error?
+    return false if merchant_sync.pending?
+
+    merchant_sync.ended_at < delta.ago
   end
 
   def merchant_categories_select_helper

@@ -3,6 +3,7 @@ class OverpassAPI
 
   default_timeout 360
   base_uri 'https://overpass-api.de'
+  raise_on [429, '5[0-9]*']
 
   # API call that returns XBT, lightning, XMR and XG1 results.
   def fetch_merchants

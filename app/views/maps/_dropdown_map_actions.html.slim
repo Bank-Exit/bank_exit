@@ -2,9 +2,9 @@
   .px-4.py-2.text-sm.bg-base-300.text-center.rounded-t-box
     p.font-bold= t('.map_title')
 
-    - if last_update
+    - if merchant_sync
       p.text-xs.mt-1
-        = t(".last_updated_at", last_updated_at: l(Time.zone.at(last_update)))
+        = t(".last_updated_at", last_updated_at: l(merchant_sync.ended_at))
 
 - content_for(:dropdown_menu) do
   li.border-b.border-base-content/20.pb-2
@@ -52,7 +52,7 @@
       = lucide_icon 'info', class: 'inline-flex w-5'
       = t('.import_gpx_to_comaps')
 
-  - if can_refresh_merchants?(last_updated_at: last_update)
+  - if can_refresh_merchants?(merchant_sync)
     li
       = button_to refresh_merchants_path,
                   class: 'cursor-pointer',

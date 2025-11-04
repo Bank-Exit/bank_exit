@@ -16,23 +16,15 @@ module Merchants
       @diff_ids = Merchant.pluck(:original_identifier) - geojson_merchant_ids
 
       # Mark record as soft deleted
-      merchants
+      all_merchants
         .where(deleted_at: nil)
         .update_all(deleted_at: Time.current)
 
-      if Rails.env.test? || Rails.env.production?
-        # Report to Github issue merchants removed from OSM
-        # but still present in Bank-Exit map.
-        GithubAPI.new.update_issue!(github_issue_id, body: body)
-      end
+      return unless Rails.env.test? || Rails.env.production?
 
-      output_folder = "#{files_folder_prefix}/merchants"
-      FileUtils.mkdir_p(output_folder)
-
-      File.write(
-        "#{output_folder}/removed_merchants_from_open_street_map.txt",
-        body
-      )
+      # Report to Github issue merchants removed from OSM
+      # but still present in Bank-Exit map.
+      GithubAPI.new.update_issue!(github_issue_id, body: body)
     end
 
     private
@@ -60,15 +52,23 @@ module Merchants
       end
     end
 
-    def merchants
-      @merchants ||= Merchant
-                     .where(original_identifier: @diff_ids)
-                     .merge(Merchant.monero.or(Merchant.june))
-                     .order(deleted_at: :desc)
+    def all_merchants
+      @all_merchants ||=
+        Merchant
+        .where(original_identifier: @diff_ids)
+        .order(deleted_at: :desc)
+    end
+
+    def monero_june_merchants
+      MerchantDecorator.wrap(
+        all_merchants.merge(
+          Merchant.monero.or(Merchant.june)
+        )
+      )
     end
 
     def merchants_list
-      @merchants_list ||= MerchantDecorator.wrap(merchants).map do |merchant|
+      @merchants_list ||= monero_june_merchants.map do |merchant|
         <<~MARKDOWN
           - [ ] **#{merchant.name}** [##{merchant.identifier}] #{pretty_country_html(merchant.country)}
             - Date: #{I18n.l(merchant.deleted_at)}

@@ -4,10 +4,6 @@ RSpec.describe Merchants::AssignCountry do
   describe '#call' do
     subject(:call) { described_class.call }
 
-    after do
-      FileUtils.rm_rf(Rails.root.join('spec/fixtures/files/merchants'))
-    end
-
     context 'when merchant has already a country' do
       let!(:merchant) do
         create :merchant, latitude: 1.1,
@@ -76,12 +72,6 @@ RSpec.describe Merchants::AssignCountry do
 
         it { expect(merchant.reload.country).to eq 'YT' }
         it { expect(merchant.reload.continent_code).to eq 'AF' }
-      end
-
-      it 'creates file storing merchants country updated' do
-        filepath = Rails.root.join("spec/fixtures/files/merchants/#{Time.current.to_fs(:number)}_merchants_assigned_country.json")
-
-        expect(File).to exist(filepath)
       end
     end
   end

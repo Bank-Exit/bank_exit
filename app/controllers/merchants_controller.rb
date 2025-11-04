@@ -47,7 +47,12 @@ class MerchantsController < PublicController
   def refresh
     respond_to do |format|
       format.turbo_stream do
-        FetchMerchants.call_later
+        @merchant_sync = MerchantSync.create!(
+          instigator: :manual,
+          status: :pending,
+          started_at: Time.current
+        )
+        FetchMerchants.call_later(:manual)
         flash.now[:notice] = t('.notice')
       end
     end

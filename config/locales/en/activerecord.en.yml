@@ -89,6 +89,7 @@ en:
       ecosystem_item:
         one: Ecosystem item
         other: Ecosystem items
+      merchant_sync: Merchant Sync
 
     attributes:
       merchant:
@@ -215,3 +216,25 @@ en:
           admin: Administrator
           publisher: Publisher
           moderator: Moderator
+
+      merchant_sync:
+        started_at: Started at
+        ended_at: Ended le
+        added_merchants_count: Added
+        updated_merchants_count: Updated
+        soft_deleted_merchants_count: Disabled
+        hard_deleted_merchants_count: Removed
+        payload_countries: Countries payload
+        mode: Mode
+        modes:
+          sync: Synchronization
+          clear: Periodic cleanup
+        status: Status
+        statuses:
+          pending: Pending
+          success: Success
+          error: Error
+        instigator: Instigator
+        instigators:
+          manual: Manual
+          task: Task

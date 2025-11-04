@@ -92,6 +92,7 @@ fr:
       ecosystem_item:
         one: Elément de l'écosystème
         other: Eléments de l'écosystème
+      merchant_sync: Synchronisation commerçants
 
     attributes:
       merchant:
@@ -235,3 +236,25 @@ fr:
           admin: Administrateur
           publisher: Editeur
           moderator: Modérateur
+
+      merchant_sync:
+        started_at: Démarré le
+        ended_at: Terminé le
+        added_merchants_count: Ajouts
+        updated_merchants_count: Modifiés
+        soft_deleted_merchants_count: Désactivés
+        hard_deleted_merchants_count: Supprimés
+        payload_countries: Payload des pays
+        mode: Mode
+        modes:
+          sync: Synchronisation
+          clear: Nettoyage périodique
+        status: Statut
+        statuses:
+          pending: En cours
+          success: Succès
+          error: Erreur
+        instigator: Instigateur
+        instigators:
+          manual: Manuel
+          task: Tâche

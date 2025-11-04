@@ -10,7 +10,7 @@
       = t('application.nav.menu.directories')
       =< lucide_icon 'notebook', class: 'w-5'
 
-    = render 'dropdown_map_actions', last_update: @last_update
+    = render 'dropdown_map_actions', merchant_sync: @merchant_sync
 
   / Explanations:
   / Rails uses TurboStream to replace on the fly content on

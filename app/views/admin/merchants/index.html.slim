@@ -1,59 +1,20 @@
-- today_i18n = l(@dashboard_presenter.today.to_date)
-- dated_i18n = t('statistics.statistics_numbers.dated', date: today_i18n)
+= turbo_stream_from [:admin, :merchant_syncs, I18n.locale]
 
-header.mb-3
+header.flex.items-center.justify-between.gap-2.mb-3
   h1.text-3xl
     - if params[:show_deleted] == 'true'
       = t('.title_for_disabled')
     - else
       = t('.title')
 
-- merchant_deleted_count = Merchant.deleted.count
+  - if allowed_to?(:index?, with: Admin::MerchantSyncPolicy)
+    = link_to admin_merchant_syncs_path, class: 'btn btn-success' do
+      = t('.history')
+      = lucide_icon 'table', class: 'w-5 h-5'
 
-.stats.shadow.bg-base-200.mb-3.w-full.lg:w-auto
-  .stat
-    .stat-figure
-      = lucide_icon 'store', class: 'w-12 h-12'
-    .stat-title
-      span.status.status-success.status-lg
-      =< t('.merchants_visibles')
-    .stat-value= number_with_delimiter(Merchant.available.count)
-    .stat-desc= dated_i18n
-
-  .stat
-    .stat-figure
-      = lucide_icon 'store', class: 'w-12 h-12'
-    .stat-title
-      span.status.status-error.status-lg
-      =< t('.merchants_disabled')
-    .stat-value= number_with_delimiter(merchant_deleted_count)
-    - if merchant_deleted_count > 0
-      .stat-actions.mt-1
-        - req_params = request.query_parameters.compact_blank
-        =< link_to t('display'), admin_merchants_path(params: req_params.merge(show_deleted: true)), class: 'btn btn-error btn-xs'
-
-        button.btn.btn-square.btn-ghost.btn-xs.ml-1 onclick="merchants_deleted_help.showModal()"
-          = lucide_icon 'circle-question-mark', class: 'w-4'
-
-  .stat.space-y-3
-    .stat-figure.motion-safe:transition-transform.motion-safe:duration-700.hover:rotate-360
-      = lucide_icon 'refresh-cw', class: 'w-12 h-12'
-
-    - if @last_update > 0
-      .stat-title
-        span.status.status-info.status-lg
-        =< t('.last_update')
-      .stat-value.text-lg title=l(Time.zone.at(@last_update))
-        = t('.there_is', time: time_ago_in_words(@last_update))
-
-    .stat-actions
-      = button_to refresh_merchants_path,
-                  class: 'cursor-pointer btn btn-info btn-xs',
-                  disabled: !can_refresh_merchants?(last_updated_at: @last_update),
-                  data: { \
-                    turbo_confirm: t('maps.dropdown_map_actions.refresh_confirm_html') \
-                  } do
-        = t('refresh')
+= render 'stats',
+         merchant_sync: @merchant_sync,
+         dashboard_presenter: @dashboard_presenter
 
 section
   .mb-3.max-w-5xl.mx-auto
@@ -136,9 +97,3 @@ section
 
   #merchants
     = render 'merchants', merchants: @merchants, pagy: @pagy
-
-- if merchant_deleted_count
-  = render 'modal',
-           id: :merchants_deleted_help,
-           modal_title: t('.merchants_disabled'),
-           modal_body: t('.merchant_disabled_body_html')

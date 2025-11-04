@@ -23,8 +23,21 @@
     display: inline-block;
 }
 
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 @media (prefers-reduced-motion: no-preference) {
     .animate-swing {
         animation: swing 3.5s ease-in-out infinite;
+    }
+
+    .animate-rotating {
+        animation: rotating 2s linear infinite;
     }
 }

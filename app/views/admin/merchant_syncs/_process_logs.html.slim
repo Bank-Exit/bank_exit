@@ -1,0 +1,38 @@
+.mockup-code
+  - merchant_sync.process_logs.each.with_index(1) do |row, index|
+    - is_last = index == merchant_sync.process_logs.count
+
+    - if row['mode'] == 'info'
+      pre data-prefix=">"
+        code
+          - if row['timestamp']
+            span.italic.text-xs.opacity-50=> "[#{l(Time.at(row['timestamp']), format: :hms)}]"
+          = row['message']
+          - if is_last
+            span.loading.loading-spinner.loading-xs<
+          - else
+            =< lucide_icon 'check', class: 'inline-flex w-3 text-success'
+
+    - elsif row['mode'] == 'success'
+      pre.text-success data-prefix=">"
+        code
+          - if row['timestamp']
+            span.italic.text-xs.opacity-50=> "[#{l(Time.at(row['timestamp']), format: :hms)}]"
+          = row['message']
+          - if merchant_sync.pending?
+            - if is_last
+              span.loading.loading-spinner.loading-xs<
+            - else
+              =< lucide_icon 'check', class: 'inline-flex w-3 text-success'
+
+    - elsif row['mode'] == 'error'
+      pre.text-error data-prefix=">"
+        code
+          - if row['timestamp']
+            span.italic.text-xs.opacity-50=> "[#{l(Time.at(row['timestamp']), format: :hms)}]"
+          = row['message']
+          - if merchant_sync.pending?
+            - if is_last && merchant_sync.pending?
+              span.loading.loading-spinner.loading-xs<
+            - else
+              =< lucide_icon 'x', class: 'inline-flex w-3 text-error'

@@ -1,0 +1,45 @@
+#merchant_sync_stat.stat.space-y-3
+  - if merchant_sync
+    - if merchant_sync.success?
+      .stat-figure.tooltip.tooltip-success.tooltip-bottom data-tip=MerchantSync.human_enum_name(:status, merchant_sync.status)
+        = link_to admin_merchant_sync_path(merchant_sync),
+                  data: { turbo_stream: true } do
+          = lucide_icon 'check-check', class: 'w-12 h-12 text-success'
+
+    - elsif merchant_sync.error?
+      .stat-figure.tooltip.tooltip-error.tooltip-bottom data-tip=MerchantSync.human_enum_name(:status, merchant_sync.status)
+        = link_to admin_merchant_sync_path(merchant_sync),
+                  data: { turbo_stream: true } do
+          = lucide_icon 'triangle-alert', class: 'w-12 h-12 text-error'
+
+    - else
+      .stat-figure.tooltip.tooltip-bottom data-tip=MerchantSync.human_enum_name(:status, merchant_sync.status)
+        = lucide_icon 'refresh-cw', class: 'w-12 h-12 animate-rotating'
+  - else
+    .stat-figure
+      = lucide_icon 'refresh-cw', class: 'w-12 h-12'
+
+  .stat-title
+    span.status.status-info.status-lg
+    =< t('.last_update')
+  - if merchant_sync
+    - if merchant_sync.pending?
+      .stat-value.text-lg title=l(merchant_sync.started_at)
+        = t('.there_is', time: time_ago_in_words(merchant_sync.started_at))
+    - elsif merchant_sync.ended_at.present?
+      .stat-value.text-lg title=l(merchant_sync.ended_at)
+        = t('.there_is', time: time_ago_in_words(merchant_sync.ended_at))
+  - else
+    .stat-value.text-lg
+      | --
+
+  .stat-actions.flex.items-center.gap-2
+    - if merchant_sync
+      - if merchant_sync.pending?
+        .badge.badge-soft.badge-sm.animate-pulse
+          = MerchantSync.human_enum_name(:status, merchant_sync.status)
+      - else
+        = render 'admin/merchant_syncs/refresh_button', disabled: !can_refresh_merchants?(merchant_sync)
+
+    - else
+      = render 'admin/merchant_syncs/refresh_button', disabled: false
