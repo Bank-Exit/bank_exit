@@ -20,6 +20,8 @@
 
     --color-primary: oklch(72.772% 0.149 33.2);
     --color-primary-content: oklch(0% 0 0);
+    --color-secondary: oklch(74.202% 0.148 301.883);
+    --color-secondary-content: oklch(14.84% 0.029 301.883);
     --color-neutral-content: oklch(90% 0 0);
     --radius-selector: 0.5rem;
     --radius-field: 0.5rem;
