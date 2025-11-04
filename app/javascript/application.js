@@ -14,7 +14,10 @@ L.Control.prototype._refocusOnMap = function _refocusOnMap() {};
 Turbo.config.forms.confirm = (message, element) => {
   let dialog = document.getElementById("turbo-confirm");
 
-  dialog.querySelector(".body").innerHTML = message;
+  const $body = dialog.querySelector(".body");
+  $body.classList.add("text-center");
+  $body.innerHTML = message;
+
   dialog.showModal();
 
   return new Promise((resolve, reject) => {

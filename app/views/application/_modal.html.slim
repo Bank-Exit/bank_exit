@@ -1,5 +1,6 @@
 - is_turbo_confirm = defined?(id) && id == 'turbo-confirm'
 - data_attributes = defined?(data) ? data : {}
+- size_klasses = defined?(modal_size) ? modal_size : 'max-w-xl'
 
 / When the modal is loaded via Turbo Stream, the original button click
 / that would trigger this controller no longer exists.
@@ -7,30 +8,33 @@
 / Therefore, we manually open the modal in the `connect()` method.
 / This ensures the modal still appears as expected even when injected dynamically.
 dialog.modal *{data: data_attributes} id=(id if defined?(id)) data-controller=("modal" unless defined?(id))
-  .modal-box.max-w-xl
+  .modal-box.space-y-3 class="#{size_klasses}"
+    header.sticky
+      - if defined?(modal_title)
+        h3.text-lg.font-bold= modal_title
+      - elsif content_for?(:modal_title)
+        h3.text-lg.font-bold= yield :modal_title
+
     form method="dialog"
       button.btn.btn-sm.btn-square.btn-ghost.absolute.right-2.top-2 aria-label="Close"
         = lucide_icon 'x'
 
-    - if defined?(modal_title)
-      h3.text-lg.font-bold.mb-4= modal_title
-    - elsif content_for?(:modal_title)
-      h3.text-lg.font-bold.mb-4= yield :modal_title
-
-    .body.space-y-2.mr-4
+    .body.space-y-2.overflow-y-auto class="max-h-[80lvh]"
       - if defined?(modal_body)
         == simple_format modal_body
       - elsif defined?(modal_body_html)
         == modal_body_html
 
     - if is_turbo_confirm
-      .modal-action
+      .modal-action.justify-center
         form method="dialog"
-          button.btn.btn-neutral.mr-2 value="cancel"
-            = t('cancel')
+          button.btn.btn-error.btn-sm.mr-2 value="cancel"
+            = lucide_icon 'x', class: 'w-3'
+            =< t('cancel')
 
-          button.btn.btn-success value="confirm"
-            = t('confirm')
+          button.btn.btn-success.btn-sm value="confirm"
+            = lucide_icon 'check', class: 'w-3'
+            =< t('confirm')
 
   - unless is_turbo_confirm
     / Not displayed

@@ -147,10 +147,6 @@
     @apply py-10 lg:py-16;
 }
 
-@utility modal-box {
-    @apply bg-base-100/99 border border-base-content/20 max-w-3xl;
-}
-
 @utility btn-link {
     @apply !gap-0;
 }
