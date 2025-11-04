@@ -147,10 +147,6 @@
     @apply py-10 lg:py-16;
 }
 
-@utility btn-link {
-    @apply !gap-0;
-}
-
 @utility dropdown-content {
     @apply border border-base-content/20 bg-base-200 rounded-box shadow-sm;
 }
@@ -162,7 +158,8 @@
 @utility card {
     &.image-full {
         > figure img {
-            @apply blur-sm brightness-[28%];
+            --tw-brightness: brightness(28%);
+            @apply blur-sm;
         }
     }
 }
