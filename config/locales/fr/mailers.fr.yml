@@ -1,8 +1,4 @@
 fr:
-  backup_mailer:
-    send_geojson:
-      subject: "[Sortie de Banque] Sauvegarde hebdomadaire des commerçants (geojson)"
-
   merchant_mailer:
     send_new_merchant:
       subject: "[Sortie de Banque] Proposition d'ajout d'une nouveau commerçant sur la carte"

@@ -25,7 +25,3 @@ production:
     - *fetch_merchants
     - *clear_merchants
     - *refresh_sitemap
-
-  periodic_backup_geojson:
-    command: "BackupMailer.send_geojson.deliver_later"
-    schedule: every 1 week
