@@ -171,7 +171,8 @@ class MerchantData
   end
 
   def phone
-    properties['phone'] || properties['contact:phone']
+    properties['phone'] || properties['contact:phone'] ||
+      properties['mobile'] || properties['phone:mobile']
   end
 
   # Coins
