@@ -11,10 +11,21 @@ module Admin
     def index
       authorize!
 
-      @dashboard_presenter = Admin::DashboardPresenter.new
-      @merchant_sync = MerchantSync.sync.last
+      merchant_syncs = if query.present?
+                         MerchantSync.by_query(query).order(created_at: :desc)
+                       else
+                         MerchantSync.all.reverse_order
+                       end
 
-      @pagy, @merchant_syncs = pagy(MerchantSync.all.reverse_order)
+      @pagy, @merchant_syncs = pagy(merchant_syncs)
+
+      respond_to do |format|
+        format.html do
+          @dashboard_presenter = Admin::DashboardPresenter.new
+          @merchant_sync = MerchantSync.sync.last
+        end
+        format.turbo_stream
+      end
     end
 
     # @route GET /fr/admin/merchant_syncs/:id {locale: "fr"} (admin_merchant_sync_fr)
@@ -29,8 +40,16 @@ module Admin
 
     private
 
+    def merchant_sync_params
+      params.permit(:query)
+    end
+
     def set_merchant_sync
       @merchant_sync = MerchantSync.find(params[:id])
+    end
+
+    def query
+      merchant_sync_params[:query]
     end
   end
 end

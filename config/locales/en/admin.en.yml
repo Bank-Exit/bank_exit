@@ -194,6 +194,7 @@ en:
     merchant_syncs:
       index:
         new_merchants: New merchants
+      merchant_syncs:
         empty_results: There is no history to display
 
     profiles:

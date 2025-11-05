@@ -49,7 +49,7 @@ tr id=dom_id(merchant_sync)
     - if merchant_sync.pending?
       .skeleton.h-5.w-full
     - else
-      = link_to admin_merchant_sync_path(merchant_sync),
+      = link_to admin_merchant_sync_path(merchant_sync, params: request.query_parameters.slice(:query)),
                 data: { turbo_stream: true },
                 class: 'btn btn-info btn-sm' do
           = t('details')

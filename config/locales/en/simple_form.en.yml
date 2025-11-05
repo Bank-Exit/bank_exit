@@ -142,6 +142,9 @@ en:
         url: "https://website.com/my/super/page"
         title: Webpage title
 
+      merchant_sync:
+        query: Search by keywords or ID in OpenStreetMap data
+
     prompts:
       questions:
         profile: Choose your profile

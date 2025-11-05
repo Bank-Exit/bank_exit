@@ -1,0 +1,25 @@
+section.space-y-3
+  == pagy_nav(pagy) if pagy.count > pagy.limit
+
+  .table-wrapper
+    table.table.table-zebra
+      thead
+        tr
+          th scope="col"= MerchantSync.human_attribute_name(:instigator)
+          th scope="col"= MerchantSync.human_attribute_name(:mode)
+          th scope="col"= MerchantSync.human_attribute_name(:started_at)
+          th scope="col"= MerchantSync.human_attribute_name(:ended_at)
+          th scope="col"= MerchantSync.human_attribute_name(:added_merchants_count)
+          th scope="col"= MerchantSync.human_attribute_name(:updated_merchants_count)
+          th scope="col"= MerchantSync.human_attribute_name(:soft_deleted_merchants_count)
+          th scope="col"= t('status')
+          th scope="col"= t('actions')
+      tbody#merchant_syncs
+        = render merchant_syncs
+
+        - if merchant_syncs.blank?
+          tr#merchant_syncs_empty
+            td.text-center.italic colspan="100%"
+              = t('.empty_results')
+
+  == pagy_nav(pagy) if pagy.count > pagy.limit

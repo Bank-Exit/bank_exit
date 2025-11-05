@@ -29,7 +29,7 @@
               |< (#{@merchant_sync.added_merchants_count})
 
             pre.collapse-content.json-colorized
-              == json_highlight(@merchant_sync.payload_added_merchants)
+              == highlight(json_highlight(@merchant_sync.payload_added_merchants), params[:query])
 
         - if @merchant_sync.updated_merchants_count > 0
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300
@@ -39,7 +39,12 @@
               |< (#{@merchant_sync.updated_merchants_count})
 
             .collapse-content.json-diff
-              == diffy_json(@merchant_sync.payload_before_updated_merchants.to_json, @merchant_sync.payload_updated_merchants.to_json, highlight: @merchant_sync.updated_merchants_count <= 10)
+              - diffy = diffy_json(@merchant_sync.payload_before_updated_merchants.to_json, @merchant_sync.payload_updated_merchants.to_json, highlight: @merchant_sync.updated_merchants_count <= 10)
+
+              - if params[:query]
+                == highlight(diffy, params[:query])
+              - else
+                == diffy
 
         - if @merchant_sync.soft_deleted_merchants_count > 0
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300

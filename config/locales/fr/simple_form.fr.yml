@@ -146,6 +146,9 @@ fr:
         url: "https://website.com/ma/super/page"
         title: Le titre de ma page
 
+      merchant_sync:
+        query: Rechercher par mots-clés ou ID dans les données OpenStreetMap
+
     prompts:
       questions:
         profile: Choisissez votre profil

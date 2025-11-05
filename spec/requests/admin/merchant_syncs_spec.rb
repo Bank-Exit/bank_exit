@@ -30,6 +30,33 @@ RSpec.describe 'Admin::MerchantSyncs' do
     end
   end
 
+  describe 'GET /admin/merchant_syncs.turbo_stream' do
+    subject do
+      get '/admin/merchant_syncs',
+          params: { query: query },
+          as: :turbo_stream
+    end
+
+    before do
+      create :merchant_sync, :success,
+             payload_added_merchants: { foo: 'bar' }
+    end
+
+    include_context 'with user role', :super_admin
+
+    context 'when `query` is present' do
+      let(:query) { 'foo' }
+
+      it_behaves_like 'access granted'
+    end
+
+    context 'when `query` is not present' do
+      let(:query) { nil }
+
+      it_behaves_like 'access granted'
+    end
+  end
+
   describe 'GET /admin/merchant_syncs/:id.turbo_stream' do
     subject { get "/admin/merchant_syncs/#{merchant_sync.id}", as: :turbo_stream }
 

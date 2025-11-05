@@ -48,6 +48,26 @@ class MerchantSync < ApplicationRecord
     broadcast_admin_replace_process_logs if process_logs_previously_changed? && pending?
   end
 
+  def self.by_query(query)
+    ids = Set.new
+    query = query.downcase
+
+    payloads = %i[
+      payload_added_merchants
+      payload_before_updated_merchants
+      payload_updated_merchants
+      payload_soft_deleted_merchants
+    ]
+
+    all.select do |merchant_sync|
+      payloads.each do |payload|
+        ids << merchant_sync.id if merchant_sync.send(payload).to_s.downcase.include?(query)
+      end
+    end
+
+    where(id: ids.to_a)
+  end
+
   def with_details?
     !pending? && (
       added_merchants_count.positive? ||

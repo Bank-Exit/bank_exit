@@ -1,7 +1,7 @@
 = turbo_stream_from [:admin, :merchant_syncs]
 = turbo_stream_from [:admin, :merchant_syncs, I18n.locale]
 
-header.flex.items-center.justify-between.gap-2.mb-3
+header.flex.items-center.justify-between.gap-2.mb-6
   h1.text-3xl
     = MerchantSync.model_name.human
 
@@ -12,28 +12,27 @@ header.flex.items-center.justify-between.gap-2.mb-3
           merchant_sync: @merchant_sync,
           dashboard_presenter: @dashboard_presenter
 
-section.space-y-3
-  == pagy_nav(@pagy) if @pagy.count > @pagy.limit
+= simple_form_for '',
+                  url: admin_merchant_syncs_path,
+                  method: :get,
+                  html: { \
+                    class: 'w-full lg:w-1/2 mx-auto mb-6',
+                    data: { \
+                      turbo_stream: true,
+                      controller: 'admin--search',
+                      action: 'keyup->admin--search#submit' \
+                    }, \
+                  } do |f|
+  = f.input :query,
+            label: false,
+            placeholder: t('simple_form.placeholders.merchant_sync.query'),
+            input_html: { \
+              value: params.dig(:query),
+              data: { \
+                admin__search_target: :query \
+              } \
+            },
+            wrapper: false
 
-  .table-wrapper
-    table.table.table-zebra
-      thead
-        tr
-          th scope="col"= MerchantSync.human_attribute_name(:instigator)
-          th scope="col"= MerchantSync.human_attribute_name(:mode)
-          th scope="col"= MerchantSync.human_attribute_name(:started_at)
-          th scope="col"= MerchantSync.human_attribute_name(:ended_at)
-          th scope="col"= MerchantSync.human_attribute_name(:added_merchants_count)
-          th scope="col"= MerchantSync.human_attribute_name(:updated_merchants_count)
-          th scope="col"= MerchantSync.human_attribute_name(:soft_deleted_merchants_count)
-          th scope="col"= t('status')
-          th scope="col"= t('actions')
-      tbody#merchant_syncs
-        = render @merchant_syncs
-
-        - if @merchant_syncs.blank?
-          tr#merchant_syncs_empty
-            td.text-center.italic colspan="100%"
-              = t('.empty_results')
-
-  == pagy_nav(@pagy) if @pagy.count > @pagy.limit
+#merchant_syncs_container
+  = render 'merchant_syncs', merchant_syncs: @merchant_syncs, pagy: @pagy
