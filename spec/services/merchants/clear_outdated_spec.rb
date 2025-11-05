@@ -24,6 +24,7 @@ RSpec.describe Merchants::ClearOutdated do
       before { call }
 
       it { expect { available_merchant.reload }.to_not raise_error }
+      it { expect(MerchantSync.last.status).to eq 'success' }
     end
 
     context 'when delta time is not yet exceeded' do
@@ -32,6 +33,7 @@ RSpec.describe Merchants::ClearOutdated do
       it { expect { deleted_below_delta_bitcoin.reload }.to_not raise_error }
       it { expect { deleted_below_delta_monero.reload }.to_not raise_error }
       it { expect { deleted_below_delta_june.reload }.to_not raise_error }
+      it { expect(MerchantSync.last.status).to eq 'success' }
     end
 
     context 'when delta time is exceeded' do
@@ -40,6 +42,7 @@ RSpec.describe Merchants::ClearOutdated do
       it { expect { deleted_above_delta_bitcoin.reload }.to raise_error(ActiveRecord::RecordNotFound) }
       it { expect { deleted_above_delta_monero.reload }.to_not raise_error }
       it { expect { deleted_above_delta_june.reload }.to_not raise_error }
+      it { expect(MerchantSync.last.status).to eq 'success' }
     end
   end
 end

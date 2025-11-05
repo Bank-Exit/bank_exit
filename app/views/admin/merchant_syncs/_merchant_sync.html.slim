@@ -15,18 +15,24 @@ tr id=dom_id(merchant_sync)
       .skeleton.h-5.w-full
 
   td
-    - if merchant_sync.pending? || merchant_sync.clear?
-      .skeleton.h-5.w-full
+    - if merchant_sync.clear?
+      | --
     - else
-      .badge.badge-success class=('opacity-25' unless merchant_sync.added_merchants_count.positive?)
-        = merchant_sync.added_merchants_count
+      - if merchant_sync.pending? || merchant_sync.clear?
+        .skeleton.h-5.w-full
+      - else
+        .badge.badge-success class=('opacity-25' unless merchant_sync.added_merchants_count.positive?)
+          = merchant_sync.added_merchants_count
 
   td
-    - if merchant_sync.pending? || merchant_sync.clear?
-      .skeleton.h-5.w-full
+    - if merchant_sync.clear?
+      | --
     - else
-      .badge.badge-warning class=('opacity-25' unless merchant_sync.updated_merchants_count.positive?)
-        = merchant_sync.updated_merchants_count
+      - if merchant_sync.pending? || merchant_sync.clear?
+        .skeleton.h-5.w-full
+      - else
+        .badge.badge-warning class=('opacity-25' unless merchant_sync.updated_merchants_count.positive?)
+          = merchant_sync.updated_merchants_count
 
   td
     - if merchant_sync.pending?
