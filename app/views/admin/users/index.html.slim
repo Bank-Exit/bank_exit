@@ -1,8 +1,9 @@
-header.flex.flex-col.lg:flex-row.items-center.justify-between.mb-6
-  h1.text-3xl= t('.title')
+- content_for :page_title do
+  = t('.title')
 
+- content_for :page_actions do
   - if allowed_to?(:create?, User)
-    = link_to t('add'), new_admin_user_path, class: 'btn btn-success'
+    = add_link_to new_admin_user_path
 
 section.space-y-3
   == pagy_nav(@pagy) if @pagy.count > @pagy.limit

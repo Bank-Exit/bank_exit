@@ -1,8 +1,9 @@
-header.flex.flex-col.lg:flex-row.justify-between.gap-3.mb-3
-  h1.text-3xl= t('.title')
+- content_for :page_title do
+  = t('.title')
 
+- content_for :page_actions do
   - if allowed_to?(:index?, Directory, namespace: Admin)
-    = back_link_to t('back'), admin_directories_path, klass: 'btn'
+    = back_link_to admin_directories_path
 
 section
   = render 'form', directory: @directory

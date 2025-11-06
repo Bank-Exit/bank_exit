@@ -1,12 +1,12 @@
 = turbo_stream_from [:admin, :merchant_syncs]
 = turbo_stream_from [:admin, :merchant_syncs, I18n.locale]
 
-header.flex.items-center.justify-between.gap-2.mb-6
-  h1.text-3xl
-    = MerchantSync.model_name.human
+- content_for :page_title do
+  = MerchantSync.model_name.human
 
+- content_for :page_actions do
   - if allowed_to?(:index?, with: Admin::MerchantPolicy)
-    = back_link_to t('back'), admin_merchants_path, klass: 'btn'
+    = back_link_to admin_merchants_path
 
 = render 'admin/merchants/stats',
           merchant_sync: @merchant_sync,

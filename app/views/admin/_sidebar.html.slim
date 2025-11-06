@@ -102,11 +102,11 @@
         .dropdown-content.bg-base-200.rounded-box.z-1.shadow-sm.border.border-base-content/20.w-full
           ul.menu.space-y-2.w-full.text-center
             li
-              = back_link_to t('.back_to_home'), root_path
+              = back_link_to root_path, label: t('.back_to_home')
             li
-              = back_link_to t('.back_to_map'), maps_path
+              = back_link_to maps_path, label: t('.back_to_map')
             li
-              = back_link_to t('.back_to_directory'), directories_path
+              = back_link_to directories_path, label: t('.back_to_directory')
             li
               = link_to t('.edit_my_profile'), edit_admin_profile_path
 

@@ -9,7 +9,7 @@
 
   .tabs.tabs-box
     - locales_select_helper.each do |label, locale|
-      input.tab.mb-1 type="radio" name="tabs_directory"  checked=("checked" if locale == I18n.default_locale) aria-label=label
+      input.tab type="radio" name="tabs_directory"  checked=("checked" if locale == I18n.default_locale) aria-label=label
 
       .tab-content.bg-base-100.border-base-300.rounded-box.p-6.space-y-2
         - name = :"name_#{Mobility.normalize_locale(locale)}"

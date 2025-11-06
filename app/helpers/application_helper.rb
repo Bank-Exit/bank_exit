@@ -52,13 +52,6 @@ module ApplicationHelper
     country
   end
 
-  def back_link_to(label, link, klass: '', data: {})
-    link_to link, class: klass, data: data do
-      concat lucide_icon('move-left', class: 'inline-flex mr-1')
-      concat label
-    end
-  end
-
   def map_referer_path
     session[:map_referer_url].presence || maps_path
   end

@@ -1,12 +1,18 @@
 - today_i18n = l(@dashboard_presenter.today.to_date)
 - dated_i18n = t('statistics.statistics_numbers.dated', date: today_i18n)
 
-header.mb-3.flex.items-center.gap-3
-  h1.text-3xl= t('.title')
+- content_for :page_title do
+  = t('.title')
 
+- content_for :page_actions do
   - unless comments_enabled?
     button.btn.btn-circle.btn-warning.btn-sm onclick="comments_disabled_help.showModal()"
       = lucide_icon 'triangle-alert', class: 'w-6'
+
+    = render 'modal',
+              id: :comments_disabled_help,
+              modal_title: t('.comments_disabled'),
+              modal_body: t('.comments_disabled_body_html')
 
 section.mb-3.space-y-2
   - comment_deleted_count = Comment.flagged.count
@@ -34,9 +40,3 @@ section.mb-3.space-y-2
 
 #comments
   = render 'comments', comments: @comments, pagy: @pagy
-
-- unless comments_enabled?
-  = render 'modal',
-           id: :comments_disabled_help,
-           modal_title: t('.comments_disabled'),
-           modal_body: t('.comments_disabled_body_html')

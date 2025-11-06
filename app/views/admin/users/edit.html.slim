@@ -1,8 +1,9 @@
-header.flex.flex-col.lg:flex-row.items-center.justify-between.mb-6
-  h1.text-2xl.font-bold= t('.title')
+- content_for :page_title do
+  = t('.title')
 
+- content_for :page_actions do
   - if allowed_to?(:index?, @user)
-    = back_link_to t('back'), admin_users_path, klass: 'btn'
+    = back_link_to admin_users_path
 
 section
   = render 'form', user: @user

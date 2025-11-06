@@ -1,6 +1,9 @@
-.card.max-w-lg.mx-auto.bg-base-200.my-10.rounded-box
+- content_for :page_title do
+  = t('.title')
+
+.card.max-w-lg.mx-auto.bg-base-200.lg:my-10.rounded-box
   .card-body.space-y-5
-    h1.card-title.lg:text-3xl.text-primary.justify-center
+    h2.card-title.lg:text-3xl.text-primary.justify-center
       = t('.title')
 
     = simple_form_for current_user,

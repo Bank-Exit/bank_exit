@@ -1,14 +1,11 @@
-header.flex.flex-col.lg:flex-row.items-center.justify-between.mb-3
-  .flex.items-center.gap-2
-    = render 'logo_or_initials', model: @merchant
+- content_for :page_title do
+  = render 'logo_or_initials', model: @merchant
+  = @merchant.name
 
-    h1.text-2xl.font-bold= @merchant.name
-
-  .flex.items-center.gap-1
-    = back_link_to t('back'), session[:admin_merchant_referer_url] || admin_merchants_path, klass: 'btn'
-
-    - if allowed_to?(:update?, @merchant)
-      = link_to t('edit'), edit_admin_merchant_path(@merchant), class: 'btn btn-warning'
+- content_for :page_actions do
+  = back_link_to session[:admin_merchant_referer_url] || admin_merchants_path
+  - if allowed_to?(:update?, @merchant)
+    = edit_link_to edit_admin_merchant_path(@merchant)
 
 - if @merchant.banner.attached?
   section.flex.flex-col.gap-3.mb-3

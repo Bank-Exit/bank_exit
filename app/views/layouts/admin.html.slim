@@ -31,8 +31,19 @@ html lang=I18n.locale
     main.drawer.lg:drawer-open
       input#sidebarDrawer.drawer-toggle type="checkbox"
       .drawer-content
-        label.btn.btn-square.drawer-button.lg:hidden.absolute.top-3.right-3 for="sidebarDrawer"
-          = lucide_icon 'menu', class: 'w-5 h-5'
+        header.flex.items-center.justify-between.bg-base-200.border-b-2.border-primary.p-2.lg:pl-4
+          .flex.items-center.gap-2
+            = link_to admin_root_path, class: 'lg:hidden' do
+              = image_tag logo_by_locale, class: 'w-12'
+            - if content_for?(:page_title)
+              h1.lg:text-3xl.truncate= yield :page_title
+
+          .flex.items-center.gap-2
+            - if content_for?(:page_actions)
+              = yield(:page_actions)
+
+            label.btn.btn-sm.btn-square.btn-neutral.drawer-button.lg:hidden for="sidebarDrawer"
+              = lucide_icon 'menu', class: 'w-5 h-5'
 
         .p-4= yield
 

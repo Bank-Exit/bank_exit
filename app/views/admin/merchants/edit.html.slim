@@ -1,11 +1,10 @@
-header.flex.flex-col.lg:flex-row.items-center.justify-between.mb-6
-  .flex.items-center.gap-2
-    = render 'logo_or_initials', model: @merchant
+- content_for :page_title do
+  = render 'logo_or_initials', model: @merchant
+  = t('.title')
 
-    h1.text-2xl.font-bold= t('.title')
-
+- content_for :page_actions do
   - if allowed_to?(:index?, @merchant)
-    = back_link_to t('back'), admin_merchant_path(@merchant), klass: 'btn'
+    = back_link_to admin_merchant_path(@merchant)
 
 section
   = render 'form', merchant: @merchant

@@ -1,14 +1,14 @@
 = turbo_stream_from [:admin, :merchant_syncs, I18n.locale]
 
-header.flex.items-center.justify-between.gap-2.mb-3
-  h1.text-3xl
-    - if params[:show_deleted] == 'true'
-      = t('.title_for_disabled')
-    - else
-      = t('.title')
+- content_for :page_title do
+  - if params[:show_deleted] == 'true'
+    = t('.title_for_disabled')
+  - else
+    = t('.title')
 
+- content_for :page_actions do
   - if allowed_to?(:index?, with: Admin::MerchantSyncPolicy)
-    = link_to admin_merchant_syncs_path, class: 'btn btn-success' do
+    = link_to admin_merchant_syncs_path, class: 'btn btn-sm btn-success' do
       = t('.history')
       = lucide_icon 'table', class: 'w-5 h-5'
 
