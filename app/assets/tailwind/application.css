@@ -286,7 +286,7 @@ forced to white to make texts readables */
     @apply will-change-transform overflow-x-auto font-mono text-sm;
 
     li {
-        @apply flex whitespace-pre !text-pretty;
+        @apply flex whitespace-pre break-all !text-pretty;
 
         .symbol {
             @apply mx-2;
