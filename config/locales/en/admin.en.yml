@@ -158,6 +158,8 @@ en:
           It is therefore up to the Collective to review these changes and confirm whether the merchant should be removed from the map or reactivated (by default, the merchant is marked as "soft deleted," which means they remain in the database but are no longer visible on the map or in search results).
 
           Note that if the merchant is confirmed as legitimate and reactivated on Bank-Exit, they will become <span class="badge badge-sm badge-error">Disabled</span> again at each data refresh as long as the source hasn't been corrected on OSM, since the algorithm considers OSM to be the source of truth.
+        next_recurring_sync_at: Next synchronization at
+        next_recurring_clean_at: Next cleanup at
 
       merchant_sync_stat:
         last_update: Last update
