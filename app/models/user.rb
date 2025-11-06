@@ -23,6 +23,7 @@ end
 # == Schema Information
 #
 # Table name: users
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  email            :string           not null

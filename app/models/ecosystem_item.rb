@@ -28,6 +28,7 @@ end
 # == Schema Information
 #
 # Table name: ecosystem_items
+# Database name: primary
 #
 #  id         :integer          not null, primary key
 #  url        :string

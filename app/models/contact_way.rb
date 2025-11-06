@@ -60,6 +60,7 @@ end
 # == Schema Information
 #
 # Table name: contact_ways
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  role             :integer

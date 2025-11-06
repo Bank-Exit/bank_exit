@@ -25,6 +25,7 @@ end
 # == Schema Information
 #
 # Table name: comments
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  content          :text             not null

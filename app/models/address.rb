@@ -21,6 +21,7 @@ end
 # == Schema Information
 #
 # Table name: addresses
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  label            :string

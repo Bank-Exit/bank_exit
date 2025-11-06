@@ -22,6 +22,7 @@ end
 # == Schema Information
 #
 # Table name: api_tokens
+# Database name: primary
 #
 #  id             :integer          not null, primary key
 #  name           :string

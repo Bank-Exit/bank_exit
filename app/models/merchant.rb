@@ -106,6 +106,7 @@ end
 # == Schema Information
 #
 # Table name: merchants
+# Database name: primary
 #
 #  id                    :integer          not null, primary key
 #  identifier            :string

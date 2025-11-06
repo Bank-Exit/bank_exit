@@ -57,6 +57,7 @@ end
 # == Schema Information
 #
 # Table name: announcements
+# Database name: primary
 #
 #  id             :integer          not null, primary key
 #  title          :string

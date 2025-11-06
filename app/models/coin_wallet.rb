@@ -26,6 +26,7 @@ end
 # == Schema Information
 #
 # Table name: coin_wallets
+# Database name: primary
 #
 #  id              :integer          not null, primary key
 #  coin            :integer

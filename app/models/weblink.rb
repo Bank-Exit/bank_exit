@@ -9,6 +9,7 @@ end
 # == Schema Information
 #
 # Table name: weblinks
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  url              :string

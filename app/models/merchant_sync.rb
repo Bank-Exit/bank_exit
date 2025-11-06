@@ -139,6 +139,7 @@ end
 # == Schema Information
 #
 # Table name: merchant_syncs
+# Database name: primary
 #
 #  id                               :integer          not null, primary key
 #  started_at                       :datetime

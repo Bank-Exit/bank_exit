@@ -74,6 +74,7 @@ end
 # == Schema Information
 #
 # Table name: delivery_zones
+# Database name: primary
 #
 #  id               :integer          not null, primary key
 #  mode             :integer
