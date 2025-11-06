@@ -68,7 +68,7 @@ A voluntary, non-partisan collective whose aim is to offer legal, peaceful and s
 
 ### Prerequisites
 
-- **Ruby >= 3.4.4**  
+- **Ruby (see `.ruby-version`)**  
   Recommended installation method: [mise](https://mise.jdx.dev/lang/ruby.html) — a minimal, fast, and dependable Ruby installer.  
   See the official Rails guide for details: [Installing Ruby on Rails](https://guides.rubyonrails.org/install_ruby_on_rails.html#installing-ruby)
 
@@ -138,7 +138,7 @@ Refer to the [Wiki article](https://github.com/Unbanked0/bank_exit/wiki/Tutorial
 Before submitting any changes, please ensure the test suite passes:
 
 ```bash
-$ bin/rspec
+$ bin/ci
 ```
 
 ## 🤝 Contributing
