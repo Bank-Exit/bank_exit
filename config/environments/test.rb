@@ -56,7 +56,6 @@ Rails.application.configure do
 
   config.after_initialize do
     Bullet.enable = true
-    Bullet.bullet_logger = true
     Bullet.raise = ENV.fetch('RAISE_BULLET', false)
   end
 end
