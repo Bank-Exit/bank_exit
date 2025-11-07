@@ -8,6 +8,7 @@ RSpec.describe 'Admin::APITokens' do
 
     before do
       create_list :api_token, 3
+      create :api_token, :expired
     end
 
     %i[super_admin].each do |role|

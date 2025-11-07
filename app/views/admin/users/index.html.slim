@@ -15,6 +15,7 @@ section.space-y-3
           th scope="col"= User.human_attribute_name(:email)
           th scope="col"= User.human_attribute_name(:role)
           th scope="col"= t('date_title')
+          th scope="col"= User.human_attribute_name(:enabled)
           th scope="col"= t('actions')
       tbody
         = render @users

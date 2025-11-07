@@ -1,10 +1,15 @@
-tr
+tr class=('opacity-50' unless user.enabled?)
   th= user.email
   td
     .badge class=user_badge_color_for_role(user.role)
       = User.human_enum_name(:role, user.role)
 
   td= l(user.created_at)
+  td
+    - if user.enabled?
+      = status_icon :success
+    - else
+      = status_icon :error
 
   td
     .flex.items-center.justify-end.gap-2

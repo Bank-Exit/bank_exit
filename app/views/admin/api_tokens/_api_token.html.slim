@@ -6,26 +6,20 @@ tr class=('opacity-25' unless api_token.live?)
     - if api_token.expired_at
       .flex.items-center.gap-2
         - if api_token.expired?
-          .status.status-lg.status-error.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
-            = lucide_icon 'x', class: 'text-error-content'
-
+          = status_icon :error
         - else
-          .status.status-lg.status-success.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
-            = lucide_icon 'check', class: 'text-success-content'
+          = status_icon :success
 
         = I18n.l(api_token.expired_at)
 
     - else
-      | -
+      | --
 
   td
     - if api_token.enabled?
-      .status.status-lg.status-success.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
-        = lucide_icon 'check', class: 'text-success-content'
-
+      = status_icon :success
     - else
-      .status.status-lg.status-error.flex.items-center.justify-center.w-5.h-5.rounded-full aria-label="status"
-        = lucide_icon 'x', class: 'text-error-content'
+      = status_icon :error
 
   td
     = render 'actions', api_token: api_token
