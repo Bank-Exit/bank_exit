@@ -13,6 +13,38 @@ RSpec.describe 'Statistics' do
     it { expect(response).to redirect_to statistics_en_path }
   end
 
+  describe 'GET /stats/daily_merchants' do
+    subject! { get '/stats/daily_merchants', params: params }
+
+    let(:params) { { date: date } }
+
+    context 'when date is valid' do
+      let(:date) { Date.current.to_s }
+
+      it { expect(response).to have_http_status :redirect }
+    end
+
+    context 'when date is invalid' do
+      let(:date) { 'fake' }
+
+      it { expect(response).to have_http_status :redirect }
+    end
+
+    context 'when date is missing' do
+      let(:params) { {} }
+
+      it { expect(response).to have_http_status :redirect }
+    end
+  end
+
+  describe 'POST /statistics/toggle_atms' do
+    subject! { post '/statistics/toggle_atms' }
+
+    let(:params) { { include_atms: true } }
+
+    it { expect(response).to have_http_status :ok }
+  end
+
   I18n.available_locales.each do |locale|
     describe "GET /#{locale}/stats" do
       subject! { get "/#{locale}/stats" }
@@ -43,29 +75,35 @@ RSpec.describe 'Statistics' do
         end
       end
     end
-  end
 
-  describe 'GET /stats/daily_merchants' do
-    subject! { get '/stats/daily_merchants', params: params }
+    describe "GET /#{locale}/stats/daily_merchants" do
+      subject! { get "/#{locale}/stats/daily_merchants", params: params }
 
-    let(:params) { { query: { date: date } } }
+      let(:params) { { date: date } }
 
-    context 'when date is valid' do
-      let(:date) { Date.current.to_s }
+      context 'when date is valid' do
+        let(:date) { Date.current.to_s }
 
-      it { expect(response).to have_http_status :redirect }
-    end
+        it { expect(response).to have_http_status :ok }
+      end
 
-    context 'when date is invalid' do
-      let(:date) { 'fake' }
+      context 'when date is futur' do
+        let(:date) { 3.days.from_now.to_date }
 
-      it { expect(response).to have_http_status :redirect }
-    end
+        it { expect(response).to have_http_status :ok }
+      end
 
-    context 'when date is missing' do
-      let(:params) { {} }
+      context 'when date is invalid' do
+        let(:date) { 'fake' }
 
-      it { expect(response).to have_http_status :redirect }
+        it { expect(response).to have_http_status :ok }
+      end
+
+      context 'when date is missing' do
+        let(:params) { {} }
+
+        it { expect(response).to have_http_status :ok }
+      end
     end
   end
 end

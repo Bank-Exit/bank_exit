@@ -33,19 +33,14 @@ class StatisticsController < PublicController
     end
 
     merchants = Merchant.available.where(created_at: @date.all_day).order(created_at: :desc)
-    merchants.not_atms unless session[:include_atms]
 
     @merchants = MerchantDecorator.wrap(merchants)
-
-    respond_to do |format|
-      format.html
-      format.json
-      format.turbo_stream
-    end
   end
 
   # @route POST /statistics/toggle_atms (statistics_toggle_atms)
   def toggle_atms
     session[:include_atms] = params[:include_atms]
+
+    head :ok
   end
 end
