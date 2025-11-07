@@ -129,7 +129,7 @@ FactoryBot.define do
       contact_tripadvisor { 'foobar' }
       contact_odysee { 'foobar' }
       contact_crowdbunker { 'foobar' }
-      contact_francelibretv { 'foobar' }
+      contact_francelibretv { 'https://francelibre.tv' }
     end
   end
 end

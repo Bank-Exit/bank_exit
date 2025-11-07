@@ -28,4 +28,14 @@ RSpec.describe MerchantsGPXHelper do
       it { is_expected.to eq '🟠 🟡 🌀' }
     end
   end
+
+  describe '#merchant_description' do
+    subject { helper.merchant_description(merchant) }
+
+    let(:merchant) do
+      build :merchant, :bitcoin, :lightning, :monero, :june, :with_all_contacts
+    end
+
+    it { is_expected.to include 'https://francelibre.tv' }
+  end
 end
