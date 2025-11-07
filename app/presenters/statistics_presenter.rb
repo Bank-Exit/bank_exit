@@ -18,6 +18,7 @@ class StatisticsPresenter < ApplicationPresenter
     {
       enabled: merchants_enabled,
       today: today_merchants,
+      yesterday: yesterday_merchants,
       two_weeks_range: merchants_two_weeks_range,
       merchants_west_europe_and_days: merchants_west_europe_and_days,
       merchants_north_america_and_days: merchants_north_america_and_days,
@@ -69,6 +70,11 @@ class StatisticsPresenter < ApplicationPresenter
   def today_merchants
     base_merchants
       .where(created_at: today.all_day)
+  end
+
+  def yesterday_merchants
+    base_merchants
+      .where(created_at: yesterday.all_day)
   end
 
   def merchants_two_weeks_range
@@ -153,9 +159,10 @@ class StatisticsPresenter < ApplicationPresenter
   def merchants_main_categories
     base_merchants
       .where(category: %w[bar cafe restaurant grocery farm])
-      .group(:category).count.map do |k, v|
-      [I18n.t(k, scope: :categories), v]
-    end
+      .group(:category).count
+      .map do |k, v|
+        [I18n.t(k, scope: :categories), v]
+      end
   end
 
   def merchants_categories_podium
@@ -164,7 +171,9 @@ class StatisticsPresenter < ApplicationPresenter
       .order(count_all: :desc)
       .limit(3)
       .count
-      .to_a
+      .map do |k, v|
+        [I18n.t(k, scope: :categories), v]
+      end
   end
 
   def merchants_bitcoin_world

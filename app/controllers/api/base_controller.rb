@@ -8,7 +8,7 @@ module API
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
     before_action :authenticate
-    before_action :increment_requests_count
+    after_action :increment_requests_count
 
     private
 

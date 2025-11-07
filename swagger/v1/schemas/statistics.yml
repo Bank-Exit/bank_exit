@@ -1,0 +1,116 @@
+type: object
+required:
+  - data
+  - links
+
+properties:
+  data:
+    type: object
+    required:
+      - merchants
+      - directories
+
+    properties:
+      merchants:
+        type: object
+        properties:
+          totals:
+            type: object
+            properties:
+              bitcoin:
+                type: integer
+                example: 16644
+              monero:
+                type: integer
+                example: 135
+              june:
+                type: integer
+                example: 26
+          new:
+            type: object
+            properties:
+              today:
+                type: integer
+                example: 6
+              yesterday:
+                type: integer
+                example: 28
+          last_update:
+            type: string
+            format: date-time
+            example: "2025-11-10T09:29:27+01:00"
+          categories:
+            type: object
+            properties:
+              top:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    original_name:
+                      type: string
+                      example: restaurant
+                    human_name:
+                      type: string
+                      example: Restaurante
+                    count:
+                      type: integer
+                      example: 2242
+          by_countries:
+            type: object
+            properties:
+              monero:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iso:
+                      type: string
+                      example: FR
+                    continent:
+                      type: string
+                      example: EU
+                    flag:
+                      type: string
+                      example: 🇫🇷
+                    name:
+                      type: string
+                      example: Francia
+                    count:
+                      type: integer
+                      example: 64
+              june:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    iso:
+                      type: string
+                      example: ES
+                    continent:
+                      type: string
+                      example: EU
+                    flag:
+                      type: string
+                      example: 🇪🇸
+                    name:
+                      type: string
+                      example: España
+                    count:
+                      type: integer
+                      example: 2
+
+      directories:
+        type: object
+        properties:
+          total_count:
+            type: integer
+            example: 26
+
+  links:
+    type: object
+    properties:
+      self:
+        type: string
+        format: uri
+        example: http://example.com/api/v1/statistics

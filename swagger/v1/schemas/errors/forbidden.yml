@@ -1,0 +1,29 @@
+type: object
+properties:
+  errors:
+    type: array
+    description: List of error objects following JSON:API structure
+    items:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "403"
+          description: HTTP status code as a string
+        title:
+          type: string
+          example: Forbidden
+          description: Short human-readable summary of the problem
+        detail:
+          type: string
+          example: Access forbidden for this token.
+          description: Detailed explanation of the error
+
+examples:
+  forbidden:
+    summary: Example forbidden error
+    value:
+      errors:
+        - status: "403"
+          title: Forbidden
+          detail: Access forbidden for this token.
