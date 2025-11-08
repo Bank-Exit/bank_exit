@@ -69,7 +69,7 @@ nav.navbar
             li
               = link_to local_groups_path, class: ('text-primary' if params[:controller] == 'local_groups') do
                 = local_groups.title
-                = image_tag "contacts/telegram.svg", class: 'inline-flex bg-white w-5 rounded-full', title: 'Telegram', alt: 'Logo Telegram'
+                = inline_svg_tag "contacts/telegram.svg", class: 'inline-flex bg-white text-[#27A7E7] w-5 rounded-full', title: 'Telegram', alt: 'Logo Telegram'
 
             li
               = link_to media_path, class: ('text-primary' if params[:controller] == 'media') do
@@ -169,7 +169,7 @@ nav.navbar
               - local_groups = projects.find(&:local_groups?)
               = link_to local_groups_path, class: ('text-primary' if params[:controller] == 'local_groups') do
                 = local_groups.title
-                = image_tag "contacts/telegram.svg", class: 'inline-flex bg-white w-5 rounded-full', title: 'Telegram', alt: 'Logo Telegram'
+                = inline_svg_tag "contacts/telegram.svg", class: 'inline-flex bg-white text-[#27A7E7] w-5 rounded-full', title: 'Telegram', alt: 'Logo Telegram'
 
             li
               = link_to media_path, class: ('text-primary' if params[:controller] == 'media') do

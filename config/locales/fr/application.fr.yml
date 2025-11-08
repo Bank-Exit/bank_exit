@@ -28,16 +28,14 @@ fr:
       label: avant la fin de la phase de préparation de l'€uro numérique
       source_html: source <abbr title="Banque Centrale Européenne">BCE</abbr>
 
-    upper_footer:
-      navigation: Navigation
-      projects: Les projets
-      warning_title: ⚠️ Clause de non-responsabilité (à lire) ⚠️
-      license: License d'utilisation
-
     contacts:
       title: Réseaux et contacts
 
     footer:
+      navigation: Navigation
+      projects: Les projets
+      warning_title: ⚠️ Clause de non-responsabilité (à lire) ⚠️
+      license: License d'utilisation
       copyright_html: Copyright &copy; Sortie de Banque 2022 - %{year} &bullet; Tous droits réservés
       developed_by_html: Développé avec %{heart} par le Collectif Sortie de Banque
 
@@ -52,5 +50,5 @@ fr:
       open_merchant_routing_form: Ouvrir la page de calcul d'itinéraire pour se rendre chez un commerçant
 
     snowflakes:
-      enable_snowflakes: Activer les flocons de neige
-      disable_snowflakes: Désactiver les flocons de neige
+      enable_snowflakes: Activer le thème de Noël
+      disable_snowflakes: Désactiver le thème de Noël

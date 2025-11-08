@@ -32,9 +32,11 @@ html lang=I18n.locale
     main.pt-20
       = yield
 
-    = render 'upper_footer', projects: @projects, contacts: @contacts
-    = render 'footer'
+    = render 'footer', projects: @projects, contacts: @contacts
+
     = turbo_frame_tag :announcements, src: announcements_path
+
+    #modal
     = render 'modal', id: 'turbo-confirm'
     = render 'command_palette'
     = render 'modal_help'

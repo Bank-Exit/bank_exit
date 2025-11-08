@@ -160,6 +160,10 @@
     @apply overflow-x-auto;
 }
 
+@utility collapse {
+    @apply border border-base-content/10;
+}
+
 @utility card {
     &.image-full {
         > figure img {
