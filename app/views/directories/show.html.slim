@@ -120,7 +120,7 @@ article
         .alert.alert-vertical.overflow-y-auto
           - contact_ways.each do |contact_way|
             .flex.items-center.gap-2
-              = social_contact_icon(contact_way.role, klass: "!w-6")
+              = social_contact_icon(contact_way.role)
 
               - if contact_way.email?
                 = mail_to contact_way.value, contact_way.value

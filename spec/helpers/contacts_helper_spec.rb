@@ -67,40 +67,28 @@ RSpec.describe ContactsHelper, type: :helper do
         odysee
         tiktok
         linkedin
-        tripadvisor
         substack
         nostr
-      ].each do |mode|
-        context "when mode is :#{mode}" do
-          let(:mode) { mode }
-
-          it { is_expected.to include '<img', "src=\"/assets/contacts/#{mode}", '.svg', 'class="inline-flex w-4 rounded-lg' }
-        end
-      end
-    end
-
-    context 'for :png images mode' do
-      %i[
+        simplex
         crowdbunker
       ].each do |mode|
         context "when mode is :#{mode}" do
           let(:mode) { mode }
 
-          it { is_expected.to include '<img', "src=\"/assets/contacts/#{mode}", '.png', 'class="inline-flex w-4 rounded-lg' }
+          it { is_expected.to include '<svg', 'fill="currentColor"', '</svg>' }
         end
       end
-    end
 
-    context 'for :webp images mode' do
-      %i[
-        francelibretv
-        simplex
-      ].each do |mode|
-        context "when mode is :#{mode}" do
-          let(:mode) { mode }
+      context 'when mode is :tripadvisor' do
+        let(:mode) { :tripadvisor }
 
-          it { is_expected.to include '<img', "src=\"/assets/contacts/#{mode}", '.webp', 'class="inline-flex w-4 rounded-lg' }
-        end
+        it { is_expected.to include '<svg', '</svg>' }
+      end
+
+      context 'when mode is :francelibretv' do
+        let(:mode) { :francelibretv }
+
+        it { is_expected.to include '<svg', '</svg>' }
       end
     end
   end

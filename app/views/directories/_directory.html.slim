@@ -49,7 +49,7 @@
         - if extra_group.present?
           - text = extra_group.map { social_contact_icon(it.role) }.join(' ')
           = render 'tooltip',
-                    position: :right,
+                    position: :bottom,
                     text: text,
                     mode: 'info',
                     lucide_ikon: 'ellipsis'

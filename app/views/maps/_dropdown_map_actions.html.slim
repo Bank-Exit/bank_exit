@@ -66,16 +66,14 @@
   li
     = link_to 'https://t.me/Monero_map_label', target: :_blank do
       div
-        = inline_svg_tag "contacts/telegram.svg", class: 'inline-flex w-5 h-5', title: 'Telegram', alt: 'Logo Telegram'
-        span.mx-2 Monero map labelers
-        = lucide_icon 'square-arrow-out-up-right', class: 'inline-flex w-4'
+        = inline_svg_tag "contacts/telegram.svg", class: 'inline-flex rounded-full bg-white text-[#27A7E7] w-5 h-5 mr-2', title: 'Telegram', alt: 'Logo Telegram'
+        span Monero map labelers
 
   li
     = link_to 'https://matrix.to/#/#bankexit:matrix.org', target: :_blank do
       div
-        = inline_svg_tag 'contacts/matrix.svg', class: 'inline-flex w-5 h-5', title: 'Matrix Bank-Exit'
-        span.mx-2 Matrix (#bankexit:matrix.org)
-        = lucide_icon 'square-arrow-out-up-right', class: 'inline-flex w-4'
+        = inline_svg_tag 'contacts/matrix.svg', class: 'inline-flex w-5 h-5 mr-2', title: 'Matrix Bank-Exit'
+        span Matrix (#bankexit:matrix.org)
 
   - if logged_in? && allowed_to?(:index?, Merchant, namespace: Admin)
     li.border-t.border-base-content/20.pt-2
