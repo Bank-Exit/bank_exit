@@ -25,6 +25,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:telegram']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.starts_with?('https://t.me/')
 
     "https://t.me/#{value.delete_prefix('@')}"
@@ -34,6 +36,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:facebook']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.include?('facebook.com/')
 
     "https://facebook.com/#{value.delete_prefix('@')}"
@@ -43,6 +47,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:instagram']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.include?('instagram.com/')
 
     "https://instagram.com/#{value.delete_prefix('@')}"
@@ -52,6 +58,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:twitter']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.include?('twitter.com/') || value.include?('x.com/')
 
     "https://x.com/#{value.delete_prefix('@')}"
@@ -61,6 +69,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:youtube']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.include?('youtube.com/')
 
     "https://youtube.com/#{value.delete_prefix('@')}"
@@ -70,6 +80,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:tiktok']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.include?('tiktok.com/')
 
     "https://tiktok.com/#{value.delete_prefix('@')}"
@@ -79,6 +91,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:linkedin']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.include?('linkedin.com/')
 
     "https://linkedin.com/#{value.delete_prefix('@')}"
@@ -89,6 +103,7 @@ class SocialNetworksPrefixer < ApplicationService
 
     return unless value
 
+    value = value.split('?').first
     return value if value.include?('tripadvisor.com/')
 
     "https://tripadvisor.com/#{value.delete_prefix('@')}"
@@ -98,6 +113,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:odysee']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.include?('odysee.com/')
 
     "https://odysee.com/#{value.delete_prefix('@')}"
@@ -107,6 +124,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:crowdbunker']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.include?('crowdbunker.com/')
 
     value.prepend('@') unless value.starts_with?('@')
@@ -117,6 +136,8 @@ class SocialNetworksPrefixer < ApplicationService
     value = properties['contact:francelibretv']
 
     return unless value
+
+    value = value.split('?').first
     return value if value.include?('francelibre.tv/')
 
     value.prepend('chaine/') unless value.include?('chaine/')

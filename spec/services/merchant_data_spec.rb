@@ -121,6 +121,65 @@ RSpec.describe MerchantData do
     end
   end
 
+  describe '#website' do
+    context 'when [website] is present' do
+      let(:twicked_feature) do
+        feature[:properties]['website'] = 'https://mywebsite.com'
+        feature
+      end
+
+      it { is_expected.to include(website: 'https://mywebsite.com') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['website'] = 'https://mywebsite.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(website: 'https://mywebsite.com/foobar') }
+      end
+    end
+
+    context 'when [website] is missing' do
+      let(:twicked_feature) do
+        feature[:properties].delete(:website)
+        feature
+      end
+
+      it { is_expected.to include(website: nil) }
+    end
+
+    context 'when [contact:website] is present' do
+      let(:twicked_feature) do
+        feature[:properties].delete(:website)
+        feature[:properties]['contact:website'] = 'https://mywebsite.com'
+        feature
+      end
+
+      it { is_expected.to include(website: 'https://mywebsite.com') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties].delete(:website)
+          feature[:properties]['contact:website'] = 'https://mywebsite.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(website: 'https://mywebsite.com/foobar') }
+      end
+    end
+
+    context 'when [contact:website] is missing' do
+      let(:twicked_feature) do
+        feature[:properties].delete(:website)
+        feature[:properties].delete(:'contact:website')
+        feature
+      end
+
+      it { is_expected.to include(website: nil) }
+    end
+  end
+
   describe '[contact:telegram]' do
     context 'when [contact:telegram] is missing' do
       let(:twicked_feature) { feature }
@@ -135,6 +194,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_telegram: 'https://t.me/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:telegram'] = 'https://t.me/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_telegram: 'https://t.me/foobar') }
+      end
     end
 
     context 'when [contact:telegram] is a relative @link' do
@@ -161,6 +229,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_facebook: 'https://facebook.com/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:facebook'] = 'https://facebook.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_facebook: 'https://facebook.com/foobar') }
+      end
     end
 
     context 'when [contact:facebook] is a relative @link' do
@@ -187,6 +264,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_instagram: 'https://instagram.com/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:instagram'] = 'https://instagram.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_instagram: 'https://instagram.com/foobar') }
+      end
     end
 
     context 'when [contact:instagram] is a relative @link' do
@@ -213,6 +299,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_twitter: 'https://twitter.com/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:twitter'] = 'https://twitter.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_twitter: 'https://twitter.com/foobar') }
+      end
     end
 
     context 'when [contact:twitter] is an absolute link with x.com' do
@@ -222,6 +317,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_twitter: 'https://x.com/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:twitter'] = 'https://x.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_twitter: 'https://x.com/foobar') }
+      end
     end
 
     context 'when [contact:twitter] is a relative @link' do
@@ -248,6 +352,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_youtube: 'https://youtube.com/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:youtube'] = 'https://youtube.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_youtube: 'https://youtube.com/foobar') }
+      end
     end
 
     context 'when [contact:youtube] is a relative @link' do
@@ -274,6 +387,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_tiktok: 'https://tiktok.com/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:tiktok'] = 'https://tiktok.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_tiktok: 'https://tiktok.com/foobar') }
+      end
     end
 
     context 'when [contact:tiktok] is a relative @link' do
@@ -300,6 +422,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_linkedin: 'https://linkedin.com/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:linkedin'] = 'https://linkedin.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_linkedin: 'https://linkedin.com/foobar') }
+      end
     end
 
     context 'when [contact:linkedin] is a relative @link' do
@@ -326,6 +457,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_tripadvisor: 'https://tripadvisor.com/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:tripadvisor'] = 'https://tripadvisor.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_tripadvisor: 'https://tripadvisor.com/foobar') }
+      end
     end
 
     context 'when [contact:tripadvisor] is a relative @link' do
@@ -352,6 +492,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_odysee: 'https://odysee.com/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:odysee'] = 'https://odysee.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_odysee: 'https://odysee.com/foobar') }
+      end
     end
 
     context 'when [contact:odysee] is a relative @link' do
@@ -378,6 +527,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_crowdbunker: 'https://crowdbunker.com/@foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:crowdbunker'] = 'https://crowdbunker.com/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_crowdbunker: 'https://crowdbunker.com/foobar') }
+      end
     end
 
     context 'when [contact:crowdbunker] is a relative @link' do
@@ -404,6 +562,15 @@ RSpec.describe MerchantData do
       end
 
       it { is_expected.to include(contact_francelibretv: 'https://francelibre.tv/chaine/foobar') }
+
+      context 'when a GET params is present in the URL' do
+        let(:twicked_feature) do
+          feature[:properties]['contact:francelibretv'] = 'https://francelibre.tv/foobar?foo=bar'
+          feature
+        end
+
+        it { is_expected.to include(contact_francelibretv: 'https://francelibre.tv/foobar') }
+      end
     end
 
     context 'when [contact:francelibretv] is a relative @link' do

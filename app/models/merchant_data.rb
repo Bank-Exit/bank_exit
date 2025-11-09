@@ -163,7 +163,11 @@ class MerchantData
   # Contact
 
   def website
-    properties['website'] || properties['contact:website']
+    value = properties['website'] || properties['contact:website']
+
+    return unless value
+
+    value.split('?').first
   end
 
   def email
