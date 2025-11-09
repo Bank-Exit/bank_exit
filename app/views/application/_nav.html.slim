@@ -2,8 +2,6 @@
 - local_groups = projects.find(&:local_groups?)
 - project = Project.find('accounting', decorate: true)
 - business_guide_tutorial = Tutorial.find('cryptopayment-for-business')
-- asdb_blog = Blog.find('bank-exit-assembly-2025')
-- asdb_path = blog_path('bank-exit-assembly-2025')
 
 - active_map = params[:controller].in?(%w[maps merchants])
 - active_project = (params[:controller] == 'projects' && !params[:id].in?(%w[map grocery local_groups])) || params[:id] == 'flyer'
@@ -54,11 +52,6 @@ nav.navbar
             li
               = link_to blogs_path, class: ('text-primary' if params[:controller] == 'blogs' && params[:id] != 'flyer') do
                 = t('.menu.blogs')
-
-              ul
-                li
-                  = link_to asdb_path, class: ('text-primary' if current_page?(asdb_path)) do
-                    = asdb_blog.title
 
             li
               = link_to tutorials_path, class: ('text-primary' if params[:controller] == 'tutorials') do
@@ -157,11 +150,6 @@ nav.navbar
             li
               = link_to blogs_path, class: ('text-primary' if params[:controller] == 'blogs' && params[:id] != 'flyer') do
                 = t('.menu.blogs')
-
-            ul
-              li
-                = link_to asdb_path, class: ('text-primary' if current_page?(asdb_path)) do
-                  = asdb_blog.title
 
             li
               = link_to tutorials_path, class: ('text-primary' if params[:controller] == 'tutorials') do
