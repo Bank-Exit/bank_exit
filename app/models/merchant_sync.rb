@@ -96,6 +96,10 @@ class MerchantSync < ApplicationRecord
     )
   end
 
+  def no_diff?
+    payload_before_updated_merchants == payload_updated_merchants
+  end
+
   private
 
   def broadcast_admin_stats

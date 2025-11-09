@@ -29,7 +29,7 @@
               |< (#{@merchant_sync.added_merchants_count})
 
             pre.collapse-content.json-colorized
-              == highlight(json_highlight(@merchant_sync.payload_added_merchants), params[:query])
+              == auto_link(highlight(json_highlight(@merchant_sync.payload_added_merchants), params[:query]), html: { target: :_blank })
 
         - if @merchant_sync.updated_merchants_count > 0
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300
@@ -38,13 +38,32 @@
               =< MerchantSync.human_attribute_name(:updated_merchants_count)
               |< (#{@merchant_sync.updated_merchants_count})
 
-            .collapse-content.json-diff
-              - diffy = diffy_json(@merchant_sync.payload_before_updated_merchants.to_json, @merchant_sync.payload_updated_merchants.to_json, highlight: @merchant_sync.updated_merchants_count <= 10)
+            - less_than_20 = @merchant_sync.updated_merchants_count <= 20
 
-              - if params[:query]
-                == highlight(diffy, params[:query])
+            - if @merchant_sync.no_diff?
+              - diffy = @merchant_sync.payload_before_updated_merchants
+              - if less_than_20
+                - diffy = json_highlight(diffy)
+                - diffy = auto_link(diffy, html: { target: :_blank })
               - else
-                == diffy
+                - diffy = JSON.pretty_generate(diffy)
+
+              pre.collapse-content.json-colorized
+                - if params[:query]
+                  == highlight(diffy, params[:query])
+                - else
+                  == diffy
+
+            - else
+              - diffy = diffy_json(@merchant_sync.payload_before_updated_merchants.to_json, @merchant_sync.payload_updated_merchants.to_json, highlight: less_than_20)
+
+              - diffy = auto_link(diffy, html: { target: :_blank }) if less_than_20
+
+              .collapse-content.json-diff
+                - if params[:query]
+                  == highlight(diffy, params[:query])
+                - else
+                  == diffy
 
         - if @merchant_sync.soft_deleted_merchants_count > 0
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300
@@ -57,7 +76,7 @@
               |< (#{@merchant_sync.soft_deleted_merchants_count})
 
             pre.collapse-content.json-colorized
-              == json_highlight(@merchant_sync.payload_soft_deleted_merchants)
+              == auto_link(json_highlight(@merchant_sync.payload_soft_deleted_merchants), html: { target: :_blank })
 
         - if @merchant_sync.payload_countries.count > 0
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300

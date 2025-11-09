@@ -12,8 +12,8 @@
     = image_tag url_for(@merchant.banner), class: 'lg:w-1/2 rounded-lg'
 
 section
-  pre.border.border-base-content/20.rounded-box.p-2.overflow-x-auto
-    == json_highlight(@merchant.as_json)
+  pre.border.border-base-content/20.rounded-box.p-2.overflow-x-auto.json-colorized
+    == auto_link(json_highlight(@merchant.as_json), html: { target: :_blank })
 
 - if @merchant.comments_count > 0
   section.mt-8

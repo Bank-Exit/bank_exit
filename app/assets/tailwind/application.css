@@ -280,10 +280,18 @@ forced to white to make texts readables */
 
 .json-colorized {
     @apply text-sm text-pretty;
+
+    a {
+        @apply underline;
+    }
 }
 
 .json-diff {
     @apply will-change-transform overflow-x-auto font-mono text-sm;
+
+    a {
+        @apply underline;
+    }
 
     li {
         @apply flex whitespace-pre break-all !text-pretty;
