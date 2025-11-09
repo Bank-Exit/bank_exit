@@ -1,14 +1,11 @@
-- today = Date.current
-- themes = find_themes(today)
-
 label.swap.swap-rotate
   input#theme-switcher.theme-controller(
     type="checkbox"
-    value=themes[:dark]
+    value=@themes[:dark]
     data-controller="themes"
     data-action="click->themes#switch"
-    data-themes-light-value=themes[:light]
-    data-themes-dark-value=themes[:dark]
+    data-themes-light-value=@themes[:light]
+    data-themes-dark-value=@themes[:dark]
   )
 
   span.swap-on title=t('.switch_to_dark')

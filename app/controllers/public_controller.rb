@@ -1,6 +1,7 @@
 class PublicController < ApplicationController
   include Localizable
   include Analyticable
+  include Themable
 
   before_action :set_projects
   before_action :set_contacts

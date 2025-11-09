@@ -1,7 +1,5 @@
-- force_snowflakes = params[:snowflakes] == 'true'
-
-footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary class=('snow-stack' if christmas_time?(force: force_snowflakes))
-  - if halloween_time?
+footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary class=('snow-stack' if @themes_finder.christmas_time?)
+  - if @themes_finder.halloween_time?
     p.text-4xl.animate-swing.mb-2 🎃
 
   p= t('.copyright_html', year: Date.current.year)
@@ -18,7 +16,7 @@ footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary class=('sn
     )
       = lucide_icon 'circle-question-mark', class: 'h-5 w-5'
 
-    - if christmas_time?(force: force_snowflakes)
+    - if @themes_finder.christmas_time?
       = render 'snowflakes'
 
     = link_to 'https://bank-exit-uptime-production.up.railway.app/status/bank-exit', target: :_blank do

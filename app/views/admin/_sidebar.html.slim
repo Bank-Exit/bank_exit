@@ -1,6 +1,3 @@
-- today = Date.current
-- themes = find_themes(today)
-
 .drawer-side
   label.drawer-overlay for="sidebarDrawer" aria-label="close sidebar"
 
@@ -78,11 +75,11 @@
 
         input#theme-switcher.toggle.toggle-sm.theme-controller(
           type="checkbox"
-          value=themes[:dark]
+          value=@themes[:dark]
           data-controller="themes"
           data-action="click->themes#switch"
-          data-themes-light-value=themes[:light]
-          data-themes-dark-value=themes[:dark]
+          data-themes-light-value=@themes[:light]
+          data-themes-dark-value=@themes[:dark]
         )
 
         = lucide_icon 'moon', class: 'swap-off h-5 w-5 fill-current'

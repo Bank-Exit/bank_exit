@@ -158,8 +158,18 @@ css:
       }
   }
 
-  .snow-disabled .snow {
-      display: none !important;
+  .snow-disabled {
+      .snow {
+          display: none !important;
+      }
+
+      .snow-stack {
+          padding-bottom: calc(var(--spacing) * 3);
+      }
+
+      .snow-stack::after {
+          content: none;
+      }
   }
 
   .snow-stack {

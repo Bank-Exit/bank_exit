@@ -3,6 +3,7 @@ module Admin
     before_action :require_login
 
     include Localizable
+    include Themable
 
     layout 'admin'
 
