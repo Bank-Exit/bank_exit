@@ -10,7 +10,7 @@
         = mail_to value, value
       - elsif key == :phone
         = phone_to value, value
-      - elsif key.in? %i[session] || (key == :signal && !contact.starts_with?('http'))
+      - elsif key.in?(%i[session]) || (key == :signal && !value.starts_with?('http'))
         = value
       - else
         = link_to clean_url(value).truncate(50), value, target: :_blank
