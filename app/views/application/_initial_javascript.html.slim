@@ -4,6 +4,15 @@
 javascript:
   // Website theme (light/dark)
   (function () {
-    const theme = localStorage.getItem('color-theme') || 'light';
+    let theme = "#{Setting::LIGHT_THEME_NAME}";
+    let colorMode = localStorage.getItem('color-mode') || 'light';
+
+    if(#{params[:theme].present?}) {
+      localStorage.removeItem('color-theme');
+      theme = #{raw(@themes.to_json)}[colorMode];
+    } else {
+      theme = localStorage.getItem('color-theme') || theme;
+    }
+
     document.documentElement.setAttribute('data-theme', theme);
   })();

@@ -25,5 +25,6 @@ export default class extends Controller {
 
     document.documentElement.setAttribute("data-theme", newTheme);
     localStorage.setItem("color-theme", newTheme);
+    localStorage.setItem("color-mode", isChecked ? "dark" : "light");
   }
 }
