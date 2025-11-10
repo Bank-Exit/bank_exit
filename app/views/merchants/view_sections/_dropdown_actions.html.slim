@@ -35,10 +35,9 @@ ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.bo
 
   li
     = link_to merchant.osm_link, target: :_blank do
-        = lucide_icon 'map-pin'
-        span
-          = t('merchants.show.view_on_osm')
-          = lucide_icon 'square-arrow-out-up-right', class: 'inline-flex w-3 ml-1'
+      = lucide_icon 'map-pin'
+      span
+        = t('merchants.show.view_on_osm')
 
   li
     = link_to new_merchant_report_path(merchant),
