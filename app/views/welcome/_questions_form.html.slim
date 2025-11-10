@@ -5,9 +5,7 @@
                     class: 'order-2 lg:order-none w-full md:w-sm relative' \
                   } do |f|
 
-  - if @themes_finder.christmas_time?
-    .absolute.-top-8.left-3.text-5xl ⛄
-  - elsif @themes_finder.halloween_time?
+  - if @themes_finder.halloween_time?
     .absolute.-top-6.left-3.text-5xl.animate-swing 🎃
 
   fieldset.bg-base-200/95.border-base-content/20.rounded-box.border.p-4
