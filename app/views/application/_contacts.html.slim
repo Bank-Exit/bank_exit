@@ -1,23 +1,29 @@
-#contact.w-full.flex.flex-col.gap-2.focus:border-2.focus:border-primary.focus:rounded-lg tabindex="0"
-  h2.font-bold.mb-3.text-lg= t('.title')
+nav#contact.focus:border-2.focus:border-primary.focus:rounded-lg tabindex="0"
+  h3.footer-title= t('.title')
 
-  .flex.items-center.justify-center.gap-3
-    - contacts.each do |contact|
-      - if contact.session? || contact.nostr? || contact.email?
-        = link_to contact_path(id: contact.title), title: contact.title, data: { turbo_frame: :contact_details } do
-          - if contact.email?
-            = lucide_icon contact.icon, class: 'bg-primary text-primary-content w-10 h-9 p-1 rounded-full hover:scale-110 motion-safe:transition-transform', alt: contact.title
-          - else
-            = image_tag "contacts/#{contact.icon}",
-                        class: 'bg-white w-10 rounded-full hover:scale-110 motion-safe:transition-transform',
-                        alt: contact.title,
-                        loading: :lazy
+  - contacts.each do |contact|
+    - if contact.session? || contact.nostr? || contact.email?
+      = link_to contact_path(id: contact.title),
+                title: contact.title,
+                class: 'flex items-center gap-3',
+                data: { turbo_stream: true } do
+        - if contact.email?
+          = lucide_icon contact.icon, width: '32', height: '32', class: 'w-10 text-base-content', alt: contact.title
+        - else
+          = inline_svg_tag "contacts/#{contact.icon}",
+                      class: 'w-10 text-base-content',
+                      alt: contact.title,
+                      loading: :lazy
+        = clean_url(contact.main_link)
 
-      - else
-        = link_to contact.main_link, title: contact.title, target: :_blank do
-            = image_tag "contacts/#{contact.icon}",
-                        class: 'bg-white w-10 h-10 rounded-full hover:scale-110 motion-safe:transition-transform',
-                        alt: contact.title,
-                        loading: :lazy
-
-  = turbo_frame_tag :contact_details
+    - else
+      = link_to contact.main_link,
+                title: contact.title,
+                class: 'flex items-center',
+                target: :_blank do
+        .flex.items-center.gap-3
+          = inline_svg_tag "contacts/#{contact.icon}",
+                      class: 'w-10 text-base-content',
+                      alt: contact.title,
+                      loading: :lazy
+          = clean_url(contact.main_link)

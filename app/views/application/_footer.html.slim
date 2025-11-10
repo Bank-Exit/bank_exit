@@ -1,29 +1,84 @@
-footer.p-3.text-center.border-t-2.text-sm.print:hidden.border-primary class=('snow-stack' if @themes_finder.christmas_time?)
-  - if @themes_finder.halloween_time?
-    p.text-4xl.animate-swing.mb-2 🎃
+footer.bg-base-200.text-base-content.p-10.border-base-content/10.border-t class=('snow-stack' if @themes_finder.christmas_time?)
+  - unless params[:controller] == 'risks'
+    details.collapse.collapse-arrow.bg-info.text-info-content.mx-auto.mb-10 class="lg:!w-2/3"
+      summary.collapse-title.font-semibold.text-center
+        = t('.warning_title')
 
-  p= t('.copyright_html', year: Date.current.year)
-  p
-    - heart = lucide_icon('heart', class: 'h-5 w-5 stroke-red-600 fill-red-600 inline-flex mx-1 hover:scale-150 motion-safe:transition-transform')
-    = t('.developed_by_html', heart: heart)
+      .collapse-content.space-y-2
+        = t('risks.index.body_html')
 
-  .flex.items-center.justify-center.gap-3.mt-2
-    button.cursor-pointer(
-      aria-label="Help modal"
-      data-controller="dispatcher"
-      data-action="click->dispatcher#dispatch"
-      data-dispatch-event="help:open"
-    )
-      = lucide_icon 'circle-question-mark', class: 'h-5 w-5'
+  .footer.lg:place-content-evenly.sm:footer-horizontal
+    nav
+      h2.footer-title
+        = "#{t('application.nav.collectif')} #{t('application.nav.bank_exit')}"
 
-    - if @themes_finder.christmas_time?
-      = render 'snowflakes'
+      button.block.cursor-pointer.hover:text-primary.motion-safe:transition-colors(
+        aria-label="Help modal"
+        data-controller="dispatcher"
+        data-action="click->dispatcher#dispatch"
+        data-dispatch-event="help:open"
+      )
+        = lucide_icon 'circle-question-mark', class: 'w-4 inline-flex'
+        =< t('help')
 
-    = link_to 'https://bank-exit-uptime-production.up.railway.app/status/bank-exit', target: :_blank do
-      .inline-grid.mr-1 class="*:[grid-area:1/1]"
-        .status.status-success.motion-safe:animate-ping
-        .status.status-success
-      =< t('status')
+      = link_to 'https://bank-exit-uptime-production.up.railway.app/status/bank-exit',
+                class: 'block',
+                target: :_blank do
+        .inline-grid.mr-1 class="*:[grid-area:1/1]"
+          .status.status-success.motion-safe:animate-ping
+          .status.status-success
+        =< t('status')
 
-    - unless logged_in?
-      = link_to '.', new_session_path
+      - if @themes_finder.christmas_time?
+        = render 'snowflakes'
+
+      - unless logged_in?
+        = link_to '.', new_session_path
+
+      - if @themes_finder.halloween_time?
+        .text-8xl.animate-swing.mx-auto.mt-4 🎃
+      - else
+        = image_tag 'logo_by_mondetta.jpeg', class: 'w-32 mx-auto rounded-full mt-4', title: 'Logo by Mondetta', alt: 'Logo by Mondetta'
+
+    nav
+      h2.footer-title= t('.navigation')
+      = link_to t('application.nav.menu.home'), root_path
+      = link_to collective_path do
+        = t('collectives.show.title')
+      = link_to directories_path do
+        = Directory.model_name.human.capitalize
+
+      = link_to t('application.nav.menu.blogs'), blogs_path
+      = link_to t('application.nav.menu.tutorials'), tutorials_path
+      = link_to t('media.index.title'), media_path
+      = link_to t('application.nav.menu.faq'), faq_path
+      = link_to t('glossaries.show.title'), glossaries_path
+
+      = link_to statistics_path do
+        = t('statistics.show.title')
+
+      = link_to license_path, target: :_blank do
+        = t('.license')
+
+    nav
+      h2.footer-title= t('.projects')
+      - projects.each do |project|
+        = link_to project.link, target: (:_blank if project.external?) do
+          = project.title
+          - if project.identifier == 'local_groups'
+            = inline_svg_tag "contacts/telegram.svg", class: 'inline-flex ml-2 bg-white rounded-full text-[#27A7E7] w-5', title: 'Telegram', alt: 'Logo Telegram'
+          - if project.external?
+            = lucide_icon 'square-arrow-out-up-right', class: 'w-4 inline-flex ml-1'
+
+    = render 'application/contacts', contacts: contacts
+
+/ Lower footer
+footer.footer.bg-base-100.text-base-content.border-base-content/10.border-t.lg:px-10.p-4
+  aside
+    .grid.grid-cols-1.lg:grid-flow-col.items-center.text-center.lg:text-left.gap-4
+      = image_tag logo_by_locale, class: 'w-16 h-16 mx-auto object-cover rounded-full', alt: 'Logo Bank-Exit'
+      p
+        = t('.copyright_html', year: Date.current.year)
+        br
+        - heart = lucide_icon('heart', class: 'h-5 w-5 stroke-red-600 fill-red-600 inline-flex mx-1 hover:scale-150 motion-safe:transition-transform')
+        = t('.developed_by_html', heart: heart)

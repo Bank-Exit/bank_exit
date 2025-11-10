@@ -26,16 +26,14 @@ es:
       label: antes del final de la fase de preparación
       source_html: fuente <abbr title="Banco Central Europeo">BCE</abbr>
 
-    upper_footer:
-      navigation: Navegación
-      projects: Los proyectos
-      warning_title: ⚠️ Descargo de responsabilidad (por leer) ⚠️
-      license: Licencia de utilización
-
     contacts:
       title: Redes y contactos
 
     footer:
+      navigation: Navegación
+      projects: Los proyectos
+      warning_title: ⚠️ Descargo de responsabilidad (por leer) ⚠️
+      license: Licencia de utilización
       copyright_html: Copyright &copy; Bank-Exit 2022 - %{year} &bullet; Todos derechos reservados
       developed_by_html: Desarrollado con %{heart} por Collectif Sortie de Banque
 
@@ -50,5 +48,5 @@ es:
       open_merchant_routing_form: Abrir la página para calcular la ruta hacia un comerciante
 
     snowflakes:
-      enable_snowflakes: Activar los copos de nieve
-      disable_snowflakes: Desactivar los copos de nieve
+      enable_snowflakes: Activar el tema de Navidad
+      disable_snowflakes: Desactivar el tema de Navidad

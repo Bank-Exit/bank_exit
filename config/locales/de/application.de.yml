@@ -26,16 +26,14 @@ de:
       label: bis zum Ende der Vorbereitungsphase
       source_html: Quelle <abbr title="Europäische Zentralbank">EZB</abbr>
 
-    upper_footer:
-      navigation: Navigation
-      projects: Projekte
-      warning_title: ⚠️ Haftungsausschluss (bitte lesen) ⚠️
-      license: Nutzungslizenz
-
     contacts:
       title: Netzwerke und Kontakte
 
     footer:
+      navigation: Navigation
+      projects: Projekte
+      warning_title: ⚠️ Haftungsausschluss (bitte lesen) ⚠️
+      license: Nutzungslizenz
       copyright_html: Copyright &copy; Bank-Exit 2022 - %{year} &bullet; Alle Rechte vorbehalten
       developed_by_html: Entwickelt mit %{heart} vom Kollektiv Bank-Exit
 
@@ -50,5 +48,5 @@ de:
       open_merchant_routing_form: Routenplaner zur Händleradresse öffnen
 
     snowflakes:
-      enable_snowflakes: Schneeflocken aktivieren
-      disable_snowflakes: Schneeflocken deaktivieren
+      enable_snowflakes: Weihnachtsdesign aktivieren
+      disable_snowflakes: Weihnachtsdesign deaktivieren

@@ -28,16 +28,14 @@ en:
       label: before the end of the preparation phase
       source_html: source <abbr title="European Central Bank">ECB</abbr>
 
-    upper_footer:
-      navigation: Navigation
-      projects: Projects
-      warning_title: ⚠️ Disclaimer of liability (to read) ⚠️
-      license: User license
-
     contacts:
       title: Networks and contacts
 
     footer:
+      navigation: Navigation
+      projects: Projects
+      warning_title: ⚠️ Disclaimer of liability (to read) ⚠️
+      license: User license
       copyright_html: Copyright &copy; Bank-Exit 2022 - %{year} &bullet; All rights reserved
       developed_by_html: Developed with %{heart} by the Bank-Exit Collective
 
@@ -52,5 +50,5 @@ en:
       open_merchant_routing_form: Open route planner to reach a merchant
 
     snowflakes:
-      enable_snowflakes: Enable snowflakes
-      disable_snowflakes: Disable snowflakes
+      enable_snowflakes: Enable Christmas theme
+      disable_snowflakes: Disable Christmas theme

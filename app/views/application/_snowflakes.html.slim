@@ -24,14 +24,16 @@ div data-controller="snowflakes"
     .snow__layer
       .snow__fall
 
-  label.swap.swap-rotate
+  label.swap.hover:text-primary.motion-safe:transition-colors
     input type="checkbox" data-snowflakes-target="input" data-action="click->snowflakes#switch"
 
-    span.swap-on title=t('.disable_snowflakes')
-      = lucide_icon 'snowflake', class: 'h-5 w-5 fill-current'
+    span.swap-on
+      = lucide_icon 'snowflake', class: 'h-5 w-5 fill-current inline-flex mr-1'
+      = t('.disable_snowflakes')
 
-    span.swap-off title=t('.enable_snowflakes')
-      = lucide_icon 'snowflake', class: 'h-5 w-5 fill-current opacity-50'
+    span.swap-off
+      = lucide_icon 'snowflake', class: 'h-5 w-5 fill-current opacity-50 inline-flex mr-1'
+      = t('.enable_snowflakes')
 
 javascript:
   document.addEventListener("turbo:load", () => {
@@ -164,7 +166,7 @@ css:
       }
 
       .snow-stack {
-          padding-bottom: calc(var(--spacing) * 3);
+          padding-bottom: calc(var(--spacing) * 10);
       }
 
       .snow-stack::after {
@@ -172,18 +174,38 @@ css:
       }
   }
 
+  @media (min-width: 1rem) {
+      .snow-stack {
+          --christmas-banner-height: 225px;
+
+          &::after {
+              background-size: cover;
+          }
+      }
+  }
+
+  @media (min-width: 64rem) {
+      .snow-stack {
+          --christmas-banner-height: 350px;
+
+          &::after {
+              background-size: auto;
+          }
+      }
+  }
+
   .snow-stack {
       position: relative;
-      padding-bottom: 150px;
+      padding-bottom: calc(var(--christmas-banner-height) + 16px);
   }
 
   .snow-stack::after {
       content: "";
-      position: fixed;
+      position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 150px;
+      height: var(--christmas-banner-height);
       pointer-events: none;
       z-index: 1;
 

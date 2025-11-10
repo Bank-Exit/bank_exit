@@ -26,16 +26,14 @@ it:
       label: prima della fine della fase di preparazione
       source_html: fonte <abbr title="Banca Centrale Europea">BCE</abbr>
 
-    upper_footer:
-      navigation: Navigazione
-      projects: Progetti
-      warning_title: ⚠️ Esclusione di responsabilità (da leggere) ⚠️
-      license: Licenza utente
-
     contacts:
       title: Reti e contatti
 
     footer:
+      navigation: Navigazione
+      projects: Progetti
+      warning_title: ⚠️ Esclusione di responsabilità (da leggere) ⚠️
+      license: Licenza utente
       copyright_html: Copyright &copy; Bank-Exit 2022 - %{year} &bullet; Tutti i diritti riservati
       developed_by_html: Sviluppato con %{heart} dal Collettivo Bank-Exit
 
@@ -50,5 +48,5 @@ it:
       open_merchant_routing_form: Apri la pagina per calcolare il percorso verso un commerciante
 
     snowflakes:
-      enable_snowflakes: Attiva i fiocchi di neve
-      disable_snowflakes: Disattiva i fiocchi di neve
+      enable_snowflakes: Attiva il tema di Natale
+      disable_snowflakes: Disattiva il tema di Natale
