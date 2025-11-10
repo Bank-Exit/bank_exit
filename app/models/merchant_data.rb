@@ -40,21 +40,21 @@ class MerchantData
 
       # Social networks
 
-      contact_session: social_networks_prefixer.contact_session,
-      contact_signal: social_networks_prefixer.contact_signal,
-      contact_matrix: social_networks_prefixer.contact_matrix,
-      contact_jabber: social_networks_prefixer.contact_jabber,
-      contact_telegram: social_networks_prefixer.contact_telegram,
-      contact_facebook: social_networks_prefixer.contact_facebook,
-      contact_instagram: social_networks_prefixer.contact_instagram,
-      contact_twitter: social_networks_prefixer.contact_twitter,
-      contact_youtube: social_networks_prefixer.contact_youtube,
-      contact_tiktok: social_networks_prefixer.contact_tiktok,
-      contact_linkedin: social_networks_prefixer.contact_linkedin,
-      contact_tripadvisor: social_networks_prefixer.contact_tripadvisor,
-      contact_odysee: social_networks_prefixer.contact_odysee,
-      contact_crowdbunker: social_networks_prefixer.contact_crowdbunker,
-      contact_francelibretv: social_networks_prefixer.contact_francelibretv,
+      contact_session: SocialUrlPrefixer.call(:session, properties['contact:session']),
+      contact_signal: SocialUrlPrefixer.call(:signal, properties['contact:signal']),
+      contact_matrix: SocialUrlPrefixer.call(:matrix, properties['contact:matrix']),
+      contact_jabber: SocialUrlPrefixer.call(:jabber, properties['contact:jabber']),
+      contact_telegram: SocialUrlPrefixer.call(:telegram, properties['contact:telegram']),
+      contact_facebook: SocialUrlPrefixer.call(:facebook, properties['contact:facebook']),
+      contact_instagram: SocialUrlPrefixer.call(:instagram, properties['contact:instagram']),
+      contact_twitter: SocialUrlPrefixer.call(:twitter, properties['contact:twitter']),
+      contact_youtube: SocialUrlPrefixer.call(:youtube, properties['contact:youtube']),
+      contact_tiktok: SocialUrlPrefixer.call(:tiktok, properties['contact:tiktok']),
+      contact_linkedin: SocialUrlPrefixer.call(:linkedin, properties['contact:linkedin']),
+      contact_tripadvisor: SocialUrlPrefixer.call(:tripadvisor, properties['contact:tripadvisor']),
+      contact_odysee: SocialUrlPrefixer.call(:odysee, properties['contact:odysee']),
+      contact_crowdbunker: SocialUrlPrefixer.call(:crowdbunker, properties['contact:crowdbunker']),
+      contact_francelibretv: SocialUrlPrefixer.call(:francelibretv, properties['contact:francelibretv']),
 
       ask_kyc: ask_kyc,
 
@@ -214,12 +214,6 @@ class MerchantData
 
   def monero?
     properties['currency:XMR'] == 'yes'
-  end
-
-  # Social networks
-
-  def social_networks_prefixer
-    @social_networks_prefixer ||= SocialNetworksPrefixer.new(properties)
   end
 
   # KYC
