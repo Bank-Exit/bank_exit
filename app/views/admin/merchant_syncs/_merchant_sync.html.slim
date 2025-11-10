@@ -61,6 +61,6 @@ tr id=dom_id(merchant_sync)
           = t('details')
 
 - if merchant_sync.pending? || merchant_sync.ended_at >= Setting::MERCHANTS_DELTA_SYNC_TIME.ago
-  tr#process_logs_wrapper
+  tr#process_logs_wrapper.bg-transparent
     td#process_logs.p-0 colspan="100%"
       = render 'admin/merchant_syncs/process_logs', merchant_sync: merchant_sync
