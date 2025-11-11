@@ -17,7 +17,7 @@ RSpec.configure do |config|
       openapi: '3.0.1',
       info: {
         title: 'Bank-Exit API',
-        version: 'v1.0.1',
+        version: 'v1.1.0',
         description: <<~DESC
           Welcome to the Bank-Exit API v1 documentation.
 
@@ -45,7 +45,11 @@ RSpec.configure do |config|
           merchants_index_response: load_schema('merchants_index_response'),
           directory: load_schema('directory'),
           directory_show_response: load_schema('directory_show_response'),
-          directories_index_response: load_schema('directories_index_response')
+          directories_index_response: load_schema('directories_index_response'),
+          statistics: load_schema('statistics'),
+          unauthorized: load_schema('errors/unauthorized'),
+          forbidden: load_schema('errors/forbidden'),
+          not_found: load_schema('errors/not_found')
         }
       }
     }

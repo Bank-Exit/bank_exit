@@ -1,0 +1,29 @@
+type: object
+properties:
+  errors:
+    type: array
+    description: List of error objects following JSON:API structure
+    items:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "404"
+          description: HTTP status code as a string
+        title:
+          type: string
+          example: Not Found
+          description: Short human-readable summary of the problem
+        detail:
+          type: string
+          example: The requested resource does not exist
+          description: Detailed explanation of the error
+
+examples:
+  unauthorized:
+    summary: Example unauthorized error
+    value:
+      errors:
+        - status: "404"
+          title: Not Found
+          detail: The requested resource does not exist

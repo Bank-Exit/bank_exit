@@ -143,9 +143,10 @@ Rails.application.routes.draw do
     end
 
     namespace :api do
-      namespace :v1 do
+      namespace :v1, defaults: { format: :json } do
         resources :merchants, only: %i[index show]
         resources :directories, only: %i[index show]
+        resource :statistics, only: :show
       end
     end
   end

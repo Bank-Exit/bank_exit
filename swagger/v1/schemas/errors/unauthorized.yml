@@ -1,0 +1,29 @@
+type: object
+properties:
+  errors:
+    type: array
+    description: List of error objects following JSON:API structure
+    items:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "401"
+          description: HTTP status code as a string
+        title:
+          type: string
+          example: Unauthorized
+          description: Short human-readable summary of the problem
+        detail:
+          type: string
+          example: Invalid or missing authentication token.
+          description: Detailed explanation of the error
+
+examples:
+  unauthorized:
+    summary: Example unauthorized error
+    value:
+      errors:
+        - status: "401"
+          title: Unauthorized
+          detail: Invalid or missing authentication token.

@@ -2,7 +2,7 @@
 openapi: 3.0.1
 info:
   title: Bank-Exit API
-  version: v1.0.1
+  version: v1.1.0
   description: "Welcome to the Bank-Exit API v1 documentation.\n\n- This API requires
     Bearer token authentication.\n- All endpoints are prefixed by a locale (e.g.,
     `/en`, `/fr`, etc.).\n- You can try out the endpoints directly from this interface.\n\n**Important:**
@@ -442,6 +442,206 @@ components:
               format: uri
               nullable: true
               example: http://example.com/en/api/v1/directories?page=2
+    statistics:
+      type: object
+      required:
+      - data
+      - links
+      properties:
+        data:
+          type: object
+          required:
+          - merchants
+          - directories
+          properties:
+            merchants:
+              type: object
+              properties:
+                totals:
+                  type: object
+                  properties:
+                    bitcoin:
+                      type: integer
+                      example: 16644
+                    monero:
+                      type: integer
+                      example: 135
+                    june:
+                      type: integer
+                      example: 26
+                new:
+                  type: object
+                  properties:
+                    today:
+                      type: integer
+                      example: 6
+                    yesterday:
+                      type: integer
+                      example: 28
+                last_update:
+                  type: string
+                  format: date-time
+                  example: '2025-11-10T09:29:27+01:00'
+                categories:
+                  type: object
+                  properties:
+                    top:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          original_name:
+                            type: string
+                            example: restaurant
+                          human_name:
+                            type: string
+                            example: Restaurante
+                          count:
+                            type: integer
+                            example: 2242
+                by_countries:
+                  type: object
+                  properties:
+                    monero:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          iso:
+                            type: string
+                            example: FR
+                          continent:
+                            type: string
+                            example: EU
+                          flag:
+                            type: string
+                            example: "\U0001F1EB\U0001F1F7"
+                          name:
+                            type: string
+                            example: Francia
+                          count:
+                            type: integer
+                            example: 64
+                    june:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          iso:
+                            type: string
+                            example: ES
+                          continent:
+                            type: string
+                            example: EU
+                          flag:
+                            type: string
+                            example: "\U0001F1EA\U0001F1F8"
+                          name:
+                            type: string
+                            example: España
+                          count:
+                            type: integer
+                            example: 2
+            directories:
+              type: object
+              properties:
+                total_count:
+                  type: integer
+                  example: 26
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              format: uri
+              example: http://example.com/api/v1/statistics
+    unauthorized:
+      type: object
+      properties:
+        errors:
+          type: array
+          description: List of error objects following JSON:API structure
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                example: '401'
+                description: HTTP status code as a string
+              title:
+                type: string
+                example: Unauthorized
+                description: Short human-readable summary of the problem
+              detail:
+                type: string
+                example: Invalid or missing authentication token.
+                description: Detailed explanation of the error
+      examples:
+        unauthorized:
+          summary: Example unauthorized error
+          value:
+            errors:
+            - status: '401'
+              title: Unauthorized
+              detail: Invalid or missing authentication token.
+    forbidden:
+      type: object
+      properties:
+        errors:
+          type: array
+          description: List of error objects following JSON:API structure
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                example: '403'
+                description: HTTP status code as a string
+              title:
+                type: string
+                example: Forbidden
+                description: Short human-readable summary of the problem
+              detail:
+                type: string
+                example: Access forbidden for this token.
+                description: Detailed explanation of the error
+      examples:
+        forbidden:
+          summary: Example forbidden error
+          value:
+            errors:
+            - status: '403'
+              title: Forbidden
+              detail: Access forbidden for this token.
+    not_found:
+      type: object
+      properties:
+        errors:
+          type: array
+          description: List of error objects following JSON:API structure
+          items:
+            type: object
+            properties:
+              status:
+                type: string
+                example: '404'
+                description: HTTP status code as a string
+              title:
+                type: string
+                example: Not Found
+                description: Short human-readable summary of the problem
+              detail:
+                type: string
+                example: The requested resource does not exist
+                description: Detailed explanation of the error
+      examples:
+        unauthorized:
+          summary: Example unauthorized error
+          value:
+            errors:
+            - status: '404'
+              title: Not Found
+              detail: The requested resource does not exist
 paths:
   "/{locale}/api/v1/directories":
     get:
@@ -883,15 +1083,23 @@ paths:
         description: Per page value
       responses:
         '200':
-          description: successful
+          description: Found directories
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/directories_index_response"
         '401':
-          description: unauthorized token
+          description: Unauthorized token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unauthorized"
         '403':
-          description: forbidden token
+          description: Forbidden token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/forbidden"
   "/{locale}/api/v1/directories/{id}":
     get:
       summary: Show a directory
@@ -921,17 +1129,29 @@ paths:
           type: string
       responses:
         '200':
-          description: directory found
+          description: Found directory
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/directory_show_response"
         '401':
-          description: unauthorized token
+          description: Unauthorized token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unauthorized"
         '403':
-          description: forbidden token
+          description: Forbidden token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/forbidden"
         '404':
-          description: directory not found
+          description: Not Found directory
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
   "/{locale}/api/v1/merchants":
     get:
       summary: List merchants
@@ -1271,8 +1491,16 @@ paths:
                 "$ref": "#/components/schemas/merchants_index_response"
         '401':
           description: unauthorized token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unauthorized"
         '403':
           description: forbidden token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/forbidden"
   "/{locale}/api/v1/merchants/{id}":
     get:
       summary: Show a merchant
@@ -1302,14 +1530,73 @@ paths:
           type: string
       responses:
         '200':
-          description: merchant found
+          description: Found merchant
           content:
             application/json:
               schema:
                 "$ref": "#/components/schemas/merchant_show_response"
         '401':
-          description: unauthorized token
+          description: Unauthorized token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unauthorized"
         '403':
-          description: forbidden token
+          description: Forbidden token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/forbidden"
         '404':
-          description: merchant not found
+          description: Not Found merchant
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/not_found"
+  "/{locale}/api/v1/statistics":
+    get:
+      summary: Fetch statistics
+      tags:
+      - Statistics
+      security:
+      - bearer_auth: []
+      parameters:
+      - name: locale
+        in: path
+        required: true
+        schema:
+          type: string
+          default: en
+          enum:
+          - en
+          - fr
+          - es
+          - de
+          - it
+        description: Locale used for the response language, must be one of the supported
+          locales.
+      - in: query
+        name: atms
+        schema:
+          type: boolean
+          default:
+        description: Include ATMs in statistics
+      responses:
+        '200':
+          description: Found statistics
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/statistics"
+        '401':
+          description: Unauthorized token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/unauthorized"
+        '403':
+          description: Forbidden token
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/forbidden"

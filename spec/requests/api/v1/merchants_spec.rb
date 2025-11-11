@@ -55,7 +55,7 @@ RSpec.describe 'API::V1::Merchants' do
         create_list :merchant, 3
       end
 
-      response '200', 'successful' do
+      response 200, 'successful' do
         include_context 'with authenticated token'
 
         schema '$ref' => '#/components/schemas/merchants_index_response'
@@ -77,12 +77,16 @@ RSpec.describe 'API::V1::Merchants' do
         end
       end
 
-      response '401', 'unauthorized token' do
+      response 401, 'unauthorized token' do
+        schema '$ref' => '#/components/schemas/unauthorized'
+
         include_context 'with missing token'
         it_behaves_like 'unauthorized API request'
       end
 
-      response '403', 'forbidden token' do
+      response 403, 'forbidden token' do
+        schema '$ref' => '#/components/schemas/forbidden'
+
         include_context 'with forbidden token'
         it_behaves_like 'forbidden API request'
       end
@@ -102,7 +106,7 @@ RSpec.describe 'API::V1::Merchants' do
       let!(:merchant) { create :merchant }
       let(:id) { merchant.identifier }
 
-      response '200', 'merchant found' do
+      response 200, 'Found merchant' do
         include_context 'with authenticated token'
 
         schema '$ref' => '#/components/schemas/merchant_show_response'
@@ -119,17 +123,23 @@ RSpec.describe 'API::V1::Merchants' do
         end
       end
 
-      response '401', 'unauthorized token' do
+      response 401, 'Unauthorized token' do
+        schema '$ref' => '#/components/schemas/unauthorized'
+
         include_context 'with missing token'
         it_behaves_like 'unauthorized API request'
       end
 
-      response '403', 'forbidden token' do
+      response 403, 'Forbidden token' do
+        schema '$ref' => '#/components/schemas/forbidden'
+
         include_context 'with forbidden token'
         it_behaves_like 'forbidden API request'
       end
 
-      response '404', 'merchant not found' do
+      response 404, 'Not Found merchant' do
+        schema '$ref' => '#/components/schemas/not_found'
+
         include_context 'with authenticated token'
 
         let(:id) { 'nonexistent-id' }

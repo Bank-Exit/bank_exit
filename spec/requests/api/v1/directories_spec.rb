@@ -69,7 +69,7 @@ RSpec.describe 'API::V1::Directories' do
         create_list :directory, 3
       end
 
-      response '200', 'successful' do
+      response 200, 'Found directories' do
         include_context 'with authenticated token'
 
         schema '$ref' => '#/components/schemas/directories_index_response'
@@ -91,12 +91,16 @@ RSpec.describe 'API::V1::Directories' do
         end
       end
 
-      response '401', 'unauthorized token' do
+      response 401, 'Unauthorized token' do
+        schema '$ref' => '#/components/schemas/unauthorized'
+
         include_context 'with missing token'
         it_behaves_like 'unauthorized API request'
       end
 
-      response '403', 'forbidden token' do
+      response 403, 'Forbidden token' do
+        schema '$ref' => '#/components/schemas/forbidden'
+
         include_context 'with forbidden token'
         it_behaves_like 'forbidden API request'
       end
@@ -116,7 +120,7 @@ RSpec.describe 'API::V1::Directories' do
       let!(:directory) { create :directory }
       let(:id) { directory.id }
 
-      response '200', 'directory found' do
+      response 200, 'Found directory' do
         include_context 'with authenticated token'
 
         schema '$ref' => '#/components/schemas/directory_show_response'
@@ -133,17 +137,23 @@ RSpec.describe 'API::V1::Directories' do
         end
       end
 
-      response '401', 'unauthorized token' do
+      response 401, 'Unauthorized token' do
+        schema '$ref' => '#/components/schemas/unauthorized'
+
         include_context 'with missing token'
         it_behaves_like 'unauthorized API request'
       end
 
-      response '403', 'forbidden token' do
+      response 403, 'Forbidden token' do
+        schema '$ref' => '#/components/schemas/forbidden'
+
         include_context 'with forbidden token'
         it_behaves_like 'forbidden API request'
       end
 
-      response '404', 'directory not found' do
+      response 404, 'Not Found directory' do
+        schema '$ref' => '#/components/schemas/not_found'
+
         include_context 'with authenticated token'
 
         let(:id) { 'nonexistent-id' }
