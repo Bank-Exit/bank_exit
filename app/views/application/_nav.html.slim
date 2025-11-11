@@ -8,7 +8,7 @@
 - active_article = params[:controller].in?(%w[blogs tutorials]) && params[:id] != 'flyer'  && params[:id] != 'accounting' && params[:id] != 'cryptopayment-for-business'
 - active_other = params[:controller].in?(%w[local_groups collectives ecosystems media statistics])
 
-nav.navbar
+nav.navbar.container.mx-auto
   .navbar-start.lg:w-full
     / Mobile
     .dropdown

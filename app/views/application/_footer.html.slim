@@ -1,13 +1,13 @@
 footer.bg-base-200.text-base-content.p-10.border-base-content/10.border-t class=('snow-stack' if @themes_finder.christmas_time?)
   - unless params[:controller] == 'risks'
-    details.collapse.collapse-arrow.bg-info.text-info-content.mx-auto.mb-10 class="lg:!w-2/3"
+    details.collapse.collapse-arrow.bg-info.text-info-content.mx-auto.mb-10.container class="lg:w-1/2!"
       summary.collapse-title.font-semibold.text-center
         = t('.warning_title')
 
       .collapse-content.space-y-2
         = t('risks.index.body_html')
 
-  .footer.lg:place-content-evenly.sm:footer-horizontal
+  .container.mx-auto.footer.lg:place-content-evenly.sm:footer-horizontal
     nav
       h2.footer-title
         = "#{t('application.nav.collectif')} #{t('application.nav.bank_exit')}"
@@ -73,7 +73,7 @@ footer.bg-base-200.text-base-content.p-10.border-base-content/10.border-t class=
     = render 'application/contacts', contacts: contacts
 
 / Lower footer
-footer.footer.bg-base-100.text-base-content.border-base-content/10.border-t.lg:px-10.p-4
+footer.container.mx-auto.footer.bg-base-100.text-base-content.border-base-content/10.border-t.lg:px-10.p-4.justify-center.lg:justify-start
   aside
     .grid.grid-cols-1.lg:grid-flow-col.items-center.text-center.lg:text-left.gap-4
       = image_tag logo_by_locale, class: 'w-16 h-16 mx-auto object-cover rounded-full', alt: 'Logo Bank-Exit'

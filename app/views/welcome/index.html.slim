@@ -29,7 +29,7 @@
 = render 'debt_clock'
 = render 'coins', coins: @coins
 
-.flex.flex-col.lg:flex-row.items-center.lg:items-start
+.container.mx-auto.flex.flex-col.lg:flex-row.items-center.lg:items-start
   / Cannot use iframe as theme cannot be changed easily
   /iframe.w-full class="h-[600px]" src=maps_embed_path
   = render 'maps/map', from_welcome: true
