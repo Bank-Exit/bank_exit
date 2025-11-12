@@ -160,7 +160,7 @@ RSpec.describe 'API::V1::Directories' do
 
         run_test! do |response|
           expect(response).to have_http_status :not_found
-          expect(parsed_response['errors'].first['status']).to eq('404')
+          expect(parsed_response['errors'].first['status']).to eq(404)
         end
       end
     end

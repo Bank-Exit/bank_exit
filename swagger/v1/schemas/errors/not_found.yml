@@ -7,8 +7,8 @@ properties:
       type: object
       properties:
         status:
-          type: string
-          example: "404"
+          type: integer
+          example: 404
           description: HTTP status code as a string
         title:
           type: string
@@ -24,6 +24,6 @@ examples:
     summary: Example unauthorized error
     value:
       errors:
-        - status: "404"
+        - status: 404
           title: Not Found
           detail: The requested resource does not exist

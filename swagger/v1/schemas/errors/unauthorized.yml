@@ -7,8 +7,8 @@ properties:
       type: object
       properties:
         status:
-          type: string
-          example: "401"
+          type: integer
+          example: 401
           description: HTTP status code as a string
         title:
           type: string
@@ -24,6 +24,6 @@ examples:
     summary: Example unauthorized error
     value:
       errors:
-        - status: "401"
+        - status: 401
           title: Unauthorized
           detail: Invalid or missing authentication token.

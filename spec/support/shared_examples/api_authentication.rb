@@ -11,7 +11,7 @@ RSpec.shared_examples 'unauthorized API request' do
 
     error = json['errors'].first
     expect(error).to include(
-      status: '401',
+      status: 401,
       title: 'Unauthorized',
       detail: I18n.t('exceptions.authenticable_errors.unauthorized_token')
     )
@@ -32,7 +32,7 @@ RSpec.shared_examples 'forbidden API request' do
 
     error = json['errors'].first
     expect(error).to include(
-      status: '403',
+      status: 403,
       title: 'Forbidden',
       detail: I18n.t('exceptions.authenticable_errors.forbidden_token')
     )

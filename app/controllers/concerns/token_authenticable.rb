@@ -8,9 +8,9 @@ module TokenAuthenticable
   def authenticate
     authenticate!
   rescue AuthenticableErrors::UnauthorizedToken => e
-    render_unauthorized_authentication(e.message)
+    render_unauthorized_authentication(e)
   rescue AuthenticableErrors::ForbiddenToken => e
-    render_forbidden_authentication(e.message)
+    render_forbidden_authentication(e)
   end
 
   # @raise [AuthenticableErrors::Unauthorized] if authentication failed
@@ -30,37 +30,6 @@ module TokenAuthenticable
     @current_api_token = APIToken.find_by(
       token: token_from_headers || token_from_params
     )
-  end
-
-  # Respond an unauthorized message and status with an +WWW-Authenticate+ header
-  #
-  # @return [JSON]
-  def render_unauthorized_authentication(message = nil)
-    response.headers['WWW-Authenticate'] = 'Bearer realm="Bank-Exit", error="invalid_token"'
-
-    render json: {
-      errors: [
-        {
-          status: '401',
-          title: 'Unauthorized',
-          detail: message
-        }
-      ]
-    }, status: :unauthorized
-  end
-
-  def render_forbidden_authentication(message = nil)
-    response.headers['WWW-Authenticate'] = 'Bearer realm="Bank-Exit", error="disabled_or_expired_token"'
-
-    render json: {
-      errors: [
-        {
-          status: '403',
-          title: 'Forbidden',
-          detail: message
-        }
-      ]
-    }, status: :forbidden
   end
 
   private

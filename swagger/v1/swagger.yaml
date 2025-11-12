@@ -565,8 +565,8 @@ components:
             type: object
             properties:
               status:
-                type: string
-                example: '401'
+                type: integer
+                example: 401
                 description: HTTP status code as a string
               title:
                 type: string
@@ -581,7 +581,7 @@ components:
           summary: Example unauthorized error
           value:
             errors:
-            - status: '401'
+            - status: 401
               title: Unauthorized
               detail: Invalid or missing authentication token.
     forbidden:
@@ -594,8 +594,8 @@ components:
             type: object
             properties:
               status:
-                type: string
-                example: '403'
+                type: integer
+                example: 403
                 description: HTTP status code as a string
               title:
                 type: string
@@ -610,7 +610,7 @@ components:
           summary: Example forbidden error
           value:
             errors:
-            - status: '403'
+            - status: 403
               title: Forbidden
               detail: Access forbidden for this token.
     not_found:
@@ -623,8 +623,8 @@ components:
             type: object
             properties:
               status:
-                type: string
-                example: '404'
+                type: integer
+                example: 404
                 description: HTTP status code as a string
               title:
                 type: string
@@ -639,7 +639,7 @@ components:
           summary: Example unauthorized error
           value:
             errors:
-            - status: '404'
+            - status: 404
               title: Not Found
               detail: The requested resource does not exist
 paths:

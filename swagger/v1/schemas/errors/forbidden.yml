@@ -7,8 +7,8 @@ properties:
       type: object
       properties:
         status:
-          type: string
-          example: "403"
+          type: integer
+          example: 403
           description: HTTP status code as a string
         title:
           type: string
@@ -24,6 +24,6 @@ examples:
     summary: Example forbidden error
     value:
       errors:
-        - status: "403"
+        - status: 403
           title: Forbidden
           detail: Access forbidden for this token.
