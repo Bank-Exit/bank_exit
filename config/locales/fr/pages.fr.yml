@@ -262,6 +262,10 @@ fr:
       last_survey_on: Dernière actualisation il y a %{date}
       last_survey_unknown: Date de vérification inconnue
 
+    merchants_dropdown:
+      to_navigate: pour naviguer,
+      to_close_modal: pour fermer la modale
+
     show:
       <<: *payment_methods_accepted
 

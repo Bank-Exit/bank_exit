@@ -252,6 +252,10 @@ de:
     last_survey_on:
       last_survey_on: Letzte Überprüfung am %{date}
 
+    merchants_dropdown:
+      to_navigate: zum Navigieren,
+      to_close_modal: zum Schließen des Modalfensters
+
     show:
       <<: *payment_methods_accepted
 

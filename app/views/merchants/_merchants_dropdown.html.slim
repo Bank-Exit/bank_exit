@@ -1,11 +1,11 @@
-- link_klass = "block p-4 space-y-3 hover:bg-primary/20 hover:!text-inherit focus-visible:outline-none focus-visible:bg-primary/10"
+- link_klass = "block p-4 space-y-3 border-l-4 hover:border-l-primary hover:!text-inherit focus-visible:outline-none focus-visible:border-l-primary"
 
-div data-command-palette-target="results"
-  ul.overflow-y-auto.bg-base-100.rounded-box.text-sm.divide-y.divide-base-content/20.border.border-base-content/20.motion-safe:scroll-smooth.scroll-py-2.mb-1 class="max-h-[60svh]"
+.border.border-base-content/20.rounded-box.divide-y.divide-base-content/20 data-command-palette-target="results"
+  ul.overflow-y-auto.bg-base-100.rounded-t-box.text-sm.divide-y.divide-base-content/20.motion-safe:scroll-smooth.scroll-py-2 class="max-h-[60svh]"
     - if defined?(directories_spotlight) && directories_spotlight.any?
       - directories_spotlight.first(3).each do |directory|
         li
-          = link_to directory_path(directory), class: "#{link_klass} border-l-3 border-secondary" do
+          = link_to directory_path(directory), class: "#{link_klass} border-l-secondary" do
             .flex.items-center.justify-between
               .flex.items-center.gap-2.font-medium.text-base
                 = render 'logo_or_initials', model: directory, mode: :small
@@ -22,7 +22,7 @@ div data-command-palette-target="results"
 
     - merchants.each do |merchant|
       li
-        = link_to merchant_path(merchant), class: link_klass do
+        = link_to merchant_path(merchant), class: "#{link_klass} border-l-transparent" do
           .flex.items-center.justify-between
             .flex.items-center.gap-2.font-medium.text-base
               = render 'logo_or_initials', model: merchant, mode: :small
@@ -60,5 +60,21 @@ div data-command-palette-target="results"
       li.p-3.text-center= t('empty_results')
 
   - if defined?(pagy) && pagy.count > pagy.limit
-    .bg-base-200.border.border-base-content/20.p-2.rounded-box data-controller="pagination"
+    .bg-base-100.p-2 data-controller="pagination"
       == pagy_nav(pagy, anchor_string: 'data-turbo-stream="true"')
+
+  footer.bg-base-200.p-2.text-sm.rounded-b-box.space-y-2.flex.items-center.justify-between
+    p.flex.items-center.gap-2.mb-0
+      span.inline-block.w-1.h-3.bg-secondary.rounded-box
+      = Directory.model_name.human.capitalize
+    p.hidden.lg:flex.items-center.gap-2
+      span
+        kbd.kbd.kbd-sm Tab
+        =< t('or')
+        kbd.kbd.kbd-sm< ▲
+        kbd.kbd.kbd-sm< ▼
+        =< t('.to_navigate')
+
+      span
+        kbd.kbd.kbd-sm Esc
+        =< t('.to_close_modal')

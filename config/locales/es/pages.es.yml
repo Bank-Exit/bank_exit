@@ -255,6 +255,10 @@ es:
       last_survey_on: Última actualización hace %{date}
       last_survey_unknown: Fecha de verificación desconocida
 
+    merchants_dropdown:
+      to_navigate: para navegar,
+      to_close_modal: para cerrar el modal
+
     show:
       <<: *payment_methods_accepted
 

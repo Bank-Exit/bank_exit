@@ -11,14 +11,23 @@ export default class extends Controller {
   };
 
   connect() {
-    this.selectedIndex = -1;
-    this.items = [];
-
     useDebounce(this, { wait: 300 });
     useHotkeys(this, {
       "meta+k": [this.open], // Cmd+K
       "ctrl+k": [this.open], // Ctrl+K
       escape: [this.close],
+      arrowdown: [this.forwardTab],
+      arrowup: [this.backwardTab],
+    });
+
+    this.inputTarget.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        this.forwardTab(e);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        this.backwardTab(e);
+      }
     });
 
     this.defaultMerchants = this.resultsTarget.innerHTML;
@@ -74,5 +83,38 @@ export default class extends Controller {
     if (e.target === this.element) {
       this.element.close();
     }
+  }
+
+  forwardTab(e) {
+    if (!this.element.open) return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    e.preventDefault();
+    this.simulateTabPress();
+  }
+
+  backwardTab(e) {
+    if (!this.element.open) return;
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    e.preventDefault();
+    this.simulateTabPress(true);
+  }
+
+  simulateTabPress(shift = false) {
+    const focusable = Array.from(
+      this.element.querySelectorAll(
+        'input, button, [href], select, textarea, [tabindex]:not([tabindex="-1"])',
+      ),
+    ).filter((el) => !el.disabled && el.offsetParent !== null);
+
+    const index = focusable.indexOf(document.activeElement);
+    let nextIndex;
+
+    if (shift) {
+      nextIndex = index <= 0 ? focusable.length - 1 : index - 1;
+    } else {
+      nextIndex = index === focusable.length - 1 ? 0 : index + 1;
+    }
+
+    focusable[nextIndex]?.focus();
   }
 }

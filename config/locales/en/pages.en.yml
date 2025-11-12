@@ -262,6 +262,10 @@ en:
       last_survey_on: Last check %{date} ago
       last_survey_unknown: Last check date not specified
 
+    merchants_dropdown:
+      to_navigate: to navigate,
+      to_close_modal: to close modal
+
     show:
       <<: *payment_methods_accepted
 
