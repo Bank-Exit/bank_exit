@@ -119,7 +119,6 @@
 }
 
 [data-theme="dracula"],
-[data-theme="halloween"],
 [data-theme="dark_christmas"] {
     .leaflet-layer,
     .leaflet-control-zoom-in,

@@ -3,9 +3,6 @@ class ThemesFinder < ApplicationService
     christmas: {
       light: :christmas,
       dark: :dark_christmas
-    },
-    halloween: {
-      dark: :halloween
     }
   }.freeze
 
@@ -19,8 +16,6 @@ class ThemesFinder < ApplicationService
   def call
     themes = if christmas_time?
                THEMES[:christmas]
-             elsif halloween_time?
-               THEMES[:halloween]
              else
                {}
              end
@@ -39,11 +34,5 @@ class ThemesFinder < ApplicationService
     @christmas_time ||=
       ('12-10'..'12-31').cover?(date) ||
       ('01-01'..'01-10').cover?(date)
-  end
-
-  def halloween_time?
-    return true if forced_theme == :halloween
-
-    @halloween_time ||= %w[10-30 10-31 11-01].include?(date)
   end
 end

@@ -18,22 +18,10 @@ RSpec.describe ThemesFinder do
       it { is_expected.to eq({ light: :christmas, dark: :dark_christmas }) }
     end
 
-    context 'when theme is forced to halloween' do
-      let(:forced_theme) { :halloween }
-
-      it { is_expected.to eq({ light: :silk, dark: :halloween }) }
-    end
-
     context 'when during Christmas time' do
       let(:date) { Date.new(2025, 12, 25) }
 
       it { is_expected.to eq({ light: :christmas, dark: :dark_christmas }) }
-    end
-
-    context 'when during Halloween time' do
-      let(:date) { Date.new(2025, 10, 31) }
-
-      it { is_expected.to eq({ light: :silk, dark: :halloween }) }
     end
 
     context 'when during regular time' do
@@ -108,41 +96,6 @@ RSpec.describe ThemesFinder do
 
         it { is_expected.to be false }
       end
-    end
-  end
-
-  describe '#halloween_time?' do
-    subject { instance.halloween_time? }
-
-    context 'when forced theme is :halloween' do
-      let(:forced_theme) { :halloween }
-      let(:date) { Date.new(2025, 12, 1) } # December 1st
-
-      it { is_expected.to be true }
-    end
-
-    context 'when before halloween time' do
-      let(:date) { Date.new(2025, 10, 1) } # October 1st
-
-      it { is_expected.to be false }
-    end
-
-    context 'when halloween eve time' do
-      let(:date) { Date.new(2025, 10, 30) } # October 30
-
-      it { is_expected.to be true }
-    end
-
-    context 'when halloween time' do
-      let(:date) { Date.new(2025, 10, 31) } # October 31
-
-      it { is_expected.to be true }
-    end
-
-    context 'when after halloween time' do
-      let(:date) { Date.new(2025, 11, 2) } # November 2nd
-
-      it { is_expected.to be false }
     end
   end
 end

@@ -10,8 +10,7 @@
         silk --default,
         dracula --prefersdark,
         christmas,
-        dark_christmas,
-        halloween;
+        dark_christmas;
 
     /* See https://github.com/saadeghi/daisyui/issues/3882#issuecomment-3382480890 */
     exclude: diff, properties;

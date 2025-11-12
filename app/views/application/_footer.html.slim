@@ -35,10 +35,7 @@ footer.bg-base-200.text-base-content.p-10.border-base-content/10.border-t class=
       - unless logged_in?
         = link_to '.', new_session_path
 
-      - if @themes_finder.halloween_time?
-        .text-8xl.animate-swing.mx-auto.mt-4 🎃
-      - else
-        = image_tag 'logo_by_mondetta.jpeg', class: 'w-32 mx-auto rounded-full mt-4', title: 'Logo by Mondetta', alt: 'Logo by Mondetta'
+      = image_tag 'logo_by_mondetta.jpeg', class: 'w-32 mx-auto rounded-full mt-4', title: 'Logo by Mondetta', alt: 'Logo by Mondetta'
 
     nav
       h2.footer-title= t('.navigation')
