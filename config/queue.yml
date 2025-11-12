@@ -16,6 +16,9 @@ test:
 
 staging:
   <<: *default
+  workers:
+    - queues: "*"
+      threads: 1
 
 production:
   <<: *default
