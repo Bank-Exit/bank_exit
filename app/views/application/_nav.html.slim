@@ -44,6 +44,10 @@ nav.navbar.container.mx-auto
                   - if project.external?
                     = lucide_icon 'square-arrow-out-up-right', class: 'w-4 inline-flex ml-1'
 
+            li
+              = link_to 'https://coinadoptionscore.com', target: :_blank do
+                | CoinAdoptionScore
+
         li
           .menu-title class=('text-primary' if active_article)
             = t('.menu.articles')
@@ -140,6 +144,10 @@ nav.navbar.container.mx-auto
                   = project.title
                   - if project.external?
                     = lucide_icon 'square-arrow-out-up-right', class: 'w-4 inline-flex ml-1'
+
+            li
+              = link_to 'https://coinadoptionscore.com', target: :_blank do
+                | CoinAdoptionScore
 
       li
         details.dropdown
