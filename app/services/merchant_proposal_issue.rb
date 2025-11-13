@@ -23,14 +23,12 @@ class MerchantProposalIssue < ApplicationService
     <<~MARKDOWN
       A new proposition for a merchant has been submitted. Please take a look and add it to OpenStreetMap if relevant:
 
-      ```json
-      #{JSON.pretty_generate(merchant_proposal.to_osm)}
+      ```
+      #{merchant_proposal.to_osm}
       ```
 
-      Description:
-      ```
-      #{merchant_proposal.description}
-      ```
+      > [!WARNING]
+      > `category` key need special care to follows OSM practices.
 
       ---
 

@@ -55,31 +55,25 @@ RSpec.describe 'MerchantProposals' do
               body: <<~MARKDOWN,
                 A new proposition for a merchant has been submitted. Please take a look and add it to OpenStreetMap if relevant:
 
-                ```json
-                {
-                  "name": "Bonhomme de Bois",
-                  "category": "Toy",
-                  "description": "Best toys. Solid. Kids and olders.",
-                  "addr:street": "1 Toys street",
-                  "addr:postcode": "1234",
-                  "addr:city": "Toyzz",
-                  "addr:country": "FR",
-                  "currency:XBT": "yes",
-                  "payment:onchain": "yes",
-                  "currency:XMR": "yes",
-                  "contact:odysee": "https://www.odysee.com/WoodToys",
-                  "_extra_keys": {
-                    "country": "🇫🇷 France"
-                  }
-                }
+                ```
+                name=Bonhomme de Bois
+                category=Toy
+                description=Best toys. Solid. Kids and olders.
+                addr:street=1 Toys street
+                addr:postcode=1234
+                addr:city=Toyzz
+                addr:country=FR
+                payment:onchain=yes
+                currency:XBT=yes
+                currency:XMR=yes
+                contact:odysee=https://www.odysee.com/WoodToys
+
+                --- EXTRA DATA TO IGNORE ---
+                country=🇫🇷 France
                 ```
 
-                Description:
-                ```
-                Best toys.
-                Solid.
-                Kids and olders.
-                ```
+                > [!WARNING]
+                > `category` key need special care to follows OSM practices.
 
                 ---
 
