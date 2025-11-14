@@ -175,8 +175,18 @@ class MerchantData
   end
 
   def phone
-    properties['phone'] || properties['contact:phone'] ||
-      properties['mobile'] || properties['phone:mobile']
+    keys = %w[
+      phone contact:phone
+      mobile contact:mobile phone:mobile
+    ]
+
+    value = keys.lazy
+                .map { |k| properties[k] }
+                .find(&:present?)
+
+    return unless value
+
+    value.split(';').first
   end
 
   # Coins

@@ -186,6 +186,45 @@ RSpec.describe MerchantData do
     end
   end
 
+  describe '#phone' do
+    context 'when no phone key is present' do
+      let(:twicked_feature) do
+        feature[:properties].delete(:phone)
+        feature
+      end
+
+      it { is_expected.to include(phone: nil) }
+    end
+
+    context 'when only one number is present' do
+      let(:twicked_feature) do
+        feature[:properties]['phone'] = '+1234567890'
+        feature
+      end
+
+      it { is_expected.to include(phone: '+1234567890') }
+    end
+
+    context 'when multiple phone numbers are present in same key' do
+      let(:twicked_feature) do
+        feature[:properties]['phone'] = '+1234567890;+0987654321'
+        feature
+      end
+
+      it { is_expected.to include(phone: '+1234567890') }
+    end
+
+    context 'when phone numbers are present in multiple keys' do
+      let(:twicked_feature) do
+        feature[:properties]['phone'] = '+1234567890'
+        feature[:properties]['mobile'] = '+0987654321'
+        feature
+      end
+
+      it { is_expected.to include(phone: '+1234567890') }
+    end
+  end
+
   describe '#last_survey_on' do
     context 'when no sources are present' do
       let(:twicked_feature) do
