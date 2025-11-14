@@ -28,12 +28,12 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
               = t('spotlight')
               = lucide_icon('star', class: 'inline-flex ml-2 stroke-yellow-500 fill-yellow-500')
 
-            .flex.flex-col.lg:flex-row.items-center.justify-center.gap-3
+            .grid.grid-cols-2.lg:grid-cols-4.gap-3
               - @directories_spotlight.each do |spotlight|
                 = link_to directory_path(spotlight), class: 'btn btn-primary' do
                   - if spotlight.logo.attached?
-                    = image_tag url_for(spotlight.logo), class: 'bg-white w-8 rounded-full', alt: "Logo #{spotlight.name}"
-                  = spotlight.name
+                    = image_tag url_for(spotlight.logo), class: 'bg-white w-8 h-8 rounded-full object-cover', alt: "Logo #{spotlight.name}"
+                  span.truncate= spotlight.name
 
   .flex.flex-col.lg:flex-row.gap-2.lg:gap-3.justify-center.p-3
     .space-y-3.lg:basis-1/4.px-1
