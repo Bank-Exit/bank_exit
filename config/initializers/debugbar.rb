@@ -1,6 +1,8 @@
 return unless defined?(Debugbar)
 
 Debugbar.configure do |config|
+  config.enabled = ENV.fetch('DEBUGBAR_ENABLED', 'false') == 'true'
+
   config.ignore_request = lambda { |env|
     [
       Debugbar.config.prefix,
