@@ -13,6 +13,7 @@ A voluntary, non-partisan collective whose aim is to offer legal, peaceful and s
 - [Tech Stack](#-tech-stack)
 - [Getting Started](#-getting-started)
 - [Available Commands](#-available-commands)
+- [ENV vars](#-env-vars)
 - [Merchant Data](#-merchant-data)
 - [Map Routing](#-map-routing)
 - [Internationalization](#-internationalization)
@@ -99,11 +100,69 @@ bank-exit(dev)> FetchMerchants.call
 
 ## 💻 Available Commands
 
+- `bin/setup` – Initial setup of the Rails project including dependencies, ENV, database, ...
 - `bin/dev` – Start processes defined in [Procfile](Procfile) (web and css)
 - `bin/rails server` – Start the Rails server only
 - `bin/rails db:migrate` – Run migrations to database
 - `bin/rails sitemap:refresh:no_ping` – Regenerate the sitemap
 - `bundle exec chusaku` – Annotate Rails controllers with route info
+
+## 🌿 ENV vars
+
+<table>
+  <caption>List of project ENV vars</caption>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Value</th>
+    <th>Resource</th>
+  </tr>
+  <tr>
+    <td>SECRET_KEY_BASE</td>
+    <td>Key used to generate and verify cryptographic signatures for cookies, sessions, and other encrypted or signed data</td>
+    <td>Run `bin/rails secret`</td>
+    <td>
+      <a href="https://guides.rubyonrails.org/security.html">Security guide</a>
+    </td>
+  </tr>
+  <tr>
+    <td>RAILS_ENCRYPTION_PRIMARY_KEY</td>
+    <td rowspan="3">Keys used to securely encrypt, decrypt, and deterministically query Active Record attributes in the database.</td>
+    <td rowspan="3">Run `bin/rails db:encryption:init`</td>
+    <td rowspan="3">
+      <a href="https://guides.rubyonrails.org/active_record_encryption.html">Active Record Encryption guide</a>
+    </td>
+  </tr>
+  <tr>
+    <td>RAILS_ENCRYPTION_DETERMINISTIC_KEY</td>
+  </tr>
+  <tr>
+    <td>RAILS_ENCRYPTION_KEY_DERIVATION_SALT</td>
+  </tr>
+  <tr>
+    <td>FF_COMMENTS_ENABLED</td>
+    <td>Feature flag to enable globally comments</td>
+    <td>`true` or `false`</td>
+  </tr>
+  <tr>
+    <td>FF_ANALYTICS_ENABLED</td>
+    <td>Feature flag to enable admin analytics</td>
+    <td>`true` or `false`</td>
+  </tr>
+  <tr>
+    <td>FF_SNOWFLAKES_ENABLED</td>
+    <td>Feature flag to enable Christmas snowflakes</td>
+    <td>`true` or `false`</td>
+  </tr>
+  <tr>
+    <td>DEBUGBAR_ENABLED</td>
+    <td>Enable debugbar (limited to development and staging environments)</td>
+    <td>`true` or `false`</td>
+    <td>
+      <a href="https://debugbar.dev">Debugbar site</a>
+    </td>
+  </tr>
+</table>
 
 ## 🏪 Merchant Data
 
