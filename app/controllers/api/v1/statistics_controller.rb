@@ -1,12 +1,12 @@
 module API
   module V1
     class StatisticsController < BaseController
-      # @route GET /fr/api/v1/statistics {locale: "fr"} (api_v1_statistics_fr)
-      # @route GET /es/api/v1/statistics {locale: "es"} (api_v1_statistics_es)
-      # @route GET /de/api/v1/statistics {locale: "de"} (api_v1_statistics_de)
-      # @route GET /it/api/v1/statistics {locale: "it"} (api_v1_statistics_it)
-      # @route GET /en/api/v1/statistics {locale: "en"} (api_v1_statistics_en)
-      # @route GET /api/v1/statistics
+      # @route GET /fr/api/v1/statistics {format: :json, locale: "fr"} (api_v1_statistics_fr)
+      # @route GET /es/api/v1/statistics {format: :json, locale: "es"} (api_v1_statistics_es)
+      # @route GET /de/api/v1/statistics {format: :json, locale: "de"} (api_v1_statistics_de)
+      # @route GET /it/api/v1/statistics {format: :json, locale: "it"} (api_v1_statistics_it)
+      # @route GET /en/api/v1/statistics {format: :json, locale: "en"} (api_v1_statistics_en)
+      # @route GET /api/v1/statistics {format: :json}
       def show
         @presenter = API::StatisticsPresenter.new(include_atms: with_atms?)
 

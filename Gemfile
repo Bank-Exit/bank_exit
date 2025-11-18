@@ -95,7 +95,6 @@ group :development, :test do
 
   gem 'annotaterb', require: false
   gem 'bullet'
-  gem 'chusaku'
   gem 'dotenv-rails'
   gem 'rspec-rails'
   gem 'rswag-specs'
@@ -106,6 +105,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'chusaku', require: false
   gem 'hotwire-spark'
   gem 'letter_opener_web'
 

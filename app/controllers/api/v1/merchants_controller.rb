@@ -5,12 +5,12 @@ module API
 
       before_action :set_merchant, only: :show
 
-      # @route GET /fr/api/v1/merchants {locale: "fr"} (api_v1_merchants_fr)
-      # @route GET /es/api/v1/merchants {locale: "es"} (api_v1_merchants_es)
-      # @route GET /de/api/v1/merchants {locale: "de"} (api_v1_merchants_de)
-      # @route GET /it/api/v1/merchants {locale: "it"} (api_v1_merchants_it)
-      # @route GET /en/api/v1/merchants {locale: "en"} (api_v1_merchants_en)
-      # @route GET /api/v1/merchants
+      # @route GET /fr/api/v1/merchants {format: :json, locale: "fr"} (api_v1_merchants_fr)
+      # @route GET /es/api/v1/merchants {format: :json, locale: "es"} (api_v1_merchants_es)
+      # @route GET /de/api/v1/merchants {format: :json, locale: "de"} (api_v1_merchants_de)
+      # @route GET /it/api/v1/merchants {format: :json, locale: "it"} (api_v1_merchants_it)
+      # @route GET /en/api/v1/merchants {format: :json, locale: "en"} (api_v1_merchants_en)
+      # @route GET /api/v1/merchants {format: :json}
       def index
         pagy, page_ids = pagy_array(merchant_ids.ids, limit: per_page)
 
@@ -21,12 +21,12 @@ module API
         render_collection(merchants, pagy: pagy, **args)
       end
 
-      # @route GET /fr/api/v1/merchants/:id {locale: "fr"} (api_v1_merchant_fr)
-      # @route GET /es/api/v1/merchants/:id {locale: "es"} (api_v1_merchant_es)
-      # @route GET /de/api/v1/merchants/:id {locale: "de"} (api_v1_merchant_de)
-      # @route GET /it/api/v1/merchants/:id {locale: "it"} (api_v1_merchant_it)
-      # @route GET /en/api/v1/merchants/:id {locale: "en"} (api_v1_merchant_en)
-      # @route GET /api/v1/merchants/:id
+      # @route GET /fr/api/v1/merchants/:id {format: :json, locale: "fr"} (api_v1_merchant_fr)
+      # @route GET /es/api/v1/merchants/:id {format: :json, locale: "es"} (api_v1_merchant_es)
+      # @route GET /de/api/v1/merchants/:id {format: :json, locale: "de"} (api_v1_merchant_de)
+      # @route GET /it/api/v1/merchants/:id {format: :json, locale: "it"} (api_v1_merchant_it)
+      # @route GET /en/api/v1/merchants/:id {format: :json, locale: "en"} (api_v1_merchant_en)
+      # @route GET /api/v1/merchants/:id {format: :json}
       def show
         args = with_comments? ? { view: :with_comments } : {}
 
