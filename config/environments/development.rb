@@ -98,6 +98,8 @@ Rails.application.configure do
     Bullet.rails_logger = false
     Bullet.add_footer = false
   end
+
+  config.hosts << 'bank-exit.local'
 end
 
 Rails.application.routes.default_url_options[:host] = "#{host}:#{port}"
