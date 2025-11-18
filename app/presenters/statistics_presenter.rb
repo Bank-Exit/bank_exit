@@ -172,7 +172,7 @@ class StatisticsPresenter < ApplicationPresenter
       .limit(3)
       .count
       .map do |k, v|
-        [I18n.t(k, scope: :categories), v]
+        [k, I18n.t(k, scope: :categories), v]
       end
   end
 
