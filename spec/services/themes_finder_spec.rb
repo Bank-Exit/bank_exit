@@ -34,22 +34,17 @@ RSpec.describe ThemesFinder do
   describe '#christmas_time?' do
     subject { instance.christmas_time? }
 
-    before do
-      allow(ENV)
-        .to receive(:fetch)
-        .with('FF_SNOWFLAKES_ENABLED', 'true') { ff_snowflakes_enabled }
-    end
-
     context 'when forced theme is :christmas' do
       let(:forced_theme) { :christmas }
-      let(:ff_snowflakes_enabled) { 'false' }
       let(:date) { Date.new(2025, 12, 1) } # December 1st
 
       it { is_expected.to be true }
     end
 
-    context 'when FF_SNOWFLAKES_ENABLED ENV is false' do
-      let(:ff_snowflakes_enabled) { 'false' }
+    context 'when snowflakes feature is disabled' do
+      before do
+        disable_feature(:snowflakes)
+      end
 
       context 'when before Christmas time' do
         let(:date) { Date.new(2025, 12, 1) } # December 1st
@@ -70,8 +65,10 @@ RSpec.describe ThemesFinder do
       end
     end
 
-    context 'when FF_SNOWFLAKES_ENABLED ENV is true' do
-      let(:ff_snowflakes_enabled) { 'true' }
+    context 'when snowflakes feature is enabled' do
+      before do
+        enable_feature(:snowflakes)
+      end
 
       context 'when before Christmas time' do
         let(:date) { Date.new(2025, 12, 1) } # December 1st

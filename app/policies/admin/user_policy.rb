@@ -38,7 +38,7 @@ module Admin
     end
 
     def analytics?
-      ENV.fetch('FF_ANALYTICS_ENABLED', false) == 'true'
+      FeatureFlag.enabled?(:analytics)
     end
 
     def mission_control?

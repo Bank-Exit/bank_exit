@@ -42,7 +42,7 @@ class MerchantProposalsController < PublicController
 
       redirect_to maps_path, notice: t('.notice')
     elsif @merchant_proposal.valid?
-      if Rails.env.test? || Rails.env.production?
+      if FeatureFlag.enabled?(:github)
         # Only call the Github API issue in production
         MerchantProposalIssue.call(@merchant_proposal)
       end

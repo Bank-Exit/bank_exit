@@ -36,7 +36,7 @@
                     p.italic.text-xs
                       = number_to_human(step['distance'], units: :distance)
 
-  - unless Rails.env.production?
+  - if params[:debug] == 'true'
     .mt-6
       h3.mb-2.uppercase.font-bold.text-primary Routing
 

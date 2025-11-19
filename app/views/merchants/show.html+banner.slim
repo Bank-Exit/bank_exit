@@ -67,7 +67,7 @@ article
     - if allowed_to?(:index?, Comment)
       = render 'comments/comments', commentable: @merchant, comments: @comments, pagy: @pagy
 
-    - if !Rails.env.production? || params[:debug] == 'true'
+    - if params[:debug] == 'true'
       = render 'merchants/view_sections/debug', merchant: @merchant
 
     = render 'last_survey_on', merchant: @merchant

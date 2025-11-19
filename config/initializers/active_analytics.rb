@@ -1,4 +1,6 @@
-if ENV.fetch('FF_ANALYTICS_ENABLED', false) == 'true'
+require 'feature_flag'
+
+if FeatureFlag.enabled?(:analytics)
   Rails.application.configure do
     ActiveAnalytics.base_controller_class = 'Admin::BaseController'
 

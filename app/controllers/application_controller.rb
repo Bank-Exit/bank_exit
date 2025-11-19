@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   private
 
   def comments_enabled?
-    ENV.fetch('FF_COMMENTS_ENABLED', 'true') == 'true'
+    FeatureFlag.enabled?(:comments)
   end
 
   def not_authenticated

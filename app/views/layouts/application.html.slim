@@ -41,7 +41,7 @@ html lang=I18n.locale
     = render 'command_palette'
     = render 'modal_help'
 
-    = render 'ribbon' unless Rails.env.production?
+    = render 'ribbon' if FeatureFlag.enabled?(:ribbon)
 
     = turbo_stream_from :flashes
     = turbo_stream_from [:flashes, I18n.locale]

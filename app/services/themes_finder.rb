@@ -27,9 +27,7 @@ class ThemesFinder < ApplicationService
 
   def christmas_time?
     return true if forced_theme == :christmas
-
-    ff_enabled = ENV.fetch('FF_SNOWFLAKES_ENABLED', 'true') == 'true'
-    return false unless ff_enabled
+    return false if FeatureFlag.disabled?(:snowflakes)
 
     @christmas_time ||=
       ('12-10'..'12-31').cover?(date) ||

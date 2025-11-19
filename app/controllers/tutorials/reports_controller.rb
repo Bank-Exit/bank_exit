@@ -26,7 +26,7 @@ module Tutorials
         flash.now[:notice] = t('.notice')
         head :ok
       elsif @tutorial_report.valid?
-        if Rails.env.test? || Rails.env.production?
+        if FeatureFlag.enabled?(:github)
           # Only call the Github API issue in production
           TutorialReportIssue.call(@tutorial, @tutorial_report)
         end

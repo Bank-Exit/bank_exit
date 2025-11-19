@@ -22,6 +22,6 @@ module Analyticable
   end
 
   def analytics_enabled?
-    ENV.fetch('FF_ANALYTICS_ENABLED', false) == 'true'
+    FeatureFlag.enabled?(:analytics)
   end
 end

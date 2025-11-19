@@ -105,7 +105,7 @@ Rails.application.routes.draw do
       resource :dashboard, only: %i[show]
 
       mount MissionControl::Jobs::Engine, at: '/jobs'
-      mount ActiveAnalytics::Engine, at: '/analytics' if ENV.fetch('FF_ANALYTICS_ENABLED', false) == 'true'
+      mount ActiveAnalytics::Engine, at: '/analytics' if FeatureFlag.enabled?(:analytics)
 
       resources :users, except: :show do
         post :impersonate, on: :member

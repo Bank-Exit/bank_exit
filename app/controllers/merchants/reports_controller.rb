@@ -26,7 +26,7 @@ module Merchants
         flash.now[:notice] = t('.notice')
         head :ok
       elsif @merchant_report.valid?
-        if Rails.env.test? || Rails.env.production?
+        if FeatureFlag.enabled?(:github)
           # Only call the Github API issue in production
           MerchantReportIssue.call(@merchant, @merchant_report)
         end

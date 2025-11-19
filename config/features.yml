@@ -1,0 +1,35 @@
+default: &default
+  comments:
+    enabled: <%= ENV.fetch('FF_COMMENTS_ENABLED', false) %>
+  analytics:
+    enabled: <%= ENV.fetch('FF_ANALYTICS_ENABLED', false) %>
+  snowflakes:
+    enabled: <%= ENV.fetch('FF_SNOWFLAKES_ENABLED', false) %>
+
+development:
+  <<: *default
+  github:
+    enabled: false
+  ribbon:
+    enabled: true
+
+test:
+  <<: *default
+  github:
+    enabled: true # For code coverage
+  ribbon:
+    enabled: false
+
+staging:
+  <<: *default
+  github:
+    enabled: false
+  ribbon:
+    enabled: true
+
+production:
+  <<: *default
+  github:
+    enabled: true
+  ribbon:
+    enabled: false

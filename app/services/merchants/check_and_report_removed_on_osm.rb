@@ -20,7 +20,7 @@ module Merchants
         .where(deleted_at: nil)
         .update_all(deleted_at: Time.current)
 
-      return unless Rails.env.test? || Rails.env.production?
+      return unless FeatureFlag.enabled?(:github)
 
       # Report to Github issue merchants removed from OSM
       # but still present in Bank-Exit map.

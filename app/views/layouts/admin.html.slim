@@ -51,5 +51,5 @@ html lang=I18n.locale
 
     #modal
     = render 'modal', id: 'turbo-confirm'
-    = render 'ribbon' unless Rails.env.production?
+    = render 'ribbon' if FeatureFlag.enabled?(:ribbon)
     = render 'debugbar' if defined?(Debugbar)
