@@ -55,6 +55,7 @@ class MerchantData
       contact_odysee: SocialUrlPrefixer.call(:odysee, properties['contact:odysee']),
       contact_crowdbunker: SocialUrlPrefixer.call(:crowdbunker, properties['contact:crowdbunker']),
       contact_francelibretv: SocialUrlPrefixer.call(:francelibretv, properties['contact:francelibretv']),
+      contact_nostr: SocialUrlPrefixer.call(:nostr, properties['contact:nostr']),
 
       ask_kyc: ask_kyc,
 

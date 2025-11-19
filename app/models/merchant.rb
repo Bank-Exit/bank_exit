@@ -98,7 +98,8 @@ class Merchant < ApplicationRecord
       francelibretv: contact_francelibretv,
       tiktok: contact_tiktok,
       linkedin: contact_linkedin,
-      tripadvisor: contact_tripadvisor
+      tripadvisor: contact_tripadvisor,
+      nostr: contact_nostr
     }.compact_blank
   end
 end
@@ -160,6 +161,7 @@ end
 #  contact_crowdbunker   :string
 #  contact_francelibretv :string
 #  continent_code        :string
+#  contact_nostr         :string
 #
 # Indexes
 #

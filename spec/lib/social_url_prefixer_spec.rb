@@ -26,7 +26,8 @@ RSpec.describe SocialUrlPrefixer do
         'tripadvisor' => 'https://tripadvisor.com/Profile/osm',
         'odysee' => 'https://odysee.com/@osm',
         'crowdbunker' => 'https://crowdbunker.com/@osm',
-        'francelibretv' => 'https://francelibre.tv/@osm'
+        'francelibretv' => 'https://francelibre.tv/@osm',
+        'nostr' => 'https://njump.to/osm'
       }.each do |platform_name, expected|
         context "with #{platform_name}" do
           let(:platform) { platform_name }

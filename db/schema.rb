@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_30_175818) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_19_171201) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date", null: false
@@ -222,6 +222,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_30_175818) do
     t.boolean "contact_less", default: false, null: false
     t.string "contact_linkedin"
     t.string "contact_matrix"
+    t.string "contact_nostr"
     t.string "contact_odysee"
     t.string "contact_session"
     t.string "contact_signal"

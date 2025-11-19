@@ -21,7 +21,8 @@ class SocialUrlPrefixer
     'tripadvisor' => 'https://tripadvisor.com/Profile/',
     'odysee' => 'https://odysee.com/@',
     'crowdbunker' => 'https://crowdbunker.com/@',
-    'francelibretv' => 'https://francelibre.tv/@'
+    'francelibretv' => 'https://francelibre.tv/@',
+    'nostr' => 'https://njump.to/'
   }.freeze
 
   EXTRA_DOMAINS = {
