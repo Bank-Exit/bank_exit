@@ -197,6 +197,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_19_171201) do
     t.json "payload_before_updated_merchants", default: {}, null: false
     t.json "payload_countries", default: {}, null: false
     t.json "payload_error", default: {}, null: false
+    t.json "payload_nostr", default: {}, null: false
     t.json "payload_soft_deleted_merchants", default: {}, null: false
     t.json "payload_updated_merchants", default: {}, null: false
     t.json "process_logs", default: [], null: false

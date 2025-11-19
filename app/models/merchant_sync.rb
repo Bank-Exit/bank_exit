@@ -34,9 +34,7 @@ class MerchantSync < ApplicationRecord
         %i[admin merchant_syncs],
         target: :process_logs_wrapper
       )
-    end
 
-    if status_previously_changed?
       I18n.available_locales.each do |locale|
         I18n.with_locale(locale) do
           broadcast_admin_stats
@@ -163,4 +161,5 @@ end
 #  process_logs                     :json             not null
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
+#  payload_nostr                    :json             not null
 #

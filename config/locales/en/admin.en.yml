@@ -198,6 +198,8 @@ en:
         new_merchants: New merchants
       merchant_syncs:
         empty_results: There is no history to display
+      merchant_sync:
+        see_on_nostr: See post on Nostr
 
     profiles:
       edit:

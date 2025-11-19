@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe FetchMerchants do
   subject(:call) { described_class.call }
 
+  before do
+    disable_feature :nostr
+  end
+
   describe '[Overpass API]' do
     context 'when error' do
       before { stub_overpass_request_failure }
@@ -56,5 +60,49 @@ RSpec.describe FetchMerchants do
     end
 
     it { expect(Merchants::AssignCountry).to have_received(:call).once }
+  end
+
+  describe '[NostrPublisher]' do
+    before do
+      allow(Merchants::AssignCountry).to receive(:call) { {} }
+      allow(Merchants::CheckAndReportRemovedOnOSM).to receive(:call)
+      allow(Merchants::CheckAndReactivate).to receive(:call)
+
+      allow(NostrPublisher).to receive(:call)
+    end
+
+    context 'when :nostr feature is enabled' do
+      before do
+        enable_feature :nostr
+      end
+
+      context 'when new merchants have been referenced' do
+        before do
+          stub_overpass_request_success
+          call
+        end
+
+        it { expect(NostrPublisher).to have_received(:call).with(instance_of(MerchantSync), identifier: instance_of(String)).once }
+      end
+
+      context 'when no new merchants have been referenced' do
+        before do
+          stub_overpass_request_success(empty_response: true)
+          call
+        end
+
+        it { expect(NostrPublisher).to_not have_received(:call) }
+      end
+    end
+
+    context 'when :nostr feature is disabled' do
+      before do
+        stub_overpass_request_success
+        disable_feature :nostr
+        call
+      end
+
+      it { expect(NostrPublisher).to_not have_received(:call) }
+    end
   end
 end

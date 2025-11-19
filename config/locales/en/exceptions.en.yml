@@ -4,6 +4,10 @@ en:
       unauthorized_token: Invalid or missing authentication token.
       forbidden_token: Access forbidden for this token.
 
+    nostr_errors:
+      missing_private_key: A private key must be configured as `NOSTR_PRIVATE_KEY` ENV var to publish to Nostr.
+      missing_relay_url: A relay URL must be configured as `NOSTR_RELAY_URL` ENV var to publish to Nostr.
+
     merchant:
       not_found: The requested merchant does not exist
     directory:

@@ -112,6 +112,17 @@ class FetchMerchants < ApplicationService
 
     @merchant_sync.purge_all_attachments_not_self
 
+    if FeatureFlag.enabled?(:nostr) && @merchant_sync.added_merchants_count.positive?
+      @logs << { mode: 'info', message: 'Publishing note to Nostr', timestamp: Time.current.to_i }
+      @merchant_sync.update!(process_logs: @logs)
+
+      I18n.with_locale(I18n.default_locale) do
+        NostrPublisher.call(
+          @merchant_sync, identifier: SecureRandom.uuid
+        )
+      end
+    end
+
     @logs << { mode: 'success', message: 'End of synchronization ! 🎉', timestamp: Time.current.to_i }
 
     @merchant_sync.update!(

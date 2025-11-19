@@ -28,7 +28,7 @@ class Merchant < ApplicationRecord
   scope :not_atms, -> { where.not(category: :atm).or(where(category: nil)) }
 
   def to_param
-    [identifier, slug].join('-')
+    [identifier, slug].compact_blank.join('-')
   end
 
   def atm?
