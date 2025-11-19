@@ -1,3 +1,6 @@
+- max_items = 100
+- show_all = params[:debug] == 'true'
+
 = turbo_stream.update :modal do
   - content_for(:modal_title) do
     - if @merchant_sync.raw_json.attached?
@@ -28,8 +31,15 @@
               =< MerchantSync.human_attribute_name(:added_merchants_count)
               |< (#{@merchant_sync.added_merchants_count})
 
-            pre.collapse-content.json-colorized
-              == auto_link(highlight(json_highlight(@merchant_sync.payload_added_merchants), params[:query]), html: { target: :_blank })
+            - if @merchant_sync.added_merchants_count <= max_items || show_all
+              pre.collapse-content.json-colorized
+                == auto_link(highlight(json_highlight(@merchant_sync.payload_added_merchants), params[:query]), link: :urls, html: { target: :_blank })
+            - else
+              .collapse-content
+                p
+                  | Too much new data to display,
+                  =< link_to 'read as JSON', admin_merchant_sync_path(@merchant_sync, new: true, format: :json), target: :_blank, class: 'btn btn-link px-0'
+                  |< in your browser.
 
         - if @merchant_sync.updated_merchants_count > 0
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300
@@ -38,32 +48,36 @@
               =< MerchantSync.human_attribute_name(:updated_merchants_count)
               |< (#{@merchant_sync.updated_merchants_count})
 
-            - less_than_20 = @merchant_sync.updated_merchants_count <= 20
-
-            - if @merchant_sync.no_diff?
-              - diffy = @merchant_sync.payload_before_updated_merchants
-              - if less_than_20
+            - less_than_max = @merchant_sync.updated_merchants_count <= max_items || show_all
+            - if less_than_max
+              - if @merchant_sync.no_diff?
+                - diffy = @merchant_sync.payload_before_updated_merchants
                 - diffy = json_highlight(diffy)
-                - diffy = auto_link(diffy, html: { target: :_blank })
-              - else
-                - diffy = JSON.pretty_generate(diffy)
+                - diffy = auto_link(diffy, link: :urls, html: { target: :_blank })
 
-              pre.collapse-content.json-colorized
-                - if params[:query]
-                  == highlight(diffy, params[:query])
-                - else
-                  == diffy
+                pre.collapse-content.json-colorized
+                  - if params[:query]
+                    == highlight(diffy, params[:query])
+                  - else
+                    == diffy
+
+              - else
+                - diffy = diffy_json(@merchant_sync.payload_before_updated_merchants.to_json, @merchant_sync.payload_updated_merchants.to_json, highlight: true)
+
+                - diffy = auto_link(diffy, link: :urls, html: { target: :_blank })
+
+                .collapse-content.json-diff
+                  - if params[:query]
+                    == highlight(diffy, params[:query])
+                  - else
+                    == diffy
 
             - else
-              - diffy = diffy_json(@merchant_sync.payload_before_updated_merchants.to_json, @merchant_sync.payload_updated_merchants.to_json, highlight: less_than_20)
-
-              - diffy = auto_link(diffy, html: { target: :_blank }) if less_than_20
-
-              .collapse-content.json-diff
-                - if params[:query]
-                  == highlight(diffy, params[:query])
-                - else
-                  == diffy
+              .collapse-content
+                p
+                  | Too much updated data to display,
+                  =< link_to 'read as JSON', admin_merchant_sync_path(@merchant_sync, updated: true, format: :json), target: :_blank, class: 'btn btn-link px-0'
+                  |< in your browser.
 
         - if @merchant_sync.soft_deleted_merchants_count > 0
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300
@@ -75,8 +89,15 @@
                 =< MerchantSync.human_attribute_name(:hard_deleted_merchants_count)
               |< (#{@merchant_sync.soft_deleted_merchants_count})
 
-            pre.collapse-content.json-colorized
-              == auto_link(json_highlight(@merchant_sync.payload_soft_deleted_merchants), html: { target: :_blank })
+            - if @merchant_sync.soft_deleted_merchants_count <= max_items || show_all
+              pre.collapse-content.json-colorized
+                == auto_link(json_highlight(@merchant_sync.payload_soft_deleted_merchants), html: { target: :_blank })
+            - else
+              .collapse-content
+                p
+                  | Too much deleted data to display,
+                  =< link_to 'read as JSON', admin_merchant_sync_path(@merchant_sync, deleted: true, format: :json), target: :_blank, class: 'btn btn-link px-0'
+                  |< in your browser.
 
         - if @merchant_sync.payload_countries.count > 0
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300
