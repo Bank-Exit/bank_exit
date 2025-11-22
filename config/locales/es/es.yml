@@ -51,6 +51,9 @@ es:
 
   empty_results: No hay resultados
 
+  opening_hours:
+    by_appointment: Con cita previa
+
   x_results:
     zero: "0 resultado"
     one: "1 resultado"

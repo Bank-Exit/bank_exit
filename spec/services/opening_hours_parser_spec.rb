@@ -10,6 +10,12 @@ RSpec.describe OpeningHoursParser do
       end
     end
 
+    context 'when by_appointment' do
+      let(:opening_hours) { '"by appointment"' }
+
+      it { is_expected.to eq ['By appointment'] }
+    end
+
     context 'with multiples rules' do
       let(:opening_hours) { 'Mo-Fr 07:00-21:30; Sa-Su 09:00-22:00' }
 
@@ -58,6 +64,12 @@ RSpec.describe OpeningHoursParser do
       I18n.with_locale(:fr) do
         example.run
       end
+    end
+
+    context 'when by_appointment' do
+      let(:opening_hours) { '"by appointment"' }
+
+      it { is_expected.to eq ['Sur rendez-vous'] }
     end
 
     context 'with multiples rules' do

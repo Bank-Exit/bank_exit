@@ -54,6 +54,9 @@ en:
 
   empty_results: There are no results
 
+  opening_hours:
+    by_appointment: By appointment
+
   x_results:
     zero: "0 result"
     one: "1 result"

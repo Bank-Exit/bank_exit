@@ -51,6 +51,9 @@ de:
 
   empty_results: Keine Ergebnisse vorhanden
 
+  opening_hours:
+    by_appointment: Nach Vereinbarung
+
   x_results:
     zero: "0 Ergebnis"
     one: "1 Ergebnis"

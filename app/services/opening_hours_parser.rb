@@ -9,6 +9,8 @@ class OpeningHoursParser < ApplicationService
 
   # @return [Array<String>] formatted list of rules
   def call
+    return [I18n.t('opening_hours.by_appointment')] if opening_hours == '"by appointment"'
+
     rules = cleaned_opening_hours.split(';')
 
     rules.map do |rule|

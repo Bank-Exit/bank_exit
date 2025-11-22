@@ -51,6 +51,9 @@ it:
 
   empty_results: Nessun risultato
 
+  opening_hours:
+    by_appointment: Su appuntamento
+
   x_results:
     zero: "0 risultato"
     one: "1 risultato"
