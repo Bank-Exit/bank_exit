@@ -17,6 +17,10 @@ Rails.application.routes.draw do
     "#{ENV.fetch('NOSTR_BASE_URL', 'https://njump.to')}/#{identifier}"
   end
 
+  direct :github_organization do
+    "https://github.com/#{ENV.fetch('GITHUB_ORGANIZATION', nil)}"
+  end
+
   namespace :maps do
     resource :referer, only: :update
   end

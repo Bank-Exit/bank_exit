@@ -235,7 +235,7 @@ es:
   merchant_proposals:
     new:
       title: Propuesta de un nuevo comerciante
-      introduction_html: Puedes sugerir un nuevo comerciante rellenando el siguiente formulario. Luego se abrirá un <a href="https://github.com/Unbanked0/bank_exit/issues" target="_blank">issue</a> en Github para que el Colectivo pueda verificarlo y agregar al comerciante a OpenStreetMap.
+      introduction_html: Puedes sugerir un nuevo comerciante rellenando el siguiente formulario. Luego se abrirá un issue en Github para que el Colectivo pueda verificarlo y agregar al comerciante a OpenStreetMap.
       form:
         general_info: Información general
         coins: Monedas aceptadas
@@ -315,7 +315,7 @@ es:
         alert: La descripción debe ser completada
 
       modal:
-        introduction_html: Por favor indique las anomalías que ha identificado en el perfil del comerciante. Se abrirá un <a href="https://github.com/Unbanked0/bank_exit/issues" target="_blank">issue</a> en Github para que el Colectivo pueda analizar la solicitud.
+        introduction_html: Por favor indique las anomalías que ha identificado en el perfil del comerciante. Se abrirá un issue en Github para que el Colectivo pueda analizar la solicitud.
         submit: Reportar la anomalía
 
   comments:
