@@ -136,7 +136,7 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :merchant_syncs, only: %i[index show]
+      resources :merchant_syncs, only: %i[index show edit update destroy]
 
       resources :comments, only: %i[index update destroy]
       resources :directories, except: :show do

@@ -9,5 +9,17 @@ module Admin
     def show?
       index?
     end
+
+    def edit?
+      update?
+    end
+
+    def update?
+      true
+    end
+
+    def destroy?
+      true
+    end
   end
 end

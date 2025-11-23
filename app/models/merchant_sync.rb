@@ -18,6 +18,8 @@ class MerchantSync < ApplicationRecord
 
   has_one_attached :raw_json
 
+  before_update :parse_json_strings
+
   after_create_commit do
     I18n.available_locales.each do |locale|
       I18n.with_locale(locale) do
@@ -135,6 +137,25 @@ class MerchantSync < ApplicationRecord
 
   def stream_name
     [:admin, :merchant_syncs, I18n.locale]
+  end
+
+  def parse_json_strings
+    %i[
+      payload_added_merchants
+      payload_updated_merchants
+      payload_soft_deleted_merchants
+      payload_countries
+      process_logs
+    ].each do |field|
+      value = send(field)
+      next unless value.is_a?(String)
+
+      begin
+        send("#{field}=", JSON.parse(value))
+      rescue JSON::ParserError
+        errors.add(field, 'is not a valid JSON')
+      end
+    end
   end
 end
 

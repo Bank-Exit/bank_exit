@@ -196,6 +196,12 @@ en:
     merchant_syncs:
       index:
         new_merchants: New merchants
+      edit:
+        title: Edit MerchantSync
+      update:
+        notice: MerchantSync has been updated
+      destroy:
+        notice: MerchantSync has been removed
       merchant_syncs:
         empty_results: There is no history to display
       merchant_sync:

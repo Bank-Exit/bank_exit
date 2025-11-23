@@ -1,0 +1,11 @@
+- content_for :page_title do
+  = t('.title')
+
+- content_for :page_actions do
+  - if allowed_to?(:index?, MerchantSync)
+    = back_link_to admin_merchant_syncs_path
+  - if allowed_to?(:destroy?, @merchant_sync)
+    = destroy_link_to admin_merchant_sync_path(@merchant_sync)
+
+section
+  = render 'form', merchant_sync: @merchant_sync

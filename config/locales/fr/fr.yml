@@ -54,6 +54,8 @@ fr:
 
   empty_results: Il n'y a aucun résultat
 
+  destroy_confirm: Etes-vous sûr de vouloir supprimer cet élément ?
+
   opening_hours:
     by_appointment: Sur rendez-vous
 

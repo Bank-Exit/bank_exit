@@ -13,7 +13,7 @@
           dashboard_presenter: @dashboard_presenter
 
 = simple_form_for '',
-                  url: admin_merchant_syncs_path,
+                  url: admin_merchant_syncs_path(turbo_stream: true),
                   method: :get,
                   html: { \
                     class: 'w-full lg:w-1/2 mx-auto mb-6',

@@ -81,4 +81,88 @@ RSpec.describe 'Admin::MerchantSyncs' do
       it_behaves_like 'access unauthenticated'
     end
   end
+
+  describe 'GET /admin/merchant_syncs/:id/edit' do
+    subject { get "/admin/merchant_syncs/#{merchant_sync.id}/edit" }
+
+    let(:merchant_sync) { create :merchant_sync, :success, :with_payloads }
+
+    %i[super_admin].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted'
+      end
+    end
+
+    %i[admin publisher moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
+  end
+
+  describe 'PATCH /admin/merchants/:id' do
+    subject { patch "/admin/merchant_syncs/#{merchant_sync.id}", params: valid_params }
+
+    let!(:merchant_sync) { create :merchant_sync }
+    let(:valid_params) { { merchant_sync: { added_merchants_count: 9999 } } }
+
+    %i[super_admin].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted with redirection' do
+          let(:redirection_url) { admin_merchant_syncs_path }
+          let(:flash_notice) { I18n.t('admin.merchant_syncs.update.notice') }
+        end
+      end
+    end
+
+    %i[admin publisher moderator].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
+  end
+
+  describe 'DELETE /admin/merchants/:id' do
+    subject(:action) { delete "/admin/merchant_syncs/#{merchant_sync.id}" }
+
+    let!(:merchant_sync) { create :merchant_sync }
+
+    %i[super_admin].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access granted with redirection' do
+          let(:redirection_url) { admin_merchant_syncs_path }
+          let(:flash_notice) { I18n.t('admin.merchant_syncs.destroy.notice') }
+        end
+
+        it { expect { action }.to change { MerchantSync.count }.by(-1) }
+      end
+    end
+
+    %i[admin moderator publisher].each do |role|
+      context "when role is #{role}" do
+        include_context 'with user role', role
+        it_behaves_like 'access denied'
+      end
+    end
+
+    context 'when logged out' do
+      include_context 'without login'
+      it_behaves_like 'access unauthenticated'
+    end
+  end
 end

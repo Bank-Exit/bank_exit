@@ -54,6 +54,8 @@ en:
 
   empty_results: There are no results
 
+  destroy_confirm: Are you sure you want to destroy this element ?
+
   opening_hours:
     by_appointment: By appointment
 

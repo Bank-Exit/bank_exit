@@ -196,6 +196,12 @@ fr:
     merchant_syncs:
       index:
         new_merchants: Nouveaux commerçants
+      edit:
+        title: Modifier Synchronisation commerçants
+      update:
+        notice: MerchantSync a bien été modifié
+      destroy:
+        notice: MerchantSync a bien été supprimé
       merchant_syncs:
         empty_results: Il n'y a pas d'historique à afficher
       merchant_sync:

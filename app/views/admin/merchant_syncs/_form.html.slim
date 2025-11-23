@@ -1,0 +1,64 @@
+= simple_form_for [:admin, merchant_sync],
+                  html: { class: 'space-y-8' } do |f|
+  - if merchant_sync.errors.any?
+    .alert.alert-error
+      ul.list-disc.list-inside
+        - merchant_sync.errors.each do |error|
+          li= error.full_message
+
+  .alert.alert-error
+    p.flex.items-center.gap-2
+      = lucide_icon 'triangle-alert'
+      |< Only use this form if you now what you are doing !
+
+  .flex.flex-col.lg:flex-row.items-center.justify-between.gap-3
+    = f.input :id, disabled: true
+    = f.input :started_at, html5: true, disabled: true
+    = f.input :ended_at, html5: true, disabled: true
+
+  .flex.flex-col.lg:flex-row.items-center.justify-between.gap-3
+    = f.input :added_merchants_count
+    = f.input :updated_merchants_count
+    = f.input :soft_deleted_merchants_count
+
+  = f.input :payload_added_merchants,
+            as: :text,
+            input_html: { \
+              rows: 18,
+              value: JSON.pretty_generate(merchant_sync.payload_added_merchants).html_safe,
+              class: "font-mono" \
+            }
+
+  = f.input :payload_updated_merchants,
+            as: :text,
+            input_html: { \
+              rows: 18,
+              value: JSON.pretty_generate(merchant_sync.payload_updated_merchants).html_safe,
+              class: "font-mono" \
+            }
+
+  = f.input :payload_soft_deleted_merchants,
+            as: :text,
+            input_html: { \
+              rows: 18,
+              value: JSON.pretty_generate(merchant_sync.payload_soft_deleted_merchants).html_safe,
+              class: "font-mono" \
+            }
+
+  = f.input :payload_countries,
+            as: :text,
+            input_html: { \
+              rows: 18,
+              value: JSON.pretty_generate(merchant_sync.payload_countries).html_safe,
+              class: "font-mono" \
+            }
+
+  = f.input :process_logs,
+            as: :text,
+            input_html: { \
+              rows: 18,
+              value: JSON.pretty_generate(merchant_sync.process_logs).html_safe,
+              class: "font-mono" \
+            }
+
+  = f.button :submit
