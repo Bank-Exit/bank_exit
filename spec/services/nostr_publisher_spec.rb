@@ -80,6 +80,7 @@ RSpec.describe NostrPublisher do
           title: 'New Bank-Exit merchants (2025-11-20 at 16:30)',
           summary: 'A list of merchants that accept Bitcoin, Monero, or June, mapped on the bank-exit.org website during the latest synchronization.',
           t: %w[Bank-Exit SortieDeBanque XBT XMR XG1 Bitcoin Monero June],
+          p: 'mynostrpubkey',
           published_at: Time.current.to_i.to_s
         )
       end

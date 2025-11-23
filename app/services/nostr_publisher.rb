@@ -23,20 +23,7 @@ class NostrPublisher < ApplicationService
         kind: 30_023, # Long-form Content
         pubkey: @client.public_key,
         content: content,
-        tags: [
-          ['d', identifier],
-          ['title', title],
-          ['summary', summary],
-          %w[t Bank-Exit],
-          %w[t SortieDeBanque],
-          %w[t XBT],
-          %w[t XMR],
-          %w[t XG1],
-          %w[t Bitcoin],
-          %w[t Monero],
-          %w[t June],
-          ['published_at', published_at]
-        ]
+        tags: tags
       )
 
       @client.connect
@@ -56,6 +43,26 @@ class NostrPublisher < ApplicationService
   def validate!
     raise NostrErrors::MissingPrivateKey unless private_key
     raise NostrErrors::MissingRelayUrl if relays.blank?
+  end
+
+  def tags
+    default_tags = [
+      ['d', identifier],
+      ['title', title],
+      ['summary', summary],
+      %w[t Bank-Exit],
+      %w[t SortieDeBanque],
+      %w[t XBT],
+      %w[t XMR],
+      %w[t XG1],
+      %w[t Bitcoin],
+      %w[t Monero],
+      %w[t June],
+      ['published_at', published_at]
+    ]
+
+    default_tags.push(['p', original_bank_exit_pubkey]) if original_bank_exit_pubkey
+    default_tags
   end
 
   def title
@@ -99,5 +106,9 @@ class NostrPublisher < ApplicationService
 
   def relays
     ENV.fetch('NOSTR_RELAYS_URLS', nil)&.split(';')
+  end
+
+  def original_bank_exit_pubkey
+    ENV.fetch('NOSTR_BANK_EXIT_PUBKEY', nil)
   end
 end
