@@ -242,7 +242,7 @@ en:
   merchant_proposals:
     new:
       title: Proposal for a new merchant
-      introduction_html: You can suggest a new merchant by filling in the following form. An <a href="https://github.com/Unbanked0/bank_exit/issues" target="_blank">issue</a> will be then opened at Github so the Collective could check it and add the merchant to OpenStreetMap.
+      introduction_html: You can suggest a new merchant by filling in the following form. An issue will be then opened at Github so the Collective could check it and add the merchant to OpenStreetMap.
       form:
         general_info: General informations
         coins: Accepted coins
@@ -326,7 +326,7 @@ en:
         alert: The description must be filled in
 
       modal:
-        introduction_html: Please indicate the anomalies you have identified on the merchant's profile. An <a href="https://github.com/Unbanked0/bank_exit/issues" target="_blank">issue</a> will be opened on Github so the Collective can analyze the request.
+        introduction_html: Please indicate the anomalies you have identified on the merchant's profile. An issue will be opened on Github so the Collective can analyze the request.
         submit: Report anomalies
 
   comments:

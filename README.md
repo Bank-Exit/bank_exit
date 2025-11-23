@@ -78,7 +78,7 @@ A voluntary, non-partisan collective whose aim is to offer legal, peaceful and s
 ### Installation
 
 ```bash
-$ git clone https://github.com/Unbanked0/bank_exit
+$ git clone https://github.com/Bank-Exit/bank_exit
 $ cd bank_exit
 
 $ bin/setup
@@ -184,11 +184,11 @@ Adresses autocomplete are fetched from the Nominatim API through the [geocoder g
 
 ## 🌐 Internationalization
 
-Refer to the [Wiki article](https://github.com/Unbanked0/bank_exit/wiki/Internationalization-(i18n)) to add or update a new locale.
+Refer to the [Wiki article](https://github.com/Bank-Exit/bank_exit/wiki/Internationalization-(i18n)) to add or update a new locale.
 
 ## 🎓 Tutorials
 
-Refer to the [Wiki article](https://github.com/Unbanked0/bank_exit/wiki/Tutorials-Configuration-Documentation) to add or update a tutorial article.
+Refer to the [Wiki article](https://github.com/Bank-Exit/bank_exit/wiki/Tutorials-Configuration-Documentation) to add or update a tutorial article.
 
 ## 🖼️ Assets and Media
 

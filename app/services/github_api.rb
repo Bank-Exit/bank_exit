@@ -39,11 +39,11 @@ class GithubAPI
   private
 
   def owner
-    'Unbanked0'
+    ENV.fetch('GITHUB_ORGANIZATION', nil)
   end
 
   def repo
-    'bank_exit'
+    ENV.fetch('GITHUB_REPOSITORY', nil)
   end
 
   def token

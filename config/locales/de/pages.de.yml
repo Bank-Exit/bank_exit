@@ -234,7 +234,7 @@ de:
   merchant_proposals:
     new:
       title: Vorschlag für einen neuen Händler
-      introduction_html: Du kannst einen neuen Händler vorschlagen, indem du das folgende Formular ausfüllst. Ein <a href="https://github.com/Unbanked0/bank_exit/issues" target="_blank">Issue</a> wird dann auf Github erstellt, damit das Kollektiv den Vorschlag prüfen und den Händler zu OpenStreetMap hinzufügen kann.
+      introduction_html: Du kannst einen neuen Händler vorschlagen, indem du das folgende Formular ausfüllst. Ein Issue wird dann auf Github erstellt, damit das Kollektiv den Vorschlag prüfen und den Händler zu OpenStreetMap hinzufügen kann.
       form:
         general_info: Allgemeine Informationen
         coins: Akzeptierte Coins
@@ -312,7 +312,7 @@ de:
         alert: Die Beschreibung muss ausgefüllt werden
 
       modal:
-        introduction_html: Bitte gib die Anomalien an, die du im Profil des Händlers gefunden hast. Ein <a href="https://github.com/Unbanked0/bank_exit/issues" target="_blank">Issue</a> wird auf Github erstellt, damit das Kollektiv die Anfrage analysieren kann.
+        introduction_html: Bitte gib die Anomalien an, die du im Profil des Händlers gefunden hast. Ein Issue wird auf Github erstellt, damit das Kollektiv die Anfrage analysieren kann.
         submit: Anomalien melden
 
   comments:

@@ -231,7 +231,7 @@ nav.navbar.container.mx-auto
         = render 'theme_switcher'
 
       li
-        = link_to 'https://github.com/Unbanked0', target: :_blank, title: t('.menu.github_title') do
+        = link_to github_organization_url, target: :_blank, title: t('.menu.github_title') do
           = lucide_icon 'github', class: "w-6"
 
       - if logged_in?

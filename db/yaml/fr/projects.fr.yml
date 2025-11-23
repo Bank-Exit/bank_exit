@@ -44,7 +44,7 @@
   description: Générer des bannières de don ou de paiement Bitcoin et Monero
   external: false
   iframe_url: https://monero-map.org/crypto_box
-  github_url: https://github.com/Unbanked0/Crypto_Box_sticker
+  github_url: https://github.com/Bank-Exit/Crypto_Box_sticker
   identifier: sticker
 
 - route: local_groups#index
