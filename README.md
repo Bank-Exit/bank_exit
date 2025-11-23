@@ -155,6 +155,11 @@ bank-exit(dev)> FetchMerchants.call
     <td>`true` or `false`</td>
   </tr>
   <tr>
+    <td>FF_NOSTR_ENABLED</td>
+    <td>Feature flag to enable Nostr publication</td>
+    <td>`true` or `false`</td>
+  </tr>
+  <tr>
     <td>DEBUGBAR_ENABLED</td>
     <td>Enable debugbar (limited to development and staging environments)</td>
     <td>`true` or `false`</td>

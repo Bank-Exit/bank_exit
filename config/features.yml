@@ -5,6 +5,8 @@ default: &default
     enabled: <%= ENV.fetch('FF_ANALYTICS_ENABLED', false) %>
   snowflakes:
     enabled: <%= ENV.fetch('FF_SNOWFLAKES_ENABLED', false) %>
+  nostr:
+    enabled: <%= ENV.fetch('FF_NOSTR_ENABLED', false) %>
 
 development:
   <<: *default

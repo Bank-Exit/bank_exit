@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   draw :legacy
   draw :shortcuts
 
+  direct :njump do |identifier|
+    "#{ENV.fetch('NOSTR_BASE_URL', 'https://njump.to')}/#{identifier}"
+  end
+
   namespace :maps do
     resource :referer, only: :update
   end

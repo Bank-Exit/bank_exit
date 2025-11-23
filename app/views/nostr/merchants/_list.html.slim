@@ -1,0 +1,18 @@
+| **#{merchants_count}** new merchants have been referenced on [Bank-Exit](#{root_url}) website:
+= "\n"
+
+- merchants_by_country.each do |country, merchants|
+  | ### #{pretty_country_html(country)}
+  = "\n"
+
+  - merchants.each do |merchant|
+    | - **[#{merchant.name}](#{merchant_url(merchant)})**
+    ruby:
+      coins_list = []
+      coins_list << '₿ Bitcoin' if merchant.bitcoin?
+      coins_list << '🔒 Monero' if merchant.monero?
+      coins_list << '🌀 June' if merchant.june?
+      coins_list << '⚡ Lightning' if merchant.lightning? || merchant.contact_less?
+    |   #{coins_list.join(', ')}
+    = "\n"
+  = "\n"

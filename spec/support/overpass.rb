@@ -1,9 +1,11 @@
 RSpec.configure do |_config|
-  def stub_overpass_request_success
+  def stub_overpass_request_success(empty_response: false)
+    body = empty_response ? {} : File.read('spec/fixtures/files/overpass_api_response.json')
+
     stub_request(:get, /overpass-api.de/)
       .with(query: hash_including(:data))
       .to_return_json(
-        body: File.read('spec/fixtures/files/overpass_api_response.json')
+        body: body
       )
   end
 
