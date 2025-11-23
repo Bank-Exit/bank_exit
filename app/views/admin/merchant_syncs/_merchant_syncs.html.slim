@@ -5,6 +5,7 @@ section.space-y-3
     table.table.table-zebra
       thead
         tr
+          th scope="col"= MerchantSync.human_attribute_name(:id)
           th scope="col"= MerchantSync.human_attribute_name(:instigator)
           th scope="col"= MerchantSync.human_attribute_name(:mode)
           th scope="col"= MerchantSync.human_attribute_name(:started_at)

@@ -1,5 +1,7 @@
 tr id=dom_id(merchant_sync)
   td
+    span.font-bold ##{merchant_sync.id}
+  td
     .badge.badge-outline class=(merchant_sync.task? ? 'badge-success' : 'badge-info')
       = MerchantSync.human_enum_name(:instigator, merchant_sync.instigator)
 
