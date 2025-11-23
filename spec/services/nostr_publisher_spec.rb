@@ -87,7 +87,7 @@ RSpec.describe NostrPublisher do
       it 'has correct content', :aggregate_failures do
         content = published_event.event.content
 
-        expect(content).to match(/\*\*3\*\* new merchants have been referenced on/)
+        expect(content).to match(/Discover \*\*3\*\* newly listed Bitcoin \(₿ ⚡\), Monero \(🔒\), and June \(🟡\) merchants now featured on the /)
         expect(content).to match(/Bitcoin Coffee/)
         expect(content).to match(/MM salon de thé, pâtisserie, chocolaterie/)
         expect(content).to match(/Feel SO light/)
