@@ -33,6 +33,7 @@ en:
         level: My level
         service: I want
       map:
+        onchain_only: Onchain only (no ⚡)
         delivery: With home delivery
         no_kyc: <span>Don't ask for a <abbr title="Know Your Customer">KYC</abbr></span>
         with_atms: Include <abbr title="Automated Teller Machine">ATMs</abbr> ?

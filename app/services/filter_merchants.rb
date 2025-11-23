@@ -2,15 +2,16 @@ class FilterMerchants < ApplicationService
   attr_reader :initial_scope, :query, :category,
               :country, :continent, :coins,
               :delivery, :no_kyc, :with_atms,
-              :order_by_survey
+              :order_by_survey, :onchain_only
 
-  def initialize(initial_scope = Merchant.available, query: '', category: 'all', country: 'all', continent: 'all', coins: [], delivery: false, no_kyc: false, with_atms: false, order_by_survey: false)
+  def initialize(initial_scope = Merchant.available, query: '', category: 'all', country: 'all', continent: 'all', coins: [], onchain_only: false, delivery: false, no_kyc: false, with_atms: false, order_by_survey: false)
     @initial_scope = initial_scope
     @query = query
     @category = category
     @country = country
     @continent = continent
     @coins = coins
+    @onchain_only = onchain_only
     @delivery = delivery
     @no_kyc = no_kyc
     @with_atms = with_atms
@@ -41,12 +42,24 @@ class FilterMerchants < ApplicationService
 
     @merchants = @merchants.no_kyc if no_kyc
     @merchants = @merchants.not_atms unless with_atms
+    @merchants = @merchants.merge(Merchant.onchain_only) if onchain_only
 
     return @merchants unless bitcoin? || monero? || june?
 
+    bitcoin_scope =
+      if bitcoin?
+        if onchain_only
+          Merchant.merge(Merchant.bitcoin_onchain)
+        else
+          Merchant.merge(Merchant.bitcoin)
+        end
+      else
+        Merchant.none
+      end
+
     @merchants.and(
       Merchant.none.or(
-        bitcoin? ? Merchant.merge(Merchant.bitcoin) : Merchant.none
+        bitcoin_scope
       ).or(
         monero? ? Merchant.merge(Merchant.monero) : Merchant.none
       ).or(

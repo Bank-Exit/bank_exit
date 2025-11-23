@@ -33,6 +33,7 @@ de:
         level: Mein Niveau
         service: Ich möchte
       map:
+        onchain_only: Nur on-chain (kein ⚡)
         delivery: Mit Hauszustellung
         no_kyc: <span>Keine <abbr title="Know Your Customer">KYC</abbr> erforderlich</span>
         with_atms: Inkludiere <abbr title="Automated Teller Machine">Geldautomaten</abbr> ?

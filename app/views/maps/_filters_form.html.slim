@@ -142,6 +142,18 @@
       = lucide_icon 'undo', class: 'p-1'
 
   .fieldset
+    = f.input :onchain_only, as: :boolean,
+              boolean_style: :inline,
+              include_hidden: false,
+              wrapper: false,
+              input_html: { \
+                checked: params[:onchain_only] == '1', \
+                data: { \
+                  map__filter_target: "input", \
+                } \
+              },
+              label: t('simple_form.labels.map.onchain_only')
+
     .flex.items-center.gap-5
       = f.input :no_kyc, as: :boolean,
                 boolean_style: :inline,

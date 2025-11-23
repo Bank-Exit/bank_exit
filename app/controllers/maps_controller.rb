@@ -120,7 +120,7 @@ class MapsController < PublicController
       :search, :category, :country, :continent,
       :delivery, :no_kyc, :order_by_survey,
       :locale, :pagy, :page, :zoom, :lat, :lon,
-      :display, coins: []
+      :display, :onchain_only, coins: []
     )
   end
 
@@ -142,6 +142,10 @@ class MapsController < PublicController
 
   def continent
     @continent ||= map_params[:continent]
+  end
+
+  def onchain_only?
+    map_params[:onchain_only] == '1'
   end
 
   def delivery?

@@ -15,6 +15,7 @@ module Merchandable
         country: country,
         continent: continent,
         coins: coins,
+        onchain_only: onchain_only?,
         delivery: delivery?,
         no_kyc: no_kyc?,
         with_atms: with_atms?,
@@ -52,6 +53,10 @@ module Merchandable
     []
   end
 
+  def onchain_only?
+    false
+  end
+
   def delivery?
     false
   end
@@ -76,6 +81,7 @@ module Merchandable
       ("country=#{country}" if country.present?),
       ("continent=#{continent}" if continent.present?),
       ("coins=#{coins.join('-')}" if coins.any?),
+      "onchain_only=#{onchain_only? || false}",
       "delivery=#{delivery? || false}",
       "no-kyc=#{no_kyc? || 'undefined'}",
       "atms=#{with_atms? || false}",
