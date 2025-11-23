@@ -27,7 +27,7 @@
 
     - elsif row['mode'] == 'error'
       pre.text-error data-prefix=">"
-        code
+        code.whitespace-normal
           - if row['timestamp']
             span.italic.text-xs.opacity-50=> "[#{l(Time.at(row['timestamp']), format: :hms)}]"
           = row['message']

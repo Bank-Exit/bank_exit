@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_19_171201) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_23_182141) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date", null: false
@@ -193,6 +193,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_19_171201) do
     t.datetime "ended_at"
     t.integer "instigator", default: 0, null: false
     t.integer "mode", default: 0, null: false
+    t.text "notes"
     t.json "payload_added_merchants", default: {}, null: false
     t.json "payload_before_updated_merchants", default: {}, null: false
     t.json "payload_countries", default: {}, null: false

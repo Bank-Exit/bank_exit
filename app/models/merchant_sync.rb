@@ -183,4 +183,5 @@ end
 #  created_at                       :datetime         not null
 #  updated_at                       :datetime         not null
 #  payload_nostr                    :json             not null
+#  notes                            :text
 #
