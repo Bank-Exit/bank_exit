@@ -8,50 +8,47 @@ module Merchants
 
     def initialize(instigator = :task)
       @instigator = instigator
-      @logs = []
     end
 
-    def call
-      @logs << { mode: 'info', message: 'Retrieving outdated merchants', timestamp: Time.current.to_i }
-
+    def prepare
       @merchant_sync = MerchantSync.create!(
         mode: :clear,
         status: :pending,
         instigator: instigator,
-        started_at: Time.current,
-        process_logs: @logs
+        started_at: Time.current
       )
+
+      @merchant_sync.merchant_sync_steps.create!(step: :init_clear, status: :success)
+    end
+
+    def call
+      fetch_step = @merchant_sync.merchant_sync_steps.create!(step: :fetch_outdated)
 
       soft_deleted_merchants_count = outdated_merchants.count
       payload_soft_deleted_merchants = outdated_merchants.map(&:raw_feature)
 
-      @logs << { mode: 'info', message: 'Removing outdated merchants', timestamp: Time.current.to_i }
-      @merchant_sync.update!(process_logs: @logs)
+      fetch_step.success!
 
-      outdated_merchants.destroy_all
+      clearing_step = @merchant_sync.merchant_sync_steps.create!(step: :clear_outdated)
 
-      @logs << { mode: 'success', message: 'Outdated merchants removed successfully ! ', timestamp: Time.current.to_i }
+      begin
+        outdated_merchants.destroy_all
+        clearing_step.success!
+      rescue StandardError => e
+        clearing_step.mark_as_fail(e)
+        raise e
+      end
+
+      @merchant_sync.merchant_sync_steps.create!(step: :end_of_clear, status: :success)
 
       @merchant_sync.update!(
         status: :success,
         ended_at: Time.current,
         soft_deleted_merchants_count: soft_deleted_merchants_count,
-        payload_soft_deleted_merchants: payload_soft_deleted_merchants,
-        process_logs: @logs
+        payload_soft_deleted_merchants: payload_soft_deleted_merchants
       )
-    rescue StandardError => e
-      @logs << { mode: 'error', message: "💥 #{e.message}", timestamp: Time.current.to_i }
-
-      @merchant_sync.update!(
-        status: :error,
-        ended_at: Time.current,
-        process_logs: @logs,
-        payload_error: {
-          exception: e.class.name,
-          message: e.message,
-          backtrace: e.backtrace
-        }
-      )
+    rescue StandardError => _e
+      @merchant_sync.mark_as_fail!
     end
 
     private

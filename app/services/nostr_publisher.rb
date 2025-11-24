@@ -42,6 +42,7 @@ class NostrPublisher < ApplicationService
 
   def validate!
     raise NostrErrors::MissingPrivateKey unless private_key
+
     raise NostrErrors::MissingRelayUrl if relays.blank?
   end
 
@@ -90,6 +91,7 @@ class NostrPublisher < ApplicationService
   def merchants_by_country
     Merchant
       .available
+      .where.not(country: nil)
       .where(
         original_identifier: merchant_sync.payload_added_merchants.pluck('id')
       )

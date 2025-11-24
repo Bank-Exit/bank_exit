@@ -14,7 +14,6 @@ class FetchMerchants < ApplicationService
   def initialize(instigator = :task)
     @instigator = instigator
     @current_features = Merchant.pluck(:raw_feature)
-    @logs = []
   end
 
   def prepare
@@ -25,111 +24,41 @@ class FetchMerchants < ApplicationService
       merchant_sync.started_at = Time.current
     end
 
-    @merchant_sync.update!(process_logs: @logs)
+    @merchant_sync.merchant_sync_steps.create!(status: :success)
   end
 
   def call
-    @logs << { mode: 'info', message: 'Calling Overpass API to fetch data', timestamp: Time.current.to_i }
-    @merchant_sync.update!(process_logs: @logs)
+    overpass_response = overpass_api_step
+    geojson, geojson_merchant_ids = convert_to_geojson_step(overpass_response)
 
-    Merchant.transaction do
-      response = Retry.on(*RETRYABLE_ERRORS) do
-        OverpassAPI.new.fetch_merchants
-      end
+    save_data_step(geojson)
+    attach_json_step(geojson)
+    notify_github_step(geojson_merchant_ids)
+    reactivate_disabled_step(geojson_merchant_ids)
+    payload_countries = assign_country_step
+    diff_change_step(payload_countries)
+    purge_old_attachments_step
 
-      @logs << { mode: 'info', message: 'Converting JSON to GeoJSON', timestamp: Time.current.to_i }
-      @merchant_sync.update!(process_logs: @logs)
-
-      geojson = JSONToGeoJSON.call(response.parsed_response)
-
-      @geojson_merchant_ids = geojson['features'].pluck('id')
-
-      @logs << { mode: 'info', message: 'Upserting data to database', timestamp: Time.current.to_i }
-      @merchant_sync.broadcast_admin_replace_process_logs
-
-      upsert_merchants_to_database(geojson)
-
-      @logs << { mode: 'info', message: 'Attaching JSON file to most recent record', timestamp: Time.current.to_i }
-      @merchant_sync.broadcast_admin_replace_process_logs
-
-      @merchant_sync.raw_json.attach(
-        io: StringIO.new(geojson.to_s),
-        filename: "overpass_merchants_#{Time.current.to_fs(:number)}.json",
-        content_type: 'application/json'
-      )
-
-      # As we are in a transaction, we cannot use
-      # auto model broadcast.
-      @merchant_sync.update!(process_logs: @logs)
+    if FeatureFlag.enabled?(:nostr) &&
+       @merchant_sync.added_merchants_count.positive?
+      publish_to_nostr_step
     end
 
-    @logs << { mode: 'info', message: 'Checking removed merchants from OSM', timestamp: Time.current.to_i }
-    @logs << { mode: 'info', message: 'Notifying to Github issue', timestamp: Time.current.to_i }
-    @merchant_sync.update!(process_logs: @logs)
+    @merchant_sync.merchant_sync_steps.create!(step: :end_of_sync, status: :success)
 
-    I18n.with_locale(I18n.default_locale) do
-      Merchants::CheckAndReportRemovedOnOSM.call(@geojson_merchant_ids)
-    end
-
-    @logs << { mode: 'info', message: 'Reactivating legit soft-deleted merchants', timestamp: Time.current.to_i }
-    @merchant_sync.update!(process_logs: @logs)
-
-    Merchants::CheckAndReactivate.call(@geojson_merchant_ids)
-
-    @logs << { mode: 'info', message: "Assigning country to merchants that don't have one", timestamp: Time.current.to_i }
-    @merchant_sync.update!(process_logs: @logs)
-
-    payload_countries = Merchants::AssignCountry.call
-
-    ended_at = Time.current
-
-    added_merchants = Merchant.where(created_at: @merchant_sync.started_at..ended_at)
-    soft_deleted_merchants = Merchant.where(deleted_at: @merchant_sync.started_at..ended_at)
-    updated_merchants = Merchant.where(updated_at: @merchant_sync.started_at..ended_at).where.not(id: [added_merchants.ids, soft_deleted_merchants.ids].flatten)
-
-    if updated_merchants.any?
-      updated_ids = updated_merchants.pluck(:original_identifier)
-      features_previously_was = @current_features.select do |feature|
-        feature['id'].in?(updated_ids)
-      end
-
-      @merchant_sync.payload_before_updated_merchants = features_previously_was
-      @merchant_sync.payload_updated_merchants = updated_merchants.map(&:raw_feature)
-    end
-
+    status = @merchant_sync.merchant_sync_steps.any?(&:error?) ? :success_with_error : :success
     @merchant_sync.update!(
-      added_merchants_count: added_merchants.count,
-      updated_merchants_count: updated_merchants.count,
-      soft_deleted_merchants_count: soft_deleted_merchants.count,
-
-      payload_added_merchants: added_merchants.map(&:raw_feature),
-      payload_soft_deleted_merchants: soft_deleted_merchants.map(&:raw_feature),
-      payload_countries: payload_countries
+      status: status,
+      ended_at: Time.current
     )
+  rescue StandardError => e
+    @merchant_sync.mark_as_fail!
 
-    @logs << { mode: 'info', message: 'Purging previous JSON attachments on older records', timestamp: Time.current.to_i }
-    @merchant_sync.update!(process_logs: @logs)
+    Merchant.broadcast_flash(:alert, e.message)
+  end
 
-    @merchant_sync.purge_all_attachments_not_self
-
-    if FeatureFlag.enabled?(:nostr) && @merchant_sync.added_merchants_count.positive?
-      @logs << { mode: 'info', message: 'Publishing note to Nostr', timestamp: Time.current.to_i }
-      @merchant_sync.update!(process_logs: @logs)
-
-      I18n.with_locale(I18n.default_locale) do
-        NostrPublisher.call(
-          @merchant_sync, identifier: SecureRandom.uuid
-        )
-      end
-    end
-
-    @logs << { mode: 'success', message: 'End of synchronization ! 🎉', timestamp: Time.current.to_i }
-
-    @merchant_sync.update!(
-      status: :success,
-      ended_at: ended_at,
-      process_logs: @logs
-    )
+  def finish
+    invalidate_cache
 
     # Broadcast with message scoped by locale
     I18n.available_locales.each do |locale|
@@ -141,28 +70,167 @@ class FetchMerchants < ApplicationService
         )
       end
     end
-  rescue StandardError => e
-    @logs << { mode: 'error', message: "💥 #{e.message}", timestamp: Time.current.to_i }
-
-    @merchant_sync.update!(
-      status: :error,
-      ended_at: Time.current,
-      process_logs: @logs,
-      payload_error: {
-        exception: e.class.name,
-        message: e.message,
-        backtrace: e.backtrace
-      }
-    )
-
-    Merchant.broadcast_flash(:alert, e.message)
-  end
-
-  def finish
-    invalidate_cache
   end
 
   private
+
+  def overpass_api_step
+    overpass_api_step = @merchant_sync.merchant_sync_steps.create!(step: :overpass_api)
+
+    begin
+      response = Retry.on(*RETRYABLE_ERRORS) do
+        OverpassAPI.new.fetch_merchants
+      end
+
+      overpass_api_step.success!
+      response
+    rescue StandardError => e
+      overpass_api_step.mark_as_fail(e)
+      raise e
+    end
+  end
+
+  def convert_to_geojson_step(response)
+    convert_to_geojson_step = @merchant_sync.merchant_sync_steps.create!(step: :convert_to_geojson)
+
+    begin
+      geojson = JSONToGeoJSON.call(response.parsed_response)
+      geojson_merchant_ids = geojson['features'].pluck('id')
+
+      convert_to_geojson_step.success!
+      [geojson, geojson_merchant_ids]
+    rescue StandardError => e
+      convert_to_geojson_step.mark_as_fail(e)
+      raise e
+    end
+  end
+
+  def save_data_step(geojson)
+    save_data_step = @merchant_sync.merchant_sync_steps.create!(step: :save_data)
+
+    begin
+      upsert_merchants_to_database(geojson)
+      save_data_step.success!
+    rescue StandardError => e
+      save_data_step.mark_as_fail(e)
+      raise e
+    end
+  end
+
+  def attach_json_step(geojson)
+    attach_json_step = @merchant_sync.merchant_sync_steps.create!(step: :attach_json)
+
+    begin
+      @merchant_sync.raw_json.attach(
+        io: StringIO.new(geojson.to_s),
+        filename: "overpass_merchants_#{Time.current.to_fs(:number)}.json",
+        content_type: 'application/json'
+      )
+
+      attach_json_step.success!
+    rescue StandardError => e
+      attach_json_step.mark_as_fail(e)
+      raise e
+    end
+  end
+
+  def notify_github_step(geojson_merchant_ids)
+    notify_github_step = @merchant_sync.merchant_sync_steps.create!(step: :notify_github)
+
+    begin
+      I18n.with_locale(I18n.default_locale) do
+        Merchants::CheckAndReportRemovedOnOSM.call(geojson_merchant_ids)
+      end
+      notify_github_step.success!
+    rescue StandardError => e
+      notify_github_step.mark_as_fail(e)
+    end
+  end
+
+  def reactivate_disabled_step(geojson_merchant_ids)
+    reactivate_disabled_step = @merchant_sync.merchant_sync_steps.create!(step: :reactivate_disabled)
+
+    begin
+      Merchants::CheckAndReactivate.call(geojson_merchant_ids)
+      reactivate_disabled_step.success!
+    rescue StandardError => e
+      reactivate_disabled_step.mark_as_fail(e)
+    end
+  end
+
+  def assign_country_step
+    assign_country_step = @merchant_sync.merchant_sync_steps.create!(step: :assign_country)
+
+    begin
+      countries = Merchants::AssignCountry.call
+      assign_country_step.success!
+      countries
+    rescue StandardError => e
+      assign_country_step.mark_as_fail(e)
+    end
+  end
+
+  def diff_change_step(payload_countries)
+    diff_change_step = @merchant_sync.merchant_sync_steps.create!(step: :diff_change)
+
+    begin
+      ended_at = Time.current
+
+      added_merchants = Merchant.where(created_at: @merchant_sync.started_at..ended_at)
+      soft_deleted_merchants = Merchant.where(deleted_at: @merchant_sync.started_at..ended_at)
+      updated_merchants = Merchant.where(updated_at: @merchant_sync.started_at..ended_at).where.not(id: [added_merchants.ids, soft_deleted_merchants.ids].flatten)
+
+      if updated_merchants.any?
+        updated_ids = updated_merchants.pluck(:original_identifier)
+        features_previously_was = @current_features.select do |feature|
+          feature['id'].in?(updated_ids)
+        end
+
+        @merchant_sync.payload_before_updated_merchants = features_previously_was
+        @merchant_sync.payload_updated_merchants = updated_merchants.map(&:raw_feature)
+      end
+
+      @merchant_sync.update!(
+        added_merchants_count: added_merchants.count,
+        updated_merchants_count: updated_merchants.count,
+        soft_deleted_merchants_count: soft_deleted_merchants.count,
+
+        payload_added_merchants: added_merchants.map(&:raw_feature),
+        payload_soft_deleted_merchants: soft_deleted_merchants.map(&:raw_feature),
+        payload_countries: payload_countries
+      )
+
+      diff_change_step.success!
+    rescue StandardError => e
+      diff_change_step.mark_as_fail(e)
+    end
+  end
+
+  def purge_old_attachments_step
+    purge_old_attachments_step = @merchant_sync.merchant_sync_steps.create!(step: :purge_old_attachments)
+
+    begin
+      @merchant_sync.purge_all_attachments_not_self
+      purge_old_attachments_step.success!
+    rescue StandardError => e
+      purge_old_attachments_step.mark_as_fail(e)
+    end
+  end
+
+  def publish_to_nostr_step
+    publish_to_nostr_step = @merchant_sync.merchant_sync_steps.create!(step: :publish_to_nostr)
+
+    begin
+      I18n.with_locale(I18n.default_locale) do
+        NostrPublisher.call(
+          @merchant_sync, identifier: SecureRandom.uuid
+        )
+      end
+      publish_to_nostr_step.success!
+    rescue NostrErrors => e
+      publish_to_nostr_step.mark_as_fail(e)
+    end
+  end
 
   # Store data into database within a batch insert
   def upsert_merchants_to_database(geojson)

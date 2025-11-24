@@ -16,13 +16,7 @@
       =< l(@merchant_sync.started_at)
 
   = render_modal modal_size: @merchant_sync.error? ? 'max-w-5xl' : "max-w-3xl" do
-    - if @merchant_sync.error?
-      = render 'admin/merchant_syncs/process_logs', merchant_sync: @merchant_sync
-
-      pre.bg-base-200.border.border-base-300.rounded-box.p-2.overflow-x-auto
-        == json_highlight(@merchant_sync.payload_error)
-
-    - elsif @merchant_sync.success?
+    - if @merchant_sync.success? || @merchant_sync.success_with_error?
       - if @merchant_sync.with_details?
         - if @merchant_sync.added_merchants_count > 0
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300
@@ -120,5 +114,15 @@
       - else
         p.italic.text-center.my-2 No update to show
 
-      - if @merchant_sync.process_logs.present?
-        = render 'admin/merchant_syncs/process_logs', merchant_sync: @merchant_sync
+    - if @merchant_sync.merchant_sync_steps.any?
+      .mockup-code= render @merchant_sync.merchant_sync_steps
+
+    - if @merchant_sync.error? || @merchant_sync.success_with_error?
+      - @merchant_sync.merchant_sync_steps.error.each do |step|
+        details.collapse.collapse-arrow.bg-error/10.border.border-error/30
+          summary.collapse-title.font-semibold
+            .status.status-error
+            =< step.message_for_step
+
+          pre.collapse-content.json-colorized
+            == json_highlight(step.payload_error)

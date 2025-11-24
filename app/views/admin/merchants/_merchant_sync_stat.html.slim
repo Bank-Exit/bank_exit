@@ -1,10 +1,10 @@
 #merchant_sync_stat.stat.space-y-3
   - if merchant_sync
-    - if merchant_sync.success?
-      .stat-figure.tooltip.tooltip-success.tooltip-bottom data-tip=MerchantSync.human_enum_name(:status, merchant_sync.status)
+    - if merchant_sync.success? || merchant_sync.success_with_error?
+      .stat-figure.tooltip.tooltip-bottom data-tip=MerchantSync.human_enum_name(:status, merchant_sync.status) class=(merchant_sync.success? ? 'tooltip-success' : 'tooltip-warning')
         = link_to admin_merchant_sync_path(merchant_sync),
                   data: { turbo_stream: true } do
-          = lucide_icon 'check-check', class: 'w-12 h-12 text-success'
+          = lucide_icon 'check-check', class: "w-12 h-12 #{merchant_sync.success? ? 'text-success' : 'text-warning'}"
 
     - elsif merchant_sync.error?
       .stat-figure.tooltip.tooltip-error.tooltip-bottom data-tip=MerchantSync.human_enum_name(:status, merchant_sync.status)

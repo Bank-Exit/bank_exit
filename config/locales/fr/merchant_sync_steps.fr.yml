@@ -1,0 +1,19 @@
+fr:
+  merchant_sync_steps:
+    init: Début de la synchronisation
+    overpass_api: Appel à l'API Overpass pour récupérer les commerçants
+    convert_to_geojson: Conversion du JSON en GeoJSON
+    save_data: Enregistrement des données dans la base
+    attach_json: Attachement du fichier GeoJSON
+    notify_github: Vérification et notification à l’API GitHub des commerçants supprimés
+    reactivate_disabled: Réactivation des commerçants désactivés (soft delete)
+    assign_country: Attribution des pays aux commerçants
+    diff_change: Vérification des différences entre les anciens et les nouveaux commerçants
+    purge_old_attachments: Purge des anciens fichiers GeoJSON
+    publish_to_nostr: Publication sur Nostr en tant que type 30023
+    end_of_sync: Fin de la synchronisation
+
+    init_clear: Début du nettoyage
+    fetch_outdated: Récupération des commerçants  qui ont dépassé la période de grâce
+    clear_outdated: Nettoyage des commerçants
+    end_of_clear: Fin du nettoyage

@@ -1,0 +1,19 @@
+en:
+  merchant_sync_steps:
+    init: Beginning of synchronization
+    overpass_api: Calling Overpass API fetching merchants
+    convert_to_geojson: Converting JSON to GeoJSON
+    save_data: Saving data to database
+    attach_json: Attaching GeoJSON file
+    notify_github: Checking and notifying Github API for deleted merchants
+    reactivate_disabled: Reactivating soft deleted merchants
+    assign_country: Assigning countries to merchants
+    diff_change: Checking changes between previous and new merchants
+    purge_old_attachments: Purging old GeoJSON attachments
+    publish_to_nostr: Publishing to Nostr as kind 30023
+    end_of_sync: End of synchronization
+
+    init_clear: Beginning of clearing
+    fetch_outdated: Fetching merchants that overpass delta time
+    clear_outdated: Clearing outdated merchants
+    end_of_clear: End of clearing

@@ -7,7 +7,8 @@ class MerchantSync < ApplicationRecord
   enum :status, {
     pending: 0,
     success: 1,
-    error: 2
+    error: 2,
+    success_with_error: 3
   }, default: :pending,
      validate: true
 
@@ -16,6 +17,7 @@ class MerchantSync < ApplicationRecord
     manual: 1
   }, default: :task
 
+  has_many :merchant_sync_steps, dependent: :destroy
   has_one_attached :raw_json
 
   before_update :parse_json_strings
@@ -32,11 +34,6 @@ class MerchantSync < ApplicationRecord
 
   after_update_commit do
     if status_previously_changed?
-      broadcast_remove_to(
-        %i[admin merchant_syncs],
-        target: :process_logs_wrapper
-      )
-
       I18n.available_locales.each do |locale|
         I18n.with_locale(locale) do
           broadcast_admin_stats
@@ -44,8 +41,6 @@ class MerchantSync < ApplicationRecord
         end
       end
     end
-
-    broadcast_admin_replace_process_logs if process_logs_previously_changed? && pending?
   end
 
   def self.by_query(query)
@@ -68,6 +63,13 @@ class MerchantSync < ApplicationRecord
     where(id: ids.to_a)
   end
 
+  def mark_as_fail!
+    update!(
+      status: :error,
+      ended_at: Time.current
+    )
+  end
+
   def with_details?
     !pending? && (
       added_merchants_count.positive? ||
@@ -83,17 +85,6 @@ class MerchantSync < ApplicationRecord
                 .find_each do |record|
       record.raw_json.purge_later if record.raw_json.attached?
     end
-  end
-
-  # This broadcast need to stay public to be manually
-  # callable from inside a database transaction.
-  def broadcast_admin_replace_process_logs
-    broadcast_update_to(
-      %i[admin merchant_syncs],
-      target: :process_logs,
-      partial: 'admin/merchant_syncs/process_logs',
-      locals: { merchant_sync: self }
-    )
   end
 
   def no_diff?
@@ -145,7 +136,7 @@ class MerchantSync < ApplicationRecord
       payload_updated_merchants
       payload_soft_deleted_merchants
       payload_countries
-      process_logs
+      payload_nostr
     ].each do |field|
       value = send(field)
       next unless value.is_a?(String)

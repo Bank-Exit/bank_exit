@@ -27,7 +27,7 @@
             input_html: { \
               rows: 18,
               value: JSON.pretty_generate(merchant_sync.payload_added_merchants).html_safe,
-              class: "font-mono" \
+              class: "font-mono max-h-96" \
             }
 
   = f.input :payload_updated_merchants,
@@ -35,7 +35,7 @@
             input_html: { \
               rows: 18,
               value: JSON.pretty_generate(merchant_sync.payload_updated_merchants).html_safe,
-              class: "font-mono" \
+              class: "font-mono max-h-96" \
             }
 
   = f.input :payload_soft_deleted_merchants,
@@ -43,7 +43,7 @@
             input_html: { \
               rows: 18,
               value: JSON.pretty_generate(merchant_sync.payload_soft_deleted_merchants).html_safe,
-              class: "font-mono" \
+              class: "font-mono max-h-96" \
             }
 
   = f.input :payload_countries,
@@ -51,15 +51,15 @@
             input_html: { \
               rows: 18,
               value: JSON.pretty_generate(merchant_sync.payload_countries).html_safe,
-              class: "font-mono" \
+              class: "font-mono max-h-96" \
             }
 
-  = f.input :process_logs,
+  = f.input :payload_nostr,
             as: :text,
             input_html: { \
               rows: 18,
-              value: JSON.pretty_generate(merchant_sync.process_logs).html_safe,
-              class: "font-mono" \
+              value: JSON.pretty_generate(merchant_sync.payload_nostr).html_safe,
+              class: "font-mono max-h-96" \
             }
 
   = f.button :submit

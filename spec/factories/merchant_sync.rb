@@ -15,7 +15,6 @@ FactoryBot.define do
       payload_updated_merchants { { foo: 'bar2' } }
       payload_soft_deleted_merchants { { foo2: 'bar' } }
       payload_countries { { foo3: 'bar' } }
-      process_logs { [{ mode: :info, message: 'info', timestamp: Time.current.to_i }, { mode: :success, message: 'success', timestamp: Time.current.to_i }, { mode: :error, message: 'errorr', timestamp: Time.current.to_i }] }
     end
   end
 end

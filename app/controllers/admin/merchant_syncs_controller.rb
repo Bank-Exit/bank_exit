@@ -104,7 +104,7 @@ module Admin
           payload_updated_merchants
           payload_soft_deleted_merchants
           payload_countries
-          process_logs
+          payload_nostr
           notes
         ]
       )
