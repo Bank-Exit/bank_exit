@@ -15,13 +15,13 @@ ruby:
   = "\n"
 
   - merchants.each do |merchant|
-    | - **[#{merchant.name}](#{merchant_url(merchant)})**
+    | - **[#{merchant.name}](#{merchant_url(merchant)})** (#{I18n.t(merchant.category, scope: :categories, default: merchant.category)})
     ruby:
       merchant_coins_list = []
       merchant_coins_list << '₿ Bitcoin' if merchant.bitcoin?
       merchant_coins_list << '🔒 Monero' if merchant.monero?
       merchant_coins_list << '🟡 June' if merchant.june?
       merchant_coins_list << '⚡ Lightning' if merchant.lightning? || merchant.contact_less?
-    |   #{merchant_coins_list.join(', ')}
+    |< #{merchant_coins_list.join(', ')}
     = "\n"
   = "\n"
