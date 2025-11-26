@@ -13,4 +13,4 @@
       - elsif key.in?(%i[session]) || (key == :signal && !value.starts_with?('http'))
         = value
       - else
-        = link_to clean_url(value).truncate(50), value, target: :_blank
+        = link_to clean_url(CGI::unescape(value)).truncate(50), value, target: :_blank
