@@ -51,6 +51,8 @@ tr id=dom_id(merchant_sync)
         .badge.badge-success= label
       - elsif merchant_sync.error?
         .badge.badge-error= label
+      - elsif merchant_sync.success_with_error?
+        .badge.badge-warning= label
       - else
         .badge.badge-soft.animate-pulse= label
 
@@ -89,7 +91,7 @@ tr id=dom_id(merchant_sync)
 
       = render 'dropdown_actions', item_id: merchant_sync.id
 
-- if merchant_sync.pending? || merchant_sync.ended_at >= Setting::MERCHANTS_DELTA_SYNC_TIME.ago
-  tr#process_logs_wrapper.bg-transparent
-    td#process_logs.p-0 colspan="100%"
-      = render 'admin/merchant_syncs/process_logs', merchant_sync: merchant_sync
+- if merchant_sync.pending?
+  tr.bg-transparent
+    td.mockup-code colspan="100%" id=dom_id(merchant_sync, 'steps_for')
+      = render merchant_sync.merchant_sync_steps

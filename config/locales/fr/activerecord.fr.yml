@@ -254,6 +254,7 @@ fr:
           pending: En cours
           success: Succès
           error: Erreur
+          success_with_error: Succès (!)
         instigator: Instigateur
         instigators:
           manual: Manuel

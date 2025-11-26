@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_23_182141) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_24_050034) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date", null: false
@@ -187,6 +187,16 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_23_182141) do
     t.string "url"
   end
 
+  create_table "merchant_sync_steps", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "merchant_sync_id", null: false
+    t.json "payload_error", default: {}, null: false
+    t.integer "status", default: 0, null: false
+    t.integer "step", default: 0, null: false
+    t.datetime "updated_at", null: false
+    t.index ["merchant_sync_id"], name: "index_merchant_sync_steps_on_merchant_sync_id"
+  end
+
   create_table "merchant_syncs", force: :cascade do |t|
     t.integer "added_merchants_count", default: 0, null: false
     t.datetime "created_at", null: false
@@ -325,4 +335,5 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_23_182141) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "directories", "merchants"
+  add_foreign_key "merchant_sync_steps", "merchant_syncs"
 end

@@ -234,6 +234,7 @@ en:
           pending: Pending
           success: Success
           error: Error
+          success_with_error: Success (!)
         instigator: Instigator
         instigators:
           manual: Manual

@@ -1,0 +1,16 @@
+pre data-prefix=">" id=dom_id(merchant_sync_step)
+  code
+    span.italic.text-xs.opacity-50
+      => "[#{l(Time.at(merchant_sync_step.created_at), format: :hms)}]"
+
+    = merchant_sync_step.message_for_step
+
+    - if merchant_sync_step.pending?
+      span.loading.loading-spinner.loading-xs<
+    - elsif merchant_sync_step.error?
+      .tooltip.tooltip-error
+        .tooltip-content
+          == merchant_sync_step.payload_error['message']
+        =< lucide_icon 'x', class: 'inline-flex w-4 text-error cursor-help'
+    - else
+      =< lucide_icon 'check', class: 'inline-flex w-4 text-success'
