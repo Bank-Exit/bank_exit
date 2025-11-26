@@ -56,9 +56,9 @@ RSpec.describe NostrPublisher do
       end
 
       before do
-        create :merchant, original_identifier: 'node/123', name: 'Bitcoin Coffee'
-        create :merchant, original_identifier: 'node/456', name: 'MM salon de thé, pâtisserie, chocolaterie'
-        create :merchant, original_identifier: 'way/789', name: 'Feel SO light'
+        create :merchant, :bitcoin, original_identifier: 'node/123', name: 'Bitcoin Coffee'
+        create :merchant, :bitcoin, original_identifier: 'node/456', name: 'MM salon de thé, pâtisserie, chocolaterie'
+        create :merchant, :bitcoin, original_identifier: 'way/789', name: 'Feel SO light'
         create :merchant, :deleted, original_identifier: 'node/111', name: 'Deleted merchant'
 
         travel_to Time.zone.local(2025, 11, 20, 16, 30, 00)
@@ -79,7 +79,7 @@ RSpec.describe NostrPublisher do
           d: 'foobar-123',
           title: 'New Bank-Exit merchants (2025-11-20 at 16:30)',
           summary: 'A list of merchants that accept Bitcoin, Monero, or June, mapped on the bank-exit.org website during the latest synchronization.',
-          t: %w[Bank-Exit SortieDeBanque XBT XMR XG1 Bitcoin Monero June],
+          t: %w[Bank-Exit SortieDeBanque XBT Bitcoin],
           p: 'mynostrpubkey',
           published_at: Time.current.to_i.to_s
         )
@@ -88,7 +88,7 @@ RSpec.describe NostrPublisher do
       it 'has correct content', :aggregate_failures do
         content = published_event.event.content
 
-        expect(content).to match(/Discover \*\*3\*\* newly listed Bitcoin \(₿ ⚡\), Monero \(🔒\), and June \(🟡\) merchants now featured on the /)
+        expect(content).to match(/Discover \*\*3\*\* newly listed Bitcoin \(₿\) merchants now featured on the /)
         expect(content).to match(/Bitcoin Coffee/)
         expect(content).to match(/MM salon de thé, pâtisserie, chocolaterie/)
         expect(content).to match(/Feel SO light/)
@@ -100,6 +100,84 @@ RSpec.describe NostrPublisher do
           event: published_event.event,
           response: { status: 'ok' }
         }.as_json)
+      end
+    end
+
+    describe '[coins tags]' do
+      let(:merchant_sync) do
+        create :merchant_sync,
+               added_merchants_count: 1,
+               payload_added_merchants: [
+                 { 'id' => 'node/123' }
+               ]
+      end
+      let(:tags) { published_event.event.tags }
+      let(:content) { published_event.event.content }
+
+      context 'when merchant is Bitcoin' do
+        before do
+          create :merchant, :bitcoin,
+                 original_identifier: 'node/123'
+          call
+        end
+
+        it { expect(tags).to match_nostr_tags(t: %w[Bank-Exit SortieDeBanque XBT Bitcoin]) }
+        it { expect(content).to match(/Discover \*\*1\*\* newly listed Bitcoin \(₿\) merchant now featured on the /) }
+      end
+
+      context 'when merchant is Bitcoin LN' do
+        before do
+          create :merchant, :lightning,
+                 original_identifier: 'node/123'
+          call
+        end
+
+        it { expect(tags).to match_nostr_tags(t: %w[Bank-Exit SortieDeBanque XBT Bitcoin LightningNetwork]) }
+        it { expect(content).to match(/Discover \*\*1\*\* newly listed Bitcoin Lightning \(⚡\) merchant now featured on the /) }
+      end
+
+      context 'when merchant is Bitcoin LN contactless' do
+        before do
+          create :merchant, :lightning_contactless,
+                 original_identifier: 'node/123'
+          call
+        end
+
+        it { expect(tags).to match_nostr_tags(t: %w[Bank-Exit SortieDeBanque XBT Bitcoin LightningNetwork]) }
+        it { expect(content).to match(/Discover \*\*1\*\* newly listed Bitcoin Lightning \(⚡\) merchant now featured on the /) }
+      end
+
+      context 'when merchant is Monero' do
+        before do
+          create :merchant, :monero,
+                 original_identifier: 'node/123'
+          call
+        end
+
+        it { expect(tags).to match_nostr_tags(t: %w[Bank-Exit SortieDeBanque XMR Monero]) }
+        it { expect(content).to match(/Discover \*\*1\*\* newly listed Monero \(🔒\) merchant now featured on the /) }
+      end
+
+      context 'when merchant is June' do
+        before do
+          create :merchant, :june,
+                 original_identifier: 'node/123'
+          call
+        end
+
+        it { expect(tags).to match_nostr_tags(t: %w[Bank-Exit SortieDeBanque XG1 June]) }
+        it { expect(content).to match(/Discover \*\*1\*\* newly listed June \(🟡\) merchant now featured on the /) }
+      end
+
+      context 'when merchants have multiple coins' do
+        before do
+          create :merchant, :monero, :june,
+                 original_identifier: 'node/123'
+          call
+        end
+
+        it { expect(tags).to match_nostr_tags(t: %w[Bank-Exit SortieDeBanque XMR Monero XG1 June]) }
+        it { expect(content).to match(/Discover \*\*1\*\* newly listed Monero \(🔒\), June \(🟡\) merchant now featured on the /) }
       end
     end
 

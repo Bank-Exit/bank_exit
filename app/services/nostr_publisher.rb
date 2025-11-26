@@ -22,8 +22,8 @@ class NostrPublisher < ApplicationService
       @event = Nostr::Event.new(
         kind: 30_023, # Long-form Content
         pubkey: @client.public_key,
-        content: content,
-        tags: tags
+        tags: tags,
+        content: content
       )
 
       @client.connect
@@ -42,7 +42,6 @@ class NostrPublisher < ApplicationService
 
   def validate!
     raise NostrErrors::MissingPrivateKey unless private_key
-
     raise NostrErrors::MissingRelayUrl if relays.blank?
   end
 
@@ -53,17 +52,34 @@ class NostrPublisher < ApplicationService
       ['summary', summary],
       %w[t Bank-Exit],
       %w[t SortieDeBanque],
-      %w[t XBT],
-      %w[t XMR],
-      %w[t XG1],
-      %w[t Bitcoin],
-      %w[t Monero],
-      %w[t June],
       ['published_at', published_at]
     ]
 
+    lightning = coins_list.include?('lightning') || coins_list.include?('lightning_contactless')
+
+    if coins_list.include?('bitcoin') || lightning
+      default_tags.push(%w[t XBT])
+      default_tags.push(%w[t Bitcoin])
+    end
+
+    default_tags.push(%w[t LightningNetwork]) if lightning
+
+    if coins_list.include?('monero')
+      default_tags.push(%w[t XMR])
+      default_tags.push(%w[t Monero])
+    end
+
+    if coins_list.include?('june')
+      default_tags.push(%w[t XG1])
+      default_tags.push(%w[t June])
+    end
+
     default_tags.push(['p', original_bank_exit_pubkey]) if original_bank_exit_pubkey
     default_tags
+  end
+
+  def coins_list
+    @coins_list ||= Set.new(merchants.pluck(:coins).flatten.compact)
   end
 
   def title
@@ -79,7 +95,8 @@ class NostrPublisher < ApplicationService
       partial: 'nostr/merchants/list',
       locals: {
         merchants_count: merchants_count,
-        merchants_by_country: merchants_by_country
+        merchants_by_country: merchants.group_by(&:country),
+        coins_list: coins_list
       }
     )
   end
@@ -88,14 +105,14 @@ class NostrPublisher < ApplicationService
     @published_at ||= Time.current.to_i.to_s
   end
 
-  def merchants_by_country
-    Merchant
+  def merchants
+    @merchants ||=
+      Merchant
       .available
       .where.not(country: nil)
       .where(
         original_identifier: merchant_sync.payload_added_merchants.pluck('id')
       )
-      .group_by(&:country)
   end
 
   def merchants_count

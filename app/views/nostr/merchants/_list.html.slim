@@ -1,4 +1,13 @@
-| Discover **#{merchants_count}** newly listed Bitcoin (₿ ⚡), Monero (🔒), and June (🟡) merchants now featured on the [Bank-Exit](#{maps_url}) map.
+ruby:
+  list = Set.new
+  coins_list.each do |coin|
+    list << "Bitcoin (₿)" if coin == 'bitcoin'
+    list << "Bitcoin Lightning (⚡)" if coin == 'lightning' || coin == 'lightning_contactless'
+    list << "Monero (🔒)" if coin == 'monero'
+    list << "June (🟡)" if coin == 'june'
+  end
+
+| Discover **#{merchants_count}** newly listed #{list.join(', ')} #{'merchant'.pluralize(merchants_count)} now featured on the [Bank-Exit](#{maps_url}) map.
 = "\n"
 
 - merchants_by_country.each do |country, merchants|
@@ -8,11 +17,11 @@
   - merchants.each do |merchant|
     | - **[#{merchant.name}](#{merchant_url(merchant)})**
     ruby:
-      coins_list = []
-      coins_list << '₿ Bitcoin' if merchant.bitcoin?
-      coins_list << '🔒 Monero' if merchant.monero?
-      coins_list << '🟡 June' if merchant.june?
-      coins_list << '⚡ Lightning' if merchant.lightning? || merchant.contact_less?
-    |   #{coins_list.join(', ')}
+      merchant_coins_list = []
+      merchant_coins_list << '₿ Bitcoin' if merchant.bitcoin?
+      merchant_coins_list << '🔒 Monero' if merchant.monero?
+      merchant_coins_list << '🟡 June' if merchant.june?
+      merchant_coins_list << '⚡ Lightning' if merchant.lightning? || merchant.contact_less?
+    |   #{merchant_coins_list.join(', ')}
     = "\n"
   = "\n"
