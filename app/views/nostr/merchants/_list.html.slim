@@ -15,7 +15,7 @@ ruby:
   = "\n"
 
   - merchants.each do |merchant|
-    | - **[#{merchant.name}](#{merchant_url(merchant)})** (#{I18n.t(merchant.category, scope: :categories, default: merchant.category)})
+    | - **[#{merchant.name}](#{merchant_url(merchant)})** (#{merchant.friendly_category})
     ruby:
       merchant_coins_list = []
       merchant_coins_list << '₿ Bitcoin' if merchant.bitcoin?

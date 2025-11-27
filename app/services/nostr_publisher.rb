@@ -107,11 +107,13 @@ class NostrPublisher < ApplicationService
 
   def merchants
     @merchants ||=
-      Merchant
-      .available
-      .where.not(country: nil)
-      .where(
-        original_identifier: merchant_sync.payload_added_merchants.pluck('id')
+      MerchantDecorator.wrap(
+        Merchant
+        .available
+        .where.not(country: nil)
+        .where(
+          original_identifier: merchant_sync.payload_added_merchants.pluck('id')
+        )
       )
   end
 

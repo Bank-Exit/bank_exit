@@ -99,7 +99,9 @@ class MapsController < PublicController
   # @route GET /en/map/merchants {locale: "en"} (export_merchants_en)
   # @route GET /map/merchants
   def export_merchants
-    @merchants = Merchant.where(id: merchant_ids)
+    @merchants = MerchantDecorator.wrap(
+      Merchant.where(id: merchant_ids)
+    )
 
     filename = helpers.merchant_metadata_filename(
       coins, category, continent, country, query

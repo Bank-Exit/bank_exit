@@ -9,6 +9,10 @@ class MerchantDecorator < ProfesionalDecorator
     june: 'G1'
   }.freeze
 
+  def friendly_category
+    I18n.t("categories.#{category}", default: category.titleize)
+  end
+
   def address?
     full_address.present? || country.present?
   end

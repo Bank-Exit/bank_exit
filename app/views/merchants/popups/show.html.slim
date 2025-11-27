@@ -11,7 +11,7 @@
       .badge.badge-secondary.badge-sm.flex.mx-auto
         svg width="15" height="15" xmlns="http://www.w3.org/2000/svg" class="print:text-black"
           use href="/map/spritesheet.svg##{@merchant.icon}"
-        =< t("categories.#{@merchant.category}", default: @merchant.category)
+        =< @merchant.friendly_category
 
   - if @merchant.address? || @merchant.opening_hours.present? || @merchant.delivery.present?
     .alert.alert-vertical.text-sm

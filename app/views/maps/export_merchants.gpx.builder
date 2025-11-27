@@ -39,7 +39,7 @@ xml.gpx(
     xml.wpt(lat: merchant.latitude, lon: merchant.longitude) do
       xml.name "#{merchant_icon(merchant)} #{merchant.name}"
       xml.desc merchant_description(merchant)
-      xml.type I18n.t(merchant.category, scope: 'categories', default: merchant.category)
+      xml.type merchant.friendly_category
       xml.sym merchant.monero? ? 'Star' : 'Bank'
 
       xml.extensions do

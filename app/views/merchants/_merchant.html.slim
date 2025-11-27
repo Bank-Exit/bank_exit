@@ -22,7 +22,7 @@
     - if merchant.category.present?
       .badge.badge-secondary.mx-auto
         = merchant_icon_svg(merchant.icon, width: 20, height: 20, naked: true)
-        = t("categories.#{merchant.category}", default: merchant.category)
+        = merchant.friendly_category
 
     .flex.items-center.justify-center.gap-3
       == coins_list(merchant.coins, with_logo: true, with_name: false, size: 'w-10', inline: true)

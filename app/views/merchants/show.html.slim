@@ -27,7 +27,7 @@
 
         - if @merchant.category.present?
           p.badge.badge-secondary
-            = t("categories.#{@merchant.category}", default: @merchant.category.capitalize)
+            = @merchant.friendly_category
 
         - if @merchant.address?
           .alert.alert-vertical.text-center
