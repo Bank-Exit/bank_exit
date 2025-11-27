@@ -14,9 +14,9 @@ div
         - else
           = merchant.opening_hours_sentences.first
 
-    p title=t('merchants.show.home_delivery')
-      => lucide_icon 'truck', class: 'inline-flex w-4 me-1'
-      span class=('line-through opacity-50' unless merchant.delivery?)
+    - if merchant.delivery?
+      p title=t('merchants.show.home_delivery')
+        => lucide_icon 'truck', class: 'inline-flex w-4 me-1'
         = t('merchants.show.home_delivery')
-        - if merchant.delivery && merchant.delivery_zone
+        - if merchant.delivery_zone
           =< "(#{merchant.delivery_zone})"
