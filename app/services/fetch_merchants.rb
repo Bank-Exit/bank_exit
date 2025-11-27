@@ -227,7 +227,7 @@ class FetchMerchants < ApplicationService
         )
       end
       publish_to_nostr_step.success!
-    rescue NostrErrors => e
+    rescue StandardError => e
       publish_to_nostr_step.mark_as_fail(e)
     end
   end

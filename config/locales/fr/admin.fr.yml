@@ -204,8 +204,10 @@ fr:
         notice: MerchantSync a bien été supprimé
       merchant_syncs:
         empty_results: Il n'y a pas d'historique à afficher
-      merchant_sync:
+      actions:
         see_on_nostr: Voir publication sur Nostr
+        publish_on_nostr: Publier sur Nostr
+        create_confirm: Voulez-vous publier les nouveaux commerçants sur Nostr ?
 
     profiles:
       edit:
@@ -246,3 +248,7 @@ fr:
       back_to_directory: Retour à l'annuaire
 
       edit_my_profile: Modifier mon profil
+
+    nostr_events:
+      create:
+        notice: La note a bien été publiée sur Nostr

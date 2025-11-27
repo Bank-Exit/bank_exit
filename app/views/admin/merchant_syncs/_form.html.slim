@@ -22,6 +22,9 @@
     = f.input :soft_deleted_merchants_count
 
   = f.input :notes
+
+  .divider.divider-primary Merchants payloads
+
   = f.input :payload_added_merchants,
             as: :text,
             input_html: { \
@@ -54,12 +57,30 @@
               class: "font-mono max-h-96" \
             }
 
-  = f.input :payload_nostr,
-            as: :text,
-            input_html: { \
-              rows: 18,
-              value: JSON.pretty_generate(merchant_sync.payload_nostr).html_safe,
-              class: "font-mono max-h-96" \
-            }
+  - if f.object.nostr_event
+    .divider.divider-secondary
+      | Nostr
+      =< social_contact_icon(:nostr, klass: 'w-16 -ml-3')
+
+    = f.simple_fields_for :nostr_event do |ff|
+      .flex.flex-col.lg:flex-row.gap-3
+        .space-y-2
+          = ff.input :identifier, disabled: true
+          = ff.input :event_identifier
+          = ff.input :payload_response,
+                    as: :text,
+                    input_html: { \
+                      rows: 18,
+                      value: JSON.pretty_generate(ff.object.payload_response).html_safe,
+                      class: "font-mono max-h-96" \
+                    }
+
+        = ff.input :payload_event,
+                  as: :text,
+                  input_html: { \
+                    rows: 18,
+                    value: JSON.pretty_generate(ff.object.payload_event).html_safe,
+                    class: "font-mono max-h-96" \
+                  }
 
   = f.button :submit

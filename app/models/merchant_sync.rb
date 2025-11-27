@@ -17,8 +17,11 @@ class MerchantSync < ApplicationRecord
     manual: 1
   }, default: :task
 
+  has_one :nostr_event, as: :nostr_eventable, dependent: :destroy
   has_many :merchant_sync_steps, dependent: :destroy
   has_one_attached :raw_json
+
+  accepts_nested_attributes_for :nostr_event
 
   before_update :parse_json_strings
 
@@ -63,6 +66,13 @@ class MerchantSync < ApplicationRecord
     where(id: ids.to_a)
   end
 
+  def mark_as_success!
+    update!(
+      status: :success,
+      ended_at: Time.current
+    )
+  end
+
   def mark_as_fail!
     update!(
       status: :error,
@@ -89,6 +99,11 @@ class MerchantSync < ApplicationRecord
 
   def no_diff?
     payload_before_updated_merchants == payload_updated_merchants
+  end
+
+  def nostr_event?
+    merchant_sync_steps.publish_to_nostr.first&.success? &&
+      nostr_event&.payload_event.present?
   end
 
   private
@@ -136,7 +151,6 @@ class MerchantSync < ApplicationRecord
       payload_updated_merchants
       payload_soft_deleted_merchants
       payload_countries
-      payload_nostr
     ].each do |field|
       value = send(field)
       next unless value.is_a?(String)
@@ -145,6 +159,22 @@ class MerchantSync < ApplicationRecord
         send("#{field}=", JSON.parse(value))
       rescue JSON::ParserError
         errors.add(field, 'is not a valid JSON')
+      end
+    end
+
+    return if nostr_event.blank?
+
+    %i[
+      payload_event
+      payload_response
+    ].each do |field|
+      value = nostr_event.send(field)
+      next unless value.is_a?(String)
+
+      begin
+        nostr_event.send("#{field}=", JSON.parse(value))
+      rescue JSON::ParserError
+        nostr_event.errors.add(field, 'is not a valid JSON')
       end
     end
   end

@@ -108,10 +108,32 @@ RSpec.describe 'Admin::MerchantSyncs' do
   end
 
   describe 'PATCH /admin/merchants/:id' do
-    subject { patch "/admin/merchant_syncs/#{merchant_sync.id}", params: valid_params }
+    subject(:action) do
+      patch "/admin/merchant_syncs/#{merchant_sync.id}", params: valid_params
+    end
 
     let!(:merchant_sync) { create :merchant_sync }
-    let(:valid_params) { { merchant_sync: { added_merchants_count: 9999 } } }
+    let(:nostr_event) do
+      create :nostr_event,
+             nostr_eventable: merchant_sync,
+             payload_event: { foo: 'bar' },
+             payload_response: { foo: 'baz' }
+    end
+
+    let(:valid_params) do
+      {
+        merchant_sync: {
+          added_merchants_count: 9999,
+          payload_countries: { foo: 'bar edit' }.to_json,
+          nostr_event_attributes: {
+            id: nostr_event.id,
+            payload_response: {
+              foo: 'bar edit'
+            }.to_json
+          }
+        }
+      }
+    end
 
     %i[super_admin].each do |role|
       context "when role is #{role}" do
@@ -119,6 +141,12 @@ RSpec.describe 'Admin::MerchantSyncs' do
         it_behaves_like 'access granted with redirection' do
           let(:redirection_url) { admin_merchant_syncs_path }
           let(:flash_notice) { I18n.t('admin.merchant_syncs.update.notice') }
+        end
+
+        describe '[nostr_event]' do
+          before { action }
+
+          it { expect(nostr_event.reload.payload_response).to eq({ foo: 'bar edit' }.as_json) }
         end
       end
     end

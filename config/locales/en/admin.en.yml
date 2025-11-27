@@ -204,8 +204,10 @@ en:
         notice: MerchantSync has been removed
       merchant_syncs:
         empty_results: There is no history to display
-      merchant_sync:
+      actions:
         see_on_nostr: See post on Nostr
+        publish_on_nostr: Publish on Nostr
+        create_confirm: Do you confirm to publish new merchants on Nostr ?
 
     profiles:
       edit:
@@ -246,3 +248,7 @@ en:
       back_to_directory: Back to directory
 
       edit_my_profile: Edit my profile
+
+    nostr_events:
+      create:
+        notice: Note has been published to Nostr successfully
