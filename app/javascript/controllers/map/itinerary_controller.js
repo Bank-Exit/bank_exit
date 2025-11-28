@@ -47,7 +47,7 @@ export default class MapItineraryController extends MapBaseController {
     this.marker.on("click", this.loadPopupContent.bind(this));
     this.marker.addTo(this.map);
 
-    this.marker.fire("click");
+    // this.marker.fire("click");
 
     let routing;
 

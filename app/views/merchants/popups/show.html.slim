@@ -69,7 +69,12 @@
           = lucide_icon 'message-square', class: 'inline-flex mr-0.5 font-normal w-3.5'
           = @merchant.comments_count
 
-  footer.border-t.border-base-content/20.text-xs.pt-2
+  footer.border-t.border-base-content/20.text-xs.pt-2.space-y-1
+    - if @merchant.latitude
+      = link_to new_merchant_itinerary_path(@merchant), class: 'flex items-center gap-1' do
+        = t('merchants.show.itinerary.calculate_my_itinerary')
+        = lucide_icon 'car', class: 'w-4'
+
     .text-right
       /p
         = link_to @merchant.osm_link, target: :_blank do

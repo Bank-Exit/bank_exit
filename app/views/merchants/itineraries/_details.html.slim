@@ -1,46 +1,42 @@
-#map_details
-  - if no_results
-    .alert.alert-warning
-      p= t('.no_results')
+- if no_results
+  .alert.alert-warning
+    p= t('.no_results')
 
-  - else
-    .alert.alert-success.alert-vertical.gap-1 class="!rounded-b-none"
-      - unless start_address.blank?
-        p
-          strong= t('.start')
-          |:
-          =< start_address
-
+- elsif detailed_steps && route.present? && route['legs']
+  .alert.alert-success.alert-vertical.gap-1
+    - unless start_address.blank?
       p
-        strong= t('.distance')
+        strong= t('.start')
         |:
-        =< number_to_human(route['distance'], units: :distance)
-      p
-        strong= t('.duration')
-        |:
-        =< distance_of_time_in_words(route['duration'])
+        =< start_address
 
-  - if detailed_steps && route.present? && route['legs']
-    details.rounded-b-lg.overflow-x-auto open=true
-      summary.bg-info.text-info-content.cursor-pointer.p-2= t('.routing_details')
+    p
+      strong= t('.distance')
+      |:
+      =< number_to_human(route['distance'], units: :distance)
+    p
+      strong= t('.duration')
+      |:
+      =< distance_of_time_in_words(route['duration'])
 
-      table.table.table-zebra
-        tbody
-          - route['legs'].each do |leg|
-            - leg['steps'].each_with_index do |step, index|
-              tr.cursor-pointer class="hover:bg-base-300" data-controller="routings" data-routings-step-index-value="step_#{index}" data-action="click->routings#zoomRoad"
-                td
-                  = OSRMTextInstructions.compile(step)
-                td
-                  - if step['distance'] > 0
-                    p.italic.text-xs
-                      = number_to_human(step['distance'], units: :distance)
+  .font-semibold.text-primary
+    = t('.routing_details')
 
-  - if params[:debug] == 'true'
-    .mt-6
-      h3.mb-2.uppercase.font-bold.text-primary Routing
+  table.table.table-zebra
+    tbody
+      - route['legs'].each do |leg|
+        - leg['steps'].each_with_index do |step, index|
+          tr.cursor-pointer class="hover:bg-base-300" data-controller="routings" data-routings-step-index-value="step_#{index}" data-action="click->routings#zoomRoad"
+            td
+              = OSRMTextInstructions.compile(step)
+            td
+              - if step['distance'] > 0
+                p.italic.text-xs
+                  = number_to_human(step['distance'], units: :distance)
 
-      details.collapse.collapse-arrow
-        summary.collapse-title.font-semibold Debug Routing
-        pre.collapse-content.overflow-x-auto
-          == json_highlight(routing.to_h)
+- if params[:debug] == 'true'
+  .mt-6
+    h3.mb-2.uppercase.font-bold.text-primary Routing
+
+    pre.text-xs.overflow-x-auto
+      == json_highlight(routing.to_h)

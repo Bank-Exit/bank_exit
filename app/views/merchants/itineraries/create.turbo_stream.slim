@@ -2,7 +2,7 @@
   = turbo_stream.replace :map do
     #map.lg:w-2/3 class="h-[500px] lg:h-[800px] print:w-full print:h-[500px]" data-controller="map--itinerary" data-map--itinerary-geometry-value=@route['geometry'] data-map--itinerary-legs-value=@route['legs'].to_json data-map--itinerary-my-lat-value=@my_lat data-map--itinerary-my-lon-value=@my_lon data-map--itinerary-merchant-value=@merchant.to_osm_map.to_json data-map--itinerary-marker-value=@merchant.icon data-map--itinerary-detailed-steps-value=@detailed_steps data-map--itinerary-attribution-html-value=html_escape_once(map_attribution_html) data-action="routings:highlight@window->map--itinerary#highlightRoad routings:unhighlight@window->map--itinerary#unhighlightRoad routings:zoom@window->map--itinerary#zoomRoad"
 
-= turbo_stream.replace :map_details do
+= turbo_stream.update :map_details do
   = render 'details',
     route: @route,
     routing: @routing,
