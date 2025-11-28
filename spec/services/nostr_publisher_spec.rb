@@ -92,6 +92,7 @@ RSpec.describe NostrPublisher do
         expect(content).to match(/Bitcoin Coffee/)
         expect(content).to match(/MM salon de thé, pâtisserie, chocolaterie/)
         expect(content).to match(/Feel SO light/)
+        expect(content).to match(/_Merchants are based on free and open data from OpenStreetMap. Information may change over time and could differ from what is shown here, with some links potentially no longer existing._/)
         expect(content).to_not match(/Deleted merchant/)
       end
 
