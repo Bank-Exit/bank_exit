@@ -42,6 +42,7 @@ it:
       description: Descrizione
       open_help_modal: Apri la finestra di aiuto
       open_command_palette_modal: Mostra la palette dei comandi
+      open_about_modal: Mostrare modale "Informazioni"
       access_prev_page: Vai alla pagina precedente
       access_next_page: Vai alla pagina successiva
       access_page_subtitle: (quando è presente la paginazione)

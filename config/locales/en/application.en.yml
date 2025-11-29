@@ -44,6 +44,7 @@ en:
       description: Description
       open_help_modal: Open help modal
       open_command_palette_modal: Show command palette
+      open_about_modal: Show "About" modal
       access_prev_page: Go to previous page
       access_next_page: Go to next page
       access_page_subtitle: (when pagination is present)

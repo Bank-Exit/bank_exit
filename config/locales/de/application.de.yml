@@ -42,6 +42,7 @@ de:
       description: Beschreibung
       open_help_modal: Hilfe-Modal öffnen
       open_command_palette_modal: Befehlsübersicht anzeigen
+      open_about_modal: Modales Fenster „Über“ anzeigen
       access_prev_page: Zur vorherigen Seite gehen
       access_next_page: Zur nächsten Seite gehen
       access_page_subtitle: (wenn eine Seitennummerierung vorhanden ist)

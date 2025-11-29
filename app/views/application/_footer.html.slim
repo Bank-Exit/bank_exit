@@ -21,6 +21,15 @@ footer.bg-base-200.text-base-content.p-10.border-base-content/10.border-t class=
         = lucide_icon 'circle-question-mark', class: 'w-4 inline-flex'
         =< t('help')
 
+      button.block.cursor-pointer.hover:text-primary.motion-safe:transition-colors(
+        aria-label="About modal"
+        data-controller="dispatcher"
+        data-action="click->dispatcher#dispatch"
+        data-dispatch-event="about:open"
+      )
+        = lucide_icon 'info', class: 'w-4 inline-flex'
+        =< t('about')
+
       = link_to 'https://bank-exit-uptime-production.up.railway.app/status/bank-exit',
                 class: 'block',
                 target: :_blank do

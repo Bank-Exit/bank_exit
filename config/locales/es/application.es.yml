@@ -35,13 +35,14 @@ es:
       warning_title: ⚠️ Descargo de responsabilidad (por leer) ⚠️
       license: Licencia de utilización
       copyright_html: Copyright &copy; Bank-Exit 2022 - %{year} &bullet; Todos derechos reservados
-      developed_by_html: Desarrollado con %{heart} por Collectif Sortie de Banque
+      developed_by_html: Desarrollado con %{heart} por el Colectivo Bank-Exit
 
     modal_help:
       shortcut: Atajo
       description: Descripción
       open_help_modal: Abrir la ventana de ayuda
       open_command_palette_modal: Mostrar la paleta de comandos
+      open_about_modal: Mostrar modal "Acerca de"
       access_prev_page: Ir a la página anterior
       access_next_page: Ir a la página siguiente
       access_page_subtitle: (cuando hay paginación)

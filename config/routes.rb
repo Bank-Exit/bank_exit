@@ -21,6 +21,13 @@ Rails.application.routes.draw do
     "https://github.com/#{ENV.fetch('GITHUB_ORGANIZATION', nil)}"
   end
 
+  direct :github_repository do
+    organization = ENV.fetch('GITHUB_ORGANIZATION', nil)
+    repository = ENV.fetch('GITHUB_REPOSITORY', nil)
+
+    "https://github.com/#{organization}/#{repository}"
+  end
+
   namespace :maps do
     resource :referer, only: :update
   end

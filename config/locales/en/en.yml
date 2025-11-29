@@ -32,6 +32,7 @@ en:
   display: Display
   refresh: Refresh
   help: Help
+  about: About
 
   display_map: Map display
   display_grid: Grid display

@@ -1,0 +1,36 @@
+= render_modal id: 'modal_about',
+                modal_title: t('about'),
+                data: { controller: :about } do
+  .avatar-group.justify-center.mb-5
+    .avatar
+      .w-32
+        = image_tag 'logo.png', alt: 'Logo SortieDeBanque Français'
+    .avatar
+      .w-32
+        = image_tag 'logo_EN.png', alt: 'Logo Bank-Exit English'
+    .avatar
+      .w-32
+        = image_tag 'logo_by_mondetta.jpeg', alt: 'Logo Bank-Exit by Mondetta'
+
+  .space-y-1.text-sm
+    - if FeatureFlag.enabled?(:github)
+      - if github_api_tag.include?(:error)
+        .alert.alert-error= github_api_tag[:message]
+      - else
+        .flex.items-center.gap-2
+          = lucide_icon 'tag', class: 'w-4'
+          =< link_to github_api_tag[:tag_name], github_api_tag[:tag_url], target: :_blank
+
+        .flex.items-center.gap-2
+          = lucide_icon 'git-commit-horizontal', class: 'w-4'
+          =< link_to github_api_tag[:commit_hash], github_api_tag[:commit_url], target: :_blank
+
+    .flex.items-center.gap-2
+      = lucide_icon 'github', class: 'w-4'
+      = link_to github_repository_url, github_repository_url, target: :_blank
+
+  .divider
+
+  p.text-center.text-xs
+    - heart = lucide_icon('heart', class: 'h-5 w-5 stroke-red-600 fill-red-600 inline-flex')
+    = t('application.footer.developed_by_html', heart: heart)

@@ -9,25 +9,6 @@ module ApplicationHelper
     params[:controller] == 'welcome'
   end
 
-  # :nocov:
-  # Feature is disabled for now
-  def last_short_commit_id
-    last_long_commit_id.first(7)
-  end
-
-  def last_long_commit_id
-    ENV.fetch('GIT_LAST_COMMIT_ID', `git rev-parse HEAD`)
-  rescue StandardError
-    'Error'
-  end
-
-  def deployed_branch
-    ENV.fetch('GIT_DEPLOYED_BRANCH', `git branch --show-current`).strip
-  rescue StandardError
-    'Error'
-  end
-  # :nocov:
-
   def icon_for_category(category)
     MerchantIcon.call(category)
   end

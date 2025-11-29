@@ -36,6 +36,19 @@ class GithubAPI
     raise StandardError, "Github API error: #{response['message']}"
   end
 
+  def get_last_tag!
+    Rails.cache.fetch(:github_last_tag, expires_in: 1.day) do
+      response = self.class.get(
+        "/repos/#{owner}/#{repo}/tags",
+        headers: headers
+      )
+
+      raise StandardError, "[Github API error] #{response['message']}" unless response.success?
+
+      response.parsed_response
+    end
+  end
+
   private
 
   def owner
