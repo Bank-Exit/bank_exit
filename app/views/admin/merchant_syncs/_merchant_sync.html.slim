@@ -66,30 +66,7 @@ tr id=dom_id(merchant_sync)
     - if merchant_sync.pending?
       .skeleton.h-5.w-full
     - else
-      = content_for :dropdown_menu, flush: true do
-        li
-          = link_to admin_merchant_sync_path(merchant_sync, params: request.query_parameters.slice(:query, :debug)),
-                    data: { turbo_stream: true } do
-            = t('details')
-
-        - if merchant_sync.payload_nostr.present?
-          li
-            - event_id = merchant_sync.payload_nostr.dig('response', 'data', 'event_id')
-            = link_to njump_url(event_id),
-                      target: :_blank do
-              = social_contact_icon(:nostr, klass: '-mr-1')
-              =< t('.see_on_nostr')
-
-        / Careful: condition does not work whit Turbo broadcast
-        - if allowed_to?(:update?, merchant_sync, namespace: Admin)
-          li
-            = edit_link_to edit_admin_merchant_sync_path(merchant_sync)
-
-        - if allowed_to?(:destroy?, merchant_sync, namespace: Admin)
-          li
-            = destroy_link_to admin_merchant_sync_path(merchant_sync)
-
-      = render 'dropdown_actions', item_id: merchant_sync.id
+      = render 'admin/merchant_syncs/actions', merchant_sync: merchant_sync
 
 - if merchant_sync.pending?
   tr.bg-transparent

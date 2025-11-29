@@ -38,4 +38,4 @@ tr
   td
     = render 'contact_ways_list', directory: directory
 
-  td= link_to t('see'), directory_path(directory), class: 'btn btn-primary btn-sm'
+  td= show_link_to directory_path(directory)

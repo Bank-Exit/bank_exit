@@ -7,8 +7,7 @@ article#article
           h1.text-3xl.font-bold= t('.title')
 
           - if logged_in? && allowed_to?(:index?, EcosystemItem, namespace: Admin)
-            = link_to admin_ecosystem_items_path, class: 'btn btn-circle btn-sm btn-primary' do
-              = lucide_icon 'pencil'
+            = edit_link_to admin_ecosystem_items_path
 
         p= t('.description')
 

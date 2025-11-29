@@ -1,0 +1,23 @@
+= content_for :dropdown_menu, flush: true do
+  li
+    = show_link_to admin_merchant_sync_path(merchant_sync, params: request.query_parameters.slice(:query, :debug)),
+                   label: t('details'),
+                   data: { turbo_stream: true }
+
+  - if merchant_sync.payload_nostr.present?
+    li
+      - event_id = merchant_sync.payload_nostr.dig('response', 'data', 'event_id')
+      = show_link_to njump_url(event_id), blank: true do
+        = social_contact_icon(:nostr, klass: '-mr-1')
+        =< t('.see_on_nostr')
+
+  / Careful: condition does not work whit Turbo broadcast
+  - if allowed_to?(:update?, merchant_sync, namespace: Admin)
+    li
+      = edit_link_to edit_admin_merchant_sync_path(merchant_sync)
+
+  - if allowed_to?(:destroy?, merchant_sync, namespace: Admin)
+    li
+      = destroy_link_to admin_merchant_sync_path(merchant_sync)
+
+= render 'dropdown_actions', item_id: merchant_sync.id

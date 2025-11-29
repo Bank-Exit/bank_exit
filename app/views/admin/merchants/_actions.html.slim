@@ -13,38 +13,23 @@
 
   - if allowed_to?(:update?, merchant)
     li
-      = link_to t('edit'),
-                edit_admin_merchant_path(merchant),
-                class: 'btn btn-sm btn-warning'
+      = edit_link_to edit_admin_merchant_path(merchant)
 
   - if allowed_to?(:create?, merchant, with: Admin::Merchants::DirectoryConverterPolicy)
     li
-      = link_to t('.convert_to_directory'),
-                  admin_directory_converters_path(merchant),
-                  class: 'btn btn-sm btn-success',
-                  data: { \
-                    turbo_method: :post,
-                    turbo_confirm: t('.convert_to_directory_confirm_html') \
-                  }
+      = create_link_to admin_merchant_reactivate_path(merchant),
+                       turbo_confirm: t('.convert_to_directory_confirm_html') do
+        = t('.convert_to_directory')
 
   - if allowed_to?(:reactivate?, merchant)
     li
-      = link_to t('reactivate'),
-                admin_merchant_reactivate_path(merchant),
-                class: 'btn btn-sm btn-success',
-                data: { \
-                  turbo_method: :post,
-                  turbo_confirm: t('.reactivate_confirm') \
-                }
+      = create_link_to admin_merchant_reactivate_path(merchant),
+                       turbo_confirm: t('.reactivate_confirm') do
+        = t('reactivate')
 
   - if allowed_to?(:destroy?, merchant)
     li
-      = link_to t('destroy'),
-                admin_merchant_path(merchant),
-                class: 'btn btn-sm btn-error',
-                data: { \
-                  turbo_method: :delete,
-                  turbo_confirm: t('.destroy_confirm_html') \
-                }
+      = destroy_link_to admin_merchant_path(merchant),
+                        turbo_confirm: t('.destroy_confirm_html')
 
 = render 'dropdown_actions', item_id: merchant.id

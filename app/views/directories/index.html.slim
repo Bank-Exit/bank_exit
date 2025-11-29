@@ -8,8 +8,7 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
             h1.text-3xl.font-bold= t('application.nav.menu.directories')
 
             - if logged_in? && allowed_to?(:index?, Directory, namespace: Admin)
-              = link_to admin_directories_path, class: 'btn btn-circle btn-sm btn-primary' do
-                = lucide_icon 'pencil'
+              = edit_link_to admin_directories_path
 
           div
             p.italic

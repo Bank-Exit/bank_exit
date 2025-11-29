@@ -1,18 +1,11 @@
 = content_for :dropdown_menu, flush: true do
   - if allowed_to?(:update?, ecosystem_item)
     li
-      = link_to t('edit'),
-                edit_admin_ecosystem_item_path(ecosystem_item),
-                class: 'btn btn-sm btn-warning'
+      = edit_link_to edit_admin_ecosystem_item_path(ecosystem_item)
 
   - if allowed_to?(:destroy?, ecosystem_item)
     li
-      = link_to t('destroy'),
-                admin_ecosystem_item_path(ecosystem_item),
-                class: 'btn btn-sm btn-error',
-                data: { \
-                  turbo_method: :delete,
-                  turbo_confirm: t('.destroy_confirm') \
-                }
+      = destroy_link_to admin_ecosystem_item_path(ecosystem_item),
+                        turbo_confirm: t('.destroy_confirm')
 
 = render 'dropdown_actions', item_id: ecosystem_item.id

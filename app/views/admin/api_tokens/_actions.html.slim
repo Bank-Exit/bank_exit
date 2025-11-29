@@ -1,24 +1,16 @@
 = content_for :dropdown_menu, flush: true do
   - if allowed_to?(:show?, api_token)
     li
-      = link_to t('see'),
-                admin_api_token_path(api_token),
-                data: { turbo_stream: true }
+      = show_link_to admin_api_token_path(api_token),
+                     data: { turbo_stream: true }
 
   - if allowed_to?(:update?, api_token)
     li
-      = link_to t('edit'),
-                edit_admin_api_token_path(api_token),
-                class: 'btn btn-sm btn-warning'
+      = edit_link_to edit_admin_api_token_path(api_token)
 
   - if allowed_to?(:destroy?, api_token)
     li
-      = link_to t('destroy'),
-                admin_api_token_path(api_token),
-                class: 'btn btn-sm btn-error',
-                data: { \
-                  turbo_method: :delete,
-                  turbo_confirm: t('.destroy_confirm') \
-                }
+      = destroy_link_to admin_api_token_path(api_token),
+                        turbo_confirm: t('.destroy_confirm')
 
 = render 'dropdown_actions', item_id: api_token.id

@@ -49,26 +49,15 @@ ul.dropdown.dropdown-end.menu.bg-base-100.rounded-box.z-1.w-max.p-2.shadow-sm.bo
   - if logged_in?
     - if allowed_to?(:update?, merchant, namespace: Admin)
       li
-        = link_to t('edit'),
-                  edit_admin_merchant_path(merchant),
-                  class: 'btn btn-warning btn-sm'
+        = edit_link_to edit_admin_merchant_path(merchant)
 
     - if allowed_to?(:reactivate?, merchant, namespace: Admin)
       li
-        = link_to t('reactivate'),
-                  admin_merchant_reactivate_path(merchant),
-                  class: 'btn btn-success btn-sm',
-                  data: { \
-                    turbo_method: :post,
-                    turbo_confirm: t('admin.merchants.actions.reactivate_confirm') \
-                  }
+        = create_link_to admin_merchant_reactivate_path(merchant),
+                         turbo_confirm: t('admin.merchants.actions.reactivate_confirm') do
+          = t('reactivate')
 
     - if allowed_to?(:destroy?, merchant, namespace: Admin)
       li
-        = link_to t('destroy'),
-                  admin_merchant_path(merchant),
-                  class: 'btn btn-error btn-sm',
-                  data: { \
-                    turbo_method: :delete,
-                    turbo_confirm: t('admin.merchants.actions.destroy_confirm_html') \
-                  }
+        = destroy_link_to admin_merchant_path(merchant),
+                          turbo_confirm: t('admin.merchants.actions.destroy_confirm_html')

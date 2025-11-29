@@ -2,27 +2,18 @@
 
 = content_for :dropdown_menu, flush: true do
   li
-    = link_to polymorphic_path([commentable]), target: :_blank do
+    = show_link_to polymorphic_path([commentable]), blank: true do
       = t('.view_merchant_public_page')
 
   - if allowed_to?(:update?, comment)
     li
-      = link_to t('reactivate'),
-                admin_comment_path(comment),
-                class: 'btn btn-sm btn-success',
-                data: { \
-                  turbo_method: :patch,
-                  turbo_confirm: t('.reactivate_confirm') \
-                }
+      = update_link_to admin_comment_path(comment),
+                       label: t('reactivate'),
+                       turbo_confirm: t('.reactivate_confirm')
 
   - if allowed_to?(:destroy?, comment)
     li
-      = link_to t('destroy'),
-                admin_comment_path(comment),
-                class: 'btn btn-sm btn-error',
-                data: { \
-                  turbo_method: :delete,
-                  turbo_confirm: t('.destroy_confirm') \
-                }
+      = destroy_link_to admin_comment_path(comment),
+                        turbo_confirm: t('.destroy_confirm')
 
 = render 'dropdown_actions', item_id: comment.id
