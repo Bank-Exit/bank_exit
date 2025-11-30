@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_11_24_050034) do
+ActiveRecord::Schema[8.1].define(version: 2025_11_27_164845) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.date "date", null: false
@@ -308,6 +308,20 @@ ActiveRecord::Schema[8.1].define(version: 2025_11_24_050034) do
     t.text "value"
     t.index ["translatable_id", "translatable_type", "key"], name: "index_mobility_text_translations_on_translatable_attribute"
     t.index ["translatable_id", "translatable_type", "locale", "key"], name: "index_mobility_text_translations_on_keys", unique: true
+  end
+
+  create_table "nostr_events", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "event_identifier"
+    t.string "identifier", null: false
+    t.integer "nostr_eventable_id", null: false
+    t.string "nostr_eventable_type", null: false
+    t.json "payload_event", default: {}, null: false
+    t.json "payload_response", default: {}, null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_identifier"], name: "index_nostr_events_on_event_identifier", unique: true
+    t.index ["identifier"], name: "index_nostr_events_on_identifier", unique: true
+    t.index ["nostr_eventable_type", "nostr_eventable_id"], name: "index_nostr_events_on_nostr_eventable"
   end
 
   create_table "users", force: :cascade do |t|

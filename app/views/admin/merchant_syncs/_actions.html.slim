@@ -4,12 +4,19 @@
                    label: t('details'),
                    data: { turbo_stream: true }
 
-  - if merchant_sync.payload_nostr.present?
+  - if merchant_sync.nostr_event?
     li
-      - event_id = merchant_sync.payload_nostr.dig('response', 'data', 'event_id')
+      - event_id = merchant_sync.nostr_event.event_identifier
       = show_link_to njump_url(event_id), blank: true do
         = social_contact_icon(:nostr, klass: '-mr-1')
         =< t('.see_on_nostr')
+
+  - elsif allowed_to?(:create?, merchant_sync, with: Admin::NostrEventPolicy)
+    li
+      = create_link_to admin_merchant_sync_nostr_events_path(merchant_sync),
+                       turbo_confirm: t('.create_confirm') do
+        = social_contact_icon(:nostr, klass: '-mr-1')
+        =< t('.publish_on_nostr')
 
   / Careful: condition does not work whit Turbo broadcast
   - if allowed_to?(:update?, merchant_sync, namespace: Admin)

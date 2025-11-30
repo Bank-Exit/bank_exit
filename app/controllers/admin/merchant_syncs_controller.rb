@@ -96,16 +96,20 @@ module Admin
 
     def merchant_sync_update_params
       params.expect(
-        merchant_sync: %i[
-          added_merchants_count
-          updated_merchants_count
-          soft_deleted_merchants_count
-          payload_added_merchants
-          payload_updated_merchants
-          payload_soft_deleted_merchants
-          payload_countries
-          payload_nostr
-          notes
+        merchant_sync: [
+          :added_merchants_count,
+          :updated_merchants_count,
+          :soft_deleted_merchants_count,
+          :payload_added_merchants,
+          :payload_updated_merchants,
+          :payload_soft_deleted_merchants,
+          :payload_countries,
+          :notes,
+          {
+            nostr_event_attributes: %i[
+              id event_identifier payload_event payload_response
+            ]
+          }
         ]
       )
     end

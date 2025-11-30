@@ -143,7 +143,13 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :merchant_syncs, only: %i[index show edit update destroy]
+      concern :nostr_eventable do
+        resources :nostr_events, only: %i[create]
+      end
+
+      resources :merchant_syncs,
+                only: %i[index show edit update destroy],
+                concerns: :nostr_eventable
 
       resources :comments, only: %i[index update destroy]
       resources :directories, except: :show do

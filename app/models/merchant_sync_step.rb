@@ -40,6 +40,15 @@ class MerchantSyncStep < ApplicationRecord
     broadcast_replace_to(
       [:admin, :merchant_syncs, I18n.locale]
     )
+
+    merchant_sync.mark_as_success! if status_previously_changed?(from: :error, to: :success) && merchant_sync.merchant_sync_steps.all?(&:success?)
+  end
+
+  def mark_as_success!
+    update!(
+      status: :success,
+      payload_error: {}
+    )
   end
 
   def mark_as_fail(e)

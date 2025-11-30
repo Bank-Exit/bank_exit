@@ -13,6 +13,8 @@ class NostrPublisher < ApplicationService
   def call
     return unless merchants_count.positive?
 
+    @nostr_event = merchant_sync.nostr_event || merchant_sync.create_nostr_event!(identifier: identifier)
+
     relays.each do |relay|
       @client = Nostr::Client.new(
         private_key: private_key,
@@ -28,14 +30,16 @@ class NostrPublisher < ApplicationService
 
       @client.connect
       @event = @client.sign(@event)
-      @response = @client.publish_and_wait(@event)
-      @client.close
+      @response = @client.publish_and_wait(@event, close_on_finish: true)
     end
-  end
 
-  def finish
-    merchant_sync.update(payload_nostr: { event: @event, response: @response })
-    Rails.logger.debug { @event }
+    @nostr_event.update!(
+      event_identifier: @response.event_id,
+      payload_event: @event,
+      payload_response: @response
+    )
+
+    @response
   end
 
   private

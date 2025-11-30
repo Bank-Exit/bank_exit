@@ -23,7 +23,12 @@ RSpec.describe NostrPublisher do
       allow(client).to receive(:sign) { |event| event }
       allow(client).to receive(:publish_and_wait) do |event|
         published_event.event = event
-        { status: 'ok' }
+        ParsedData.new(
+          type: 'OK',
+          event_id: '1234567890',
+          success: true,
+          message: ''
+        )
       end
     end
 
@@ -68,8 +73,7 @@ RSpec.describe NostrPublisher do
 
       it 'connects to relay', :aggregate_failures do
         expect(client).to have_received(:connect)
-        expect(client).to have_received(:publish_and_wait)
-        expect(client).to have_received(:close)
+        expect(client).to have_received(:publish_and_wait).with(instance_of(Nostr::Event), close_on_finish: true)
       end
 
       it 'has correct tags' do
@@ -97,9 +101,17 @@ RSpec.describe NostrPublisher do
       end
 
       it 'has correct response payload', :aggregate_failures do
-        expect(merchant_sync.reload.payload_nostr).to eq({
-          event: published_event.event,
-          response: { status: 'ok' }
+        nostr_event = merchant_sync.nostr_event
+
+        expect(nostr_event.event_identifier).to eq '1234567890'
+        expect(nostr_event.payload_event).to eq published_event.event.as_json
+        expect(nostr_event.payload_response).to eq({
+          data: {
+            type: 'OK',
+            event_id: '1234567890',
+            success: true,
+            message: ''
+          }
         }.as_json)
       end
     end

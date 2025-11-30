@@ -102,14 +102,18 @@
             pre.collapse-content.json-colorized
               == json_highlight(@merchant_sync.payload_countries)
 
-        - if @merchant_sync.payload_nostr.present?
+        - if @merchant_sync.nostr_event?
           details.collapse.collapse-arrow.bg-base-200.border.border-base-300
             summary.collapse-title.font-semibold
               .status.status-info
               |< Nostr payload
 
             pre.collapse-content.json-colorized
-              == json_highlight(@merchant_sync.payload_nostr)
+              == json_highlight(@merchant_sync.nostr_event.payload_response)
+
+              .divider
+
+              == json_highlight(@merchant_sync.nostr_event.payload_event)
 
       - else
         p.italic.text-center.my-2 No update to show
