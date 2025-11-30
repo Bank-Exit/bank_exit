@@ -32,11 +32,13 @@ class FetchMerchants < ApplicationService
     geojson, geojson_merchant_ids = convert_to_geojson_step(overpass_response)
 
     save_data_step(geojson)
-    attach_json_step(geojson)
+    payload_countries = assign_country_step
+
     notify_github_step(geojson_merchant_ids)
     reactivate_disabled_step(geojson_merchant_ids)
-    payload_countries = assign_country_step
     diff_change_step(payload_countries)
+
+    attach_json_step(geojson)
     purge_old_attachments_step
 
     if FeatureFlag.enabled?(:nostr) &&
