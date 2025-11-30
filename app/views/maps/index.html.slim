@@ -1,13 +1,13 @@
 .flex.flex-col.lg:flex-row.items-start
   = render 'sidebar', h_screen: false do
     - if @directory_friends.present?
-      details.collapse.collapse-arrow open=""
+      details.collapse.collapse-arrow.bg-base-200 open=""
         summary#directory-friends.collapse-title.text-center.font-bold.text-primary
           = t('maps.directory_friends.other_directories_to_spend_title')
 
-        .grid.grid-cols-4.gap-2
+        .collapse-content.grid.grid-cols-4.gap-5
           - @directory_friends.each do |directory_friend|
-            = link_to directory_friend.link, target: :_blank, class: 'card bg-base-200 p-5 space-y-3 border border-base-content/20' do
+            = link_to directory_friend.link, target: :_blank, class: 'card pt-1 space-y-3 focus-visible:ring-2 focus-visible:ring-primary' do
               figure
                 - image_size = 'w-6 h-6 lg:w-10 lg:h-10 mx-auto'
                 - if directory_friend.icon?
