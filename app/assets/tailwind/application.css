@@ -218,6 +218,7 @@ p a[target="_blank"],
 .modal a[target="_blank"],
 .alert a[target="_blank"],
 .dropdown a[target="_blank"],
+.navbar details ul li a[target="_blank"],
 #faq a[target="_blank"] {
     &:after {
         content: " ";
