@@ -208,6 +208,10 @@ a:not(.btn, .badge):hover,
     color: var(--color-primary);
 }
 
+.navbar details ul {
+    @apply border border-base-content/20;
+}
+
 footer a[target="_blank"],
 p a[target="_blank"],
 .admin a[target="_blank"],
