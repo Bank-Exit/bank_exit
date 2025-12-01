@@ -51,5 +51,5 @@ en:
       open_merchant_routing_form: Open route planner to reach a merchant
 
     snowflakes:
-      enable_snowflakes: Enable Christmas theme
-      disable_snowflakes: Disable Christmas theme
+      enable_snowflakes: Enable snow
+      disable_snowflakes: Disable snow

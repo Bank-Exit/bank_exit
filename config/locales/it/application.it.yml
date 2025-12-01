@@ -49,5 +49,5 @@ it:
       open_merchant_routing_form: Apri la pagina per calcolare il percorso verso un commerciante
 
     snowflakes:
-      enable_snowflakes: Attiva il tema di Natale
-      disable_snowflakes: Disattiva il tema di Natale
+      enable_snowflakes: Attivare la neve
+      disable_snowflakes: Disattivare la neve

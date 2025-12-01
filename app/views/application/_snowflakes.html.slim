@@ -67,7 +67,7 @@ css:
       position: fixed;
       inset: 0;
       pointer-events: none;
-      z-index: 4;
+      z-index: 9999;
       overflow: hidden;
   }
 
@@ -102,7 +102,7 @@ css:
       animation-name: fallblur;
       width: calc(100vw + 2000px);
       height: calc(100vh + 1000px);
-      left: -2000px;
+      left: -1000px;
   }
 
   .snow__layer:nth-child(2) {
@@ -164,18 +164,6 @@ css:
   .snow-disabled {
       .snow {
           display: none !important;
-      }
-
-      .snow-stack {
-          padding-bottom: calc(var(--spacing) * 10);
-      }
-
-      .snow-stack::after {
-          content: none;
-      }
-
-      .custom-pin-icon::before {
-          content: none;
       }
   }
 
