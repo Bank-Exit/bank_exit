@@ -2,12 +2,11 @@ article#article
   header.hero.bg-fixed.bg-banner-ecosystem
     .hero-overlay
     .hero-content.text-center.text-neutral-content
-      .max-w-xl.space-y-5
-        .flex.items-center.justify-center.gap-3
-          h1.text-3xl.font-bold= t('.title')
+      .max-w-xl.space-y-3
+        h1.text-3xl.font-bold= t('.title')
 
-          - if logged_in? && allowed_to?(:index?, EcosystemItem, namespace: Admin)
-            = edit_link_to admin_ecosystem_items_path
+        - if logged_in? && allowed_to?(:index?, EcosystemItem, namespace: Admin)
+          = edit_link_to admin_ecosystem_items_path
 
         p= t('.description')
 

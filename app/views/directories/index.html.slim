@@ -4,11 +4,10 @@ article data-controller="directories" data-directories-autocomplete-url-value= a
     .hero-content.text-center.text-neutral-content
       .max-w-3xl.space-y-6
         section.space-y-3
-          .flex.items-center.justify-center.gap-2
-            h1.text-3xl.font-bold= t('application.nav.menu.directories')
+          h1.text-3xl.font-bold= t('application.nav.menu.directories')
 
-            - if logged_in? && allowed_to?(:index?, Directory, namespace: Admin)
-              = edit_link_to admin_directories_path
+          - if logged_in? && allowed_to?(:index?, Directory, namespace: Admin)
+            = edit_link_to admin_directories_path
 
           div
             p.italic
