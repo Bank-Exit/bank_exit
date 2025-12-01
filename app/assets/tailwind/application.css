@@ -252,7 +252,7 @@ abbr[title] {
 }
 
 .article-body {
-    @apply mx-auto space-y-5 py-5 px-5 lg:px-0;
+    @apply mx-auto space-y-5 py-5 px-5 xl:px-0;
 }
 
 [disabled] {
