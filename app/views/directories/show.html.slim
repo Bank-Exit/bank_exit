@@ -62,25 +62,29 @@ article
       div
         h2.text-primary.uppercase.mb-2= Directory.human_attribute_name(:coins)
 
-        .alert.alert-vertical.overflow-y-auto
+        .flex.flex-col.lg:flex-row.items-center.gap-3
           - coin_wallets.each do |coin_wallet|
-            .flex.items-center.gap-1
-              = image_tag icon_by_coin(coin_wallet.coin),
-                          class: 'h-8 inline-flex mr-2 hover:scale-110 motion-safe:transition-transform',
-                          title: "#{coin_wallet.coin.capitalize}"
-              - if coin_wallet.qrcodable?
-                = link_to coin_link_address_with_protocol(coin_wallet.coin, coin_wallet.public_address) do
-                  span title=coin_wallet.public_address
-                    = coin_wallet.public_address_reduced
+            .card.bg-base-200
+              .card-body.space-y-4.justify-between
+                = image_tag icon_by_coin(coin_wallet.coin),
+                            class: 'w-20 h-20 mx-auto hover:scale-110 motion-safe:transition-transform',
+                            title: "#{coin_wallet.coin.capitalize}"
+                .card-title.justify-center.text-base
+                  = coin_wallet.coin.capitalize
 
-                = render 'copy_to_clipboard',
-                        clipboard_value: coin_wallet.public_address,
-                        clipboard_success_text_value: nil,
-                        title: nil
+                - if coin_wallet.qrcodable?
+                  = link_to coin_link_address_with_protocol(coin_wallet.coin, coin_wallet.public_address) do
+                    .badge.badge-primary title=coin_wallet.public_address
+                      = coin_wallet.public_address_reduced
 
-                = link_to coin_wallet, data: { turbo_stream: true } do
-                  = lucide_icon('qr-code')
+                  .flex.items-center.justify-center.gap-5
+                    = render 'copy_to_clipboard',
+                            clipboard_value: coin_wallet.public_address,
+                            clipboard_success_text_value: nil,
+                            title: nil
 
+                    = link_to coin_wallet, data: { turbo_stream: true }, title: 'QRcode' do
+                      = lucide_icon('qr-code')
 
     - if delivery_zones.any?
       div
