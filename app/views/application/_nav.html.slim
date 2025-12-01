@@ -130,11 +130,11 @@ nav.navbar.container.mx-auto
           = grocery.title
 
       li
-        details.dropdown
+        details
           summary class=("text-primary" if active_project)
             = t('.menu.projects')
 
-          ul.menu.dropdown-content.w-max
+          ul.w-max
             - projects.each do |project|
               - next if project.identifier.in?(%w[map grocery local_groups accounting])
               li
@@ -150,11 +150,11 @@ nav.navbar.container.mx-auto
                 | CoinAdoptionScore
 
       li
-        details.dropdown
+        details
           summary class=('text-primary' if active_article)
             = t('.menu.articles')
 
-          ul.menu.dropdown-content.w-max
+          ul.w-max
             li
               = link_to blogs_path, class: ('text-primary' if params[:controller] == 'blogs' && params[:id] != 'flyer') do
                 = t('.menu.blogs')
@@ -164,11 +164,11 @@ nav.navbar.container.mx-auto
                 = t('.menu.tutorials')
 
       li
-        details.dropdown
+        details
           summary class=('text-primary' if active_other)
             = t('other')
 
-          ul.menu.dropdown-content.w-max
+          ul.w-max
             li
               = link_to collective_path, class: ('text-primary' if params[:controller] == 'collectives') do
                 = t('collectives.show.title')
@@ -197,12 +197,12 @@ nav.navbar.container.mx-auto
           = t('.menu.contact')
 
       li
-        details.dropdown
+        details
           summary class=("text-primary" if params[:id].in?(%w[accounting cryptopayment-for-business]))
             .status.status-primary
             = t('.menu.pros')
 
-          ul.menu.dropdown-content.w-max
+          ul.w-max
             li
               = link_to tutorial_path(business_guide_tutorial.identifier),
                         class: ('text-primary' if params[:id] == 'cryptopayment-for-business') do
@@ -237,7 +237,7 @@ nav.navbar.container.mx-auto
       - if logged_in?
         li
           - color = color_for_role(current_user.role)
-          details.dropdown.dropdown-end.ml-2
+          details
             summary.avatar.avatar-placeholder.cursor-pointer
               / .bg-error / .bg-success / .bg-warning / .bg-info
               / .text-error-content / .text-success-content
@@ -245,7 +245,7 @@ nav.navbar.container.mx-auto
               .w-8.rounded-full.uppercase class="bg-#{color} text-#{color}-content"
                 = current_user.email.first(2)
 
-            ul.menu.dropdown-content.bg-base-200.rounded-box.w-52.z-1.border.border-base-content/20.space-y-2
+            ul.w-max.space-y-2.-ml-12
               li
                 = link_to t('.admin_area'), admin_root_path
 
