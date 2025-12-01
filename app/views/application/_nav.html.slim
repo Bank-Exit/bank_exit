@@ -239,26 +239,25 @@ nav.navbar.container.mx-auto
           - color = color_for_role(current_user.role)
           details.dropdown.dropdown-end.ml-2
             summary.avatar.avatar-placeholder.cursor-pointer
+              / .bg-error / .bg-success / .bg-warning / .bg-info
+              / .text-error-content / .text-success-content
+              / .text-warning-content / .text-info-content
               .w-8.rounded-full.uppercase class="bg-#{color} text-#{color}-content"
                 = current_user.email.first(2)
 
-            ul.menu.dropdown-content.bg-base-200.rounded-box.z-1.w-60.p-2.border.border-base-content/20
+            ul.menu.dropdown-content.bg-base-200.rounded-box.w-52.z-1.border.border-base-content/20.space-y-2
               li
-                p.menu-title= current_user.email
+                = link_to t('.admin_area'), admin_root_path
 
-                ul.space-y-2
-                  li
-                    = link_to t('.admin_area'), admin_root_path
+              - if true_user != current_user
+                li
+                  = link_to t('.back_to_my_account'),
+                              stop_impersonating_admin_users_path,
+                              data: { turbo_method: :post },
+                              class: 'btn btn-warning btn-sm'
 
-                  - if true_user != current_user
-                    li
-                      = link_to t('.back_to_my_account'),
-                                  stop_impersonating_admin_users_path,
-                                  data: { turbo_method: :post },
-                                  class: 'btn btn-warning btn-sm'
-
-                  li
-                    = link_to t('logout'),
-                              session_path,
-                              data: { turbo_method: :delete },
-                              class: 'btn btn-error btn-sm'
+              li
+                = link_to t('logout'),
+                          session_path,
+                          data: { turbo_method: :delete },
+                          class: 'btn btn-error btn-sm'
