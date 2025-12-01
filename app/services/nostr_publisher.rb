@@ -4,6 +4,7 @@ class NostrPublisher < ApplicationService
   def initialize(merchant_sync, identifier:)
     @merchant_sync = merchant_sync
     @identifier = identifier
+    @responses = Set.new
   end
 
   def prepare
@@ -30,16 +31,25 @@ class NostrPublisher < ApplicationService
 
       @client.connect
       @event = @client.sign(@event)
-      @response = @client.publish_and_wait(@event, close_on_finish: true)
+      response = @client.publish_and_wait(@event, close_on_finish: true)
+
+      @responses << response
+    rescue StandardError => e
+      Rails.logger.error { e.message }
+      next
     end
 
+    raise NostrErrors::PublicationError if @responses.blank?
+
+    response = @responses.first
+
     @nostr_event.update!(
-      event_identifier: @response.event_id,
+      event_identifier: response.event_id,
       payload_event: @event,
-      payload_response: @response
+      payload_response: response
     )
 
-    @response
+    response
   end
 
   private

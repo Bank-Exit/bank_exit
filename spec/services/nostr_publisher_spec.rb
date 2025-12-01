@@ -67,52 +67,62 @@ RSpec.describe NostrPublisher do
         create :merchant, :deleted, original_identifier: 'node/111', name: 'Deleted merchant'
 
         travel_to Time.zone.local(2025, 11, 20, 16, 30, 00)
-
-        call
       end
 
-      it 'connects to relay', :aggregate_failures do
-        expect(client).to have_received(:connect)
-        expect(client).to have_received(:publish_and_wait).with(instance_of(Nostr::Event), close_on_finish: true)
+      context 'when relays hangs with a timeout' do
+        before do
+          allow(client).to receive(:publish_and_wait).and_raise(StandardError, 'Relay timeout')
+        end
+
+        it { expect { call }.to raise_error(NostrErrors::PublicationError) }
       end
 
-      it 'has correct tags' do
-        tags = published_event.event.tags
+      context 'when relays does not hang' do
+        before { call }
 
-        expect(tags).to match_nostr_tags(
-          d: 'foobar-123',
-          title: 'New Bank-Exit merchants (2025-11-20 at 16:30)',
-          summary: 'A list of merchants that accept Bitcoin, Monero, or June, mapped on the bank-exit.org website during the latest synchronization.',
-          t: %w[Bank-Exit SortieDeBanque XBT Bitcoin],
-          p: 'mynostrpubkey',
-          published_at: Time.current.to_i.to_s
-        )
-      end
+        it 'connects to relay', :aggregate_failures do
+          expect(client).to have_received(:connect)
+          expect(client).to have_received(:publish_and_wait).with(instance_of(Nostr::Event), close_on_finish: true)
+        end
 
-      it 'has correct content', :aggregate_failures do
-        content = published_event.event.content
+        it 'has correct tags' do
+          tags = published_event.event.tags
 
-        expect(content).to match(/Discover \*\*3\*\* newly listed Bitcoin \(₿\) merchants now featured on the /)
-        expect(content).to match(/Bitcoin Coffee/)
-        expect(content).to match(/MM salon de thé, pâtisserie, chocolaterie/)
-        expect(content).to match(/Feel SO light/)
-        expect(content).to match(/_Merchants are based on free and open data from OpenStreetMap. Information may change over time and could differ from what is shown here, with some links potentially no longer existing._/)
-        expect(content).to_not match(/Deleted merchant/)
-      end
+          expect(tags).to match_nostr_tags(
+            d: 'foobar-123',
+            title: 'New Bank-Exit merchants (2025-11-20 at 16:30)',
+            summary: 'A list of merchants that accept Bitcoin, Monero, or June, mapped on the bank-exit.org website during the latest synchronization.',
+            t: %w[Bank-Exit SortieDeBanque XBT Bitcoin],
+            p: 'mynostrpubkey',
+            published_at: Time.current.to_i.to_s
+          )
+        end
 
-      it 'has correct response payload', :aggregate_failures do
-        nostr_event = merchant_sync.nostr_event
+        it 'has correct content', :aggregate_failures do
+          content = published_event.event.content
 
-        expect(nostr_event.event_identifier).to eq '1234567890'
-        expect(nostr_event.payload_event).to eq published_event.event.as_json
-        expect(nostr_event.payload_response).to eq({
-          data: {
-            type: 'OK',
-            event_id: '1234567890',
-            success: true,
-            message: ''
-          }
-        }.as_json)
+          expect(content).to match(/Discover \*\*3\*\* newly listed Bitcoin \(₿\) merchants now featured on the /)
+          expect(content).to match(/Bitcoin Coffee/)
+          expect(content).to match(/MM salon de thé, pâtisserie, chocolaterie/)
+          expect(content).to match(/Feel SO light/)
+          expect(content).to match(/_Merchants are based on free and open data from OpenStreetMap. Information may change over time and could differ from what is shown here, with some links potentially no longer existing._/)
+          expect(content).to_not match(/Deleted merchant/)
+        end
+
+        it 'has correct response payload', :aggregate_failures do
+          nostr_event = merchant_sync.nostr_event
+
+          expect(nostr_event.event_identifier).to eq '1234567890'
+          expect(nostr_event.payload_event).to eq published_event.event.as_json
+          expect(nostr_event.payload_response).to eq({
+            data: {
+              type: 'OK',
+              event_id: '1234567890',
+              success: true,
+              message: ''
+            }
+          }.as_json)
+        end
       end
     end
 
