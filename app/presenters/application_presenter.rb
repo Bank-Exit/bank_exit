@@ -1,4 +1,3 @@
-# rubocop:disable Lint/EmptyClass
+# rubocop:disable-next Lint/EmptyClass
 class ApplicationPresenter
 end
-# rubocop:enable Lint/EmptyClass
