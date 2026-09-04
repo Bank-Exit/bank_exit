@@ -17,6 +17,10 @@
     background-image: url("/banners/home/5.jpg");
 }
 
+.bg-banner-brittany {
+    background-image: url("/banners/banner-brittany.jpeg");
+}
+
 .bg-banner-open-source {
     background-image: url("/banners/banner-open-source.jpg");
 }

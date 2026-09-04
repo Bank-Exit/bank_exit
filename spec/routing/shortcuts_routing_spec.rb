@@ -4,12 +4,8 @@ RSpec.describe 'Shortcuts', type: :request do
   describe '/asdb' do
     subject! { get('/asdb') }
 
-    it 'follows redirects to english article', :aggregate_failures do
-      expect(response).to redirect_to('/blogs/bank-exit-assembly-2025')
-
-      follow_redirect!
-
-      expect(response).to redirect_to('/en/blogs/bank-exit-assembly-2025')
+    it 'redirects to external asdb website' do
+      expect(response).to redirect_to('https://libre-market.com/asdb')
     end
   end
 
@@ -17,7 +13,7 @@ RSpec.describe 'Shortcuts', type: :request do
     describe "/#{locale}/asdb" do
       subject! { get("/#{locale}/asdb") }
 
-      it { is_expected.to redirect_to("/#{locale}/blogs/bank-exit-assembly-2025") }
+      it { is_expected.to redirect_to("/#{locale}/blogs/bank-exit-assembly-2026") }
     end
   end
 end

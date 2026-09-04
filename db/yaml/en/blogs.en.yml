@@ -1,4 +1,11 @@
 ---
+- title: Bank-Exit Assembly 2026
+  identifier: bank-exit-assembly-2026
+  banner: banner-brittany
+  created_at: "2026-08-24"
+  overview: The second Bank-Exit Assembly in 2026, featuring volunteer-led workshops hosted by experts.
+  content_origin: ai_assisted
+
 - title: "Anti-censorship Workshop #KipInTouche - Session Matrix Nostr Mastodon"
   identifier: workshop-kipintouche
   created_at: "2026-07-25"

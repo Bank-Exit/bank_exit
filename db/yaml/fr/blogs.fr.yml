@@ -1,4 +1,11 @@
 ---
+- title: Assemblée Sortie de Banque 2026
+  identifier: bank-exit-assembly-2026
+  banner: banner-brittany
+  created_at: "2026-08-24"
+  overview: Seconde assemblée Sortie de Banque 2026 avec des ateliers bénévoles encadrés par des experts.
+  content_origin: ai_assisted
+
 - title: "Atelier anti-censure #KipInTouche — Session, Matrix, Nostr & Mastodon"
   identifier: workshop-kipintouche
   created_at: "2026-07-25"
