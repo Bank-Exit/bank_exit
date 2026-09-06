@@ -1,6 +1,8 @@
 > [!IMPORTANT]
 > La carte des commerçants du **Collectif Sortie de Banque** permet de trouver des professionnels qui acceptent **Bitcoin**, **Monero** et d'autres monnaies libres dans le monde entier. Le projet repose sur des données ouvertes issues d'OpenStreetMap et s'enrichit grâce aux contributions de la communauté.
 
+<p class="text-center"><%= link_to t("application.header.access_map"), maps_path, class: "btn btn-primary btn-lg" %></p>
+
 Vous cherchez un restaurant, un artisan, un thérapeute, un hébergement ou un commerce qui accepte les paiements en cryptomonnaies ?
 
 [La carte](<%= maps_path %>) du Collectif a été conçue pour faciliter la rencontre entre les utilisateurs de monnaies numériques et les commerçants qui les acceptent. Son objectif est simple : rendre les paiements en Bitcoin et Monero plus accessibles au quotidien.
@@ -59,4 +61,6 @@ La carte ne constitue pas un annuaire privé. Les informations proviennent de [O
 Cela signifie que chacun peut contribuer à améliorer les données, signaler un nouveau commerce ou demander la suppression d'une fiche lorsque cela est nécessaire. Les mises à jour sont ensuite synchronisées automatiquement avec la carte du Collectif plusieurs fois par jour.
 
 > [!TIP]
-> Plus la communauté contribue, plus il devient facile de trouver des commerces acceptant Bitcoin et Monero. Si vous découvrez un nouvel établissement, pensez à le proposer afin d'aider les prochains utilisateurs.
+> Plus la communauté contribue, plus il devient facile de trouver des commerces acceptant Bitcoin et Monero. Si vous découvrez un nouvel établissement, pensez à le proposer sur le [formulaire dédié](<%= new_merchant_proposal_path %>) afin d'aider les prochains utilisateurs.
+
+<p class="text-center"><%= link_to t("application.header.access_map"), maps_path, class: "btn btn-primary btn-lg" %></p>

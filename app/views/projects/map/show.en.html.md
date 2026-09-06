@@ -1,6 +1,8 @@
 > [!IMPORTANT]
 > The **Bank-Exit Collective** merchant map helps you find businesses around the world that accept **Bitcoin**, **Monero**, and other free and decentralized currencies. The project is built on open data from OpenStreetMap and continuously grows thanks to community contributions.
 
+<p class="text-center"><%= link_to t("application.header.access_map"), maps_path, class: "btn btn-primary btn-lg" %></p>
+
 Looking for a restaurant, craftsman, therapist, accommodation, or local business that accepts cryptocurrency payments?
 
 The Collective's [merchant map](<%= maps_path %>) was created to connect cryptocurrency users with businesses that accept digital currencies. Its goal is simple: to make everyday Bitcoin and Monero payments easier and more accessible.
@@ -59,4 +61,6 @@ The map is not a private directory. Its data comes from [OpenStreetMap](https://
 Anyone can contribute by improving existing data, adding new businesses, or requesting the removal of outdated listings when necessary. Updates are automatically synchronized with the Collective's map several times a day.
 
 > [!TIP]
-> Every contribution helps grow the network. If you discover a new business that accepts Bitcoin or Monero, consider adding it to help future users.
+> The more the community contributes, the easier it becomes to find businesses accepting Bitcoin and Monero. If you discover a new business, consider submitting it through the [dedicated form](<%= new_merchant_proposal_path %>) to help future users.
+
+<p class="text-center"><%= link_to t("application.header.access_map"), maps_path, class: "btn btn-primary btn-lg" %></p>

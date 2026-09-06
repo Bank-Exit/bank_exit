@@ -1,6 +1,8 @@
 > [!IMPORTANT]
 > El mapa de comercios del **Colectivo Salida del Banco** te permite encontrar establecimientos de todo el mundo que aceptan **Bitcoin**, **Monero** y otras monedas libres y descentralizadas. El proyecto se basa en datos abiertos de OpenStreetMap y sigue creciendo gracias a las contribuciones de la comunidad.
 
+<p class="text-center"><%= link_to t("application.header.access_map"), maps_path, class: "btn btn-primary btn-lg" %></p>
+
 ¿Buscas un restaurante, un artesano, un terapeuta, un alojamiento o un comercio que acepte pagos con criptomonedas?
 
 El [mapa](<%= maps_path %>) del Colectivo ha sido creado para conectar a los usuarios de criptomonedas con los comercios que las aceptan. Su objetivo es sencillo: hacer que los pagos con Bitcoin y Monero sean más accesibles en la vida cotidiana.
@@ -59,4 +61,6 @@ El mapa no es un directorio privado. La información proviene de [OpenStreetMap]
 Esto significa que cualquier persona puede contribuir mejorando los datos, añadiendo nuevos comercios o solicitando la eliminación de fichas obsoletas cuando sea necesario. Las actualizaciones se sincronizan automáticamente con el mapa del Colectivo varias veces al día.
 
 > [!TIP]
-> Cuantas más personas contribuyan, más fácil será encontrar comercios que acepten Bitcoin y Monero. Si descubres un nuevo establecimiento, no dudes en añadirlo para ayudar a los próximos usuarios.
+> Cuanto más contribuya la comunidad, más fácil será encontrar comercios que acepten Bitcoin y Monero. Si descubres un nuevo establecimiento, considera proponerlo mediante el [formulario específico](<%= new_merchant_proposal_path %>) para ayudar a los próximos usuarios.
+
+<p class="text-center"><%= link_to t("application.header.access_map"), maps_path, class: "btn btn-primary btn-lg" %></p>

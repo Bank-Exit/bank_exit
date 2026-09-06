@@ -352,8 +352,8 @@ background_header = "bg-base-100/90 shadow-sm backdrop-blur" %>
 
       <%= render 'language_switcher', show_current_label: false %>
 
-      <%= link_to new_merchant_proposal_path, class: 'btn btn-primary btn-sm max-md:hidden' do %>
-        <%= t("maps.sidebar.suggest_merchant") %>
+      <%= link_to maps_path, class: 'btn btn-primary btn-sm max-md:hidden' do %>
+        <%= t(".access_map") %>
       <% end %>
 
       <button
