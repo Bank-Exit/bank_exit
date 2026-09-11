@@ -1,14 +1,21 @@
 class OverpassAPI
   include HTTParty
 
-  default_timeout 360
   base_uri 'https://overpass-api.de'
+  headers(
+    'Accept' => 'application/json',
+    'User-Agent' => 'Bank-Exit/2.x (sortiedebanque@tutamail.com)'
+  )
+
+  default_timeout 360
   raise_on [429, '5[0-9]*']
 
   # API call that returns XBT, lightning, XMR and XG1 results.
   def fetch_merchants
-    self.class.get('/api/interpreter', query: {
-                     data: <<-OVERPASSQL
+    self.class.get(
+      '/api/interpreter',
+      query: {
+        data: <<-OVERPASSQL
         [out:json][timeout:360];
         (
           // Nodes
@@ -29,7 +36,8 @@ class OverpassAPI
         out body;
         >;
         out skel qt;
-                     OVERPASSQL
-                   })
+        OVERPASSQL
+      }
+    )
   end
 end
