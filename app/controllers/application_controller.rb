@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   helper_method :comments_enabled?
 
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  # allow_browser versions: :modern
+  allow_browser versions: :modern
 
   private
 
