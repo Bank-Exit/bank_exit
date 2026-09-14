@@ -4,7 +4,7 @@ class OverpassAPI
   base_uri 'https://overpass-api.de'
   headers(
     'Accept' => 'application/json',
-    'User-Agent' => 'Bank-Exit/2.x (sortiedebanque@tutamail.com)'
+    'User-Agent' => Setting::BANK_EXIT_DEFAULT_USER_AGENT
   )
 
   default_timeout 360

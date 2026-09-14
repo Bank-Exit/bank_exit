@@ -21,16 +21,18 @@ class SecureCacheStore < Geocoder::CacheStore::Generic
   end
 end
 
-Geocoder.configure(
-  lookup: :nominatim,
-  ip_lookup: :ipapi_com,
-  http_headers: {
-    'User-Agent' => 'Bank-Exit/2.x (sortiedebanque@tutamail.com)'
-  },
-  use_https: true,
-  timeout: 30,
-  cache: SecureCacheStore.new(Rails.cache, {}),
-  cache_options: {
-    expiration: 10.minutes
-  }
-)
+Rails.application.config.to_prepare do
+  Geocoder.configure(
+    lookup: :nominatim,
+    ip_lookup: :ipapi_com,
+    http_headers: {
+      'User-Agent' => Setting::BANK_EXIT_DEFAULT_USER_AGENT
+    },
+    use_https: true,
+    timeout: 30,
+    cache: SecureCacheStore.new(Rails.cache, {}),
+    cache_options: {
+      expiration: 10.minutes
+    }
+  )
+end

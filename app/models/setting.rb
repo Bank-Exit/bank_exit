@@ -21,4 +21,6 @@ class Setting
   MAX_DEFAULT_DESCRIPTION_LENGTH = 255
 
   MERCHANTS_FILTER_COINS = %i[monero bitcoin june].freeze
+
+  BANK_EXIT_DEFAULT_USER_AGENT = 'Bank-Exit/2.x (sortiedebanque@tutamail.com)'.freeze
 end
