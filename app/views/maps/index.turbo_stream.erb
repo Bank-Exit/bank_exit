@@ -7,6 +7,6 @@
     <%= render 'maps/merchants_count', pagy: @pagy %>
   <% end %>
   <%= turbo_stream.replace :display_modes do %>
-    <%= render 'display_modes' %>
+    <%= render 'maps/display_modes' %>
   <% end %>
 <% end %>

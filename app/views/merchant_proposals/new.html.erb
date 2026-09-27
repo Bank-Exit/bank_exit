@@ -12,7 +12,7 @@
   </header>
 
   <div class="article-body max-w-5xl">
-    <%= render 'breadcrumb' %>
+    <%= render 'application/breadcrumb' %>
 
     <div class="alert alert-info alert-soft">
       <p>
@@ -109,7 +109,7 @@
           <%= f.input :opening_hours %>
         </div>
 
-        <%= render 'description_with_counter', f: f %>
+        <%= render 'application/description_with_counter', f: f %>
       </section>
 
       <section>
@@ -152,8 +152,8 @@
 
         <div>
           <div class="flex items-center justify-center gap-2">
-            <% { false => 'false', nil => '', true => 'true' }.each do |label_val, val| %>
-              <% input_id = "ask_kyc_option_#{val.presence || 'nil'}" %>
+            <% { false => 'false', nil => 'nil', true => 'true' }.each do |_, val| %>
+              <% input_id = "ask_kyc_option_#{val}" %>
 
               <div>
                 <input

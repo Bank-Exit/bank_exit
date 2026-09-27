@@ -2,7 +2,7 @@
 
 <tr>
   <td>
-    <%= render "logo_or_initials", model: merchant %>
+    <%= render "application/logo_or_initials", model: merchant %>
   </td>
 
   <th>
@@ -63,7 +63,7 @@
 
       <% if extra_group.present? %>
         <% text = extra_group.map { |contact, _value| social_contact_icon(contact) }.join(" ") %>
-        <%= render "tooltip",
+        <%= render "application/tooltip",
                    position: :left,
                    text: text,
                    mode: "info",

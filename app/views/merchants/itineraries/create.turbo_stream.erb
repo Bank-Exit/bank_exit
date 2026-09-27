@@ -18,7 +18,7 @@
 <% end %>
 
 <%= turbo_stream.update :map_details do %>
-  <%= render 'details',
+  <%= render 'merchants/itineraries/details',
              route: @route,
              routing: @routing,
              start_address: @start_address,

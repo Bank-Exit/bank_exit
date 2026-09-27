@@ -4,7 +4,7 @@
 
 <section class="space-y-3" data-controller="admin--table">
   <% if can_batch_merchants %>
-    <%= render 'batch_actions' %>
+    <%= render 'admin/merchants/batch_actions' %>
   <% end %>
 
   <div class="table-wrapper">
@@ -71,5 +71,5 @@
     </table>
   </div>
 
-  <%= render 'pagination', pagy: pagy %>
+  <%= render 'application/pagination', pagy: pagy %>
 </section>

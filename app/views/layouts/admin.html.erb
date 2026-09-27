@@ -17,7 +17,7 @@
 
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
 
-    <%= render 'initial_javascript' %>
+    <%= render 'application/initial_javascript' %>
     <%= javascript_importmap_tags %>
   </head>
 
@@ -31,7 +31,7 @@
     <%= turbo_stream_from [:flashes, I18n.locale] %>
 
     <div id="flashes">
-      <%= render 'flashes' %>
+      <%= render 'application/flashes' %>
     </div>
 
     <div class="drawer lg:drawer-open">
@@ -43,13 +43,13 @@
         <main class="@container flex-1 p-4 space-y-4">
           <% if defined?(breadcrumbs) && breadcrumbs.count > 1 %>
             <div class="flex justify-between gap-5">
-              <%= render 'breadcrumb', size: "text-sm" %>
+              <%= render 'application/breadcrumb', size: "text-sm" %>
 
               <% if content_for?(:page_actions) %>
                 <%= content_for :dropdown_menu, flush: true do %>
                   <%= yield :page_actions %>
                 <% end %>
-                <%= render "dropdown_actions", item_id: "page_actions" %>
+                <%= render "application/dropdown_actions", item_id: "page_actions" %>
               <% end %>
             </div>
           <% end %>
@@ -61,11 +61,11 @@
       </div>
 
       <div id="modal"></div>
-      <%= render "modal", id: "turbo-confirm" %>
+      <%= render "application/modal", id: "turbo-confirm" %>
       <%= render 'admin/shared/sidebar' %>
 
-      <%= render 'ribbon' if FeatureFlag.enabled?(:ribbon) %>
-      <%= render 'debugbar' if defined?(Debugbar) %>
+      <%= render 'application/ribbon' if FeatureFlag.enabled?(:ribbon) %>
+      <%= render 'application/debugbar' if defined?(Debugbar) %>
     </div>
   </body>
 </html>

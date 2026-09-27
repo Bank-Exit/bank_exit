@@ -25,7 +25,7 @@
 
           <tbody>
             <% merchants.each do |merchant| %>
-              <%= render "merchants_table_row", merchant: merchant, query: query %>
+              <%= render "maps/merchants_table_row", merchant: merchant, query: query %>
             <% end %>
           </tbody>
         </table>
@@ -35,7 +35,7 @@
         <%= render merchants %>
       </div>
     <% end %>
-    <%= render "pagination",
+    <%= render "application/pagination",
                pagy: pagy,
                use_turbo_stream: true,
                add_page_to_url: true,

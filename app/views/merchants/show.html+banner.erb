@@ -27,7 +27,7 @@ set_meta_tags og: { image: image },
     <div class="hero-content">
       <header class="max-w-xl">
         <div class="text-center space-y-6">
-          <%= render 'logo_or_initials',
+          <%= render 'application/logo_or_initials',
                      model: @merchant,
                      mode: :extra_large %>
 
@@ -59,7 +59,7 @@ set_meta_tags og: { image: image },
   </div>
 
   <div class="article-body max-w-5xl space-y-8!">
-    <%= render 'breadcrumb' %>
+    <%= render 'application/breadcrumb' %>
 
     <% if @merchant.deleted? %>
       <p class="alert alert-error">
@@ -107,7 +107,7 @@ set_meta_tags og: { image: image },
       </section>
     <% end %>
 
-    <%= render 'map',
+    <%= render 'merchants/map',
                merchant: @merchant,
                map_width: 'w-full',
                map_height: 'h-[600px]' %>
@@ -134,7 +134,7 @@ set_meta_tags og: { image: image },
         <%= turbo_frame_tag :comments_wrapper,
                             src: merchant_comments_path(@merchant),
                             loading: :lazy do %>
-          <%= render 'loader_noscript',
+          <%= render 'application/loader_noscript',
                      message_noscript: 'JavaScript is required to display comments' %>
         <% end %>
       </div>
@@ -145,7 +145,7 @@ set_meta_tags og: { image: image },
                  merchant: @merchant %>
     <% end %>
 
-    <%= render 'last_survey_on',
+    <%= render 'merchants/last_survey_on',
                merchant: @merchant %>
   </div>
 

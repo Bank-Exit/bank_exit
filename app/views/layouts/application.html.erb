@@ -31,7 +31,7 @@
 
     <%= stylesheet_link_tag :app %>
 
-    <%= render 'initial_javascript' %>
+    <%= render 'application/initial_javascript' %>
     <%= javascript_importmap_tags %>
 
     <%= debugbar_head if defined?(Debugbar) %>
@@ -49,33 +49,32 @@
   >
     <div class="page-overlay"></div>
 
-    <%= render 'header',
+    <%= render 'application/header',
                  projects: @projects,
                  tutorials: @tutorials,
                  highlighted_tutorials: @highlighted_tutorials,
-                 bitcoin_tutorial: @bitcoin_tutorial,
-                 monero_tutorial: @monero_tutorial %>
+                 bitcoin_tutorial: @bitcoin_tutorial %>
 
-    <%= render "search" %>
+    <%= render "application/search" %>
 
     <main class="<%= class_names("pt-16": !current_page?(root_path)) %>">
       <%= yield %>
     </main>
 
-    <%= render 'footer', projects: @projects, contacts: @contacts, themes_finder: @themes_finder %>
+    <%= render 'application/footer', projects: @projects, contacts: @contacts, themes_finder: @themes_finder %>
 
     <%= turbo_frame_tag :announcements, src: announcements_path %>
 
     <div id="modal"></div>
     <%= render 'application/modal', id: 'turbo-confirm' %>
-    <%= render 'modal_help' %>
-    <%= render 'modal_about' %>
+    <%= render 'application/modal_help' %>
+    <%= render 'application/modal_about' %>
 
-    <%= render "authenticated_menu" if authenticated? %>
+    <%= render "application/authenticated_menu" if authenticated? %>
 
     <%= turbo_stream_from :flashes %>
     <%= turbo_stream_from [:flashes, I18n.locale] %>
 
-    <%= render 'debugbar' if defined?(Debugbar) %>
+    <%= render 'application/debugbar' if defined?(Debugbar) %>
   </body>
 </html>

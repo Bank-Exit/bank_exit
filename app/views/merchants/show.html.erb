@@ -13,7 +13,7 @@ set_meta_tags og: { image: image },
     "
   >
     <div class="flex justify-between print:hidden gap-3">
-      <%= render 'breadcrumb', size: 'text-sm' %>
+      <%= render 'application/breadcrumb', size: 'text-sm' %>
 
       <%= render 'merchants/view_sections/dropdown_actions',
                  merchant: @merchant,
@@ -45,7 +45,7 @@ set_meta_tags og: { image: image },
     <article class="space-y-6">
       <header class="flex flex-col items-center space-y-3 rounded-lg">
         <div class="relative">
-          <%= render 'logo_or_initials',
+          <%= render 'application/logo_or_initials',
                      model: @merchant,
                      mode: :extra_large %>
 
@@ -120,7 +120,7 @@ set_meta_tags og: { image: image },
           <%= turbo_frame_tag :comments_wrapper,
                               src: merchant_comments_path(@merchant),
                               loading: :lazy do %>
-            <%= render 'loader_noscript',
+            <%= render 'application/loader_noscript',
                        message_noscript: 'JavaScript is required to display comments' %>
           <% end %>
         </div>
@@ -131,12 +131,12 @@ set_meta_tags og: { image: image },
                    merchant: @merchant %>
       <% end %>
 
-      <%= render 'last_survey_on',
+      <%= render 'merchants/last_survey_on',
                  merchant: @merchant %>
     </article>
   </div>
 
-  <%= render 'map',
+  <%= render 'merchants/map',
              merchant: @merchant %>
 
   <script type="application/ld+json">

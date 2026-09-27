@@ -1,4 +1,4 @@
-<%# locals: (in_menu: false, label: nil, subject:, body:, icon_klass: "w-6 h-6") %>
+<%# locals: (in_menu: false, label_value: nil, subject:, body:, icon_klass: "w-6 h-6") %>
 
 <% if in_menu %>
   <%= mail_to "",
@@ -10,7 +10,7 @@
                 action: "keydown.s@document->hotkey#click" \
               } do %>
     <%= lucide_icon 'mail', class: icon_klass %>
-    <%= label if label %>
+    <%= label_value if label_value %>
     <%= hotkey_label('s', size: 'xs') %>
   <% end %>
 <% else %>
@@ -25,7 +25,7 @@
                   action: "keydown.s@document->hotkey#click" \
                 } do %>
       <%= lucide_icon 'mail', class: icon_klass %>
-      <%= label if label %>
+      <%= label_value if label_value %>
     <% end %>
 
     <%= hotkey_label('s', size: 'xs') %>

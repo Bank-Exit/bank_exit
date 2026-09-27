@@ -1,4 +1,4 @@
-<%# locals: (in_menu: false, label: nil, icon_klass: "w-6 h-6") %>
+<%# locals: (in_menu: false, label_value: nil, icon_klass: "w-6 h-6") %>
 
 <% if in_menu %>
   <%= button_tag type: :button,
@@ -8,7 +8,7 @@
                    action: 'click->printer#print'
                  } do %>
     <%= lucide_icon 'printer', class: icon_klass %>
-    <%= label if label %>
+    <%= label_value if label_value %>
     <%= hotkey_label(['ctrl', 'p'], size: 'xs') %>
   <% end %>
 <% else %>
@@ -21,7 +21,7 @@
                  action: 'click->printer#print'
                } do %>
       <%= lucide_icon 'printer', class: icon_klass %>
-      <%= label if label %>
+      <%= label_value if label_value %>
     <% end %>
 
     <%= hotkey_label(['ctrl', 'p'], size: 'xs') %>

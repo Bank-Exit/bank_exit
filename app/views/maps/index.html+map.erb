@@ -1,5 +1,5 @@
 <div class="flex max-md:flex-col-reverse items-start">
-  <%= render 'sidebar', merchant_sync: @merchant_sync, pagy: @pagy do %>
+  <%= render 'maps/sidebar', merchant_sync: @merchant_sync, pagy: @pagy do %>
     <div id="map_results">
       <%= render 'maps/merchants', merchants: @merchants, pagy: @pagy, query: @query %>
     </div>
@@ -12,13 +12,13 @@
 
     <% if @directory_friends.present? %>
       <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-0 w-[90%] lg:w-[75%]">
-        <%= render 'directory_friends', directory_friends: @directory_friends %>
+        <%= render 'maps/directory_friends', directory_friends: @directory_friends %>
       </div>
     <% end %>
   </div>
 </div>
 
-<%= render 'page_header' %>
+<%= render 'maps/page_header' %>
 
 <% if @faqs.any? %>
   <%= render template: 'faqs/show' %>

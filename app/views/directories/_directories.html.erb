@@ -69,14 +69,12 @@
         </thead>
 
         <tbody>
-          <% directories.each do |directory| %>
-            <%= render 'directory_table_row', directory: directory %>
-          <% end %>
+          <%= render partial: "directories/directory_table_row", collection: directories, as: :directory %>
         </tbody>
       </table>
     </div>
   <% end %>
-  <%= render 'pagination',
+  <%= render 'application/pagination',
              pagy: pagy,
              use_turbo_stream: true,
              add_page_to_url: true,

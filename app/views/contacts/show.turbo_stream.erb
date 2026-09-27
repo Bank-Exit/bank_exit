@@ -31,7 +31,7 @@
         </div>
 
         <div class="text-center">
-          <%= render 'copy_to_clipboard',
+          <%= render 'application/copy_to_clipboard',
                      clipboard_value: @contact.public_key,
                      clipboard_success_text_value: nil,
                      extra_class: 'btn-neutral' %>
@@ -48,7 +48,7 @@
         </div>
         <details class="collapse collapse-arrow bg-base-200">
           <summary class="collapse-title font-bold flex items-center gap-3">
-            <%= render 'copy_to_clipboard',
+            <%= render 'application/copy_to_clipboard',
                        clipboard_value: @contact.pgp_key,
                        clipboard_success_text_value: nil,
                        extra_class: 'btn-neutral' %>
@@ -62,7 +62,7 @@
       <% if @contact.pgp_key_fingerprint? %>
         <details class="collapse collapse-arrow bg-base-200">
           <summary class="collapse-title font-bold flex items-center gap-3">
-            <%= render 'copy_to_clipboard',
+            <%= render 'application/copy_to_clipboard',
                        clipboard_value: @contact.pgp_key_fingerprint,
                        clipboard_success_text_value: nil,
                        extra_class: 'btn-neutral' %>

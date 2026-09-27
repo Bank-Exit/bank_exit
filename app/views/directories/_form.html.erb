@@ -24,7 +24,7 @@
                 collection: directories_categories_select_helper %>
   </div>
 
-  <%= render 'description_with_counter',
+  <%= render 'application/description_with_counter',
              f: f,
              input_name: :description_en %>
 
@@ -87,14 +87,14 @@
                               directory.coin_wallets,
                               wrapper: false,
                               include_id: false do |ff| %>
-        <%= render 'coin_wallets_fields', f: ff %>
+        <%= render 'directories/coin_wallets_fields', f: ff %>
       <% end %>
 
       <template data-nested-form-target="template">
         <%= f.simple_fields_for :coin_wallets,
                                 directory.coin_wallets.new,
                                 child_index: 'TEMPLATE_RECORD' do |ff| %>
-          <%= render 'coin_wallets_fields', f: ff %>
+          <%= render 'directories/coin_wallets_fields', f: ff %>
         <% end %>
       </template>
 
@@ -124,14 +124,14 @@
                               directory.delivery_zones,
                               wrapper: false,
                               include_id: false do |ff| %>
-        <%= render 'delivery_zones_fields', f: ff %>
+        <%= render 'directories/delivery_zones_fields', f: ff %>
       <% end %>
 
       <template data-nested-form-target="template">
         <%= f.simple_fields_for :delivery_zones,
                                 directory.delivery_zones.new,
                                 child_index: 'TEMPLATE_RECORD' do |ff| %>
-          <%= render 'delivery_zones_fields', f: ff %>
+          <%= render 'directories/delivery_zones_fields', f: ff %>
         <% end %>
       </template>
 
@@ -161,14 +161,14 @@
                               directory.contact_ways,
                               wrapper: false,
                               include_id: false do |ff| %>
-        <%= render 'contact_ways_fields', f: ff %>
+        <%= render 'directories/contact_ways_fields', f: ff %>
       <% end %>
 
       <template data-nested-form-target="template">
         <%= f.simple_fields_for :contact_ways,
                                 directory.contact_ways.new,
                                 child_index: 'TEMPLATE_RECORD' do |ff| %>
-          <%= render 'contact_ways_fields', f: ff %>
+          <%= render 'directories/contact_ways_fields', f: ff %>
         <% end %>
       </template>
 
@@ -198,14 +198,14 @@
                               directory.weblinks,
                               wrapper: false,
                               include_id: false do |ff| %>
-        <%= render 'weblinks_fields', f: ff %>
+        <%= render 'directories/weblinks_fields', f: ff %>
       <% end %>
 
       <template data-nested-form-target="template">
         <%= f.simple_fields_for :weblinks,
                                 directory.weblinks.new,
                                 child_index: 'TEMPLATE_RECORD' do |ff| %>
-          <%= render 'weblinks_fields', f: ff %>
+          <%= render 'directories/weblinks_fields', f: ff %>
         <% end %>
       </template>
 

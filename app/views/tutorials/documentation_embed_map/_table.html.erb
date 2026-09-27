@@ -174,9 +174,9 @@
       </td>
 
       <td>
-        <%= %w[bitcoin monero june].map { |coin|
+        <%== %w[bitcoin monero june].map { |coin|
               content_tag(:span, coin, class: 'badge badge-info badge-sm')
-            }.join(', ').html_safe %>
+            }.join(', ') %>
       </td>
 
       <td>

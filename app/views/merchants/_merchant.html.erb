@@ -156,7 +156,7 @@
 
             <% if extra_contacts.present? %>
               <% text = extra_contacts.map { |contact, _value| social_contact_icon(contact) }.join(' ') %>
-              <%= render 'tooltip',
+              <%= render 'application/tooltip',
                          position: :right,
                          text: text,
                          mode: 'info',

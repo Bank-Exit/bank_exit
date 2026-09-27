@@ -6,7 +6,7 @@
   <td>
     <% if api_token.expired_at %>
       <div class="flex items-center gap-2">
-        <%= render 'enabled_or_disabled', enabled: api_token.expired? %>
+        <%= render 'application/enabled_or_disabled', enabled: api_token.expired? %>
         <%= I18n.l(api_token.expired_at) %>
       </div>
     <% else %>
@@ -15,10 +15,10 @@
   </td>
 
   <td>
-    <%= render 'enabled_or_disabled', enabled: api_token.enabled? %>
+    <%= render 'application/enabled_or_disabled', enabled: api_token.enabled? %>
   </td>
 
   <td>
-    <%= render 'actions', api_token: api_token %>
+    <%= render 'admin/api_tokens/actions', api_token: api_token %>
   </td>
 </tr>

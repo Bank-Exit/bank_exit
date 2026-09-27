@@ -1,3 +1,3 @@
 <%= turbo_stream.update :merchant_syncs_container do %>
-  <%= render 'merchant_syncs', merchant_syncs: @merchant_syncs, pagy: @pagy %>
+  <%= render 'admin/merchant_syncs/merchant_syncs', merchant_syncs: @merchant_syncs, pagy: @pagy %>
 <% end %>

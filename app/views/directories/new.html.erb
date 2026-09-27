@@ -11,7 +11,7 @@
   </header>
 
   <div class="article-body max-w-5xl">
-    <%= render 'breadcrumb' %>
+    <%= render 'application/breadcrumb' %>
 
     <div class="alert alert-info alert-soft">
       <p>
@@ -21,7 +21,7 @@
       </p>
     </div>
 
-    <%= render 'form', directory: @directory %>
+    <%= render 'directories/form', directory: @directory %>
   </div>
 </article>
 

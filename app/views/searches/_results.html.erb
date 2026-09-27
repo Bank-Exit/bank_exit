@@ -114,7 +114,7 @@
     </div>
     <% directories.each do |directory| %>
       <%= link_to directory_path(directory, q: query), class: list_item_class, data: { turbo_frame: :_top } do %>
-        <%= render 'logo_or_initials', model: directory, mode: :medium %>
+        <%= render 'application/logo_or_initials', model: directory, mode: :medium %>
 
         <div>
           <div class="font-semibold text-md">
@@ -146,7 +146,7 @@
     </div>
     <% merchants.each do |merchant| %>
       <%= link_to merchant_path(merchant), class: list_item_class, data: { turbo_frame: :_top } do %>
-        <%= render 'logo_or_initials', model: merchant, mode: :small %>
+        <%= render 'application/logo_or_initials', model: merchant, mode: :small %>
 
         <div>
           <div class="font-semibold text-md">
@@ -220,6 +220,6 @@
   <% end %>
 </nav>
 
-<%= render 'pagination', pagy: pagy,
+<%= render 'application/pagination', pagy: pagy,
                          use_turbo_stream: true,
                          pagination_path: search_path %>

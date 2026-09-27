@@ -21,14 +21,14 @@
   <div class="card-body space-y-4 justify-between z-10">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-2">
-        <%= render 'logo_or_initials', model: directory, mode: :small %>
+        <%= render 'application/logo_or_initials', model: directory, mode: :small %>
 
         <h2 class="card-title">
           <span><%= highlight(directory.name, params[:query]) %></span>
         </h2>
       </div>
 
-      <%= render 'comments_and_rating_icons', model: directory %>
+      <%= render 'application/comments_and_rating_icons', model: directory %>
     </div>
 
     <% if directory.description.present? %>
@@ -71,7 +71,7 @@
 
         <% if extra_group.present? %>
           <% text = extra_group.map { social_contact_icon(it.role) }.join(' ') %>
-          <%= render 'tooltip',
+          <%= render 'application/tooltip',
                      position: :bottom,
                      text: text,
                      mode: 'info',

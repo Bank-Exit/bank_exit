@@ -18,7 +18,7 @@
   <% end %>
 
   <td>
-    <%= render 'logo_or_initials',
+    <%= render 'application/logo_or_initials',
                model: merchant,
                mode: :large %>
   </td>
@@ -102,6 +102,6 @@
   </td>
 
   <td>
-    <%= render 'actions', merchant: merchant %>
+    <%= render 'admin/merchants/actions', merchant: merchant %>
   </td>
 </tr>
