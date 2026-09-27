@@ -20,7 +20,7 @@
 
     <div class="mockup-browser border border-base-300 w-full">
       <div class="mockup-browser-toolbar">
-        <%= render 'copy_to_clipboard',
+        <%= render 'application/copy_to_clipboard',
                    clipboard_value: maps_embed_url,
                    clipboard_success_text_value: nil,
                    attr_title: t('.url_to_embed'),
@@ -72,7 +72,7 @@
         </div>
 
         <div class="absolute top-1 right-1">
-          <%= render 'copy_to_clipboard',
+          <%= render 'application/copy_to_clipboard',
                      clipboard_value: default_map_iframe_html,
                      clipboard_success_text_value: nil,
                      attr_title: t('.iframe_to_embed'),

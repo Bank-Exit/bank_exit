@@ -51,7 +51,7 @@ merchant_deleted_count = Merchant.deleted.count %>
             <%= lucide_icon 'circle-question-mark', class: 'w-4' %>
           </button>
         </div>
-        <%= render 'modal',
+        <%= render 'application/modal',
                    id: :merchants_deleted_help,
                    modal_title: t('.merchants_disabled'),
                    modal_body: t('.merchant_disabled_body_html') %>

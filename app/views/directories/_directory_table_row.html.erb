@@ -6,7 +6,7 @@
 <tr>
   <th>
     <div class="flex items-center gap-3">
-      <%= render 'logo_or_initials', model: directory %>
+      <%= render 'application/logo_or_initials', model: directory %>
 
       <%= link_to directory_path(directory) do %>
         <%= directory.name %>
@@ -30,7 +30,6 @@
       <div class="tooltip">
         <div class="tooltip-content">
           <% delivery_zones.group_by(&:mode).each do |group| %>
-            <% mode = group.first %>
             <% rows = group.last %>
             <% row = rows.first %>
 
@@ -41,10 +40,10 @@
           <% end %>
         </div>
 
-        <%= render 'enabled_or_disabled', enabled: true %>
+        <%= render 'application/enabled_or_disabled', enabled: true %>
       </div>
     <% else %>
-      <%= render 'enabled_or_disabled', enabled: false %>
+      <%= render 'application/enabled_or_disabled', enabled: false %>
     <% end %>
   </td>
 
@@ -54,7 +53,7 @@
   </td>
 
   <td>
-    <%= render 'contact_ways_list', directory: directory %>
+    <%= render 'directories/contact_ways_list', directory: directory %>
   </td>
 
   <td>

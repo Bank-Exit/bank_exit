@@ -1,6 +1,6 @@
 <%# address_help / coin_wallet_help / delivery_zone_help %>
 <% %w[address coin_wallet delivery_zone].each do |model_key| %>
-  <%= render 'modal',
+  <%= render 'application/modal',
              id: "#{model_key}_help",
              modal_title: model_key.classify.constantize.model_name.human.capitalize,
              modal_body: t(".#{model_key}_body_help") %>
@@ -19,12 +19,12 @@
   <% end %>
 
   <div class="tabs tabs-box">
-    <% locales_select_helper.each do |label, locale| %>
+    <% locales_select_helper.each do |label_value, locale| %>
       <input
         class="tab"
         name="tabs_directory"
         type="radio"
-        aria-label="<%= label %>"
+        aria-label="<%= label_value %>"
         <% if locale == I18n.default_locale %>
           checked
         <% end %>
@@ -35,7 +35,7 @@
            description = :"description_#{Mobility.normalize_locale(locale)}" %>
 
         <%= f.input name, label: Directory.human_attribute_name(:name) %>
-        <%= render 'description_with_counter', f: f, input_name: description %>
+        <%= render 'application/description_with_counter', f: f, input_name: description %>
       </div>
     <% end %>
   </div>
@@ -173,8 +173,8 @@
       <template data-nested-form-target="template">
         <%= f.simple_fields_for :coin_wallets,
                                 directory.coin_wallets.new,
-                                child_index: 'TEMPLATE_RECORD' do |f| %>
-          <%= render 'directories/coin_wallets_fields', f: f %>
+                                child_index: 'TEMPLATE_RECORD' do |ff| %>
+          <%= render 'directories/coin_wallets_fields', f: ff %>
         <% end %>
       </template>
 
@@ -217,8 +217,8 @@
       <template data-nested-form-target="template">
         <%= f.simple_fields_for :delivery_zones,
                                 directory.delivery_zones.new,
-                                child_index: 'TEMPLATE_RECORD' do |f| %>
-          <%= render 'directories/delivery_zones_fields', f: f %>
+                                child_index: 'TEMPLATE_RECORD' do |ff| %>
+          <%= render 'directories/delivery_zones_fields', f: ff %>
         <% end %>
       </template>
 
@@ -250,8 +250,8 @@
       <template data-nested-form-target="template">
         <%= f.simple_fields_for :contact_ways,
                                 directory.contact_ways.new,
-                                child_index: 'TEMPLATE_RECORD' do |f| %>
-          <%= render 'directories/contact_ways_fields', f: f %>
+                                child_index: 'TEMPLATE_RECORD' do |ff| %>
+          <%= render 'directories/contact_ways_fields', f: ff %>
         <% end %>
       </template>
 
@@ -283,8 +283,8 @@
       <template data-nested-form-target="template">
         <%= f.simple_fields_for :weblinks,
                                 directory.weblinks.new,
-                                child_index: 'TEMPLATE_RECORD' do |f| %>
-          <%= render 'directories/weblinks_fields', f: f %>
+                                child_index: 'TEMPLATE_RECORD' do |ff| %>
+          <%= render 'directories/weblinks_fields', f: ff %>
         <% end %>
       </template>
 

@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-  <%= render "logo_or_initials", model: @merchant %>
+  <%= render "application/logo_or_initials", model: @merchant %>
   <%= t(".title") %>
 <% end %>
 
@@ -12,5 +12,5 @@
 <% end %>
 
 <section>
-  <%= render "form", merchant: @merchant %>
+  <%= render "admin/merchants/form", merchant: @merchant %>
 </section>

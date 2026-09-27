@@ -64,29 +64,29 @@
   </td>
 
   <td>
-    <% label = MerchantSync.human_enum_name(:status, merchant_sync.status) %>
+    <% label_value = MerchantSync.human_enum_name(:status, merchant_sync.status) %>
 
     <div class="flex items-center gap-2">
       <% if merchant_sync.success? %>
         <div class="badge badge-success">
-          <%= label %>
+          <%= label_value %>
         </div>
       <% elsif merchant_sync.error? %>
         <div class="badge badge-error">
-          <%= label %>
+          <%= label_value %>
         </div>
       <% elsif merchant_sync.success_with_error? %>
         <div class="badge badge-warning">
-          <%= label %>
+          <%= label_value %>
         </div>
       <% else %>
         <div class="badge badge-soft animate-pulse">
-          <%= label %>
+          <%= label_value %>
         </div>
       <% end %>
 
       <% if merchant_sync.notes.present? %>
-        <%= render 'tooltip',
+        <%= render 'application/tooltip',
                    position: :top,
                    text: simple_format(merchant_sync.notes),
                    mode: :info %>

@@ -20,7 +20,7 @@
 
   <% if extra_group.present? %>
     <% text = extra_group.map { |contact_way| social_contact_icon(contact_way.role, klass: ('opacity-10' unless contact_way.enabled?)) }.join(' ') %>
-    <%= render 'tooltip',
+    <%= render 'application/tooltip',
                position: :left,
                text: text,
                mode: 'info',

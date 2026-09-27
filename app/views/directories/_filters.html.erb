@@ -39,7 +39,7 @@
                   } %>
 
       <p>
-        <%= render 'tooltip',
+        <%= render 'application/tooltip',
                    text: t('.tooltip_geocoder_ip_html').join('<br />'),
                    position: :left %>
       </p>
@@ -73,7 +73,7 @@
                 pretty-checkbox inline-flex items-center justify-center
                 bg-base-100
               "
-              for="<%= "#{coin}-option" %>"
+              for="<%= coin %>-option"
               tabindex="0"
             >
               <div class="flex flex-col items-center justify-center gap-2">

@@ -1,4 +1,4 @@
-<%# locals: (profiles:, levels:, center: false) %>
+<%# locals: (levels:, center: false) %>
 
 <%= simple_form_for :questions,
                     url: results_questions_path,
@@ -11,10 +11,6 @@
                     } do |f| %>
   <fieldset class="bg-base-200/95 border-base-content/20 rounded-box border p-4 h-full">
     <div class="space-y-4">
-      <%# = render 'questions/profile_input', f: f, profiles: profiles %>
-
-      <%# = lucide_icon 'move-left', class: 'w-10 h-10 -rotate-90 bg-success text-success-content p-2 rounded-full mx-auto' %>
-
       <%= render 'questions/level_input', f: f, levels: levels %>
 
       <%= lucide_icon 'move-left', class: 'w-10 h-10 -rotate-90 bg-secondary text-secondary-content p-2 rounded-full mx-auto' %>

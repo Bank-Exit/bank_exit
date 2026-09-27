@@ -1,4 +1,19 @@
+framework: actionview
+
 formatter:
   enabled: true
   indentWidth: 2
   maxLineLength: 80
+
+linter:
+  exclude:
+    - "app/views/rswag/**/*"
+
+  rules:
+    actionview-no-implicit-partial:
+      enabled: false
+    actionview-no-implicit-polymorphic-url:
+      enabled: false
+    html-no-duplicate-ids:
+      exclude:
+        - "app/views/merchant_proposals/new.html.erb" # false positive

@@ -15,7 +15,7 @@ dated_i18n = t('statistics.statistics_numbers.dated', date: today_i18n) %>
       <%= lucide_icon 'triangle-alert', class: 'w-6' %>
     </button>
 
-    <%= render 'modal',
+    <%= render 'application/modal',
           id: :comments_disabled_help,
           modal_title: t('.comments_disabled'),
           modal_body: t('.comments_disabled_body_html') %>
@@ -65,5 +65,5 @@ dated_i18n = t('statistics.statistics_numbers.dated', date: today_i18n) %>
 </section>
 
 <div id="comments">
-  <%= render 'comments', comments: @comments, pagy: @pagy %>
+  <%= render 'admin/comments/comments', comments: @comments, pagy: @pagy %>
 </div>

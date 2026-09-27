@@ -258,7 +258,7 @@
           <% @merchants_sample.each do |merchant| %>
             <li class="list-row hover:bg-base-100 motion-safe:transition-colors">
               <div>
-                <%= render 'logo_or_initials', model: merchant %>
+                <%= render 'application/logo_or_initials', model: merchant %>
               </div>
 
               <div>
@@ -323,7 +323,7 @@
     </div>
 
     <div class="flex max-md:flex-col gap-5 justify-between">
-      <%= render 'questions_form', profiles: @profiles, levels: @levels %>
+      <%= render 'welcome/questions_form', levels: @levels %>
 
       <%= image_tag "banners/banner-btc-monero-farmer.jpeg",
             alt: "Banner farmer BTC/XMR",

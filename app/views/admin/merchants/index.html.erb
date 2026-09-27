@@ -15,7 +15,7 @@
   <% end %>
 <% end %>
 
-<%= render 'stats',
+<%= render 'admin/merchants/stats',
            merchant_sync: @merchant_sync,
            dashboard_presenter: @dashboard_presenter %>
 
@@ -94,7 +94,7 @@
             <li>
               <div class="w-full">
                 <input
-                  id="<%= "#{coin}-option" %>"
+                  id="<%= coin %>-option"
                   class="hidden peer"
                   type="checkbox"
                   name="coins[]"
@@ -107,7 +107,7 @@
 
                 <label
                   class="pretty-checkbox inline-flex items-center justify-between"
-                  for="<%= "#{coin}-option" %>"
+                  for="<%= coin %>-option"
                   tabindex="0"
                 >
                   <div class="avatar-group -space-x-3">
@@ -135,6 +135,6 @@
   </div>
 
   <div id="merchants">
-    <%= render 'merchants', merchants: @merchants, pagy: @pagy %>
+    <%= render 'admin/merchants/merchants', merchants: @merchants, pagy: @pagy %>
   </div>
 </section>

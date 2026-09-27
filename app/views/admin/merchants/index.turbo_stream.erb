@@ -1,7 +1,7 @@
 <%= render_turbo_stream_flash_messages %>
 
 <%= turbo_stream.update :merchants do %>
-  <%= render 'merchants', merchants: @merchants, pagy: @pagy %>
+  <%= render 'admin/merchants/merchants', merchants: @merchants, pagy: @pagy %>
 <% end %>
 
 <%= turbo_stream.update :merchants_count do %>

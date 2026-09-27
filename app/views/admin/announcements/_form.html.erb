@@ -11,12 +11,12 @@
   <% end %>
 
   <div class="tabs tabs-box">
-    <% locales_select_helper.each do |label, locale| %>
+    <% locales_select_helper.each do |label_value, locale| %>
       <input
         class="tab mb-1"
         name="tabs_announcement"
         type="radio"
-        aria-label="<%= label %>"
+        aria-label="<%= label_value %>"
         <% if locale == I18n.default_locale %>
           checked
         <% end %>

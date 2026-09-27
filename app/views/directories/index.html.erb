@@ -75,14 +75,14 @@
         <%= t(".new_entry_title") %>
       <% end %>
 
-      <%= render "filters", pagy: @pagy, my_geocoder: @my_geocoder %>
+      <%= render "directories/filters", pagy: @pagy, my_geocoder: @my_geocoder %>
     </div>
 
     <div
       id="directories"
       class="space-y-3 p-3 lg:basis-3/4 scroll-mt-8 @container"
     >
-      <%= render "directories",
+      <%= render "directories/directories",
                  directories: @directories,
                  pagy: @pagy %>
     </div>

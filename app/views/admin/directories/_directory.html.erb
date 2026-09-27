@@ -19,7 +19,9 @@
       <div class="absolute top-0 left-0" title="<%= t('spotlight') %>">
         <%= lucide_icon 'star', class: 'fill-yellow-500 stroke-black' %>
       </div>
-    <% end %><%= render 'logo_or_initials', model: directory %>
+    <% end %>
+
+    <%= render 'application/logo_or_initials', model: directory %>
   </td>
 
   <td scope="row">
@@ -88,6 +90,6 @@
   </td>
 
   <td>
-    <%= render 'actions', directory: directory %>
+    <%= render 'admin/directories/actions', directory: directory %>
   </td>
 </tr>
