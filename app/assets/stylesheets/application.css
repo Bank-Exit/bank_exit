@@ -15,6 +15,12 @@ html {
     }
 }
 
+@media (pointer: fine) {
+    html {
+        overscroll-behavior: none;
+    }
+}
+
 ::selection {
     background-color: var(--color-primary);
     color: var(--color-primary-content);
