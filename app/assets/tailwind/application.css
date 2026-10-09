@@ -4,9 +4,11 @@
 
 @plugin "@tailwindcss/typography";
 
+@import "./utils/backgrounds.css";
 @import "./components/megamenu.css";
 @import "./components/markdown.css";
 @import "./components/mermaid.css";
+@import "./components/map.css";
 
 @theme {
     --breakpoint-xs: 35rem;
@@ -143,7 +145,7 @@
 }
 
 @utility modal-box {
-    @apply border border-base-content/20;
+    @apply border border-base-content/20 p-4;
 }
 
 @utility checkbox {
@@ -164,6 +166,10 @@
     .absolute-center {
         @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
     }
+}
+
+.image-full > figure img {
+    @apply brightness-40;
 }
 
 a {

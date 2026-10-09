@@ -1,0 +1,41 @@
+<%# locals: (query:) %>
+
+<% if query.present? %>
+  <p class="badge badge-soft font-bold">
+    <%= lucide_icon "search", class: "w-4" %>
+    <%= query %>
+  </p>
+<% end %>
+
+<% if params[:category].present? %>
+  <p class="badge badge-soft">
+    <%= lucide_icon "tag", class: "w-4" %>
+    <%= I18n.t(params[:category], scope: :categories) %>
+  </p>
+<% end %>
+
+<% if params[:coins].present? %>
+  <% params[:coins].each do |coin| %>
+    <% next unless coin.in?(['monero', 'june', 'bitcoin', 'bitcoin-lightning-network', 'bitcoin-lightning-network-contactless', 'gold', 'silver']) %>
+
+    <p class="badge badge-soft">
+      <%= image_tag icon_by_coin(coin), alt: coin, class: "w-4" %>
+      <%= coin.humanize %>
+    </p>
+  <% end %>
+<% end %>
+
+<% if params[:continent].present? %>
+  <p class="badge badge-soft">
+    <%= lucide_icon "earth", class: "w-4" %>
+    <%= I18n.t(params[:continent], scope: :continents) %>
+  </p>
+<% elsif params[:country].present? %>
+  <p class="badge badge-soft">
+    <%= formatted_country(params[:country]) %>
+  </p>
+<% end %>
+
+<% if params[:no_kyc] == "1" %>
+  <%= merchant_kyc_no_kyc(false, klass: 'p-1 text-[10px]', scale: false) %>
+<% end %>

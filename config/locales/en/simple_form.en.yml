@@ -36,7 +36,7 @@ en:
         onchain_only: Onchain only (no ⚡)
         delivery: With home delivery
         no_kyc_html: <span>Don't ask for a <abbr title="Know Your Customer">KYC</abbr></span>
-        with_atms: Include <abbr title="Automated Teller Machine">ATMs</abbr> ?
+        with_atms_html: Include <abbr title="Automated Teller Machine">ATMs</abbr> ?
         order_by_survey: Sort by recently checked
         category:
           all: All retail categories

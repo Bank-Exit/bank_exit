@@ -38,8 +38,8 @@ it:
 
   table_of_contents: Indice
 
-  grid: Griglia
-  table: Tabella
+  display_grid: Griglia
+  display_table: Tabella
 
   download: Scarica
   video_tutorial: Video tutorial

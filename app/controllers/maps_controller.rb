@@ -38,10 +38,12 @@ class MapsController < PublicController
   def index
     session[:map_referer_url] = clean_url(request.url.gsub('&pagy=true', ''))
 
-    if params[:display].present? && params.expect(:display).in?(%w[map table grid])
-      session[:merchants_display] = params[:display]
+    session[:include_atms] = map_params[:include_atms] == '1' if request.format.turbo_stream?
+
+    if map_params[:display].present? && params.expect(:display).in?(%w[table grid])
+      session[:merchants_display] = map_params[:display]
     else
-      session[:merchants_display] ||= 'map'
+      session[:merchants_display] ||= 'grid'
     end
 
     # Merchant markers are handled by backend to keep code
@@ -69,18 +71,13 @@ class MapsController < PublicController
 
     @pagy, page_ids = pagy(
       :offset, merchant_ids.ids,
+      limit: 32,
       querify: ->(q) { q.merge!(pagy: true) }
     )
 
-    merchants = Merchant.where(id: page_ids).in_order_of(:id, page_ids || []).includes(:logo_attachment)
-
-    variant = session[:merchants_display].to_sym
-
-    merchants = merchants.includes(:banner_attachment) if variant.in?(%i[grid map])
+    merchants = Merchant.where(id: page_ids).in_order_of(:id, page_ids || []).includes(:banner_attachment)
 
     @merchants = MerchantDecorator.wrap(merchants)
-
-    render variants: [variant]
   end
 
   # @route GET /fr/map/fetch_markers {locale: "fr"} (map_fetch_markers_fr)
@@ -123,7 +120,7 @@ class MapsController < PublicController
       :search, :category, :country, :continent,
       :delivery, :no_kyc, :order_by_survey,
       :locale, :pagy, :page, :zoom, :lat, :lon,
-      :display, :onchain_only, coins: []
+      :display, :onchain_only, :include_atms, coins: []
     )
   end
 

@@ -1,12 +1,18 @@
-<%= turbo_stream.replace :merchants_results do %>
-  <%= render 'maps/merchants_table_or_grid', merchants: @merchants, pagy: @pagy, query: @query %>
+<%= turbo_stream.replace :map_results do %>
+  <%= render 'maps/merchants', merchants: @merchants, query: @query, pagy: @pagy %>
 <% end %>
 
-<% unless from_pagination? %>
-  <%= turbo_stream.update :merchants_count do %>
-    <%= render 'maps/merchants_count', pagy: @pagy %>
+<% unless params[:display].present? %>
+  <%= turbo_stream.replace :merchants_filters do %>
+    <%= render 'maps/merchants_filters', query: @query, pagy: @pagy, merchant_sync: @merchant_sync %>
   <% end %>
-  <%= turbo_stream.replace :display_modes do %>
-    <%= render 'maps/display_modes' %>
+
+  <% unless from_pagination? %>
+    <%= turbo_stream.replace :map do %>
+      <%= render 'maps/map', latitude: @latitude,
+                             longitude: @longitude,
+                             zoom: @zoom,
+                             map_class: "rounded-box" %>
+    <% end %>
   <% end %>
 <% end %>

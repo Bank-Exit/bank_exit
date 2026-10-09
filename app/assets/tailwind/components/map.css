@@ -1,0 +1,45 @@
+.map-results,
+.map-container {
+    transition:
+        width 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
+        opacity 250ms ease;
+}
+
+.map-layout {
+    @apply flex justify-between gap-4 p-4 max-lg:flex-col-reverse;
+
+    & > .map-results {
+        @apply w-full min-w-0 lg:w-1/2;
+
+        opacity: 1;
+        pointer-events: auto;
+
+        transition:
+            width 500ms cubic-bezier(0.2, 0.8, 0.2, 1),
+            opacity 250ms ease 150ms;
+
+        .is-expanded & {
+            @apply opacity-0 pointer-events-none;
+
+            transition-delay: 0ms;
+        }
+    }
+
+    & > .map-container {
+        @apply relative w-full min-w-0 lg:w-1/2;
+
+        transition: width 500ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    &.is-expanded {
+        @apply lg:gap-0;
+
+        & > .map-results {
+            @apply lg:w-0;
+        }
+
+        & > .map-container {
+            @apply lg:w-full;
+        }
+    }
+}

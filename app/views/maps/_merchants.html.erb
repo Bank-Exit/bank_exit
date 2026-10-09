@@ -1,10 +1,40 @@
-<%# locals: (merchants:, pagy:, query:) %>
+<div
+  id="map_results"
+  class="@container space-y-4 scroll-mt-20 lg:mt-16 map-results"
+  data-map-wrapper-target="mapResults"
+>
+  <div class="flex max-md:flex-col justify-between items-center gap-2">
+    <%= raw_link_to new_merchant_proposal_path,
+                class: 'btn btn-success text-xs max-md:w-full',
+                hotkey: 'a' do %>
+      <%= lucide_icon 'store', class: 'w-5' %>
+      <%= t('.suggest_merchant') %>
+    <% end %>
 
-<div class="space-y-3 scroll-mt-20">
-  <%= render merchants, search: query %>
+    <%= render "maps/display_modes" %>
+  </div>
+
+  <% if merchants.size.zero? %>
+    <div
+      class="
+        flex flex-col items-center justify-center text-base-content/40 gap-2
+        h-full
+      "
+    >
+      <%= lucide_icon 'store', class: 'w-20 h-auto' %>
+
+      <p class="text-lg"><%= t('empty_results') %></p>
+    </div>
+  <% else %>
+    <% if merchants_as_table? %>
+      <%= render 'maps/merchants_table', merchants: merchants, query: query %>
+    <% elsif merchants_as_grid? %>
+      <%= render 'maps/merchants_grid', merchants: merchants, query: query %>
+    <% end %>
+  <% end %>
 
   <%= render 'application/pagination', pagy: pagy,
-                           use_turbo_stream: true,
-                           add_page_to_url: true,
-                           scroll_top: true %>
+                                       use_turbo_stream: true,
+                                       add_page_to_url: true,
+                                       scroll_top: true %>
 </div>

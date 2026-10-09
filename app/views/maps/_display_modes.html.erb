@@ -1,34 +1,24 @@
-<div id="display_modes" class="grid items-center gap-2 w-full @sm:grid-cols-3">
-  <% req_params = request.query_parameters.compact_blank %>
-  <% req_params.delete(:pagy) %>
+<% req_params = request.query_parameters.compact_blank %>
+<% req_params.delete(:pagy) %>
 
-  <%= raw_link_to url_for(params: req_params.merge(display: :map)),
-        class: class_names("btn", "btn-sm", "gap-2", "flex-1", "btn-info": merchants_as_map?),
-        title: t("display_map"),
-        hotkey: "shift+m",
-        size: "xs" do %>
-    <%= lucide_icon "map" %>
+<div class="flex items-center gap-2 max-md:w-full">
+  <%= raw_link_to url_for(params: req_params.merge(display: :grid)), data: { turbo_stream: true },
+            class: class_names('btn', 'max-md:w-1/2', 'btn-info': merchants_as_grid?),
+            title: t("display_grid"),
+            hotkey: "shift+g",
+            size: "xs" do %>
+    <%= lucide_icon "grid-3x3", class: "w-4" %>
 
-    <span class="lg:hidden"><%= t("display_map") %></span>
+    <span><%= t("display_grid") %></span>
   <% end %>
 
-  <%= raw_link_to url_for(params: req_params.merge(display: :table)),
-        class: class_names("btn", "btn-sm", "gap-2", "flex-1", "btn-info": merchants_as_table?),
-        title: t("display_table"),
-        hotkey: "shift+t",
-        size: "xs" do %>
-    <%= lucide_icon "rows-3" %>
+  <%= raw_link_to url_for(params: req_params.merge(display: :table)), data: { turbo_stream: true },
+            class: class_names('btn', 'max-md:w-1/2', 'btn-info': merchants_as_table?),
+            title: t("display_table"),
+            hotkey: "shift+t",
+            size: "xs" do %>
+    <%= lucide_icon "rows-3", class: "w-4" %>
 
-    <span class="lg:hidden"><%= t("display_table") %></span>
-  <% end %>
-
-  <%= raw_link_to url_for(params: req_params.merge(display: :grid)),
-        class: class_names("btn", "btn-sm", "gap-2", "flex-1", "btn-info": merchants_as_grid?),
-        title: t("display_grid"),
-        hotkey: "shift+g",
-        size: "xs" do %>
-    <%= lucide_icon "grid-3x3" %>
-
-    <span class="lg:hidden"><%= t("display_grid") %></span>
+    <span><%= t("display_table") %></span>
   <% end %>
 </div>

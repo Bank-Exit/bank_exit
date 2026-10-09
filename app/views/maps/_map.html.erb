@@ -2,7 +2,7 @@
 
 <div
   id="map"
-  class="w-full z-0 relative h-[600px] md:h-full <%= map_class %>"
+  class="w-full z-0 relative h-150 lg:h-full rounded-box <%= map_class %>"
   data-controller="map"
   data-map-zoom-value="<%= zoom %>"
   data-map-latitude-value="<%= latitude %>"
@@ -12,6 +12,27 @@
   data-map-attribution-html-value="<%= html_escape_once(map_attribution_html) %>"
   data-action="map--options:toggleFitBounds@window->map#toggleFitBounds map--options:toggleGestureHandling@window->map#toggleGestureHandling"
 >
+  <button
+    type="button"
+    data-map-wrapper-target="toggleExpandButton"
+    data-action="click->map-wrapper#toggleExpand"
+    class="max-lg:hidden absolute top-2 left-2 z-1000 btn btn-circle btn-sm"
+    aria-label="<%= t('maps.index.expand_map') %>"
+    title="<%= t('maps.index.expand_map') %>"
+  >
+    <%= lucide_icon "maximize-2",
+                    data: {
+                      map_wrapper_target: "maximizeIcon"
+                    },
+                    class: "w-4" %>
+
+    <%= lucide_icon "minimize-2",
+                    data: {
+                      map_wrapper_target: "minimizeIcon"
+                    },
+                    class: "hidden w-4" %>
+  </button>
+
   <div class="absolute inset-0 z-999" data-map-target="loader">
     <%= render 'maps/loader' %>
   </div>

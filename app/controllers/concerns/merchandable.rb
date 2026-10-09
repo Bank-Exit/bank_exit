@@ -62,7 +62,7 @@ module Merchandable
   end
 
   def with_atms?
-    session[:include_atms]
+    params[:include_atms] == '1' || session[:include_atms]
   end
 
   def order_by_survey?
