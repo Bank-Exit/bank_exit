@@ -1,0 +1,73 @@
+<%# locals: (query: nil, pagy:, merchant_sync:) %>
+
+<% count = map_merchants_filters_count %>
+<% main_count = main_map_merchants_filters_count %>
+
+<section
+  id="merchants_filters"
+  class="
+    <%= class_names("
+    lg:fixed lg:inset-x-0 z-10 flex flex-col justify-center px-4 py-3
+    bg-striped", "gap-2": main_count > 0) %>
+  "
+>
+  <div class="flex items-center justify-between gap-2">
+    <div id="merchants_count" class="text-xs">
+      <%= render 'maps/merchants_count', pagy: pagy %>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <button
+        class="btn btn-primary btn-sm"
+        aria-label="Filtres"
+        commandfor="modal_filters"
+        command="show-modal"
+        data-controller="hotkey"
+        data-action="keydown.shift+f@document->hotkey#click"
+      >
+        <%= lucide_icon "settings", class: "w-4" %> Filtres
+        <% if count > 0 %>
+          <span class="badge badge-xs"><%= count %></span>
+        <% end %>
+        <%= hotkey_label(['shift', 'f'], size: 'xs') %>
+      </button>
+
+      <%= render_modal id: 'modal_filters',
+                       modal_size: "max-w-2xl",
+                       modal_title: t('filters') do %>
+        <%= render "maps/merchants_filters_form" %>
+      <% end %>
+
+      <div class="max-lg:hidden flex items-center justify-center gap-2">
+        <%= render "maps/merchants_filters_details", query: query %>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-2">
+      <% if map_merchants_filters_count > 0 %>
+        <%= link_to pretty_map_path, class: "btn btn-circle btn-sm btn-error", title: t('maps.merchants_filters_form.clear_search_query') do %>
+          <%= lucide_icon "trash", class: "w-5" %>
+        <% end %>
+      <% end %>
+
+      <% if pagy.count > 0 %>
+        <%= link_to export_merchants_path(format: :gpx, **request.query_parameters),
+                    class: "btn btn-circle btn-sm btn-success no-blank-icon",
+                    target: :_blank,
+                    title: t(".export_as_gpx"),
+                    rel: "noopener",
+                    id: "download_merchants" do %>
+          <span>
+            <%= lucide_icon "download", class: "w-5" %>
+          </span>
+        <% end %>
+      <% end %>
+
+      <%= render 'maps/dropdown_map_actions', merchant_sync: merchant_sync %>
+    </div>
+  </div>
+
+  <div class="lg:hidden mx-auto flex items-center justify-center gap-2">
+    <%= render "maps/merchants_filters_details", query: query %>
+  </div>
+</section>

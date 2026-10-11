@@ -31,7 +31,7 @@
         <% merchants.each_with_index do |row, index| %>
           <% count = merchants_count - index %>
 
-          <tr class="<%= class_names('opacity-30' => row.atm? && !session[:include_atms]) %>">
+          <tr class="<%= class_names('opacity-30' => row.atm? && !include_atms?) %>">
             <td>
               #<%= count %>
             </td>

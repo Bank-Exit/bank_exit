@@ -22,6 +22,7 @@ export default class MapBaseController extends Controller {
       zoomControl: false,
       gestureHandling: true,
       minZoom: 2,
+      maxZoom: 18,
       worldCopyJump: true,
     };
     this.markers = [];

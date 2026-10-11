@@ -1,0 +1,21 @@
+<%# locals: (merchants:, query:) %>
+
+<div class="overflow-x-auto">
+  <table class="table table-zebra lg:table-fixed w-max min-w-full lg:w-auto">
+    <thead>
+      <tr>
+        <td><%= Merchant.human_attribute_name(:name) %></td>
+        <td><%= Merchant.human_attribute_name(:category) %></td>
+        <td><%= Merchant.human_attribute_name(:country) %></td>
+        <td><%= Merchant.human_attribute_name(:coins) %></td>
+        <td><%= t("actions") %></td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% merchants.each do |merchant| %>
+        <%= render "maps/merchants_table_row", merchant: merchant, query: query %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

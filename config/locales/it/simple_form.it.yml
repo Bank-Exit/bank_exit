@@ -37,7 +37,7 @@ it:
         onchain_only: Solo on-chain (senza ⚡)
         delivery: Con consegna a domicilio
         no_kyc_html: <span>Non richiedere <abbr title="Know Your Customer">KYC</abbr></span>
-        with_atms: Includi <abbr title="Automated Teller Machine">ATM (bancomat)</abbr> ?
+        with_atms_html: Includi <abbr title="Automated Teller Machine">ATM (bancomat)</abbr> ?
         category:
           all: Tutte le categorie
           craft: Artigianato

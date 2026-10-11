@@ -4,7 +4,7 @@
   on_date_i18n = t('.on_date', date: today_i18n)
   dated_i18n = t('.dated', date: today_i18n) %>
 
-<% cache [I18n.locale, 'statistics', "with-atms=#{session[:include_atms].present?}"] do %>
+<% cache [I18n.locale, 'statistics', "with-atms=#{include_atms?}"] do %>
   <%= render 'statistics/categories_podium',
              podium: categories_statistics[:podium_categories] %>
 

@@ -15,14 +15,9 @@
 <% end %>
 
 <% content_for(:dropdown_menu) do %>
-  <li class="border-b border-base-content/20 pb-2">
-    <%= render "statistics/include_atms_input", center: false %>
-  </li>
-
-  <% if merchants_as_map? %>
-    <li>
-      <%= simple_form_for "" do |f| %>
-        <%= f.input :fit_bounds,
+  <li>
+    <%= simple_form_for "" do |f| %>
+      <%= f.input :fit_bounds,
               as: :boolean,
               boolean_style: :inline,
               wrapper: false,
@@ -33,11 +28,12 @@
                 }
               },
               label: t(".map_fit_bounds") %>
-      <% end %>
-    </li>
-    <li>
-      <%= simple_form_for "" do |f| %>
-        <%= f.input :gesture_handling,
+    <% end %>
+  </li>
+
+  <li>
+    <%= simple_form_for "" do |f| %>
+      <%= f.input :gesture_handling,
               as: :boolean,
               boolean_style: :inline,
               wrapper: false,
@@ -48,25 +44,13 @@
                 }
               },
               label: t(".map_gesture_handling") %>
-      <% end %>
-    </li>
-    <li class="border-b border-base-content/20 pb-2">
-      <%= link_to tutorial_path("documentation-embed-map") do %>
-        <%= lucide_icon "info", class: "inline-flex w-5" %>
-        <%= t(".help_embed") %>
-      <% end %>
-    </li>
-  <% end %>
+    <% end %>
+  </li>
 
   <li>
-    <%= link_to export_merchants_path(format: :gpx, **request.query_parameters),
-          target: :_blank,
-          rel: "noopener",
-          id: "download_merchants" do %>
-      <span>
-        <%= lucide_icon "download", class: "inline-flex w-5 mr-2" %>
-        <%= t(".export_as_gpx") %>
-      </span>
+    <%= link_to tutorial_path("documentation-embed-map") do %>
+      <%= lucide_icon "info", class: "inline-flex w-5" %>
+      <%= t(".help_embed") %>
     <% end %>
   </li>
 
@@ -136,7 +120,7 @@
 <%= render "application/dropdown_actions",
       details_html: {
         data: {
-          controller: ("map--options" if merchants_as_map?)
+          controller: "map--options"
         }
       },
       menu_html: "w-96",

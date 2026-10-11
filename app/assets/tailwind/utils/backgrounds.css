@@ -1,0 +1,17 @@
+.bg-striped {
+    --stripe-color: color-mix(
+        in srgb,
+        var(--color-base-content) 10%,
+        var(--color-base-100)
+    );
+
+    box-shadow: inset 0 0 0 1px var(--color-base-100);
+    background-image: repeating-linear-gradient(
+        -45deg,
+        var(--color-base-100),
+        var(--color-base-100) 13px,
+        var(--stripe-color) 13px,
+        var(--stripe-color) 14px
+    );
+    background-size: 40px 40px;
+}

@@ -1,10 +1,6 @@
 <%# locals: (merchant:, query:) %>
 
-<tr>
-  <td>
-    <%= render "application/logo_or_initials", model: merchant %>
-  </td>
-
+<tr class="hover:bg-base-300 transition-colors">
   <th>
     <%= link_to merchant_path(merchant) do %>
       <%= highlight(merchant.name, query) %>
@@ -40,34 +36,6 @@
               merchant.ask_kyc?,
               klass: "w-6 h-6 text-[10px]"
             ) %>
-      <% end %>
-    </div>
-  </td>
-
-  <td>
-    <div class="flex items-center gap-3">
-      <% main_group = [] %>
-      <% extra_group = [] %>
-
-      <% merchant.all_contacts.each.with_index(1) do |(contact, value), index| %>
-        <% if index > 3 %>
-          <% extra_group << [contact, value] %>
-        <% else %>
-          <% main_group << [contact, value] %>
-        <% end %>
-      <% end %>
-
-      <% main_group.each do |contact, value| %>
-        <%= social_contact_icon contact, title: value %>
-      <% end %>
-
-      <% if extra_group.present? %>
-        <% text = extra_group.map { |contact, _value| social_contact_icon(contact) }.join(" ") %>
-        <%= render "application/tooltip",
-                   position: :left,
-                   text: text,
-                   mode: "info",
-                   lucide_ikon: "ellipsis" %>
       <% end %>
     </div>
   </td>

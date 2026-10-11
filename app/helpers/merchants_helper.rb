@@ -73,8 +73,9 @@ module MerchantsHelper
     end
   end
 
-  def merchant_kyc_no_kyc(kyc, klass: 'w-10 h-10')
-    shared_classes = "#{klass} uppercase flex items-center justify-center text-center rounded-full hover:scale-110 motion-safe:transition-transform select-none font-bold leading-none"
+  def merchant_kyc_no_kyc(kyc, klass: 'w-10 h-10', scale: true)
+    shared_classes = "#{klass} uppercase flex items-center justify-center text-center rounded-full select-none font-bold leading-none"
+    shared_classes += ' hover:scale-110 motion-safe:transition-transform' if scale
 
     if kyc.nil?
       content_tag(:span, I18n.t('unspecified'), class: shared_classes, title: 'Unknown')

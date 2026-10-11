@@ -1,26 +1,13 @@
 import { Controller } from "@hotwired/stimulus";
-import { useDebounce } from "stimulus-use";
 
 export default class extends Controller {
   static targets = ["input", "select"];
-  static debounces = ["onUserInput", "clearField"];
   static classes = ["highlight"];
 
   connect() {
-    useDebounce(this, { wait: 300 });
+    this.handleSubmitEnd = this.#handleSubmitEnd.bind(this);
 
-    this.inputTargets.forEach((input) => {
-      const isCheckbox = input.type === "checkbox";
-      const isRadio = input.type === "radio";
-      const isSelect = input.tagName === "SELECT";
-
-      if (isCheckbox || isRadio || isSelect) {
-        input.addEventListener("change", this.#onUserInput);
-      } else {
-        input.addEventListener("input", this.#onUserInput);
-        input.addEventListener("keydown", this.#ignoreNavigationKeys);
-      }
-    });
+    this.element.addEventListener("turbo:submit-end", this.handleSubmitEnd);
 
     this.selectTargets.forEach((select) => {
       this.updateBackground(select);
@@ -29,24 +16,8 @@ export default class extends Controller {
   }
 
   disconnect() {
-    this.inputTargets.forEach((input) => {
-      input.removeEventListener("change", this.#onUserInput);
-      input.removeEventListener("input", this.#onUserInput);
-      input.removeEventListener("keydown", this.#ignoreNavigationKeys);
-    });
+    this.element.removeEventListener("turbo:submit-end", this.handleSubmitEnd);
   }
-
-  #ignoreNavigationKeys(event) {
-    const navKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Tab"];
-    if (navKeys.includes(event.key)) {
-      event.stopPropagation();
-    }
-  }
-
-  #onUserInput = () => {
-    this.#updateBrowserUrl();
-    this.element.requestSubmit();
-  };
 
   #updateBrowserUrl() {
     const form = this.element;
@@ -86,48 +57,6 @@ export default class extends Controller {
     const baseUrl = $downloadLink.href.split("?")[0];
     const newHref = `${baseUrl}${url.search}`;
     $downloadLink.href = newHref;
-  }
-
-  clearField(event) {
-    if (event.type === "keydown") {
-      if (event.key !== "Enter" && event.key !== " ") return;
-      event.preventDefault();
-    }
-
-    const fieldName =
-      event.target.dataset.resetable ||
-      event.target.parentElement.dataset.resetable;
-    if (!fieldName) return;
-
-    const inputs = this.inputTargets.filter(
-      (input) =>
-        input.name === fieldName || input.name?.startsWith(fieldName + "["),
-    );
-
-    if (inputs.length === 0) return;
-
-    let changed = false;
-
-    inputs.forEach((input) => {
-      if (input.type === "checkbox" || input.type === "radio") {
-        if (input.checked) {
-          input.checked = false;
-          changed = true;
-        }
-      } else {
-        if (input.value !== "") {
-          input.value = "";
-          changed = true;
-        }
-      }
-
-      input.classList.remove(...this.highlightClasses);
-    });
-
-    if (changed) {
-      this.#updateBrowserUrl();
-      this.element.requestSubmit();
-    }
   }
 
   // Synchronize select category option with quick
@@ -175,10 +104,40 @@ export default class extends Controller {
   }
 
   updateBackground(select) {
-    if (select.value === "") {
+    if (select.value === "" || select.value == null) {
       select.classList.remove(...this.highlightClasses);
     } else {
       select.classList.add(...this.highlightClasses);
     }
+  }
+
+  clear(event) {
+    event.preventDefault();
+
+    const form = this.element;
+
+    form.reset();
+
+    form.querySelectorAll("input, textarea, select").forEach((field) => {
+      if (field.type === "checkbox" || field.type === "radio") {
+        field.checked = false;
+      } else if (field.tagName === "SELECT") {
+        field.selectedIndex = 0;
+        this.updateBackground(field);
+      } else if (
+        field.type !== "button" &&
+        field.type !== "submit" &&
+        field.type !== "reset"
+      ) {
+        field.value = "";
+      }
+    });
+
+    this.element.requestSubmit();
+  }
+
+  #handleSubmitEnd() {
+    this.#updateBrowserUrl();
+    this.dispatch("mapCollapsed");
   }
 }

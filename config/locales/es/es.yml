@@ -38,8 +38,8 @@ es:
 
   table_of_contents: Índice
 
-  grid: Cuadrícula
-  table: Tabla
+  display_grid: Cuadrícula
+  display_table: Tabla
 
   download: Descargar
   video_tutorial: Tutorial en vídeo

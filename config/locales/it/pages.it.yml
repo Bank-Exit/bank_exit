@@ -235,10 +235,13 @@ it:
 
       free_open_data_html: I dati mostrati sulla mappa sono <strong>liberi</strong>, <strong>open source</strong> e provengono da <strong>OpenStreetMap</strong>.
 
-    sidebar:
+      expand_map: Espandi la mappa
+      collapse_map: Riduci la mappa
+
+    merchants:
       suggest_merchant: Suggerisci un commerciante
 
-    filters_form:
+    merchants_filters_form:
       clear_search_query: Cancella ricerca
       clear_search_category: Cancella categoria
       clear_search_country: Cancella paese

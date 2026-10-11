@@ -1,12 +1,28 @@
-<%= render 'maps/page_header' %>
+<%= render "maps/merchants_filters", query: @query, pagy: @pagy, merchant_sync: @merchant_sync %>
 
-<div class="flex flex-col md:flex-row items-start">
-  <%= render 'maps/sidebar', merchant_sync: @merchant_sync, pagy: @pagy, h_screen: false do %>
-    <%= render "maps/directory_friends", directory_friends: @directory_friends %>
-  <% end %>
+<div
+  class="map-layout"
+  data-controller="map-wrapper"
+  data-action="map--filter:mapCollapsed@document->map-wrapper#onMapCollapsed"
+  data-map-wrapper-expand-label-value="<%= t('.expand_map') %>"
+  data-map-wrapper-collapse-label-value="<%= t('.collapse_map') %>"
+>
+  <%= render "maps/merchants", merchants: @merchants, query: @query, pagy: @pagy %>
 
-  <%= render 'maps/merchants_table_or_grid', merchants: @merchants, pagy: @pagy, query: @query %>
+  <aside class="map-container" data-map-wrapper-target="map">
+    <div class="sticky top-36 h-full lg:h-[calc(100dvh-10rem)] lg:mt-16">
+      <%= render 'maps/map', latitude: @latitude,
+                             longitude: @longitude,
+                             zoom: @zoom %>
+
+      <div class="absolute left-5 right-5 md:left-25 md:right-25 bottom-4 z-999">
+        <%= render "maps/directory_friends", directory_friends: @directory_friends %>
+      </div>
+    </div>
+  </aside>
 </div>
+
+<%= render 'maps/page_header' %>
 
 <% if @faqs.any? %>
   <%= render template: 'faqs/show' %>

@@ -38,8 +38,8 @@ de:
 
   table_of_contents: Inhaltsverzeichnis
 
-  grid: Raster
-  table: Tabelle
+  display_grid: Raster
+  display_table: Tabelle
 
   download: Herunterladen
   video_tutorial: Videoanleitung

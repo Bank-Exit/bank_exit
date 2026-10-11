@@ -244,13 +244,19 @@ fr:
 
       free_open_data_html: Les données affichées sur la carte sont <strong>libres</strong>, <strong>open source</strong> et proviennent d'<strong>OpenStreetMap</strong>.
 
+      expand_map: Agrandir la carte
+      collapse_map: Réduire la carte
+
     export_merchants:
       description: Points de vente acceptant les cryptomonnaies (export Sortie de Banque)
 
-    sidebar:
+    merchants:
       suggest_merchant: Proposer un commerçant
 
-    filters_form:
+    merchants_filters:
+      export_as_gpx: Télécharger les commerçants
+
+    merchants_filters_form:
       clear_search_query: Effacer la recherche
       clear_search_category: Effacer la catégorie
       clear_search_coins: Effacer les monnaies
@@ -264,7 +270,6 @@ fr:
       map_gesture_handling: Verrouiller au scroll
       help_embed: Documentation d'intégration
 
-      export_as_gpx: Télécharger les commerçants
       import_gpx_to_comaps: Importer dans CoMaps
 
       refresh_confirm_html: Voulez-vous rafraîchir la liste des commerçants ? <br /> Soyez patient, cela peut prendre quelques minutes.
