@@ -61,19 +61,6 @@
     <% end %>
   </li>
 
-  <% if can_refresh_merchants?(merchant_sync) %>
-    <li>
-      <%= button_to refresh_merchants_path,
-            class: "cursor-pointer",
-            data: {
-              turbo_confirm: t(".refresh_confirm_html")
-            } do %>
-        <%= lucide_icon "refresh-cw", class: "w-5 inline-flex mr-2" %>
-        <%= t(".refresh") %>
-      <% end %>
-    </li>
-  <% end %>
-
   <li>
     <%= link_to "https://t.me/Monero_map_labelers",
           target: :_blank,
