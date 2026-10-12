@@ -21,6 +21,33 @@ module CoinsHelper
     end
   end
 
+  def group_coins_list(coins, with_logo: true, with_name: false, size: 'w-12', class: nil, &)
+    content_tag(:div, class: ['avatar-group', '-space-x-2', binding.local_variable_get(:class)].compact.join(' ')) do
+      items = coins.map do |coin|
+        name = coin.to_s.capitalize
+
+        content_tag(:div, class: 'avatar', title: name) do
+          content_tag(:div, class: size) do
+            if with_logo
+              image_tag(icon_by_coin(coin), alt: name)
+            else
+              name
+            end
+          end
+        end
+      end
+
+      if block_given?
+        content_tag(:div, class: 'avatar', title: 'Logo') do
+          content_tag(:div, class: size) do
+            items << capture(&)
+          end
+        end
+      end
+      safe_join(items)
+    end
+  end
+
   def highlight_address(address)
     chars_to_highlight = 7
 

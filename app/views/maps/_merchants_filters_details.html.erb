@@ -19,7 +19,7 @@
     <% next unless coin.in?(['monero', 'june', 'bitcoin', 'bitcoin-lightning-network', 'bitcoin-lightning-network-contactless', 'gold', 'silver']) %>
 
     <p class="badge badge-soft">
-      <%= image_tag icon_by_coin(coin), alt: coin, class: "w-4" %>
+      <%= image_tag icon_by_coin(coin), alt: coin, class: "w-4 rounded-full" %>
       <%= coin.humanize %>
     </p>
   <% end %>
@@ -37,5 +37,5 @@
 <% end %>
 
 <% if params[:no_kyc] == "1" %>
-  <%= merchant_kyc_no_kyc(false, klass: 'p-1 text-[10px]', scale: false) %>
+  <%= merchant_kyc_no_kyc(false) %>
 <% end %>

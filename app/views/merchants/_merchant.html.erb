@@ -17,24 +17,18 @@
 
     <span class="card-title block mb-3"><%= highlight(merchant.name, search) %></span>
 
-    <div class="flex items-center justify-center gap-3 @max-sm:flex-col mb-3">
-      <%== coins_list(
+    <%= group_coins_list(
           merchant.coins,
-          with_logo: true,
-          with_name: false,
-          size: 'w-10',
-          inline: true
-        ) %>
-
+          size: "w-12",
+          class: "justify-center"
+    ) do %>
       <% unless merchant.ask_kyc.nil? %>
-        <div>
-          <%= merchant_kyc_no_kyc(
+        <%= merchant_kyc_no_kyc(
               merchant.ask_kyc?,
-              klass: 'w-10 h-10 text-xs'
-            ) %>
-        </div>
+              klass: "w-12 h-12 text-[10px]"
+        ) %>
       <% end %>
-    </div>
+    <% end %>
 
     <div class="<%= class_names('@container', 'space-y-5') %>">
       <% if merchant.description.present? %>
@@ -117,7 +111,7 @@
 
             <% main_contacts.each do |contact, value| %>
               <span class="btn btn-circle btn-neutral btn-sm">
-                <%= social_contact_icon(contact, title: value, klass: 'w-4!') %>
+                <%= social_contact_icon(contact, title: value) %>
               </span>
             <% end %>
 

@@ -131,7 +131,7 @@
     </div>
   </div>
 
-  <ul class="grid gap-2 grid-cols-1 w-full @lg:grid-cols-3">
+  <ul class="grid gap-2 grid-cols-1 w-full @md:grid-cols-3 @lg:grid-cols-5">
     <% Setting::MERCHANTS_FILTER_COINS.each do |coin| %>
       <li class="flex flex-col items-center justify-start gap-2">
         <div class="w-full">
@@ -155,7 +155,7 @@
             "
             for="<%= coin %>-option"
           >
-            <div class="avatar-group -space-x-4">
+            <div class="avatar-group -space-x-6 shrink-0">
               <% if coin == :bitcoin %>
                 <div class="avatar">
                   <div class="w-10">
@@ -166,7 +166,7 @@
 
               <div class="avatar">
                 <div class="w-10">
-                  <%= image_tag "coins/logo-#{coin}.svg", alt: "Logo #{coin}" %>
+                  <%= image_tag icon_by_coin(coin), alt: "Logo #{coin}", class: "rounded-full" %>
                 </div>
               </div>
             </div>

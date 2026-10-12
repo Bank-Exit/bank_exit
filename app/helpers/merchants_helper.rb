@@ -30,28 +30,6 @@ module MerchantsHelper
     I18n.t('continents').invert
   end
 
-  def coins_list(coins, with_logo: false, with_name: true, size: 'w-5', inline: false)
-    content_tag(:div, class: "flex items-center gap-2 #{inline ? 'flex-row' : 'flex-col'}") do
-      coins.map do |coin|
-        concat(content_tag(:div, class: 'flex-shrink-0 min-w-max') do
-          return coin.capitalize unless with_logo
-
-          logo = if coin == 'lightning_contactless'
-                   image_tag "coins/logo-#{coin}.svg", class: "#{size} inline-flex dark:bg-white dark:rounded-full dark:p-0.5 dark:border", title: coin.capitalize
-                 else
-                   image_tag "coins/logo-#{coin}.svg", class: "#{size} inline-flex", title: coin.capitalize
-                 end
-
-          if with_name
-            "#{logo} #{coin.capitalize}".html_safe # rubocop:disable Rails/OutputSafety
-          else
-            logo.html_safe # rubocop:disable Rails/OutputSafety
-          end
-        end)
-      end
-    end
-  end
-
   def merchant_icon_svg(icon, width: 80, height: 80, padding: 'p-2', naked: false)
     klass = ''
 
@@ -73,16 +51,30 @@ module MerchantsHelper
     end
   end
 
-  def merchant_kyc_no_kyc(kyc, klass: 'w-10 h-10', scale: true)
-    shared_classes = "#{klass} uppercase flex items-center justify-center text-center rounded-full select-none font-bold leading-none"
-    shared_classes += ' hover:scale-110 motion-safe:transition-transform' if scale
+  def merchant_kyc_no_kyc(kyc, klass: 'w-7 h-7 text-[10px]')
+    state = case kyc
+            when nil then :unknown
+            when true then :kyc
+            else :no_kyc
+            end
 
-    if kyc.nil?
-      content_tag(:span, I18n.t('unspecified'), class: shared_classes, title: 'Unknown')
-    elsif kyc
-      content_tag(:span, 'KYC', class: "#{shared_classes} bg-red-500 text-white", title: 'KYC')
-    else
-      content_tag(:p, 'No <br /> KYC'.html_safe, class: "#{shared_classes} bg-green-500 text-white", title: 'No KYC')
+    label, color, title = case state
+                          when :unknown then [I18n.t('unspecified'), 'bg-base-300 text-base-content', 'Unknown']
+                          when :kyc then ['KYC', 'bg-error text-error-content', 'KYC']
+                          when :no_kyc then ['No KYC', 'bg-success text-success-content', 'No KYC']
+                          end
+
+    content_tag(:div, class: 'avatar', title: title) do
+      content_tag(
+        :div,
+        label,
+        class: [
+          klass,
+          'flex items-center justify-center rounded-full',
+          'select-none text-center font-bold leading-none',
+          color
+        ].join(' ')
+      )
     end
   end
 end

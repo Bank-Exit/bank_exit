@@ -81,7 +81,7 @@ background_header = "bg-base-100/90 shadow-sm backdrop-blur" %>
                       <%= link_to maps_path(coins: [coin]) do %>
                         <div class="avatar">
                           <div class="w-5">
-                            <%= image_tag "coins/logo-#{coin}.svg", alt: "Logo #{coin}" %>
+                            <%= image_tag icon_by_coin(coin), alt: "Logo #{coin}", class: "rounded-full" %>
                           </div>
                         </div>
 
@@ -126,7 +126,7 @@ background_header = "bg-base-100/90 shadow-sm backdrop-blur" %>
                       <%= link_to directories_path(coins: [coin]) do %>
                         <div class="avatar">
                           <div class="w-5">
-                            <%= image_tag "coins/logo-#{coin}.svg", alt: "Logo #{coin}" %>
+                            <%= image_tag icon_by_coin(coin), alt: "Logo #{coin}", class: "rounded-full" %>
                           </div>
                         </div>
 
