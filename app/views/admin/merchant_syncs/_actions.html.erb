@@ -14,7 +14,7 @@
       <% event_id = merchant_sync.nostr_event.event_identifier %>
 
       <%= show_link_to njump_url(event_id), target: :_blank do %>
-        <%= social_contact_icon(:nostr, klass: '-mr-1') %>
+        <%= social_contact_icon(:nostr) %>
         <%= t('.see_on_nostr') %>
       <% end %>
     </li>
@@ -22,7 +22,7 @@
     <li>
       <%= create_link_to admin_merchant_sync_nostr_events_path(merchant_sync),
                          turbo_confirm: t('.create_confirm') do %>
-        <%= social_contact_icon(:nostr, klass: '-mr-1') %>
+        <%= social_contact_icon(:nostr) %>
         <%= t('.publish_on_nostr') %>
       <% end %>
     </li>
