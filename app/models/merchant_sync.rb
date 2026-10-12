@@ -189,8 +189,8 @@ end
 #  started_at                       :datetime
 #  ended_at                         :datetime
 #  mode                             :integer          default("sync"), not null
-#  status                           :integer          default("pending"), not null
-#  instigator                       :integer          default("task"), not null
+#  status                           :integer          default(0), not null
+#  instigator                       :integer          default(0), not null
 #  added_merchants_count            :integer          default(0), not null
 #  updated_merchants_count          :integer          default(0), not null
 #  soft_deleted_merchants_count     :integer          default(0), not null

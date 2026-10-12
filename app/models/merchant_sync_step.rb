@@ -73,8 +73,8 @@ end
 # Database name: primary
 #
 #  id               :integer          not null, primary key
-#  step             :integer          default("init"), not null
-#  status           :integer          default("pending"), not null
+#  step             :integer          default(0), not null
+#  status           :integer          default(0), not null
 #  payload_error    :json             not null
 #  merchant_sync_id :integer          not null
 #  created_at       :datetime         not null
