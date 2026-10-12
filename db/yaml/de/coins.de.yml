@@ -58,6 +58,7 @@
 
 - identifier: gold
   name: Gold
+  ticker: XAU
   description:
     - Ein seit Jahrtausenden genutzter sicherer Hafen – schützt vor Inflation und Krisen. Anders als digitale Assets ist es physisch und weltweit anerkannt, funktioniert jedoch im Alltag nur schwer als Zahlungsmittel – außer bei massiven Systemstörungen.
   usage: Wertspeicher
@@ -67,6 +68,7 @@
 
 - identifier: silver
   name: Silber
+  ticker: XAG
   description:
     - Krisentauschmittel mit niedrigerer Wertdichte als Gold – einfacher im Alltag nutzbar. Kombiniert industrielle Nutzung mit physischer Unverfolgbarkeit – etwas, das der digitale Euro niemals leisten kann.
   usage: Kritisches Zahlungsmittel

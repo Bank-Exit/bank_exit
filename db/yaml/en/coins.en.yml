@@ -58,6 +58,7 @@
 
 - identifier: gold
   name: Gold
+  ticker: XAU
   description:
     - An ancestral safe haven, gold has historically protected against inflation and crises. Unlike other stores of value, it is physical and recognized worldwide without relying on a computer system, but it is hardly feasible in practice for regular exchanges between citizens except in the event of a significant disruption to normality.
   usage: Reserve of value
@@ -67,6 +68,7 @@
 
 - identifier: silver
   name: Silver
+  ticker: XAG
   description:
     - Crisis medium of exchange, easier to consider for regular exchanges and purchases in the event of a crisis due to its lower value density than gold. It combines industrial use and untraceability, something the digital euro cannot offer.
   usage: Critical payment method

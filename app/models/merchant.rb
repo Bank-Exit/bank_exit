@@ -24,6 +24,8 @@ class Merchant < ApplicationRecord
   scope :june, -> { where(june: true) }
   scope :bitcoin_only, -> { where(monero: false, june: false) }
   scope :onchain_only, -> { bitcoin_onchain.or(Merchant.monero).or(Merchant.june) }
+  scope :silver, -> { where(silver: true) }
+  scope :gold, -> { where(gold: true) }
 
   scope :in_france, -> { where(country: %w[FR France]) }
   scope :no_kyc, -> { where(ask_kyc: false) }
@@ -165,6 +167,8 @@ end
 #  contact_francelibretv :string
 #  continent_code        :string
 #  contact_nostr         :string
+#  silver                :boolean          default(FALSE), not null
+#  gold                  :boolean          default(FALSE), not null
 #
 # Indexes
 #

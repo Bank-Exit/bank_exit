@@ -44,7 +44,7 @@ class FilterMerchants < ApplicationService
     @merchants = @merchants.not_atms unless with_atms
     @merchants = @merchants.merge(Merchant.onchain_only) if onchain_only
 
-    return @merchants unless bitcoin? || monero? || june?
+    return @merchants unless bitcoin? || monero? || june? || silver? || gold?
 
     bitcoin_scope =
       if bitcoin?
@@ -64,6 +64,10 @@ class FilterMerchants < ApplicationService
         monero? ? Merchant.merge(Merchant.monero) : Merchant.none
       ).or(
         june? ? Merchant.merge(Merchant.june) : Merchant.none
+      ).or(
+        silver? ? Merchant.merge(Merchant.silver) : Merchant.none
+      ).or(
+        gold? ? Merchant.merge(Merchant.gold) : Merchant.none
       )
     )
   end
@@ -80,5 +84,13 @@ class FilterMerchants < ApplicationService
 
   def june?
     coins.include?('june')
+  end
+
+  def silver?
+    coins.include?('silver')
+  end
+
+  def gold?
+    coins.include?('gold')
   end
 end

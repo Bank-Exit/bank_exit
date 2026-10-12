@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_31_164827) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_11_175645) do
   create_table "active_analytics_browsers_per_days", force: :cascade do |t|
     t.string "site", null: false
     t.string "name", null: false
@@ -241,14 +241,31 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_31_164827) do
     t.boolean "delivery", default: false, null: false
     t.string "delivery_zone"
     t.string "opening_hours"
-    t.string "original_identifier"
-    t.string "phone"
-    t.string "postcode"
-    t.json "raw_feature", default: {}, null: false
-    t.string "slug"
-    t.string "street"
-    t.datetime "updated_at", null: false
-    t.string "website"
+    t.date "last_survey_on"
+    t.string "contact_session"
+    t.string "contact_signal"
+    t.string "contact_matrix"
+    t.string "contact_jabber"
+    t.string "contact_telegram"
+    t.string "contact_facebook"
+    t.string "contact_instagram"
+    t.string "contact_twitter"
+    t.string "contact_youtube"
+    t.string "contact_tiktok"
+    t.string "contact_linkedin"
+    t.string "contact_tripadvisor"
+    t.boolean "ask_kyc"
+    t.float "latitude"
+    t.float "longitude"
+    t.integer "comments_count", default: 0, null: false
+    t.datetime "deleted_at"
+    t.string "contact_odysee"
+    t.string "contact_crowdbunker"
+    t.string "contact_francelibretv"
+    t.string "continent_code"
+    t.string "contact_nostr"
+    t.boolean "silver", default: false, null: false
+    t.boolean "gold", default: false, null: false
     t.index ["bitcoin"], name: "index_merchants_on_bitcoin"
     t.index ["category"], name: "index_merchants_on_category"
     t.index ["continent_code"], name: "index_merchants_on_continent_code"

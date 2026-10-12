@@ -125,6 +125,8 @@ class MerchantDecorator < ProfesionalDecorator
     values << 'bitcoin' if bitcoin?
     values << 'bitcoin-lightning-network' if lightning?
     values << 'bitcoin-lightning-network-contactless' if contact_less?
+    values << 'silver' if silver?
+    values << 'gold' if gold?
 
     Coin.where(values, decorate: true)
   end

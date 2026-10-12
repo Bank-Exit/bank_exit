@@ -34,6 +34,8 @@ class MerchantData
       monero: monero?,
       june: june?,
       contact_less: contact_less?,
+      silver: silver?,
+      gold: gold?,
 
       latitude: latitude,
       longitude: longitude,
@@ -204,6 +206,8 @@ class MerchantData
 
       array << 'monero' if monero?
       array << 'june' if june?
+      array << 'silver' if silver?
+      array << 'gold' if gold?
     end
   end
 
@@ -228,6 +232,14 @@ class MerchantData
 
   def monero?
     properties['currency:XMR'] == 'yes'
+  end
+
+  def silver?
+    properties['payment:silver'] == 'yes'
+  end
+
+  def gold?
+    properties['payment:gold'] == 'yes'
   end
 
   # KYC

@@ -58,6 +58,7 @@
 
 - identifier: gold
   name: Oro
+  ticker: XAU
   description:
     - Un rifugio sicuro ancestrale, l’oro ha storicamente protetto dall’inflazione e dalle crisi. A differenza di altre riserve di valore, è fisico e riconosciuto a livello mondiale senza dipendere da un sistema informatico, ma difficilmente praticabile per scambi regolari tra cittadini salvo in caso di interruzioni significative della normalità.
   usage: Riserva di valore
@@ -67,6 +68,7 @@
 
 - identifier: silver
   name: Argento
+  ticker: XAG
   description:
     - Mezzo di scambio in caso di crisi, più facile da considerare per scambi e acquisti regolari durante una crisi grazie alla sua densità di valore inferiore rispetto all’oro. Combina uso industriale e non tracciabilità, qualità che l’euro digitale non può offrire.
   usage: Metodo di pagamento critico

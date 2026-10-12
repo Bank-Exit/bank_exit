@@ -60,6 +60,7 @@
 
 - identifier: gold
   name: Or
+  ticker: XAU
   description:
     - Valeur refuge ancestrale, l'or a historiquement protégé contre l’inflation et les crises. Contrairement aux autres réserves de valeur, il est physique et reconnu mondialement sans dépendre d’un système informatique, mais il est peu envisageable en pratique pour des échanges réguliers entre citoyens à part en cas de rupture de normalité conséquente.
   usage: Réserve de valeur
@@ -69,6 +70,7 @@
 
 - identifier: silver
   name: Argent
+  ticker: XAG
   description:
     - Moyen d'échange de crise, plus facile à envisager pour les échanges et achats réguliers en cas de crise par sa plus faible densité de valeur que l'or. Il allie usage industriel et intraçabilité, ce que l’euro numérique ne peut offrir.
   usage: Moyen de paiement critique
