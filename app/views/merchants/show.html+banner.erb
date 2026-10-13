@@ -37,7 +37,7 @@ set_meta_tags og: { image: image },
 
           <% if @merchant.category.present? %>
             <div class="badge badge-secondary mx-auto">
-              <%= merchant_icon_svg(@merchant.icon, width: 20, height: 20, naked: true) %>
+              <%= merchant_icon_svg(@merchant.icon, naked: true) %>
               <%= @merchant.friendly_category %>
             </div>
           <% end %>

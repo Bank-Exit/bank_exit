@@ -30,24 +30,14 @@ module MerchantsHelper
     I18n.t('continents').invert
   end
 
-  def merchant_icon_svg(icon, width: 80, height: 80, padding: 'p-2', naked: false)
-    klass = ''
+  def merchant_icon_svg(icon, size: 'size-5', naked: false)
+    classes = [size, 'shrink-0']
+    classes.push('p-2', 'rounded-full', 'bg-primary', 'text-primary-content') unless naked
 
-    unless naked
-      klass = [
-        padding,
-        'rounded-full bg-primary text-primary-content'
-      ].join(' ')
-    end
-
-    content_tag(
-      :svg,
-      width: width,
-      height: height,
-      xmlns: 'http://www.w3.org/2000/svg',
-      class: klass
-    ) do
-      concat tag.use(href: "/map/spritesheet.svg##{icon}")
+    content_tag(:svg,
+                xmlns: 'http://www.w3.org/2000/svg',
+                class: classes.join(' ')) do
+      tag.use(href: "/map/spritesheet.svg##{icon}")
     end
   end
 

@@ -9,8 +9,8 @@
 
   <div class="card-body">
     <% if merchant.category.present? %>
-      <span class="badge badge-xs badge-warning">
-        <%= merchant_icon_svg(merchant.icon, width: 12, height: 12, naked: true) %>
+      <span class="badge badge-warning">
+        <%= merchant_icon_svg(merchant.icon, naked: true) %>
         <%= merchant.friendly_category %>
       </span>
     <% end %>

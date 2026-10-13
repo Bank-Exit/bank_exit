@@ -8,13 +8,10 @@
   </th>
 
   <td>
-    <div class="flex items-center gap-2">
-      <%= merchant_icon_svg(merchant.icon, width: 35, height: 35) %>
-
-      <div class="text-xs">
-        <%= t(merchant.category, scope: "categories") %>
-      </div>
-    </div>
+    <span class="badge badge-sm badge-warning h-auto whitespace-normal py-1 text-left">
+      <%= merchant_icon_svg(merchant.icon, size: 'size-4', naked: true) %>
+      <%= merchant.friendly_category %>
+    </span>
   </td>
 
   <td>
