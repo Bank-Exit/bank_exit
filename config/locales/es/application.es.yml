@@ -54,6 +54,7 @@ es:
       access_next_page: Ir a la página siguiente
       access_page_subtitle: (cuando hay paginación)
 
+      toggle_keyboard_nav: Mostrar/Ocultar atajos de teclado
       go_to_home: Ir al inicio
       go_to_map: Ir al mapa
       go_to_directory: Ir al directorio

@@ -162,6 +162,17 @@
     @apply text-left justify-start place-items-start;
 }
 
+@layer utilities {
+    .shortcut-hint {
+        display: none;
+    }
+
+    #modal_help .shortcut-hint,
+    .has-shortcuts .shortcut-hint {
+        display: inline-flex;
+    }
+}
+
 @layer components {
     .absolute-center {
         @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;

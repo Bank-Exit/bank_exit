@@ -43,9 +43,10 @@
 
   <body
     class="max-w-screen-3xl mx-auto"
-    data-controller="theme"
+    data-controller="theme settings"
     data-theme-light-value="<%= @themes[:light] %>"
     data-theme-dark-value="<%= @themes[:dark] %>"
+    data-action="keydown.shift+h@window->settings#toggleKeyboardNav"
   >
     <div class="page-overlay"></div>
 

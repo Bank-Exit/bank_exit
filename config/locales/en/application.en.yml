@@ -58,6 +58,7 @@ en:
       access_next_page: Go to next page
       access_page_subtitle: (when pagination is available)
 
+      toggle_keyboard_nav: Show/Hide keyboard shortcuts
       go_to_home: Go to home
       go_to_map: Go to map
       go_to_directory: Go to directory

@@ -54,6 +54,7 @@ it:
       access_next_page: Vai alla pagina successiva
       access_page_subtitle: (quando è presente la paginazione)
 
+      toggle_keyboard_nav: Mostra/Nascondi le scorciatoie da tastiera
       go_to_home: Vai alla home
       go_to_map: Vai alla mappa
       go_to_directory: Vai all'elenco
