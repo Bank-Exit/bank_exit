@@ -77,46 +77,11 @@
       <%= t(".payment_methods") %>
     </div>
 
-    <div class="method-icons">
-      <%= image_tag(
-            "coins/logo-monero.svg",
-            alt: "monero",
-            title: t(@merchant.monero? ? ".monero_accepted" : ".monero_not_accepted"),
-            class: class_names("opacity-20": !@merchant.monero?)
-          ) %>
-
-      <%= image_tag(
-            "coins/logo-bitcoin.svg",
-            alt: "bitcoin",
-            title: t(@merchant.bitcoin? ? ".bitcoin_accepted" : ".bitcoin_not_accepted"),
-            class: class_names("opacity-20":  !@merchant.bitcoin?)
-          ) %>
-
-      <%= image_tag(
-            "coins/logo-june.svg",
-            alt: "june",
-            title: t(@merchant.june? ? ".june_accepted" : ".june_not_accepted"),
-            class: class_names("opacity-20": !@merchant.june?)
-          ) %>
-
-      <%= image_tag(
-            "coins/logo-lightning.svg",
-            alt: "lightning",
-            title: t(@merchant.lightning? ? ".lightning_accepted" : ".lightning_not_accepted"),
-            class: class_names("opacity-20": !@merchant.lightning?)
-          ) %>
-
-      <%= image_tag(
-            "coins/nfc-highlight.svg",
-            alt: "nfc",
-            title: t(@merchant.contact_less? ? ".contact_less_accepted" : ".contact_less_not_accepted"),
-            class: class_names("dark:bg-white", "rounded-full", "dark:p-0.5", "dark:border", "opacity-20": !@merchant.contact_less?)
-          ) %>
-
+    <%= group_coins_list(@merchant.coins, size: "w-7") do %>
       <% unless @merchant.ask_kyc.nil? %>
         <%= merchant_kyc_no_kyc(@merchant.ask_kyc?) %>
       <% end %>
-    </div>
+    <% end %>
   </div>
 
   <% if @merchant.comments_count > 0 %>
