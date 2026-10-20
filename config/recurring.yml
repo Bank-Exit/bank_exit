@@ -14,14 +14,24 @@ refresh_sitemap: &refresh_sitemap
     args: "sitemap:refresh:no_ping"
     schedule: every day at 7pm
 
+rails_pulse: &rails_pulse
+  rails_pulse_summary:
+    class: RailsPulse::SummaryJob
+    schedule: every hour at minute 5
+  rails_pulse_cleanup:
+    class: RailsPulse::CleanupJob
+    schedule: every monday at 9am
+
 staging:
   <<:
     - *fetch_merchants
     - *clear_merchants
     - *refresh_sitemap
+    - *rails_pulse
 
 production:
   <<:
     - *fetch_merchants
     - *clear_merchants
     - *refresh_sitemap
+    - *rails_pulse

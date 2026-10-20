@@ -31,6 +31,10 @@ Rails.application.routes.draw do
     resource :referer, only: :update
   end
 
+  namespace :admin do
+    mount RailsPulse::Engine, at: '/rails_pulse'
+  end
+
   localized do
     root 'welcome#index'
 

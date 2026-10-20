@@ -2,7 +2,7 @@ module Admin
   class UserPolicy < ApplicationPolicy
     pre_check :require_super_admins!, only: %i[
       index? new? create? destroy?
-      impersonate? analytics? mission_control?
+      impersonate? analytics? mission_control? monitor?
     ]
 
     def index?
@@ -42,6 +42,10 @@ module Admin
     end
 
     def mission_control?
+      true
+    end
+
+    def monitor?
       true
     end
   end

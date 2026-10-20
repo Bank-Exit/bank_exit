@@ -175,6 +175,17 @@
                 </li>
               <% end %>
 
+              <% if allowed_to?(:monitor?, User) %>
+                <li>
+                  <%= raw_link_to admin_rails_pulse_path,
+                            target: :_blank,
+                            hotkey: 'p' do %>
+                    <%= lucide_icon "activity", class: "size-5 opacity-30" %>
+                    Rails Pulse Monitor
+                  <% end %>
+                </li>
+              <% end %>
+
               <li>
                 <%= raw_link_to 'https://bank-exit-uptime-production.up.railway.app',
                             target: :_blank,
