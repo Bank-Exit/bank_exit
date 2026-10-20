@@ -163,8 +163,13 @@
 }
 
 @layer utilities {
-    .shortcut-hint {
+    .shortcut-hint,
+    .shortcut-hint-group {
         display: none;
+    }
+
+    .has-shortcuts .shortcut-hint-group {
+        display: flex;
     }
 
     #modal_help .shortcut-hint,
