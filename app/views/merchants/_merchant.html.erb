@@ -19,13 +19,13 @@
 
     <%= group_coins_list(
           merchant.coins,
-          size: "w-12",
+          size: "w-7",
           class: "justify-center"
     ) do %>
       <% unless merchant.ask_kyc.nil? %>
         <%= merchant_kyc_no_kyc(
               merchant.ask_kyc?,
-              klass: "w-12 h-12 text-[10px]"
+              klass: "w-7 text-[10px]"
         ) %>
       <% end %>
     <% end %>
@@ -101,31 +101,6 @@
           </div>
         <% end %>
       <% end %>
-
-      <div class="@container">
-        <div class="flex items-center justify-between gap-3 @max-sm:flex-col">
-          <div class="flex items-center gap-3">
-            <% main_contacts, extra_contacts = merchant.all_contacts.partition.with_index do |_contact, index|
-              index < 5
-            end %>
-
-            <% main_contacts.each do |contact, value| %>
-              <span class="btn btn-circle btn-neutral btn-sm">
-                <%= social_contact_icon(contact, title: value) %>
-              </span>
-            <% end %>
-
-            <% if extra_contacts.present? %>
-              <% text = extra_contacts.map { |contact, _value| social_contact_icon(contact) }.join(' ') %>
-              <%= render 'application/tooltip',
-                         position: :bottom,
-                         text: text,
-                         mode: 'info',
-                         lucide_ikon: 'ellipsis' %>
-            <% end %>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 <% end %>

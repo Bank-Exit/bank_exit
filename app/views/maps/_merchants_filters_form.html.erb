@@ -38,7 +38,7 @@
         input_html: {
           autocomplete: true,
           data: {
-            map__filter_target: 'input select'
+            map__filter_target: 'input'
           },
           class: 'select w-full'
         } %>
@@ -52,7 +52,7 @@
         include_blank: :translate,
         input_html: {
           data: {
-            map__filter_target: 'input select'
+            map__filter_target: 'input'
           }
         } %>
   </div>
@@ -64,7 +64,7 @@
     <select
       class="select w-full"
       name="category"
-      data-map--filter-target="input select"
+      data-map--filter-target="input"
       data-action="change->map--filter#syncQuickCategories"
     >
       <option value="">
@@ -131,7 +131,7 @@
     </div>
   </div>
 
-  <ul class="grid gap-2 grid-cols-1 w-full @md:grid-cols-3 @lg:grid-cols-5">
+  <ul class="grid gap-2 grid-cols-3 w-full @md:grid-cols-3 @lg:grid-cols-5">
     <% Setting::MERCHANTS_FILTER_COINS.each do |coin| %>
       <li class="flex flex-col items-center justify-start gap-2">
         <div class="w-full">

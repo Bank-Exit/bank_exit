@@ -45,26 +45,40 @@ module MerchantsHelper
     state = case kyc
             when nil then :unknown
             when true then :kyc
-            else :no_kyc
+            else
+              :no_kyc
             end
 
-    label, color, title = case state
-                          when :unknown then [I18n.t('unspecified'), 'bg-base-300 text-base-content', 'Unknown']
-                          when :kyc then ['KYC', 'bg-error text-error-content', 'KYC']
-                          when :no_kyc then ['No KYC', 'bg-success text-success-content', 'No KYC']
-                          end
+    label, color, title = {
+      unknown: [I18n.t('unspecified'), 'bg-base-300 text-base-content', 'Unknown'],
+      kyc: ['KYC', 'bg-error text-error-content', 'KYC'],
+      no_kyc: ['KYC', 'bg-success text-white font-bold', 'No KYC']
+    }.fetch(state)
 
     content_tag(:div, class: 'avatar', title: title) do
       content_tag(
         :div,
-        label,
         class: [
           klass,
-          'flex items-center justify-center rounded-full',
+          'relative flex items-center justify-center overflow-visible rounded-full',
           'select-none text-center font-bold leading-none',
           color
         ].join(' ')
-      )
+      ) do
+        safe_join([
+          label,
+          (
+            if state == :no_kyc
+              content_tag(
+                :span,
+                '',
+                class: 'absolute h-1 w-[140%] rotate-[-45deg] bg-error',
+                aria: { hidden: true }
+              )
+            end
+          )
+        ].compact)
+      end
     end
   end
 end

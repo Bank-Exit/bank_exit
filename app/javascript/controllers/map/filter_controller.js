@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["input", "select"];
+  static targets = ["input"];
   static classes = ["highlight"];
 
   connect() {
@@ -9,9 +9,11 @@ export default class extends Controller {
 
     this.element.addEventListener("turbo:submit-end", this.handleSubmitEnd);
 
-    this.selectTargets.forEach((select) => {
-      this.updateBackground(select);
-      select.addEventListener("change", () => this.updateBackground(select));
+    this.inputTargets.forEach((input) => {
+      if (input.type !== "checkbox") {
+        this.updateBackground(input);
+        input.addEventListener("change", () => this.updateBackground(input));
+      }
     });
   }
 

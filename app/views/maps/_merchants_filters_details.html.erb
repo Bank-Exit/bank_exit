@@ -1,14 +1,17 @@
 <%# locals: (query:) %>
 
 <% if query.present? %>
-  <p class="badge badge-soft font-bold">
-    <%= lucide_icon "search", class: "w-4" %>
-    <%= query %>
+  <p class="badge badge-soft badge-lg font-bold max-w-64">
+    <%= lucide_icon "search", class: "w-4 shrink-0" %>
+
+    <span class="truncate min-w-0">
+      <%= query %>
+    </span>
   </p>
 <% end %>
 
 <% if params[:category].present? %>
-  <p class="badge badge-soft">
+  <p class="badge badge-soft badge-lg">
     <%= lucide_icon "tag", class: "w-4" %>
     <%= I18n.t(params[:category], scope: :categories) %>
   </p>
@@ -16,26 +19,47 @@
 
 <% if params[:coins].present? %>
   <% params[:coins].each do |coin| %>
-    <% next unless coin.in?(['monero', 'june', 'bitcoin', 'bitcoin-lightning-network', 'bitcoin-lightning-network-contactless', 'gold', 'silver']) %>
+    <div class="flex items-center gap-1 -space-x-3">
+      <% next unless coin.in?(['monero', 'june', 'bitcoin', 'bitcoin-lightning-network', 'bitcoin-lightning-network-contactless', 'gold', 'silver']) %>
 
-    <p class="badge badge-soft">
-      <%= image_tag icon_by_coin(coin), alt: coin, class: "w-4 rounded-full" %>
-      <%= coin.humanize %>
-    </p>
+      <div class="avatar-group -space-x-5 shrink-0">
+        <% if coin == "bitcoin" && params[:onchain_only] != "1" %>
+          <div class="avatar">
+            <div class="w-10">
+              <%= image_tag 'coins/logo-lightning.svg',
+                alt: 'Logo Lightning',
+                class: "rounded-full" %>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="avatar">
+          <div class="w-10">
+            <%= image_tag icon_by_coin(coin),
+                        alt: coin,
+                        class: "rounded-full" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="badge badge-soft badge-lg">
+        <%= coin.humanize %>
+      </div>
+    </div>
   <% end %>
 <% end %>
 
 <% if params[:continent].present? %>
-  <p class="badge badge-soft">
-    <%= lucide_icon "earth", class: "w-4" %>
+  <p class="badge badge-soft badge-lg">
+    <%= lucide_icon "earth", class: "w-8" %>
     <%= I18n.t(params[:continent], scope: :continents) %>
   </p>
 <% elsif params[:country].present? %>
-  <p class="badge badge-soft">
+  <p class="badge badge-soft badge-lg">
     <%= formatted_country(params[:country]) %>
   </p>
 <% end %>
 
 <% if params[:no_kyc] == "1" %>
-  <%= merchant_kyc_no_kyc(false) %>
+  <%= merchant_kyc_no_kyc(false, klass: "w-8 text-xs") %>
 <% end %>
