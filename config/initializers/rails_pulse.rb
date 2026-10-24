@@ -459,4 +459,66 @@ RailsPulse.configure do |config|
   # Set to false to skip dashboard middleware and asset serving entirely.
   # Useful for standalone/API-only deployments that use a separate dashboard app.
   # config.mount_dashboard = true
+
+  # ====================================================================================================
+  #                              ADDED BY rails generate rails_pulse:upgrade
+  # ====================================================================================================
+  # New settings from this gem version. Existing values above were not changed.
+  # Review with git diff and keep or discard hunks as you like.
+
+  # ====================================================================================================
+  #                                    API TOKENS AND DEPLOYMENT TRACKING
+  # ====================================================================================================
+  # Two tokens authenticate what is not the dashboard, so a credential given to a coding agent
+  # cannot write anything. Both are sent as an `X-Rails-Pulse-Token` header.
+  #
+  # api_token reads the JSON API under /rails_pulse/api/v1 — what the `rails-pulse` CLI and the
+  # MCP server your coding agent uses talk to. Every endpoint under it is read-only.
+  #   config.api_token = Rails.application.credentials.dig(:rails_pulse, :api_token)
+
+  #
+  # deployment_token records a release through POST /rails_pulse/deployments, which your CI calls.
+  # It is the only credential that endpoint accepts: api_token is refused there.
+  #   config.deployment_token = Rails.application.credentials.dig(:rails_pulse, :deployment_token)
+
+  # ====================================================================================================
+  #                                            RAILS PULSE CLOUD
+  # ====================================================================================================
+  # Off unless both api_key and application are set; until then Rails Pulse makes no network calls.
+  # When on, it sends Rails Pulse Cloud an hourly summary of each route, query, job and exception,
+  # exception group and deployment records, and a health update every minute. It never sends request
+  # URLs or parameters, values in SQL, exception messages, backtraces or job arguments; the detail stays
+  # in this database. Everything in deployment metadata is sent as recorded.
+  # Run `rails rails_pulse:cloud:preview` to print exactly what would be sent.
+  #
+  # Cloud keeps its state in two tables of its own. Add them with
+  # `rails generate rails_pulse:install_cloud`, then migrate.
+  #
+  # The hourly sync runs after RailsPulse::SummaryJob. Schedule the health update every minute:
+  #   # config/recurring.yml
+  #   rails_pulse_cloud_health:
+  #     class: RailsPulse::CloudHealthJob
+  #     schedule: every minute
+  #
+  # The key comes from your Application's settings in Rails Pulse Cloud; application is its slug.
+  # config.cloud.api_key = ENV["RAILS_PULSE_CLOUD_API_KEY"]
+
+  # config.cloud.application = "your-app"
+
+  # Defaults to Rails.env.
+  # config.cloud.environment = Rails.env
+
+  # config.cloud.url = "https://ingest.railspulse.com"
+
+  # Hosts are named by hostname, which can show internal addresses and changes with every container.
+  # Set a stable label instead (defaults to RAILS_PULSE_HOST_LABEL).
+  # config.cloud.host_label = ENV["RAILS_PULSE_HOST_LABEL"]
+
+  # How long rows in rails_pulse_events are kept. The background writer's
+  # heartbeats are pruned after a day regardless.
+  config.event_retention_period = 90.days
+
+  # Event kinds exempt from event_retention_period — for rows a writer updates
+  # in place rather than appends.
+  config.event_retention_exempt_kinds = []
 end

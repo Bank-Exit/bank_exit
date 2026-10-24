@@ -329,6 +329,20 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_20_155433) do
     t.index ["started_at"], name: "index_rails_pulse_deployments_on_started_at"
   end
 
+  create_table "rails_pulse_events", force: :cascade do |t|
+    t.string "kind", null: false
+    t.string "subject"
+    t.string "outcome", null: false
+    t.decimal "value", precision: 15, scale: 6
+    t.datetime "occurred_at", null: false
+    t.text "message"
+    t.text "metadata"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["kind", "occurred_at"], name: "index_rp_events_on_kind_and_occurred_at"
+    t.index ["kind", "subject", "occurred_at"], name: "index_rp_events_on_kind_subject_and_occurred_at"
+  end
+
   create_table "rails_pulse_exception_groups", force: :cascade do |t|
     t.string "fingerprint", null: false
     t.string "exception_class", null: false
