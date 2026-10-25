@@ -2,12 +2,12 @@
   <%= render 'maps/merchants', merchants: @merchants, query: @query, pagy: @pagy %>
 <% end %>
 
-<% unless params[:display].present? %>
+<% if params[:display].blank? %>
   <%= turbo_stream.replace :merchants_filters do %>
     <%= render 'maps/merchants_filters', query: @query, pagy: @pagy, merchant_sync: @merchant_sync %>
   <% end %>
 
-  <% unless from_pagination? %>
+  <% if params[:page].blank? %>
     <%= turbo_stream.replace :map do %>
       <%= render 'maps/map', latitude: @latitude,
                              longitude: @longitude,

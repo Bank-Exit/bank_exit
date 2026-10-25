@@ -5,11 +5,10 @@ class MapsController < PublicController
 
   before_action :set_zoom, :set_latitude, :set_longitude
   before_action :redirect_with_coordinates, if: :missing_coordinates?, only: :index
+  before_action :set_page_display, only: :index
 
   after_action :set_seo
   skip_after_action :record_page_view, only: :fetch_markers
-
-  helper_method :from_pagination?
 
   # @route GET /fr/map {locale: "fr"} (maps_fr)
   # @route GET /es/map {locale: "es"} (maps_es)
@@ -36,48 +35,35 @@ class MapsController < PublicController
   # @route GET /en/map/:zoom/:lat/:lon {locale: "en"} (pretty_map_en)
   # @route GET /map/:zoom/:lat/:lon
   def index
-    session[:map_referer_url] = clean_url(request.url.gsub('&pagy=true', ''))
-
+    session[:map_referer_url] = clean_url(request.url)
     session[:include_atms] = map_params[:include_atms] == '1' if request.format.turbo_stream?
 
-    if map_params[:display].present? && params.expect(:display).in?(%w[table grid])
-      session[:merchants_display] = map_params[:display]
-    else
-      session[:merchants_display] ||= 'grid'
-    end
-
-    # Merchant markers are handled by backend to keep code
-    # DRY with JavaScript.
-    # JSON is used by the `map_controller.js` as data value.
-    # @merchants and @merchant_marker are defined in `Merchandable`
-    # concern that is shared with other controllers.
-
-    unless from_pagination?
-      @all_coins = Coin.all(decorate: true)
-      @merchant_sync = MerchantSync.success.last
-
-      @faqs = FAQ.all.select do |faq|
-        FAQ_CATEGORY.in?(faq.categories)
-      end
-
-      @directory_friends = DirectoryFriend.all
-
-      set_meta_tags canonical: pretty_map_url(
-        zoom: Setting::MAP_DEFAULT_ZOOM,
-        lat: Setting::MAP_DEFAULT_LATITUDE,
-        lon: Setting::MAP_DEFAULT_LONGITUDE
-      )
-    end
-
-    @pagy, page_ids = pagy(
-      :offset, merchant_ids.ids,
-      limit: 32,
-      querify: ->(q) { q.merge!(pagy: true) }
-    )
+    @pagy, page_ids = pagy(:offset, merchant_ids.ids, limit: 32)
 
     merchants = Merchant.where(id: page_ids).in_order_of(:id, page_ids || []).includes(:banner_attachment)
 
     @merchants = MerchantDecorator.wrap(merchants)
+
+    respond_to do |format|
+      format.html do
+        @all_coins = Coin.all(decorate: true)
+        @merchant_sync = MerchantSync.success.last
+
+        @faqs = FAQ.all.select do |faq|
+          FAQ_CATEGORY.in?(faq.categories)
+        end
+
+        @directory_friends = DirectoryFriend.all
+
+        set_meta_tags canonical: pretty_map_url(
+          zoom: Setting::MAP_DEFAULT_ZOOM,
+          lat: Setting::MAP_DEFAULT_LATITUDE,
+          lon: Setting::MAP_DEFAULT_LONGITUDE
+        )
+      end
+
+      format.turbo_stream
+    end
   end
 
   # @route GET /fr/map/fetch_markers {locale: "fr"} (map_fetch_markers_fr)
@@ -119,7 +105,7 @@ class MapsController < PublicController
     params.permit(
       :search, :category, :country, :continent,
       :delivery, :no_kyc, :order_by_survey,
-      :locale, :pagy, :page, :zoom, :lat, :lon,
+      :locale, :page, :zoom, :lat, :lon,
       :display, :onchain_only, :include_atms, coins: []
     )
   end
@@ -172,10 +158,6 @@ class MapsController < PublicController
     @longitude = map_params[:lon]
   end
 
-  def from_pagination?
-    params[:pagy]
-  end
-
   def set_seo
     image = view_context.image_url('projects/map/cover.jpg')
 
@@ -195,5 +177,13 @@ class MapsController < PublicController
 
   def missing_coordinates?
     params[:lat].blank? || params[:lon].blank? || params[:zoom].blank?
+  end
+
+  def set_page_display
+    if map_params[:display].in?(%w[table grid])
+      session[:merchants_display] = map_params[:display]
+    else
+      session[:merchants_display] ||= 'grid'
+    end
   end
 end
