@@ -55,3 +55,8 @@ get '/es/glosario', to: redirect('/es/glossaries')
 get '/es/anuario', to: redirect('/es/directories')
 get '/es/riesgos', to: redirect('/es/risks')
 get '/es/preguntas-mas-frecuentes', to: redirect('/es/faq')
+
+# Other old routes
+get '/:locale/projects/accounting', to: redirect('/%{locale}/tutorials/accounting')
+get '/:locale/blogs/flyer', to: redirect('/%{locale}/projects/flyer')
+get '/:locale/projects/local_groups', to: redirect('/%{locale}/local_groups')

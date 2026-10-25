@@ -274,4 +274,22 @@ RSpec.describe 'Legacy', type: :request do
       it { is_expected.to redirect_to('https://monero-map.org/c/?foo=bar') }
     end
   end
+
+  describe '/:locale/projects/accounting' do
+    subject! { get('/fr/projects/accounting') }
+
+    it { is_expected.to redirect_to('/fr/tutorials/accounting') }
+  end
+
+  describe '/:locale/blogs/flyer' do
+    subject! { get('/fr/blogs/flyer') }
+
+    it { is_expected.to redirect_to('/fr/projects/flyer') }
+  end
+
+  describe '/:locale/projects/local_groups' do
+    subject! { get('/fr/projects/local_groups') }
+
+    it { is_expected.to redirect_to('/fr/local_groups') }
+  end
 end
