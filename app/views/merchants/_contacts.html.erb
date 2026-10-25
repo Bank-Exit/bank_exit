@@ -2,7 +2,7 @@
 
 <div class="alert alert-vertical overflow-y-auto gap-2">
   <% merchant.all_contacts.each do |key, value| %>
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-2">
       <%= social_contact_icon(key) %>
 
       <% case key %>
@@ -12,24 +12,23 @@
         <%= phone_to value, value %>
       <% when :session %>
         <%= value %>
-      <% when :signal %>
+      <% else %>
         <% if value.start_with?("http") %>
-          <%= link_to(
-                clean_url(CGI.unescape(value)).truncate(50),
+          <% cleaned_url = clean_url(CGI.unescape(value)) %>
+
+          <% if cleaned_url %>
+            <%= link_to(
+                cleaned_url.truncate(50),
                 value,
                 target: :_blank,
                 rel: "noopener"
               ) %>
+          <% else %>
+            Invalid URL
+          <% end %>
         <% else %>
           <%= value %>
         <% end %>
-      <% else %>
-        <%= link_to(
-              clean_url(CGI.unescape(value)).truncate(50),
-              value,
-              target: :_blank,
-              rel: "noopener"
-            ) %>
       <% end %>
     </div>
   <% end %>

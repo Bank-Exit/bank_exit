@@ -48,6 +48,9 @@ module ApplicationHelper
   end
 
   def clean_url(value)
+    value = value.to_s
+    return nil unless value.valid_encoding?
+
     value.split('?').first
          .delete_prefix('https://')
          .delete_prefix('http://')

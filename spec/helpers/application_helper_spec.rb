@@ -45,5 +45,11 @@ RSpec.describe ApplicationHelper do
 
       it { is_expected.to eq 'foobar.test' }
     end
+
+    context 'when URL has invalid UTF-8 encoding' do
+      let(:url) { "https://www.facebook.com/ขนมจีนสด-กู่ทอง-อร่อยที่สุด\xE0" }
+
+      it { is_expected.to be_nil }
+    end
   end
 end
