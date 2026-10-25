@@ -9,7 +9,10 @@ module Merchants
     # @route GET /en/merchants/:merchant_id/report/new {locale: "en"} (new_merchant_report_en)
     # @route GET /merchants/:merchant_id/report/new
     def new
-      @merchant_report = MerchantReport.new
+      respond_to do |format|
+        format.html { redirect_to @merchant }
+        format.turbo_stream { @merchant_report = MerchantReport.new }
+      end
     end
 
     # @route POST /fr/merchants/:merchant_id/report {locale: "fr"} (merchant_report_fr)

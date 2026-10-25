@@ -37,6 +37,7 @@ class CommentsController < PublicController
     authorize! Comment
 
     respond_to do |format|
+      format.html { redirect_to @commentable }
       format.turbo_stream do
         @comment = @commentable.comments.new(rating: nil)
       end

@@ -9,6 +9,7 @@ class CoinWalletsController < PublicController
   # @route GET /coin_wallets/:id
   def show
     respond_to do |format|
+      format.html { redirect_to @coin_wallet.walletable }
       format.turbo_stream
     end
   end
