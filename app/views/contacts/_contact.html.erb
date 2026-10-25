@@ -1,0 +1,78 @@
+<%# locals: (contact:) %>
+
+<%= render_modal modal_title: modal_title(contact),
+                modal_size: 'max-w-2xl',
+                auto_open: true do %>
+  <% if contact.sticker %>
+    <%= link_to contact.main_link, target: :_blank do %>
+      <%= image_tag contact.sticker, class: 'lg:max-w-2/3 mx-auto', alt: contact.title %>
+    <% end %>
+    <% if contact.session? || contact.nostr? %>
+      <p class="mb-3 text-center text-sm text-base-content/70 italic">
+        <%= link_to contact.main_link,
+                    target: :_blank,
+                    class: 'break-words' do %>
+          <%= contact.main_link %>
+        <% end %>
+      </p>
+    <% end %>
+    <div class="flex items-center justify-center gap-2">
+      <div class="alert tracking-wider break-all place-self-center">
+        <% if contact.nostr? %>
+          <%= link_to contact.secondary_link,
+                    class: 'select-all text-center',
+                    target: :_blank do %>
+            <%== highlight_address(contact.public_key) %>
+          <% end %>
+        <% elsif contact.session? %>
+          <span class="select-all text-center">
+            <%== highlight_address(contact.public_key) %>
+          </span>
+        <% end %>
+      </div>
+
+      <div class="text-center">
+        <%= render 'application/copy_to_clipboard',
+                    clipboard_value: contact.public_key,
+                    clipboard_success_text_value: nil,
+                    extra_class: 'btn-neutral' %>
+      </div>
+    </div>
+  <% elsif contact.email? %>
+    <%= mail_to contact.main_link,
+                contact.main_link,
+                title: contact.title,
+                class: 'alert alert-success text-xl justify-center mb-5' %>
+    <% if contact.pgp_key? %>
+      <div class="alert alert-info alert-outline italic">
+        <div><%= t('.pgp_tooltip_html') %></div>
+      </div>
+      <details class="collapse collapse-arrow bg-base-200">
+        <summary class="collapse-title font-bold flex items-center gap-3">
+          <%= render 'application/copy_to_clipboard',
+                    clipboard_value: contact.pgp_key,
+                    clipboard_success_text_value: nil,
+                    extra_class: 'btn-neutral' %>
+
+          <%= t('.pgp_key') %>
+        </summary>
+
+        <pre class="collapse-content break-all text-pretty"><%= contact.pgp_key %></pre>
+      </details>
+    <% end %>
+    <% if contact.pgp_key_fingerprint? %>
+      <details class="collapse collapse-arrow bg-base-200">
+        <summary class="collapse-title font-bold flex items-center gap-3">
+          <%= render 'application/copy_to_clipboard',
+                    clipboard_value: contact.pgp_key_fingerprint,
+                    clipboard_success_text_value: nil,
+                    extra_class: 'btn-neutral' %>
+
+          <%= t('.pgp_fingerprint') %>
+        </summary>
+
+        <pre class="collapse-content break-all text-pretty"><%= contact.pgp_key_fingerprint %></pre>
+      </details>
+    <% end %>
+  <% end %>
+<% end %>

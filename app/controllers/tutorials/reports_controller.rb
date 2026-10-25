@@ -9,7 +9,10 @@ module Tutorials
     # @route GET /en/tutorials/:tutorial_id/report/new {locale: "en"} (new_tutorial_report_en)
     # @route GET /tutorials/:tutorial_id/report/new
     def new
-      @tutorial_report = TutorialReport.new
+      respond_to do |format|
+        format.html { redirect_to @tutorial }
+        format.turbo_stream { @tutorial_report = TutorialReport.new }
+      end
     end
 
     # @route POST /fr/tutorials/:tutorial_id/report {locale: "fr"} (tutorial_report_fr)

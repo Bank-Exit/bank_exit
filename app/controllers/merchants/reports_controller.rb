@@ -10,7 +10,7 @@ module Merchants
     # @route GET /merchants/:merchant_id/report/new
     def new
       respond_to do |format|
-        format.html { redirect_to @merchant }
+        format.html { redirect_to @merchant || maps_path }
         format.turbo_stream { @merchant_report = MerchantReport.new }
       end
     end

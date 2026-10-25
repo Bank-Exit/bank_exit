@@ -387,7 +387,7 @@ es:
       workshop_caption: Taller práctico de Monero y Bitcoin impartido por Pierre
 
   contacts:
-    show:
+    contact:
       pgp_key: Clave PGP
       pgp_fingerprint: Huella PGP
       pgp_tooltip_html: |

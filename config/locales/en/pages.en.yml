@@ -413,7 +413,7 @@ en:
       description: Dive into the world of Monero and discover the projects that make it unique. From everyday tools to major innovations, explore an ecosystem built around privacy.
 
   contacts:
-    show:
+    contact:
       pgp_key: PGP key
       pgp_fingerprint: PGP fingerprint
       pgp_tooltip_html: |

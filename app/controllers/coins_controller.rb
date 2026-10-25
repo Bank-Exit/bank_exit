@@ -7,7 +7,12 @@ class CoinsController < PublicController
   # @route GET /it/coins/:id {locale: "it"} (coin_it)
   # @route GET /en/coins/:id {locale: "en"} (coin_en)
   # @route GET /coins/:id
-  def show; end
+  def show
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.turbo_stream
+    end
+  end
 
   private
 

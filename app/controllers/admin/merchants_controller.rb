@@ -36,11 +36,10 @@ module Admin
                     merchants.reverse_order
                   end
 
-      merchants = MerchantDecorator.wrap(merchants.distinct)
-
       @merchant_sync = MerchantSync.sync.last
 
-      @pagy, @merchants = pagy(:offset, merchants)
+      @pagy, merchants = pagy(:offset, merchants.distinct)
+      @merchants = MerchantDecorator.wrap(merchants)
     end
 
     # @route GET /fr/admin/merchants/:id {locale: "fr"} (admin_merchant_fr)
