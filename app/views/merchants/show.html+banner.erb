@@ -47,9 +47,7 @@ set_meta_tags og: { image: image },
 
             <% unless @merchant.ask_kyc.nil? %>
               <div class="my-1">
-                <div class="avatar">
-                  <%= merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-16 h-16 text-xl') %>
-                </div>
+                <%= merchant_kyc_no_kyc(@merchant.ask_kyc?, klass: 'w-16 h-16 text-xl') %>
               </div>
             <% end %>
           </div>
