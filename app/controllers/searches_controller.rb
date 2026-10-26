@@ -22,7 +22,7 @@ class SearchesController < PublicController
       @directories = DirectoryDecorator.wrap(directories_filter)
     end
 
-    @pagy, merchants = pagy(Merchant.available.by_query(query).with_attached_logo.order(last_survey_on: :desc))
+    @pagy, merchants = pagy(Merchant.available.by_query(query).with_attached_logo.order(last_survey_on: :desc), limit: 32)
     @merchants = MerchantDecorator.wrap(merchants)
   end
 
