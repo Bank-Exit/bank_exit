@@ -6,7 +6,7 @@
       <%= t('other') %>
     </h2>
 
-    <div class="alert alert-vertical gap-1">
+    <div class="alert alert-vertical text-base gap-1">
       <% if merchant.opening_hours.present? %>
         <% multi_hours = merchant.opening_hours_sentences.count > 1 %>
         <div class="flex items-center <%= multi_hours ? 'gap-6' : 'gap-2' %>">

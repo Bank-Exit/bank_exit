@@ -1,6 +1,6 @@
 <%# locals: (merchant:) %>
 
-<div class="alert alert-vertical overflow-y-auto gap-2">
+<div class="alert alert-vertical text-base overflow-y-auto gap-2">
   <% merchant.all_contacts.each do |key, value| %>
     <div class="flex items-center gap-2">
       <%= social_contact_icon(key) %>
