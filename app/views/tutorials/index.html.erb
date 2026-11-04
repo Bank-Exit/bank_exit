@@ -31,29 +31,54 @@
         <%= t('.other_tutorials_title') %>
       </h2>
 
-      <ul class="list-disc list-inside space-y-2">
+      <ul class="list bg-base-200 rounded-box">
         <% @other_tutorials.each do |tutorial| %>
-          <li>
-            <%= link_to tutorial_path(tutorial.identifier) do %>
-              <h3 class="inline">
-                <%= tutorial.title %>
-              </h3>
+          <li class="list-row hover:bg-base-300 transition-colors">
+            <% if tutorial.coins.present? %>
+              <%= group_coins_list(tutorial.coins, size: 'size-12') %>
+            <% else %>
+              <div
+                class="
+                  <%= class_names(
+                  "size-12",
+                  "bg-cover",
+                  "bg-#{tutorial.banner}": tutorial.banner,
+                  "bg-banner-default": !tutorial.banner
+                  ) %>
+                "
+              ></div>
             <% end %>
 
-            <% if tutorial.level? %>
-              <span class="badge badge-sm ml-3 <%= tutorial_class_by_level(tutorial.level) %>">
-                <%= t(tutorial.level, scope: 'articles.wrapper') %>
-              </span>
-            <% end %>
+            <div>
+              <%= link_to tutorial_path(tutorial.identifier), class: "font-bold" do %>
+                <h3><%= tutorial.title %></h3>
+              <% end %>
 
-            <% if tutorial.time? %>
-              <span
-                class="badge badge-sm badge-neutral ml-3"
-                title="<%= tutorial.time %>'"
-              >
-                <%= distance_of_time_in_words(tutorial.time.minutes) %>
-              </span>
-            <% end %>
+              <p class="opacity-60"><%= tutorial.overview %></p>
+            </div>
+
+            <div class="max-md:list-col-wrap">
+              <% if tutorial.level? %>
+                <span class="badge badge-sm <%= tutorial_class_by_level(tutorial.level) %>">
+                  <%= t(tutorial.level, scope: 'articles.wrapper') %>
+                </span>
+              <% end %>
+
+              <% if tutorial.time? %>
+                <span
+                  class="badge badge-sm badge-neutral"
+                  title="<%= tutorial.time %>'"
+                >
+                  <%= distance_of_time_in_words(tutorial.time.minutes) %>
+                </span>
+              <% end %>
+
+              <% if tutorial.created_at? %>
+                <span class="badge badge-sm">
+                  <%= I18n.l(tutorial.created_at) %>
+                </span>
+              <% end %>
+            </div>
           </li>
         <% end %>
       </ul>

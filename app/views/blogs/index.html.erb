@@ -13,14 +13,30 @@
     <%= render 'application/breadcrumb' %>
 
     <section>
-      <ul class="list-disc list-inside space-y-2">
+      <ul class="list bg-base-200 rounded-box">
         <% @blogs.each do |blog| %>
-          <li>
-            <%= link_to blog_path(blog.identifier) do %>
-              <h3 class="inline"><%= blog.title %></h3>
-            <% end %>
+          <li class="list-row hover:bg-base-300 transition-colors">
+            <div
+              class="
+                <%= class_names(
+                "size-12",
+                "bg-cover",
+                "rounded-full",
+                "bg-#{blog.banner}": blog.banner,
+                "bg-banner-default": !blog.banner
+                ) %>
+              "
+            ></div>
 
-            <time class="text-sm">( <%= l(blog.created_at) %> )</time>
+            <div>
+              <%= link_to blog_path(blog.identifier), class: "font-bold" do %>
+                <h3><%= blog.title %></h3>
+              <% end %>
+
+              <p class="opacity-60"><%= blog.overview %></p>
+            </div>
+
+            <time class="badge badge-neutral"><%= l(blog.created_at) %></time>
           </li>
         <% end %>
       </ul>
