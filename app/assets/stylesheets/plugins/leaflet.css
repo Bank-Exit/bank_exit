@@ -142,7 +142,7 @@
         .leaflet-layer,
         .leaflet-control-zoom-in,
         .leaflet-control-zoom-out,
-        .leaflet-fullscreen-icon,
+        .leaflet-control-fullscreen-button,
         .leaflet-bar-part,
         .marker-cluster {
             filter: invert(100%) hue-rotate(180deg) brightness(0.95)

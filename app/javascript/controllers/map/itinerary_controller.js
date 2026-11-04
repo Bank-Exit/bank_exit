@@ -1,6 +1,6 @@
 import MapBaseController from "controllers/map_base_controller";
-import { Marker } from "leaflet";
-import polyUtil from "polyline-encoded";
+import { Marker, Polyline } from "leaflet";
+import "leaflet/polyline_encoded";
 
 export default class MapItineraryController extends MapBaseController {
   static values = {
@@ -55,24 +55,23 @@ export default class MapItineraryController extends MapBaseController {
     if (this.detailedStepsValue) {
       this.legsValue.forEach((leg) => {
         leg.steps.forEach((step, index) => {
-          const routing = new L.Polyline(polyUtil.decode(step.geometry), {
+          const routing = Polyline.fromEncoded(step.geometry, {
             ...this.polylineConfig,
-            ...{
-              className: `step_${index} motion-safe:transition-colors`,
-            },
+            className: `step_${index} motion-safe:transition-colors`,
           });
+
           routing.addTo(this.map);
 
-          this.routings.push({ stepIndex: `step_${index}`, routing: routing });
+          this.routings.push({
+            stepIndex: `step_${index}`,
+            routing: routing,
+          });
         });
       });
 
-      routing = new L.Polyline(polyUtil.decode(this.geometryValue));
+      routing = Polyline.fromEncoded(this.geometryValue);
     } else {
-      routing = new L.Polyline(
-        polyUtil.decode(this.geometryValue),
-        this.polylineConfig,
-      );
+      routing = Polyline.fromEncoded(this.geometryValue, this.polylineConfig);
 
       routing.addTo(this.map);
     }

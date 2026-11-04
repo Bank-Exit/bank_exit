@@ -1,5 +1,5 @@
 import MapBaseController from "controllers/map_base_controller";
-import { Marker } from "leaflet";
+import { Marker, LatLngBounds } from "leaflet";
 import { MarkerClusterGroup } from "leaflet.markercluster";
 import { get, patch } from "@rails/request.js";
 import { useIntersection } from "stimulus-use";
@@ -75,7 +75,7 @@ export default class MapController extends MapBaseController {
       this.map.addLayer(this.bitcoinMarkers);
       this.map.addLayer(this.otherMarkers);
 
-      this.bounds = L.latLngBounds(this.bitcoinMarkers.getBounds());
+      this.bounds = new LatLngBounds(this.bitcoinMarkers.getBounds());
       this.bounds.extend(this.otherMarkers.getBounds());
       if (this.#forceFitBounds()) {
         if (this.bounds.isValid()) {
@@ -162,11 +162,7 @@ export default class MapController extends MapBaseController {
   }
 
   toggleGestureHandling(_e) {
-    if (this.map.gestureHandling.enabled()) {
-      this.map.gestureHandling.disable();
-    } else {
-      this.map.gestureHandling.enable();
-    }
+    this.map.gestureHandling.toggle();
   }
 
   #buildNewPathnameForZoom(current, newZoom) {

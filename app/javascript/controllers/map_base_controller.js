@@ -1,9 +1,8 @@
 import { Controller } from "@hotwired/stimulus";
 import { get } from "@rails/request.js";
-import L, { Map, Popup, Control, TileLayer, DivIcon } from "leaflet";
-import "leaflet-v1-polyfill";
-import "leaflet-gesture-handling";
-import { FullScreen } from "leaflet.fullscreen";
+import { Map, Popup, ZoomControl, TileLayer, DivIcon } from "leaflet";
+import { FullscreenControl } from "leaflet/fullscreen";
+import "leaflet/gesture_handling";
 
 export default class MapBaseController extends Controller {
   static values = {
@@ -15,8 +14,6 @@ export default class MapBaseController extends Controller {
   };
 
   connect() {
-    applyAllPolyfills();
-
     this.mapOptions = {
       attributionControl: this.showAttributionValue,
       zoomControl: false,
@@ -25,6 +22,7 @@ export default class MapBaseController extends Controller {
       maxZoom: 18,
       worldCopyJump: true,
     };
+
     this.markers = [];
     this.popup = new Popup({ offset: [0, -43] });
   }
@@ -34,6 +32,7 @@ export default class MapBaseController extends Controller {
       if (this.map.gestureHandling.enabled()) {
         this.map.gestureHandling.disable();
       }
+
       this.map.remove();
     }
   }
@@ -41,7 +40,7 @@ export default class MapBaseController extends Controller {
   _initMap() {
     this.map = new Map(this.element, this.mapOptions);
     this.map.addControl(
-      new FullScreen({
+      new FullscreenControl({
         position: "topright",
         forceSeparateButton: true,
       }),
@@ -66,7 +65,7 @@ export default class MapBaseController extends Controller {
       } catch {}
     }
 
-    new Control.Zoom({ position: "topright" }).addTo(this.map);
+    new ZoomControl({ position: "topright" }).addTo(this.map);
     new TileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution: false,
     }).addTo(this.map);

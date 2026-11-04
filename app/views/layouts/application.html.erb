@@ -23,11 +23,8 @@
     <%= yield :head %>
     <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
 
-    <%= stylesheet_link_tag 'https://unpkg.com/leaflet@2.0.0-alpha.1/dist/leaflet.css' %>
-    <%= stylesheet_link_tag 'https://unpkg.com/leaflet-gesture-handling@1.2.2/dist/leaflet-gesture-handling.min.css' %>
-    <%= stylesheet_link_tag 'https://unpkg.com/leaflet.fullscreen/dist/Control.FullScreen.css' %>
-    <%= stylesheet_link_tag 'https://unpkg.com/@kristjan.esperanto/leaflet.markercluster@3/dist/MarkerCluster.css' %>
-    <%= stylesheet_link_tag 'https://unpkg.com/@kristjan.esperanto/leaflet.markercluster@3/dist/MarkerCluster.Default.css' %>
+    <%= stylesheet_link_tag 'https://unpkg.com/leaflet@2.0.0-beta.1/dist/leaflet.css' %>
+    <%= stylesheet_link_tag 'https://cdn.jsdelivr.net/npm/leaflet.markercluster@2.0.0-beta.1/dist/MarkerCluster.Default.css' %>
 
     <%= stylesheet_link_tag :app %>
 
