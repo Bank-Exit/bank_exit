@@ -33,3 +33,8 @@
   title: VoxPopuli
   overview: Découvrir une plateforme de démocratie directe ouverte à tous.
   content_origin: ai_assisted
+
+- identifier: libremonero
+  title: LibreMonero
+  overview: Le premier et unique service professionnel de détection des paiements en Monero, utilisant des portefeuilles en lecture seule et l’isolation des sous-adresses.
+  content_origin: ai_assisted

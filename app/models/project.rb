@@ -10,9 +10,10 @@ class Project < Article
   end
 
   def cover
-    return "projects/#{identifier}/cover.png" if crypto_box?
+    extension = 'jpg'
+    extension = 'png' if crypto_box? || libre_monero?
 
-    "projects/#{identifier}/cover.jpg"
+    "projects/#{identifier}/cover.#{extension}"
   end
 
   def logo?
@@ -27,5 +28,9 @@ class Project < Article
 
   def crypto_box?
     identifier == 'sticker'
+  end
+
+  def libre_monero?
+    identifier == 'libremonero'
   end
 end
