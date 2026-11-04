@@ -1,7 +1,7 @@
 <% if pagy.count == 0 %>
-  <span class="badge badge-error"><%= t('x_results', count: 0) %></span>
+  <span class="badge badge-soft badge-error"><%= t('x_results', count: 0) %></span>
 <% else %>
-  <span class="badge badge-success">
+  <span class="badge badge-soft badge-success">
     <% formatted_count = number_with_delimiter(pagy.count) %>
     <%= t('x_results', count: pagy.count, formatted_count: formatted_count) %>
   </span>
