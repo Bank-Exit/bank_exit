@@ -1,9 +1,11 @@
 <%= link_to tutorial_path(tutorial.identifier), class: "card card-lift" do %>
   <% if tutorial.logo? %>
-    <%= image_tag tutorial.logo,
-            class: 'bg-base-300 object-cover md:h-60 rounded-t-lg p-5',
+    <div class="bg-base-300 rounded-t-lg p-5">
+      <%= image_tag tutorial.logo,
+            class: 'object-cover size-32 mx-auto',
             alt: "Logo for #{tutorial.title}",
             loading: :lazy %>
+    </div>
   <% end %>
 
   <div class="card-body justify-between gap-3">
@@ -26,6 +28,10 @@
         <p class="badge badge-sm">
           <%= l(tutorial.created_at) %>
         </p>
+      <% end %>
+
+      <% if tutorial.coins.present? %>
+        <%= group_coins_list(tutorial.coins, size: 'w-8') %>
       <% end %>
     </div>
   </div>
