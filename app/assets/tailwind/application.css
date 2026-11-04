@@ -330,3 +330,19 @@ forced to white to make texts readables */
     inherits: false;
     initial-value: 0deg;
 }
+
+@layer utilities {
+    .card-lift {
+        @apply bg-base-200 shadow-sm transition-all!;
+    }
+
+    .card-lift:hover {
+        @apply bg-primary text-neutral;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .card-lift:hover {
+            @apply -translate-y-2;
+        }
+    }
+}

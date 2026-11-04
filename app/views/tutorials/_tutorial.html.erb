@@ -1,4 +1,4 @@
-<%= link_to tutorial_path(tutorial.identifier), class: "card bg-base-200 hover:bg-primary hover:text-neutral! hover:-translate-y-2 shadow-sm motion-safe:transition-all!" do %>
+<%= link_to tutorial_path(tutorial.identifier), class: "card card-lift" do %>
   <% if tutorial.logo? %>
     <%= image_tag tutorial.logo,
             class: 'bg-base-300 object-cover md:h-60 rounded-t-lg p-5',

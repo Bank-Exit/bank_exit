@@ -1,4 +1,4 @@
-<%= link_to project_path(project), class: "card bg-base-200 hover:bg-primary hover:text-neutral! hover:-translate-y-2 shadow-sm motion-safe:transition-all!" do %>
+<%= link_to project_path(project), class: "card card-lift" do %>
   <% if project.cover? %>
     <%= image_tag project.cover,
                   class: 'object-cover w-full h-60 rounded-t-lg',

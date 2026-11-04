@@ -1,6 +1,6 @@
 <%# locals: (merchant:, search: nil) %>
 
-<%= link_to merchant_path(merchant), class: class_names("card card-border bg-base-200 hover:border-primary shadow-sm motion-safe:transition-all! break-inside-avoid mb-4", "image-full": merchant.banner.attached?) do %>
+<%= link_to merchant_path(merchant), class: class_names("card card-lift break-inside-avoid mb-4", "image-full": merchant.banner.attached?) do %>
   <% if merchant.banner.attached? %>
     <figure>
       <%= image_tag merchant.banner.variant(:thumb), alt: "Banner" %>
