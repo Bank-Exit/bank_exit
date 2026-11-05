@@ -46,7 +46,7 @@ module Admin
     end
 
     def monitor?
-      true
+      FeatureFlag.enabled?(:monitor)
     end
   end
 end

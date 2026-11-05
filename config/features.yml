@@ -7,6 +7,8 @@ default: &default
     enabled: <%= ENV.fetch('FF_SNOWFLAKES_ENABLED', false) %>
   nostr:
     enabled: <%= ENV.fetch('FF_NOSTR_ENABLED', false) %>
+  monitor:
+    enabled: <%= ENV.fetch('FF_RAILS_PULSE_ENABLED', false) %>
 
 development:
   <<: *default
