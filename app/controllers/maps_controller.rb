@@ -83,8 +83,9 @@ class MapsController < PublicController
   # @route GET /en/map/merchants {locale: "en"} (export_merchants_en)
   # @route GET /map/merchants
   def export_merchants
+    # Limit to 1000 for now as endpoint is getting slower to respond
     @merchants = MerchantDecorator.wrap(
-      Merchant.where(id: merchant_ids)
+      Merchant.where(id: merchant_ids).limit(1_000)
     )
 
     filename = helpers.merchant_metadata_filename(

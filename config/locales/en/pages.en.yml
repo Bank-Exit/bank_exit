@@ -253,7 +253,7 @@ en:
       suggest_merchant: Suggest a merchant
 
     merchants_filters:
-      export_as_gpx: Download merchants
+      export_as_gpx: Download merchants (max 1000)
 
     merchants_filters_form:
       clear_search_query: Clear search query
