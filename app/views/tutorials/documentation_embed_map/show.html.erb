@@ -81,15 +81,15 @@
                         url: '',
                         method: :get,
                         html: {
-                          class: 'flex flex-col lg:flex-row gap-6 space-y-3',
+                          class: 'space-y-3',
                           data: {
                             map__embed_generator_target: 'form',
                             action: 'change->map--embed-generator#print keydown->map--embed-generator#print'
                           }
                         } do |f| %>
-      <div class="flex lg:flex-col items-center gap-3">
-        <% %i[bitcoin monero june].each do |coin| %>
-          <div class="w-1/3 lg:w-full">
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
+        <% %i[bitcoin monero june silver gold].each do |coin| %>
+          <div>
             <input
               type="checkbox"
               id="<%= coin %>-option"
