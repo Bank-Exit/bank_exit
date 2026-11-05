@@ -35,8 +35,7 @@
           "
         >
           <span>
-            <%= maps_embed_url %>
-            <span data-map--embed-generator-target="queryRenderer"></span>
+            <%= maps_embed_url %><span data-map--embed-generator-target="queryRenderer"></span>
           </span>
         </div>
       </div>
@@ -64,10 +63,7 @@
         <div class="alert overflow-x-auto w-full">
           <div class="w-full select-all">
             <%= html_escape_once('<iframe src="') %>
-            <%= maps_embed_url %>
-
-            <mark data-map--embed-generator-target="queryRenderer"></mark>
-            <%= html_escape_once('" width="100%" height="100%"></iframe>') %>
+            <%= maps_embed_url %><mark data-map--embed-generator-target="queryRenderer"></mark><%= html_escape_once('" width="100%" height="100%"></iframe>') %>
           </div>
         </div>
 
