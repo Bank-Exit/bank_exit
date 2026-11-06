@@ -1,0 +1,162 @@
+<%# locals: (mode:, coins: Coin.all) %>
+
+<% showable_coins = (params[:coins] || []).intersection(coins.map(&:identifier)).presence %>
+
+<button
+  class="badge badge-soft badge-lg cursor-pointer"
+  popovertarget="coins-<%= mode %>"
+  style="anchor-name:--coins-<%= mode %>"
+>
+  <% if showable_coins %>
+    <div class="avatar-group -space-x-3 shrink-0">
+      <% showable_coins.each do |coin| %>
+        <% next if coin.match?('bitcoin-lightning-network') %>
+
+        <% if coin == "bitcoin" && params[:onchain_only] != "1" %>
+          <%= lightning_logo %>
+          <%= lightning_logo(contact_less: true) %>
+        <% end %>
+
+        <div class="avatar">
+          <div class="w-8">
+            <%= image_tag icon_by_coin(coin),
+                                title: coin.capitalize,
+                                alt: coin,
+                                class: "rounded-full" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="avatar-group -space-x-3 shrink-0">
+      <% if params[:onchain_only] == '1' %>
+        <%= lightning_logo(striped: true) %>
+      <% end %>
+
+      <% if params[:no_kyc] == '1' %>
+        <%= no_kyc_badge(size: :sm) %>
+      <% end %>
+    </div>
+  <% elsif params[:onchain_only] == '1' || params[:no_kyc] == '1' %>
+    <div class="avatar-group -space-x-3 shrink-0">
+      <% if params[:onchain_only] == '1' %>
+        <%= lightning_logo(striped: true) %>
+      <% end %>
+
+      <% if params[:no_kyc] == '1' %>
+        <%= no_kyc_badge(size: :sm) %>
+      <% end %>
+    </div>
+  <% else %>
+    <span title="<%= t('coin').pluralize %>">
+      <%= lucide_icon('coins') %>
+    </span>
+  <% end %>
+
+  <%= lucide_icon "chevron-down", class: "w-4" %>
+</button>
+
+<div
+  class="dropdown menu menu-sm rounded-box bg-base-100 shadow-sm"
+  id="coins-<%= mode %>"
+  style="position-anchor:--coins-<%= mode %>"
+  popover
+>
+  <%= simple_form_for '',
+                      url: request.url,
+                      method: :get,
+                      data: {
+                        controller: 'map--filter',
+                        turbo_stream: true
+                      } do |f| %>
+    <ul class="grid grid-cols-2 gap-2">
+      <% coins.each do |coin| %>
+        <% next if coin.bitcoin_ln? %>
+
+        <li>
+          <label class="label">
+            <input
+              type="checkbox"
+              id="<%= coin.identifier %>-option"
+              value="<%= coin.identifier %>"
+              name="coins[]"
+              class="checkbox checkbox-sm"
+              <% if params.dig(:coins)&.include?(coin.identifier.to_s) %>
+                checked
+              <% end %>
+            >
+
+            <div class="avatar-group -space-x-5 shrink-0">
+              <% if coin.identifier == 'bitcoin' %>
+                <%= lightning_logo %>
+                <%= lightning_logo(contact_less: true) %>
+              <% end %>
+
+              <div class="avatar">
+                <div class="w-8">
+                  <%= image_tag icon_by_coin(coin.identifier), alt: "Logo #{coin.name}", class: "rounded-full" %>
+                </div>
+              </div>
+            </div>
+
+            <%= coin.short_name || coin.name %>
+          </label>
+        </li>
+      <% end %>
+    </ul>
+
+    <hr class="my-2 border-base-content/10">
+
+    <ul class="grid grid-cols-2 items-center gap-2">
+      <li>
+        <label class="label">
+          <input
+            type="checkbox"
+            name="onchain_only"
+            value="1"
+            class="checkbox checkbox-sm"
+            <% if params[:onchain_only] == '1' %>
+              checked
+            <% end %>
+          >
+
+          <div class="avatar-group shrink-0">
+            <%= lightning_logo(striped: true) %>
+          </div>
+
+          <%= t('no_ln') %>
+        </label>
+      </li>
+
+      <li>
+        <label class="label">
+          <input
+            type="checkbox"
+            name="no_kyc"
+            value="1"
+            class="checkbox checkbox-sm"
+            <% if params[:no_kyc] == '1' %>
+              checked
+            <% end %>
+          >
+
+          <div class="avatar-group shrink-0">
+            <%= no_kyc_badge(size: :md) %>
+          </div>
+
+          <%= t('no_kyc') %>
+        </label>
+      </li>
+    </ul>
+
+    <% hidden_coins_filter_params.each do |key, value| %>
+      <%= f.hidden_field key, value: value %>
+    <% end %>
+
+    <div class="mt-2">
+      <%= f.button :button, type: :submit, class: 'btn-success btn-sm w-full!' do %>
+        <%= t('search') %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

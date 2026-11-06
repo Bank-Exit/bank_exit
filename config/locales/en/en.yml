@@ -52,6 +52,7 @@ en:
   disabled: Disabled
   unspecified: Unspecified
   no_kyc: No KYC
+  no_ln: No LN
 
   added_on: Added %{date} ago
   updated_on: Updated %{date} ago

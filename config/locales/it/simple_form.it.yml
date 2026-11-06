@@ -34,7 +34,7 @@ it:
         service: Voglio
 
       map:
-        onchain_only: Solo on-chain (senza ⚡)
+        onchain_only_html: Solo on-chain
         delivery: Con consegna a domicilio
         no_kyc_html: <span>Non richiedere <abbr title="Know Your Customer">KYC</abbr></span>
         with_atms_html: Includi <abbr title="Automated Teller Machine">ATM (bancomat)</abbr> ?

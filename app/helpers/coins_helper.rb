@@ -91,4 +91,37 @@ module CoinsHelper
       raw(svg) # rubocop:disable Rails/OutputSafety
     end
   end
+
+  def lightning_logo(size: 'w-8', contact_less: false, striped: false)
+    content_tag(:div, class: 'avatar') do
+      content_tag(:div,
+                  class: "#{size} relative",
+                  title: striped ? I18n.t('no_ln') : 'Lightning Network') do
+        elements = if contact_less
+                     [
+                       image_tag('coins/logo-contact_less.svg', alt: 'Logo Lightning Contactless', class: 'bg-white')
+                     ]
+                   else
+                     [
+                       image_tag('coins/logo-lightning.svg', alt: 'Logo Lightning')
+                     ]
+                   end
+
+        if striped
+          elements << tag.span(
+            class: 'absolute top-1/2 -left-2 h-1 w-[140%] -rotate-45 bg-error'
+          )
+        end
+
+        safe_join(elements)
+      end
+    end
+  end
+
+  def hidden_coins_filter_params
+    params.slice(
+      :search, :country, :continent, :category,
+      :delivery, :order_by_survey, :include_atms
+    )
+  end
 end

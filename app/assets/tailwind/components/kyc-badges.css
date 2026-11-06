@@ -6,11 +6,11 @@
 
     /* Sizes */
     .kyc-badge-xs {
-        @apply w-6 h-6 text-[8px];
+        @apply w-7 h-7 text-[8px];
     }
 
     .kyc-badge-sm {
-        @apply w-7 h-7 text-[10px];
+        @apply w-8 h-8 text-[10px];
     }
 
     .kyc-badge-md {

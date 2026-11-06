@@ -157,11 +157,7 @@
           >
             <div class="avatar-group -space-x-6 shrink-0">
               <% if coin == :bitcoin %>
-                <div class="avatar">
-                  <div class="w-10">
-                    <%= image_tag 'coins/logo-lightning.svg', alt: 'Logo Lightning' %>
-                  </div>
-                </div>
+                <%= lightning_logo(size: "w-10") %>
               <% end %>
 
               <div class="avatar">
@@ -181,6 +177,9 @@
   </ul>
 
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 fieldset">
+    <% onchain_only_label_html = t('simple_form.labels.map.onchain_only_html') %>
+    <% onchain_only_label_html += lightning_logo(size: "w-7", striped: true) %>
+
     <%= f.input :onchain_only,
                 as: :boolean,
                 boolean_style: :inline,
@@ -192,7 +191,7 @@
                     map__filter_target: 'input'
                   }
                 },
-                label: t('simple_form.labels.map.onchain_only') %>
+                label: onchain_only_label_html %>
 
     <% no_kyc_label_html = t('simple_form.labels.map.no_kyc_html') %>
     <% no_kyc_label_html += no_kyc_badge(size: :xs) %>
