@@ -1,7 +1,13 @@
 import { Controller } from "@hotwired/stimulus";
 import { get } from "@rails/request.js";
-import { Map, Popup, ZoomControl, TileLayer, DivIcon } from "leaflet";
-import { FullscreenControl } from "leaflet/fullscreen";
+import {
+  Map,
+  Popup,
+  ZoomControl,
+  TileLayer,
+  DivIcon,
+  FullscreenControl,
+} from "leaflet";
 import "leaflet/gesture_handling";
 
 export default class MapBaseController extends Controller {
@@ -42,7 +48,6 @@ export default class MapBaseController extends Controller {
     this.map.addControl(
       new FullscreenControl({
         position: "topright",
-        forceSeparateButton: true,
       }),
     );
 

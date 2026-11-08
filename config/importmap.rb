@@ -13,7 +13,7 @@ pin '@rails/request.js', to: 'https://ga.jspm.io/npm:@rails/request.js@0.0.13/sr
 
 pin 'stimulus-use', to: 'https://ga.jspm.io/npm:stimulus-use@0.53.0/dist/index.js', preload: :application
 
-pin 'leaflet', to: 'https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.1/dist/leaflet.js'
+pin 'leaflet', to: 'https://cdn.jsdelivr.net/npm/leaflet@2.0.0-beta.2/dist/leaflet.js'
 pin 'leaflet.markercluster', to: 'https://cdn.jsdelivr.net/npm/leaflet.markercluster@2.0.0-beta.1/dist/leaflet.markercluster.js'
 pin 'leaflet/gesture_handling'
 pin 'leaflet/fullscreen'

@@ -16,10 +16,6 @@
     color: #000;
 }
 
-.marker-cluster {
-    color: #000;
-}
-
 /* Marker */
 
 .custom-pin-icon {
@@ -142,7 +138,7 @@
         .leaflet-layer,
         .leaflet-control-zoom-in,
         .leaflet-control-zoom-out,
-        .leaflet-control-fullscreen-button,
+        .leaflet-control-fullscreen,
         .leaflet-bar-part,
         .marker-cluster {
             filter: invert(100%) hue-rotate(180deg) brightness(0.95)
