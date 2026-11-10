@@ -195,7 +195,7 @@
                 label: t('simple_form.labels.map.onchain_only') %>
 
     <% no_kyc_label_html = t('simple_form.labels.map.no_kyc_html') %>
-    <% no_kyc_label_html += merchant_kyc_no_kyc(false, klass: "w-5 h-5 text-[8px] ml-1") %>
+    <% no_kyc_label_html += no_kyc_badge(size: :xs) %>
 
     <%= f.input :no_kyc,
                 as: :boolean,

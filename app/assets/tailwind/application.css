@@ -9,6 +9,7 @@
 @import "./components/markdown.css";
 @import "./components/mermaid.css";
 @import "./components/map.css";
+@import "./components/kyc-badges.css";
 
 @theme {
     --breakpoint-xs: 35rem;
@@ -344,5 +345,11 @@ forced to white to make texts readables */
         .card-lift:hover {
             @apply -translate-y-2;
         }
+    }
+}
+
+@utility avatar-group {
+    .avatar {
+        border: 2px solid var(--color-base-100);
     }
 }

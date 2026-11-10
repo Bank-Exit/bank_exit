@@ -22,4 +22,5 @@ ActiveSupport::Inflector.inflections(:en) do |inflect|
   inflect.acronym 'OSM'
   inflect.acronym 'CBDC'
   inflect.acronym 'GPX'
+  inflect.acronym 'KYC'
 end

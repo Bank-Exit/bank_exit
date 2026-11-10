@@ -61,5 +61,5 @@
 <% end %>
 
 <% if params[:no_kyc] == "1" %>
-  <%= merchant_kyc_no_kyc(false, klass: "w-8 text-xs") %>
+  <%= no_kyc_badge(size: :md) %>
 <% end %>

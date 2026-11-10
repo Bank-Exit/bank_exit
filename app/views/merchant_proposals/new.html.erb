@@ -174,11 +174,11 @@
                 >
                   <% case val %>
                   <% when 'true' %>
-                    <%= merchant_kyc_no_kyc(true, klass: 'w-32 h-32 mx-auto') %>
+                    <%= kyc_badge(size: :'2xl') %>
                   <% when 'false' %>
-                    <%= merchant_kyc_no_kyc(false, klass: 'w-32 h-32 mx-auto') %>
+                    <%= no_kyc_badge(size: :'2xl') %>
                   <% else %>
-                    <%= merchant_kyc_no_kyc(nil, klass: 'w-32 h-32 mx-auto') %>
+                    <%= unspecified_kyc_badge(size: :'2xl') %>
                   <% end %>
                 </label>
               </div>

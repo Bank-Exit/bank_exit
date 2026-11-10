@@ -23,10 +23,11 @@
           class: "justify-center"
     ) do %>
       <% unless merchant.ask_kyc.nil? %>
-        <%= merchant_kyc_no_kyc(
-              merchant.ask_kyc?,
-              klass: "w-7 text-[10px]"
-        ) %>
+        <% if merchant.ask_kyc? %>
+          <%= kyc_badge %>
+        <% else %>
+          <%= no_kyc_badge %>
+        <% end %>
       <% end %>
     <% end %>
 

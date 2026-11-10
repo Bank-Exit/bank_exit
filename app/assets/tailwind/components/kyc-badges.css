@@ -1,0 +1,49 @@
+@layer utils {
+    .kyc-badge {
+        @apply relative flex items-center justify-center overflow-visible rounded-full;
+        @apply select-none text-center font-bold leading-none;
+    }
+
+    /* Sizes */
+    .kyc-badge-xs {
+        @apply w-6 h-6 text-[8px];
+    }
+
+    .kyc-badge-sm {
+        @apply w-7 h-7 text-[10px];
+    }
+
+    .kyc-badge-md {
+        @apply w-9 h-9 text-xs;
+    }
+
+    .kyc-badge-lg {
+        @apply w-12 h-12 text-sm;
+    }
+
+    .kyc-badge-xl {
+        @apply w-16 h-16 text-lg;
+    }
+
+    .kyc-badge-2xl {
+        @apply w-24 h-24 text-lg;
+    }
+
+    /* States */
+    .kyc-badge-error {
+        @apply bg-error text-error-content;
+    }
+
+    .kyc-badge-success {
+        @apply bg-success text-white font-bold;
+    }
+
+    .kyc-badge-unknown {
+        @apply bg-base-300 text-base-content;
+    }
+
+    /* No KYC strike */
+    .kyc-badge-strike {
+        @apply absolute h-1 w-[140%] -rotate-45 bg-error;
+    }
+}

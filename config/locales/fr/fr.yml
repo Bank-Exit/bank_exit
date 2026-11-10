@@ -51,6 +51,7 @@ fr:
   enabled: Activé
   disabled: Désactivé
   unspecified: Non spécifié
+  no_kyc: Sans KYC
 
   added_on: Ajouté il y a %{date}
   updated_on: Mis à jour il y a %{date}
