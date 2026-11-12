@@ -80,9 +80,9 @@
     <%= group_coins_list(@merchant.coins, size: "w-7") do %>
       <% unless @merchant.ask_kyc.nil? %>
         <% if @merchant.ask_kyc? %>
-          <%= kyc_badge %>
+          <%= kyc_badge(size: :xs) %>
         <% else %>
-          <%= no_kyc_badge %>
+          <%= no_kyc_badge(size: :xs) %>
         <% end %>
       <% end %>
     <% end %>

@@ -17,38 +17,6 @@
   </p>
 <% end %>
 
-<% if params[:coins].present? %>
-  <% params[:coins].each do |coin| %>
-    <div class="flex items-center gap-1 -space-x-3">
-      <% next unless coin.in?(['monero', 'june', 'bitcoin', 'bitcoin-lightning-network', 'bitcoin-lightning-network-contactless', 'gold', 'silver']) %>
-
-      <div class="avatar-group -space-x-5 shrink-0">
-        <% if coin == "bitcoin" && params[:onchain_only] != "1" %>
-          <div class="avatar">
-            <div class="w-10">
-              <%= image_tag 'coins/logo-lightning.svg',
-                alt: 'Logo Lightning',
-                class: "rounded-full" %>
-            </div>
-          </div>
-        <% end %>
-
-        <div class="avatar">
-          <div class="w-10">
-            <%= image_tag icon_by_coin(coin),
-                        alt: coin,
-                        class: "rounded-full" %>
-          </div>
-        </div>
-      </div>
-
-      <div class="badge badge-soft badge-lg">
-        <%= coin.humanize %>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
 <% if params[:continent].present? %>
   <p class="badge badge-soft badge-lg">
     <%= lucide_icon "earth", class: "w-8" %>
@@ -58,8 +26,4 @@
   <p class="badge badge-soft badge-lg">
     <%= formatted_country(params[:country]) %>
   </p>
-<% end %>
-
-<% if params[:no_kyc] == "1" %>
-  <%= no_kyc_badge(size: :md) %>
 <% end %>

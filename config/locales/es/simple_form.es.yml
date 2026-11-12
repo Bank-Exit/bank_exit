@@ -34,7 +34,7 @@ es:
         level: Mi nivel
         service: Quiero
       map:
-        onchain_only: Solo on-chain (sin ⚡)
+        onchain_only_html: Solo on-chain
         delivery: Con entrega a domicilio
         no_kyc_html: <span>No pida un <abbr title="Know Your Customer">KYC</abbr></span>
         with_atms_html: Incluir <abbr title="Automated Teller Machine (máquina de cajero automatizado)">ATMs</abbr> ?

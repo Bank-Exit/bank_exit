@@ -18,4 +18,8 @@ class Coin
   def links?
     links.present?
   end
+
+  def bitcoin_ln?
+    identifier.match?('bitcoin-lightning-network')
+  end
 end
