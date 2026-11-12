@@ -249,15 +249,15 @@
                 label: t('simple_form.labels.map.with_atms_html') %>
   </div>
 
-  <div class="flex max-lg:flex-col justify-end gap-2">
-    <%= f.button :button, type: :reset, class: 'btn-error', data: { action: "click->map--filter#clear" } do %>
+  <footer class="flex justify-end gap-2">
+    <%= f.button :button, type: :reset, class: 'btn-error max-lg:w-1/2', data: { action: "click->map--filter#clear" } do %>
       <%= lucide_icon 'trash', class: "w-4" %>
       <%= t('.clear_search_query') %>
     <% end %>
 
-    <%= f.button :button, type: :submit, class: 'btn-success' do %>
+    <%= f.button :button, type: :submit, class: 'btn-success max-lg:w-1/2' do %>
       <%= t('search') %>
       <%= lucide_icon 'search', class: "w-4" %>
     <% end %>
-  </div>
+  </footer>
 <% end %>
