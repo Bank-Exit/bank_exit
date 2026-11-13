@@ -1,4 +1,4 @@
-<%# locals: (id: nil, data: {}, modal_size: "max-w-xl", modal_title: nil, modal_body: nil, modal_body_html: nil, auto_open: false) %>
+<%# locals: (id: nil, data: {}, modal_size: "", modal_title: nil, modal_body: nil, modal_body_html: nil, auto_open: false) %>
 
 <% is_turbo_confirm = id == "turbo-confirm"
 
@@ -31,17 +31,19 @@ modal_body_classes = class_names(
   data: data
 ) do %>
   <div class="<%= modal_box_classes %>">
-    <header class="sticky">
-      <% if modal_title.present? %>
-        <h3 class="text-lg font-bold">
-          <%== modal_title %>
-        </h3>
-      <% elsif content_for?(:modal_title) %>
-        <h3 class="text-lg font-bold">
-          <%= yield :modal_title %>
-        </h3>
-      <% end %>
-    </header>
+    <% if modal_title.present? || content_for?(:modal_title) %>
+      <header class="sticky">
+        <% if modal_title.present? %>
+          <h3 class="text-lg font-bold">
+            <%== modal_title %>
+          </h3>
+        <% elsif content_for?(:modal_title) %>
+          <h3 class="text-lg font-bold">
+            <%= yield :modal_title %>
+          </h3>
+        <% end %>
+      </header>
+    <% end %>
 
     <form method="dialog">
       <button
@@ -63,13 +65,13 @@ modal_body_classes = class_names(
     <% if is_turbo_confirm %>
       <div class="modal-action justify-center">
         <form method="dialog">
-          <button class="btn btn-error btn-sm mr-2" value="cancel">
-            <%= lucide_icon "x", class: "w-3" %>
+          <button class="btn btn-error mr-2" value="cancel">
+            <%= lucide_icon "x", class: "w-5" %>
             <%= t("cancel") %>
           </button>
 
-          <button class="btn btn-success btn-sm" value="confirm">
-            <%= lucide_icon "check", class: "w-3" %>
+          <button class="btn btn-success" value="confirm">
+            <%= lucide_icon "check", class: "w-5" %>
             <%= t("confirm") %>
           </button>
         </form>

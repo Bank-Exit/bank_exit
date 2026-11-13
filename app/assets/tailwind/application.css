@@ -145,10 +145,6 @@
     border-base-content/10;
 }
 
-@utility modal-box {
-    @apply border border-base-content/20 p-4;
-}
-
 @utility checkbox {
     &:focus-visible {
         --input-color: var(--color-base-content);
