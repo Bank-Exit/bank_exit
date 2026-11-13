@@ -239,7 +239,12 @@ mark {
 }
 
 abbr[title] {
-    @apply no-underline lg:underline lg:decoration-dotted after:content-["_['_attr(title)_']"] lg:after:content-[""];
+    @apply no-underline lg:underline lg:decoration-dotted lg:after:content-[""];
+}
+
+abbr[title]::after {
+    @apply italic opacity-40;
+    content: " [" attr(title) "]";
 }
 
 #faq a,
