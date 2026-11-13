@@ -255,6 +255,7 @@ fr:
 
     merchants_filters:
       export_as_gpx: Télécharger les commerçants (max 1000)
+      export_as_gpx_confirm: "Voulez-vous exporter les commerçants de la recherche ? <br /> <span class='text-sm'>(<strong>Note</strong>: seuls les 1000 premiers résultats sont inclus dans le fichier)</span>"
 
     merchants_filters_form:
       clear_search_query: Effacer la recherche

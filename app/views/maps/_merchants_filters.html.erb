@@ -56,12 +56,15 @@
       <% end %>
 
       <% if pagy.count > 0 %>
-        <%= link_to export_merchants_path(format: :gpx, **request.query_parameters),
+        <%= button_to export_merchants_path(format: :gpx, **request.query_parameters),
                     class: "btn btn-circle btn-sm btn-info no-blank-icon",
                     target: :_blank,
                     title: t(".export_as_gpx"),
                     rel: "noopener",
-                    id: "download_merchants" do %>
+                    id: "download_merchants",
+                    data: {
+                      turbo_confirm: t('.export_as_gpx_confirm')
+                    } do %>
           <span>
             <%= lucide_icon "download", class: "w-5" %>
           </span>
